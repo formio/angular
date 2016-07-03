@@ -1,0 +1,5 @@
+node_modules
+typings
+.DS_Store
+.idea
+.vscode
