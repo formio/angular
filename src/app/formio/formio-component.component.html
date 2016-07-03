@@ -1,11 +1,5 @@
 <div [formGroup]="form">
     <label [attr.for]="component.settings.key">{{component.settings.label}}</label>
-    <div [ngSwitch]="component.type">
-        <input *ngSwitchCase="'textfield'" [formControlName]="component.settings.key"
-               [id]="component.settings.key" [type]="component.settings.inputType">
-        <select [id]="component.settings.key" *ngSwitchCase="'select'" [formControlName]="component.settings.key">
-            <option *ngFor="let opt of component.settings.options" [value]="opt.key">{{opt.value}}</option>
-        </select>
-    </div>
+    <div #formioElement></div>
     <div class="errorMessage" *ngIf="!isValid">{{component.settings.label}} is required</div>
 </div>
