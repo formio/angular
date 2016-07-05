@@ -1,12 +1,18 @@
-import { Component, Type } from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
-@Component({
-    selector: 'formio-textfield',
-    template: require('./textfield.html'),
-    directives: [REACTIVE_FORM_DIRECTIVES],
-})
-export class TextFieldComponent extends Type {
+import { OnInit, Injectable } from '@angular/core';
+import { BaseComponent } from '../base';
+import { FormioComponents } from '../components';
+
+@Injectable()
+export class TextField extends BaseComponent implements OnInit {
     constructor() {
         super();
     }
+    ngOnInit() {
+        this.component.inputType = 'text';
+    }
 }
+
+FormioComponents.register('textfield', TextField, {
+    selector: 'formio-textfield',
+    template: require('./textfield.html')
+});

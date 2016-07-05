@@ -1,1 +1,3 @@
-<input [name]="component.settings.key" [id]="component.settings.key" [type]="component.settings.inputType">
+<div [formGroup]="form">
+    <input [formControlName]="component.key" [id]="component.key" [type]="component.inputType">
+</div>

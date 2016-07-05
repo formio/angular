@@ -1,22 +1,21 @@
 import { Injectable, Type }       from '@angular/core';
-import { ComponentBase }     from './formio/components/base';
-import { TextField }  from './formio/components/textfield/textfield';
+import { ComponentOptions }     from './formio/formio-component.component';
 @Injectable()
 export class FormService extends Type {
     getForm() {
-        let components: ComponentBase<any>[] = [
-            new TextField({
+        let components: Array<ComponentOptions<any>> = [
+            {
+                type: 'textfield',
                 key: 'firstName',
                 label: 'First name',
-                value: 'Travis',
                 required: true
-            }),
-            new TextField({
+            },
+            {
+                type: 'textfield',
                 key: 'lastName',
                 label: 'Last name',
-                value: 'Tidwell',
                 required: true
-            }),
+            },
         ];
         return components;
     }
