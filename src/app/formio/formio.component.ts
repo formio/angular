@@ -1,23 +1,29 @@
-import { Component, Input, OnInit, Type }  from '@angular/core';
+import { Component, Input, Type }  from '@angular/core';
 import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
-import { FormioComponent } from './formio-component.component';
+import { FormioComponentsComponent } from './formio-components.component';
 import { ComponentOptions } from './formio-component.component';
+
+export interface FormioForm {
+    title?: string,
+    name?: string,
+    path?: string,
+    project?: string,
+    template?: string,
+    components?: Array<ComponentOptions<any>>
+}
 
 @Component({
     selector: 'formio',
     template: require('./formio.component.html'),
-    directives: [FormioComponent, REACTIVE_FORM_DIRECTIVES]
+    directives: [FormioComponentsComponent, REACTIVE_FORM_DIRECTIVES]
 })
-export class Formio extends Type implements OnInit {
-    @Input() components: Array<ComponentOptions<any>> = [];
-    form: FormGroup;
+export class Formio extends Type {
+    @Input() form: FormioForm = {};
+    formGroup: FormGroup = new FormGroup({});
     constructor() {
         super();
     }
-    ngOnInit() {
-        this.form = new FormGroup({});
-    }
     onSubmit() {
-        console.log(this.form.value);
+        console.log(this.formGroup.value);
     }
 }

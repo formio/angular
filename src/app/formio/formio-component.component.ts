@@ -8,7 +8,8 @@ export interface ComponentOptions<T> {
     key?: string,
     inputType?: string,
     label?: string,
-    required?: boolean
+    required?: boolean,
+    theme?: string
 }
 
 @Component({
@@ -22,7 +23,6 @@ export class FormioComponent<T> extends Type implements OnInit {
     @Input() form: FormGroup;
     @ViewChild("formioElement", { read: ViewContainerRef }) element: ViewContainerRef;
     constructor(
-        viewContainer: ViewContainerRef,
         private resolver: ComponentResolver
     ) {
         super();

@@ -1,22 +1,32 @@
-import { Injectable, Type }       from '@angular/core';
-import { ComponentOptions }     from './formio/formio-component.component';
+import { Injectable, Type } from '@angular/core';
+import { FormioForm } from './formio/formio.component';
 @Injectable()
 export class FormService extends Type {
-    getForm() {
-        let components: Array<ComponentOptions<any>> = [
-            {
-                type: 'textfield',
-                key: 'firstName',
-                label: 'First name',
-                required: true
-            },
-            {
-                type: 'textfield',
-                key: 'lastName',
-                label: 'Last name',
-                required: true
-            },
-        ];
-        return components;
+    getForm() : FormioForm {
+        return {
+            title: 'Test Form',
+            template: 'bootstrap',
+            components: [
+                {
+                    type: 'textfield',
+                    key: 'firstName',
+                    label: 'First name',
+                    required: true
+                },
+                {
+                    type: 'textfield',
+                    key: 'lastName',
+                    label: 'Last name',
+                    required: true
+                },
+                {
+                    type: 'button',
+                    label: 'Submit',
+                    key: 'submit',
+                    theme: 'primary',
+                    required: false
+                }
+            ]
+        };
     }
 }

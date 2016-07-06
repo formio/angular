@@ -1,3 +1,4 @@
 <div [formGroup]="form">
-    <input [formControlName]="component.key" [id]="component.key" [type]="component.inputType">
+    <label *ngIf="component.label" [attr.for]="component.key">{{ component.label }}</label>
+    <input [formControlName]="component.key" [id]="component.key" [type]="component.inputType" class="form-control" />
 </div>

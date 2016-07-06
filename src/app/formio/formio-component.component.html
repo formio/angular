@@ -1,5 +1,4 @@
-<div [formGroup]="form">
-    <label [attr.for]="component.key">{{component.label}}</label>
+<div [formGroup]="form" class="form-group">
     <div #formioElement></div>
-    <div class="errorMessage" *ngIf="!isValid">{{component.label}} is required</div>
+    <div *ngIf="!isValid">{{component.label}} is required</div>
 </div>

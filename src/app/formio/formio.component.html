@@ -1,13 +1,5 @@
 <div>
-    <form (ngSubmit)="onSubmit()" [formGroup]="form">
-        <div *ngFor="let component of components" class="form-row">
-            <formio-component [component]="component" [form]="form"></formio-component>
-        </div>
-        <div class="form-row">
-            <button type="submit" [disabled]="!form.valid">Save</button>
-        </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+        <formio-components *ngIf="form.components.length" [components]="form.components" [form]="formGroup"></formio-components>
     </form>
-    <div *ngIf="payLoad" class="form-row">
-        <strong>Saved the following values</strong><br>{{payLoad}}
-    </div>
 </div>
