@@ -3,7 +3,6 @@ import { FormioRegister } from './formio.component';
 import { FormioComponentRegister} from './formio-component.component';
 import { FormioComponentsComponentRegister } from './formio-components.component';
 import { FORMIO_COMPONENTS } from './components/index';
-import { FORMIO_TEMPLATE } from './templates/bootstrap';
 
 /**
  * The Form.io template interface.
@@ -34,6 +33,3 @@ export function FORMIO(template: FormioTemplate) {
         ...FORMIO_COMPONENTS(template)
     ];
 }
-
-// Export the Form.io renderer using Bootstrap template.
-export const FORMIO_BOOTSTRAP = FORMIO(FORMIO_TEMPLATE)
