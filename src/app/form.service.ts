@@ -1,5 +1,5 @@
 import { Injectable, Type } from '@angular/core';
-import { FormioForm } from './formio/formio.component';
+import { FormioForm } from '../formio/formio.component';
 @Injectable()
 export class FormService extends Type {
     getForm() : FormioForm {

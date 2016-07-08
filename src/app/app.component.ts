@@ -1,5 +1,5 @@
 import { Component, Type } from '@angular/core';
-import { Formio, FormioForm } from './formio/formio.component';
+import { Formio, FormioForm } from '../formio/formio.component';
 import { FormService } from './form.service';
 @Component({
     selector: 'app',

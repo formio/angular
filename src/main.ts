@@ -1,6 +1,6 @@
 import { bootstrap }                            from '@angular/platform-browser-dynamic';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
-import { FORMIO_BOOTSTRAP } from './app/formio/formio';
+import { FORMIO_BOOTSTRAP } from 'formio/formio';
 import { AppComponent } from './app/app.component';
 bootstrap(AppComponent, [
     FORMIO_BOOTSTRAP,
