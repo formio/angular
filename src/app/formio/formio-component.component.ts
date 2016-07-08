@@ -1,6 +1,8 @@
 import { Component, Input, Type, OnInit, ComponentResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { FormioComponents } from './components/components';
+import { FormioRegisterTemplate } from './formio.component';
+import { FormioTemplate } from './formio';
 
 export interface ComponentOptions<T> {
     value?: T,
@@ -14,7 +16,7 @@ export interface ComponentOptions<T> {
 
 @Component({
     selector: 'formio-component',
-    template: require('./formio-component.component.html'),
+    template: '<div></div>',
     directives: [REACTIVE_FORM_DIRECTIVES],
     providers: [FormioComponents]
 })
@@ -49,4 +51,9 @@ export class FormioComponent<T> extends Type implements OnInit {
         }
         return false;
     }
+}
+
+export function FormioComponentRegister(template: FormioTemplate) {
+    FormioRegisterTemplate(FormioComponent, template.formio_component);
+    return FormioComponent;
 }

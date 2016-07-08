@@ -1,6 +1,11 @@
 import { ComponentResolver, ComponentFactory, Component } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES  } from '@angular/forms';
 
+export interface FormioComponentsTemplate {
+    textfield: string,
+    button: string
+}
+
 export interface FormioComponentMetaData {
     selector: string,
     template: string,

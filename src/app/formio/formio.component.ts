@@ -1,7 +1,9 @@
+import 'reflect-metadata';
 import { Component, Input, Type }  from '@angular/core';
 import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { FormioComponentsComponent } from './formio-components.component';
 import { ComponentOptions } from './formio-component.component';
+import { FormioTemplate } from './formio';
 
 export interface FormioForm {
     title?: string,
@@ -12,9 +14,12 @@ export interface FormioForm {
     components?: Array<ComponentOptions<any>>
 }
 
+/**
+ * The <formio> component.
+ */
 @Component({
     selector: 'formio',
-    template: require('./formio.component.html'),
+    template: '<div></div>',
     directives: [FormioComponentsComponent, REACTIVE_FORM_DIRECTIVES]
 })
 export class Formio extends Type {
@@ -26,4 +31,31 @@ export class Formio extends Type {
     onSubmit() {
         console.log(this.formGroup.value);
     }
+}
+
+/**
+ * Allow dynamic altering of the component templates based on what template
+ * they wish to load within their Form.io renderer.
+ *
+ * @param cmp - The component class to alter.
+ * @param template - The template to add to this component.
+ * @constructor
+ */
+export function FormioRegisterTemplate(cmp: Type,  template: string) {
+    let annotations = Reflect.getMetadata('annotations', cmp);
+    annotations[0].template = template;
+    Reflect.defineMetadata('annotations', annotations, cmp);
+}
+
+/**
+ * Form.io component registration method. This is used to dynamically load a template
+ * into a component based on which template they wish to associate with Form.io
+ *
+ * @param template - The FormioTemplate object.
+ * @returns {Formio}
+ * @constructor
+ */
+export function FormioRegister(template: FormioTemplate) {
+    FormioRegisterTemplate(Formio, template.formio);
+    return Formio;
 }
