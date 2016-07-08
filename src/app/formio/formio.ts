@@ -18,6 +18,14 @@ export interface FormioTemplate {
     components: FormioComponentsTemplate;
 };
 
+/**
+ * The core engine for the Form.io renderer.
+ *
+ * @param template
+ *   The template you wish to attach to the renderer.
+ * @returns {Formio|FormioComponent|any[]}
+ * @constructor
+ */
 export function FORMIO(template: FormioTemplate) {
     return [
         FormioRegister(template),
