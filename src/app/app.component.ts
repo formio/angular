@@ -3,11 +3,7 @@ import { Formio, FormioForm } from '../formio/formio.component';
 import { FormService } from './form.service';
 @Component({
     selector: 'app',
-    template: `
-        <div>
-          <formio [form]="form"></formio>
-        </div>
-    `,
+    template: require('./app.html'),
     directives: [Formio],
     providers:  [FormService]
 })
