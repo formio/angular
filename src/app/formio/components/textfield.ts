@@ -1,4 +1,4 @@
-import { OnInit, Injectable } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { BaseComponent, ComponentOptions, ValidateOptions } from './base';
 import { FormioComponents } from './components';
 import { FormioTemplate } from '../formio';
@@ -19,17 +19,15 @@ export interface TextFieldOptions extends ComponentOptions<string, TextFieldVali
     suffix?: string
 }
 
-@Injectable()
-class _TextField extends BaseComponent<TextFieldOptions> implements OnInit {
-    constructor() {
-        super();
-    }
-    ngOnInit() {
-        this.component.inputType = 'text';
-    }
-}
-
 export function TextField(template:FormioTemplate) {
+    class _TextField extends BaseComponent<TextFieldOptions> implements OnInit {
+        constructor() {
+            super();
+        }
+        ngOnInit() {
+            this.component.inputType = 'text';
+        }
+    }
     FormioComponents.register('textfield', _TextField, {
         selector: 'formio-textfield',
         template: template.components.textfield
