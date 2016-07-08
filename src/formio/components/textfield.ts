@@ -29,7 +29,6 @@ export function TextField(template:FormioTemplate) {
         }
     }
     FormioComponents.register('textfield', _TextField, {
-        selector: 'formio-textfield',
         template: template.components.textfield
     });
     return _TextField;

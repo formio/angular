@@ -9,7 +9,6 @@ export function Button(template: FormioTemplate) {
         }
     }
     FormioComponents.register('button', _Button, {
-        selector: 'formio-button',
         template: template.components.button
     });
     return _Button;

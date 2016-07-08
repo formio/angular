@@ -10,8 +10,8 @@ export interface FormioComponentsTemplate {
 }
 
 export interface FormioComponentMetaData {
-    selector: string,
     template: string,
+    selector?: string,
     directives?: Array<any>,
     inputs?: Array<string>
 }
@@ -23,8 +23,13 @@ export class FormioComponents {
         component: any,
         metadata: FormioComponentMetaData
     ) {
-        metadata.directives = [REACTIVE_FORM_DIRECTIVES, FormioComponentsComponent, FormioComponent];
-        metadata.inputs = ['component', 'form'];
+        metadata.selector = metadata.selector || 'formio-' + name;
+        metadata.directives = metadata.directives || [
+            REACTIVE_FORM_DIRECTIVES,
+            FormioComponentsComponent,
+            FormioComponent
+        ];
+        metadata.inputs = metadata.inputs || ['component', 'form'];
         FormioComponents.components[name] = {
             component: component,
             metadata: metadata

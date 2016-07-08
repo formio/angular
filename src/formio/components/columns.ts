@@ -13,7 +13,6 @@ export function Columns(template:FormioTemplate) {
         }
     }
     FormioComponents.register('columns', _Columns, {
-        selector: 'formio-columns',
         template: template.components.columns
     });
     return _Columns;
