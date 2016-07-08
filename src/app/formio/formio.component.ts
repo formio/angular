@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import { Component, Input, Type }  from '@angular/core';
 import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { FormioComponentsComponent } from './formio-components.component';
-import { ComponentOptions } from './formio-component.component';
 import { FormioTemplate } from './formio';
 
 export interface FormioForm {
@@ -11,7 +10,7 @@ export interface FormioForm {
     path?: string,
     project?: string,
     template?: string,
-    components?: Array<ComponentOptions<any>>
+    components?: Array<{}>
 }
 
 /**
@@ -42,8 +41,10 @@ export class Formio extends Type {
  * @constructor
  */
 export function FormioRegisterTemplate(cmp: Type,  template: string) {
+    //noinspection TypeScriptUnresolvedFunction
     let annotations = Reflect.getMetadata('annotations', cmp);
     annotations[0].template = template;
+    //noinspection TypeScriptUnresolvedFunction
     Reflect.defineMetadata('annotations', annotations, cmp);
 }
 

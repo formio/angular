@@ -5,6 +5,7 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
     formio_components: require('./bootstrap/formio-components.html'),
     components: {
         textfield: require('./bootstrap/components/textfield.html'),
-        button: require('./bootstrap/components/button.html')
+        button: require('./bootstrap/components/button.html'),
+        columns: require('./bootstrap/components/columns.html')
     }
 };

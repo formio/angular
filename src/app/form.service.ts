@@ -6,27 +6,91 @@ export class FormService extends Type {
         return {
             title: 'Test Form',
             template: 'bootstrap',
-            components: [
-                {
-                    type: 'textfield',
-                    key: 'firstName',
-                    label: 'First name',
-                    required: true
-                },
-                {
-                    type: 'textfield',
-                    key: 'lastName',
-                    label: 'Last name',
-                    required: true
-                },
-                {
-                    type: 'button',
-                    label: 'Submit',
-                    key: 'submit',
-                    theme: 'primary',
-                    required: false
+            components: [{
+                input: false,
+                columns: [{
+                    components: [{
+                        input: true,
+                        tableView: true,
+                        inputType: 'text',
+                        inputMask: '',
+                        label: 'First Name',
+                        key: 'firstName',
+                        placeholder: 'Enter your first name',
+                        prefix: '',
+                        suffix: '',
+                        multiple: false,
+                        defaultValue: '',
+                        protected: false,
+                        unique: false,
+                        persistent: true,
+                        validate: {
+                            required: false,
+                            minLength: '',
+                            maxLength: '',
+                            pattern: '',
+                            custom: '',
+                            customPrivate: false
+                        },
+                        conditional: {
+                            show: '',
+                            when: null,
+                            eq: ''
+                        },
+                        type: 'textfield'
+                    }]
+                }, {
+                    components: [{
+                        input: true,
+                        tableView: true,
+                        inputType: 'text',
+                        inputMask: '',
+                        label: 'Last Name',
+                        key: 'lastName',
+                        placeholder: 'Enter your last name',
+                        prefix: '',
+                        suffix: '',
+                        multiple: false,
+                        defaultValue: '',
+                        protected: false,
+                        unique: false,
+                        persistent: true,
+                        validate: {
+                            required: false,
+                            minLength: '',
+                            maxLength: '',
+                            pattern: '',
+                            custom: '',
+                            customPrivate: false
+                        },
+                        conditional: {
+                            show: '',
+                            when: null,
+                            eq: ''
+                        },
+                        type: 'textfield'
+                    }]
+                }],
+                type: 'columns',
+                conditional: {
+                    show: '',
+                    when: null,
+                    eq: ''
                 }
-            ]
+            }, {
+                input: true,
+                label: 'Submit',
+                tableView: false,
+                key: 'submit',
+                size: 'md',
+                leftIcon: '',
+                rightIcon: '',
+                block: false,
+                action: 'submit',
+                disableOnInvalid: true,
+                theme: 'primary',
+                type: 'button'
+            }]
         };
     }
 }

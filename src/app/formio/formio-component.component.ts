@@ -3,16 +3,7 @@ import { FormControl, FormGroup, Validators, REACTIVE_FORM_DIRECTIVES } from '@a
 import { FormioComponents } from './components/components';
 import { FormioRegisterTemplate } from './formio.component';
 import { FormioTemplate } from './formio';
-
-export interface ComponentOptions<T> {
-    value?: T,
-    type?: string,
-    key?: string,
-    inputType?: string,
-    label?: string,
-    required?: boolean,
-    theme?: string
-}
+import { BaseOptions } from './components/base';
 
 @Component({
     selector: 'formio-component',
@@ -21,12 +12,10 @@ export interface ComponentOptions<T> {
     providers: [FormioComponents]
 })
 export class FormioComponent<T> extends Type implements OnInit {
-    @Input() component: ComponentOptions<T>;
+    @Input() component: BaseOptions<T>;
     @Input() form: FormGroup;
     @ViewChild("formioElement", { read: ViewContainerRef }) element: ViewContainerRef;
-    constructor(
-        private resolver: ComponentResolver
-    ) {
+    constructor(private resolver: ComponentResolver) {
         super();
     }
     ngOnInit() {

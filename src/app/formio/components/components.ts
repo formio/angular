@@ -1,9 +1,12 @@
 import { ComponentResolver, ComponentFactory, Component } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES  } from '@angular/forms';
+import { FormioComponentsComponent } from '../formio-components.component';
+import { FormioComponent } from '../formio-component.component';
 
 export interface FormioComponentsTemplate {
     textfield: string,
-    button: string
+    button: string,
+    columns: string
 }
 
 export interface FormioComponentMetaData {
@@ -20,7 +23,7 @@ export class FormioComponents {
         component: any,
         metadata: FormioComponentMetaData
     ) {
-        metadata.directives = [REACTIVE_FORM_DIRECTIVES];
+        metadata.directives = [REACTIVE_FORM_DIRECTIVES, FormioComponentsComponent, FormioComponent];
         metadata.inputs = ['component', 'form'];
         FormioComponents.components[name] = {
             component: component,
