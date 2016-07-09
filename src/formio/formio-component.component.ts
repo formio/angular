@@ -1,9 +1,9 @@
-import { Component, Input, Type, OnInit, ComponentResolver, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, ComponentRef, Input, Type, OnInit, ComponentResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { FormioComponents } from './components/components';
 import { FormioRegisterTemplate } from './formio.component';
 import { FormioTemplate } from './formio';
-import { BaseOptions } from './components/base';
+import { BaseOptions, BaseComponent } from './components/base';
 
 @Component({
     selector: 'formio-component',
@@ -12,6 +12,7 @@ import { BaseOptions } from './components/base';
     providers: [FormioComponents]
 })
 export class FormioComponent<T> extends Type implements OnInit {
+    instance: BaseComponent<any>;
     @Input() component: BaseOptions<T>;
     @Input() form: FormGroup;
     @ViewChild("formioElement", { read: ViewContainerRef }) element: ViewContainerRef;
@@ -19,26 +20,45 @@ export class FormioComponent<T> extends Type implements OnInit {
         super();
     }
     ngOnInit() {
-        let component = FormioComponents.component(this.component.type,  this.resolver);
-        if (!component) {
+        let component = FormioComponents.component(this.component.type);
+        let componentFactory = FormioComponents.componentFactory(component,  this.resolver);
+        if (!componentFactory) {
             return;
         }
 
-        component.then(cmpFactory => {
+        componentFactory.then(cmpFactory => {
             let cmpRef = this.element.createComponent(cmpFactory);
-            cmpRef.instance.component = this.component;
-            cmpRef.instance.form = this.form;
-            let formControl = this.component.required ?
-                new FormControl(this.component.value || '', Validators.required) :
-                new FormControl(this.component.value || '');
-            this.form.registerControl(this.component.key,  formControl);
+            this.instance = cmpRef.instance;
+            this.instance.component = this.component;
+            this.instance.form = this.form;
+            if (this.component.input && this.component.key) {
+                let validators =  this.instance.getValidators();
+                let formControl = new FormControl(this.component.value || '', validators);
+                this.form.registerControl(this.component.key,  formControl);
+            }
         });
     }
-    get isValid() {
-        if (this.form.controls.hasOwnProperty(this.component.key)) {
-            return this.form.controls[this.component.key].pristine || this.form.controls[this.component.key].valid;
+    get errors() {
+        if (!this.component.input) {
+            return [];
         }
-        return false;
+        if (!this.form.controls.hasOwnProperty(this.component.key)) {
+            return [];
+        }
+        if (this.form.controls[this.component.key].pristine) {
+            return [];
+        }
+        if (this.form.controls[this.component.key].valid) {
+            return [];
+        }
+        let errors = [];
+        for (let type in this.form.controls[this.component.key].errors) {
+            let error = this.instance.getError(type, this.form.controls[this.component.key].errors[type]);
+            if (error) {
+                errors.push(error);
+            }
+        }
+        return errors;
     }
 }
 

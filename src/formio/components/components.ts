@@ -2,6 +2,7 @@ import { ComponentResolver, ComponentFactory, Component } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES  } from '@angular/forms';
 import { FormioComponentsComponent } from '../formio-components.component';
 import { FormioComponent } from '../formio-component.component';
+import { BaseComponent } from './base';
 
 export interface FormioComponentsTemplate {
     textfield: string,
@@ -16,8 +17,13 @@ export interface FormioComponentMetaData {
     inputs?: Array<string>
 }
 
+export interface FormioComponentWrapper {
+    component?: any,
+    metadata?: FormioComponentMetaData
+}
+
 export class FormioComponents {
-    public static components:{} = {};
+    public static components:FormioComponentWrapper = {};
     public static register(
         name: string,
         component: any,
@@ -35,14 +41,19 @@ export class FormioComponents {
             metadata: metadata
         };
     }
-    public static component(
-        name: string,
-        resolver: ComponentResolver
-    ) : Promise<ComponentFactory<any>> {
+    public static component(name: string) : FormioComponentWrapper {
         if (!FormioComponents.components.hasOwnProperty(name)) {
             return null;
         }
-        let component = FormioComponents.components[name];
+        return FormioComponents.components[name];
+    }
+    public static componentFactory(
+        component: FormioComponentWrapper,
+        resolver: ComponentResolver
+    ) : Promise<ComponentFactory<any>> {
+        if (!component) {
+            return null;
+        }
         const decoratedCmp = Component(component.metadata)(component.component);
         return resolver.resolveComponent(decoratedCmp);
     }

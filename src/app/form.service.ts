@@ -25,7 +25,7 @@ export class FormService extends Type {
                         unique: false,
                         persistent: true,
                         validate: {
-                            required: false,
+                            required: true,
                             minLength: '',
                             maxLength: '',
                             pattern: '',
@@ -56,10 +56,10 @@ export class FormService extends Type {
                         unique: false,
                         persistent: true,
                         validate: {
-                            required: false,
-                            minLength: '',
-                            maxLength: '',
-                            pattern: '',
+                            required: true,
+                            minLength: 3,
+                            maxLength: 5,
+                            pattern: 'test',
                             custom: '',
                             customPrivate: false
                         },
