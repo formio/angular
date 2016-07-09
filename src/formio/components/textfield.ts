@@ -8,8 +8,8 @@ import { FormioTemplate } from '../formio';
  * The TextFieldValiation interface.
  */
 export interface TextFieldValidateOptions extends ValidateOptions {
-    minLength?: number;
-    maxLength?: number;
+    minLength?: number | string;
+    maxLength?: number | string;
     pattern?: string;
 }
 
@@ -54,10 +54,12 @@ export function TextField(template:FormioTemplate) {
             }
             let validators = super.getValidators();
             if (this.component.validate.minLength) {
-                validators.push(Validators.minLength(this.component.validate.minLength));
+                //noinspection TypeScriptValidateTypes
+                validators.push(Validators.minLength(parseInt(this.component.validate.minLength, 10)));
             }
             if (this.component.validate.maxLength) {
-                validators.push(Validators.maxLength(this.component.validate.maxLength));
+                //noinspection TypeScriptValidateTypes
+                validators.push(Validators.maxLength(parseInt(this.component.validate.maxLength, 10)));
             }
             if (this.component.validate.pattern) {
                 validators.push(Validators.pattern(this.component.validate.pattern));
