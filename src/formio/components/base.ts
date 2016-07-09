@@ -1,5 +1,5 @@
 import { Type } from "@angular/core";
-import { FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroup, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import define = require("core-js/fn/object/define");
 
 export interface ConditionalOptions {
@@ -18,6 +18,7 @@ export interface ComponentOptions<T, V> {
     value?: T,
     type?: string,
     key?: string,
+    label?: string,
     input?: boolean,
     required?: boolean,
     multiple?: boolean,
@@ -36,14 +37,23 @@ export interface ComponentsOptions {
 }
 
 export class BaseComponent<T> extends Type {
-    component: T;
+    component: any;
     form: FormGroup;
     constructor() {
         super();
     }
+    get label() : string {
+        if (this.component.label) {
+            return this.component.label;
+        }
+        return this.component.key;
+    }
+    getFormControl(): FormGroup | FormControl {
+        return new FormControl(this.component.value || '', this.getValidators());
+    }
     getError(type: string, error: any) : string {
         if ((type === 'required') && error) {
-            return this.component.label + ' is required';
+            return this.label + ' is required';
         }
         return '';
     }

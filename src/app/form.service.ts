@@ -7,89 +7,105 @@ export class FormService extends Type {
             title: 'Test Form',
             template: 'bootstrap',
             components: [{
-                input: false,
-                columns: [{
-                    components: [{
-                        input: true,
-                        tableView: true,
-                        inputType: 'text',
-                        inputMask: '',
-                        label: 'First Name',
-                        key: 'firstName',
-                        placeholder: 'Enter your first name',
-                        prefix: '',
-                        suffix: '',
-                        multiple: false,
-                        defaultValue: '',
-                        protected: false,
-                        unique: false,
-                        persistent: true,
-                        validate: {
-                            required: true,
-                            minLength: '',
-                            maxLength: '',
-                            pattern: '',
-                            custom: '',
-                            customPrivate: false
-                        },
-                        conditional: {
-                            show: '',
-                            when: null,
-                            eq: ''
-                        },
-                        type: 'textfield'
-                    }]
-                }, {
-                    components: [{
-                        input: true,
-                        tableView: true,
-                        inputType: 'text',
-                        inputMask: '',
-                        label: 'Last Name',
-                        key: 'lastName',
-                        placeholder: 'Enter your last name',
-                        prefix: '',
-                        suffix: '',
-                        multiple: false,
-                        defaultValue: '',
-                        protected: false,
-                        unique: false,
-                        persistent: true,
-                        validate: {
-                            required: true,
-                            minLength: 3,
-                            maxLength: 5,
-                            pattern: 'test',
-                            custom: '',
-                            customPrivate: false
-                        },
-                        conditional: {
-                            show: '',
-                            when: null,
-                            eq: ''
-                        },
-                        type: 'textfield'
-                    }]
+                "lockKey": true,
+                "conditional": {
+                    "eq": "",
+                    "when": null,
+                    "show": ""
+                },
+                "type": "container",
+                "persistent": true,
+                "protected": false,
+                "key": "user",
+                "label": "",
+                "tableView": true,
+                "components": [{
+                    "conditional": {
+                        "eq": "",
+                        "when": null,
+                        "show": ""
+                    },
+                    "type": "columns",
+                    "columns": [{
+                        "components": [{
+                            "type": "textfield",
+                            "conditional": {
+                                "eq": "",
+                                "when": null,
+                                "show": ""
+                            },
+                            "validate": {
+                                "customPrivate": false,
+                                "custom": "",
+                                "pattern": "",
+                                "maxLength": "",
+                                "minLength": "",
+                                "required": true
+                            },
+                            "persistent": true,
+                            "unique": false,
+                            "protected": false,
+                            "defaultValue": "",
+                            "multiple": false,
+                            "suffix": "",
+                            "prefix": "",
+                            "placeholder": "Enter your first name",
+                            "key": "firstName",
+                            "label": "First Name",
+                            "inputMask": "",
+                            "inputType": "text",
+                            "tableView": true,
+                            "input": true
+                        }]
+                    }, {
+                        "components": [{
+                            "type": "textfield",
+                            "conditional": {
+                                "eq": "",
+                                "when": null,
+                                "show": ""
+                            },
+                            "validate": {
+                                "customPrivate": false,
+                                "custom": "",
+                                "pattern": "",
+                                "maxLength": 10,
+                                "minLength": 2,
+                                "required": true
+                            },
+                            "persistent": true,
+                            "unique": false,
+                            "protected": false,
+                            "defaultValue": "",
+                            "multiple": false,
+                            "suffix": "",
+                            "prefix": "",
+                            "placeholder": "Enter your last name",
+                            "key": "lastName",
+                            "label": "Last Name",
+                            "inputMask": "",
+                            "inputType": "text",
+                            "tableView": true,
+                            "input": true
+                        }]
+                    }],
+                    "input": false
                 }],
-                type: 'columns',
-                conditional: {
-                    show: '',
-                    when: null,
-                    eq: ''
-                }
+                "tree": true,
+                "input": true
             }, {
-                input: true,
-                label: 'Submit',
-                tableView: false,
-                key: 'submit',
-                size: 'md',
-                leftIcon: '',
-                rightIcon: '',
-                block: false,
-                action: 'submit',
-                disableOnInvalid: true,
-                theme: 'primary',
-                type: 'button'
+                "type": "button",
+                "theme": "primary",
+                "disableOnInvalid": true,
+                "action": "submit",
+                "block": false,
+                "rightIcon": "",
+                "leftIcon": "",
+                "size": "md",
+                "key": "submit",
+                "tableView": false,
+                "label": "Submit",
+                "input": true
             }]
         };
     }

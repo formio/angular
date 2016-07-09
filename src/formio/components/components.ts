@@ -7,7 +7,8 @@ import { BaseComponent } from './base';
 export interface FormioComponentsTemplate {
     textfield: string,
     button: string,
-    columns: string
+    columns: string,
+    container: string
 }
 
 export interface FormioComponentMetaData {
@@ -41,19 +42,14 @@ export class FormioComponents {
             metadata: metadata
         };
     }
-    public static component(name: string) : FormioComponentWrapper {
+    public static component(
+        name: string,
+        resolver: ComponentResolver
+    ) : Promise<ComponentFactory<any>> {
         if (!FormioComponents.components.hasOwnProperty(name)) {
             return null;
         }
-        return FormioComponents.components[name];
-    }
-    public static componentFactory(
-        component: FormioComponentWrapper,
-        resolver: ComponentResolver
-    ) : Promise<ComponentFactory<any>> {
-        if (!component) {
-            return null;
-        }
+        let component: FormioComponentWrapper = FormioComponents.components[name];
         const decoratedCmp = Component(component.metadata)(component.component);
         return resolver.resolveComponent(decoratedCmp);
     }

@@ -20,25 +20,22 @@ export class FormioComponent<T> extends Type implements OnInit {
         super();
     }
     ngOnInit() {
-        let component = FormioComponents.component(this.component.type);
-        let componentFactory = FormioComponents.componentFactory(component,  this.resolver);
-        if (!componentFactory) {
+        let component = FormioComponents.component(this.component.type,  this.resolver);
+        if (!component) {
             return;
         }
 
-        componentFactory.then(cmpFactory => {
+        component.then(cmpFactory => {
             let cmpRef = this.element.createComponent(cmpFactory);
             this.instance = cmpRef.instance;
             this.instance.component = this.component;
             this.instance.form = this.form;
             if (this.component.input && this.component.key) {
-                let validators =  this.instance.getValidators();
-                let formControl = new FormControl(this.component.value || '', validators);
-                this.form.registerControl(this.component.key,  formControl);
+                this.form.registerControl(this.component.key,  this.instance.getFormControl());
             }
         });
     }
-    get errors() {
+    get errors(): Array<string> {
         if (!this.component.input) {
             return [];
         }
@@ -51,7 +48,7 @@ export class FormioComponent<T> extends Type implements OnInit {
         if (this.form.controls[this.component.key].valid) {
             return [];
         }
-        let errors = [];
+        let errors: Array<string> = [];
         for (let type in this.form.controls[this.component.key].errors) {
             let error = this.instance.getError(type, this.form.controls[this.component.key].errors[type]);
             if (error) {

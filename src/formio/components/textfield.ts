@@ -15,7 +15,6 @@ export interface TextFieldValidateOptions extends ValidateOptions {
 
 export interface TextFieldOptions extends ComponentOptions<string, TextFieldValidateOptions> {
     inputType?: string,
-    label?: string,
     tableView?: boolean,
     inputMask?: string,
     placeholder?: string,
@@ -36,13 +35,13 @@ export function TextField(template:FormioTemplate) {
             if (!message) {
                 switch (type) {
                     case 'minlength':
-                        message = this.component.label + ' must be at least ' + error.requiredLength + ' characters';
+                        message = this.label + ' must be at least ' + error.requiredLength + ' characters';
                         break;
                     case 'maxlength':
-                        message = this.component.label + ' cannot be more than ' + error.requiredLength + ' characters';
+                        message = this.label + ' cannot be more than ' + error.requiredLength + ' characters';
                         break;
                     case 'pattern':
-                        message = this.component.label + ' must match the pattern ' + error.requiredPattern;
+                        message = this.label + ' must match the pattern ' + error.requiredPattern;
                         break;
                 }
             }

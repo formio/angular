@@ -1,4 +1,4 @@
 <div [formGroup]="form">
     <label *ngIf="component.label" [attr.for]="component.key">{{ component.label }}</label>
-    <input [formControlName]="component.key" [id]="component.key" [type]="component.inputType" class="form-control" />
+    <input [formControlName]="component.key" [id]="component.key" [type]="component.inputType" [placeholder]="component.placeholder" class="form-control" />
 </div>
