@@ -1,5 +1,15 @@
-import { Component, ComponentRef, Input, Type, OnInit, ComponentResolver, ViewContainerRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import {
+    Component,
+    ChangeDetectorRef,
+    Input,
+    Type,
+    OnInit,
+    ComponentResolver,
+    ViewContainerRef,
+    ViewChildren,
+    QueryList
+} from '@angular/core';
+import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { FormioComponents } from './components/components';
 import { FormioRegisterTemplate } from './formio.component';
 import { FormioTemplate } from './formio';
@@ -12,11 +22,11 @@ import { BaseOptions, BaseComponent } from './components/base';
     providers: [FormioComponents]
 })
 export class FormioComponent<T> extends Type implements OnInit {
-    instance: BaseComponent<any>;
+    instances: Array<BaseComponent<any>> = [];
     @Input() component: BaseOptions<T>;
     @Input() form: FormGroup;
-    @ViewChild("formioElement", { read: ViewContainerRef }) element: ViewContainerRef;
-    constructor(private resolver: ComponentResolver) {
+    @ViewChildren('formioElements', { read: ViewContainerRef }) elements: QueryList<ViewContainerRef>;
+    constructor(private resolver: ComponentResolver, private ref: ChangeDetectorRef) {
         super();
     }
     ngOnInit() {
@@ -26,14 +36,20 @@ export class FormioComponent<T> extends Type implements OnInit {
         }
 
         component.then(cmpFactory => {
-            let cmpRef = this.element.createComponent(cmpFactory);
-            this.instance = cmpRef.instance;
-            this.instance.component = this.component;
-            this.instance.form = this.form;
-            if (this.component.input && this.component.key) {
-                this.form.registerControl(this.component.key,  this.instance.getFormControl());
-            }
+            this.elements.forEach((viewRef: ViewContainerRef) => {
+                let cmpRef = viewRef.createComponent(cmpFactory);
+                this.instances.push(cmpRef.instance);
+                cmpRef.instance.component = this.component;
+                cmpRef.instance.form = this.form;
+                if (this.component.input && this.component.key) {
+                    let control = cmpRef.instance.getFormControl();
+                    this.form.addControl(this.component.key, control);
+                }
+            });
         });
+    }
+    addAnother() {
+
     }
     get errors(): Array<string> {
         if (!this.component.input) {
@@ -50,10 +66,12 @@ export class FormioComponent<T> extends Type implements OnInit {
         }
         let errors: Array<string> = [];
         for (let type in this.form.controls[this.component.key].errors) {
-            let error = this.instance.getError(type, this.form.controls[this.component.key].errors[type]);
-            if (error) {
-                errors.push(error);
-            }
+            this.instances.forEach((instance: BaseComponent<any>) => {
+                let error = instance.getError(type, this.form.controls[this.component.key].errors[type]);
+                if (error) {
+                    errors.push(error);
+                }
+            });
         }
         return errors;
     }

@@ -1,4 +1,4 @@
-<div [formGroup]="form">
-    <label *ngIf="component.label" [attr.for]="component.key">{{ component.label }}</label>
-    <input [formControlName]="component.key" [id]="component.key" [type]="component.inputType" [placeholder]="component.placeholder" class="form-control" />
+<div [formGroup]="form" class="form-group" [ngClass]="{'required': component.validate.required}">
+    <label *ngIf="component.label" [attr.for]="component.key" class="control-label">{{ component.label }}</label>
+    <input [formControl]="control" [id]="component.key" [type]="component.inputType" [placeholder]="component.placeholder" class="form-control" />
 </div>

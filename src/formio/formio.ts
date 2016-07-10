@@ -11,6 +11,7 @@ import { FORMIO_COMPONENTS } from './components/index';
  * rendering template.
  */
 export interface FormioTemplate {
+    styles?: Array<string>,
     formio: string,
     formio_component: string;
     formio_components: string;

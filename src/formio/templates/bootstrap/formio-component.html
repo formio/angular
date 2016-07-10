@@ -1,4 +1,8 @@
 <div [formGroup]="form" class="form-group" [ngClass]="{'has-error': (errors.length > 0)}">
-    <div #formioElement></div>
+    <div *ngIf="!component.multiple" #formioElements></div>
+    <ul *ngIf="component.multiple" class="list-group">
+        <li class="list-group-item" #formioElements></li>
+        <li class="list-group-item"><button type="button" class="btn btn-primary" (click)="addAnother()">Add Another</button></li>
+    </ul>
     <p *ngFor="let error of errors" class="text-danger">{{ error }}</p>
 </div>

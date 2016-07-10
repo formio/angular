@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { BaseComponent, BaseOptions } from './base';
 import { FormioComponents } from './components';
 import { FormioTemplate } from '../formio';
@@ -11,9 +11,10 @@ export function Container(template:FormioTemplate) {
             super();
         }
         ngOnInit() {
+            super.ngOnInit();
             this.form.registerControl(this.component.key,  this.formGroup);
         }
-        getFormControl(): FormGroup | FormControl {
+        getFormControl(): FormGroup | FormControl | FormArray {
             return this.formGroup;
         }
     }

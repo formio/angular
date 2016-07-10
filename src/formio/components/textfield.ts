@@ -28,6 +28,7 @@ export function TextField(template:FormioTemplate) {
             super();
         }
         ngOnInit() {
+            super.ngOnInit();
             this.component.inputType = 'text';
         }
         getError(type: string, error: any) : string {

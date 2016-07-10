@@ -1,5 +1,5 @@
-import { Type } from "@angular/core";
-import { FormGroup, FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { Type, OnInit, ChangeDetectorRef } from "@angular/core";
+import { FormGroup, FormControl, FormArray, ValidatorFn, Validators } from '@angular/forms';
 import define = require("core-js/fn/object/define");
 
 export interface ConditionalOptions {
@@ -15,7 +15,7 @@ export interface ValidateOptions {
 }
 
 export interface ComponentOptions<T, V> {
-    value?: T,
+    defaultValue?: T | Array<T>,
     type?: string,
     key?: string,
     label?: string,
@@ -36,11 +36,16 @@ export interface ComponentsOptions {
     components: Array<BaseOptions<any>>
 }
 
-export class BaseComponent<T> extends Type {
+export class BaseComponent<T> extends Type implements OnInit {
     component: any;
     form: FormGroup;
+    control: FormControl;
+    container: FormArray;
     constructor() {
         super();
+    }
+    ngOnInit() {
+        this.getControl();
     }
     get label() : string {
         if (this.component.label) {
@@ -48,8 +53,16 @@ export class BaseComponent<T> extends Type {
         }
         return this.component.key;
     }
-    getFormControl(): FormGroup | FormControl {
-        return new FormControl(this.component.value || '', this.getValidators());
+    getControl(): FormControl {
+        return new FormControl(this.component.defaultValue || '', this.getValidators());
+    }
+    getFormControl(): FormArray | FormGroup | FormControl {
+        this.control = this.getControl();
+        if (this.component.multiple) {
+            this.container = new FormArray([this.control]);
+            return this.container;
+        }
+        return this.control;
     }
     getError(type: string, error: any) : string {
         if ((type === 'required') && error) {
@@ -66,11 +79,5 @@ export class BaseComponent<T> extends Type {
             validators.push(Validators.required);
         }
         return validators;
-    }
-}
-
-export class SimpleComponent extends BaseComponent<BaseOptions<any>> {
-    constructor() {
-        super();
     }
 }

@@ -40,10 +40,13 @@ export class Formio extends Type {
  * @param template - The template to add to this component.
  * @constructor
  */
-export function FormioRegisterTemplate(cmp: Type,  template: string) {
+export function FormioRegisterTemplate(cmp: Type, template: string, styles?: Array<string>) {
     //noinspection TypeScriptUnresolvedFunction
     let annotations = Reflect.getMetadata('annotations', cmp);
     annotations[0].template = template;
+    if (styles) {
+        annotations[0].styles = styles;
+    }
     //noinspection TypeScriptUnresolvedFunction
     Reflect.defineMetadata('annotations', annotations, cmp);
 }
@@ -57,6 +60,6 @@ export function FormioRegisterTemplate(cmp: Type,  template: string) {
  * @constructor
  */
 export function FormioRegister(template: FormioTemplate) {
-    FormioRegisterTemplate(Formio, template.formio);
+    FormioRegisterTemplate(Formio, template.formio, template.styles);
     return Formio;
 }
