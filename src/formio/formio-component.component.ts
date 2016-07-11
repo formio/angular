@@ -13,7 +13,7 @@ import { BaseOptions, BaseComponent } from './components/base';
     providers: [FormioComponents]
 })
 export class FormioComponent<T> extends Type implements OnInit {
-    initValue: T | Array<T>;
+    values: Array<T> = [];
     instances: Array<BaseComponent<any>> = [];
     container: FormArray = new FormArray([]);
     @Input() component: BaseOptions<T>;
@@ -22,11 +22,8 @@ export class FormioComponent<T> extends Type implements OnInit {
         super();
     }
     ngOnInit() {
-        var isArray = this.component.defaultValue instanceof Array;
-        if (this.component.multiple && !isArray) {
-            this.component.defaultValue = [this.component.defaultValue];
-        }
-        this.initValue = this.component.defaultValue;
+        let isArray = this.component.defaultValue instanceof Array;
+        this.values = isArray ? this.component.defaultValue : [this.component.defaultValue];
     }
     onElementAdd(cmpRef: any) {
         this.instances.push(cmpRef.instance);
@@ -44,10 +41,7 @@ export class FormioComponent<T> extends Type implements OnInit {
         }
     }
     addAnother() {
-        if (this.initValue instanceof Array) {
-            //noinspection TypeScriptUnresolvedFunction
-            this.initValue.push(this.component.defaultValue[0]);
-        }
+        this.values.push(this.component.defaultValue);
     }
     get errors(): Array<string> {
         if (!this.component.input) {

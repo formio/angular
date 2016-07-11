@@ -20,6 +20,7 @@ import { BaseOptions } from './components/base';
 export class FormioElement<T> extends Type implements OnInit {
     @Input() component: BaseOptions<T>;
     @Input() form: FormGroup;
+    @Input() index: number;
     @Output() elementAdd: EventEmitter<any> = new EventEmitter();
     @ViewChild('formioElement', { read: ViewContainerRef }) element: ViewContainerRef;
     constructor(private resolver: ComponentResolver) {
@@ -35,6 +36,7 @@ export class FormioElement<T> extends Type implements OnInit {
             let cmpRef = this.element.createComponent(cmpFactory);
             cmpRef.instance.component = this.component;
             cmpRef.instance.form = this.form;
+            cmpRef.instance.index = this.index;
             this.elementAdd.emit(cmpRef);
         });
     }

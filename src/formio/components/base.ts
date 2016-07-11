@@ -40,6 +40,7 @@ export class BaseComponent<T> extends Type implements OnInit {
     control: FormControl | FormGroup;
     component: any;
     form: FormGroup;
+    index: number = 0;
     constructor() {
         super();
     }
@@ -52,8 +53,15 @@ export class BaseComponent<T> extends Type implements OnInit {
         }
         return this.component.key;
     }
+    get defaultValue(): T {
+        if (this.component.defaultValue) {
+            let isArray = (this.component.defaultValue instanceof Array);
+            return isArray ? this.component.defaultValue[this.index] : this.component.defaultValue;
+        }
+        return '';
+    }
     newControl(): FormGroup | FormControl {
-        return new FormControl(this.component.defaultValue || '', this.getValidators());
+        return new FormControl(this.defaultValue, this.getValidators());
     }
     getControl(): FormGroup | FormControl {
         if (!this.control) {
