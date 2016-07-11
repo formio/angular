@@ -14,7 +14,7 @@ export function Container(template:FormioTemplate) {
             super.ngOnInit();
             this.form.registerControl(this.component.key,  this.formGroup);
         }
-        getFormControl(): FormGroup | FormControl | FormArray {
+        newControl(): FormGroup | FormControl {
             return this.formGroup;
         }
     }

@@ -37,10 +37,9 @@ export interface ComponentsOptions {
 }
 
 export class BaseComponent<T> extends Type implements OnInit {
+    control: FormControl | FormGroup;
     component: any;
     form: FormGroup;
-    control: FormControl;
-    container: FormArray;
     constructor() {
         super();
     }
@@ -53,14 +52,12 @@ export class BaseComponent<T> extends Type implements OnInit {
         }
         return this.component.key;
     }
-    getControl(): FormControl {
+    newControl(): FormGroup | FormControl {
         return new FormControl(this.component.defaultValue || '', this.getValidators());
     }
-    getFormControl(): FormArray | FormGroup | FormControl {
-        this.control = this.getControl();
-        if (this.component.multiple) {
-            this.container = new FormArray([this.control]);
-            return this.container;
+    getControl(): FormGroup | FormControl {
+        if (!this.control) {
+            this.control = this.newControl();
         }
         return this.control;
     }

@@ -1,7 +1,9 @@
 <div [formGroup]="form" class="form-group" [ngClass]="{'has-error': (errors.length > 0)}">
-    <div *ngIf="!component.multiple" #formioElements></div>
+    <formio-element *ngIf="!component.multiple" [form]="form" [component]="component" (elementAdd)="onElementAdd($event)"></formio-element>
     <ul *ngIf="component.multiple" class="list-group">
-        <li class="list-group-item" #formioElements></li>
+        <li class="list-group-item" *ngFor="let value of initValue;">
+            <formio-element [form]="form" [component]="component" (elementAdd)="onElementAdd($event)"></formio-element>
+        </li>
         <li class="list-group-item"><button type="button" class="btn btn-primary" (click)="addAnother()">Add Another</button></li>
     </ul>
     <p *ngFor="let error of errors" class="text-danger">{{ error }}</p>

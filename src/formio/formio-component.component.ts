@@ -1,15 +1,6 @@
-import {
-    Component,
-    ChangeDetectorRef,
-    Input,
-    Type,
-    OnInit,
-    ComponentResolver,
-    ViewContainerRef,
-    ViewChildren,
-    QueryList
-} from '@angular/core';
-import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import { Component, Input, Type, OnInit } from '@angular/core';
+import { FormGroup, FormArray, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import { FormioElement } from './formio-element.component';
 import { FormioComponents } from './components/components';
 import { FormioRegisterTemplate } from './formio.component';
 import { FormioTemplate } from './formio';
@@ -18,38 +9,45 @@ import { BaseOptions, BaseComponent } from './components/base';
 @Component({
     selector: 'formio-component',
     template: '<div></div>',
-    directives: [REACTIVE_FORM_DIRECTIVES],
+    directives: [REACTIVE_FORM_DIRECTIVES, FormioElement],
     providers: [FormioComponents]
 })
 export class FormioComponent<T> extends Type implements OnInit {
+    initValue: T | Array<T>;
     instances: Array<BaseComponent<any>> = [];
+    container: FormArray = new FormArray([]);
     @Input() component: BaseOptions<T>;
     @Input() form: FormGroup;
-    @ViewChildren('formioElements', { read: ViewContainerRef }) elements: QueryList<ViewContainerRef>;
-    constructor(private resolver: ComponentResolver, private ref: ChangeDetectorRef) {
+    constructor() {
         super();
     }
     ngOnInit() {
-        let component = FormioComponents.component(this.component.type,  this.resolver);
-        if (!component) {
-            return;
+        var isArray = this.component.defaultValue instanceof Array;
+        if (this.component.multiple && !isArray) {
+            this.component.defaultValue = [this.component.defaultValue];
         }
-
-        component.then(cmpFactory => {
-            this.elements.forEach((viewRef: ViewContainerRef) => {
-                let cmpRef = viewRef.createComponent(cmpFactory);
-                this.instances.push(cmpRef.instance);
-                cmpRef.instance.component = this.component;
-                cmpRef.instance.form = this.form;
-                if (this.component.input && this.component.key) {
-                    let control = cmpRef.instance.getFormControl();
+        this.initValue = this.component.defaultValue;
+    }
+    onElementAdd(cmpRef: any) {
+        this.instances.push(cmpRef.instance);
+        if (this.component.input && this.component.key) {
+            let control = cmpRef.instance.getControl();
+            if (control) {
+                if (this.component.multiple) {
+                    this.container.push(control);
+                    this.form.addControl(this.component.key, this.container)
+                }
+                else {
                     this.form.addControl(this.component.key, control);
                 }
-            });
-        });
+            }
+        }
     }
     addAnother() {
-
+        if (this.initValue instanceof Array) {
+            //noinspection TypeScriptUnresolvedFunction
+            this.initValue.push(this.component.defaultValue[0]);
+        }
     }
     get errors(): Array<string> {
         if (!this.component.input) {
