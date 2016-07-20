@@ -11,14 +11,14 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormioComponents } from './components/components';
-import { BaseOptions } from './components/base';
+import { BaseComponent } from './components/base';
 
 @Component({
     selector: 'formio-element',
     template: '<div #formioElement></div>'
 })
-export class FormioElement<T> extends Type implements OnInit {
-    @Input() component: BaseOptions<T>;
+export class FormioElement extends Type implements OnInit {
+    @Input() component: BaseComponent<any>;
     @Input() form: FormGroup;
     @Input() index: number;
     @Output() elementAdd: EventEmitter<any> = new EventEmitter();
@@ -27,12 +27,16 @@ export class FormioElement<T> extends Type implements OnInit {
         super();
     }
     ngOnInit() {
-        let component = FormioComponents.component(this.component.type,  this.resolver);
-        if (!component) {
+        // Get the element.
+        let element = FormioComponents.element(this.component.settings.type,  this.resolver);
+        if (!element) {
             return;
         }
 
-        component.then(cmpFactory => {
+        element.then(cmpFactory => {
+            if (!this.element) {
+                return;
+            }
             let cmpRef = this.element.createComponent(cmpFactory);
             cmpRef.instance.component = this.component;
             cmpRef.instance.form = this.form;

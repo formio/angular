@@ -1,20 +1,18 @@
 import { Component, Input, Type, OnInit } from '@angular/core';
 import { FormGroup, FormArray, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
-import { FormioElement } from './formio-element.component';
 import { FormioComponents } from './components/components';
 import { FormioRegisterTemplate } from './formio.component';
+import { FormioElement } from './formio-element.component';
 import { FormioTemplate } from './formio';
 import { BaseOptions, BaseComponent } from './components/base';
 
 @Component({
     selector: 'formio-component',
     template: '<div></div>',
-    directives: [REACTIVE_FORM_DIRECTIVES, FormioElement],
-    providers: [FormioComponents]
+    directives: [REACTIVE_FORM_DIRECTIVES, FormioElement]
 })
 export class FormioComponent<T> extends Type implements OnInit {
-    values: Array<T> = [];
-    instances: Array<BaseComponent<any>> = [];
+    components: Array<BaseComponent<any>> = [];
     container: FormArray = new FormArray([]);
     @Input() component: BaseOptions<T>;
     @Input() form: FormGroup;
@@ -22,13 +20,14 @@ export class FormioComponent<T> extends Type implements OnInit {
         super();
     }
     ngOnInit() {
-        let isArray = this.component.defaultValue instanceof Array;
-        this.values = isArray ? this.component.defaultValue : [this.component.defaultValue];
+        this.addComponent();
     }
-    onElementAdd(cmpRef: any) {
-        this.instances.push(cmpRef.instance);
+    addComponent() {
+        let component = FormioComponents.createComponent(this.component.type, this.form, this.component);
+
+        // Add the form controls.
         if (this.component.input && this.component.key) {
-            let control = cmpRef.instance.getControl();
+            let control = component.getControl();
             if (control) {
                 if (this.component.multiple) {
                     this.container.push(control);
@@ -39,9 +38,14 @@ export class FormioComponent<T> extends Type implements OnInit {
                 }
             }
         }
+
+        // Add this to the instances.
+        this.components.push(component);
+        return component;
     }
-    addAnother() {
-        this.values.push(this.component.defaultValue);
+    removeAt(index:number) {
+        this.container.removeAt(index);
+        this.components.splice(index, 1);
     }
     get errors(): Array<string> {
         if (!this.component.input) {
@@ -58,8 +62,8 @@ export class FormioComponent<T> extends Type implements OnInit {
         }
         let errors: Array<string> = [];
         for (let type in this.form.controls[this.component.key].errors) {
-            this.instances.forEach((instance: BaseComponent<any>) => {
-                let error = instance.getError(type, this.form.controls[this.component.key].errors[type]);
+            this.components.forEach((component: BaseComponent<any>) => {
+                let error = component.getError(type, this.form.controls[this.component.key].errors[type]);
                 if (error) {
                     errors.push(error);
                 }

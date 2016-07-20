@@ -1,5 +1,5 @@
-import { Type, OnInit, ChangeDetectorRef } from "@angular/core";
-import { FormGroup, FormControl, FormArray, ValidatorFn, Validators } from '@angular/forms';
+import { Type, Input } from "@angular/core";
+import { FormGroup, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import define = require("core-js/fn/object/define");
 
 export interface ConditionalOptions {
@@ -36,36 +36,28 @@ export interface ComponentsOptions {
     components: Array<BaseOptions<any>>
 }
 
-export class BaseComponent<T> extends Type implements OnInit {
+export class BaseComponent<T> {
     control: FormControl | FormGroup;
-    component: any;
-    form: FormGroup;
     index: number = 0;
-    constructor() {
-        super();
-    }
-    ngOnInit() {
+    constructor(public form: FormGroup, public settings: any) {
         this.getControl();
     }
     get label() : string {
-        if (this.component.label) {
-            return this.component.label;
+        if (this.settings.label) {
+            return this.settings.label;
         }
-        return this.component.key;
+        return this.settings.key;
     }
     get defaultValue(): T {
-        if (this.component.defaultValue) {
-            let isArray = (this.component.defaultValue instanceof Array);
-            return isArray ? this.component.defaultValue[this.index] : this.component.defaultValue;
+        if (this.settings.defaultValue) {
+            let isArray = (this.settings.defaultValue instanceof Array);
+            return isArray ? this.settings.defaultValue[this.index] : this.settings.defaultValue;
         }
-        return '';
-    }
-    newControl(): FormGroup | FormControl {
-        return new FormControl(this.defaultValue, this.getValidators());
+        return null;
     }
     getControl(): FormGroup | FormControl {
         if (!this.control) {
-            this.control = this.newControl();
+            this.control = new FormControl(this.defaultValue, this.getValidators());
         }
         return this.control;
     }
@@ -76,13 +68,18 @@ export class BaseComponent<T> extends Type implements OnInit {
         return '';
     }
     getValidators() : ValidatorFn[] {
-        if (!this.component.validate) {
+        if (!this.settings.validate) {
             return [];
         }
         let validators: ValidatorFn[] = [];
-        if (this.component.validate.required) {
+        if (this.settings.validate.required) {
             validators.push(Validators.required);
         }
         return validators;
     }
+}
+
+export class BaseElement extends Type {
+    @Input() component: BaseComponent<any>;
+    @Input() hideLabel: boolean = false;
 }

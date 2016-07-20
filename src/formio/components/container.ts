@@ -1,25 +1,25 @@
-import { OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
-import { BaseComponent, BaseOptions } from './base';
+import { Input } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { BaseComponent, BaseElement, BaseOptions } from './base';
 import { FormioComponents } from './components';
 import { FormioTemplate } from '../formio';
 
-export function Container(template:FormioTemplate) {
-    class _Container extends BaseComponent<BaseOptions<any>> implements OnInit {
-        formGroup: FormGroup = new FormGroup({});
-        constructor() {
-            super();
+export class ContainerComponent extends BaseComponent<BaseOptions<any>> {
+    getControl(): FormGroup | FormControl {
+        if (!this.control) {
+            this.control = new FormGroup({});
         }
-        ngOnInit() {
-            super.ngOnInit();
-            this.form.registerControl(this.component.key,  this.formGroup);
-        }
-        newControl(): FormGroup | FormControl {
-            return this.formGroup;
-        }
+        return this.control;
     }
-    FormioComponents.register('container', _Container, {
+}
+
+export class ContainerElement extends BaseElement {
+    @Input() component: ContainerComponent;
+}
+
+export function Container(template:FormioTemplate) {
+    FormioComponents.register('container', ContainerComponent, ContainerElement, {
         template: template.components.container
     });
-    return _Container;
+    return ContainerElement;
 };

@@ -1,6 +1,6 @@
-import { OnInit } from '@angular/core';
+import { OnInit, Input } from '@angular/core';
 import { ValidatorFn, Validators } from '@angular/forms';
-import { BaseComponent, ComponentOptions, ValidateOptions } from './base';
+import { BaseComponent, BaseElement, ComponentOptions, ValidateOptions } from './base';
 import { FormioComponents } from './components';
 import { FormioTemplate } from '../formio';
 
@@ -22,53 +22,54 @@ export interface TextFieldOptions extends ComponentOptions<string, TextFieldVali
     suffix?: string
 }
 
-export function TextField(template:FormioTemplate) {
-    class _TextField extends BaseComponent<TextFieldOptions> implements OnInit {
-        constructor() {
-            super();
-        }
-        ngOnInit() {
-            super.ngOnInit();
-            this.component.inputType = 'text';
-        }
-        getError(type: string, error: any) : string {
-            let message = super.getError(type, error);
-            if (!message) {
-                switch (type) {
-                    case 'minlength':
-                        message = this.label + ' must be at least ' + error.requiredLength + ' characters';
-                        break;
-                    case 'maxlength':
-                        message = this.label + ' cannot be more than ' + error.requiredLength + ' characters';
-                        break;
-                    case 'pattern':
-                        message = this.label + ' must match the pattern ' + error.requiredPattern;
-                        break;
-                }
-            }
-            return message;
-        }
-        getValidators() : ValidatorFn[] {
-            if (!this.component.validate) {
-                return [];
-            }
-            let validators = super.getValidators();
-            if (this.component.validate.minLength) {
-                //noinspection TypeScriptValidateTypes
-                validators.push(Validators.minLength(parseInt(this.component.validate.minLength, 10)));
-            }
-            if (this.component.validate.maxLength) {
-                //noinspection TypeScriptValidateTypes
-                validators.push(Validators.maxLength(parseInt(this.component.validate.maxLength, 10)));
-            }
-            if (this.component.validate.pattern) {
-                validators.push(Validators.pattern(this.component.validate.pattern));
-            }
-            return validators;
-        }
+export class TextFieldComponent extends BaseComponent<TextFieldOptions> implements OnInit {
+    ngOnInit() {
+        this.settings.inputType = 'text';
     }
-    FormioComponents.register('textfield', _TextField, {
+    getError(type: string, error: any) : string {
+        let message = super.getError(type, error);
+        if (!message) {
+            switch (type) {
+                case 'minlength':
+                    message = this.label + ' must be at least ' + error.requiredLength + ' characters';
+                    break;
+                case 'maxlength':
+                    message = this.label + ' cannot be more than ' + error.requiredLength + ' characters';
+                    break;
+                case 'pattern':
+                    message = this.label + ' must match the pattern ' + error.requiredPattern;
+                    break;
+            }
+        }
+        return message;
+    }
+    getValidators() : ValidatorFn[] {
+        if (!this.settings.validate) {
+            return [];
+        }
+        let validators = super.getValidators();
+        if (this.settings.validate.minLength) {
+            //noinspection TypeScriptValidateTypes
+            validators.push(Validators.minLength(parseInt(this.settings.validate.minLength, 10)));
+        }
+        if (this.settings.validate.maxLength) {
+            //noinspection TypeScriptValidateTypes
+            validators.push(Validators.maxLength(parseInt(this.settings.validate.maxLength, 10)));
+        }
+        if (this.settings.validate.pattern) {
+            validators.push(Validators.pattern(this.settings.validate.pattern));
+        }
+        return validators;
+    }
+}
+
+export class TextElement extends BaseElement {
+    @Input() component: TextFieldComponent;
+}
+
+export function TextField(template:FormioTemplate) {
+    FormioComponents.register('textfield', TextFieldComponent, TextElement, {
         template: template.components.textfield
     });
-    return _TextField;
+    return TextElement;
 };
