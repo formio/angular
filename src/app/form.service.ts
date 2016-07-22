@@ -5,7 +5,6 @@ export class FormService extends Type {
     getForm() : FormioForm {
         return {
             title: 'Test Form',
-            template: 'bootstrap',
             components: [{
                 "input": true,
                 "tree": true,
