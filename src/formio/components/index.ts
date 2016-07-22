@@ -1,7 +1,7 @@
-import { TextField } from './textfield';
-import { Button } from './button';
-import { Columns } from './columns';
-import { Container } from './container';
+import { TextField } from './textfield/textfield';
+import { Button } from './button/button';
+import { Columns } from './columns/columns';
+import { Container } from './container/container';
 import { FormioTemplate } from '../formio';
 export function FORMIO_COMPONENTS(template: FormioTemplate) {
     return [

@@ -1,8 +1,8 @@
 import { Input } from '@angular/core';
 import { ValidatorFn, Validators } from '@angular/forms';
-import { BaseComponent, BaseElement, ComponentOptions, ValidateOptions } from './base';
-import { FormioComponents } from './components';
-import { FormioTemplate } from '../formio';
+import { BaseComponent, BaseElement, ComponentOptions, ValidateOptions } from '../base';
+import { FormioComponents } from '../components';
+import { FormioTemplate } from '../../formio';
 
 /**
  * The TextFieldValiation interface.
@@ -15,7 +15,6 @@ export interface TextFieldValidateOptions extends ValidateOptions {
 
 export interface TextFieldOptions extends ComponentOptions<string, TextFieldValidateOptions> {
     inputType?: string,
-    tableView?: boolean,
     inputMask?: string,
     placeholder?: string,
     prefix?: string,

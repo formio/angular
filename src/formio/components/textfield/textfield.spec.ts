@@ -1,9 +1,4 @@
-import {
-    describe,
-    expect,
-    it
-} from '@angular/core/testing';
-
+import { describe, expect, it } from '@angular/core/testing';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TextFieldComponent, TextFieldOptions } from './textfield';
 
@@ -12,7 +7,7 @@ describe('TextFieldComponent', () => {
         this.form = new FormGroup({});
     });
 
-    it('Should not allow invalid TextField values.', () => {
+    var getSettings = (overrides: {}): TextFieldOptions => {
         let settings: TextFieldOptions = {
             type: 'textfield',
             input: true,
@@ -31,9 +26,9 @@ describe('TextFieldComponent', () => {
             persistent: true,
             validate: {
                 required: true,
-                minLength: 2,
-                maxLength: 10,
-                pattern: '[a-zA-Z0-9\\s]+',
+                minLength: 0,
+                maxLength: 0,
+                pattern: '',
                 custom: '',
                 customPrivate: false
             },
@@ -43,6 +38,21 @@ describe('TextFieldComponent', () => {
                 eq: ''
             }
         };
+        Object.assign(settings, overrides);
+        return settings;
+    };
+
+    it('Should not allow invalid TextField values.', () => {
+        let settings: TextFieldOptions = getSettings({
+            validate: {
+                required: true,
+                minLength: 2,
+                maxLength: 10,
+                pattern: '[a-zA-Z0-9\\s]+',
+                custom: 'valid = (input === "Bob") ? "Bobs are not allowed" : true;',
+                customPrivate: false
+            }
+        });
 
         // Create the text field component.
         let textField = new TextFieldComponent(this.form, settings);
@@ -77,8 +87,24 @@ describe('TextFieldComponent', () => {
         expect(textField.control.errors).toEqual({pattern: {requiredPattern: '^[a-zA-Z0-9\\s]+$', actualValue: 'Test-'}});
         expect(textField.getError('pattern', textField.control.errors['pattern'])).toEqual('First Name must match the pattern ^[a-zA-Z0-9\\s]+$');
 
+        updateValue('Bob');
+        expect(textField.control.valid).toEqual(false);
+        expect(textField.control.errors).toEqual({custom: 'Bobs are not allowed'});
+        expect(textField.getError('custom', textField.control.errors['custom'])).toEqual('Bobs are not allowed');
+
         updateValue('Testing');
         expect(textField.control.valid).toEqual(true);
         expect(textField.control.errors).toEqual(null);
+    });
+
+    it('Should allow default values', () => {
+        let settings: TextFieldOptions = getSettings({
+            defaultValue: 'Travis'
+        });
+
+        // Create the text field component.
+        let textField = new TextFieldComponent(this.form, settings);
+        expect(textField.defaultValue).toEqual('Travis');
+        expect(textField.control.value).toEqual('Travis');
     });
 });

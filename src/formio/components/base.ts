@@ -25,6 +25,8 @@ export interface ComponentOptions<T, V> {
     protected?: boolean,
     unique?: boolean,
     persistent?: boolean,
+    tableView?: boolean,
+    lockKey?: boolean,
     validate?: V,
     conditional?: ConditionalOptions
 }
@@ -34,6 +36,29 @@ export interface BaseOptions<T> extends ComponentOptions<T, ValidateOptions> {
 
 export interface ComponentsOptions {
     components: Array<BaseOptions<any>>
+}
+
+/**
+ * Create the custom validator for validating based on Javascript.
+ * @param custom
+ * @param form
+ * @returns {(control:FormControl)=>{validateCustom: boolean}}
+ * @constructor
+ */
+export function CustomValidator(custom: string, form: FormGroup) {
+    return function(control: FormControl) {
+        var valid = true;
+        /*eslint-disable no-unused-vars */
+        var input = control.value;
+        /*eslint-enable no-unused-vars */
+        custom = custom.replace(/({{\s+(.*)\s+}})/, function (match, $1, $2) {
+            return form.value[$2];
+        });
+
+        /* jshint evil: true */
+        eval(custom);
+        return (valid === true) ? null : {custom: valid};
+    };
 }
 
 export class BaseComponent<T> {
@@ -65,6 +90,9 @@ export class BaseComponent<T> {
         if ((type === 'required') && error) {
             return this.label + ' is required';
         }
+        if ((type === 'custom') && error) {
+            return error;
+        }
         return '';
     }
     getValidators() : ValidatorFn[] {
@@ -74,6 +102,9 @@ export class BaseComponent<T> {
         let validators: ValidatorFn[] = [];
         if (this.settings.validate.required) {
             validators.push(Validators.required);
+        }
+        if (this.settings.validate.custom) {
+            validators.push(CustomValidator(this.settings.validate.custom, this.form));
         }
         return validators;
     }
