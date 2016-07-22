@@ -4,7 +4,7 @@ import define = require("core-js/fn/object/define");
 
 export interface ConditionalOptions {
     show?: string,
-    when?: string,
+    when?: any,
     eq?: any
 }
 
@@ -53,7 +53,7 @@ export class BaseComponent<T> {
             let isArray = (this.settings.defaultValue instanceof Array);
             return isArray ? this.settings.defaultValue[this.index] : this.settings.defaultValue;
         }
-        return null;
+        return this.settings.defaultValue;
     }
     getControl(): FormGroup | FormControl {
         if (!this.control) {

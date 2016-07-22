@@ -1,4 +1,4 @@
-import { OnInit, Input } from '@angular/core';
+import { Input } from '@angular/core';
 import { ValidatorFn, Validators } from '@angular/forms';
 import { BaseComponent, BaseElement, ComponentOptions, ValidateOptions } from './base';
 import { FormioComponents } from './components';
@@ -22,10 +22,7 @@ export interface TextFieldOptions extends ComponentOptions<string, TextFieldVali
     suffix?: string
 }
 
-export class TextFieldComponent extends BaseComponent<TextFieldOptions> implements OnInit {
-    ngOnInit() {
-        this.settings.inputType = 'text';
-    }
+export class TextFieldComponent extends BaseComponent<TextFieldOptions> {
     getError(type: string, error: any) : string {
         let message = super.getError(type, error);
         if (!message) {
