@@ -1,5 +1,5 @@
 import { Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormArray, FormGroup, FormControl } from '@angular/forms';
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
@@ -10,7 +10,7 @@ export interface ContainerOptions extends BaseOptions<{}> {
 }
 
 export class ContainerComponent extends BaseComponent<ContainerOptions> {
-    getControl(): FormGroup | FormControl {
+    getControl(): FormArray | FormGroup | FormControl {
         if (!this.control) {
             this.control = new FormGroup({});
         }

@@ -10,6 +10,7 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
         textfield: require('./bootstrap/components/textfield.html'),
         button: require('./bootstrap/components/button.html'),
         columns: require('./bootstrap/components/columns.html'),
-        container: require('./bootstrap/components/container.html')
+        container: require('./bootstrap/components/container.html'),
+        datagrid: require('./bootstrap/components/datagrid.html')
     }
 };

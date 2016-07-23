@@ -20,7 +20,7 @@ import { BaseComponent } from './components/base';
 export class FormioElement extends Type implements OnInit {
     @Input() component: BaseComponent<any>;
     @Input() form: FormGroup;
-    @Input() index: number;
+    @Input() label: string | boolean;
     @Output() render: EventEmitter<any> = new EventEmitter();
     @ViewChild('formioElement', { read: ViewContainerRef }) element: ViewContainerRef;
     constructor(private resolver: ComponentResolver) {
@@ -40,7 +40,7 @@ export class FormioElement extends Type implements OnInit {
             let cmpRef = this.element.createComponent(cmpFactory);
             cmpRef.instance.component = this.component;
             cmpRef.instance.form = this.form;
-            cmpRef.instance.index = this.index;
+            cmpRef.instance.label = this.label;
             cmpRef.instance.render = this.render;
         });
     }

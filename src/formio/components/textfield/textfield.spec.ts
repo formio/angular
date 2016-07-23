@@ -192,6 +192,13 @@ describe('TextFieldComponent', () => {
         };
 
         component.addComponent();
+
+        // The label should be empty when there are more than one items.
+        expect(component.components.length).toEqual(2);
+        expect(component.components[0].label).toEqual('First Name');
+        expect(component.components[1].label).toEqual('');
+
+        // Add another component.
         component.addComponent();
         expect(component.components.length).toEqual(3);
         expect(component.container.length).toEqual(3);

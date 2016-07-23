@@ -1,7 +1,7 @@
 import { describe, expect, it, inject, async, TestComponentBuilder, ComponentFixture, addProviders } from '@angular/core/testing';
 import { Formio } from './formio.component';
 import { FORMIO_BOOTSTRAP } from './bootstrap';
-import { FORM } from '../fixtures/forms/registration';
+import { FORM } from '../fixtures/forms/kitchensink';
 
 describe('FormioComponent', () => {
     beforeEach(() => {
@@ -12,13 +12,13 @@ describe('FormioComponent', () => {
             let formio = fixture.componentInstance;
             formio.form = FORM;
             fixture.detectChanges();
-            expect(fixture.nativeElement.querySelectorAll('formio-component').length).toEqual(2);
+            expect(fixture.nativeElement.querySelectorAll('formio-component').length).toEqual(FORM.components.length);
         });
     })));
     it('Should be able to create a form from the structure.', () => {
         let formio = new Formio();
         formio.form = FORM;
-        
+
     });
 
 

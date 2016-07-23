@@ -1,5 +1,5 @@
 import { Type, Input, Output, EventEmitter } from "@angular/core";
-import { FormGroup, FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import define = require("core-js/fn/object/define");
 
 export interface ConditionalOptions {
@@ -62,12 +62,25 @@ export function CustomValidator(custom: string, form: FormGroup) {
 }
 
 export class BaseComponent<T> {
-    control: FormControl | FormGroup;
+    control: FormControl | FormGroup | FormArray;
     index: number = 0;
+    private _label: string | boolean;
     constructor(public form: FormGroup, public settings: any) {
         this.getControl();
     }
-    get label() : string {
+    set label(label: string | boolean) {
+        this._label = label;
+    }
+    get label() : string | boolean {
+        if (this._label === false) {
+            return false;
+        }
+        if (this._label) {
+            return this._label;
+        }
+        if (this.index > 0) {
+            return '';
+        }
         if (this.settings.label) {
             return this.settings.label;
         }
@@ -80,7 +93,7 @@ export class BaseComponent<T> {
         }
         return this.settings.defaultValue;
     }
-    getControl(): FormGroup | FormControl {
+    getControl(): FormArray | FormGroup | FormControl {
         if (!this.control) {
             this.control = new FormControl(this.defaultValue, this.getValidators());
         }
@@ -112,8 +125,12 @@ export class BaseComponent<T> {
 
 export class BaseElement extends Type {
     @Input() component: BaseComponent<any>;
+    @Input() form: FormGroup;
     @Output() render: EventEmitter<any> = new EventEmitter();
     onRender() {
         this.render.emit(true);
+    }
+    set label(label: string | boolean) {
+        this.component.label = label;
     }
 }

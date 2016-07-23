@@ -15,6 +15,7 @@ export class FormioComponent<T> extends Type implements OnInit {
     container: FormArray = new FormArray([]);
     @Input() component: BaseOptions<T>;
     @Input() form: FormGroup;
+    @Input() label: string | boolean;
     @Output() render: EventEmitter<any> = new EventEmitter();
     constructor() {
         super();
@@ -24,6 +25,9 @@ export class FormioComponent<T> extends Type implements OnInit {
     }
     addComponent() {
         let component = FormioComponents.createComponent(this.component.type, this.form, this.component);
+
+        // Set the index.
+        component.index = this.components.length;
 
         // Add the form controls.
         if (this.component.input && this.component.key) {
