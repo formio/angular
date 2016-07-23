@@ -21,7 +21,7 @@ export class FormioElement extends Type implements OnInit {
     @Input() component: BaseComponent<any>;
     @Input() form: FormGroup;
     @Input() index: number;
-    @Output() elementAdd: EventEmitter<any> = new EventEmitter();
+    @Output() render: EventEmitter<any> = new EventEmitter();
     @ViewChild('formioElement', { read: ViewContainerRef }) element: ViewContainerRef;
     constructor(private resolver: ComponentResolver) {
         super();
@@ -41,7 +41,7 @@ export class FormioElement extends Type implements OnInit {
             cmpRef.instance.component = this.component;
             cmpRef.instance.form = this.form;
             cmpRef.instance.index = this.index;
-            this.elementAdd.emit(cmpRef);
+            cmpRef.instance.render = this.render;
         });
     }
 }

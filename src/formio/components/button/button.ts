@@ -1,7 +1,7 @@
-import { Input } from '@angular/core';
+import { Input, OnInit } from '@angular/core';
 import { BaseComponent, BaseOptions, BaseElement } from '../base';
 import { FormioComponents } from '../components';
-import { FormioTemplate } from '../../formio';
+import { FormioTemplate } from '../../formio.template';
 
 export interface ButtonOptions extends BaseOptions<boolean> {
     size: string,
@@ -13,8 +13,11 @@ export interface ButtonOptions extends BaseOptions<boolean> {
     theme: string
 }
 export class ButtonComponent extends BaseComponent<ButtonOptions> {}
-export class ButtonElement extends BaseElement {
+export class ButtonElement extends BaseElement implements OnInit {
     @Input() component: ButtonComponent;
+    ngOnInit() {
+        this.render.emit(true);
+    }
 }
 export function Button(template: FormioTemplate) {
     FormioComponents.register('button', ButtonComponent, ButtonElement, {

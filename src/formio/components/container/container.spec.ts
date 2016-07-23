@@ -1,6 +1,8 @@
 import { describe, expect, it } from '@angular/core/testing';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ContainerComponent, ContainerOptions } from './container';
+import { FormioComponentsComponent } from '../../formio-components.component';
+import { FormioComponent } from '../../formio-component.component';
 
 describe('ContainerComponent', () => {
     beforeEach(() => {
@@ -94,5 +96,20 @@ describe('ContainerComponent', () => {
         let settings: ContainerOptions = getSettings({});
         let container = new ContainerComponent(this.form, settings);
         expect(container.control instanceof FormGroup).toEqual(true);
+
+        let index = 0;
+        let components = new FormioComponentsComponent();
+        components.components = settings.components;
+        components.form = this.form;
+        settings.components.forEach((comp: any) => {
+            index++;
+            let component = new FormioComponent();
+            component.component = comp;
+            component.form = this.form;
+            component.ngOnInit();
+            component.form.controls[comp.key]['updateValue']('Test' + index);
+            component.form.controls[comp.key]['markAsDirty']();
+        });
+        expect(this.form.value).toEqual({firstName: 'Test1', lastName: 'Test2'});
     });
 });

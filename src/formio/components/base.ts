@@ -1,4 +1,4 @@
-import { Type, Input } from "@angular/core";
+import { Type, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import define = require("core-js/fn/object/define");
 
@@ -112,5 +112,8 @@ export class BaseComponent<T> {
 
 export class BaseElement extends Type {
     @Input() component: BaseComponent<any>;
-    @Input() hideLabel: boolean = false;
+    @Output() render: EventEmitter<any> = new EventEmitter();
+    onRender() {
+        this.render.emit(true);
+    }
 }

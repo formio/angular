@@ -2,7 +2,7 @@ import { Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
-import { FormioTemplate } from '../../formio';
+import { FormioTemplate } from '../../formio.template';
 
 export interface ContainerOptions extends BaseOptions<{}> {
     tree?: boolean;
@@ -19,7 +19,14 @@ export class ContainerComponent extends BaseComponent<ContainerOptions> {
 }
 
 export class ContainerElement extends BaseElement {
+    private renderCount: number = 0;
     @Input() component: ContainerComponent;
+    onRender() {
+        this.renderCount++;
+        if (this.renderCount >= this.component.settings.components.length) {
+            this.render.emit(true);
+        }
+    }
 }
 
 export function Container(template:FormioTemplate) {

@@ -1,4 +1,4 @@
-import { FormioTemplate } from '../formio';
+import { FormioTemplate } from '../formio.template';
 export const FORMIO_TEMPLATE: FormioTemplate = {
     styles: [
         '.form-group.required .control-label:after { content:"*"; color:red; }'

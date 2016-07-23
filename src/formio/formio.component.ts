@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { Component, Input, Type }  from '@angular/core';
+import { Component, Input, Output, Type, EventEmitter }  from '@angular/core';
 import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { FormioComponentsComponent } from './formio-components.component';
-import { FormioTemplate } from './formio';
+import { FormioTemplate, RegisterTemplate } from './formio.template';
 
 export interface FormioForm {
     title?: string,
@@ -23,32 +23,18 @@ export interface FormioForm {
 })
 export class Formio extends Type {
     @Input() form: FormioForm = {};
+    @Output() render: EventEmitter<any> = new EventEmitter();
+    @Output() submit: EventEmitter<any> = new EventEmitter();
     formGroup: FormGroup = new FormGroup({});
     constructor() {
         super();
     }
+    onRender() {
+        this.render.emit(true);
+    }
     onSubmit() {
-        console.log(this.formGroup.value);
+        this.submit.emit(this.formGroup.value);
     }
-}
-
-/**
- * Allow dynamic altering of the component templates based on what template
- * they wish to load within their Form.io renderer.
- *
- * @param cmp - The component class to alter.
- * @param template - The template to add to this component.
- * @constructor
- */
-export function FormioRegisterTemplate(cmp: Type, template: string, styles?: Array<string>) {
-    //noinspection TypeScriptUnresolvedFunction
-    let annotations = Reflect.getMetadata('annotations', cmp);
-    annotations[0].template = template;
-    if (styles) {
-        annotations[0].styles = styles;
-    }
-    //noinspection TypeScriptUnresolvedFunction
-    Reflect.defineMetadata('annotations', annotations, cmp);
 }
 
 /**
@@ -60,6 +46,6 @@ export function FormioRegisterTemplate(cmp: Type, template: string, styles?: Arr
  * @constructor
  */
 export function FormioRegister(template: FormioTemplate) {
-    FormioRegisterTemplate(Formio, template.formio, template.styles);
+    RegisterTemplate(Formio, template.formio, template.styles);
     return Formio;
 }

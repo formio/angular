@@ -1,7 +1,7 @@
 import { Input } from '@angular/core';
 import { BaseComponent, BaseOptions, BaseElement } from '../base';
 import { FormioComponents } from '../components';
-import { FormioTemplate } from '../../formio';
+import { FormioTemplate } from '../../formio.template';
 
 export interface ColumnsOptions extends BaseOptions<any> {
     columns: Array<any>

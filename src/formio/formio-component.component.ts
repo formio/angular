@@ -1,9 +1,8 @@
-import { Component, Input, Type, OnInit } from '@angular/core';
+import { Component, Input, Output, Type, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { FormioComponents } from './components/components';
-import { FormioRegisterTemplate } from './formio.component';
 import { FormioElement } from './formio-element.component';
-import { FormioTemplate } from './formio';
+import { FormioTemplate, RegisterTemplate } from './formio.template';
 import { BaseOptions, BaseComponent } from './components/base';
 
 @Component({
@@ -16,6 +15,7 @@ export class FormioComponent<T> extends Type implements OnInit {
     container: FormArray = new FormArray([]);
     @Input() component: BaseOptions<T>;
     @Input() form: FormGroup;
+    @Output() render: EventEmitter<any> = new EventEmitter();
     constructor() {
         super();
     }
@@ -42,6 +42,9 @@ export class FormioComponent<T> extends Type implements OnInit {
         // Add this to the instances.
         this.components.push(component);
         return component;
+    }
+    onRender() {
+        this.render.emit(true);
     }
     removeAt(index:number) {
         this.container.removeAt(index);
@@ -74,6 +77,6 @@ export class FormioComponent<T> extends Type implements OnInit {
 }
 
 export function FormioComponentRegister(template: FormioTemplate) {
-    FormioRegisterTemplate(FormioComponent, template.formio_component);
+    RegisterTemplate(FormioComponent, template.formio_component);
     return FormioComponent;
 }

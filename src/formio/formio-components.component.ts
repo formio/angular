@@ -1,9 +1,8 @@
-import { Component, Input, Type } from '@angular/core';
+import { Component, Input, Type, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormioRegisterTemplate } from './formio.component';
 import { FormioComponent } from './formio-component.component';
 import { BaseOptions } from './components/base';
-import { FormioTemplate } from './formio';
+import { FormioTemplate, RegisterTemplate } from './formio.template';
 
 @Component({
     selector: 'formio-components',
@@ -13,9 +12,17 @@ import { FormioTemplate } from './formio';
 export class FormioComponentsComponent extends Type {
     @Input() components: Array<BaseOptions<any>>;
     @Input() form: FormGroup;
+    @Output() render: EventEmitter<any> = new EventEmitter();
+    private renderCount: number = 0;
+    onRender() {
+        this.renderCount++;
+        if (this.renderCount >= this.components.length) {
+            this.render.emit(true);
+        }
+    }
 }
 
 export function FormioComponentsComponentRegister(template: FormioTemplate) {
-    FormioRegisterTemplate(FormioComponentsComponent, template.formio_components);
+    RegisterTemplate(FormioComponentsComponent, template.formio_components);
     return FormioComponent;
 }

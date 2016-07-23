@@ -1,8 +1,8 @@
-import { Input } from '@angular/core';
+import { Input, OnInit } from '@angular/core';
 import { ValidatorFn, Validators } from '@angular/forms';
 import { BaseComponent, BaseElement, ComponentOptions, ValidateOptions } from '../base';
 import { FormioComponents } from '../components';
-import { FormioTemplate } from '../../formio';
+import { FormioTemplate } from '../../formio.template';
 
 /**
  * The TextFieldValiation interface.
@@ -59,8 +59,11 @@ export class TextFieldComponent extends BaseComponent<TextFieldOptions> {
     }
 }
 
-export class TextElement extends BaseElement {
+export class TextElement extends BaseElement implements OnInit {
     @Input() component: TextFieldComponent;
+    ngOnInit() {
+        this.render.emit(true);
+    }
 }
 
 export function TextField(template:FormioTemplate) {

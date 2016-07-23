@@ -1,5 +1,3 @@
-<div>
-    <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
-        <formio-components *ngIf="form.components.length" [components]="form.components" [form]="formGroup"></formio-components>
-    </form>
-</div>
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+    <formio-components *ngIf="form.components.length" [components]="form.components" [form]="formGroup" (render)="onRender()"></formio-components>
+</form>

@@ -3,7 +3,6 @@ import {
     expect,
     it
 } from '@angular/core/testing';
-
 import { FORMIO } from './formio';
 import { FORMIO_TEMPLATE } from './templates/bootstrap';
 

@@ -13,4 +13,10 @@ export class AppComponent extends Type {
         super();
         this.form = service.getForm();
     }
+    onRender() {
+        console.log('Rendered!');
+    }
+    onSubmit(value: any) {
+        console.log(value);
+    }
 }

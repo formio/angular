@@ -1,7 +1,7 @@
 <div [formGroup]="form" class="form-group" [ngClass]="{'has-error': (errors.length > 0)}">
     <div *ngFor="let comp of components; let i = index;" style="position:relative;">
         <button *ngIf="component.multiple && (i > 0)" class="btn btn-danger" style="position:absolute;right:0;" (click)="removeAt(i)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <formio-element [form]="form" [component]="comp" [index]="i"></formio-element>
+        <formio-element [form]="form" [component]="comp" [index]="i" (render)="onRender()"></formio-element>
     </div>
     <button *ngIf="component.multiple" type="button" class="btn btn-default" (click)="addComponent()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
     <p *ngFor="let error of errors" class="text-danger">{{ error }}</p>
