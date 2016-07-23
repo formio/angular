@@ -105,6 +105,8 @@ You can then run the base application by running the following.
 npm start
 ```
 
+The application will now be running @ http://localhost:8080.
+
 You can run tests by typing the following.
 
 ```
