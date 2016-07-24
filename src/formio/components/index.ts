@@ -2,6 +2,7 @@ import { TextField } from './textfield/textfield';
 import { Button } from './button/button';
 import { Columns } from './columns/columns';
 import { Container } from './container/container';
+import { EmailField } from './email/email';
 import { DataGrid } from './datagrid/datagrid';
 import { FormioTemplate } from '../formio.template';
 export function FORMIO_COMPONENTS(template: FormioTemplate) {
@@ -10,6 +11,7 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         Button(template),
         Columns(template),
         Container(template),
-        DataGrid(template)
+        DataGrid(template),
+        EmailField(template)
     ];
 }
