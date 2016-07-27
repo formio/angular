@@ -88,7 +88,37 @@ export const FORM: any = {
                     "eq": ""
                   },
                   "type": "textfield"
+                },
+                {
+                  "input": true,
+                  "tableView": true,
+                  "inputType": "number",
+                  "inputMask": "",
+                  "label": "Number",
+                  "key": "number",
+                  "placeholder": "Enter Number",
+                  "prefix": "$",
+                  "suffix": "@",
+                  "multiple": false,
+                  "defaultValue": 0,
+                  "protected": false,
+                  "unique": false,
+                  "persistent": true,
+                  "validate": {
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 10,
+                    "custom": "",
+                    "customPrivate": false
+                  },
+                  "conditional": {
+                    "show": "",
+                    "when": null,
+                    "eq": ""
+                  },
+                  "type": "number"
                 }
+
               ]
             }
           ],
