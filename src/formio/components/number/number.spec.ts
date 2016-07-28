@@ -173,39 +173,34 @@ describe('NumberComponent', () => {
 
     });
 
-    //@TODO: Placeholder test case needs to be handled
-    // it('Should allow placeholder', () => {
-    //     let settings: NumberOptions = getSettings({
-    //         placeholder: "Enter Number"
-    //     });
-    //
-    //     // Create the number component.
-    //     let number = new NumberComponent(this.form, settings);
-    //     expect(number.placeholder).toEqual("Enter Number");
-    //     expect(number.control.placeholder).toEqual("Enter Number");
-    // });
-    //@TODO: Prefix test case needs to be handled
-    // it('Should allow prefix', () => {
-    //     let settings: NumberOptions = getSettings({
-    //         prefix: "$"
-    //     });
-    //
-    //     // Create the number component.
-    //     let number = new NumberComponent(this.form, settings);
-    //     expect(number.prefix).toEqual("$");
-    //     expect(number.control.prefix).toEqual("$");
-    // });
-    //
-    //@TODO: Suffix test case needs to be handled
-    // it('Should allow suffix', () => {
-    //     let settings: NumberOptions = getSettings({
-    //         suffix: "Pounds"
-    //     });
-    //
-    //     // Create the number component.
-    //     let number = new NumberComponent(this.form, settings);
-    //     expect(number.suffix).toEqual("Pounds");
-    //     expect(number.control.suffix).toEqual("Pounds");
-    // });
+    it('Should allow placeholder', () => {
+        let settings: NumberOptions = getSettings({
+            placeholder: "Enter Number"
+        });
+
+        // Create the number component.
+        let number = new NumberComponent(this.form, settings);
+        expect(number.settings.placeholder).toEqual("Enter Number");
+    });
+    
+    it('Should allow prefix', () => {
+        let settings: NumberOptions = getSettings({
+            prefix: "$"
+        });
+
+        // Create the number component.
+        let number = new NumberComponent(this.form, settings);
+        expect(number.settings.prefix).toEqual("$");
+    });
+    
+    it('Should allow suffix', () => {
+        let settings: NumberOptions = getSettings({
+            suffix: "@"
+        });
+
+        // Create the number component.
+        let number = new NumberComponent(this.form, settings);
+        expect(number.settings.suffix).toEqual("@");
+    });
 
 });
