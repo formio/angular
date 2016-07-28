@@ -15,7 +15,7 @@ export interface ValidateOptions {
 }
 
 export interface ComponentOptions<T, V> {
-    defaultValue?: T | Array<T>,
+    defaultValue?: T | Array<T> | boolean,
     type?: string,
     key?: string,
     label?: string,

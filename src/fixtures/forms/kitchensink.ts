@@ -237,6 +237,26 @@ export const FORM: any = {
     },
     {
       "input": true,
+      "inputType": "checkbox",
+      "tableView": false,
+      "hideLabel": true,
+      "label": "Checkbox",
+      "key": "checkbox",
+      "defaultValue": false,
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": true
+      },
+      "type": "checkbox",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      }
+    },
+    {
+      "input": true,
       "label": "Submit",
       "tableView": false,
       "key": "submit",
