@@ -5,6 +5,7 @@ import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { FormioComponentsComponent } from './formio-components.component';
 import { FormioTemplate, RegisterTemplate } from './formio.template';
 import { FormioService, FormioForm } from './formio.service';
+import { FormioEvents, FormioOptions } from './formio.common';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 /**
@@ -20,14 +21,20 @@ export class FormioComponent extends Type implements OnInit {
     @Input() form: FormioForm = null;
     @Input() src: string;
     @Input() service: FormioService;
+    @Input() options: FormioOptions;
     @Output() render: EventEmitter<any> = new EventEmitter();
     @Output() submit: EventEmitter<any> = new EventEmitter();
     public formGroup: FormGroup = new FormGroup({});
+    public events: FormioEvents = new FormioEvents();
     public ready: BehaviorSubject<boolean> = new BehaviorSubject(false);
     constructor() {
         super();
     }
     ngOnInit() {
+        this.options = Object.assign({
+            errorMessage: 'Please fix the following errors before submitting.'
+        }, this.options);
+
         if (this.form) {
             this.ready.next(true);
         }
@@ -45,6 +52,13 @@ export class FormioComponent extends Type implements OnInit {
         this.render.emit(true);
     }
     onSubmit() {
+        // Check if the form is valid.
+        if (!this.formGroup.valid) {
+            this.formGroup.markAsDirty(true);
+            this.events.componentState.emit('dirty');
+            return;
+        }
+
         let submission = {data: this.formGroup.value};
         if (this.service) {
             this.service.submit(submission).subscribe((sub: {}) => {

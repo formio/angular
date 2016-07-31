@@ -1,6 +1,7 @@
-import { Type, Input, Output, EventEmitter } from "@angular/core";
+import { Type, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import define = require("core-js/fn/object/define");
+import { FormioEvents } from '../formio.common';
 
 export interface ConditionalOptions {
     show?: string,
@@ -123,10 +124,28 @@ export class BaseComponent<T> {
     }
 }
 
-export class BaseElement extends Type {
+export class BaseElement extends Type implements OnInit {
     @Input() component: BaseComponent<any>;
     @Input() form: FormGroup;
+    @Input() events: FormioEvents;
     @Output() render: EventEmitter<any> = new EventEmitter();
+    ngOnInit() {
+        if (
+            this.component.settings.input &&
+            this.component.settings.key
+        ) {
+            this.events.componentState.subscribe((state: string) => {
+                switch (state) {
+                    case 'dirty':
+                        // Make sure to set this control to dirty.
+                        if (this.form.controls.hasOwnProperty(this.component.settings.key)) {
+                            this.form.controls[this.component.settings.key].markAsDirty(true);
+                        }
+                        break;
+                }
+            });
+        }
+    }
     onRender() {
         this.render.emit(true);
     }

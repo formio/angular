@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormioComponent } from './formio-component.component';
 import { BaseOptions } from './components/base';
 import { FormioTemplate, RegisterTemplate } from './formio.template';
+import { FormioEvents } from './formio.common';
 
 @Component({
     selector: 'formio-components',
@@ -12,6 +13,7 @@ import { FormioTemplate, RegisterTemplate } from './formio.template';
 export class FormioComponentsComponent extends Type {
     @Input() components: Array<BaseOptions<any>>;
     @Input() form: FormGroup;
+    @Input() events: FormioEvents;
     @Output() render: EventEmitter<any> = new EventEmitter();
     private renderCount: number = 0;
     onRender() {

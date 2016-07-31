@@ -4,6 +4,7 @@ import { FormioComponents } from './components/components';
 import { FormioElement } from './formio-element.component';
 import { FormioTemplate, RegisterTemplate } from './formio.template';
 import { BaseOptions, BaseComponent } from './components/base';
+import { FormioEvents } from './formio.common';
 
 @Component({
     selector: 'formio-component',
@@ -15,6 +16,7 @@ export class FormioComponent<T> extends Type implements OnInit {
     container: FormArray = new FormArray([]);
     @Input() component: BaseOptions<T>;
     @Input() form: FormGroup;
+    @Input() events: FormioEvents;
     @Input() label: string | boolean;
     @Output() render: EventEmitter<any> = new EventEmitter();
     constructor() {

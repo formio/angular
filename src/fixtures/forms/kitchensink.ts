@@ -245,7 +245,7 @@ export const FORM: any = {
       "rightIcon": "",
       "block": false,
       "action": "submit",
-      "disableOnInvalid": true,
+      "disableOnInvalid": false,
       "theme": "primary",
       "type": "button"
     }

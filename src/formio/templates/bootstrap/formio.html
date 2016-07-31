@@ -1,4 +1,5 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+    <div class="alert alert-danger" *ngIf="formGroup.dirty && !formGroup.valid" role="alert">{{ options.errorMessage }}</div>
     <i style="font-size: 2em;" *ngIf="!(ready | async)" class="formio-loading glyphicon glyphicon-refresh glyphicon-spin"></i>
-    <formio-components *ngIf="ready | async" [components]="form.components" [form]="formGroup" (render)="onRender()"></formio-components>
+    <formio-components *ngIf="ready | async" [components]="form.components" [form]="formGroup" [events]="events" (render)="onRender()"></formio-components>
 </form>
