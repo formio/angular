@@ -1,7 +1,10 @@
 import { FormioTemplate } from '../formio.template';
 export const FORMIO_TEMPLATE: FormioTemplate = {
     styles: [
-        '.form-group.required .control-label:after { content:"*"; color:red; }'
+        '.form-group.required .control-label:after { content:"*"; color:red; }',
+        '.glyphicon-spin { -webkit-animation: spin-anim 1s infinite; animation: spin-anim 1s infinite; }',
+        '@-webkit-keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}',
+        '@keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}'
     ],
     formio: require('./bootstrap/formio.html'),
     formio_component: require('./bootstrap/formio-component.html'),
