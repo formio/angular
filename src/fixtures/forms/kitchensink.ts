@@ -27,7 +27,7 @@ export const FORM: any = {
                   "persistent": true,
                   "validate": {
                     "required": true,
-                    "minLength": 2,
+                    "minLength": 6,
                     "maxLength": 10,
                     "pattern": "",
                     "custom": "",
@@ -88,6 +88,33 @@ export const FORM: any = {
                     "eq": ""
                   },
                   "type": "textfield"
+                },
+                {
+                  "input": true,
+                  "tableView": false,
+                  "inputType": "password",
+                  "label": "Password",
+                  "key": "password",
+                  "placeholder": "Enter Your Password",
+                  "prefix": "$",
+                  "suffix": "@",
+                  "protected": true,
+                  "persistent": true,
+                  "type": "password",
+                  "conditional": {
+                    "show": null,
+                    "when": null,
+                    "eq": ""
+                  },
+                  "validate": {
+                    "required": true,
+                    "minLength": 8,
+                    "maxLength": 20,
+                    "pattern": "",
+                    "custom": "",
+                    "customPrivate": false
+                  },
+                  "unique": true
                 }
               ]
             }
