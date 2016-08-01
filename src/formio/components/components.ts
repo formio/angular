@@ -8,7 +8,8 @@ export interface FormioComponentsTemplate {
     button: string,
     columns: string,
     container: string,
-    datagrid: string
+    datagrid: string,
+    textarea: string
 }
 
 export interface FormioComponentMetaData {
