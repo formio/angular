@@ -21,7 +21,7 @@ describe('CheckBoxComponent', () => {
             hideLabel: true,
             label: 'Checkbox',
             key: 'checkbox',
-            defaultValue: false,
+            defaultValue: '',
             protected: false,
             persistent: true,
             validate: {

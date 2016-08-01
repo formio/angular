@@ -242,7 +242,7 @@ export const FORM: any = {
       "hideLabel": true,
       "label": "Checkbox",
       "key": "checkbox",
-      "defaultValue": false,
+      "defaultValue": '',
       "protected": false,
       "persistent": true,
       "validate": {

@@ -4,12 +4,12 @@ import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
 
 /**
- * The TextFieldValiation interface.
+ * The CheckBoxValidation interface.
  */
-export interface CheckBoxOptions extends BaseOptions<boolean> {
+export interface CheckBoxOptions extends BaseOptions<string> {
     inputType?: string,
-    defaultValue?:boolean,
-    hideLabel?:boolean
+    defaultValue?: string,
+    hideLabel?: boolean
 }
 
 export class CheckBoxComponent extends BaseComponent<CheckBoxOptions> {
