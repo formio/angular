@@ -9,16 +9,15 @@ describe('NumberComponent', () => {
         this.form = new FormGroup({});
     });
 
-// Register the Number component.
+    // Register the Number component.
     Number(FORMIO_TEMPLATE);
 
-// An easy method for getting new Number settings.
+    // An easy method for getting new Number settings.
     var getSettings = (overrides:{}):NumberOptions => {
         let settings : NumberOptions = {
             type: 'number',
             input: true,
             tableView: true,
-            inputType: 5,
             inputMask: '',
             label: 'Number',
             key: 'number',
@@ -89,10 +88,16 @@ describe('NumberComponent', () => {
         expect(number.control.errors).toEqual({required: true});
         expect(number.getError('required', number.control.errors['required'])).toEqual('Number is required');
 
+        updateValue("10");
+        expect(number.control.valid).toEqual(true);
+
         updateValue("1");
         expect(number.control.valid).toEqual(false);
         expect(number.control.errors).toEqual({minlength: {requiredLength: 2, actualLength: 1}});
         expect(number.getError('minlength', number.control.errors['minlength'])).toEqual('Number must be at least 2 characters');
+
+        updateValue("1234567890");
+        expect(number.control.valid).toEqual(true);
 
         updateValue("12345678901");
         expect(number.control.valid).toEqual(false);
@@ -163,9 +168,15 @@ describe('NumberComponent', () => {
         expect(component.form.valid).toEqual(false);
         expect(component.errors).toEqual(['Number must be at least 2 characters']);
 
+        updateValue('19');
+        expect(component.form.valid).toEqual(true);
+
         updateValue('');
         expect(component.form.valid).toEqual(false);
         expect(component.errors).toEqual(['Number is required']);
+
+        updateValue('1234567890');
+        expect(component.form.valid).toEqual(true);
 
         updateValue('12345678901');
         expect(component.form.valid).toEqual(false);
@@ -202,5 +213,4 @@ describe('NumberComponent', () => {
         let number = new NumberComponent(this.form, settings);
         expect(number.settings.suffix).toEqual("@");
     });
-
 });

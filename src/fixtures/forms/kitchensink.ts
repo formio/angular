@@ -97,7 +97,7 @@ export const FORM: any = {
                   "label": "Number",
                   "key": "number",
                   "placeholder": "Enter Number",
-                  "prefix": "$",
+                  "prefix": "",
                   "suffix": "",
                   "multiple": false,
                   "defaultValue": 0,
@@ -106,7 +106,7 @@ export const FORM: any = {
                   "persistent": true,
                   "validate": {
                     "required": true,
-                    "minLength": 1,
+                    "minLength": 2,
                     "maxLength": 10,
                     "custom": "",
                     "customPrivate": false
@@ -118,7 +118,6 @@ export const FORM: any = {
                   },
                   "type": "number"
                 }
-
               ]
             }
           ],
