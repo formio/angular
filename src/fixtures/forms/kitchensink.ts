@@ -237,6 +237,43 @@ export const FORM: any = {
     },
     {
       "input": true,
+      "tableView": true,
+      "inputType": "radio",
+      "label": "Options",
+      "key": "radio",
+      "values": [
+        {
+          "value": "1",
+          "label": "option1"
+        },
+        {
+          "value": "2",
+          "label": "option2"
+        },
+        {
+          "value": "3",
+          "label": "option3"
+        }
+      ],
+      "defaultValue": true,
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false,
+        "custom": "",
+        "customPrivate": false
+      },
+      "type": "radio",
+      "inline": false,
+      "multiple":false,
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      }
+    },
+    {
+      "input": true,
       "label": "Submit",
       "tableView": false,
       "key": "submit",
