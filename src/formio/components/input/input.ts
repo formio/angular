@@ -1,5 +1,5 @@
 import { Input, OnInit } from '@angular/core';
-import { FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { BaseComponent, BaseElement, ComponentOptions, ValidateOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
@@ -15,7 +15,7 @@ export interface InputValidateOptions extends ValidateOptions {
 }
 
 export interface InputOptions extends ComponentOptions<string, InputValidateOptions> {
-    inputType?: string
+    inputType?:string,
     inputMask?: string,
     placeholder?: string,
     prefix?: string,
@@ -23,6 +23,9 @@ export interface InputOptions extends ComponentOptions<string, InputValidateOpti
 }
 
 export class InputComponent extends BaseComponent<InputOptions> {
+    constructor(form: FormGroup , settings:any) {
+        super(form,settings);
+    }
     getError(type: string, error: any) : string {
         let message = super.getError(type, error);
         if (!message) {
