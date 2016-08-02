@@ -4,6 +4,7 @@ import { FormioComponents } from './components/components';
 import { FormioElement } from './formio-element.component';
 import { FormioTemplate, RegisterTemplate } from './formio.template';
 import { BaseOptions, BaseComponent } from './components/base';
+import { FormioEvents, FormioError } from './formio.common';
 
 @Component({
     selector: 'formio-component',
@@ -15,13 +16,28 @@ export class FormioComponent<T> extends Type implements OnInit {
     container: FormArray = new FormArray([]);
     @Input() component: BaseOptions<T>;
     @Input() form: FormGroup;
+    @Input() events: FormioEvents;
     @Input() label: string | boolean;
     @Output() render: EventEmitter<any> = new EventEmitter();
     constructor() {
         super();
     }
     ngOnInit() {
+        // Add this component.
         this.addComponent();
+
+        // Subscribe to the invalid event.
+        if (this.events) {
+            this.events.invalid.subscribe(() => {
+                this.components.forEach((component: BaseComponent<any>) => {
+                    component.control.markAsDirty(true);
+                    let errors: Array<FormioError> = component.errors;
+                    if (errors.length) {
+                        this.events.errors = this.events.errors.concat(errors);
+                    }
+                });
+            });
+        }
     }
     addComponent() {
         let component = FormioComponents.createComponent(this.component.type, this.form, this.component);
@@ -68,14 +84,12 @@ export class FormioComponent<T> extends Type implements OnInit {
             return [];
         }
         let errors: Array<string> = [];
-        for (let type in this.form.controls[this.component.key].errors) {
-            this.components.forEach((component: BaseComponent<any>) => {
-                let error = component.getError(type, this.form.controls[this.component.key].errors[type]);
-                if (error) {
-                    errors.push(error);
-                }
+        this.components.forEach((component: BaseComponent<any>) => {
+            let compErrs: Array<FormioError> = component.errors;
+            compErrs.forEach((compError) => {
+                errors.push(compError.message);
             });
-        }
+        });
         return errors;
     }
 }
