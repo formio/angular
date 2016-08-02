@@ -1,6 +1,7 @@
 import { Type, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import define = require("core-js/fn/object/define");
+import { FormioEvents, FormioError } from '../formio.common';
 
 export interface ConditionalOptions {
     show?: string,
@@ -108,6 +109,25 @@ export class BaseComponent<T> {
         }
         return '';
     }
+    getFormioError(type: string, error: any) : FormioError {
+        let message: string = this.getError(type, error);
+        return new FormioError(message, this.settings);
+    }
+    get errors(): Array<FormioError> {
+        let errors: Array<FormioError> = [];
+        if (
+            this.control &&
+            this.control.errors
+        ) {
+            for (let err in this.control.errors) {
+                var error: FormioError = this.getFormioError(err, this.control.errors[err]);
+                if (error) {
+                    errors.push(error);
+                }
+            }
+        }
+        return errors;
+    }
     getValidators() : ValidatorFn[] {
         if (!this.settings.validate) {
             return [];
@@ -126,6 +146,7 @@ export class BaseComponent<T> {
 export class BaseElement extends Type {
     @Input() component: BaseComponent<any>;
     @Input() form: FormGroup;
+    @Input() events: FormioEvents;
     @Output() render: EventEmitter<any> = new EventEmitter();
     onRender() {
         this.render.emit(true);
