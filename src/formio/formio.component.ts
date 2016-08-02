@@ -1,11 +1,11 @@
 import 'reflect-metadata';
 import { Component, Input, Output, Type, EventEmitter, OnInit }  from '@angular/core';
-import { HTTP_PROVIDERS } from '@angular/http';
 import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { FormioComponentsComponent } from './formio-components.component';
 import { FormioTemplate, RegisterTemplate } from './formio.template';
-import { FormioService, FormioForm } from './formio.service';
-import { FormioEvents, FormioOptions } from './formio.common';
+import { FormioService } from './formio.service';
+import { FormioErrors } from './formio.errors';
+import { FormioForm, FormioEvents, FormioOptions } from './formio.common';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 /**
@@ -14,8 +14,11 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Component({
     selector: 'formio',
     template: '<div></div>',
-    directives: [FormioComponentsComponent, REACTIVE_FORM_DIRECTIVES],
-    providers: [HTTP_PROVIDERS]
+    directives: [
+        FormioComponentsComponent,
+        FormioErrors,
+        REACTIVE_FORM_DIRECTIVES
+    ]
 })
 export class FormioComponent extends Type implements OnInit {
     @Input() form: FormioForm = null;
@@ -32,7 +35,9 @@ export class FormioComponent extends Type implements OnInit {
     }
     ngOnInit() {
         this.options = Object.assign({
-            errorMessage: 'Please fix the following errors before submitting.'
+            errors: {
+                message: 'Please fix the following errors before submitting.'
+            }
         }, this.options);
 
         if (this.form) {
@@ -52,16 +57,19 @@ export class FormioComponent extends Type implements OnInit {
         this.render.emit(true);
     }
     onSubmit() {
+        // Reset the errors.
+        this.events.errors = [];
+
         // Check if the form is valid.
         if (!this.formGroup.valid) {
             this.formGroup.markAsDirty(true);
-            this.events.componentState.emit('dirty');
+            this.events.invalid.emit(true);
             return;
         }
 
         let submission = {data: this.formGroup.value};
         if (this.service) {
-            this.service.submit(submission).subscribe((sub: {}) => {
+            this.service.saveSubmission(submission).subscribe((sub: {}) => {
                 this.submit.emit(sub);
             });
         }

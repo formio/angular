@@ -62,7 +62,6 @@ export class TextFieldComponent extends BaseComponent<TextFieldOptions> {
 export class TextElement extends BaseElement implements OnInit {
     @Input() component: TextFieldComponent;
     ngOnInit() {
-        super.ngOnInit();
         this.render.emit(true);
     }
 }

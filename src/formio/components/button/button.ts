@@ -17,7 +17,6 @@ export class ButtonElement extends BaseElement implements OnInit {
     @Input() component: ButtonComponent;
     ngOnInit() {
         this.render.emit(true);
-        super.ngOnInit();
     }
 }
 export function Button(template: FormioTemplate) {
