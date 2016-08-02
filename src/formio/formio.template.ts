@@ -12,6 +12,7 @@ export interface FormioTemplate {
     formio: string,
     formio_component: string;
     formio_components: string;
+    errors: string;
     components: FormioComponentsTemplate;
 };
 

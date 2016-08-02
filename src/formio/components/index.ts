@@ -3,6 +3,7 @@ import { Button } from './button/button';
 import { Columns } from './columns/columns';
 import { Container } from './container/container';
 import { EmailField } from './email/email';
+import { CheckBox } from './checkbox/checkbox';
 import { DataGrid } from './datagrid/datagrid';
 import { FormioTemplate } from '../formio.template';
 import { Radio } from './radio/radio';
@@ -14,6 +15,7 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         Container(template),
         DataGrid(template),
         EmailField(template),
-        Radio(template)
+        Radio(template),
+        CheckBox(template)
     ];
 }
