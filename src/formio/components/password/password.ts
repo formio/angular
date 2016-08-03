@@ -22,7 +22,7 @@ export class PasswordElement extends InputElement implements OnInit {
     }
 }
 
-export function Password(template:FormioTemplate) {
+export function PasswordField(template:FormioTemplate) {
     FormioComponents.register('password', PasswordComponent, PasswordElement, {
         template: template.components.input
     });

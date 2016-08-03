@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@angular/core/testing';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
-import { PasswordComponent, PasswordOptions, Password } from './password';
+import { PasswordComponent, PasswordOptions, PasswordField } from './password';
 import { FormioComponent } from '../../formio-component.component';
 
 describe('PasswordComponent', () => {
@@ -10,7 +10,7 @@ describe('PasswordComponent', () => {
     });
 
     // Register the Password component.
-    Password(FORMIO_TEMPLATE);
+    PasswordField(FORMIO_TEMPLATE);
 
     // An easy method for getting new password settings.
     var getSettings = (overrides: {}): PasswordOptions => {
