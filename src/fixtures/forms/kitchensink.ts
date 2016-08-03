@@ -26,7 +26,7 @@ export const FORM: any = {
                   "unique": false,
                   "persistent": true,
                   "validate": {
-                    "required": true,
+                    "required": false,
                     "minLength": 2,
                     "maxLength": 10,
                     "pattern": "",
@@ -46,8 +46,8 @@ export const FORM: any = {
                   "unique": false,
                   "protected": false,
                   "defaultValue": "",
-                  "suffix": "",
-                  "prefix": "",
+                  "suffix": "@",
+                  "prefix": "$",
                   "placeholder": "Enter your email address",
                   "key": "email",
                   "label": "Email",
@@ -67,8 +67,8 @@ export const FORM: any = {
                   "label": "Last Name",
                   "key": "lastName",
                   "placeholder": "Enter your last name",
-                  "prefix": "",
-                  "suffix": "",
+                  "prefix": "$",
+                  "suffix": "@",
                   "multiple": false,
                   "defaultValue": "",
                   "protected": false,
@@ -88,6 +88,35 @@ export const FORM: any = {
                     "eq": ""
                   },
                   "type": "textfield"
+                },
+                {
+                  "input": true,
+                  "tableView": true,
+                  "inputType": "number",
+                  "inputMask": "",
+                  "label": "Number",
+                  "key": "number",
+                  "placeholder": "Enter Number",
+                  "prefix": "",
+                  "suffix": "",
+                  "multiple": false,
+                  "defaultValue": 0,
+                  "protected": false,
+                  "unique": false,
+                  "persistent": true,
+                  "validate": {
+                    "required": true,
+                    "minLength": 2,
+                    "maxLength": 10,
+                    "custom": "",
+                    "customPrivate": false
+                  },
+                  "conditional": {
+                    "show": "",
+                    "when": null,
+                    "eq": ""
+                  },
+                  "type": "number"
                 }
               ]
             }
