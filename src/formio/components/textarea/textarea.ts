@@ -1,6 +1,4 @@
 import { Input, OnInit } from '@angular/core';
-import { ValidatorFn, Validators, FormGroup } from '@angular/forms';
-import { BaseComponent, BaseElement, ComponentOptions, ValidateOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
 import { InputComponent, InputOptions, InputElement } from '../input/input';

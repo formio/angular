@@ -1,18 +1,13 @@
 import { Component, Type } from '@angular/core';
-import { Formio, FormioForm } from '../formio/formio.component';
-import { FormService } from './form.service';
+import { FormioComponent } from '../formio/formio.component';
+import { FORM } from '../fixtures/forms/kitchensink.ts';
 @Component({
     selector: 'app',
     template: require('./app.html'),
-    directives: [Formio],
-    providers:  [FormService]
+    directives: [FormioComponent]
 })
 export class AppComponent extends Type {
-    form: FormioForm;
-    constructor(service: FormService) {
-        super();
-        this.form = service.getForm();
-    }
+    public form: any = FORM;
     onRender() {
         console.log('Rendered!');
     }

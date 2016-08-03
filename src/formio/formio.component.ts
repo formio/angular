@@ -1,17 +1,12 @@
 import 'reflect-metadata';
-import { Component, Input, Output, Type, EventEmitter }  from '@angular/core';
+import { Component, Input, Output, Type, EventEmitter, OnInit }  from '@angular/core';
 import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { FormioComponentsComponent } from './formio-components.component';
 import { FormioTemplate, RegisterTemplate } from './formio.template';
-
-export interface FormioForm {
-    title?: string,
-    name?: string,
-    path?: string,
-    project?: string,
-    template?: string,
-    components?: Array<{}>
-}
+import { FormioService } from './formio.service';
+import { FormioErrors } from './formio.errors';
+import { FormioForm, FormioEvents, FormioOptions } from './formio.common';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 /**
  * The <formio> component.
@@ -19,21 +14,65 @@ export interface FormioForm {
 @Component({
     selector: 'formio',
     template: '<div></div>',
-    directives: [FormioComponentsComponent, REACTIVE_FORM_DIRECTIVES]
+    directives: [
+        FormioComponentsComponent,
+        FormioErrors,
+        REACTIVE_FORM_DIRECTIVES
+    ]
 })
-export class Formio extends Type {
-    @Input() form: FormioForm = {};
+export class FormioComponent extends Type implements OnInit {
+    @Input() form: FormioForm = null;
+    @Input() src: string;
+    @Input() service: FormioService;
+    @Input() options: FormioOptions;
     @Output() render: EventEmitter<any> = new EventEmitter();
     @Output() submit: EventEmitter<any> = new EventEmitter();
-    formGroup: FormGroup = new FormGroup({});
+    public formGroup: FormGroup = new FormGroup({});
+    public events: FormioEvents = new FormioEvents();
+    public ready: BehaviorSubject<boolean> = new BehaviorSubject(false);
     constructor() {
         super();
+    }
+    ngOnInit() {
+        this.options = Object.assign({
+            errors: {
+                message: 'Please fix the following errors before submitting.'
+            }
+        }, this.options);
+
+        if (this.form) {
+            this.ready.next(true);
+        }
+        else if (this.src && !this.service) {
+            this.service = new FormioService(this.src);
+            this.service.loadForm().subscribe((form: FormioForm) => {
+                if (form && form.components) {
+                    this.form = form;
+                    this.ready.next(true);
+                }
+            });
+        }
     }
     onRender() {
         this.render.emit(true);
     }
     onSubmit() {
-        this.submit.emit(this.formGroup.value);
+        // Reset the errors.
+        this.events.errors = [];
+
+        // Check if the form is valid.
+        if (!this.formGroup.valid) {
+            this.formGroup.markAsDirty(true);
+            this.events.invalid.emit(true);
+            return;
+        }
+
+        let submission = {data: this.formGroup.value};
+        if (this.service) {
+            this.service.saveSubmission(submission).subscribe((sub: {}) => {
+                this.submit.emit(sub);
+            });
+        }
     }
 }
 
@@ -46,6 +85,6 @@ export class Formio extends Type {
  * @constructor
  */
 export function FormioRegister(template: FormioTemplate) {
-    RegisterTemplate(Formio, template.formio, template.styles);
-    return Formio;
+    RegisterTemplate(FormioComponent, template.formio, template.styles);
+    return FormioComponent;
 }

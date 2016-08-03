@@ -1,6 +1,7 @@
 import { FormioRegister } from './formio.component';
 import { FormioComponentRegister} from './formio-component.component';
 import { FormioComponentsComponentRegister } from './formio-components.component';
+import { FormioErrorsRegister } from './formio.errors';
 import { FORMIO_COMPONENTS } from './components/index';
 import { FormioTemplate } from './formio.template';
 
@@ -17,6 +18,7 @@ export function FORMIO(template: FormioTemplate) {
         FormioRegister(template),
         FormioComponentRegister(template),
         FormioComponentsComponentRegister(template),
+        FormioErrorsRegister(template),
         ...FORMIO_COMPONENTS(template)
     ];
 }

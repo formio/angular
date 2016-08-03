@@ -12,6 +12,7 @@ import {
 import { FormGroup } from '@angular/forms';
 import { FormioComponents } from './components/components';
 import { BaseComponent } from './components/base';
+import { FormioEvents } from './formio.common';
 
 @Component({
     selector: 'formio-element',
@@ -21,6 +22,7 @@ export class FormioElement extends Type implements OnInit {
     @Input() component: BaseComponent<any>;
     @Input() form: FormGroup;
     @Input() label: string | boolean;
+    @Input() events: FormioEvents;
     @Output() render: EventEmitter<any> = new EventEmitter();
     @ViewChild('formioElement', { read: ViewContainerRef }) element: ViewContainerRef;
     constructor(private resolver: ComponentResolver) {
@@ -42,6 +44,7 @@ export class FormioElement extends Type implements OnInit {
             cmpRef.instance.form = this.form;
             cmpRef.instance.label = this.label;
             cmpRef.instance.render = this.render;
+            cmpRef.instance.events = this.events;
         });
     }
 }

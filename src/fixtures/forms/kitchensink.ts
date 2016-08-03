@@ -237,6 +237,26 @@ export const FORM: any = {
     },
     {
       "input": true,
+      "inputType": "checkbox",
+      "tableView": false,
+      "hideLabel": true,
+      "label": "Checkbox",
+      "key": "checkbox",
+      "defaultValue": '',
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": true
+      },
+      "type": "checkbox",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      }
+    },
+    {
+      "input": true,
       "tableView": true,
       "label": "Textarea",
       "key": "textarea",
@@ -250,17 +270,17 @@ export const FORM: any = {
       "persistent": true,
       "validate": {
         "required": true,
-        "minLength": 8,
+        "minLength": 5,
         "maxLength": 100,
         "pattern": "",
         "custom": ""
-        },
+      },
       "type": "textarea",
       "conditional": {
         "show": null,
         "when": null,
         "eq": ""
-        }
+      }
     },
     {
       "input": true,
@@ -272,7 +292,7 @@ export const FORM: any = {
       "rightIcon": "",
       "block": false,
       "action": "submit",
-      "disableOnInvalid": true,
+      "disableOnInvalid": false,
       "theme": "primary",
       "type": "button"
     }
