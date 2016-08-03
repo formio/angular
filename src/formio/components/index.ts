@@ -5,6 +5,7 @@ import { Container } from './container/container';
 import { EmailField } from './email/email';
 import { CheckBox } from './checkbox/checkbox';
 import { DataGrid } from './datagrid/datagrid';
+import { HiddenField } from './hidden/hidden';
 import { FormioTemplate } from '../formio.template';
 export function FORMIO_COMPONENTS(template: FormioTemplate) {
     return [
@@ -14,6 +15,7 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         Container(template),
         DataGrid(template),
         EmailField(template),
+        HiddenField(template),
         CheckBox(template)
     ];
 }

@@ -257,6 +257,21 @@ export const FORM: any = {
     },
     {
       "input": true,
+      "tableView": true,
+      "key": "name",
+      "label": "Name",
+      "protected": false,
+      "unique": true,
+      "persistent": true,
+      "type": "hidden",
+      "conditional": {
+        "show": true,
+        "when": "",
+        "eq": ""
+      }
+    },
+    {
+      "input": true,
       "label": "Submit",
       "tableView": false,
       "key": "submit",

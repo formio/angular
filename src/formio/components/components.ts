@@ -9,7 +9,8 @@ export interface FormioComponentsTemplate {
     columns: string,
     container: string,
     datagrid: string,
-    checkbox: string
+    checkbox: string,
+    hidden: string
 }
 
 export interface FormioComponentMetaData {
