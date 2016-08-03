@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@angular/core/testing';
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
-import { NumberComponent, NumberOptions, Number } from './number';
+import { NumberComponent, NumberOptions, NumberField } from './number';
 import { FormioComponent } from '../../formio-component.component';
 
 describe('NumberComponent', () => {
@@ -10,7 +10,7 @@ describe('NumberComponent', () => {
     });
 
     // Register the Number component.
-    Number(FORMIO_TEMPLATE);
+    NumberField(FORMIO_TEMPLATE);
 
     // An easy method for getting new Number settings.
     var getSettings = (overrides:{}):NumberOptions => {

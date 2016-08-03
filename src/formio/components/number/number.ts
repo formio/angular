@@ -22,7 +22,7 @@ export class NumberElement extends InputElement implements OnInit {
     }
 }
 
-export function Number(template:FormioTemplate) {
+export function NumberField(template:FormioTemplate) {
     FormioComponents.register('number', NumberComponent, NumberElement, {
         template: template.components.input
     });

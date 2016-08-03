@@ -70,7 +70,7 @@ export class InputElement extends BaseElement implements OnInit {
     }
 }
 
-export function Inputs(template:FormioTemplate) {
+export function InputField(template:FormioTemplate) {
     FormioComponents.register('input', InputComponent, InputElement, {
         template: template.components.input
     });
