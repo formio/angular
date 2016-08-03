@@ -9,6 +9,7 @@ export interface FormioComponentsTemplate {
     columns: string,
     container: string,
     datagrid: string,
+    input: string,
     textarea: string
 }
 

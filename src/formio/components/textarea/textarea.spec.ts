@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@angular/core/testing';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
-import { TextAreaComponent, TextAreaOptions, TextArea } from './textarea';
+import { TextAreaComponent, TextAreaOptions, TextAreaField } from './textarea';
 import { FormioComponent } from '../../formio-component.component';
 
 describe('TextAreaComponent', () => {
@@ -10,7 +10,7 @@ describe('TextAreaComponent', () => {
     });
 
     // Register the TextArea component.
-    TextArea(FORMIO_TEMPLATE);
+    TextAreaField(FORMIO_TEMPLATE);
 
     // An easy method for getting new text area settings.
     var getSettings = (overrides: {}): TextAreaOptions => {
