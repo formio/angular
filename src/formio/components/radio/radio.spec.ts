@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@angular/core/testing';
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
-import { RadioComponent, RadioOptions, Radio } from './radio';
+import { RadioComponent, RadioOptions, RadioField } from './radio';
 import { FormioComponent } from '../../formio-component.component';
 
 describe('RadioComponent', () => {
@@ -10,7 +10,7 @@ describe('RadioComponent', () => {
     });
 
     // Register the Radio component.
-    Radio(FORMIO_TEMPLATE);
+    RadioField(FORMIO_TEMPLATE);
 
     // An easy method for getting new Radio settings.
     var getSettings = (overrides:{}):RadioOptions => {

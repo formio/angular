@@ -3,9 +3,6 @@ import { BaseComponent, BaseOptions, BaseElement} from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
 
-/**
- * The RadioValidation interface.
- */
 export interface RadioOptions extends BaseOptions<string> {
     inputType?: string,
     type?: string,
@@ -26,7 +23,7 @@ export class RadioElement extends BaseElement implements OnInit {
     }
 }
 
-export function Radio(template:FormioTemplate) {
+export function RadioField(template:FormioTemplate) {
     FormioComponents.register('radio', RadioComponent, RadioElement, {
         template: template.components.radio
     });

@@ -6,7 +6,7 @@ import { EmailField } from './email/email';
 import { CheckBox } from './checkbox/checkbox';
 import { DataGrid } from './datagrid/datagrid';
 import { FormioTemplate } from '../formio.template';
-import { Radio } from './radio/radio';
+import { RadioField } from './radio/radio';
 export function FORMIO_COMPONENTS(template: FormioTemplate) {
     return [
         TextField(template),
@@ -15,7 +15,7 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         Container(template),
         DataGrid(template),
         EmailField(template),
-        Radio(template),
+        RadioField(template),
         CheckBox(template)
     ];
 }
