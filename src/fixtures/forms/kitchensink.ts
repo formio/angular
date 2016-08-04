@@ -26,8 +26,8 @@ export const FORM: any = {
                   "unique": false,
                   "persistent": true,
                   "validate": {
-                    "required": false,
-                    "minLength": 2,
+                    "required": true,
+                    "minLength": 6,
                     "maxLength": 10,
                     "pattern": "",
                     "custom": "",
@@ -46,8 +46,8 @@ export const FORM: any = {
                   "unique": false,
                   "protected": false,
                   "defaultValue": "",
-                  "suffix": "@",
-                  "prefix": "$",
+                  "suffix": "",
+                  "prefix": "",
                   "placeholder": "Enter your email address",
                   "key": "email",
                   "label": "Email",
@@ -67,8 +67,8 @@ export const FORM: any = {
                   "label": "Last Name",
                   "key": "lastName",
                   "placeholder": "Enter your last name",
-                  "prefix": "$",
-                  "suffix": "@",
+                  "prefix": "",
+                  "suffix": "",
                   "multiple": false,
                   "defaultValue": "",
                   "protected": false,
@@ -117,6 +117,34 @@ export const FORM: any = {
                     "eq": ""
                   },
                   "type": "number"
+                },
+                {
+                  "input": true,
+                  "tableView": false,
+                  "inputType": "password",
+                  "label": "Password",
+                  "key": "password",
+                  "placeholder": "Enter Your Password",
+                  "prefix": "$",
+                  "suffix": "@",
+                  "defaultValue": "",
+                  "protected": true,
+                  "persistent": true,
+                  "type": "password",
+                  "conditional": {
+                    "show": null,
+                    "when": null,
+                    "eq": ""
+                  },
+                  "validate": {
+                    "required": true,
+                    "minLength": 8,
+                    "maxLength": 20,
+                    "pattern": "",
+                    "custom": "",
+                    "customPrivate": false
+                  },
+                  "unique": true
                 }
               ]
             }
