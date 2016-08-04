@@ -5,6 +5,7 @@ import { Container } from './container/container';
 import { EmailField } from './email/email';
 import { InputField } from './input/input';
 import { PasswordField } from './password/password';
+import { NumberField } from './number/number';
 import { CheckBox } from './checkbox/checkbox';
 import { DataGrid } from './datagrid/datagrid';
 import { FormioTemplate } from '../formio.template';
@@ -18,6 +19,7 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         EmailField(template),
         InputField(template),
         PasswordField(template),
+        NumberField(template),
         CheckBox(template)
     ];
 }

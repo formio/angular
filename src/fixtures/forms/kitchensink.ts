@@ -91,6 +91,35 @@ export const FORM: any = {
                 },
                 {
                   "input": true,
+                  "tableView": true,
+                  "inputType": "number",
+                  "inputMask": "",
+                  "label": "Number",
+                  "key": "number",
+                  "placeholder": "Enter Number",
+                  "prefix": "",
+                  "suffix": "",
+                  "multiple": false,
+                  "defaultValue": 0,
+                  "protected": false,
+                  "unique": false,
+                  "persistent": true,
+                  "validate": {
+                    "required": true,
+                    "minLength": 2,
+                    "maxLength": 10,
+                    "custom": "",
+                    "customPrivate": false
+                  },
+                  "conditional": {
+                    "show": "",
+                    "when": null,
+                    "eq": ""
+                  },
+                  "type": "number"
+                },
+                {
+                  "input": true,
                   "tableView": false,
                   "inputType": "password",
                   "label": "Password",
@@ -98,6 +127,7 @@ export const FORM: any = {
                   "placeholder": "Enter Your Password",
                   "prefix": "$",
                   "suffix": "@",
+                  "defaultValue": "",
                   "protected": true,
                   "persistent": true,
                   "type": "password",
