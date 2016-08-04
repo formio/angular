@@ -27,7 +27,7 @@ export const FORM: any = {
                   "persistent": true,
                   "validate": {
                     "required": true,
-                    "minLength": 2,
+                    "minLength": 6,
                     "maxLength": 10,
                     "pattern": "",
                     "custom": "",
@@ -88,6 +88,63 @@ export const FORM: any = {
                     "eq": ""
                   },
                   "type": "textfield"
+                },
+                {
+                  "input": true,
+                  "tableView": true,
+                  "inputType": "number",
+                  "inputMask": "",
+                  "label": "Number",
+                  "key": "number",
+                  "placeholder": "Enter Number",
+                  "prefix": "",
+                  "suffix": "",
+                  "multiple": false,
+                  "defaultValue": 0,
+                  "protected": false,
+                  "unique": false,
+                  "persistent": true,
+                  "validate": {
+                    "required": true,
+                    "minLength": 2,
+                    "maxLength": 10,
+                    "custom": "",
+                    "customPrivate": false
+                  },
+                  "conditional": {
+                    "show": "",
+                    "when": null,
+                    "eq": ""
+                  },
+                  "type": "number"
+                },
+                {
+                  "input": true,
+                  "tableView": false,
+                  "inputType": "password",
+                  "label": "Password",
+                  "key": "password",
+                  "placeholder": "Enter Your Password",
+                  "prefix": "$",
+                  "suffix": "@",
+                  "defaultValue": "",
+                  "protected": true,
+                  "persistent": true,
+                  "type": "password",
+                  "conditional": {
+                    "show": null,
+                    "when": null,
+                    "eq": ""
+                  },
+                  "validate": {
+                    "required": true,
+                    "minLength": 8,
+                    "maxLength": 20,
+                    "pattern": "",
+                    "custom": "",
+                    "customPrivate": false
+                  },
+                  "unique": true
                 }
               ]
             }
@@ -237,26 +294,6 @@ export const FORM: any = {
     },
     {
       "input": true,
-      "inputType": "checkbox",
-      "tableView": false,
-      "hideLabel": true,
-      "label": "Checkbox",
-      "key": "checkbox",
-      "defaultValue": '',
-      "protected": false,
-      "persistent": true,
-      "validate": {
-        "required": true
-      },
-      "type": "checkbox",
-      "conditional": {
-        "show": null,
-        "when": null,
-        "eq": ""
-      }
-    },
-    {
-      "input": true,
       "tableView": true,
       "label": "Textarea",
       "key": "textarea",
@@ -279,6 +316,78 @@ export const FORM: any = {
       "conditional": {
         "show": null,
         "when": null,
+        "eq": ""
+      }
+    },
+    {
+      "input": true,
+      "tableView": true,
+      "inputType": "radio",
+      "label": "Options",
+      "key": "radio",
+      "values": [
+        {
+          "value": "1",
+          "label": "option1"
+        },
+        {
+          "value": "2",
+          "label": "option2"
+        },
+        {
+          "value": "3",
+          "label": "option3"
+        }
+      ],
+      "defaultValue": true,
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false,
+        "custom": "",
+        "customPrivate": false
+      },
+      "type": "radio",
+      "inline": false,
+      "multiple":false,
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      }
+    },
+    {
+      "input": true,
+      "inputType": "checkbox",
+      "tableView": false,
+      "hideLabel": true,
+      "label": "Checkbox",
+      "key": "checkbox",
+      "defaultValue": '',
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": true
+      },
+      "type": "checkbox",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      }
+    },
+    {
+      "input": true,
+      "tableView": true,
+      "key": "name",
+      "label": "Name",
+      "protected": false,
+      "unique": true,
+      "persistent": true,
+      "type": "hidden",
+      "conditional": {
+        "show": true,
+        "when": "",
         "eq": ""
       }
     },

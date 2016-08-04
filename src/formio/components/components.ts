@@ -11,6 +11,9 @@ export interface FormioComponentsTemplate {
     datagrid: string,
     input: string,
     textarea: string,
+    hidden: string,
+    password: string,
+    radio: string,
     checkbox: string
 }
 

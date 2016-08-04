@@ -18,6 +18,9 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
         datagrid: require('./bootstrap/components/datagrid.html'),
         input: require('./bootstrap/components/input.html'),
         textarea: require('./bootstrap/components/textarea.html'),
+        hidden: require('./bootstrap/components/hidden.html'),
+        password: require('./bootstrap/components/input.html'),
+        radio: require('./bootstrap/components/radio.html'),
         checkbox: require('./bootstrap/components/checkbox.html')
     }
 };
