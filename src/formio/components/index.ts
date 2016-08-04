@@ -8,6 +8,7 @@ import { PasswordField } from './password/password';
 import { NumberField } from './number/number';
 import { CheckBox } from './checkbox/checkbox';
 import { DataGrid } from './datagrid/datagrid';
+import { HiddenField } from './hidden/hidden';
 import { FormioTemplate } from '../formio.template';
 export function FORMIO_COMPONENTS(template: FormioTemplate) {
     return [
@@ -17,6 +18,7 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         Container(template),
         DataGrid(template),
         EmailField(template),
+        HiddenField(template),
         InputField(template),
         PasswordField(template),
         NumberField(template),
