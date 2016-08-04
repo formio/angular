@@ -12,6 +12,7 @@ export interface FormioComponentsTemplate {
     hidden: string,
     input: string,
     password: string,
+    radio: string,
     checkbox: string
 }
 
