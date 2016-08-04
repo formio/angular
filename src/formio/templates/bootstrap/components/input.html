@@ -1,4 +1,4 @@
-<div [formGroup]="form" class="form-group required">
+<div [formGroup]="form" class="form-group" [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
     <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label">{{ component.label }}</label>
     <div [ngClass]="{'input-group': (component.settings.prefix || component.settings.suffix)}">
         <div *ngIf="component.settings.prefix" class="input-group-addon">{{ component.settings.prefix }}</div>

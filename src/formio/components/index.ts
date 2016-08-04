@@ -3,6 +3,9 @@ import { Button } from './button/button';
 import { Columns } from './columns/columns';
 import { Container } from './container/container';
 import { EmailField } from './email/email';
+import { InputField } from './input/input';
+import { PasswordField } from './password/password';
+import { NumberField } from './number/number';
 import { CheckBox } from './checkbox/checkbox';
 import { DataGrid } from './datagrid/datagrid';
 import { HiddenField } from './hidden/hidden';
@@ -16,6 +19,9 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         DataGrid(template),
         EmailField(template),
         HiddenField(template),
+        InputField(template),
+        PasswordField(template),
+        NumberField(template),
         CheckBox(template)
     ];
 }
