@@ -15,7 +15,7 @@ export interface InputValidateOptions extends ValidateOptions {
 }
 
 export interface InputOptions extends ComponentOptions<string, InputValidateOptions> {
-    inputType?:string,
+    inputType?: string,
     inputMask?: string,
     placeholder?: string,
     prefix?: string,
