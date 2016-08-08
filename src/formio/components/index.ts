@@ -10,6 +10,7 @@ import { CheckBox } from './checkbox/checkbox';
 import { DataGrid } from './datagrid/datagrid';
 import { HiddenField } from './hidden/hidden';
 import { FormioTemplate } from '../formio.template';
+import { RadioField } from './radio/radio';
 export function FORMIO_COMPONENTS(template: FormioTemplate) {
     return [
         TextField(template),
@@ -18,6 +19,7 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         Container(template),
         DataGrid(template),
         EmailField(template),
+        RadioField(template),
         HiddenField(template),
         InputField(template),
         PasswordField(template),
