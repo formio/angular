@@ -9,10 +9,11 @@ export interface FormioComponentsTemplate {
     columns: string,
     container: string,
     datagrid: string,
-    radio: string,
-    hidden: string,
     input: string,
+    textarea: string,
+    hidden: string,
     password: string,
+    radio: string,
     checkbox: string
 }
 
