@@ -10,6 +10,9 @@ export interface FormioComponentsTemplate {
     container: string,
     datagrid: string,
     radio: string,
+    hidden: string,
+    input: string,
+    password: string,
     checkbox: string
 }
 
