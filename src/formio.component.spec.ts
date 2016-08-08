@@ -1,7 +1,7 @@
 import { describe, expect, it, inject, async, TestComponentBuilder, ComponentFixture, addProviders } from '@angular/core/testing';
 import { FormioComponent } from './formio.component';
 import { FORMIO_BOOTSTRAP } from './bootstrap';
-import { FORM } from '../fixtures/forms/kitchensink';
+import { FORM } from './fixtures/forms/kitchensink';
 
 describe('FormioComponent', () => {
     beforeEach(() => {

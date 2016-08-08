@@ -3,13 +3,18 @@
   "version": "0.0.1",
   "description": "The JSON powered form renderer for Form.io and Angular 2",
   "scripts": {
-    "start": "webpack-dev-server --inline --progress --port 8080",
+    "start": "webpack-dev-server --inline --progress --content-base /app --port 8080",
     "test": "karma start",
-    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
+    "build": "rimraf dist && webpack --config config/webpack.build.js --progress --profile --bail",
     "postinstall": "typings install"
   },
   "license": "MIT",
   "dependencies": {
+    "@angular/core": "2.0.0-rc.4",
+    "@angular/forms": "0.2.0",
+    "formiojs": "^1.2.0"
+  },
+  "devDependencies": {
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
     "@angular/core": "2.0.0-rc.4",
@@ -22,7 +27,8 @@
     "bootstrap-sass": "^3.3.6",
     "core-js": "^2.4.0",
     "css-loader": "^0.23.1",
-    "formiojs": "^1.2.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
     "jquery": "^3.0.0",
     "node-sass": "^3.8.0",
     "q": "^1.4.1",
@@ -32,12 +38,7 @@
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "zone.js": "0.6.12"
-  },
-  "devDependencies": {
-    "css-loader": "^0.23.1",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.8.5",
+    "zone.js": "0.6.12",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.15.0",
     "jasmine-core": "^2.4.1",

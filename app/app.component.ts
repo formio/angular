@@ -1,6 +1,6 @@
 import { Component, Type } from '@angular/core';
-import { FormioComponent } from '../formio/formio.component';
-import { FORM } from '../fixtures/forms/kitchensink.ts';
+import { FormioComponent } from '../src/formio.component';
+import { FORM } from '../src/fixtures/forms/kitchensink.ts';
 @Component({
     selector: 'app',
     template: require('./app.html'),
