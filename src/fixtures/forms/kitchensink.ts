@@ -338,6 +338,118 @@ export const FORM: any = {
       "bordered": true
     },
     {
+      "input": false,
+      "numRows": 2,
+      "numCols": 2,
+      "rows": [
+        [{"components": [ {
+          "input": true,
+          "tableView": true,
+          "inputType": "text",
+          "inputMask": "",
+          "label": "First Name",
+          "key": "firstName",
+          "placeholder": "Enter your first name",
+          "prefix": "",
+          "suffix": "",
+          "multiple": false,
+          "defaultValue": "",
+          "protected": false,
+          "unique": false,
+          "persistent": true,
+          "validate": {
+            "required": true,
+            "minLength": 6,
+            "maxLength": 10,
+            "pattern": "",
+            "custom": "",
+            "customPrivate": false
+          },
+          "conditional": {
+            "show": "",
+            "when": null,
+            "eq": ""
+          },
+          "type": "textfield"
+        } ],}, {"components": [ {
+          "input": true,
+          "tableView": true,
+          "inputType": "text",
+          "inputMask": "",
+          "label": "Last Name",
+          "key": "lastName",
+          "placeholder": "Enter your last name",
+          "prefix": "",
+          "suffix": "",
+          "multiple": false,
+          "defaultValue": "",
+          "protected": false,
+          "unique": false,
+          "persistent": true,
+          "validate": {
+            "required": true,
+            "minLength": 6,
+            "maxLength": 10,
+            "pattern": "",
+            "custom": "",
+            "customPrivate": false
+          },
+          "conditional": {
+            "show": "",
+            "when": null,
+            "eq": ""
+          },
+          "type": "textfield"
+        } ],}],
+        [{"components": [ {
+          "type": "email",
+          "persistent": true,
+          "unique": false,
+          "protected": false,
+          "defaultValue": "",
+          "suffix": "",
+          "prefix": "",
+          "placeholder": "Enter your email address",
+          "key": "email",
+          "label": "Email",
+          "inputType": "email",
+          "tableView": true,
+          "input": true
+        } ],}, {"components": [ {
+          "input": true,
+          "inputType": "checkbox",
+          "tableView": false,
+          "hideLabel": true,
+          "label": "Checkbox",
+          "key": "checkbox",
+          "defaultValue": '',
+          "protected": false,
+          "persistent": true,
+          "validate": {
+            "required": true
+          },
+          "type": "checkbox",
+          "conditional": {
+            "show": null,
+            "when": null,
+            "eq": ""
+          }
+        } ],}]
+      ],
+      "header": [],
+      "caption": "",
+      "striped": true,
+      "bordered": true,
+      "hover": true,
+      "condensed": false,
+      "type": "table",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      }
+    },
+    {
       "input": true,
       "tableView": true,
       "label": "Textarea",
