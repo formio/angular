@@ -13,7 +13,8 @@ export interface FormioComponentsTemplate {
     hidden: string,
     radio: string,
     checkbox: string,
-    custom: string
+    custom: string,
+    fieldset: string
 }
 
 export interface FormioComponentMetaData {
