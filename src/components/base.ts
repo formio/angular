@@ -1,4 +1,4 @@
-import { Type, Input, Output, EventEmitter } from "@angular/core";
+import { Type, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import define = require("core-js/fn/object/define");
 import { FormioEvents, FormioError } from '../formio.common';
@@ -143,12 +143,22 @@ export class BaseComponent<T> {
     }
 }
 
-export class BaseElement<T> extends Type {
+export class BaseElement<T> extends Type implements OnInit {
     @Input() component: T;
     @Input() form: FormGroup;
     @Input() events: FormioEvents;
     @Output() render: EventEmitter<any> = new EventEmitter();
+    private renderCount: number = 0;
+    get numComponents() : number {
+        return 1;
+    }
+    ngOnInit() {
+        this.onRender();
+    }
     onRender() {
-        this.render.emit(true);
+        this.renderCount++;
+        if (this.renderCount >= this.numComponents) {
+            this.render.emit(true);
+        }
     }
 }

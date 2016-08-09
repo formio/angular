@@ -1,4 +1,3 @@
-import { OnInit } from '@angular/core';
 import { BaseComponent, BaseOptions, BaseElement} from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
@@ -12,16 +11,8 @@ export interface CheckBoxOptions extends BaseOptions<string> {
     hideLabel?: boolean
 }
 
-export class CheckBoxComponent extends BaseComponent<CheckBoxOptions> {
-
-}
-
-export class CheckBoxElement extends BaseElement<CheckBoxComponent> implements OnInit {
-    ngOnInit() {
-        this.onRender();
-    }
-}
-
+export class CheckBoxComponent extends BaseComponent<CheckBoxOptions> {}
+export class CheckBoxElement extends BaseElement<CheckBoxComponent> {}
 export function CheckBox(template:FormioTemplate) {
     FormioComponents.register('checkbox', CheckBoxComponent, CheckBoxElement, {
         template: template.components.checkbox

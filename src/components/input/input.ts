@@ -1,4 +1,3 @@
-import { OnInit } from '@angular/core';
 import { FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { BaseComponent, BaseElement, ComponentOptions, ValidateOptions } from '../base';
 
@@ -59,11 +58,5 @@ export class InputComponent<T> extends BaseComponent<T> {
             validators.push(Validators.pattern(this.settings.validate.pattern));
         }
         return validators;
-    }
-}
-
-export class InputElement<T> extends BaseElement<T> implements OnInit {
-    ngOnInit() {
-        this.onRender();
     }
 }

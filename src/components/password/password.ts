@@ -1,6 +1,7 @@
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
-import { InputComponent, InputElement, InputOptions } from '../input/input';
+import { BaseElement } from '../base';
+import { InputComponent, InputOptions } from '../input/input';
 import { FormGroup } from '@angular/forms';
 
 export class PasswordComponent extends InputComponent<InputOptions> {
@@ -9,7 +10,7 @@ export class PasswordComponent extends InputComponent<InputOptions> {
     }
 }
 
-export class PasswordElement extends InputElement<PasswordComponent> {}
+export class PasswordElement extends BaseElement<PasswordComponent> {}
 export function PasswordField(template:FormioTemplate) {
     FormioComponents.register('password', PasswordComponent, PasswordElement, {
         template: template.components.input

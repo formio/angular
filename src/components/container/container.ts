@@ -18,12 +18,8 @@ export class ContainerComponent extends BaseComponent<ContainerOptions> {
 }
 
 export class ContainerElement extends BaseElement<ContainerComponent> {
-    private renderCount: number = 0;
-    onRender() {
-        this.renderCount++;
-        if (this.renderCount >= this.component.settings.components.length) {
-            this.render.emit(true);
-        }
+    get numComponents() : number {
+        return this.component.settings.components.length;
     }
 }
 

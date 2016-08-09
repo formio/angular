@@ -1,6 +1,7 @@
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
-import { InputComponent, InputElement, InputOptions } from '../input/input';
+import { BaseElement } from '../base';
+import { InputComponent, InputOptions } from '../input/input';
 import { FormGroup } from '@angular/forms';
 
 export class TextFieldComponent extends InputComponent<InputOptions> {
@@ -9,7 +10,7 @@ export class TextFieldComponent extends InputComponent<InputOptions> {
     }
 }
 
-export class TextElement extends InputElement<TextFieldComponent> {}
+export class TextElement extends BaseElement<TextFieldComponent> {}
 export function TextField(template:FormioTemplate) {
     FormioComponents.register('textfield', TextFieldComponent, TextElement, {
         template: template.components.input
