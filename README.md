@@ -95,6 +95,17 @@ Here is an example of how this library could be used.
 This is a very simple example. This library is capable of building very complex forms which include e-signatures, columns,
 panels, field conditionals, validation requirements, and the list goes on and on.
 
+Try it out
+-----------------
+To get this working, you can download this repo and then run the following commands.
+
+```
+npm install
+npm start
+```
+
+The application will now be running @ http://localhost:8080. Feel free to modify the ```app/app.html``` file to see how the Form renderer works within Angular 2.
+
 Using with Form.io
 -----------------
 <a href="https://form.io" target="_blank">Form.io</a> is a combined form and data management API platform created for developers who are building "Serverless" form-based applications.  Form.io provides an easy drag-and-drop form builder workflow allowing you to build complex forms for enterprise applications quickly and easily. These forms are then embedded directly into your application with a single line of code that dynamically renders the form (using Angular or React) in your app while at the very same time generating the RESTful API to support those forms. The Form.io platform also offers numerous 3rd-party services that are fully integrated into the form building process allowing you to extend the power and capability of your apps while saving time and effort.
@@ -109,24 +120,3 @@ To render this form, you simply provide that URL to the ```<formio>``` directive
 
 Not only will this render the form, but it will also submit that form to the provided API endpoint.
 
-Developing
-------------------
-To develop within this library, you will need to clone this repo, and then open up your terminal and type the following.
-
-```
-npm install
-```
-
-You can then run the base application by running the following.
-
-```
-npm start
-```
-
-The application will now be running @ http://localhost:8080.
-
-You can run tests by typing the following.
-
-```
-npm test
-```
