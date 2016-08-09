@@ -42,7 +42,6 @@ export class FormioElement extends Type implements OnInit {
             let cmpRef = this.element.createComponent(cmpFactory);
             cmpRef.instance.component = this.component;
             cmpRef.instance.form = this.form;
-            cmpRef.instance.label = this.label;
             cmpRef.instance.render = this.render;
             cmpRef.instance.events = this.events;
         });

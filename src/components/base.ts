@@ -151,7 +151,4 @@ export class BaseElement<T> extends Type {
     onRender() {
         this.render.emit(true);
     }
-    set label(label: string | boolean) {
-        this.component.label = label ? label.toString() : '';
-    }
 }
