@@ -20,6 +20,7 @@ describe('RadioComponent', () => {
             inputType: "radio",
             label: "Options",
             key: "radio",
+            name: "radio",
             values: [
                 {
                     value: "1",
@@ -76,6 +77,16 @@ describe('RadioComponent', () => {
         expect(radio.label).toEqual('Options');
     });
 
+    it('Should allow name value', () => {
+        let settings: RadioOptions = getSettings({
+            name: 'radio'
+        });
+
+        // Create the radio component.
+        let radio = new RadioComponent(this.form, settings);
+        expect(radio.settings.name).toEqual('radio');
+    });
+
     it('Should allow Radio component with required', () => {
         let settings: RadioOptions = getSettings({
             required: true
@@ -129,5 +140,6 @@ describe('RadioComponent', () => {
         let radio = new RadioComponent(this.form, settings);
         expect(radio.settings.inline).toEqual(true);
     });
+
 
 });
