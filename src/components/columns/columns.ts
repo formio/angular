@@ -7,7 +7,15 @@ export interface ColumnsOptions extends BaseOptions<any> {
 }
 
 export class ColumnsComponent extends BaseComponent<ColumnsOptions> {}
-export class ColumnsElement extends BaseElement<ColumnsComponent> {}
+export class ColumnsElement extends BaseElement<ColumnsComponent> {
+    private renderCount: number = 0;
+    onRender() {
+        this.renderCount++;
+        if (this.renderCount >= this.component.settings.columns.length) {
+            this.render.emit(true);
+        }
+    }
+}
 export function Columns(template:FormioTemplate) {
     FormioComponents.register('columns', ColumnsComponent, ColumnsElement, {
         template: template.components.columns

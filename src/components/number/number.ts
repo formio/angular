@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 import { FormioComponents } from '../components';
 import { InputComponent, InputElement, InputOptions } from '../input/input';
 import { FormioTemplate } from '../../formio.template';
@@ -9,7 +10,11 @@ export class NumberComponent extends InputComponent<InputOptions> {
     }
 }
 
-export class NumberElement extends InputElement<NumberComponent> {}
+export class NumberElement extends InputElement<NumberComponent> implements OnInit {
+    ngOnInit() {
+        this.onRender();
+    }
+}
 export function NumberField(template:FormioTemplate) {
     FormioComponents.register('number', NumberComponent, NumberElement, {
         template: template.components.input
