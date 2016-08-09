@@ -18,7 +18,7 @@ export class CheckBoxComponent extends BaseComponent<CheckBoxOptions> {
 
 export class CheckBoxElement extends BaseElement<CheckBoxComponent> implements OnInit {
     ngOnInit() {
-        this.render.emit(true);
+        this.onRender();
     }
 }
 

@@ -55,8 +55,6 @@ export class FormioComponent extends Type implements OnInit {
         }
     }
     onRender() {
-        console.log('rendered!');
-
         // The form is done rendering.
         this.render.emit(true);
 

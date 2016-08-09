@@ -24,7 +24,17 @@ export class DataGridComponent extends BaseComponent<DataGridOptions> {
     }
 }
 
-export class DataGridElement extends BaseElement<DataGridComponent> {}
+export class DataGridElement extends BaseElement<DataGridComponent> {
+    private renderCount: number = 0;
+    onRender() {
+        this.renderCount++;
+        let total = this.component.control['controls'].length;
+        total *= this.component.settings.components.length;
+        if (this.renderCount >= total) {
+            this.render.emit(true);
+        }
+    }
+}
 export function DataGrid(template:FormioTemplate) {
     FormioComponents.register('datagrid', DataGridComponent, DataGridElement, {
         template: template.components.datagrid

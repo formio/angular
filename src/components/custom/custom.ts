@@ -13,7 +13,7 @@ export class CustomComponent extends BaseComponent<CustomOptions> {
 
 export class CustomElement extends BaseElement<CustomComponent> implements OnInit {
     ngOnInit() {
-        this.render.emit(true);
+        this.onRender();
     }
 }
 

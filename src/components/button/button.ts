@@ -15,7 +15,7 @@ export interface ButtonOptions extends BaseOptions<boolean> {
 export class ButtonComponent extends BaseComponent<ButtonOptions> {}
 export class ButtonElement extends BaseElement<ButtonComponent> implements OnInit {
     ngOnInit() {
-        this.render.emit(true);
+        this.onRender();
     }
 }
 export function Button(template: FormioTemplate) {
