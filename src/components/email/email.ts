@@ -1,7 +1,6 @@
-import { Input, OnInit } from '@angular/core';
-import { FormControl, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl, ValidatorFn } from '@angular/forms';
 import { FormioComponents } from '../components';
-import { TextFieldComponent, TextElement } from '../textfield/textfield';
+import { InputComponent, InputElement, InputOptions } from '../input/input';
 import { FormioTemplate } from '../../formio.template';
 
 /**
@@ -24,7 +23,10 @@ export function EmailValidator(control: FormControl) {
     return null;
 }
 
-export class EmailComponent extends TextFieldComponent {
+export class EmailComponent extends InputComponent<InputOptions> {
+    constructor(form: FormGroup, settings:any) {
+        super('email', form, settings);
+    }
     getError(type: string, error: any) : string {
         let message = super.getError(type, error);
         if (!message && (type === 'invalidEmail')) {
@@ -39,17 +41,10 @@ export class EmailComponent extends TextFieldComponent {
     }
 }
 
-export class EmailElement extends TextElement implements OnInit {
-    @Input() component: EmailComponent;
-    ngOnInit() {
-        this.component.settings.inputType = 'email';
-        super.ngOnInit();
-    }
-}
-
+export class EmailElement extends InputElement<EmailComponent> {}
 export function EmailField(template:FormioTemplate) {
     FormioComponents.register('email', EmailComponent, EmailElement, {
-        template: template.components.textfield
+        template: template.components.input
     });
     return EmailElement;
 };

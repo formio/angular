@@ -4,7 +4,6 @@ import { FormioComponentsComponent } from '../formio-components.component';
 import { FormioComponent } from '../formio-component.component';
 
 export interface FormioComponentsTemplate {
-    textfield: string,
     button: string,
     columns: string,
     container: string,
@@ -12,9 +11,9 @@ export interface FormioComponentsTemplate {
     input: string,
     textarea: string,
     hidden: string,
-    password: string,
     radio: string,
-    checkbox: string
+    checkbox: string,
+    custom: string
 }
 
 export interface FormioComponentMetaData {
@@ -52,6 +51,9 @@ export class FormioComponents {
         };
     }
     public static createComponent(name: string, form: FormGroup, component: any) : any {
+        if (!FormioComponents.components.hasOwnProperty(name)) {
+            name = 'custom';
+        }
         let comp: FormioComponentWrapper = FormioComponents.components[name];
         return new comp.component(form, component);
     }
@@ -60,7 +62,7 @@ export class FormioComponents {
         resolver: ComponentResolver
     ) : Promise<ComponentFactory<any>> {
         if (!FormioComponents.components.hasOwnProperty(name)) {
-            return null;
+            name = 'custom';
         }
         let component: FormioComponentWrapper = FormioComponents.components[name];
         const decoratedCmp = Component(component.metadata)(component.element);

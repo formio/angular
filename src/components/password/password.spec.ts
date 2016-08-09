@@ -1,7 +1,8 @@
 import { describe, expect, it } from '@angular/core/testing';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
-import { PasswordComponent, PasswordOptions, PasswordField } from './password';
+import { InputOptions } from '../input/input';
+import { PasswordComponent, PasswordField } from './password';
 import { FormioComponent } from '../../formio-component.component';
 
 describe('PasswordComponent', () => {
@@ -13,8 +14,8 @@ describe('PasswordComponent', () => {
     PasswordField(FORMIO_TEMPLATE);
 
     // An easy method for getting new password settings.
-    var getSettings = (overrides: {}): PasswordOptions => {
-        let settings: PasswordOptions = {
+    var getSettings = (overrides: {}): InputOptions => {
+        let settings: InputOptions = {
             input: true,
             tableView: false,
             inputType: "password",
@@ -45,7 +46,7 @@ describe('PasswordComponent', () => {
     };
 
     let getComponent = (overrides: {}): FormioComponent<string> => {
-        let settings:PasswordOptions = getSettings(overrides);
+        let settings:InputOptions = getSettings(overrides);
         let component = new FormioComponent<string>();
         component.component = settings;
         component.form = this.form;
@@ -60,7 +61,7 @@ describe('PasswordComponent', () => {
     });
 
     it('Should allow label value', () => {
-        let settings: PasswordOptions = getSettings({
+        let settings: InputOptions = getSettings({
             label: 'Password'
         });
 
@@ -70,7 +71,7 @@ describe('PasswordComponent', () => {
     });
 
     it('Should not allow invalid Password values.', () => {
-        let settings: PasswordOptions = getSettings({
+        let settings: InputOptions = getSettings({
             validate: {
                 required: true,
                 minLength: 8,
@@ -124,7 +125,7 @@ describe('PasswordComponent', () => {
     });
 
     it('Should allow placeholder', () => {
-        let settings: PasswordOptions = getSettings({
+        let settings: InputOptions = getSettings({
             placeholder: "Enter Password"
         });
 
@@ -134,7 +135,7 @@ describe('PasswordComponent', () => {
     });
 
     it('Should allow prefix', () => {
-        let settings: PasswordOptions = getSettings({
+        let settings: InputOptions = getSettings({
             prefix: "$"
         });
 
@@ -144,7 +145,7 @@ describe('PasswordComponent', () => {
     });
 
     it('Should allow suffix', () => {
-        let settings: PasswordOptions = getSettings({
+        let settings: InputOptions = getSettings({
             suffix: "@"
         });
 

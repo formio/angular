@@ -24,7 +24,7 @@ export class DataGridComponent extends BaseComponent<DataGridOptions> {
     }
 }
 
-export class DataGridElement extends BaseElement {}
+export class DataGridElement extends BaseElement<DataGridComponent> {}
 export function DataGrid(template:FormioTemplate) {
     FormioComponents.register('datagrid', DataGridComponent, DataGridElement, {
         template: template.components.datagrid

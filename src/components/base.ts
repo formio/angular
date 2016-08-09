@@ -143,8 +143,8 @@ export class BaseComponent<T> {
     }
 }
 
-export class BaseElement extends Type {
-    @Input() component: BaseComponent<any>;
+export class BaseElement<T> extends Type {
+    @Input() component: T;
     @Input() form: FormGroup;
     @Input() events: FormioEvents;
     @Output() render: EventEmitter<any> = new EventEmitter();
@@ -152,6 +152,6 @@ export class BaseElement extends Type {
         this.render.emit(true);
     }
     set label(label: string | boolean) {
-        this.component.label = label;
+        this.component.label = label ? label.toString() : '';
     }
 }

@@ -28,12 +28,19 @@ export class FormioComponent<T> extends Type implements OnInit {
 
         // Subscribe to the invalid event.
         if (this.events) {
-            this.events.invalid.subscribe(() => {
+            this.events.component.subscribe((type: string) => {
                 this.components.forEach((component: BaseComponent<any>) => {
-                    component.control.markAsDirty(true);
-                    let errors: Array<FormioError> = component.errors;
-                    if (errors.length) {
-                        this.events.errors = this.events.errors.concat(errors);
+                    switch (type) {
+                        case 'invalid':
+                            component.control.markAsDirty(true);
+                            let errors: Array<FormioError> = component.errors;
+                            if (errors.length) {
+                                this.events.errors = this.events.errors.concat(errors);
+                            }
+                            break;
+                        case 'valueChanges':
+                            console.log('value changed!');
+                            break;
                     }
                 });
             });

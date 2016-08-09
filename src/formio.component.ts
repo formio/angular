@@ -21,15 +21,16 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     ]
 })
 export class FormioComponent extends Type implements OnInit {
+    public formGroup: FormGroup = new FormGroup({});
+    public events: FormioEvents = new FormioEvents();
+    public ready: BehaviorSubject<boolean> = new BehaviorSubject(false);
     @Input() form: FormioForm = null;
     @Input() src: string;
     @Input() service: FormioService;
     @Input() options: FormioOptions;
     @Output() render: EventEmitter<any> = new EventEmitter();
     @Output() submit: EventEmitter<any> = new EventEmitter();
-    public formGroup: FormGroup = new FormGroup({});
-    public events: FormioEvents = new FormioEvents();
-    public ready: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    @Output() change: EventEmitter<any> = new EventEmitter();
     constructor() {
         super();
     }
@@ -54,7 +55,16 @@ export class FormioComponent extends Type implements OnInit {
         }
     }
     onRender() {
+        console.log('rendered!');
+
+        // The form is done rendering.
         this.render.emit(true);
+
+        // Subscribe to value changes.
+        this.formGroup.valueChanges.subscribe((value: any) => {
+            this.change.emit(value);
+            this.events.component.emit('valueChanges');
+        });
     }
     onSubmit() {
         // Reset the errors.
@@ -63,7 +73,7 @@ export class FormioComponent extends Type implements OnInit {
         // Check if the form is valid.
         if (!this.formGroup.valid) {
             this.formGroup.markAsDirty(true);
-            this.events.invalid.emit(true);
+            this.events.component.emit('invalid');
             return;
         }
 

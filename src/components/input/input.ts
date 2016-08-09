@@ -1,8 +1,6 @@
-import { Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { OnInit } from '@angular/core';
+import { FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { BaseComponent, BaseElement, ComponentOptions, ValidateOptions } from '../base';
-import { FormioComponents } from '../components';
-import { FormioTemplate } from '../../formio.template';
 
 /**
  * The InputValidation interface.
@@ -22,9 +20,10 @@ export interface InputOptions extends ComponentOptions<string, InputValidateOpti
     suffix?: string
 }
 
-export class InputComponent extends BaseComponent<InputOptions> {
-    constructor(form: FormGroup , settings:any) {
-        super(form,settings);
+export class InputComponent<T> extends BaseComponent<T> {
+    constructor(inputType: string, form: FormGroup, settings:any) {
+        settings.inputType = inputType;
+        super(form, settings);
     }
     getError(type: string, error: any) : string {
         let message = super.getError(type, error);
@@ -63,17 +62,8 @@ export class InputComponent extends BaseComponent<InputOptions> {
     }
 }
 
-export class InputElement extends BaseElement implements OnInit {
-    @Input() component: InputComponent;
+export class InputElement<T> extends BaseElement<T> implements OnInit {
     ngOnInit() {
-        this.render.emit(true);
+        this.onRender();
     }
 }
-
-
-export function InputField(template:FormioTemplate) {
-    FormioComponents.register('input', InputComponent, InputElement, {
-        template: template.components.input
-    });
-    return InputElement;
-};

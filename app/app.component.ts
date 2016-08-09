@@ -9,9 +9,13 @@ import { FORM } from '../src/fixtures/forms/kitchensink.ts';
 export class AppComponent extends Type {
     public form: any = FORM;
     onRender() {
-        console.log('Rendered!');
+        console.log('onRender');
     }
     onSubmit(value: any) {
+        console.log('onSubmit');
         console.log(value);
+    }
+    onChange(value: any) {
+        console.log('onChange');
     }
 }

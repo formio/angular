@@ -1,4 +1,4 @@
-import { Input, OnInit } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { BaseComponent, BaseOptions, BaseElement} from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
@@ -16,8 +16,7 @@ export class CheckBoxComponent extends BaseComponent<CheckBoxOptions> {
 
 }
 
-export class CheckBoxElement extends BaseElement implements OnInit {
-    @Input() component: CheckBoxComponent;
+export class CheckBoxElement extends BaseElement<CheckBoxComponent> implements OnInit {
     ngOnInit() {
         this.render.emit(true);
     }

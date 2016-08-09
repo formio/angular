@@ -54,6 +54,51 @@ export const FORM: any = {
                   "inputType": "email",
                   "tableView": true,
                   "input": true
+                },
+                {
+                  "input": true,
+                  "inputType": "checkbox",
+                  "tableView": true,
+                  "hideLabel": true,
+                  "label": "Do you have a phone number?",
+                  "key": "havePhoneNumber",
+                  "defaultValue": false,
+                  "protected": false,
+                  "persistent": true,
+                  "validate": {
+                    "required": false
+                  },
+                  "type": "checkbox",
+                  "conditional": {
+                    "show": "",
+                    "when": null,
+                    "eq": ""
+                  },
+                  "lockKey": true
+                },
+                {
+                  "input": true,
+                  "tableView": true,
+                  "inputMask": "(999) 999-9999",
+                  "label": "Phone Number",
+                  "key": "phoneNumber",
+                  "placeholder": "",
+                  "prefix": "",
+                  "suffix": "",
+                  "multiple": false,
+                  "protected": false,
+                  "unique": false,
+                  "persistent": true,
+                  "defaultValue": "",
+                  "validate": {
+                    "required": false
+                  },
+                  "type": "textfield",
+                  "conditional": {
+                    "show": "true",
+                    "when": "havePhoneNumber",
+                    "eq": "true"
+                  }
                 }
               ]
             },

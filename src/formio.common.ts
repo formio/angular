@@ -18,10 +18,10 @@ export class FormioError {
 }
 
 export class FormioEvents {
-    public invalid: EventEmitter<any>;
+    public component: EventEmitter<any>;
     public errors: Array<FormioError>;
     constructor() {
-        this.invalid = new EventEmitter();
+        this.component = new EventEmitter();
         this.errors = [];
     }
 }

@@ -1,7 +1,8 @@
 import { describe, expect, it, inject, TestComponentBuilder } from '@angular/core/testing';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
-import { TextFieldComponent, TextFieldOptions, TextField } from './textfield';
+import { InputOptions } from '../input/input';
+import { TextFieldComponent, TextField } from './textfield';
 import { FormioComponent } from '../../formio-component.component';
 
 describe('TextFieldComponent', () => {
@@ -13,8 +14,8 @@ describe('TextFieldComponent', () => {
     TextField(FORMIO_TEMPLATE);
 
     // An easy method for getting new text field settings.
-    var getSettings = (overrides: {}): TextFieldOptions => {
-        let settings: TextFieldOptions = {
+    var getSettings = (overrides: {}): InputOptions => {
+        let settings: InputOptions = {
             type: 'textfield',
             input: true,
             tableView: true,
@@ -49,7 +50,7 @@ describe('TextFieldComponent', () => {
     };
 
     let getComponent = (overrides: {}): FormioComponent<string> => {
-        let settings:TextFieldOptions = getSettings(overrides);
+        let settings:InputOptions = getSettings(overrides);
         let component = new FormioComponent<string>();
         component.component = settings;
         component.form = this.form;
@@ -58,7 +59,7 @@ describe('TextFieldComponent', () => {
     }
 
     it('Should not allow invalid TextField values.', () => {
-        let settings: TextFieldOptions = getSettings({
+        let settings: InputOptions = getSettings({
             validate: {
                 required: true,
                 minLength: 2,
@@ -113,7 +114,7 @@ describe('TextFieldComponent', () => {
     });
 
     it('Should allow default values', () => {
-        let settings: TextFieldOptions = getSettings({
+        let settings: InputOptions = getSettings({
             defaultValue: 'Travis'
         });
 

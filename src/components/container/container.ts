@@ -1,4 +1,3 @@
-import { Input } from '@angular/core';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
@@ -18,9 +17,8 @@ export class ContainerComponent extends BaseComponent<ContainerOptions> {
     }
 }
 
-export class ContainerElement extends BaseElement {
+export class ContainerElement extends BaseElement<ContainerComponent> {
     private renderCount: number = 0;
-    @Input() component: ContainerComponent;
     onRender() {
         this.renderCount++;
         if (this.renderCount >= this.component.settings.components.length) {

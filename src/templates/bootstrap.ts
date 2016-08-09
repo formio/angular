@@ -11,7 +11,6 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
     formio_components: require('./bootstrap/formio-components.html'),
     errors: require('./bootstrap/errors.html'),
     components: {
-        textfield: require('./bootstrap/components/textfield.html'),
         button: require('./bootstrap/components/button.html'),
         columns: require('./bootstrap/components/columns.html'),
         container: require('./bootstrap/components/container.html'),
@@ -19,8 +18,8 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
         input: require('./bootstrap/components/input.html'),
         textarea: require('./bootstrap/components/textarea.html'),
         hidden: require('./bootstrap/components/hidden.html'),
-        password: require('./bootstrap/components/input.html'),
         radio: require('./bootstrap/components/radio.html'),
-        checkbox: require('./bootstrap/components/checkbox.html')
+        checkbox: require('./bootstrap/components/checkbox.html'),
+        custom: require('./bootstrap/components/custom.html')
     }
 };

@@ -1,7 +1,8 @@
 import { describe, expect, it } from '@angular/core/testing';
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
-import { NumberComponent, NumberOptions, NumberField } from './number';
+import { InputOptions } from '../input/input';
+import { NumberComponent, NumberField } from './number';
 import { FormioComponent } from '../../formio-component.component';
 
 describe('NumberComponent', () => {
@@ -13,8 +14,8 @@ describe('NumberComponent', () => {
     NumberField(FORMIO_TEMPLATE);
 
     // An easy method for getting new Number settings.
-    var getSettings = (overrides:{}):NumberOptions => {
-        let settings : NumberOptions = {
+    var getSettings = (overrides:{}):InputOptions => {
+        let settings : InputOptions = {
             type: 'number',
             input: true,
             tableView: true,
@@ -47,7 +48,7 @@ describe('NumberComponent', () => {
     };
 
     let getComponent = (overrides: {}): FormioComponent<string> => {
-        let settings:NumberOptions = getSettings(overrides);
+        let settings:InputOptions = getSettings(overrides);
         let component = new FormioComponent<string>();
         component.component = settings;
         component.form = this.form;
@@ -56,7 +57,7 @@ describe('NumberComponent', () => {
     };
 
     it('Should allow default values', () => {
-        let settings: NumberOptions = getSettings({
+        let settings: InputOptions = getSettings({
             defaultValue: 0
         });
 
@@ -67,7 +68,7 @@ describe('NumberComponent', () => {
     });
 
     it('Should not allow invalid Number values.', () => {
-        let settings: NumberOptions = getSettings({
+        let settings: InputOptions = getSettings({
             validate: {
                 required: true,
                 minLength: 2,
@@ -185,7 +186,7 @@ describe('NumberComponent', () => {
     });
 
     it('Should allow placeholder', () => {
-        let settings: NumberOptions = getSettings({
+        let settings: InputOptions = getSettings({
             placeholder: "Enter Number"
         });
 
@@ -195,7 +196,7 @@ describe('NumberComponent', () => {
     });
     
     it('Should allow prefix', () => {
-        let settings: NumberOptions = getSettings({
+        let settings: InputOptions = getSettings({
             prefix: "$"
         });
 
@@ -205,7 +206,7 @@ describe('NumberComponent', () => {
     });
     
     it('Should allow suffix', () => {
-        let settings: NumberOptions = getSettings({
+        let settings: InputOptions = getSettings({
             suffix: "@"
         });
 

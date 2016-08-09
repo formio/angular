@@ -1,4 +1,4 @@
-import { Input, OnInit } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { BaseComponent, BaseOptions, BaseElement} from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
@@ -12,14 +12,11 @@ export interface RadioOptions extends BaseOptions<string> {
     defaultValue?: string
 }
 
-export class RadioComponent extends BaseComponent<RadioOptions> {
+export class RadioComponent extends BaseComponent<RadioOptions> {}
 
-}
-
-export class RadioElement extends BaseElement implements OnInit {
-    @Input() component: RadioComponent;
+export class RadioElement extends BaseElement<RadioComponent> implements OnInit {
     ngOnInit() {
-        this.render.emit(true);
+        this.onRender();
     }
 }
 
