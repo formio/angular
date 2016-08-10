@@ -1,4 +1,3 @@
-import { Input, OnInit } from '@angular/core';
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
@@ -19,11 +18,8 @@ export class WellComponent extends BaseComponent<WellOptions> {
     }
 }
 
-export class WellElement extends BaseElement<WellComponent> implements OnInit {
-    @Input() component: WellComponent;
-    ngOnInit() {
-        this.render.emit(true);
-    }
+export class WellElement extends BaseElement<WellComponent> {
+    get numComponents() : number { return this.component.settings.components.length; }
 }
 
 export function Well(template:FormioTemplate) {
@@ -31,4 +27,4 @@ export function Well(template:FormioTemplate) {
         template: template.components.well
     });
     return WellElement;
-};
+}
