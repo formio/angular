@@ -1,4 +1,3 @@
-import { Input, OnInit } from '@angular/core';
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
@@ -20,11 +19,8 @@ export class FieldSetComponent extends BaseComponent<FieldSetOptions> {
     }
 }
 
-export class FieldSetElement extends BaseElement<FieldSetComponent> implements OnInit {
-    @Input() component: FieldSetComponent;
-    ngOnInit() {
-        this.render.emit(true);
-    }
+export class FieldSetElement extends BaseElement<FieldSetComponent> {
+    get numComponents() : number { return this.component.settings.components.length; }
 }
 
 export function FieldSet(template:FormioTemplate) {
@@ -32,4 +28,4 @@ export function FieldSet(template:FormioTemplate) {
         template: template.components.fieldset
     });
     return FieldSetElement;
-};
+}

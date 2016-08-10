@@ -3,7 +3,7 @@
         <legend *ngIf="component.settings.legend">{{ component.settings.legend }}</legend>
         <div *ngFor="let control of component.control.controls;">
             <div *ngFor="let component of component.settings.components">
-                <formio-component [component]="component" [form]="control"></formio-component>
+                <formio-component [component]="component" [form]="control" [events]="events" (render)="onRender()"></formio-component>
             </div>
         </div>
     </fieldset>
