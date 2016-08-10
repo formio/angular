@@ -1,0 +1,21 @@
+<div [formGroup]="form" class="form-group">
+    <div class="panel" [ngClass]="{
+        'panel-default': component.settings.theme=='default',
+        'panel-primary': component.settings.theme=='primary',
+        'panel-success': component.settings.theme=='success',
+        'panel-info': component.settings.theme=='info',
+        'panel-warning': component.settings.theme=='warning',
+        'panel-danger': component.settings.theme=='danger'
+    }">
+        <div *ngIf="component.settings.title" class="panel-heading">
+            <h3 class="panel-title">{{component.settings.title}}</h3>
+        </div>
+        <div class="panel-body">
+            <div *ngFor="let control of component.control.controls;">
+                <div *ngFor="let component of component.settings.components">
+                    <formio-component [component]="component" [form]="control" [events]="events" (render)="onRender()"></formio-component>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

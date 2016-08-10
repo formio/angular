@@ -12,6 +12,7 @@ import { HiddenField } from './hidden/hidden';
 import { FormioTemplate } from '../formio.template';
 import { RadioField } from './radio/radio';
 import { CustomField } from './custom/custom';
+import { Panel } from './panel/panel';
 export function FORMIO_COMPONENTS(template: FormioTemplate) {
     return [
         TextField(template),
@@ -26,6 +27,7 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         NumberField(template),
         RadioField(template),
         CheckBox(template),
-        CustomField(template)
+        CustomField(template),
+        Panel(template)
     ];
 }
