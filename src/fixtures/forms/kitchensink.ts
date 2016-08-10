@@ -195,6 +195,7 @@ export const FORM: any = {
             }
           ],
           "type": "columns",
+          "key": "columns",
           "conditional": {
             "show": "",
             "when": null,

@@ -19,7 +19,7 @@ export class ContainerComponent extends BaseComponent<ContainerOptions> {
 
 export class ContainerElement extends BaseElement<ContainerComponent> {
     get numComponents() : number {
-        return this.component.settings.components.length;
+        return 1;
     }
 }
 

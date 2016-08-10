@@ -55,15 +55,16 @@ export class FormioComponent extends Type implements OnInit {
         }
     }
     onRender() {
-        console.log('rendered!');
         // The form is done rendering.
         this.render.emit(true);
 
         // Subscribe to value changes.
-        this.formGroup.valueChanges.subscribe((value: any) => {
-            this.change.emit(value);
-            this.events.component.emit('valueChanges');
-        });
+        this.formGroup.valueChanges
+            .debounceTime(200)
+            .subscribe((value: any) => {
+                this.change.emit(value);
+                this.events.component.emit('valueChanges');
+            });
     }
     onSubmit() {
         // Reset the errors.

@@ -147,17 +147,23 @@ export class BaseElement<T> extends Type implements OnInit {
     @Input() component: T;
     @Input() form: FormGroup;
     @Input() events: FormioEvents;
-    @Output() render: EventEmitter<any> = new EventEmitter();
+    @Input() render: EventEmitter<any>;
     private renderCount: number = 0;
     get numComponents() : number {
-        return 1;
+        return 0;
     }
     ngOnInit() {
         this.onRender();
     }
     onRender() {
+        if (!this.render) {
+            return;
+        }
+        if (this.renderCount > this.numComponents) {
+            return;
+        }
         this.renderCount++;
-        if (this.renderCount >= this.numComponents) {
+        if (this.renderCount > this.numComponents) {
             this.render.emit(true);
         }
     }

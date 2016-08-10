@@ -17,6 +17,9 @@ export class FormioComponentsComponent extends Type {
     @Output() render: EventEmitter<any> = new EventEmitter();
     private renderCount: number = 0;
     onRender() {
+        if (this.renderCount >= this.components.length) {
+            return;
+        }
         this.renderCount++;
         if (this.renderCount >= this.components.length) {
             this.render.emit(true);

@@ -70,9 +70,6 @@ export class FormioComponent<T> extends Type implements OnInit {
         this.components.push(component);
         return component;
     }
-    onRender() {
-        this.render.emit(true);
-    }
     removeAt(index:number) {
         this.container.removeAt(index);
         this.components.splice(index, 1);

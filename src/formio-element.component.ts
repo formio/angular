@@ -23,7 +23,7 @@ export class FormioElement extends Type implements OnInit {
     @Input() form: FormGroup;
     @Input() label: string | boolean;
     @Input() events: FormioEvents;
-    @Output() render: EventEmitter<any> = new EventEmitter();
+    @Input() render: EventEmitter<any>;
     @ViewChild('formioElement', { read: ViewContainerRef }) element: ViewContainerRef;
     constructor(private resolver: ComponentResolver) {
         super();
