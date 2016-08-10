@@ -1,4 +1,3 @@
-import { Input, OnInit } from '@angular/core';
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
@@ -22,11 +21,8 @@ export class TableComponent extends BaseComponent<TableOptions> {
     }
 }
 
-export class TableElement extends BaseElement<TableComponent> implements OnInit {
-    @Input() component: TableComponent;
-    ngOnInit() {
-        this.render.emit(true);
-    }
+export class TableElement extends BaseElement<TableComponent> {
+    
 }
 
 export function Table(template:FormioTemplate) {
@@ -34,4 +30,4 @@ export function Table(template:FormioTemplate) {
         template: template.components.table
     });
     return TableElement;
-};
+}
