@@ -1,10 +1,6 @@
 <div [formGroup]="form" class="form-group">
     <fieldset>
         <legend *ngIf="component.settings.legend">{{ component.settings.legend }}</legend>
-        <div *ngFor="let control of component.control.controls;">
-            <div *ngFor="let component of component.settings.components">
-                <formio-component [component]="component" [form]="control" [events]="events" (render)="onRender()"></formio-component>
-            </div>
-        </div>
+        <formio-components [components]="component.settings.components" [form]="component.control" [events]="events" (render)="onRender()"></formio-components>
     </fieldset>
 </div>
