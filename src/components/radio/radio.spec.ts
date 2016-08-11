@@ -130,4 +130,5 @@ describe('RadioComponent', () => {
         expect(radio.settings.inline).toEqual(true);
     });
 
+
 });

@@ -7,7 +7,7 @@ export interface RadioOptions extends BaseOptions<string> {
     type?: string,
     inline?: boolean,
     value?: string,
-    values?:Array<{}>,
+    values?: Array<{}>,
     defaultValue?: string
 }
 
