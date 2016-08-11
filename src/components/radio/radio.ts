@@ -9,8 +9,7 @@ export interface RadioOptions extends BaseOptions<string> {
     inline?: boolean,
     value?: string,
     values?: Array<{}>,
-    defaultValue?: string,
-    name?: string
+    defaultValue?: string
 }
 
 export class RadioComponent extends BaseComponent<RadioOptions> {}
