@@ -121,7 +121,7 @@ describe('FieldSetComponent', () => {
     it('Should create the FieldSet control.', () => {
         let settings: FieldSetOptions = getSettings({});
         let fieldset = new FieldSetComponent(this.form, settings);
-        expect(fieldset.control instanceof FormArray).toEqual(true);
+        expect(fieldset.control instanceof FormGroup).toEqual(true);
 
         let index = 0;
         let components = new FormioComponentsComponent();

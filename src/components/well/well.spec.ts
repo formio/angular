@@ -108,7 +108,7 @@ describe('WellComponent', () => {
     it('Should create Well control.', () => {
         let settings: WellOptions = getSettings({});
         let fieldset = new WellComponent(this.form, settings);
-        expect(fieldset.control instanceof FormArray).toEqual(true);
+        expect(fieldset.control instanceof FormGroup).toEqual(true);
 
         let index = 0;
         let components = new FormioComponentsComponent();

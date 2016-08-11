@@ -128,7 +128,7 @@ describe('PanelComponent', () => {
     it('Should create the Panel control.', () => {
         let settings: PanelOptions = getSettings({});
         let panel = new PanelComponent(this.form, settings);
-        expect(panel.control instanceof FormArray).toEqual(true);
+        expect(panel.control instanceof FormGroup).toEqual(true);
 
         let index = 0;
         let components = new FormioComponentsComponent();
