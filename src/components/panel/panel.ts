@@ -12,9 +12,7 @@ export interface PanelOptions extends BaseOptions<any> {
 export class PanelComponent extends BaseComponent<PanelOptions> {
     getControl(): FormArray | FormGroup | FormControl {
         if (!this.control) {
-            this.control = new FormArray([
-                new FormGroup({})
-            ]);
+            this.control = new FormGroup({});
         }
         return this.control;
     }
