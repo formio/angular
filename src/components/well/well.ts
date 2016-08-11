@@ -17,7 +17,7 @@ export class WellComponent extends BaseComponent<WellOptions> {
 }
 
 export class WellElement extends BaseElement<WellComponent> {
-    get numComponents() : number { return this.component.settings.components.length; }
+    get numComponents() : number { return 1; }
 }
 
 export function Well(template:FormioTemplate) {
