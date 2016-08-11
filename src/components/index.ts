@@ -33,7 +33,7 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         CustomField(template),
         Table(template),
         Panel(template),
-        FieldSet(template)
+        FieldSet(template),
         Well(template)
     ];
 }
