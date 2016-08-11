@@ -14,7 +14,8 @@ export interface FormioComponentsTemplate {
     radio: string,
     checkbox: string,
     custom: string,
-    table: string
+    table: string,
+    panel: string
 }
 
 export interface FormioComponentMetaData {
