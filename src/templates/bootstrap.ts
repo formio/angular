@@ -20,6 +20,7 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
         hidden: require('./bootstrap/components/hidden.html'),
         radio: require('./bootstrap/components/radio.html'),
         checkbox: require('./bootstrap/components/checkbox.html'),
-        custom: require('./bootstrap/components/custom.html')
+        custom: require('./bootstrap/components/custom.html'),
+        table: require('./bootstrap/components/table.html')
     }
 };

@@ -1,0 +1,18 @@
+<div class="table-responsive">
+    <table [ngClass]="{
+        'table-striped': component.settings.striped,
+        'table-bordered': component.settings.bordered,
+        'table-hover': component.settings.hover,
+        'table-condensed': component.settings.condensed
+    }" class="table">
+        <tbody *ngFor="let control of component.control.controls;">
+        <tr *ngFor="let row of component.settings.rows">
+            <td *ngFor="let data of row">
+                <div *ngFor="let component of data.components">
+                    <formio-component [component]="component" [form]="control" [events]="events" (render)="onRender()"></formio-component>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
