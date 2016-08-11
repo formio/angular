@@ -19,7 +19,7 @@ export class PanelComponent extends BaseComponent<PanelOptions> {
 }
 
 export class PanelElement extends BaseElement<PanelComponent> {
-    get numComponents() : number { return this.component.settings.components.length; }
+    get numComponents() : number { return 1; }
 }
 
 export function Panel(template:FormioTemplate) {
