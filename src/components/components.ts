@@ -15,7 +15,8 @@ export interface FormioComponentsTemplate {
     checkbox: string,
     custom: string,
     table: string,
-    panel: string
+    panel: string,
+    fieldset: string
 }
 
 export interface FormioComponentMetaData {

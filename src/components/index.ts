@@ -14,6 +14,7 @@ import { RadioField } from './radio/radio';
 import { CustomField } from './custom/custom';
 import { Table } from './table/table';
 import { Panel } from './panel/panel';
+import { FieldSet } from './fieldset/fieldset';
 export function FORMIO_COMPONENTS(template: FormioTemplate) {
     return [
         TextField(template),
@@ -30,6 +31,7 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         CheckBox(template),
         CustomField(template),
         Table(template),
-        Panel(template)
+        Panel(template),
+        FieldSet(template)
     ];
 }

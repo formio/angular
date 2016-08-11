@@ -515,6 +515,77 @@ export const FORM: any = {
       }
     },
     {
+          "input": false,
+          "tableView": true,
+          "legend": "FieldSet",
+          "type": "fieldset",
+          "conditional": {
+              "show": null,
+              "when": null,
+              "eq": ""
+          },
+          "components": [{
+              "input": true,
+              "tableView": true,
+              "inputType": "text",
+              "inputMask": "",
+              "label": "FirstName",
+              "key": "firstName",
+              "placeholder": "Enter FirstName",
+              "prefix": "",
+              "suffix": "",
+              "multiple": false,
+              "defaultValue": "",
+              "protected": false,
+              "unique": false,
+              "persistent": true,
+              "validate": {
+                  "required": false,
+                  "minLength": "",
+                  "maxLength": "",
+                  "pattern": "",
+                  "custom": "",
+                  "customPrivate": false
+              },
+              "conditional": {
+                  "show": null,
+                  "when": null,
+                  "eq": ""
+              },
+              "type": "textfield"
+          },
+              {
+                  "input": true,
+                  "tableView": true,
+                  "inputType": "text",
+                  "inputMask": "",
+                  "label": "LastName",
+                  "key": "lastName",
+                  "placeholder": "Enter LastName",
+                  "prefix": "",
+                  "suffix": "",
+                  "multiple": false,
+                  "defaultValue": "",
+                  "protected": false,
+                  "unique": false,
+                  "persistent": true,
+                  "validate": {
+                      "required": false,
+                      "minLength": "",
+                      "maxLength": "",
+                      "pattern": "",
+                      "custom": "",
+                      "customPrivate": false
+                  },
+                  "conditional": {
+                      "show": null,
+                      "when": null,
+                      "eq": ""
+                  },
+                  "type": "textfield"
+              }]
+      },
+    {
       "input": true,
       "inputType": "checkbox",
       "tableView": false,
