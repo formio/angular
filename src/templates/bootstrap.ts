@@ -23,6 +23,7 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
         custom: require('./bootstrap/components/custom.html'),
         table: require('./bootstrap/components/table.html'),
         panel: require('./bootstrap/components/panel.html'),
-        fieldset: require('./bootstrap/components/fieldset.html')
+        fieldset: require('./bootstrap/components/fieldset.html'),
+        well: require('./bootstrap/components/well.html')
     }
 };

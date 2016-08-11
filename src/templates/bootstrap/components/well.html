@@ -1,0 +1,5 @@
+<div [formGroup]="form" class="form-group">
+    <div class="well">
+        <formio-components [components]="component.settings.components" [form]="component.control" [events]="events" (render)="onRender()"></formio-components>
+    </div>
+</div>

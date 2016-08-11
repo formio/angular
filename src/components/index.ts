@@ -15,6 +15,7 @@ import { CustomField } from './custom/custom';
 import { Table } from './table/table';
 import { Panel } from './panel/panel';
 import { FieldSet } from './fieldset/fieldset';
+import { Well } from './well/well';
 export function FORMIO_COMPONENTS(template: FormioTemplate) {
     return [
         TextField(template),
@@ -33,5 +34,6 @@ export function FORMIO_COMPONENTS(template: FormioTemplate) {
         Table(template),
         Panel(template),
         FieldSet(template)
+        Well(template)
     ];
 }
