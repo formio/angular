@@ -18,7 +18,7 @@ export class FieldSetComponent extends BaseComponent<FieldSetOptions> {
 }
 
 export class FieldSetElement extends BaseElement<FieldSetComponent> {
-    get numComponents() : number { return this.component.settings.components.length; }
+    get numComponents() : number { return 1; }
 }
 
 export function FieldSet(template:FormioTemplate) {
