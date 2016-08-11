@@ -174,4 +174,63 @@ describe('TableComponent', () => {
         expect(table.settings.rows[0][0]).not.toEqual(null);
     });
 
+    it('All components rendered or not', () => {
+        let settings: TableOptions = getSettings({
+            rows: [
+                [{components: [{
+                    input: true,
+                    inputType: 'checkbox',
+                    tableView: false,
+                    hideLabel: true,
+                    label: 'Checkbox',
+                    key: 'checkbox',
+                    defaultValue: '',
+                    protected: false,
+                    persistent: true,
+                    validate: {
+                        required: true
+                    },
+                    type: 'checkbox',
+                    conditional: {
+                        show: null,
+                        when: null,
+                        eq: ""
+                    }
+                }],},
+                    {components: [{
+                        input: true,
+                        inputType: 'checkbox',
+                        tableView: false,
+                        hideLabel: true,
+                        label: 'Checkbox',
+                        key: 'checkbox',
+                        defaultValue: '',
+                        protected: false,
+                        persistent: true,
+                        validate: {
+                            required: true
+                        },
+                        type: 'checkbox',
+                        conditional: {
+                            show: null,
+                            when: null,
+                            eq: ""
+                        }
+                    }],}],
+                [{components: [],},
+                    {components: [],}]
+            ]
+        });
+
+        // Create the table component.
+        let table = new TableComponent(this.form, settings);
+        let total = 0;
+        for (let i in table.settings.rows) {
+            for (let j in table.settings.rows[i]) {
+                total += table.settings.rows[i][j].components.length;
+            }
+        }
+        expect(total).toEqual(2);
+    });
+
 });

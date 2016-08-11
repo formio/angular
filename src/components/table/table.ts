@@ -22,7 +22,15 @@ export class TableComponent extends BaseComponent<TableOptions> {
 }
 
 export class TableElement extends BaseElement<TableComponent> {
-    
+    get numComponents() : number {
+        let total = 0;
+        for (let i in this.component.settings.rows) {
+            for (let j in this.component.settings.rows[i]) {
+                total += this.component.settings.rows[i][j].components.length;
+            }
+        }
+        return total;
+    }
 }
 
 export function Table(template:FormioTemplate) {
