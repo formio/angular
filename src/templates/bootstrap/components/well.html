@@ -1,7 +1,5 @@
 <div [formGroup]="form" class="form-group">
-    <div *ngFor="let control of component.control.controls;" class="well">
-        <div *ngFor="let component of component.settings.components">
-            <formio-component [component]="component" [form]="control" [events]="events" (render)="onRender()"></formio-component>
-        </div>
+    <div class="well">
+        <formio-components [components]="component.settings.components" [form]="component.control" [events]="events" (render)="onRender()"></formio-components>
     </div>
 </div>
