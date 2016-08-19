@@ -742,6 +742,67 @@ export const FORM: any = {
     {
       "input": true,
       "tableView": true,
+      "label": "Fruits",
+      "key": "fruits",
+      "placeholder": "Select favourite",
+      "data": {
+        "values": [
+          {
+            "value": "mango",
+            "label": "mango"
+          },
+          {
+            "value": "apple",
+            "label": "apple"
+          },
+          {
+            "value": "pineapple",
+            "label": "pineapple"
+          },
+          {
+            "value": "grapes",
+            "label": "grapes"
+          }],
+        "json": [
+          {
+            "label": "one",
+            "test": "opt1"
+          },
+          {
+            "label": "two",
+            "test": "opt2"
+          },
+          {
+            "label": "three",
+            "test": "opt3"
+          }],
+        "url": "https://cdn.rawgit.com/mshafrir/2646763/raw/states_titlecase.json",
+        "resource": "manager"
+      },
+      "dataSrc": "values",
+      "valueProperty": "fullName",
+      "defaultValue": "",
+      "refreshOn": "",
+      "filter": "",
+      "authenticate": false,
+      "template": "{{ item.label }}",
+      "multiple": false,
+      "protected": false,
+      "unique": false,
+      "persistent": true,
+      "validate": {
+        "required": false
+      },
+      "type": "select",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      }
+    },
+    {
+      "input": true,
+      "tableView": true,
       "key": "name",
       "label": "Name",
       "protected": false,
