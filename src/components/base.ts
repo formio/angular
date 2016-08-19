@@ -1,4 +1,4 @@
-import { Type, Input, Output, EventEmitter, OnInit } from "@angular/core";
+import { Type, Input, Component, EventEmitter, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import define = require("core-js/fn/object/define");
 import { FormioEvents, FormioError } from '../formio.common';
@@ -29,7 +29,8 @@ export interface ComponentOptions<T, V> {
     tableView?: boolean,
     lockKey?: boolean,
     validate?: V,
-    conditional?: ConditionalOptions
+    conditional?: ConditionalOptions,
+    customConditional?: string
 }
 
 export interface BaseOptions<T> extends ComponentOptions<T, ValidateOptions> {
@@ -143,6 +144,10 @@ export class BaseComponent<T> {
     }
 }
 
+@Component({
+    selector: 'formio-base-element',
+    template: '<div></div>'
+})
 export class BaseElement<T> extends Type implements OnInit {
     @Input() component: T;
     @Input() form: FormGroup;

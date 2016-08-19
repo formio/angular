@@ -5,13 +5,14 @@ import { FormioElement } from './formio-element.component';
 import { FormioTemplate, RegisterTemplate } from './formio.template';
 import { BaseOptions, BaseComponent } from './components/base';
 import { FormioEvents, FormioError } from './formio.common';
+var FormioUtils = require('formio-utils');
 
 @Component({
     selector: 'formio-component',
     template: '<div></div>',
     directives: [REACTIVE_FORM_DIRECTIVES, FormioElement]
 })
-export class FormioComponent<T> extends Type implements OnInit {
+export class FormioComponentComponent<T> extends Type implements OnInit {
     components: Array<BaseComponent<any>> = [];
     container: FormArray = new FormArray([]);
     @Input() component: BaseOptions<T>;
@@ -19,16 +20,23 @@ export class FormioComponent<T> extends Type implements OnInit {
     @Input() events: FormioEvents;
     @Input() label: string | boolean;
     @Output() render: EventEmitter<any> = new EventEmitter();
+    show: Boolean = true;
     constructor() {
         super();
     }
     ngOnInit() {
+        // Hide by default if there are conditions for this control.
+        if (this.hasConditions()) {
+            this.show = false;
+        }
+
         // Add this component.
         this.addComponent();
 
         // Subscribe to the invalid event.
         if (this.events) {
             this.events.component.subscribe((type: string) => {
+                console.log(type);
                 this.components.forEach((component: BaseComponent<any>) => {
                     switch (type) {
                         case 'invalid':
@@ -39,11 +47,52 @@ export class FormioComponent<T> extends Type implements OnInit {
                             }
                             break;
                         case 'valueChanges':
-                            console.log('value changed!');
+                            this.checkConditions();
                             break;
                     }
                 });
             });
+        }
+    }
+    hasConditions() {
+        return (
+            this.component.customConditional ||
+            (
+                this.component.conditional
+                && (this.component.conditional.show !== null && this.component.conditional.show !== '')
+                && (this.component.conditional.when !== null && this.component.conditional.when !== '')
+            )
+        );
+    }
+    checkConditions() {
+        // Ensure we have conditionals to check.
+        if (this.hasConditions()) {
+            var boolean = {'true': true, 'false': false};
+            if (this.component.customConditional) {
+                try {
+                    // Create a child block, and expose the submission data.
+                    var data = this.form.value; // eslint-disable-line no-unused-vars
+                    // Eval the custom conditional and update the show value.
+                    var show = eval('(function() { ' + this.component.customConditional.toString() + '; return show; })()');
+                    // Show by default, if an invalid type is given.
+                    this.show = boolean.hasOwnProperty(show.toString()) ? boolean[show] : true;
+                }
+                catch (err) {
+                    this.show = true;
+                }
+            }
+            else {
+                this.component.conditional.eq = this.component.conditional.eq || '';
+                let shouldShow = boolean.hasOwnProperty(this.component.conditional.show)
+                    ? boolean[this.component.conditional.show]
+                    : true;
+                let conditionValue = boolean.hasOwnProperty(this.component.conditional.eq)
+                    ? boolean[this.component.conditional.eq]
+                    : this.component.conditional.eq;
+                let value = FormioUtils.getValue({data: this.form.value}, this.component.conditional.when);
+                let equal = (value === conditionValue);
+                this.show = (shouldShow && equal) || (!shouldShow && !equal);
+            }
         }
     }
     addComponent() {
@@ -99,6 +148,6 @@ export class FormioComponent<T> extends Type implements OnInit {
 }
 
 export function FormioComponentRegister(template: FormioTemplate) {
-    RegisterTemplate(FormioComponent, template.formio_component);
-    return FormioComponent;
+    RegisterTemplate(FormioComponentComponent, template.formio_component);
+    return FormioComponentComponent;
 }

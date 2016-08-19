@@ -1,9 +1,9 @@
-import { describe, expect, it, inject, TestComponentBuilder } from '@angular/core/testing';
+/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup, FormControl } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { InputOptions } from '../input/input';
 import { TextFieldComponent, TextField } from './textfield';
-import { FormioComponent } from '../../formio-component.component';
+import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('TextFieldComponent', () => {
     beforeEach(() => {
@@ -49,9 +49,9 @@ describe('TextFieldComponent', () => {
         return settings;
     };
 
-    let getComponent = (overrides: {}): FormioComponent<string> => {
+    let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:InputOptions = getSettings(overrides);
-        let component = new FormioComponent<string>();
+        let component = new FormioComponentComponent<string>();
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();

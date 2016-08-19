@@ -22,3 +22,4 @@ export function FORMIO(template: FormioTemplate) {
         ...FORMIO_COMPONENTS(template)
     ];
 }
+

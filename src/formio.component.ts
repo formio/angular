@@ -53,10 +53,6 @@ export class FormioComponent extends Type implements OnInit {
                 }
             });
         }
-    }
-    onRender() {
-        // The form is done rendering.
-        this.render.emit(true);
 
         // Subscribe to value changes.
         this.formGroup.valueChanges
@@ -65,6 +61,10 @@ export class FormioComponent extends Type implements OnInit {
                 this.change.emit(value);
                 this.events.component.emit('valueChanges');
             });
+    }
+    onRender() {
+        // The form is done rendering.
+        this.render.emit(true);
     }
     onSubmit() {
         // Reset the errors.

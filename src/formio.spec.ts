@@ -1,8 +1,4 @@
-import {
-    describe,
-    expect,
-    it
-} from '@angular/core/testing';
+/// <reference path="../typings/globals/jasmine/index.d.ts" />
 import { FORMIO } from './formio';
 import { FORMIO_TEMPLATE } from './templates/bootstrap';
 

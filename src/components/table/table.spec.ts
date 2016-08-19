@@ -1,8 +1,8 @@
-import { describe, expect, it, inject, TestComponentBuilder } from '@angular/core/testing';
-import { FormGroup, FormControl } from '@angular/forms';
+/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
+import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { TableComponent, TableOptions, Table } from './table';
-import { FormioComponent } from '../../formio-component.component';
+import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('TableComponent', () => {
     beforeEach(() => {
@@ -79,9 +79,9 @@ describe('TableComponent', () => {
         return settings;
     };
 
-    let getComponent = (overrides: {}): FormioComponent<string> => {
+    let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:TableOptions = getSettings(overrides);
-        let component = new FormioComponent<string>();
+        let component = new FormioComponentComponent<string>();
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();

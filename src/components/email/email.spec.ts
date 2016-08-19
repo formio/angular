@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@angular/core/testing';
+/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { EmailComponent, EmailField } from './email';

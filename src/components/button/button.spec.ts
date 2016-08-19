@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@angular/core/testing';
+/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup, FormControl } from '@angular/forms';
 import { ButtonComponent, ButtonOptions } from './button';
 

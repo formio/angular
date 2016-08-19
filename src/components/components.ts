@@ -1,7 +1,7 @@
-import { ComponentResolver, ComponentFactory, Component } from '@angular/core';
+import { Compiler, ComponentFactory, Component } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormGroup  } from '@angular/forms';
 import { FormioComponentsComponent } from '../formio-components.component';
-import { FormioComponent } from '../formio-component.component';
+import { FormioComponentComponent } from '../formio-component.component';
 
 export interface FormioComponentsTemplate {
     button: string,
@@ -45,7 +45,7 @@ export class FormioComponents {
         metadata.directives = metadata.directives || [
             REACTIVE_FORM_DIRECTIVES,
             FormioComponentsComponent,
-            FormioComponent
+            FormioComponentComponent
         ];
         metadata.inputs = metadata.inputs || ['component', 'form'];
         FormioComponents.components[name] = {
@@ -63,13 +63,13 @@ export class FormioComponents {
     }
     public static element(
         name: string,
-        resolver: ComponentResolver
+        compiler: Compiler
     ) : Promise<ComponentFactory<any>> {
         if (!FormioComponents.components.hasOwnProperty(name)) {
             name = 'custom';
         }
         let component: FormioComponentWrapper = FormioComponents.components[name];
         const decoratedCmp = Component(component.metadata)(component.element);
-        return resolver.resolveComponent(decoratedCmp);
+        return compiler.compileComponentAsync(decoratedCmp);
     }
 }

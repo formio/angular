@@ -15,7 +15,7 @@ export class AppComponent extends Type {
         console.log('onSubmit');
         console.log(value);
     }
-    onChange(value: any) {
+    onChange() {
         console.log('onChange');
     }
 }
