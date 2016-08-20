@@ -8,14 +8,4 @@ describe('formio.ts', () => {
         expect(FORMIO_TEMPLATE.hasOwnProperty('formio_component')).toEqual(true);
         expect(FORMIO_TEMPLATE.hasOwnProperty('formio_components')).toEqual(true);
     });
-    it('Should allow the FORMIO to have templates', () => {
-        let formio = FORMIO(FORMIO_TEMPLATE);
-        expect(formio instanceof Array).toEqual(true);
-        formio.forEach((comp) => {
-            let annotations = Reflect.getMetadata('annotations', comp);
-            if (annotations && annotations.length && annotations[0].hasOwnProperty('template')) {
-                expect(annotations[0].template.length).toBeGreaterThan(10);
-            }
-        });
-    });
 });

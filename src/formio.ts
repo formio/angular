@@ -1,9 +1,12 @@
-import { FormioRegister } from './formio.component';
-import { FormioComponentRegister} from './formio-component.component';
-import { FormioComponentsComponentRegister } from './formio-components.component';
-import { FormioErrorsRegister } from './formio.errors';
-import { FORMIO_COMPONENTS } from './components/index';
-import { FormioTemplate } from './formio.template';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from "@angular/forms";
+import { FormioComponent } from './formio.component';
+import { FormioElement } from './formio-element.component';
+import { FormioComponentComponent } from './formio-component.component';
+import { FormioComponentsComponent } from './formio-components.component';
+import { FormioErrors } from './formio.errors';
+import { RegisterComponents } from './components/index';
+import { FormioTemplate, RegisterTemplate } from './formio.template';
 
 /**
  * The core engine for the Form.io renderer.
@@ -14,12 +17,28 @@ import { FormioTemplate } from './formio.template';
  * @constructor
  */
 export function FORMIO(template: FormioTemplate) {
-    return [
-        FormioRegister(template),
-        FormioComponentRegister(template),
-        FormioComponentsComponentRegister(template),
-        FormioErrorsRegister(template),
-        ...FORMIO_COMPONENTS(template)
-    ];
+    RegisterTemplate(FormioComponent, template.formio, template.styles);
+    RegisterTemplate(FormioComponentComponent, template.formio_component);
+    RegisterTemplate(FormioComponentsComponent, template.formio_components);
+    RegisterTemplate(FormioErrors, template.errors);
+    RegisterComponents(template);
+    return {
+        imports: [
+            CommonModule,
+            ReactiveFormsModule
+        ],
+        declarations: [
+            FormioComponent,
+            FormioElement,
+            FormioComponentComponent,
+            FormioComponentsComponent,
+            FormioErrors
+        ],
+        exports: [
+            FormioComponent,
+            FormioComponentComponent,
+            FormioComponentsComponent
+        ]
+    };
 }
 

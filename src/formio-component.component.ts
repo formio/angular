@@ -1,16 +1,13 @@
 import { Component, Input, Output, Type, OnInit, EventEmitter } from '@angular/core';
-import { FormGroup, FormArray, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import { FormGroup, FormArray } from '@angular/forms';
 import { FormioComponents } from './components/components';
-import { FormioElement } from './formio-element.component';
-import { FormioTemplate, RegisterTemplate } from './formio.template';
 import { BaseOptions, BaseComponent } from './components/base';
 import { FormioEvents, FormioError } from './formio.common';
 var FormioUtils = require('formio-utils');
 
 @Component({
     selector: 'formio-component',
-    template: '<div></div>',
-    directives: [REACTIVE_FORM_DIRECTIVES, FormioElement]
+    template: '<div></div>'
 })
 export class FormioComponentComponent<T> extends Type implements OnInit {
     components: Array<BaseComponent<any>> = [];
@@ -145,9 +142,4 @@ export class FormioComponentComponent<T> extends Type implements OnInit {
         });
         return errors;
     }
-}
-
-export function FormioComponentRegister(template: FormioTemplate) {
-    RegisterTemplate(FormioComponentComponent, template.formio_component);
-    return FormioComponentComponent;
 }

@@ -1,10 +1,7 @@
 import 'reflect-metadata';
 import { Component, Input, Output, Type, EventEmitter, OnInit }  from '@angular/core';
-import { FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
-import { FormioComponentsComponent } from './formio-components.component';
-import { FormioTemplate, RegisterTemplate } from './formio.template';
+import { FormGroup } from '@angular/forms';
 import { FormioService } from './formio.service';
-import { FormioErrors } from './formio.errors';
 import { FormioForm, FormioEvents, FormioOptions } from './formio.common';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -13,12 +10,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
  */
 @Component({
     selector: 'formio',
-    template: '<div></div>',
-    directives: [
-        FormioComponentsComponent,
-        FormioErrors,
-        REACTIVE_FORM_DIRECTIVES
-    ]
+    template: '<div></div>'
 })
 export class FormioComponent extends Type implements OnInit {
     public formGroup: FormGroup = new FormGroup({});
@@ -84,17 +76,4 @@ export class FormioComponent extends Type implements OnInit {
             });
         }
     }
-}
-
-/**
- * Form.io component registration method. This is used to dynamically load a template
- * into a component based on which template they wish to associate with Form.io
- *
- * @param template - The FormioTemplate object.
- * @returns {Formio}
- * @constructor
- */
-export function FormioRegister(template: FormioTemplate) {
-    RegisterTemplate(FormioComponent, template.formio, template.styles);
-    return FormioComponent;
 }

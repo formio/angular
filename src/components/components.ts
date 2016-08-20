@@ -1,7 +1,5 @@
 import { Compiler, ComponentFactory, Component } from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES, FormGroup  } from '@angular/forms';
-import { FormioComponentsComponent } from '../formio-components.component';
-import { FormioComponentComponent } from '../formio-component.component';
+import { FormGroup  } from '@angular/forms';
 
 export interface FormioComponentsTemplate {
     button: string,
@@ -23,7 +21,6 @@ export interface FormioComponentsTemplate {
 export interface FormioComponentMetaData {
     template: string,
     selector?: string,
-    directives?: Array<any>,
     inputs?: Array<string>
 }
 
@@ -42,11 +39,6 @@ export class FormioComponents {
         metadata: FormioComponentMetaData
     ) {
         metadata.selector = metadata.selector || 'formio-' + name;
-        metadata.directives = metadata.directives || [
-            REACTIVE_FORM_DIRECTIVES,
-            FormioComponentsComponent,
-            FormioComponentComponent
-        ];
         metadata.inputs = metadata.inputs || ['component', 'form'];
         FormioComponents.components[name] = {
             component: component,
