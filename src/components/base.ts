@@ -1,6 +1,5 @@
 import { Type, EventEmitter, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
-import define = require("core-js/fn/object/define");
 import { FormioEvents, FormioError } from '../formio.common';
 
 export interface ConditionalOptions {
@@ -33,12 +32,7 @@ export interface ComponentOptions<T, V> {
     customConditional?: string
 }
 
-export interface BaseOptions<T> extends ComponentOptions<T, ValidateOptions> {
-}
-
-export interface ComponentsOptions {
-    components: Array<BaseOptions<any>>
-}
+export interface BaseOptions<T> extends ComponentOptions<T, ValidateOptions> {}
 
 /**
  * Create the custom validator for validating based on Javascript.

@@ -47,6 +47,7 @@ export class FormioComponent extends Type implements OnInit {
         }
 
         // Subscribe to value changes.
+        //noinspection TypeScriptUnresolvedFunction
         this.formGroup.valueChanges
             .debounceTime(200)
             .subscribe((value: any) => {

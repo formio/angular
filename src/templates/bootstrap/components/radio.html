@@ -3,7 +3,7 @@
     <div class="input-group">
         <div *ngFor="let option of component.settings.values" [class.radio-inline]="component.settings.inline">
             <label [attr.for]="component.settings.key">
-                <input [formControl]="component.control" class="radio" [type]="component.settings.inputType" name="{{component.settings.key}}" value="{{option.value}}" />
+                <input type="radio" [formControl]="component.control" class="radio" name="{{component.settings.key}}" value="{{option.value}}" />
                 {{ option.label }}
             </label>
         </div>
