@@ -1,17 +1,16 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
 import { NumberComponent, NumberField } from './number';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('NumberComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
-
-    // Register the Number component.
-    NumberField(FORMIO_TEMPLATE);
 
     // An easy method for getting new Number settings.
     var getSettings = (overrides:{}):InputOptions => {

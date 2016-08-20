@@ -1,11 +1,13 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { TableComponent, TableOptions, Table } from './table';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('TableComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
 

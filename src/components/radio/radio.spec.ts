@@ -1,16 +1,15 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { RadioComponent, RadioOptions, RadioField } from './radio';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('RadioComponent', () => {
     beforeEach(() => {
         this.form = new FormGroup({});
+        RegisterComponents(FORMIO_TEMPLATE);
     });
-
-    // Register the Radio component.
-    RadioField(FORMIO_TEMPLATE);
 
     // An easy method for getting new Radio settings.
     var getSettings = (overrides:{}):RadioOptions => {

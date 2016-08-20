@@ -62,6 +62,7 @@ export class FormioComponents {
         }
         let component: FormioComponentWrapper = FormioComponents.components[name];
         const decoratedCmp = Component(component.metadata)(component.element);
+        //noinspection TypeScriptValidateTypes
         return compiler.compileComponentAsync(decoratedCmp);
     }
 }

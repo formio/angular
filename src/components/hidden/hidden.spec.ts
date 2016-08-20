@@ -1,16 +1,15 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { HiddenComponent, HiddenOptions, HiddenField } from './hidden';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('HiddenComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
-
-    // Register the hidden component.
-    HiddenField(FORMIO_TEMPLATE);
 
     // An easy method for getting new hidden settings.
     var getSettings = (overrides:{}):HiddenOptions => {

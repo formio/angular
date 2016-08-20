@@ -1,17 +1,16 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup, FormControl } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
 import { PasswordComponent, PasswordField } from './password';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('PasswordComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
-
-    // Register the Password component.
-    PasswordField(FORMIO_TEMPLATE);
 
     // An easy method for getting new password settings.
     var getSettings = (overrides: {}): InputOptions => {

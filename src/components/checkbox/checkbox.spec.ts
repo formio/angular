@@ -1,16 +1,15 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { CheckBoxComponent, CheckBoxOptions, CheckBox } from './checkbox';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('CheckBoxComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
-
-    // Register the CheckBox component.
-    CheckBox(FORMIO_TEMPLATE);
 
     // An easy method for getting new checkbox settings.
     var getSettings = (overrides:{}):CheckBoxOptions => {

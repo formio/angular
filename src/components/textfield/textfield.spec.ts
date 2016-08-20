@@ -1,12 +1,14 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup, FormControl } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
 import { TextFieldComponent, TextField } from './textfield';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('TextFieldComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
 
