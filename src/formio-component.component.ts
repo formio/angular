@@ -33,7 +33,6 @@ export class FormioComponentComponent<T> extends Type implements OnInit {
         // Subscribe to the invalid event.
         if (this.events) {
             this.events.component.subscribe((type: string) => {
-                console.log(type);
                 this.components.forEach((component: BaseComponent<any>) => {
                     switch (type) {
                         case 'invalid':

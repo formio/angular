@@ -13,7 +13,8 @@ export class AppComponent extends Type {
         console.log('onSubmit');
         console.log(value);
     }
-    onChange() {
+    onChange(value: any) {
         console.log('onChange');
+        console.log(value);
     }
 }
