@@ -1,11 +1,14 @@
-import { describe, expect, it } from '@angular/core/testing';
+/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup, FormControl } from '@angular/forms';
 import { ColumnsComponent, ColumnsOptions } from './columns';
+import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { FormioComponentsComponent } from '../../formio-components.component';
-import { FormioComponent } from '../../formio-component.component';
+import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('ColumnsComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
 
@@ -99,7 +102,7 @@ describe('ColumnsComponent', () => {
             components.form = this.form;
             column.components.forEach((comp: any) => {
                 index++;
-                let component = new FormioComponent();
+                let component = new FormioComponentComponent();
                 component.component = comp;
                 component.form = this.form;
                 component.ngOnInit();

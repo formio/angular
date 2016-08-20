@@ -1,4 +1,4 @@
-<div [formGroup]="form" class="form-group" [ngClass]="{'has-error': (errors.length > 0)}">
+<div [formGroup]="form" class="form-group" [ngClass]="{'has-error': (errors.length > 0)}" *ngIf="show">
     <div *ngFor="let comp of components; let i = index;" style="position:relative;">
         <button *ngIf="component.multiple && (i > 0)" class="btn btn-danger" style="position:absolute;right:0;" (click)="removeAt(i)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
         <formio-element [form]="form" [component]="comp" [label]="label" [events]="events" [render]="render"></formio-element>

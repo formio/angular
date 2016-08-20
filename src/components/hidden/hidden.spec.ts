@@ -1,16 +1,15 @@
-import { describe, expect, it } from '@angular/core/testing';
+/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { HiddenComponent, HiddenOptions, HiddenField } from './hidden';
-import { FormioComponent } from '../../formio-component.component';
+import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('HiddenComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
-
-    // Register the hidden component.
-    HiddenField(FORMIO_TEMPLATE);
 
     // An easy method for getting new hidden settings.
     var getSettings = (overrides:{}):HiddenOptions => {
@@ -33,9 +32,9 @@ describe('HiddenComponent', () => {
         return settings;
     };
 
-    let getComponent = (overrides:{}):FormioComponent<string> => {
+    let getComponent = (overrides:{}):FormioComponentComponent<string> => {
         let settings:HiddenOptions = getSettings(overrides);
-        let component = new FormioComponent<string>();
+        let component = new FormioComponentComponent<string>();
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();

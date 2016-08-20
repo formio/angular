@@ -1,11 +1,10 @@
 import {
     Component,
     Input,
-    Output,
     EventEmitter,
     Type,
     OnInit,
-    ComponentResolver,
+    Compiler,
     ViewContainerRef,
     ViewChild
 } from '@angular/core';
@@ -25,12 +24,12 @@ export class FormioElement extends Type implements OnInit {
     @Input() events: FormioEvents;
     @Input() render: EventEmitter<any>;
     @ViewChild('formioElement', { read: ViewContainerRef }) element: ViewContainerRef;
-    constructor(private resolver: ComponentResolver) {
+    constructor(private compiler: Compiler) {
         super();
     }
     ngOnInit() {
         // Get the element.
-        let element = FormioComponents.element(this.component.settings.type,  this.resolver);
+        let element = FormioComponents.element(this.component.settings.type, this.compiler);
         if (!element) {
             return;
         }

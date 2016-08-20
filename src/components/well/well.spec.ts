@@ -1,11 +1,14 @@
-import { describe, expect, it } from '@angular/core/testing';
-import { FormGroup, FormArray } from '@angular/forms';
+/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
+import { FormGroup } from '@angular/forms';
 import { WellComponent, WellOptions } from './well';
+import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { FormioComponentsComponent } from '../../formio-components.component';
-import { FormioComponent } from '../../formio-component.component';
+import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('WellComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
 
@@ -81,9 +84,9 @@ describe('WellComponent', () => {
         return settings;
     };
 
-    let getComponent = (overrides: {}): FormioComponent<string> => {
+    let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:WellOptions = getSettings(overrides);
-        let component = new FormioComponent<string>();
+        let component = new FormioComponentComponent<string>();
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -116,7 +119,7 @@ describe('WellComponent', () => {
         components.form = this.form;
         settings.components.forEach((comp: any) => {
             index++;
-            let component = new FormioComponent();
+            let component = new FormioComponentComponent();
             component.component = comp;
             component.form = this.form;
             component.ngOnInit();

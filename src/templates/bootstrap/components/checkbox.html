@@ -1,6 +1,6 @@
 <div [formGroup]="form" class="checkbox" [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
     <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label">
-        <input [formControl]="component.control" [id]="component.settings.key" [type]="component.settings.inputType" />
+        <input type="checkbox" [formControl]="component.control" [id]="component.settings.key" />
         {{ component.label }}
     </label>
 </div>
