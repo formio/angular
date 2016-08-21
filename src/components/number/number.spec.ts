@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
-import { NumberComponent, NumberField } from './number';
+import { NumberComponent } from './number';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('NumberComponent', () => {

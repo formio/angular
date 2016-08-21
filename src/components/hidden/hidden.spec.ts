@@ -2,7 +2,7 @@
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
-import { HiddenComponent, HiddenOptions, HiddenField } from './hidden';
+import { HiddenComponent, HiddenOptions } from './hidden';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('HiddenComponent', () => {

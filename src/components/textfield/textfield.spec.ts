@@ -3,8 +3,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
-import { TextFieldComponent, TextField } from './textfield';
+import { TextFieldComponent } from './textfield';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { INPUT } from '../../fixtures/fields/input';
 
 describe('TextFieldComponent', () => {
     beforeEach(() => {
@@ -12,41 +13,9 @@ describe('TextFieldComponent', () => {
         this.form = new FormGroup({});
     });
 
-    // Register the TextField component.
-    TextField(FORMIO_TEMPLATE);
-
     // An easy method for getting new text field settings.
     var getSettings = (overrides: {}): InputOptions => {
-        let settings: InputOptions = {
-            type: 'textfield',
-            input: true,
-            tableView: true,
-            inputType: 'text',
-            inputMask: '',
-            label: 'First Name',
-            key: 'firstName',
-            placeholder: 'Enter your first name',
-            prefix: '',
-            suffix: '',
-            multiple: false,
-            defaultValue: '',
-            protected: false,
-            unique: false,
-            persistent: true,
-            validate: {
-                required: true,
-                minLength: 0,
-                maxLength: 0,
-                pattern: '',
-                custom: '',
-                customPrivate: false
-            },
-            conditional: {
-                show: '',
-                when: null,
-                eq: ''
-            }
-        };
+        let settings: InputOptions = INPUT('textfield', 'text', 'firstName', 'First Name');
         Object.assign(settings, overrides);
         return settings;
     };

@@ -6,7 +6,13 @@ import { FormArray, FormGroup, FormControl } from '@angular/forms';
 export interface TableOptions extends BaseOptions<any> {
     numRows: number,
     numCols: number,
+    caption: string,
+    striped: boolean,
+    bordered: boolean,
+    hover: boolean,
+    condensed: boolean,
     rows?: Array<any>,
+    header: Array<any>,
     components?: Array<any>
 }
 

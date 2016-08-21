@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
-import { PasswordComponent, PasswordField } from './password';
+import { PasswordComponent } from './password';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('PasswordComponent', () => {

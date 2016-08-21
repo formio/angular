@@ -6,7 +6,6 @@ import { FormioTemplate } from '../../formio.template';
  * The CheckBoxValidation interface.
  */
 export interface CheckBoxOptions extends BaseOptions<string> {
-    inputType?: string,
     defaultValue?: string,
     hideLabel?: boolean
 }

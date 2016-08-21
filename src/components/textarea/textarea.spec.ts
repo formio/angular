@@ -2,7 +2,8 @@
 import { FormGroup, FormControl } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
-import { TextAreaComponent, TextAreaOptions, TextAreaField } from './textarea';
+import { TextAreaComponent, TextAreaOptions } from './textarea';
+import { TEXTAREA } from '../../fixtures/fields/textarea';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('TextAreaComponent', () => {
@@ -11,38 +12,9 @@ describe('TextAreaComponent', () => {
         this.form = new FormGroup({});
     });
 
-    // Register the TextArea component.
-    TextAreaField(FORMIO_TEMPLATE);
-
     // An easy method for getting new text area settings.
     var getSettings = (overrides: {}): TextAreaOptions => {
-        let settings: TextAreaOptions = {
-            input: true,
-            tableView: true,
-            label: "Textarea",
-            key: "textarea",
-            placeholder: "Enter Your Text Here",
-            prefix: "$",
-            suffix: "@",
-            rows: 3,
-            multiple: false,
-            defaultValue: "",
-            protected: false,
-            persistent: true,
-            validate: {
-                required: true,
-                minLength: 8,
-                maxLength: 100,
-                pattern: "",
-                custom: ""
-            },
-            type: "textarea",
-            conditional: {
-                show: null,
-                when: null,
-                eq: ""
-            }
-        };
+        let settings: TextAreaOptions = TEXTAREA('textarea', 'Textarea');
         Object.assign(settings, overrides);
         return settings;
     };

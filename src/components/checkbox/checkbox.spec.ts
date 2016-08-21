@@ -4,6 +4,7 @@ import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { CheckBoxComponent, CheckBoxOptions, CheckBox } from './checkbox';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { CHECKBOX } from '../../fixtures/fields/checkbox';
 
 describe('CheckBoxComponent', () => {
     beforeEach(() => {
@@ -13,26 +14,7 @@ describe('CheckBoxComponent', () => {
 
     // An easy method for getting new checkbox settings.
     var getSettings = (overrides:{}):CheckBoxOptions => {
-        let settings:CheckBoxOptions = {
-            input: true,
-            inputType: 'checkbox',
-            tableView: false,
-            hideLabel: true,
-            label: 'Checkbox',
-            key: 'checkbox',
-            defaultValue: '',
-            protected: false,
-            persistent: true,
-            validate: {
-                required: true
-            },
-            type: 'checkbox',
-            conditional: {
-                show: null,
-                when: null,
-                eq: ""
-            }
-        };
+        let settings:CheckBoxOptions = CHECKBOX('checkbox', 'Checkbox');
         Object.assign(settings, overrides);
         return settings;
     };

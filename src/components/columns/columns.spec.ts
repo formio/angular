@@ -5,6 +5,7 @@ import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { FormioComponentsComponent } from '../../formio-components.component';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { INPUT } from '../../fixtures/fields/input';
 
 describe('ColumnsComponent', () => {
     beforeEach(() => {
@@ -16,67 +17,9 @@ describe('ColumnsComponent', () => {
         let settings: ColumnsOptions = {
             "input": false,
             "columns": [{
-                "components": [{
-                    "input": true,
-                    "tableView": true,
-                    "inputType": "text",
-                    "inputMask": "",
-                    "label": "First Name",
-                    "key": "firstName",
-                    "placeholder": "Enter your first name",
-                    "prefix": "",
-                    "suffix": "",
-                    "multiple": false,
-                    "defaultValue": "",
-                    "protected": false,
-                    "unique": false,
-                    "persistent": true,
-                    "validate": {
-                        "required": true,
-                        "minLength": 2,
-                        "maxLength": 10,
-                        "pattern": "",
-                        "custom": "",
-                        "customPrivate": false
-                    },
-                    "conditional": {
-                        "show": "",
-                        "when": null,
-                        "eq": ""
-                    },
-                    "type": "textfield"
-                }]
+                "components": [INPUT('textfield', 'text', 'firstName', 'First Name')]
             }, {
-                "components": [{
-                    "input": true,
-                    "tableView": true,
-                    "inputType": "text",
-                    "inputMask": "",
-                    "label": "Last Name",
-                    "key": "lastName",
-                    "placeholder": "Enter your last name",
-                    "prefix": "",
-                    "suffix": "",
-                    "multiple": false,
-                    "defaultValue": "",
-                    "protected": false,
-                    "unique": false,
-                    "persistent": true,
-                    "validate": {
-                        "required": true,
-                        "minLength": 2,
-                        "maxLength": 10,
-                        "pattern": "",
-                        "custom": "",
-                        "customPrivate": false
-                    },
-                    "conditional": {
-                        "show": "",
-                        "when": null,
-                        "eq": ""
-                    },
-                    "type": "textfield"
-                }]
+                "components": [INPUT('textfield', 'text', 'lastName', 'Last Name')]
             }],
             "type": "columns",
             "conditional": {

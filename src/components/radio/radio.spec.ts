@@ -2,7 +2,7 @@
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
-import { RadioComponent, RadioOptions, RadioField } from './radio';
+import { RadioComponent, RadioOptions } from './radio';
 import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('RadioComponent', () => {
@@ -16,7 +16,6 @@ describe('RadioComponent', () => {
         let settings: RadioOptions = {
             input: true,
             tableView: true,
-            inputType: "radio",
             label: "Options",
             key: "radio",
             values: [

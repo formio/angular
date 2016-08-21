@@ -2,8 +2,9 @@
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
-import { TableComponent, TableOptions, Table } from './table';
+import { TableComponent, TableOptions } from './table';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { TABLE } from '../../fixtures/fields/table';
 
 describe('TableComponent', () => {
     beforeEach(() => {
@@ -11,72 +12,9 @@ describe('TableComponent', () => {
         this.form = new FormGroup({});
     });
 
-    // Register the Table component.
-    Table(FORMIO_TEMPLATE);
-
     // An easy method for getting new Table settings.
     var getSettings = (overrides: {}): TableOptions => {
-        let settings: TableOptions = <TableOptions>{
-            input: false,
-            numRows: 2,
-            numCols: 2,
-            rows: [
-                [{components: [{
-                    input: true,
-                    inputType: 'checkbox',
-                    tableView: false,
-                    hideLabel: true,
-                    label: 'Checkbox',
-                    key: 'checkbox',
-                    defaultValue: '',
-                    protected: false,
-                    persistent: true,
-                    validate: {
-                        required: true
-                    },
-                    type: 'checkbox',
-                    conditional: {
-                        show: null,
-                        when: null,
-                        eq: ""
-                    }
-                }],},
-                    {components: [{
-                        input: true,
-                        inputType: 'checkbox',
-                        tableView: false,
-                        hideLabel: true,
-                        label: 'Checkbox',
-                        key: 'checkbox',
-                        defaultValue: '',
-                        protected: false,
-                        persistent: true,
-                        validate: {
-                            required: true
-                        },
-                        type: 'checkbox',
-                        conditional: {
-                            show: null,
-                            when: null,
-                            eq: ""
-                        }
-                    }],}],
-                [{components: [],},
-                    {components: [],}]
-            ],
-            header: [],
-            caption: "",
-            striped: true,
-            bordered: true,
-            hover: true,
-            condensed: true,
-            type: "table",
-            conditional: {
-                show: null,
-                when: null,
-                eq: ""
-            }
-        };
+        let settings: TableOptions = TABLE;
         Object.assign(settings, overrides);
         return settings;
     };
