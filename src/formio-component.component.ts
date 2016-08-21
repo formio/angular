@@ -10,6 +10,7 @@ var FormioUtils = require('formio-utils');
     template: '<div></div>'
 })
 export class FormioComponentComponent<T> extends Type implements OnInit {
+    show: Boolean = true;
     components: Array<BaseComponent<any>> = [];
     container: FormArray = new FormArray([]);
     @Input() component: BaseOptions<T>;
@@ -17,7 +18,6 @@ export class FormioComponentComponent<T> extends Type implements OnInit {
     @Input() events: FormioEvents;
     @Input() label: string | boolean;
     @Output() render: EventEmitter<any> = new EventEmitter();
-    show: Boolean = true;
     constructor() {
         super();
     }

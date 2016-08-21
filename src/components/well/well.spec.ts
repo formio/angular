@@ -5,6 +5,8 @@ import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { FormioComponentsComponent } from '../../formio-components.component';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { INPUT } from '../../fixtures/fields/input';
+import { TEXTAREA } from '../../fixtures/fields/textarea';
 
 describe('WellComponent', () => {
     beforeEach(() => {
@@ -18,62 +20,10 @@ describe('WellComponent', () => {
             type: "well",
             key: "Well",
             lockKey: true,
-            components: [{
-                input: true,
-                tableView: true,
-                inputType: "text",
-                inputMask: "",
-                label: "Textfield",
-                key: "text",
-                placeholder: "Enter your text",
-                prefix: "",
-                suffix: "",
-                multiple: false,
-                defaultValue: "",
-                protected: false,
-                unique: false,
-                persistent: true,
-                validate: {
-                    required: true,
-                    minLength: 6,
-                    maxLength: 10,
-                    pattern: "",
-                    custom: "",
-                    customPrivate: false
-                },
-                conditional: {
-                    show: "",
-                    when: null,
-                    eq: ""
-                },
-                type: "textfield"
-            }, {
-                input: true,
-                tableView: true,
-                label: "Textarea",
-                key: "textarea",
-                placeholder: "Enter Your Text Here",
-                prefix: "",
-                suffix: "",
-                rows: 3,
-                multiple: false,
-                defaultValue: "",
-                protected: false,
-                persistent: true,
-                validate: {
-                    required: true,
-                    minLength: 5,
-                    maxLength: 100,
-                    pattern: "",
-                    custom: ""
-                },
-                type: "textarea",
-                conditional: {
-                    show: null,
-                    when: null,
-                    eq: ""
-                }
-            }],
+            components: [
+                INPUT('textfield', 'text', 'text', 'Test1'),
+                TEXTAREA('textarea', 'Textarea')
+            ],
             conditional: {
                 show: null,
                 when: null,
