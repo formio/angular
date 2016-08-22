@@ -786,7 +786,7 @@ export const FORM: any = {
       "filter": "",
       "authenticate": false,
       "template": "<span>{{ item.label }}</span>",
-      "multiple": false,
+      "multiple": true,
       "protected": false,
       "unique": false,
       "persistent": true,

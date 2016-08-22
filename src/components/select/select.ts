@@ -5,6 +5,7 @@ import { FormioTemplate } from '../../formio.template';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass } from '@angular/common';
 import { SELECT_DIRECTIVES } from '../../../node_modules/ng2-select/ng2-select';
 var Formio = require('formiojs');
+import 'style!ng2-select/components/css/ng2-select.css'
 
 export interface SelectOptions extends BaseOptions<any> {
     placeholder?: string;

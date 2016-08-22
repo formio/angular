@@ -1,46 +1,27 @@
-import { describe, expect, it } from '@angular/core/testing';
+/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 import { CheckBoxComponent, CheckBoxOptions, CheckBox } from './checkbox';
-import { FormioComponent } from '../../formio-component.component';
+import { FormioComponentComponent } from '../../formio-component.component';
+import { CHECKBOX } from '../../fixtures/fields/checkbox';
 
 describe('CheckBoxComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
 
-    // Register the CheckBox component.
-    CheckBox(FORMIO_TEMPLATE);
-
     // An easy method for getting new checkbox settings.
     var getSettings = (overrides:{}):CheckBoxOptions => {
-        let settings:CheckBoxOptions = {
-            input: true,
-            inputType: 'checkbox',
-            tableView: false,
-            hideLabel: true,
-            label: 'Checkbox',
-            key: 'checkbox',
-            defaultValue: '',
-            protected: false,
-            persistent: true,
-            validate: {
-                required: true
-            },
-            type: 'checkbox',
-            conditional: {
-                show: null,
-                when: null,
-                eq: ""
-            }
-        };
+        let settings:CheckBoxOptions = CHECKBOX('checkbox', 'Checkbox');
         Object.assign(settings, overrides);
         return settings;
     };
 
-    let getComponent = (overrides:{}):FormioComponent<string> => {
+    let getComponent = (overrides:{}):FormioComponentComponent<string> => {
         let settings:CheckBoxOptions = getSettings(overrides);
-        let component = new FormioComponent<string>();
+        let component = new FormioComponentComponent<string>();
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();

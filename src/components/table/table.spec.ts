@@ -1,87 +1,27 @@
-import { describe, expect, it, inject, TestComponentBuilder } from '@angular/core/testing';
-import { FormGroup, FormControl } from '@angular/forms';
+/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
+import { FormGroup } from '@angular/forms';
 import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
-import { TableComponent, TableOptions, Table } from './table';
-import { FormioComponent } from '../../formio-component.component';
+import { RegisterComponents } from '../index';
+import { TableComponent, TableOptions } from './table';
+import { FormioComponentComponent } from '../../formio-component.component';
+import { TABLE } from '../../fixtures/fields/table';
 
 describe('TableComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
 
-    // Register the Table component.
-    Table(FORMIO_TEMPLATE);
-
     // An easy method for getting new Table settings.
     var getSettings = (overrides: {}): TableOptions => {
-        let settings: TableOptions = <TableOptions>{
-            input: false,
-            numRows: 2,
-            numCols: 2,
-            rows: [
-                [{components: [{
-                    input: true,
-                    inputType: 'checkbox',
-                    tableView: false,
-                    hideLabel: true,
-                    label: 'Checkbox',
-                    key: 'checkbox',
-                    defaultValue: '',
-                    protected: false,
-                    persistent: true,
-                    validate: {
-                        required: true
-                    },
-                    type: 'checkbox',
-                    conditional: {
-                        show: null,
-                        when: null,
-                        eq: ""
-                    }
-                }],},
-                    {components: [{
-                        input: true,
-                        inputType: 'checkbox',
-                        tableView: false,
-                        hideLabel: true,
-                        label: 'Checkbox',
-                        key: 'checkbox',
-                        defaultValue: '',
-                        protected: false,
-                        persistent: true,
-                        validate: {
-                            required: true
-                        },
-                        type: 'checkbox',
-                        conditional: {
-                            show: null,
-                            when: null,
-                            eq: ""
-                        }
-                    }],}],
-                [{components: [],},
-                    {components: [],}]
-            ],
-            header: [],
-            caption: "",
-            striped: true,
-            bordered: true,
-            hover: true,
-            condensed: true,
-            type: "table",
-            conditional: {
-                show: null,
-                when: null,
-                eq: ""
-            }
-        };
+        let settings: TableOptions = TABLE;
         Object.assign(settings, overrides);
         return settings;
     };
 
-    let getComponent = (overrides: {}): FormioComponent<string> => {
+    let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:TableOptions = getSettings(overrides);
-        let component = new FormioComponent<string>();
+        let component = new FormioComponentComponent<string>();
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();

@@ -17,25 +17,23 @@ import { Panel } from './panel/panel';
 import { FieldSet } from './fieldset/fieldset';
 import { Well } from './well/well';
 import { Select } from './select/select';
-export function FORMIO_COMPONENTS(template: FormioTemplate) {
-    return [
-        TextField(template),
-        Button(template),
-        Columns(template),
-        Container(template),
-        DataGrid(template),
-        EmailField(template),
-        TextAreaField(template),
-        HiddenField(template),
-        PasswordField(template),
-        NumberField(template),
-        RadioField(template),
-        CheckBox(template),
-        CustomField(template),
-        Table(template),
-        Panel(template),
-        FieldSet(template),
-        Well(template),
-        Select(template)
-    ];
+export function RegisterComponents(template: FormioTemplate) {
+    TextField(template);
+    Button(template);
+    Columns(template);
+    Container(template);
+    DataGrid(template);
+    EmailField(template);
+    TextAreaField(template);
+    HiddenField(template);
+    PasswordField(template);
+    NumberField(template);
+    RadioField(template);
+    CheckBox(template);
+    CustomField(template);
+    Table(template);
+    Panel(template);
+    FieldSet(template);
+    Well(template);
+    Select(template);
 }

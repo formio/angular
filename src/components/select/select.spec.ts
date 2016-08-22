@@ -1,10 +1,12 @@
-import { describe, expect, it } from '@angular/core/testing';
 import { FormGroup } from '@angular/forms';
-import { FormioComponent } from '../../formio-component.component';
-import { SelectComponent, SelectOptions } from "./select";
+import { FormioComponentComponent } from '../../formio-component.component';
+import { SelectComponent, SelectOptions } from './select';
+import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { RegisterComponents } from '../index';
 
 describe('SelectComponent', () => {
     beforeEach(() => {
+        RegisterComponents(FORMIO_TEMPLATE);
         this.form = new FormGroup({});
     });
 
@@ -75,15 +77,14 @@ describe('SelectComponent', () => {
         return settings;
     };
 
-    let getComponent = (overrides: {}): FormioComponent<string> => {
+    let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:SelectOptions = getSettings(overrides);
-        let component = new FormioComponent<string>();
+        let component = new FormioComponentComponent<string>();
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
         return component;
     };
-
     it('Test FormioComponent for Select', () => {
         let component = getComponent({});
         expect(component.components[0] instanceof SelectComponent).toEqual(true);

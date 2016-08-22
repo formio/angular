@@ -11,11 +11,15 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.ts']
+    extensions: ['', '.js', '.ts','.css']
   },
 
   module: {
     loaders: [
+      {
+        test: /\.css$/,
+        loader: 'css'
+      },
       {
         test: /\.ts$/,
         loader: 'ts'

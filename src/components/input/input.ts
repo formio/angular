@@ -1,5 +1,5 @@
 import { FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { BaseComponent, BaseElement, ComponentOptions, ValidateOptions } from '../base';
+import { BaseComponent, ComponentOptions, ValidateOptions } from '../base';
 
 /**
  * The InputValidation interface.

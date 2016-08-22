@@ -1,6 +1,5 @@
-import { Type, Input, Output, EventEmitter, OnInit } from "@angular/core";
+import { Type, EventEmitter, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
-import define = require("core-js/fn/object/define");
 import { FormioEvents, FormioError } from '../formio.common';
 
 export interface ConditionalOptions {
@@ -29,15 +28,11 @@ export interface ComponentOptions<T, V> {
     tableView?: boolean,
     lockKey?: boolean,
     validate?: V,
-    conditional?: ConditionalOptions
+    conditional?: ConditionalOptions,
+    customConditional?: string
 }
 
-export interface BaseOptions<T> extends ComponentOptions<T, ValidateOptions> {
-}
-
-export interface ComponentsOptions {
-    components: Array<BaseOptions<any>>
-}
+export interface BaseOptions<T> extends ComponentOptions<T, ValidateOptions> {}
 
 /**
  * Create the custom validator for validating based on Javascript.
@@ -144,10 +139,10 @@ export class BaseComponent<T> {
 }
 
 export class BaseElement<T> extends Type implements OnInit {
-    @Input() component: T;
-    @Input() form: FormGroup;
-    @Input() events: FormioEvents;
-    @Input() render: EventEmitter<any>;
+    component: T;
+    form: FormGroup;
+    events: FormioEvents;
+    render: EventEmitter<any>;
     private renderCount: number = 0;
     get numComponents() : number {
         return 0;

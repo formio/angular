@@ -1,3 +1,5 @@
+import { NgModule } from '@angular/core';
 import { FORMIO } from './formio';
 import { FORMIO_TEMPLATE } from './templates/bootstrap';
-export const FORMIO_BOOTSTRAP = FORMIO(FORMIO_TEMPLATE);
+@NgModule(FORMIO(FORMIO_TEMPLATE))
+export class FormioBootstrap {}
