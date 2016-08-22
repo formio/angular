@@ -748,19 +748,19 @@ export const FORM: any = {
       "data": {
         "values": [
           {
-            "value": "mango",
+            "value": "opt1",
             "label": "mango"
           },
           {
-            "value": "apple",
+            "value": "opt2",
             "label": "apple"
           },
           {
-            "value": "pineapple",
+            "value": "opt3",
             "label": "pineapple"
           },
           {
-            "value": "grapes",
+            "value": "opt4",
             "label": "grapes"
           }],
         "json": [
@@ -776,16 +776,16 @@ export const FORM: any = {
             "label": "three",
             "test": "opt3"
           }],
-        "url": "https://cdn.rawgit.com/mshafrir/2646763/raw/states_titlecase.json",
+        "url": "https://api.github.com/users/hadley/orgs",
         "resource": "manager"
       },
       "dataSrc": "values",
-      "valueProperty": "fullName",
+      "valueProperty": "",
       "defaultValue": "",
       "refreshOn": "",
       "filter": "",
       "authenticate": false,
-      "template": "{{ item.label }}",
+      "template": "<span>{{ item.label }}</span>",
       "multiple": false,
       "protected": false,
       "unique": false,

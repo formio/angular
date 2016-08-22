@@ -1,15 +1,8 @@
 <div [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
     <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label"><h3>{{ component.label }}</h3></label>
-    <ng-select *ngIf="component.settings.dataSrc=='values'"
-               [items]="component.settings.data.values"
-               placeholder="{{component.settings.placeholder}}">
-    </ng-select>
-    <ng-select *ngIf="component.settings.dataSrc=='json'"
-               [items]="component.settings.data.json"
-               placeholder="{{component.settings.placeholder}}">
-    </ng-select>
-    <ng-select *ngIf="component.settings.dataSrc=='resource'"
-               [items]="component.settings.data.values"
-               placeholder="{{component.settings.placeholder}}">
+    <ng-select [items]="component.settings.data.values"
+               (data)="refreshValue($event)"
+               [multiple]="component.settings.multiple"
+               placeholder="{{component.settings.placeholder}}" >
     </ng-select>
 </div>
