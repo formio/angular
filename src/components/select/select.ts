@@ -2,6 +2,7 @@ import { OnInit } from "@angular/core";
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
+import { FormioService } from '../../formio.service';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass } from '@angular/common';
 import { SELECT_DIRECTIVES } from '../../../node_modules/ng2-select/ng2-select';
 var Formio = require('formiojs');
@@ -53,10 +54,9 @@ export class SelectElement extends BaseElement<SelectComponent> implements OnIni
                 this.component.settings.data.values = selectItems.slice(0);
                 break;
             case 'resource':
-                let baseUrl: string = 'https://ycxhcpsbzoefppz.form.io/';
-                let resourceUrl: string = baseUrl + this.component.settings.data.resource;
+                let baseUrl = Formio.getBaseUrl() + '/' + this.component.settings.data.resource;
                 let value: string = this.component.settings.valueProperty.split('.')[1];
-                (new Formio(resourceUrl)).loadSubmissions().then((submission: Array<any>) => {
+                (new FormioService(baseUrl)).loadSubmissions().subscribe((submission: Array<any>) => {
                     for(let i=0; i < submission.length; i++){
                         selectItems.push({id: submission[i].data[value], text: submission[i].data[value]});
                     }

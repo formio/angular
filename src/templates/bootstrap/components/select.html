@@ -1,5 +1,5 @@
 <div [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
-    <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label sample"><h3>{{ component.label }}</h3></label>
+    <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label"><h3>{{ component.label }}</h3></label>
     <ng-select [items]="component.settings.data.values"
                (data)="refreshValue($event)"
                [multiple]="component.settings.multiple"
