@@ -1,0 +1,8 @@
+<div [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
+    <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label"><h3>{{ component.label }}</h3></label>
+    <pre><em *ngIf="dt">{{ getDate() | date:'fullDate'}} {{mytime}}</em></pre>
+    <datepicker ngDefaultControl [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true"></datepicker>
+    <timepicker ngDefaultControl [(ngModel)]="mytime" name="name" (change)="changed()" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+    <button type="button" class="btn btn-sm btn-info" (click)="today()">Today</button>
+    <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+</div>

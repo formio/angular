@@ -742,6 +742,48 @@ export const FORM: any = {
     {
       "input": true,
       "tableView": true,
+      "label": "DateTime",
+      "key": "dateTime",
+      "placeholder": "Select date",
+      "format": "yyyy-MM-dd HH:mm",
+      "enableDate": true,
+      "enableTime": true,
+      "datepickerMode": "day",
+      "datePicker": {
+        "showWeeks": true,
+        "startingDay": "0",
+        "initDate": "",
+        "minMode": "day",
+        "maxMode": "year",
+        "yearRange": "20",
+        "datepickerMode": "day"
+      },
+      "timePicker": {
+        "hourStep": 1,
+        "minuteStep": 1,
+        "showMeridian": true,
+        "readonlyInput": false,
+        "mousewheel": true,
+        "arrowkeys": true
+      },
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false,
+        "custom": ""
+      },
+      "type": "datetime",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      },
+      "minDate": {},
+      "maxDate": {}
+    },
+    {
+      "input": true,
+      "tableView": true,
       "key": "name",
       "label": "Name",
       "protected": false,
