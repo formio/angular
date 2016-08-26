@@ -1,8 +1,33 @@
 <div [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
     <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label"><h3>{{ component.label }}</h3></label>
-    <pre><em *ngIf="dt">{{ getDate() | date:'fullDate'}} {{mytime}}</em></pre>
-    <datepicker ngDefaultControl [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true"></datepicker>
-    <timepicker ngDefaultControl [(ngModel)]="mytime" name="name" (change)="changed()" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
-    <button type="button" class="btn btn-sm btn-info" (click)="today()">Today</button>
-    <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+    <div *ngIf="showDate" class="input-group">
+        <input [type]="text" [placeholder]="component.settings.placeholder" class="form-control" (click)="selectDate()"/>
+        <span class="input-group-addon" (click)="selectDate()"><i class="glyphicon glyphicon-calendar"></i></span>
+    </div>
+    <div *ngIf="!showDate" class="input-group">
+        <input [formControl]="component.control" value="{{ getDate() | date: dateFormat}} {{ mytime | date:'HH:mm' }}" [type]="text" [placeholder]="component.settings.placeholder" class="form-control" (click)="selectDate()" />
+        <span class="input-group-addon" (click)="selectDate()"><i class="glyphicon glyphicon-calendar"></i></span>
+    </div>
+    <div *ngIf="displayDate">
+        <datepicker ngDefaultControl [(ngModel)]="dt" (click)="selectTime()" [showWeeks]="component.settings.datePicker.showWeeks" [startingDay]="component.settings.datePicker.startingDay" [initDate]="component.settings.datePicker.initDate" [minMode]="component.settings.datePicker.minMode" [maxMode]="component.settings.datePicker.maxMode" [yearRange]="component.settings.datePicker.yearRange" [datepickerMode]="component.settings.datePicker.datepickerMode"></datepicker>
+        <span class="btn-group pull-left">
+            <button type="button" class="btn btn-sm btn-info" (click)="today()">Today</button>
+            <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+         </span>
+        <span class="btn-group">
+            <button type="button" class="btn btn-sm btn-default" (click)="selectTime()">Time</button>
+            <button type="button" class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span>
+    </div>
+    <div *ngIf="displayTime">
+        <timepicker ngDefaultControl [(ngModel)]="mytime" [hourStep]="component.settings.timePicker.hourStep" [minuteStep]="component.settings.timePicker.minuteStep" [showMeridian]="component.settings.timePicker.showMeridian" [readonlyInput]="component.settings.timePicker.readonlyInput" [mousewheel]="component.settings.timePicker.mousewheel" [arrowkeys]="component.settings.timePicker.arrowkeys"></timepicker>
+        <span class="btn-group pull-left">
+            <button type="button" class="btn btn-sm btn-info" (click)="now()">Now</button>
+            <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group">
+            <button type="button" class="btn btn-sm btn-default" (click)="selectDate()">Date</button>
+            <button type="button" class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span>
+    </div>
 </div>

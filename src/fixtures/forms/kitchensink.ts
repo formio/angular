@@ -753,7 +753,7 @@ export const FORM: any = {
         "showWeeks": true,
         "startingDay": "0",
         "initDate": "",
-        "minMode": "day",
+        "minMode": "month",
         "maxMode": "year",
         "yearRange": "20",
         "datepickerMode": "day"
@@ -762,9 +762,9 @@ export const FORM: any = {
         "hourStep": 1,
         "minuteStep": 1,
         "showMeridian": true,
-        "readonlyInput": false,
+        "readonlyInput": true,
         "mousewheel": true,
-        "arrowkeys": true
+        "arrowkeys": false
       },
       "protected": false,
       "persistent": true,
@@ -778,8 +778,8 @@ export const FORM: any = {
         "when": null,
         "eq": ""
       },
-      "minDate": {},
-      "maxDate": {}
+      "minDate": "2016-07-01T18:30:00.000Z",
+      "maxDate": "2016-08-30T18:30:00.000Z"
     },
     {
       "input": true,
