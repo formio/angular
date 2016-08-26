@@ -141,4 +141,12 @@ export class FormioComponentComponent<T> extends Type implements OnInit {
         });
         return errors;
     }
+    allowMultiple(): boolean {
+        if(this.component.type=='select'){
+            return false;
+        }
+        else {
+            return this.component.multiple;
+        }
+    }
 }
