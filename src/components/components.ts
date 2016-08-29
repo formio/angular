@@ -15,7 +15,8 @@ export interface FormioComponentsTemplate {
     table: string,
     panel: string,
     fieldset: string,
-    well: string
+    well: string,
+    content: string
 }
 
 export interface FormioComponentMetaData {
