@@ -26,7 +26,7 @@ export class FormioComponentComponent<T> extends Type implements OnInit {
         if (this.hasConditions()) {
             this.show = false;
         }
-
+        
         // Add this component.
         this.addComponent();
 
