@@ -21,7 +21,9 @@ export interface SelectOptions extends BaseOptions<any> {
 }
 
 export class SelectComponent extends BaseComponent<SelectOptions> {
-
+    allowMultiple(): boolean{
+        return false;
+    }
 }
 
 interface IdTextPair{
@@ -30,7 +32,6 @@ interface IdTextPair{
 }
 
 let selectItems: IdTextPair[] = [];
-
 
 export class SelectElement extends BaseElement<SelectComponent> implements OnInit{
     private value:any = {};

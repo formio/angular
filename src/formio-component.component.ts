@@ -26,7 +26,7 @@ export class FormioComponentComponent<T> extends Type implements OnInit {
         if (this.hasConditions()) {
             this.show = false;
         }
-
+        
         // Add this component.
         this.addComponent();
 
@@ -140,13 +140,5 @@ export class FormioComponentComponent<T> extends Type implements OnInit {
             });
         });
         return errors;
-    }
-    allowMultiple(): boolean {
-        if(this.component.type=='select'){
-            return false;
-        }
-        else {
-            return this.component.multiple;
-        }
     }
 }
