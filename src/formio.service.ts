@@ -20,12 +20,4 @@ export class FormioService {
             });
         });
     }
-    loadSubmissions(): Observable<{}>{
-        return Observable.create((observer: Observer<{}>) => {
-            (new Formio(this.url)).loadSubmissions().then((submission: {}) => {
-                observer.next(submission);
-                observer.complete();
-            });
-        });
-    }
 }
