@@ -15,15 +15,13 @@ export interface FormioComponentsTemplate {
     table: string,
     panel: string,
     fieldset: string,
-    well: string,
-    select: string
+    well: string
 }
 
 export interface FormioComponentMetaData {
     template: string,
     selector?: string,
-    inputs?: Array<string>,
-    directives?: Array<any>
+    inputs?: Array<string>
 }
 
 export interface FormioComponentWrapper {

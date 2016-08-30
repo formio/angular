@@ -136,9 +136,6 @@ export class BaseComponent<T> {
         }
         return validators;
     }
-    allowMultiple(): boolean{
-        return this.settings.multiple;
-    }
 }
 
 export class BaseElement<T> extends Type implements OnInit {
