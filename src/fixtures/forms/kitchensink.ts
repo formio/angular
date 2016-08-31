@@ -740,6 +740,27 @@ export const FORM: any = {
       }
     },
     {
+        "input": false,
+        "tag": "p",
+        "key": "pname",
+        "lockKey": true,
+        "attrs": [
+            {
+                "attr": "src",
+                "value": "/img"
+            }
+        ],
+        "className": "customClass",
+        "content": "Hello, Good Morning!!! This is Html Element.",
+        "type": "htmlelement",
+        "tags": ["span"],
+        "conditional": {
+            "show": null,
+            "when": null,
+            "eq": ""
+        }
+    },
+    {
       "input": true,
       "tableView": true,
       "key": "name",
