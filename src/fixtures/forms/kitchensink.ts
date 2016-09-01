@@ -767,6 +767,33 @@ export const FORM: any = {
       "disableOnInvalid": false,
       "theme": "primary",
       "type": "button"
+    },
+    {
+      "input": true,
+      "tableView": true,
+      "inputType": "text",
+      "inputMask": "",
+      "customClass": "customClass",
+      "multiple": false,
+      "label": "Currency",
+      "key": "currency",
+      "placeholder": "currency",
+      "prefix": "$",
+      "suffix": "@",
+      "defaultValue": "",
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false,
+        "multiple": "",
+        "custom": ""
+      },
+      "conditional": {
+      "show": null,
+      "when": null,
+      "eq": ""
+      },
+      "type": "currency",
     }
   ]
 };
