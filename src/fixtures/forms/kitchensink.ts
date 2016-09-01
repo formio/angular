@@ -740,65 +740,86 @@ export const FORM: any = {
       }
     },
     {
-      "input": true,
-      "tableView": true,
-      "label": "Fruits",
-      "key": "fruits",
-      "placeholder": "Select favourite",
-      "data": {
-        "values": [
-          {
-            "value": "opt1",
-            "label": "mango"
-          },
-          {
-            "value": "opt2",
-            "label": "apple"
-          },
-          {
-            "value": "opt3",
-            "label": "pineapple"
-          },
-          {
-            "value": "opt4",
-            "label": "grapes"
-          }],
-        "json": [
-          {
-            "label": "one",
-            "test": "opt1"
-          },
-          {
-            "label": "two",
-            "test": "opt2"
-          },
-          {
-            "label": "three",
-            "test": "opt3"
-          }],
-        "url": "https://api.github.com/users/hadley/orgs",
-        "resource": "manager"
-      },
-      "dataSrc": "values",
-      "valueProperty": "",
-      "defaultValue": "",
-      "refreshOn": "",
-      "filter": "",
-      "authenticate": false,
-      "template": "<span>{{ item.label }}</span>",
-      "multiple": true,
-      "protected": false,
-      "unique": false,
-      "persistent": true,
-      "validate": {
-        "required": false
-      },
-      "type": "select",
-      "conditional": {
-        "show": null,
-        "when": null,
-        "eq": ""
-      }
+        "input": false,
+        "tag": "p",
+        "key": "pname",
+        "lockKey": true,
+        "attrs": [
+            {
+                "attr": "src",
+                "value": "/img"
+            }
+        ],
+        "className": "customClass",
+        "content": "Hello, Good Morning!!! This is Html Element.",
+        "type": "htmlelement",
+        "tags": ["span"],
+        "conditional": {
+            "show": null,
+            "when": null,
+            "eq": ""
+        }
+    },
+    {
+        "input": true,
+        "tableView": true,
+        "label": "Fruits",
+        "key": "fruits",
+        "placeholder": "Select favourite",
+        "data": {
+            "values": [
+                {
+                    "value": "opt1",
+                    "label": "mango"
+                },
+                {
+                    "value": "opt2",
+                    "label": "apple"
+                },
+                {
+                    "value": "opt3",
+                    "label": "pineapple"
+                },
+                {
+                    "value": "opt4",
+                    "label": "grapes"
+                }],
+              "json": [
+                  {
+                    "label": "one",
+                    "test": "opt1"
+                  },
+                  {
+                    "label": "two",
+                    "test": "opt2"
+                  },
+                  {
+                    "label": "three",
+                    "test": "opt3"
+                  }],
+              "url": "https://api.github.com/users/hadley/orgs",
+              "resource": "manager"
+        },
+        "dataSrc": "values",
+        "valueProperty": "",
+        "defaultValue": "",
+        "refreshOn": "",
+        "filter": "",
+        "authenticate": false,
+        "template": "<span>{{ item.label }}</span>",
+        "multiple": true,
+        "protected": false,
+        "unique": false,
+        "persistent": true,
+        "validate": {
+            "required": false
+        },
+        "type": "select",
+        "conditional": {
+            "show": null,
+            "when": null,
+            "eq": ""
+        }
     },
     {
       "input": true,

@@ -17,16 +17,16 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.css$/,
-        loader: 'css'
-      },
-      {
         test: /\.ts$/,
         loader: 'ts'
       },
       {
         test: /\.html/,
         loader: 'html'
+      },
+      {
+        test: /\.css$/,
+        loader: 'css'
       }
     ]
   },
