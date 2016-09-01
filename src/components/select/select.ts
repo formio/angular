@@ -31,14 +31,13 @@ interface IdTextPair{
     text: string;
 }
 
-let selectItems: IdTextPair[] = [];
-
 export class SelectElement extends BaseElement<SelectComponent> implements OnInit{
     private value:any = {};
     public refreshValue(value:any):void {
         this.value = value;
     }
     ngOnInit(){
+        let selectItems: IdTextPair[] = [];
         let template: string = this.component.settings.template.split('.')[1].split(' ')[0];
         let valueProperty: string = this.component.settings.valueProperty;
         switch(this.component.settings.dataSrc){
