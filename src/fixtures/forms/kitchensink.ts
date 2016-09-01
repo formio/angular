@@ -673,6 +673,43 @@ export const FORM: any = {
       }
     },
     {
+      "input": true,
+      "tableView": true,
+      "label": "Select box",
+      "key": "selectbox",
+      "values": [
+        {
+          "value": "tea",
+          "label": "Tea"
+        },
+        {
+          "value": "tea",
+          "label": "Coffee"
+        },
+        {
+          "value": "chocolate",
+          "label": "Chocolate"
+        },
+        {
+          "value": "ice-cream",
+          "label": "Ice-Cream"
+        }
+      ],
+      "inline": true,
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false
+      },
+      "type": "selectboxes",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      },
+      "customClass": "myselect"
+    },
+    {
       "input": false,
       "title": "Panel",
       "theme": "primary",
