@@ -338,6 +338,18 @@ export const FORM: any = {
       "striped": true,
       "bordered": true
     },
+      {
+          "input": false,
+          "html": "<p><em><strong>Good Morning Guys!!!<br>This is Content component.</strong></em></p> ",
+          "type": "content",
+          "conditional": {
+                "show": null,
+                "when": null,
+                "eq": ""
+            },
+          "key": "mycontent",
+          "lockKey": true
+      },
     {
       "input": false,
       "numRows": 2,

@@ -26,6 +26,7 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
         fieldset: require('./bootstrap/components/fieldset.html'),
         well: require('./bootstrap/components/well.html'),
         htmlelement: require('./bootstrap/components/htmlelement.html'),
-        select: require('./bootstrap/components/select.html')
+        select: require('./bootstrap/components/select.html'),
+        content: require('./bootstrap/components/content.html')
     }
 };
