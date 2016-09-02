@@ -19,6 +19,7 @@ import { Well } from './well/well';
 import { SelectBox } from './selectboxes/selectboxes';
 import { Content } from './content/content';
 import { HtmlElement } from './htmlelement/htmlelement';
+import { Select } from './select/select';
 export function RegisterComponents(template: FormioTemplate) {
     TextField(template);
     Button(template);
@@ -40,4 +41,5 @@ export function RegisterComponents(template: FormioTemplate) {
     SelectBox(template);
     Content(template);
     HtmlElement(template);
+    Select(template);
 }

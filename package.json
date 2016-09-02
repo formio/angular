@@ -16,7 +16,8 @@
     "@angular/forms": "^0.3.0",
     "formio-utils": "^0.1.9",
     "formiojs": "^1.2.0",
-    "zone.js": "^0.6.12"
+    "zone.js": "^0.6.12",
+    "ng2-select": "^1.0.3"
   },
   "devDependencies": {
     "@angular/platform-browser": "2.0.0-rc.5",
