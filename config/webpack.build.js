@@ -12,7 +12,7 @@ module.exports = {
     filename: '[name].bootstrap.min.js'
   },
   resolve: {
-    extensions: ['', '.js', '.ts']
+    extensions: ['', '.js', '.ts', '.css']
   },
   module: {
     loaders: [
@@ -23,6 +23,10 @@ module.exports = {
       {
         test: /\.html/,
         loader: 'html'
+      },
+      {
+        test: /\.css$/,
+        loader: 'css'
       }
     ]
   },

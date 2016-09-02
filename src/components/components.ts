@@ -19,12 +19,14 @@ export interface FormioComponentsTemplate {
     htmlelement: string,
     content: string,
     currency: string
+    select: string
 }
 
 export interface FormioComponentMetaData {
     template: string,
     selector?: string,
-    inputs?: Array<string>
+    inputs?: Array<string>,
+    directives?: Array<any>
 }
 
 export interface FormioComponentWrapper {
