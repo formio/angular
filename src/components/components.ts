@@ -16,14 +16,16 @@ export interface FormioComponentsTemplate {
     panel: string,
     fieldset: string,
     well: string,
-    content: string,
-    htmlelement: string
+    htmlelement: string,
+    select: string,
+    content: string
 }
 
 export interface FormioComponentMetaData {
     template: string,
     selector?: string,
-    inputs?: Array<string>
+    inputs?: Array<string>,
+    directives?: Array<any>
 }
 
 export interface FormioComponentWrapper {

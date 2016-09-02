@@ -18,6 +18,7 @@ import { FieldSet } from './fieldset/fieldset';
 import { Well } from './well/well';
 import { Content } from './content/content';
 import { HtmlElement } from './htmlelement/htmlelement';
+import { Select } from './select/select';
 export function RegisterComponents(template: FormioTemplate) {
     TextField(template);
     Button(template);
@@ -38,4 +39,5 @@ export function RegisterComponents(template: FormioTemplate) {
     Well(template);
     Content(template);
     HtmlElement(template);
+    Select(template);
 }
