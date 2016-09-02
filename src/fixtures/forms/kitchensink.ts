@@ -338,6 +338,18 @@ export const FORM: any = {
       "striped": true,
       "bordered": true
     },
+      {
+          "input": false,
+          "html": "<p><em><strong>Good Morning Guys!!!<br>This is Content component.</strong></em></p> ",
+          "type": "content",
+          "conditional": {
+                "show": null,
+                "when": null,
+                "eq": ""
+            },
+          "key": "mycontent",
+          "lockKey": true
+      },
     {
       "input": false,
       "numRows": 2,
@@ -775,6 +787,27 @@ export const FORM: any = {
         "when": null,
         "eq": ""
       }
+    },
+    {
+        "input": false,
+        "tag": "p",
+        "key": "pname",
+        "lockKey": true,
+        "attrs": [
+            {
+                "attr": "src",
+                "value": "/img"
+            }
+        ],
+        "className": "customClass",
+        "content": "Hello, Good Morning!!! This is Html Element.",
+        "type": "htmlelement",
+        "tags": ["span"],
+        "conditional": {
+            "show": null,
+            "when": null,
+            "eq": ""
+        }
     },
     {
       "input": true,
