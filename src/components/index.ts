@@ -16,6 +16,7 @@ import { Table } from './table/table';
 import { Panel } from './panel/panel';
 import { FieldSet } from './fieldset/fieldset';
 import { Well } from './well/well';
+import { Content } from './content/content';
 import { HtmlElement } from './htmlelement/htmlelement';
 export function RegisterComponents(template: FormioTemplate) {
     TextField(template);
@@ -35,5 +36,6 @@ export function RegisterComponents(template: FormioTemplate) {
     Panel(template);
     FieldSet(template);
     Well(template);
+    Content(template);
     HtmlElement(template);
 }
