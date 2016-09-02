@@ -17,6 +17,8 @@ import { Panel } from './panel/panel';
 import { FieldSet } from './fieldset/fieldset';
 import { Well } from './well/well';
 import { Currency } from './currency/currency';
+import { Content } from './content/content';
+import { HtmlElement } from './htmlelement/htmlelement';
 export function RegisterComponents(template: FormioTemplate) {
     TextField(template);
     Button(template);
@@ -36,4 +38,6 @@ export function RegisterComponents(template: FormioTemplate) {
     FieldSet(template);
     Well(template);
     Currency(template);
+    Content(template);
+    HtmlElement(template);
 }
