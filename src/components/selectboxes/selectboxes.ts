@@ -7,7 +7,8 @@ export interface SelectBoxOptions extends BaseOptions<string> {
     type?: string,
     inline?: boolean,
     value?: string,
-    values?: Array<{}>
+    values?: Array<{}>,
+    customClass?:string
 }
 
 export class SelectBoxComponent extends BaseComponent<SelectBoxOptions> {}

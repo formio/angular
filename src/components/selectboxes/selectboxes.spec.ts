@@ -14,7 +14,37 @@ describe('SelectBoxComponent', () => {
 
     var getSettings = (overrides: {}): SelectBoxOptions => {
         let settings: SelectBoxOptions = {
-
+            input: true,
+            tableView: true,
+            label: "Select box",
+            key: "selectbox",
+            values: [
+                {
+                    value: "tea",
+                    label: "Tea"
+                },
+                {
+                    value: "tea",
+                    label: "Coffee"
+                },
+                {
+                    value: "chocolate",
+                    label: "Chocolate"
+                }
+            ],
+            inline: true,
+            protected: false,
+            persistent: true,
+            validate: {
+                required: false
+            },
+            type: "selectboxes",
+            conditional: {
+                show: null,
+                when: null,
+                eq: ""
+            },
+            customClass: "myselect"
         };
         Object.assign(settings, overrides);
         return settings;
@@ -31,7 +61,7 @@ describe('SelectBoxComponent', () => {
 
     it('Test FormioComponent for SelectBox as Custom component', () => {
         let component = getComponent({});
-        expect(component.components[0] instanceof CustomComponent).toEqual(true);
+        expect(component.components[0] instanceof SelectBoxComponent).toEqual(true);
     });
 
     it('Its type should be selectboxes', () => {
@@ -54,4 +84,67 @@ describe('SelectBoxComponent', () => {
         expect(selectbox.settings.label).toEqual("SelectBox");
     });
 
+    it('Should allow SelectBox component with required', () => {
+        let settings: SelectBoxOptions = getSettings({
+            required: true
+        });
+
+        // Create the selectbox component.
+        let selectbox = new SelectBoxComponent(this.form, settings);
+        expect(selectbox.settings.required).toEqual(true);
+    });
+
+    it('Check SelectBox option values are available or not',() => {
+        let settings: SelectBoxOptions = getSettings({
+            values: [
+                {
+                    value: "1",
+                    label: "option1"
+                },
+                {
+                    value: "2",
+                    label: "option2"
+                }
+            ]
+        });
+
+        // Create the selectbox component.
+        let selectbox = new SelectBoxComponent(this.form, settings);
+        expect(selectbox.settings.values.length).not.toEqual(0);
+    });
+
+    it('Check SelectBox options contains labels or not',() => {
+        let settings: SelectBoxOptions = getSettings({
+            values: [
+                {
+                    value: "1",
+                    label: "option1"
+                }
+            ]
+        });
+
+        // Create the selectbox component.
+        let selectbox = new SelectBoxComponent(this.form, settings);
+        expect(selectbox.settings.values[0].label).not.toEqual('');
+    });
+
+    it('Check SelectBox options appears in inline or not',() => {
+        let settings: SelectBoxOptions = getSettings({
+            inline : true
+        });
+
+        // Create the selectbox component.
+        let selectbox = new SelectBoxComponent(this.form, settings);
+        expect(selectbox.settings.inline).toEqual(true);
+    });
+
+    it('Should allow custom class',() => {
+        let settings: SelectBoxOptions = getSettings({
+            customClass : "myselect"
+        });
+
+        // Create the selectbox component.
+        let selectbox = new SelectBoxComponent(this.form, settings);
+        expect(selectbox.settings.customClass).toEqual("myselect");
+    });
 });
