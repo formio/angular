@@ -666,6 +666,33 @@ export const FORM: any = {
       },
     {
       "input": true,
+      "tableView": true,
+      "inputType": "text",
+      "inputMask": "",
+      "customClass": "customClass",
+      "multiple": false,
+      "label": "Currency",
+      "key": "currency",
+      "placeholder": "currency",
+      "prefix": "$",
+      "suffix": "@",
+      "defaultValue": "",
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false,
+        "multiple": "",
+        "custom": ""
+      },
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      },
+      "type": "currency",
+    },
+    {
+      "input": true,
       "inputType": "checkbox",
       "tableView": false,
       "hideLabel": true,
@@ -683,6 +710,43 @@ export const FORM: any = {
         "when": null,
         "eq": ""
       }
+    },
+    {
+      "input": true,
+      "tableView": true,
+      "label": "Select box",
+      "key": "selectbox",
+      "values": [
+        {
+          "value": "tea",
+          "label": "Tea"
+        },
+        {
+          "value": "tea",
+          "label": "Coffee"
+        },
+        {
+          "value": "chocolate",
+          "label": "Chocolate"
+        },
+        {
+          "value": "ice-cream",
+          "label": "Ice-Cream"
+        }
+      ],
+      "inline": true,
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false
+      },
+      "type": "selectboxes",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      },
+      "customClass": "myselect"
     },
     {
       "input": false,

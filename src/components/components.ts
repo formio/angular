@@ -16,9 +16,12 @@ export interface FormioComponentsTemplate {
     panel: string,
     fieldset: string,
     well: string,
+    selectboxes: string,
+    content: string,
     htmlelement: string,
     select: string,
     content: string,
+    currency: string,
     survey: string
 }
 
