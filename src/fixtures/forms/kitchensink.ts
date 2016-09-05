@@ -752,6 +752,55 @@ export const FORM: any = {
       }
     },
     {
+      "input": true,
+      "tableView": true,
+      "label": "Survey",
+      "key": "survey",
+      "customClass": "customClass",
+      "questions": [
+        {
+          "value": "English",
+          "label": "English",
+        },
+        {
+          "value": "Hindi",
+          "label": "Hindi",
+        },
+        {
+          "value": "Marathi",
+          "label": "Marathi",
+        }
+      ],
+      "values": [
+        {
+          "value": "read",
+          "label": "Read",
+        },
+        {
+          "value": "write",
+          "label": "Write",
+        },
+        {
+          "value": "speak",
+          "label": "Speak",
+        }
+      ],
+      "defaultValue": "",
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false,
+        "custom": "",
+        "customPrivate": false
+      },
+      "type": "survey",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      }
+    },
+    {
         "input": false,
         "tag": "p",
         "key": "pname",
