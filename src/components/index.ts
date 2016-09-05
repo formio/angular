@@ -17,6 +17,7 @@ import { Panel } from './panel/panel';
 import { FieldSet } from './fieldset/fieldset';
 import { Well } from './well/well';
 import { Currency } from './currency/currency';
+import { SelectBox } from './selectboxes/selectboxes';
 import { Content } from './content/content';
 import { HtmlElement } from './htmlelement/htmlelement';
 import { Select } from './select/select';
@@ -39,6 +40,7 @@ export function RegisterComponents(template: FormioTemplate) {
     FieldSet(template);
     Well(template);
     Currency(template);
+    SelectBox(template);
     Content(template);
     HtmlElement(template);
     Select(template);
