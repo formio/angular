@@ -19,7 +19,6 @@ export interface FormioComponentsTemplate {
     selectboxes: string,
     content: string,
     htmlelement: string,
-    content: string,
     currency: string,
     select: string
 }
