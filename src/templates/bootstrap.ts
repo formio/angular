@@ -28,7 +28,6 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
         selectboxes: require('./bootstrap/components/selectboxes.html'),
         content: require('./bootstrap/components/content.html'),
         htmlelement: require('./bootstrap/components/htmlelement.html'),
-        content: require('./bootstrap/components/content.html'),
         currency: require('./bootstrap/components/currency.html'),
         select: require('./bootstrap/components/select.html')
     }
