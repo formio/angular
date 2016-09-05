@@ -20,7 +20,8 @@ export interface FormioComponentsTemplate {
     content: string,
     htmlelement: string,
     currency: string,
-    select: string
+    select: string,
+    survey: string
 }
 
 export interface FormioComponentMetaData {

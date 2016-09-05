@@ -29,6 +29,7 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
         content: require('./bootstrap/components/content.html'),
         htmlelement: require('./bootstrap/components/htmlelement.html'),
         currency: require('./bootstrap/components/currency.html'),
-        select: require('./bootstrap/components/select.html')
+        select: require('./bootstrap/components/select.html'),
+        survey: require('./bootstrap/components/survey.html')
     }
 };
