@@ -338,18 +338,18 @@ export const FORM: any = {
       "striped": true,
       "bordered": true
     },
-      {
-          "input": false,
-          "html": "<p><em><strong>Good Morning Guys!!!<br>This is Content component.</strong></em></p> ",
-          "type": "content",
-          "conditional": {
-                "show": null,
-                "when": null,
-                "eq": ""
-            },
-          "key": "mycontent",
-          "lockKey": true
+    {
+      "input": false,
+      "html": "<p><em><strong>Good Morning Guys!!!<br>This is Content component.</strong></em></p> ",
+      "type": "content",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
       },
+      "key": "mycontent",
+      "lockKey": true
+    },
     {
       "input": false,
       "numRows": 2,
@@ -670,7 +670,7 @@ export const FORM: any = {
       "inputType": "text",
       "inputMask": "",
       "customClass": "customClass",
-      "multiple": false,
+      "multiple": true,
       "label": "Currency",
       "key": "currency",
       "placeholder": "currency",
@@ -945,6 +945,32 @@ export const FORM: any = {
             "when": null,
             "eq": ""
         }
+    },
+    {
+      "customClass":"myclass",
+      "conditional":
+      {
+        "eq":"",
+        "when":null,
+        "show":""
+      },
+      "type":"resource",
+      "defaultPermission":"",
+      "validate":{"required":false},
+      "persistent":true,
+      "protected":false,
+      "multiple":true,
+      "searchFields":["fullName"],
+      "selectFields":"",
+      "template":"<span>{{ item.data.fullName }}</span>",
+      "defaultValue":[],
+      "resource":"manager",
+      "placeholder":"Select Resource",
+      "key":"resource",
+      "label":"Resource",
+      "tableView":true,
+      "input":true,
+      "tags":[]
     },
     {
       "input": true,
