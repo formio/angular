@@ -947,6 +947,27 @@ export const FORM: any = {
         }
     },
     {
+    "input": true,
+    "tableView": true,
+    "label": "Address",
+    "key": "address",
+    "placeholder": "Enter Address",
+    "multiple": false,
+    "protected": false,
+    "unique": false,
+    "persistent": true,
+    "validate": {
+      "required": true
+    },
+    "type": "address",
+    "conditional": {
+      "show": null,
+      "when": null,
+      "eq": ""
+      },
+    "customClass": "myclass"
+    },
+    {
       "input": true,
       "tableView": true,
       "key": "name",
