@@ -4,5 +4,7 @@
         <formio-element [form]="form" [component]="comp" [label]="label" [events]="events" [render]="render"></formio-element>
         <button *ngIf="comp.allowMultiple() && (i == components.length -1)" type="button" class="btn btn-default" (click)="addComponent()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
     </div>
-    <p *ngFor="let error of errors" class="text-danger">{{ error }}</p>
+    <div *ngIf="(components.length > 0)">
+        <p *ngFor="let error of errors" class="text-danger">{{ error }}</p>
+    </div>
 </div>

@@ -1,5 +1,5 @@
 import { FormioTemplate } from '../formio.template';
-export const FORMIO_TEMPLATE: FormioTemplate = {
+export const FORMIO_BOOTSTRAP: FormioTemplate = {
     styles: [
         '.form-group.required .control-label:after { content:"*"; color:red; }',
         '.glyphicon-spin { -webkit-animation: spin-anim 1s infinite; animation: spin-anim 1s infinite; }',

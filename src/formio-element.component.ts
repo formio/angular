@@ -12,12 +12,13 @@ import { FormGroup } from '@angular/forms';
 import { FormioComponents } from './components/components';
 import { BaseComponent } from './components/base';
 import { FormioEvents } from './formio.common';
+let find = require('lodash/find');
 
 @Component({
     selector: 'formio-element',
     template: '<div #formioElement></div>'
 })
-export class FormioElement extends Type implements OnInit {
+export class FormioElement extends Type<any> implements OnInit {
     @Input() component: BaseComponent<any>;
     @Input() form: FormGroup;
     @Input() label: string | boolean;
@@ -34,11 +35,15 @@ export class FormioElement extends Type implements OnInit {
             return;
         }
 
-        element.then(cmpFactory => {
+        element.then(moduleWithFactories => {
             if (!this.element) {
                 return;
             }
-            let cmpRef = this.element.createComponent(cmpFactory);
+            let cmpFactory = find(
+                moduleWithFactories.componentFactories,
+                {selector: 'formio-' + this.component.settings.type}
+            );
+            let cmpRef = this.element.createComponent<FormioElement>(cmpFactory);
             this.component.label = this.label;
             cmpRef.instance.component = this.component;
             cmpRef.instance.form = this.form;

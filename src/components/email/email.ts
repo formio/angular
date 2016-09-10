@@ -35,10 +35,9 @@ export class EmailComponent extends InputComponent<InputOptions> {
         }
         return message;
     }
-    getValidators() : ValidatorFn[] {
-        let validators = super.getValidators();
-        validators.push(EmailValidator);
-        return validators;
+    addValidators() {
+        super.addValidators();
+        this.validators.push(EmailValidator);
     }
 }
 

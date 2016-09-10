@@ -9,7 +9,7 @@ var FormioUtils = require('formio-utils');
     selector: 'formio-component',
     template: '<div></div>'
 })
-export class FormioComponentComponent<T> extends Type implements OnInit {
+export class FormioComponentComponent<T> extends Type<any> implements OnInit {
     show: Boolean = true;
     components: Array<BaseComponent<any>> = [];
     container: FormArray = new FormArray([]);

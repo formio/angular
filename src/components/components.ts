@@ -1,5 +1,14 @@
-import { Compiler, ComponentFactory, Component } from '@angular/core';
+import {
+    NgModule,
+    NgModuleMetadataType,
+    Compiler,
+    ModuleWithComponentFactories,
+    Component
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormGroup  } from '@angular/forms';
+import { ReactiveFormsModule } from "@angular/forms";
+import { FormioModule } from '../formio';
 
 export interface FormioComponentsTemplate {
     button: string,
@@ -25,16 +34,17 @@ export interface FormioComponentsTemplate {
 }
 
 export interface FormioComponentMetaData {
-    template: string,
+    template?: string,
     selector?: string,
-    inputs?: Array<string>,
-    directives?: Array<any>
+    inputs?: string[],
+    directives?: any[][]
 }
 
 export interface FormioComponentWrapper {
     component?: any,
     element?: any,
-    metadata?: FormioComponentMetaData
+    metadata?: FormioComponentMetaData,
+    module?: any
 }
 
 export class FormioComponents {
@@ -43,14 +53,30 @@ export class FormioComponents {
         name: string,
         component: any,
         element: any,
-        metadata: FormioComponentMetaData
+        metadata: FormioComponentMetaData,
+        module?: NgModuleMetadataType
     ) {
+        module = module || {};
         metadata.selector = metadata.selector || 'formio-' + name;
         metadata.inputs = metadata.inputs || ['component', 'form'];
+        const decoratedCmp = Component(metadata)(element);
+        if (!module.declarations) {
+            module.declarations = [];
+        }
+        module.declarations.push(decoratedCmp);
+        if (!module.imports) {
+            module.imports = [];
+        }
+        module.imports.push(CommonModule);
+        module.imports.push(ReactiveFormsModule);
+        module.imports.push(FormioModule);
+        @NgModule(module)
+        class DynamicComponentModule {}
         FormioComponents.components[name] = {
             component: component,
             element: element,
-            metadata: metadata
+            metadata: metadata,
+            module: DynamicComponentModule
         };
     }
     public static createComponent(name: string, form: FormGroup, component: any) : any {
@@ -63,13 +89,11 @@ export class FormioComponents {
     public static element(
         name: string,
         compiler: Compiler
-    ) : Promise<ComponentFactory<any>> {
+    ) : Promise<ModuleWithComponentFactories<any>> {
         if (!FormioComponents.components.hasOwnProperty(name)) {
             name = 'custom';
         }
         let component: FormioComponentWrapper = FormioComponents.components[name];
-        const decoratedCmp = Component(component.metadata)(component.element);
-        //noinspection TypeScriptValidateTypes
-        return compiler.compileComponentAsync(decoratedCmp);
+        return compiler.compileModuleAndAllComponentsAsync(component.module);
     }
 }

@@ -61,6 +61,7 @@ export class BaseComponent<T> {
     control: FormControl | FormGroup | FormArray;
     index: number = 0;
     private _label: string | boolean;
+    protected validators: ValidatorFn[] = [];
     constructor(public form: FormGroup, public settings: any) {
         this.getControl();
     }
@@ -91,7 +92,8 @@ export class BaseComponent<T> {
     }
     getControl(): FormArray | FormGroup | FormControl {
         if (!this.control) {
-            this.control = new FormControl(this.defaultValue, this.getValidators());
+            this.addValidators();
+            this.control = new FormControl(this.defaultValue, this.validators);
         }
         return this.control;
     }
@@ -123,30 +125,31 @@ export class BaseComponent<T> {
         }
         return errors;
     }
-    getValidators() : ValidatorFn[] {
+    addValidators() {
         if (!this.settings.validate) {
-            return [];
+            return;
         }
-        let validators: ValidatorFn[] = [];
         if (this.settings.validate.required) {
-            validators.push(Validators.required);
+            this.validators.push(Validators.required);
         }
         if (this.settings.validate.custom) {
-            validators.push(CustomValidator(this.settings.validate.custom, this.form));
+            this.validators.push(CustomValidator(this.settings.validate.custom, this.form));
         }
-        return validators;
     }
     allowMultiple(): boolean{
         return this.settings.multiple;
     }
 }
 
-export class BaseElement<T> extends Type implements OnInit {
+export class BaseElement<T> extends Type<any> implements OnInit {
     component: T;
     form: FormGroup;
     events: FormioEvents;
     render: EventEmitter<any>;
     private renderCount: number = 0;
+    constructor() {
+        super();
+    }
     get numComponents() : number {
         return 0;
     }

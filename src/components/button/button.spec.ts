@@ -1,12 +1,12 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup, FormControl } from '@angular/forms';
-import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { ButtonComponent, ButtonOptions } from './button';
 
 describe('ButtonComponent', () => {
     beforeEach(() => {
-        RegisterComponents(FORMIO_TEMPLATE);
+        RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
     });
 

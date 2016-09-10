@@ -41,22 +41,21 @@ export class InputComponent<T> extends BaseComponent<T> {
         }
         return message;
     }
-    getValidators() : ValidatorFn[] {
+    addValidators() {
+        super.addValidators();
         if (!this.settings.validate) {
-            return [];
+            return;
         }
-        let validators = super.getValidators();
         if (this.settings.validate.minLength) {
             //noinspection TypeScriptValidateTypes
-            validators.push(Validators.minLength(parseInt(this.settings.validate.minLength, 10)));
+            this.validators.push(Validators.minLength(parseInt(this.settings.validate.minLength, 10)));
         }
         if (this.settings.validate.maxLength) {
             //noinspection TypeScriptValidateTypes
-            validators.push(Validators.maxLength(parseInt(this.settings.validate.maxLength, 10)));
+            this.validators.push(Validators.maxLength(parseInt(this.settings.validate.maxLength, 10)));
         }
         if (this.settings.validate.pattern) {
-            validators.push(Validators.pattern(this.settings.validate.pattern));
+            this.validators.push(Validators.pattern(this.settings.validate.pattern));
         }
-        return validators;
     }
 }

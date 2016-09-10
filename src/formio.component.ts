@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     selector: 'formio',
     template: '<div></div>'
 })
-export class FormioComponent extends Type implements OnInit {
+export class FormioComponent extends Type<any> implements OnInit {
     public formGroup: FormGroup = new FormGroup({});
     public events: FormioEvents = new FormioEvents();
     public ready: BehaviorSubject<boolean> = new BehaviorSubject(false);

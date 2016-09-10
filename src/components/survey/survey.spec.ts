@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
-import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { SurveyComponent, SurveyOptions } from './survey';
 import { FormioComponentComponent } from '../../formio-component.component';
@@ -8,7 +8,7 @@ import { FormioComponentComponent } from '../../formio-component.component';
 describe('SurveyComponent', () => {
     beforeEach(() => {
         this.form = new FormGroup({});
-        RegisterComponents(FORMIO_TEMPLATE);
+        RegisterComponents(FORMIO_BOOTSTRAP);
     });
 
     // An easy method for getting new Survey settings.

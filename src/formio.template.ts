@@ -24,7 +24,7 @@ export interface FormioTemplate {
  * @param template - The template to add to this component.
  * @constructor
  */
-export function RegisterTemplate(cmp: Type, template: string, styles?: Array<string>) {
+export function RegisterTemplate(cmp: Type<any>, template: string, styles?: Array<string>) {
     //noinspection TypeScriptUnresolvedFunction
     let annotations = Reflect.getMetadata('annotations', cmp);
     annotations[0].template = template;

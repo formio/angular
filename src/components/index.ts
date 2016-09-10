@@ -20,7 +20,7 @@ import { Currency } from './currency/currency';
 import { SelectBox } from './selectboxes/selectboxes';
 import { Content } from './content/content';
 import { HtmlElement } from './htmlelement/htmlelement';
-import { Select } from './select/select';
+//import { Select } from './select/select';
 import { Survey } from './survey/survey';
 export function RegisterComponents(template: FormioTemplate) {
     TextField(template);
@@ -44,6 +44,6 @@ export function RegisterComponents(template: FormioTemplate) {
     SelectBox(template);
     Content(template);
     HtmlElement(template);
-    Select(template);
+    //Select(template);
     Survey(template);
 }

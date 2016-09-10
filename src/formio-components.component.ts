@@ -7,12 +7,15 @@ import { FormioEvents } from './formio.common';
     selector: 'formio-components',
     template: '<div></div>'
 })
-export class FormioComponentsComponent extends Type {
+export class FormioComponentsComponent extends Type<any> {
     @Input() components: Array<BaseOptions<any>>;
     @Input() form: FormGroup;
     @Input() events: FormioEvents;
     @Output() render: EventEmitter<any> = new EventEmitter();
     private renderCount: number = 0;
+    constructor() {
+        super();
+    }
     onRender() {
         if (this.renderCount >= this.components.length) {
             return;
