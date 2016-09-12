@@ -29,7 +29,8 @@ export interface FormioComponentMetaData {
     template: string,
     selector?: string,
     inputs?: Array<string>,
-    directives?: Array<any>
+    directives?: Array<any>,
+    styles?: Array<string>
 }
 
 export interface FormioComponentWrapper {

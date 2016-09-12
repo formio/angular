@@ -884,8 +884,8 @@ export const FORM: any = {
           "datepickerMode": "day"
       },
       "timePicker": {
-          "hourStep": 2,
-          "minuteStep": 2,
+          "hourStep": 1,
+          "minuteStep": 1,
           "showMeridian": true,
           "readonlyInput": true,
           "mousewheel": true,
