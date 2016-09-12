@@ -16,7 +16,13 @@ export interface FormioComponentsTemplate {
     panel: string,
     fieldset: string,
     well: string,
-    datetime: string
+    datetime: string,
+    selectboxes: string,
+    content: string,
+    htmlelement: string,
+    currency: string,
+    select: string,
+    survey: string
 }
 
 export interface FormioComponentMetaData {

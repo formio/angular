@@ -340,6 +340,18 @@ export const FORM: any = {
     },
     {
       "input": false,
+      "html": "<p><em><strong>Good Morning Guys!!!<br>This is Content component.</strong></em></p> ",
+      "type": "content",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      },
+      "key": "mycontent",
+      "lockKey": true
+    },
+    {
+      "input": false,
       "numRows": 2,
       "numCols": 2,
       "rows": [
@@ -478,11 +490,11 @@ export const FORM: any = {
       }
     },
     {
-    "input": false,
-    "type": "well", 
-    "key": "Well",
-    "lockKey": true,
-    "components": [{
+      "input": false,
+      "type": "well",
+      "key": "Well",
+      "lockKey": true,
+      "components": [{
         "input": true,
         "tableView": true,
         "inputType": "text",
@@ -498,20 +510,20 @@ export const FORM: any = {
         "unique": false,
         "persistent": true,
         "validate": {
-            "required": true,
-            "minLength": 6,
-            "maxLength": 10,
-            "pattern": "",
-            "custom": "",
-            "customPrivate": false
+          "required": true,
+          "minLength": 6,
+          "maxLength": 10,
+          "pattern": "",
+          "custom": "",
+          "customPrivate": false
         },
         "conditional": {
-            "show": "",
-            "when": null,
-            "eq": ""
+          "show": "",
+          "when": null,
+          "eq": ""
         },
         "type": "textfield"
-    }, {
+      }, {
         "input": true,
         "tableView": true,
         "label": "Textarea",
@@ -525,23 +537,23 @@ export const FORM: any = {
         "protected": false,
         "persistent": true,
         "validate": {
-            "required": true,
-            "minLength": 5,
-            "maxLength": 100,
-            "pattern": "",
-            "custom": ""
+          "required": true,
+          "minLength": 5,
+          "maxLength": 100,
+          "pattern": "",
+          "custom": ""
         },
         "type": "textarea",
         "conditional": {
-            "show": null,
-            "when": null,
-            "eq": ""
+          "show": null,
+          "when": null,
+          "eq": ""
         }
-    }],
-    "conditional": {
-      "show": null,
-      "when": null,
-      "eq": ""
+      }],
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
       }
     },
     {
@@ -582,76 +594,103 @@ export const FORM: any = {
       }
     },
     {
-          "input": false,
-          "tableView": true,
-          "legend": "FieldSet",
-          "type": "fieldset",
-          "conditional": {
-              "show": null,
-              "when": null,
-              "eq": ""
-          },
-          "components": [{
-              "input": true,
-              "tableView": true,
-              "inputType": "text",
-              "inputMask": "",
-              "label": "FirstName",
-              "key": "firstName",
-              "placeholder": "Enter FirstName",
-              "prefix": "",
-              "suffix": "",
-              "multiple": false,
-              "defaultValue": "",
-              "protected": false,
-              "unique": false,
-              "persistent": true,
-              "validate": {
-                  "required": false,
-                  "minLength": "",
-                  "maxLength": "",
-                  "pattern": "",
-                  "custom": "",
-                  "customPrivate": false
-              },
-              "conditional": {
-                  "show": null,
-                  "when": null,
-                  "eq": ""
-              },
-              "type": "textfield"
-          },
-              {
-                  "input": true,
-                  "tableView": true,
-                  "inputType": "text",
-                  "inputMask": "",
-                  "label": "LastName",
-                  "key": "lastName",
-                  "placeholder": "Enter LastName",
-                  "prefix": "",
-                  "suffix": "",
-                  "multiple": false,
-                  "defaultValue": "",
-                  "protected": false,
-                  "unique": false,
-                  "persistent": true,
-                  "validate": {
-                      "required": false,
-                      "minLength": "",
-                      "maxLength": "",
-                      "pattern": "",
-                      "custom": "",
-                      "customPrivate": false
-                  },
-                  "conditional": {
-                      "show": null,
-                      "when": null,
-                      "eq": ""
-                  },
-                  "type": "textfield"
-              }]
+      "input": false,
+      "tableView": true,
+      "legend": "FieldSet",
+      "type": "fieldset",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
       },
+      "components": [{
+        "input": true,
+        "tableView": true,
+        "inputType": "text",
+        "inputMask": "",
+        "label": "FirstName",
+        "key": "firstName",
+        "placeholder": "Enter FirstName",
+        "prefix": "",
+        "suffix": "",
+        "multiple": false,
+        "defaultValue": "",
+        "protected": false,
+        "unique": false,
+        "persistent": true,
+        "validate": {
+          "required": false,
+          "minLength": "",
+          "maxLength": "",
+          "pattern": "",
+          "custom": "",
+          "customPrivate": false
+        },
+        "conditional": {
+          "show": null,
+          "when": null,
+          "eq": ""
+        },
+        "type": "textfield"
+      },
+        {
+          "input": true,
+          "tableView": true,
+          "inputType": "text",
+          "inputMask": "",
+          "label": "LastName",
+          "key": "lastName",
+          "placeholder": "Enter LastName",
+          "prefix": "",
+          "suffix": "",
+          "multiple": false,
+          "defaultValue": "",
+          "protected": false,
+          "unique": false,
+          "persistent": true,
+          "validate": {
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "pattern": "",
+            "custom": "",
+            "customPrivate": false
+          },
+          "conditional": {
+            "show": null,
+            "when": null,
+            "eq": ""
+          },
+          "type": "textfield"
+        }]
+    },
+    {
+      "input": true,
+      "tableView": true,
+      "inputType": "text",
+      "inputMask": "",
+      "customClass": "customClass",
+      "multiple": false,
+      "label": "Currency",
+      "key": "currency",
+      "placeholder": "currency",
+      "prefix": "$",
+      "suffix": "@",
+      "defaultValue": "",
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false,
+        "multiple": "",
+        "custom": ""
+      },
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      },
+      "type": "currency",
+    },
     {
       "input": true,
       "inputType": "checkbox",
@@ -671,6 +710,43 @@ export const FORM: any = {
         "when": null,
         "eq": ""
       }
+    },
+    {
+      "input": true,
+      "tableView": true,
+      "label": "Select box",
+      "key": "selectbox",
+      "values": [
+        {
+          "value": "tea",
+          "label": "Tea"
+        },
+        {
+          "value": "tea",
+          "label": "Coffee"
+        },
+        {
+          "value": "chocolate",
+          "label": "Chocolate"
+        },
+        {
+          "value": "ice-cream",
+          "label": "Ice-Cream"
+        }
+      ],
+      "inline": true,
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false
+      },
+      "type": "selectboxes",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      },
+      "customClass": "myselect"
     },
     {
       "input": false,
@@ -742,44 +818,175 @@ export const FORM: any = {
     {
       "input": true,
       "tableView": true,
-      "label": "DateTime",
+      "label": "Survey",
+      "key": "survey",
+      "customClass": "customClass",
+      "questions": [
+        {
+          "value": "English",
+          "label": "English",
+        },
+        {
+          "value": "Hindi",
+          "label": "Hindi",
+        },
+        {
+          "value": "Marathi",
+          "label": "Marathi",
+        }
+      ],
+      "values": [
+        {
+          "value": "read",
+          "label": "Read",
+        },
+        {
+          "value": "write",
+          "label": "Write",
+        },
+        {
+          "value": "speak",
+          "label": "Speak",
+        }
+      ],
+      "defaultValue": "",
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false,
+        "custom": "",
+        "customPrivate": false
+      },
+      "type": "survey",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      }
+    }, 
+    {
+      "input": true,
+      "tableView": true,
+      "label": "DateTime", 
       "key": "dateTime",
-      "placeholder": "Select date",
+      "placeholder": "Select date and time",
       "format": "yyyy-MM-dd HH:mm",
       "enableDate": true,
       "enableTime": true,
       "datepickerMode": "day",
       "datePicker": {
-        "showWeeks": true,
-        "startingDay": "0",
-        "initDate": "",
-        "minMode": "month",
-        "maxMode": "year",
-        "yearRange": "20",
-        "datepickerMode": "day"
+          "showWeeks": true,
+          "startingDay": "0",
+          "initDate": "",
+          "minMode": "day",
+          "maxMode": "year",
+          "yearRange": "25",
+          "datepickerMode": "day"
       },
       "timePicker": {
-        "hourStep": 1,
-        "minuteStep": 1,
-        "showMeridian": true,
-        "readonlyInput": true,
-        "mousewheel": true,
-        "arrowkeys": false
-      },
+          "hourStep": 2,
+          "minuteStep": 2,
+          "showMeridian": true,
+          "readonlyInput": true,
+          "mousewheel": true,
+          "arrowkeys": false
+      }, 
       "protected": false,
       "persistent": true,
       "validate": {
-        "required": false,
-        "custom": ""
+          "required": false,
+          "custom": ""
       },
       "type": "datetime",
+      "conditional": {
+          "show": null,
+          "when": null,
+          "eq": ""
+      },
+      "minDate": "2016-07-01T18:30:00.000Z",
+      "maxDate": "2016-08-30T18:30:00.000Z"
+    },  
+    {
+      "input": false,
+      "tag": "p",
+      "key": "pname",
+      "lockKey": true,
+      "attrs": [
+        {
+          "attr": "src",
+          "value": "/img"
+        }
+      ],
+      "className": "customClass",
+      "content": "Hello, Good Morning!!! This is Html Element.",
+      "type": "htmlelement",
+      "tags": ["span"],
       "conditional": {
         "show": null,
         "when": null,
         "eq": ""
+      }
+    },
+    {
+      "input": true,
+      "tableView": true,
+      "label": "Fruits",
+      "key": "fruits",
+      "placeholder": "Select favourite",
+      "data": {
+        "values": [
+          {
+            "value": "opt1",
+            "label": "mango"
+          },
+          {
+            "value": "opt2",
+            "label": "apple"
+          },
+          {
+            "value": "opt3",
+            "label": "pineapple"
+          },
+          {
+            "value": "opt4",
+            "label": "grapes"
+          }],
+        "json": [
+          {
+            "label": "one",
+            "test": "opt1"
+          },
+          {
+            "label": "two",
+            "test": "opt2"
+          },
+          {
+            "label": "three",
+            "test": "opt3"
+          }],
+        "url": "https://api.github.com/users/hadley/orgs",
+        "resource": "manager"
       },
-      "minDate": "2016-07-01T18:30:00.000Z",
-      "maxDate": "2016-08-30T18:30:00.000Z"
+      "dataSrc": "values",
+      "valueProperty": "",
+      "defaultValue": "",
+      "refreshOn": "",
+      "filter": "",
+      "authenticate": false,
+      "template": "<span>{{ item.label }}</span>",
+      "multiple": true,
+      "protected": false,
+      "unique": false,
+      "persistent": true,
+      "validate": {
+        "required": false
+      },
+      "type": "select",
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+      }
     },
     {
       "input": true,

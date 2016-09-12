@@ -7,57 +7,107 @@ import { TimepickerComponent } from 'ng2-bootstrap/ng2-bootstrap';
 import { DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/components/datepicker';
 
 export interface DateTimeOptions extends BaseOptions<any> {
+    placeholder?: string,
+    format?: string,
+    enableDate?: boolean,
+    enableTime?: boolean,
+    datepickerMode?: string,
     showWeeks?: boolean,
     startingDay?: string,
     initDate?: string,
     minMode?: string,
     maxMode?: string,
     yearRange?: string,
-    datepickerMode?: string
+    hourStep?: number,
+    minuteStep?: number,
+    showMeridian?: boolean,
+    readonlyInput?: boolean,
+    mousewheel?: boolean,
+    arrowkeys?: boolean,
+    minDate?: string,
+    maxDate?: string
 }
 
 export class DateTimeComponent extends BaseComponent<DateTimeOptions> {
 
 }
 
-export class DateTimeElement extends BaseElement<DateTimeComponent> implements OnInit{
-    public dt: Date = null;
+export class DateTimeElement extends BaseElement<DateTimeComponent> implements OnInit {
+    public selectedDate: Date = null;
+    public showDateTime:any;
+    public checkDates: Date = null;
     public displayDate: Boolean = false;
     public displayTime: Boolean = false;
-    public showDate: Boolean = true;
     public minDate: Date = void 0;
-    public mytime: any = 0;
-    public dateFormat: any ;
-
+    public time: any = void 0;
+    public dateFormat: any;
     public getDate(): Date {
-        return this.dt;
+        return this.selectedDate;
     }
     public today():void {
-        this.dt = new Date();
+        this.showDateTime =true;
+        this.selectedDate = new Date();
+        if(this.component.settings.enableTime) {
+            if (!this.time) {
+                this.time = new Date().setHours(0, 0, 0, 0);
+            }
+        }
     }
     public clear():void {
-        this.dt = void 0;
-        this.mytime = void 0;
+        this.showDateTime =false;
+        this.selectedDate = void 0;
+        this.time = void 0;
     }
     public close(): void {
         this.displayDate = false;
         this.displayTime = false;
     }
     public selectDate():void {
-        this.displayDate = true;
-        this.displayTime = false;
+        if((!this.component.settings.enableTime && this.component.settings.enableDate) || (this.component.settings.enableTime && this.component.settings.enableDate) ){
+            this.displayDate = true;
+            this.displayTime = false;
+        }else if(this.component.settings.enableTime && !this.component.settings.enableDate){
+            this.displayDate = false;
+            this.displayTime = true;   
+        }
     }
-    public selectTime():void {
-        this.showDate = false;
+    public selectTime(date: any):void {
+        if(this.component.settings.enableTime){
+            if(date!= this.checkDates){
+                this.checkDates = date;
+                this.displayTime = true;
+                this.displayDate = false;
+            }
+            if(!this.time){
+                this.time = new Date().setHours(0,0,0,0);
+            }
+        }
+        if(date instanceof Date){
+            this.showDateTime =true;
+        }
+    }
+    public selectFirstTime(): void {
         this.displayTime = true;
         this.displayDate = false;
+        this.checkDate();
+        if(!this.time){
+            this.showDateTime =false;
+        }
+    }
+    public checkDate() {
+        this.showDateTime =true;
+        if(this.component.settings.enableDate){
+            if(!this.selectedDate){
+                this.selectedDate = new Date();
+            }
+         }
     }
     public now():void {
-        this.mytime = new Date();
+        this.checkDate();
+        this.time = new Date();
     }
-    ngOnInit(){
+    ngOnInit() {
         this.dateFormat = this.component.settings.format.split(' ')[0];
-        (this.minDate = new Date()).setDate(this.minDate.getDate() - 1000);
     }
 }
 

@@ -25,6 +25,12 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
         panel: require('./bootstrap/components/panel.html'),
         fieldset: require('./bootstrap/components/fieldset.html'),
         well: require('./bootstrap/components/well.html'),
-        datetime: require('./bootstrap/components/datetime.html')
+        datetime: require('./bootstrap/components/datetime.html'),
+        selectboxes: require('./bootstrap/components/selectboxes.html'),
+        content: require('./bootstrap/components/content.html'),
+        htmlelement: require('./bootstrap/components/htmlelement.html'),
+        currency: require('./bootstrap/components/currency.html'),
+        select: require('./bootstrap/components/select.html'),
+        survey: require('./bootstrap/components/survey.html')
     }
 };
