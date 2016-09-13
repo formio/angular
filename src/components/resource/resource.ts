@@ -2,7 +2,6 @@ import { OnInit } from "@angular/core";
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
-import { FormioService } from '../../formio.service';
 var Formio = require('formiojs');
 
 export interface ResourceOptions extends BaseOptions<any> {
@@ -29,25 +28,27 @@ export class ResourceElement extends BaseElement<ResourceComponent> implements O
     public refreshValue(value:any):void {
         this.value = value;
     }
-    ngOnInit(){
+    public searchData(text:any): void {
         let selectItems: IdTextPair[] = [];
-        let baseUrl: string = Formio.getBaseUrl() + '/' + this.component.settings.resource;
-        // @Todo: Create url with select fields and search fields.
+        let baseUrl: string = Formio.getBaseUrl() +'/project/'+ this.component.settings.project +'/form/'+ this.component.settings.resource;
         let params:any = {};
         if (this.component.settings.selectFields) {
             params.select = this.component.settings.selectFields;
         }
-        if (this.component.settings.searchFields) {
+        if (this.component.settings.searchFields && text) {
             this.component.settings.searchFields.forEach((item: any) => {
-                params['field'] = item.value;
+                params[item] = text;
             });
         }
-        (new FormioService(baseUrl)).loadSubmissions().subscribe((submission: Array<any>) => {
+        (new Formio(baseUrl)).loadSubmissions({params:params}).then((submission: any) => {
             for(let i=0; i < submission.length; i++){
                 selectItems.push({id: JSON.stringify(submission[i].data), text: JSON.stringify(submission[i].data)});
             }
-            this.component.settings.defaultValue = selectItems.slice(0);
+             this.component.settings.defaultValue = selectItems.slice(0);
         });
+    }
+    ngOnInit(){
+        this.searchData(null);
     }
 }
 
