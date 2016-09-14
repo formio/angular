@@ -949,6 +949,33 @@ export const FORM: any = {
     {
       "input": true,
       "tableView": true,
+      "label": "Signature",
+      "key": "signature",
+      "placeholder": "Please Sign here...",
+      "footer": "Sign above",
+      "width": "50%",
+      "height": "200px",
+      "penColor": "green",
+      "backgroundColor": "rgb(245,245,235)",
+      "minWidth": "0.5",
+      "maxWidth": "2.5",
+      "protected": false,
+      "persistent": true,
+      "validate": {
+        "required": false
+        },
+      "type": "signature",
+      "hideLabel": false,
+      "conditional": {
+        "show": null,
+        "when": null,
+        "eq": ""
+        },
+    "customClass": "myclass"
+    },
+    {
+      "input": true,
+      "tableView": true,
       "key": "name",
       "label": "Name",
       "protected": false,
