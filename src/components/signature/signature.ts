@@ -2,12 +2,12 @@ import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
 import { SignaturePad } from 'angular2-signaturepad';
-import {ViewChild, OnInit, ElementRef, Directive, Renderer} from '@angular/core';
+import { ViewChild, OnInit, ElementRef, Directive } from '@angular/core';
 
 @Directive({
-    selector: '[styled]',
+    selector: '[align]',
 })
-export class StyledDirective {
+export class AlignDirective {
     constructor(public el: ElementRef) {
 
     }
@@ -32,7 +32,7 @@ export class SignatureComponent extends BaseComponent<SignatureOptions> {
 
 export class SignatureElement extends BaseElement<SignatureComponent> implements OnInit{
     @ViewChild(SignaturePad) signaturePad: SignaturePad;
-    @ViewChild(StyledDirective) styledDirective: StyledDirective;
+    @ViewChild(AlignDirective) alignDirective: AlignDirective;
 
     public imgUrl: string;
     public setWidth: number;
@@ -66,10 +66,8 @@ export class SignatureElement extends BaseElement<SignatureComponent> implements
     }
 
     ngOnInit() {
-        //Used to generate image using base 64 url
-        // this.signaturePad.fromDataURL("");
-        this.setWidth = this.styledDirective.el.nativeElement.clientWidth;
-        this.setHeight = this.styledDirective.el.nativeElement.clientHeight;
+        this.setWidth = this.alignDirective.el.nativeElement.clientWidth;
+        this.setHeight = this.alignDirective.el.nativeElement.clientHeight;
         this.setWidth = this.setDimension(this.setWidth, this.component.settings.width);
         this.setHeight = this.setDimension(this.setHeight, this.component.settings.height);
         this.signaturePadOptions = {
@@ -85,7 +83,7 @@ export class SignatureElement extends BaseElement<SignatureComponent> implements
 export function Signature(template:FormioTemplate) {
     FormioComponents.register('signature', SignatureComponent, SignatureElement, {
         template: template.components.signature,
-        directives: [SignaturePad, StyledDirective],
+        directives: [SignaturePad, AlignDirective],
         styles: [".clearButton {position:absolute; left: 0; top: 0; z-index: 1000}", ".footer {text-align: center; color:#C3C3C3;}"]
     });
     return SignatureElement;
