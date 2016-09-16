@@ -25,19 +25,23 @@ export interface FormioComponentsTemplate {
     panel: string,
     fieldset: string,
     well: string,
+    datetime: string,
     selectboxes: string,
     content: string,
     htmlelement: string,
     currency: string,
     select: string,
-    survey: string
+    survey: string,
+    resource: string,
+    address: string
 }
 
 export interface FormioComponentMetaData {
     template?: string,
     selector?: string,
-    inputs?: string[],
-    directives?: any[][]
+    inputs?: Array<string>,
+    directives?: Array<any>,
+    styles?: Array<string>
 }
 
 export interface FormioComponentWrapper {

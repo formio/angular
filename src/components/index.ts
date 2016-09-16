@@ -16,12 +16,15 @@ import { Table } from './table/table';
 import { Panel } from './panel/panel';
 import { FieldSet } from './fieldset/fieldset';
 import { Well } from './well/well';
+import {DateTime} from './datetime/datetime';
 import { Currency } from './currency/currency';
 import { SelectBox } from './selectboxes/selectboxes';
 import { Content } from './content/content';
 import { HtmlElement } from './htmlelement/htmlelement';
 //import { Select } from './select/select';
 import { Survey } from './survey/survey';
+import { Resource } from './resource/resource';
+import {Address} from './address/address';
 export function RegisterComponents(template: FormioTemplate) {
     TextField(template);
     Button(template);
@@ -40,10 +43,13 @@ export function RegisterComponents(template: FormioTemplate) {
     Panel(template);
     FieldSet(template);
     Well(template);
+    DateTime(template);
     Currency(template);
     SelectBox(template);
     Content(template);
     HtmlElement(template);
     //Select(template);
     Survey(template);
+    Resource(template);
+    Address(template);
 }
