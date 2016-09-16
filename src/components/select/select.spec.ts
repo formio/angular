@@ -1,4 +1,3 @@
-/**
 import { FormGroup } from '@angular/forms';
 import { FormioComponentComponent } from '../../formio-component.component';
 import { SelectComponent, SelectOptions } from './select';
@@ -179,4 +178,3 @@ describe('SelectComponent', () => {
     });
 
 });
-**/

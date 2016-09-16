@@ -1,4 +1,3 @@
-/** FOR NOW THIS IS BROKEN BECAUSE ng2-select is not ready for RC6.
 import { OnInit } from "@angular/core";
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
@@ -85,4 +84,3 @@ export function Select(template:FormioTemplate) {
     });
     return SelectElement;
 }
-*/
