@@ -23,6 +23,7 @@ export interface FormioComponentsTemplate {
     currency: string,
     select: string,
     survey: string,
+    resource: string,
     address: string
 }
 

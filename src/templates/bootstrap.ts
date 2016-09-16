@@ -32,6 +32,7 @@ export const FORMIO_TEMPLATE: FormioTemplate = {
         currency: require('./bootstrap/components/currency.html'),
         select: require('./bootstrap/components/select.html'),
         survey: require('./bootstrap/components/survey.html'),
+        resource: require('./bootstrap/components/resource.html'),
         address: require('./bootstrap/components/address.html')
     }
 };
