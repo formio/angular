@@ -17,6 +17,7 @@
     "formio-utils": "^0.1.9",
     "formiojs": "^1.2.0",
     "zone.js": "^0.6.12",
+    "ng2-bootstrap": "^1.0.24",
     "ng2-select": "^1.0.3"
   },
   "devDependencies": {

@@ -16,6 +16,7 @@ export interface FormioComponentsTemplate {
     panel: string,
     fieldset: string,
     well: string,
+    datetime: string,
     selectboxes: string,
     content: string,
     htmlelement: string,
@@ -29,7 +30,8 @@ export interface FormioComponentMetaData {
     template: string,
     selector?: string,
     inputs?: Array<string>,
-    directives?: Array<any>
+    directives?: Array<any>,
+    styles?: Array<string>
 }
 
 export interface FormioComponentWrapper {
