@@ -106,9 +106,7 @@ npm install --save ng2-formio
 You can now include the module in your Angular 2.0 application like so.
 
 ```
-import { FormioModule } from 'ng2-formio/src/formio';
-import { FORMIO_BOOTSTRAP } from 'ng2-formio/src/templates/bootstrap';
-FormioModule.setTemplate(FORMIO_BOOTSTRAP);
+import { FormioModule } from 'ng2-formio/bootstrap';
 @NgModule({
     imports: [ BrowserModule, ReactiveFormsModule, FormioModule ],
     declarations: [ AppComponent ],
@@ -116,6 +114,8 @@ FormioModule.setTemplate(FORMIO_BOOTSTRAP);
 })
 export class AppModule { }
 ```
+
+For an example of an application using Form.io, you can look at the [Examples Folder](https://github.com/formio/ng2-formio/tree/master/example)
 
 Try it out
 -----------------
