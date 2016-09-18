@@ -1,5 +1,5 @@
 import { Component, Type } from '@angular/core';
-import { FORM } from '../src/fixtures/forms/simple.ts';
+import { FORM } from '../src/fixtures/forms/kitchensink.ts';
 @Component({
     selector: 'app',
     template: require('./app.html')

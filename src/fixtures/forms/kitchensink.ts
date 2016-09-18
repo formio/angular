@@ -926,7 +926,7 @@ export const FORM: any = {
         "when": null,
         "eq": ""
       }
-    },
+    },/*
     {
       "input": true,
       "tableView": true,
@@ -1035,7 +1035,7 @@ export const FORM: any = {
       "tableView":true,
       "input":true,
       "tags":[]
-    },
+    },*/
     {
       "input": true,
       "tableView": true,
