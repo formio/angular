@@ -2,7 +2,7 @@ import { NgModule, Compiler, Component, ComponentFactory } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup  } from '@angular/forms';
 import { ReactiveFormsModule } from "@angular/forms";
-import { FormioModule } from '../formio';
+import { FormioBaseModule } from '../formio';
 import { FormioComponentMetaData, FormioComponentTemplate } from '../formio.template';
 let find = require('lodash/find');
 let cloneDeep = require('lodash/cloneDeep');
@@ -37,7 +37,7 @@ export class FormioComponents {
         }
         compTemplate.module.imports.push(CommonModule);
         compTemplate.module.imports.push(ReactiveFormsModule);
-        compTemplate.module.imports.push(FormioModule);
+        compTemplate.module.imports.push(FormioBaseModule);
         @NgModule(compTemplate.module)
         class DynamicComponentModule {}
         FormioComponents.components[name] = {
@@ -62,15 +62,14 @@ export class FormioComponents {
         if (!FormioComponents.components.hasOwnProperty(name)) {
             name = 'custom';
         }
-        let component = FormioComponents.components[name];
-        if (component.factoryPromise) {
-            return component.factoryPromise;
+        if (FormioComponents.components[name].factoryPromise) {
+            return FormioComponents.components[name].factoryPromise;
         }
-        component.factoryPromise = compiler.compileModuleAndAllComponentsAsync(component.module)
+        FormioComponents.components[name].factoryPromise = compiler.compileModuleAndAllComponentsAsync(FormioComponents.components[name].module)
         .then((moduleWithFactories) => {
             let factory = find(moduleWithFactories.componentFactories, {selector: 'formio-' + name});
             return factory;
         });
-        return component.factoryPromise;
+        return FormioComponents.components[name].factoryPromise;
     }
 }

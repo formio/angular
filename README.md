@@ -95,6 +95,28 @@ Here is an example of how this library could be used.
 This is a very simple example. This library is capable of building very complex forms which include e-signatures, columns,
 panels, field conditionals, validation requirements, and the list goes on and on.
 
+Usage
+----------------
+To use this library within your project, you will first need to install it as a dependency.
+
+```
+npm install --save ng2-formio
+```
+
+You can now include the module in your Angular 2.0 application like so.
+
+```
+import { FormioModule } from 'ng2-formio/src/formio';
+import { FORMIO_BOOTSTRAP } from 'ng2-formio/src/templates/bootstrap';
+FormioModule.setTemplate(FORMIO_BOOTSTRAP);
+@NgModule({
+    imports: [ BrowserModule, ReactiveFormsModule, FormioModule ],
+    declarations: [ AppComponent ],
+    bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+```
+
 Try it out
 -----------------
 To get this working, you can download this repo and then run the following commands.

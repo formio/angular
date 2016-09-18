@@ -27,7 +27,7 @@ import { FormioTemplate, RegisterTemplate } from './formio.template';
         FormioComponentsComponent
     ]
 })
-export class FormioModule {
+export class FormioBaseModule {
     public static setTemplate(template: FormioTemplate) {
         RegisterTemplate(FormioComponent, template.formio);
         RegisterTemplate(FormioComponentComponent, template.formio_component);
