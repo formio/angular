@@ -1,4 +1,4 @@
-import { Component, Input, Type, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BaseOptions } from './components/base';
 import { FormioEvents } from './formio.common';
@@ -7,15 +7,12 @@ import { FormioEvents } from './formio.common';
     selector: 'formio-components',
     template: '<div></div>'
 })
-export class FormioComponentsComponent extends Type<any> {
+export class FormioComponentsComponent {
     @Input() components: Array<BaseOptions<any>>;
     @Input() form: FormGroup;
     @Input() events: FormioEvents;
     @Output() render: EventEmitter<any> = new EventEmitter();
     private renderCount: number = 0;
-    constructor() {
-        super();
-    }
     onRender() {
         if (this.renderCount >= this.components.length) {
             return;

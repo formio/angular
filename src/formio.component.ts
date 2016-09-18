@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Component, Input, Output, Type, EventEmitter, OnInit }  from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit }  from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormioService } from './formio.service';
 import { FormioForm, FormioEvents, FormioOptions } from './formio.common';
@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     selector: 'formio',
     template: '<div></div>'
 })
-export class FormioComponent extends Type<any> implements OnInit {
+export class FormioComponent implements OnInit {
     public formGroup: FormGroup = new FormGroup({});
     public events: FormioEvents = new FormioEvents();
     public ready: BehaviorSubject<boolean> = new BehaviorSubject(false);
@@ -23,9 +23,6 @@ export class FormioComponent extends Type<any> implements OnInit {
     @Output() render: EventEmitter<any> = new EventEmitter();
     @Output() submit: EventEmitter<any> = new EventEmitter();
     @Output() change: EventEmitter<any> = new EventEmitter();
-    constructor() {
-        super();
-    }
     ngOnInit() {
         this.options = Object.assign({
             errors: {
