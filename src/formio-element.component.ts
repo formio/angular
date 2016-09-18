@@ -2,7 +2,6 @@ import {
     Component,
     Input,
     EventEmitter,
-    Type,
     OnInit,
     Compiler,
     ViewContainerRef,
@@ -17,28 +16,21 @@ import { FormioEvents } from './formio.common';
     selector: 'formio-element',
     template: '<div #formioElement></div>'
 })
-export class FormioElement extends Type implements OnInit {
+export class FormioElement implements OnInit {
     @Input() component: BaseComponent<any>;
     @Input() form: FormGroup;
     @Input() label: string | boolean;
     @Input() events: FormioEvents;
     @Input() render: EventEmitter<any>;
     @ViewChild('formioElement', { read: ViewContainerRef }) element: ViewContainerRef;
-    constructor(private compiler: Compiler) {
-        super();
-    }
+    constructor(private compiler: Compiler) {}
     ngOnInit() {
         // Get the element.
-        let element = FormioComponents.element(this.component.settings.type, this.compiler);
-        if (!element) {
-            return;
-        }
-
-        element.then(cmpFactory => {
+        FormioComponents.element(this.component.settings.type, this.compiler).then(factory => {
             if (!this.element) {
                 return;
             }
-            let cmpRef = this.element.createComponent(cmpFactory);
+            let cmpRef = this.element.createComponent<FormioElement>(factory);
             this.component.label = this.label;
             cmpRef.instance.component = this.component;
             cmpRef.instance.form = this.form;

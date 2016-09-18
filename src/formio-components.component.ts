@@ -1,4 +1,4 @@
-import { Component, Input, Type, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BaseOptions } from './components/base';
 import { FormioEvents } from './formio.common';
@@ -7,7 +7,7 @@ import { FormioEvents } from './formio.common';
     selector: 'formio-components',
     template: '<div></div>'
 })
-export class FormioComponentsComponent extends Type {
+export class FormioComponentsComponent {
     @Input() components: Array<BaseOptions<any>>;
     @Input() form: FormGroup;
     @Input() events: FormioEvents;

@@ -1,4 +1,4 @@
-import { Type, EventEmitter, OnInit } from "@angular/core";
+import { EventEmitter, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { FormioEvents, FormioError } from '../formio.common';
 
@@ -61,6 +61,7 @@ export class BaseComponent<T> {
     control: FormControl | FormGroup | FormArray;
     index: number = 0;
     private _label: string | boolean;
+    protected validators: ValidatorFn[] = [];
     constructor(public form: FormGroup, public settings: any) {
         this.getControl();
     }
@@ -90,8 +91,12 @@ export class BaseComponent<T> {
         return this.settings.defaultValue;
     }
     getControl(): FormArray | FormGroup | FormControl {
+        if (!this.settings.input) {
+            return null;
+        }
         if (!this.control) {
-            this.control = new FormControl(this.defaultValue, this.getValidators());
+            this.addValidators();
+            this.control = new FormControl(this.defaultValue, this.validators);
         }
         return this.control;
     }
@@ -123,29 +128,27 @@ export class BaseComponent<T> {
         }
         return errors;
     }
-    getValidators() : ValidatorFn[] {
+    addValidators() {
         if (!this.settings.validate) {
-            return [];
+            return;
         }
-        let validators: ValidatorFn[] = [];
         if (this.settings.validate.required) {
-            validators.push(Validators.required);
+            this.validators.push(Validators.required);
         }
         if (this.settings.validate.custom) {
-            validators.push(CustomValidator(this.settings.validate.custom, this.form));
+            this.validators.push(CustomValidator(this.settings.validate.custom, this.form));
         }
-        return validators;
     }
     allowMultiple(): boolean{
         return this.settings.multiple;
     }
 }
 
-export class BaseElement<T> extends Type implements OnInit {
-    component: T;
-    form: FormGroup;
-    events: FormioEvents;
-    render: EventEmitter<any>;
+export class BaseElement<T> implements OnInit {
+    public component: T;
+    public form: FormGroup;
+    public events: FormioEvents;
+    public render: EventEmitter<any>;
     private renderCount: number = 0;
     get numComponents() : number {
         return 0;

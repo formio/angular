@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup, FormControl } from '@angular/forms';
-import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
 import { PasswordComponent } from './password';
@@ -8,7 +8,7 @@ import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('PasswordComponent', () => {
     beforeEach(() => {
-        RegisterComponents(FORMIO_TEMPLATE);
+        RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
     });
 

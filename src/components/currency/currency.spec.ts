@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
 import { CurrencyComponent } from './currency';
@@ -7,7 +7,7 @@ import { FormioComponentComponent } from '../../formio-component.component';
 
 describe('CurrencyComponent', () => {
     beforeEach(() => {
-        RegisterComponents(FORMIO_TEMPLATE);
+        RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
     });
 

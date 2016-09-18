@@ -4,12 +4,12 @@ var helpers = require('./helpers');
 
 module.exports = {
   entry: {
-    'formio': helpers.root('src') + '/bootstrap.ts'
+    'formio': helpers.root('src') + '/formio.ts'
   },
   output: {
     path: helpers.root('dist'),
     publicPath: '/',
-    filename: '[name].bootstrap.min.js'
+    filename: '[name].min.js'
   },
   resolve: {
     extensions: ['', '.js', '.ts', '.css']

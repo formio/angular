@@ -7,7 +7,7 @@ export function CHECKBOX(key: string, label: string): CheckBoxOptions {
         hideLabel: true,
         label: label,
         key: key,
-        defaultValue: '',
+        defaultValue: false,
         protected: false,
         persistent: true,
         validate: {

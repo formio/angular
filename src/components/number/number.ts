@@ -12,8 +12,6 @@ export class NumberComponent extends InputComponent<InputOptions> {
 
 export class NumberElement extends BaseElement<NumberComponent> {}
 export function NumberField(template:FormioTemplate) {
-    FormioComponents.register('number', NumberComponent, NumberElement, {
-        template: template.components.input
-    });
+    FormioComponents.register('number', NumberComponent, NumberElement, template.components.input);
     return NumberElement;
 };

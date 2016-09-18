@@ -12,9 +12,7 @@ export class ColumnsElement extends BaseElement<ColumnsComponent> {
         return this.component.settings.columns.length;
     }
 }
-export function Columns(template:FormioTemplate) {
-    FormioComponents.register('columns', ColumnsComponent, ColumnsElement, {
-        template: template.components.columns
-    });
+export function ColumnsField(template:FormioTemplate) {
+    FormioComponents.register('columns', ColumnsComponent, ColumnsElement, template.components.columns);
     return ColumnsElement;
 };

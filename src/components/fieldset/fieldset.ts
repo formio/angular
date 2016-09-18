@@ -21,9 +21,7 @@ export class FieldSetElement extends BaseElement<FieldSetComponent> {
     get numComponents() : number { return 1; }
 }
 
-export function FieldSet(template:FormioTemplate) {
-    FormioComponents.register('fieldset', FieldSetComponent, FieldSetElement, {
-        template: template.components.fieldset
-    });
+export function FieldSetField(template:FormioTemplate) {
+    FormioComponents.register('fieldset', FieldSetComponent, FieldSetElement, template.components.fieldset);
     return FieldSetElement;
 }

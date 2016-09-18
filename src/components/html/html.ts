@@ -3,7 +3,7 @@ import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
 
-export interface HtmlElementOptions extends BaseOptions<any> {
+export interface HtmlOptions extends BaseOptions<any> {
     tag: string,
     attrs: Array<{}>,
     className: string,
@@ -13,11 +13,8 @@ export interface HtmlElementOptions extends BaseOptions<any> {
     tags?:Array<string>
 }
 
-export class HtmlElementComponent extends BaseComponent<HtmlElementOptions> {
-    
-}
-
-export class HtmlElementElement extends BaseElement<HtmlElementComponent> implements OnInit {
+export class HtmlComponent extends BaseComponent<HtmlOptions> {}
+export class HtmlElement extends BaseElement<HtmlComponent> implements OnInit {
     public element: string;
     ngOnInit(){
         let attributes: string = '';
@@ -28,9 +25,7 @@ export class HtmlElementElement extends BaseElement<HtmlElementComponent> implem
     }
 }
 
-export function HtmlElement(template:FormioTemplate) {
-    FormioComponents.register('htmlelement', HtmlElementComponent, HtmlElementElement, {
-        template: template.components.htmlelement
-    });
-    return HtmlElementElement;
+export function HtmlField(template:FormioTemplate) {
+    FormioComponents.register('htmlelement', HtmlComponent, HtmlElement, template.components.html);
+    return HtmlElement;
 }

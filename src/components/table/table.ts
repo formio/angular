@@ -39,9 +39,7 @@ export class TableElement extends BaseElement<TableComponent> {
     }
 }
 
-export function Table(template:FormioTemplate) {
-    FormioComponents.register('table', TableComponent, TableElement, {
-        template: template.components.table
-    });
+export function TableField(template:FormioTemplate) {
+    FormioComponents.register('table', TableComponent, TableElement, template.components.table);
     return TableElement;
 }

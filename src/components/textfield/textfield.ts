@@ -12,8 +12,6 @@ export class TextFieldComponent extends InputComponent<InputOptions> {
 
 export class TextElement extends BaseElement<TextFieldComponent> {}
 export function TextField(template:FormioTemplate) {
-    FormioComponents.register('textfield', TextFieldComponent, TextElement, {
-        template: template.components.input
-    });
+    FormioComponents.register('textfield', TextFieldComponent, TextElement, template.components.input);
     return TextElement;
 };

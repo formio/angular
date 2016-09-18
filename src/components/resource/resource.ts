@@ -52,9 +52,7 @@ export class ResourceElement extends BaseElement<ResourceComponent> implements O
     }
 }
 
-export function Resource(template:FormioTemplate) {
-    FormioComponents.register('resource', ResourceComponent, ResourceElement, {
-        template: template.components.resource
-    });
+export function ResourceField(template:FormioTemplate) {
+    FormioComponents.register('resource', ResourceComponent, ResourceElement, template.components.resource);
     return ResourceElement;
 }

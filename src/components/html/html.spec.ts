@@ -1,19 +1,19 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-import { FormGroup, FormControl } from '@angular/forms';
-import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { FormGroup } from '@angular/forms';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 import { FormioComponentComponent } from '../../formio-component.component';
-import {HtmlElementOptions, HtmlElementComponent} from './htmlelement';
+import { HtmlOptions, HtmlComponent } from './html';
 
-describe('HtmlElementComponent', () => {
+describe('HtmlComponent', () => {
     beforeEach(() => {
-        RegisterComponents(FORMIO_TEMPLATE);
+        RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
     });
 
     // An easy method for getting new HtmlElement settings.
-    var getSettings = (overrides: {}): HtmlElementOptions => {
-        let settings: HtmlElementOptions = {
+    var getSettings = (overrides: {}): HtmlOptions => {
+        let settings: HtmlOptions = {
             input: false,
             tag: "p",
             attrs: [
@@ -36,7 +36,7 @@ describe('HtmlElementComponent', () => {
     };
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
-        let settings:HtmlElementOptions = getSettings(overrides);
+        let settings:HtmlOptions = getSettings(overrides);
         let component = new FormioComponentComponent<string>();
         component.component = settings;
         component.form = this.form;
@@ -47,46 +47,46 @@ describe('HtmlElementComponent', () => {
     it('Test FormioComponent for HtmlElement', () => {
         let component = getComponent({});
         expect(component.components.length).toEqual(1);
-        expect(component.components[0] instanceof HtmlElementComponent).toEqual(true);
+        expect(component.components[0] instanceof HtmlComponent).toEqual(true);
     });
 
     it('Type should be htmlelement', () => {
-        let settings: HtmlElementOptions = getSettings({
+        let settings: HtmlOptions = getSettings({
             type: 'htmlelement'
         });
 
         // Create the htmlelement component.
-        let htmlelement = new HtmlElementComponent(this.form, settings);
+        let htmlelement = new HtmlComponent(this.form, settings);
         expect(htmlelement.settings.type).toEqual('htmlelement');
     });
 
     it('Should allow className', () => {
-        let settings: HtmlElementOptions = getSettings({
+        let settings: HtmlOptions = getSettings({
             className: 'customClass'
         });
 
         // Create the htmlelement component.
-        let htmlelement = new HtmlElementComponent(this.form, settings);
+        let htmlelement = new HtmlComponent(this.form, settings);
         expect(htmlelement.settings.className).toEqual('customClass');
     });
 
     it('Should allow tag', () => {
-        let settings: HtmlElementOptions = getSettings({
+        let settings: HtmlOptions = getSettings({
             tag: 'p'
         });
 
         // Create the htmlelement component.
-        let htmlelement = new HtmlElementComponent(this.form, settings);
+        let htmlelement = new HtmlComponent(this.form, settings);
         expect(htmlelement.settings.tag).toEqual('p');
     });
 
     it('Should allow content', () => {
-        let settings: HtmlElementOptions = getSettings({
+        let settings: HtmlOptions = getSettings({
             content: 'Hello, Good Morning !!!'
         });
 
         // Create the htmlelement component.
-        let htmlelement = new HtmlElementComponent(this.form, settings);
+        let htmlelement = new HtmlComponent(this.form, settings);
         expect(htmlelement.settings.content).toEqual('Hello, Good Morning !!!');
     });
 

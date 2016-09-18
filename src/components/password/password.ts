@@ -12,8 +12,6 @@ export class PasswordComponent extends InputComponent<InputOptions> {
 
 export class PasswordElement extends BaseElement<PasswordComponent> {}
 export function PasswordField(template:FormioTemplate) {
-    FormioComponents.register('password', PasswordComponent, PasswordElement, {
-        template: template.components.input
-    });
+    FormioComponents.register('password', PasswordComponent, PasswordElement, template.components.input);
     return PasswordElement;
 };

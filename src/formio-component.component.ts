@@ -1,4 +1,4 @@
-import { Component, Input, Output, Type, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { FormioComponents } from './components/components';
 import { BaseOptions, BaseComponent } from './components/base';
@@ -9,7 +9,7 @@ var FormioUtils = require('formio-utils');
     selector: 'formio-component',
     template: '<div></div>'
 })
-export class FormioComponentComponent<T> extends Type implements OnInit {
+export class FormioComponentComponent<T> implements OnInit {
     show: Boolean = true;
     components: Array<BaseComponent<any>> = [];
     container: FormArray = new FormArray([]);
@@ -18,9 +18,6 @@ export class FormioComponentComponent<T> extends Type implements OnInit {
     @Input() events: FormioEvents;
     @Input() label: string | boolean;
     @Output() render: EventEmitter<any> = new EventEmitter();
-    constructor() {
-        super();
-    }
     ngOnInit() {
         // Hide by default if there are conditions for this control.
         if (this.hasConditions()) {

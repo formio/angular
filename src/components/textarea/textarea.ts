@@ -16,8 +16,6 @@ export class TextAreaComponent extends InputComponent<TextAreaOptions> {
 
 export class TextAreaElement extends BaseElement<TextAreaComponent> {}
 export function TextAreaField(template:FormioTemplate) {
-    FormioComponents.register('textarea', TextAreaComponent, TextAreaElement, {
-        template: template.components.textarea
-    });
+    FormioComponents.register('textarea', TextAreaComponent, TextAreaElement, template.components.textarea);
     return TextAreaElement;
 };

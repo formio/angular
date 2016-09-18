@@ -20,9 +20,7 @@ export class WellElement extends BaseElement<WellComponent> {
     get numComponents() : number { return 1; }
 }
 
-export function Well(template:FormioTemplate) {
-    FormioComponents.register('well', WellComponent, WellElement, {
-        template: template.components.well
-    });
+export function WellField(template:FormioTemplate) {
+    FormioComponents.register('well', WellComponent, WellElement, template.components.well);
     return WellElement;
 }

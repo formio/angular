@@ -1,14 +1,14 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
-import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
-import { CheckBoxComponent, CheckBoxOptions, CheckBox } from './checkbox';
+import { CheckBoxComponent, CheckBoxOptions } from './checkbox';
 import { FormioComponentComponent } from '../../formio-component.component';
 import { CHECKBOX } from '../../fixtures/fields/checkbox';
 
 describe('CheckBoxComponent', () => {
     beforeEach(() => {
-        RegisterComponents(FORMIO_TEMPLATE);
+        RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
     });
 
@@ -19,9 +19,9 @@ describe('CheckBoxComponent', () => {
         return settings;
     };
 
-    let getComponent = (overrides:{}):FormioComponentComponent<string> => {
+    let getComponent = (overrides:{}):FormioComponentComponent<boolean> => {
         let settings:CheckBoxOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<boolean>();
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
