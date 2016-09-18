@@ -62,14 +62,15 @@ export class FormioComponents {
         if (!FormioComponents.components.hasOwnProperty(name)) {
             name = 'custom';
         }
-        if (FormioComponents.components[name].factoryPromise) {
-            return FormioComponents.components[name].factoryPromise;
+        let component = FormioComponents.components[name];
+        if (component.factoryPromise) {
+            return component.factoryPromise;
         }
-        FormioComponents.components[name].factoryPromise = compiler.compileModuleAndAllComponentsAsync(FormioComponents.components[name].module)
+        component.factoryPromise = compiler.compileModuleAndAllComponentsAsync(component.module)
         .then((moduleWithFactories) => {
             let factory = find(moduleWithFactories.componentFactories, {selector: 'formio-' + name});
             return factory;
         });
-        return FormioComponents.components[name].factoryPromise;
+        return component.factoryPromise;
     }
 }

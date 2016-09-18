@@ -18,7 +18,7 @@ export const FORM: any = {
             "persistent": true,
             "validate": {
                 "required": true,
-                "minLength": 6,
+                "minLength": 2,
                 "maxLength": 10,
                 "pattern": "",
                 "custom": "",
@@ -30,21 +30,6 @@ export const FORM: any = {
                 "eq": ""
             },
             "type": "textfield"
-        },
-        {
-            "type": "email",
-            "persistent": true,
-            "unique": false,
-            "protected": false,
-            "defaultValue": "",
-            "suffix": "",
-            "prefix": "",
-            "placeholder": "Enter your email address",
-            "key": "email",
-            "label": "Email",
-            "inputType": "email",
-            "tableView": true,
-            "input": true
         },
         {
             "input": true,

@@ -91,6 +91,9 @@ export class BaseComponent<T> {
         return this.settings.defaultValue;
     }
     getControl(): FormArray | FormGroup | FormControl {
+        if (!this.settings.input) {
+            return null;
+        }
         if (!this.control) {
             this.addValidators();
             this.control = new FormControl(this.defaultValue, this.validators);

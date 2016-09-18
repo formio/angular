@@ -38,11 +38,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         datetime: {
             component: {
                 template:require('./bootstrap/components/datetime.html'),
-                styles: [
-                    ".showDate {width:48px;border:1px solid #ccc;}",
-                    ".showTime {width:53px;height:22px;border:1px solid #ccc;}",
-                    ".buttonsSpace {padding:5px;}"
-                ]
+                styles: []
             },
             module: {
                 imports: [DatepickerModule, TimepickerModule]

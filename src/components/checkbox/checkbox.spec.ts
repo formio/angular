@@ -19,9 +19,9 @@ describe('CheckBoxComponent', () => {
         return settings;
     };
 
-    let getComponent = (overrides:{}):FormioComponentComponent<string> => {
+    let getComponent = (overrides:{}):FormioComponentComponent<boolean> => {
         let settings:CheckBoxOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<boolean>();
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();

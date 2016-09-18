@@ -2,8 +2,7 @@ import { BaseComponent, BaseOptions, BaseElement} from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
 
-export interface CheckBoxOptions extends BaseOptions<string> {
-    defaultValue?: string,
+export interface CheckBoxOptions extends BaseOptions<boolean> {
     hideLabel?: boolean
 }
 
