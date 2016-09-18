@@ -1,6 +1,6 @@
 ***This library is currently in pre-release and is not yet feature complete.***
 
-***Expected BETA release will be Sept. 1, 2016***
+***Expected BETA release will be October 1, 2016***
 
 Form.io Angular 2 Renderer
 ---------------------------
