@@ -1,38 +1,81 @@
 import { FormioTemplate } from '../formio.template';
+import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { SelectModule } from 'ng2-select/ng2-select';
+
+let getTemplate = function(template: string) {
+    return {component: {template: template}};
+};
 export const FORMIO_BOOTSTRAP: FormioTemplate = {
-    styles: [
-        '.form-group.required .control-label:after { content:"*"; color:red; }',
-        '.glyphicon-spin { -webkit-animation: spin-anim 1s infinite; animation: spin-anim 1s infinite; }',
-        '@-webkit-keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}',
-        '@keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}'
-    ],
-    formio: require('./bootstrap/formio.html'),
-    formio_component: require('./bootstrap/formio-component.html'),
-    formio_components: require('./bootstrap/formio-components.html'),
-    errors: require('./bootstrap/errors.html'),
+    formio: {
+        component: {
+            template: require('./bootstrap/formio.html'),
+            styles: [
+                '.form-group.required .control-label:after { content:"*"; color:red; }',
+                '.glyphicon-spin { -webkit-animation: spin-anim 1s infinite; animation: spin-anim 1s infinite; }',
+                '@-webkit-keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}',
+                '@keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}'
+            ]
+        }
+    },
+    formio_component: getTemplate(require('./bootstrap/formio-component.html')),
+    formio_components: getTemplate(require('./bootstrap/formio-components.html')),
+    errors: getTemplate(require('./bootstrap/errors.html')),
     components: {
-        button: require('./bootstrap/components/button.html'),
-        columns: require('./bootstrap/components/columns.html'),
-        container: require('./bootstrap/components/container.html'),
-        datagrid: require('./bootstrap/components/datagrid.html'),
-        input: require('./bootstrap/components/input.html'),
-        textarea: require('./bootstrap/components/textarea.html'),
-        hidden: require('./bootstrap/components/hidden.html'),
-        radio: require('./bootstrap/components/radio.html'),
-        checkbox: require('./bootstrap/components/checkbox.html'),
-        custom: require('./bootstrap/components/custom.html'),
-        table: require('./bootstrap/components/table.html'),
-        panel: require('./bootstrap/components/panel.html'),
-        fieldset: require('./bootstrap/components/fieldset.html'),
-        well: require('./bootstrap/components/well.html'),
-        datetime: require('./bootstrap/components/datetime.html'),
-        selectboxes: require('./bootstrap/components/selectboxes.html'),
-        content: require('./bootstrap/components/content.html'),
-        html: require('./bootstrap/components/html.html'),
-        currency: require('./bootstrap/components/currency.html'),
-        select: require('./bootstrap/components/select.html'),
-        survey: require('./bootstrap/components/survey.html'),
-        resource: require('./bootstrap/components/resource.html'),
-        address: require('./bootstrap/components/address.html')
+        button: getTemplate(require('./bootstrap/components/button.html')),
+        columns: getTemplate(require('./bootstrap/components/columns.html')),
+        container: getTemplate(require('./bootstrap/components/container.html')),
+        datagrid: getTemplate(require('./bootstrap/components/datagrid.html')),
+        input: getTemplate(require('./bootstrap/components/input.html')),
+        textarea: getTemplate(require('./bootstrap/components/textarea.html')),
+        hidden: getTemplate(require('./bootstrap/components/hidden.html')),
+        radio: getTemplate(require('./bootstrap/components/radio.html')),
+        checkbox: getTemplate(require('./bootstrap/components/checkbox.html')),
+        custom: getTemplate(require('./bootstrap/components/custom.html')),
+        table: getTemplate(require('./bootstrap/components/table.html')),
+        panel: getTemplate(require('./bootstrap/components/panel.html')),
+        fieldset: getTemplate(require('./bootstrap/components/fieldset.html')),
+        well: getTemplate(require('./bootstrap/components/well.html')),
+        datetime: {
+            component: {
+                template:require('./bootstrap/components/datetime.html'),
+                styles: [
+                    ".showDate {width:48px;border:1px solid #ccc;}",
+                    ".showTime {width:53px;height:22px;border:1px solid #ccc;}",
+                    ".buttonsSpace {padding:5px;}"
+                ]
+            },
+            module: {
+                imports: [DatepickerModule, TimepickerModule]
+            }
+        },
+        selectboxes: getTemplate(require('./bootstrap/components/selectboxes.html')),
+        content: getTemplate(require('./bootstrap/components/content.html')),
+        html: getTemplate(require('./bootstrap/components/html.html')),
+        currency: getTemplate(require('./bootstrap/components/currency.html')),
+        select: {
+            component: {
+                template: require('./bootstrap/components/select.html')
+            },
+            module: {
+                imports: [SelectModule]
+            }
+        },
+        survey: getTemplate(require('./bootstrap/components/survey.html')),
+        resource: {
+            component: {
+                template: require('./bootstrap/components/resource.html')
+            },
+            module: {
+                imports: [SelectModule]
+            }
+        },
+        address: {
+            component: {
+                template: require('./bootstrap/components/address.html')
+            },
+            module: {
+                imports: [SelectModule]
+            }
+        }
     }
 };

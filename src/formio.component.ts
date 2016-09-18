@@ -59,7 +59,12 @@ export class FormioComponent extends Type<any> implements OnInit {
         // The form is done rendering.
         this.render.emit(true);
     }
-    onSubmit() {
+    onSubmit($event: any) {
+        if ($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+        }
+
         // Reset the errors.
         this.events.errors = [];
 
@@ -75,6 +80,9 @@ export class FormioComponent extends Type<any> implements OnInit {
             this.service.saveSubmission(submission).subscribe((sub: {}) => {
                 this.submit.emit(sub);
             });
+        }
+        else {
+            this.submit.emit(submission);
         }
     }
 }

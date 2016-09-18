@@ -26,8 +26,6 @@ export class HtmlElement extends BaseElement<HtmlComponent> implements OnInit {
 }
 
 export function HtmlField(template:FormioTemplate) {
-    FormioComponents.register('htmlelement', HtmlComponent, HtmlElement, {
-        template: template.components.html
-    });
+    FormioComponents.register('htmlelement', HtmlComponent, HtmlElement, template.components.html);
     return HtmlElement;
 }

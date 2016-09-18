@@ -29,7 +29,7 @@ import { FormioTemplate, RegisterTemplate } from './formio.template';
 })
 export class FormioModule {
     public static setTemplate(template: FormioTemplate) {
-        RegisterTemplate(FormioComponent, template.formio, template.styles);
+        RegisterTemplate(FormioComponent, template.formio);
         RegisterTemplate(FormioComponentComponent, template.formio_component);
         RegisterTemplate(FormioComponentsComponent, template.formio_components);
         RegisterTemplate(FormioErrors, template.errors);

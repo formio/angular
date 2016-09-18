@@ -22,8 +22,6 @@ export class FieldSetElement extends BaseElement<FieldSetComponent> {
 }
 
 export function FieldSetField(template:FormioTemplate) {
-    FormioComponents.register('fieldset', FieldSetComponent, FieldSetElement, {
-        template: template.components.fieldset
-    });
+    FormioComponents.register('fieldset', FieldSetComponent, FieldSetElement, template.components.fieldset);
     return FieldSetElement;
 }

@@ -1,7 +1,6 @@
 import { BaseComponent, BaseOptions, BaseElement} from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
-import { SelectModule } from 'ng2-select/ng2-select';
 var Formio = require('formiojs');
 
 export interface AddressOptions extends BaseOptions<string> {
@@ -42,10 +41,6 @@ export class AddressElement extends BaseElement<AddressComponent> {
 }
 
 export function AddressField(template:FormioTemplate) {
-    FormioComponents.register('address', AddressComponent, AddressElement, {
-        template: template.components.address
-    }, {
-        imports: [SelectModule]
-    });
+    FormioComponents.register('address', AddressComponent, AddressElement, template.components.address);
     return AddressElement;
 }

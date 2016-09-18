@@ -12,7 +12,6 @@ import { FormGroup } from '@angular/forms';
 import { FormioComponents } from './components/components';
 import { BaseComponent } from './components/base';
 import { FormioEvents } from './formio.common';
-let find = require('lodash/find');
 
 @Component({
     selector: 'formio-element',
@@ -30,20 +29,11 @@ export class FormioElement extends Type<any> implements OnInit {
     }
     ngOnInit() {
         // Get the element.
-        let element = FormioComponents.element(this.component.settings.type, this.compiler);
-        if (!element) {
-            return;
-        }
-
-        element.then(moduleWithFactories => {
+        FormioComponents.element(this.component.settings.type, this.compiler).then(factory => {
             if (!this.element) {
                 return;
             }
-            let cmpFactory = find(
-                moduleWithFactories.componentFactories,
-                {selector: 'formio-' + this.component.settings.type}
-            );
-            let cmpRef = this.element.createComponent<FormioElement>(cmpFactory);
+            let cmpRef = this.element.createComponent<FormioElement>(factory);
             this.component.label = this.label;
             cmpRef.instance.component = this.component;
             cmpRef.instance.form = this.form;

@@ -14,8 +14,6 @@ export interface RadioOptions extends BaseOptions<string> {
 export class RadioComponent extends BaseComponent<RadioOptions> {}
 export class RadioElement extends BaseElement<RadioComponent> {}
 export function RadioField(template:FormioTemplate) {
-    FormioComponents.register('radio', RadioComponent, RadioElement, {
-        template: template.components.radio
-    });
+    FormioComponents.register('radio', RadioComponent, RadioElement, template.components.radio);
     return RadioElement;
 }

@@ -2,7 +2,6 @@ import { OnInit } from "@angular/core";
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
-import { SelectModule } from 'ng2-select/ng2-select';
 var Formio = require('formiojs');
 
 export interface ResourceOptions extends BaseOptions<any> {
@@ -54,10 +53,6 @@ export class ResourceElement extends BaseElement<ResourceComponent> implements O
 }
 
 export function ResourceField(template:FormioTemplate) {
-    FormioComponents.register('resource', ResourceComponent, ResourceElement, {
-        template: template.components.resource
-    }, {
-        imports: [SelectModule]
-    });
+    FormioComponents.register('resource', ResourceComponent, ResourceElement, template.components.resource);
     return ResourceElement;
 }

@@ -1,6 +1,5 @@
 import { OnInit } from "@angular/core";
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
-import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
 
@@ -110,11 +109,6 @@ export class DateTimeElement extends BaseElement<DateTimeComponent> implements O
 }
 
 export function DateTimeField(template:FormioTemplate) {
-    FormioComponents.register('datetime', DateTimeComponent, DateTimeElement, {
-        template: template.components.datetime,
-        styles: [".showDate {width:48vmin;border:1px solid #ccc;}", ".showTime {width:53vmin;height:22vmin;border:1px solid #ccc;}", ".buttonsSpace {padding:5px;}"]
-    }, {
-        imports: [DatepickerModule, TimepickerModule]
-    });
+    FormioComponents.register('datetime', DateTimeComponent, DateTimeElement, template.components.datetime);
     return DateTimeElement;
 }

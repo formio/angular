@@ -23,8 +23,6 @@ export class PanelElement extends BaseElement<PanelComponent> {
 }
 
 export function PanelField(template:FormioTemplate) {
-    FormioComponents.register('panel', PanelComponent, PanelElement, {
-        template: template.components.panel
-    });
+    FormioComponents.register('panel', PanelComponent, PanelElement, template.components.panel);
     return PanelElement;
 }

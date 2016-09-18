@@ -1,4 +1,4 @@
-import { FormGroup, FormControl, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { FormioComponents } from '../components';
 import { InputComponent, InputOptions } from '../input/input';
 import { BaseElement } from '../base';
@@ -43,8 +43,6 @@ export class EmailComponent extends InputComponent<InputOptions> {
 
 export class EmailElement extends BaseElement<EmailComponent> {}
 export function EmailField(template:FormioTemplate) {
-    FormioComponents.register('email', EmailComponent, EmailElement, {
-        template: template.components.input
-    });
+    FormioComponents.register('email', EmailComponent, EmailElement, template.components.input);
     return EmailElement;
 };

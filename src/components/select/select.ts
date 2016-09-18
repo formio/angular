@@ -3,7 +3,6 @@ import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
 import { FormioService } from '../../formio.service';
-import { SelectModule } from 'ng2-select/ng2-select';
 var Formio = require('formiojs');
 
 export interface SelectOptions extends BaseOptions<any> {
@@ -76,10 +75,6 @@ export class SelectElement extends BaseElement<SelectComponent> implements OnIni
 }
 
 export function SelectField(template:FormioTemplate) {
-    FormioComponents.register('select', SelectComponent, SelectElement, {
-        template: template.components.select
-    }, {
-        imports: [SelectModule]
-    });
+    FormioComponents.register('select', SelectComponent, SelectElement, template.components.select);
     return SelectElement;
 }

@@ -1,3 +1,4 @@
+import { FormioTemplate } from '../formio.template';
 import { TextField } from './textfield/textfield';
 import { ButtonField } from './button/button';
 import { ColumnsField } from './columns/columns';
@@ -9,7 +10,6 @@ import { TextAreaField } from './textarea/textarea';
 import { PasswordField } from './password/password';
 import { NumberField } from './number/number';
 import { HiddenField } from './hidden/hidden';
-import { FormioTemplate } from '../formio.template';
 import { RadioField } from './radio/radio';
 import { CustomField } from './custom/custom';
 import { TableField } from './table/table';

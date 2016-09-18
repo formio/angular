@@ -50,8 +50,6 @@ export class CurrencyElement extends BaseElement<CurrencyComponent> {
    }
 }
 export function CurrencyField(template: FormioTemplate) {
-    FormioComponents.register('currency', CurrencyComponent, CurrencyElement, {
-        template: template.components.currency,
-    });
+    FormioComponents.register('currency', CurrencyComponent, CurrencyElement, template.components.currency);
     return CurrencyElement;
 }

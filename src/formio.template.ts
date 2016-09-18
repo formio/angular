@@ -1,5 +1,42 @@
-import { Type } from '@angular/core';
-import { FormioComponentsTemplate } from './components/components';
+import { Type, NgModule } from '@angular/core';
+
+export interface FormioComponentMetaData {
+    template?: string,
+    selector?: string,
+    inputs?: Array<string>,
+    styles?: Array<string>
+}
+
+export interface FormioComponentTemplate {
+    component: FormioComponentMetaData,
+    module?: NgModule
+}
+
+export interface FormioComponentsTemplate {
+    button: FormioComponentTemplate,
+    columns: FormioComponentTemplate,
+    container: FormioComponentTemplate,
+    datagrid: FormioComponentTemplate,
+    input: FormioComponentTemplate,
+    textarea: FormioComponentTemplate,
+    hidden: FormioComponentTemplate,
+    radio: FormioComponentTemplate,
+    checkbox: FormioComponentTemplate,
+    custom: FormioComponentTemplate,
+    table: FormioComponentTemplate,
+    panel: FormioComponentTemplate,
+    fieldset: FormioComponentTemplate,
+    well: FormioComponentTemplate,
+    datetime: FormioComponentTemplate,
+    selectboxes: FormioComponentTemplate,
+    content: FormioComponentTemplate,
+    html: FormioComponentTemplate,
+    currency: FormioComponentTemplate,
+    select: FormioComponentTemplate,
+    survey: FormioComponentTemplate,
+    resource: FormioComponentTemplate,
+    address: FormioComponentTemplate
+}
 
 /**
  * The Form.io template interface.
@@ -8,11 +45,10 @@ import { FormioComponentsTemplate } from './components/components';
  * rendering template.
  */
 export interface FormioTemplate {
-    styles?: Array<string>,
-    formio: string,
-    formio_component: string;
-    formio_components: string;
-    errors: string;
+    formio: FormioComponentTemplate,
+    formio_component: FormioComponentTemplate;
+    formio_components: FormioComponentTemplate;
+    errors: FormioComponentTemplate;
     components: FormioComponentsTemplate;
 };
 
@@ -24,12 +60,12 @@ export interface FormioTemplate {
  * @param template - The template to add to this component.
  * @constructor
  */
-export function RegisterTemplate(cmp: Type<any>, template: string, styles?: Array<string>) {
+export function RegisterTemplate(cmp: Type<any>, template: FormioComponentTemplate) {
     //noinspection TypeScriptUnresolvedFunction
     let annotations = Reflect.getMetadata('annotations', cmp);
-    annotations[0].template = template;
-    if (styles) {
-        annotations[0].styles = styles;
+    annotations[0].template = template.component.template;
+    if (template.component.styles) {
+        annotations[0].styles = template.component.styles;
     }
     //noinspection TypeScriptUnresolvedFunction
     Reflect.defineMetadata('annotations', annotations, cmp);

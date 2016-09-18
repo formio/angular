@@ -9,8 +9,6 @@ export interface ContentOptions extends BaseOptions<any> {
 export class ContentComponent extends BaseComponent<ContentOptions> {}
 export class ContentElement extends BaseElement<ContentComponent> {}
 export function ContentField(template:FormioTemplate) {
-    FormioComponents.register('content', ContentComponent, ContentElement, {
-        template: template.components.content
-    });
+    FormioComponents.register('content', ContentComponent, ContentElement, template.components.content);
     return ContentElement;
 }

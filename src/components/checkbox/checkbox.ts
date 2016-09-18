@@ -10,8 +10,6 @@ export interface CheckBoxOptions extends BaseOptions<string> {
 export class CheckBoxComponent extends BaseComponent<CheckBoxOptions> {}
 export class CheckBoxElement extends BaseElement<CheckBoxComponent> {}
 export function CheckBoxField(template:FormioTemplate) {
-    FormioComponents.register('checkbox', CheckBoxComponent, CheckBoxElement, {
-        template: template.components.checkbox
-    });
+    FormioComponents.register('checkbox', CheckBoxComponent, CheckBoxElement, template.components.checkbox);
     return CheckBoxElement;
 }

@@ -21,8 +21,6 @@ export class WellElement extends BaseElement<WellComponent> {
 }
 
 export function WellField(template:FormioTemplate) {
-    FormioComponents.register('well', WellComponent, WellElement, {
-        template: template.components.well
-    });
+    FormioComponents.register('well', WellComponent, WellElement, template.components.well);
     return WellElement;
 }
