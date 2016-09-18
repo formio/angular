@@ -2,7 +2,7 @@
 import { FormGroup } from '@angular/forms';
 import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
-import { CheckBoxComponent, CheckBoxOptions, CheckBox } from './checkbox';
+import { CheckBoxComponent, CheckBoxOptions } from './checkbox';
 import { FormioComponentComponent } from '../../formio-component.component';
 import { CHECKBOX } from '../../fixtures/fields/checkbox';
 

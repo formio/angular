@@ -16,7 +16,7 @@ export class SelectBoxElement extends BaseElement<SelectBoxComponent> {
     public selected: Array<string> = [];
 }
 
-export function SelectBox(template:FormioTemplate) {
+export function SelectBoxField(template:FormioTemplate) {
     FormioComponents.register('selectboxes', SelectBoxComponent, SelectBoxElement, {
         template: template.components.selectboxes
     });

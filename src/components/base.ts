@@ -142,10 +142,10 @@ export class BaseComponent<T> {
 }
 
 export class BaseElement<T> extends Type<any> implements OnInit {
-    component: T;
-    form: FormGroup;
-    events: FormioEvents;
-    render: EventEmitter<any>;
+    public component: T;
+    public form: FormGroup;
+    public events: FormioEvents;
+    public render: EventEmitter<any>;
     private renderCount: number = 0;
     constructor() {
         super();

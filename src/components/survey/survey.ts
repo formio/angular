@@ -10,7 +10,7 @@ export interface SurveyOptions extends BaseOptions<string> {
 
 export class SurveyComponent extends BaseComponent<SurveyOptions> {}
 export class SurveyElement extends BaseElement<SurveyComponent> {}
-export function Survey(template:FormioTemplate) {
+export function SurveyField(template:FormioTemplate) {
     FormioComponents.register('survey', SurveyComponent, SurveyElement, {
         template: template.components.survey
     });

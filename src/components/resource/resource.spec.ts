@@ -1,12 +1,12 @@
 import { FormGroup } from '@angular/forms';
 import { FormioComponentComponent } from '../../formio-component.component';
 import { ResourceComponent, ResourceOptions } from './resource';
-import { FORMIO_TEMPLATE } from '../../templates/bootstrap';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap';
 import { RegisterComponents } from '../index';
 
 describe('SelectComponent', () => {
     beforeEach(() => {
-        RegisterComponents(FORMIO_TEMPLATE);
+        RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
     });
 

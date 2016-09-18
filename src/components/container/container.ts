@@ -23,7 +23,7 @@ export class ContainerElement extends BaseElement<ContainerComponent> {
     }
 }
 
-export function Container(template:FormioTemplate) {
+export function ContainerField(template:FormioTemplate) {
     FormioComponents.register('container', ContainerComponent, ContainerElement, {
         template: template.components.container
     });

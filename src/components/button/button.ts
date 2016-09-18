@@ -13,7 +13,7 @@ export interface ButtonOptions extends BaseOptions<boolean> {
 }
 export class ButtonComponent extends BaseComponent<ButtonOptions> {}
 export class ButtonElement extends BaseElement<ButtonComponent> {}
-export function Button(template: FormioTemplate) {
+export function ButtonField(template: FormioTemplate) {
     FormioComponents.register('button', ButtonComponent, ButtonElement, {
         template: template.components.button
     });

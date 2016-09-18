@@ -1,6 +1,5 @@
 import {
     NgModule,
-    NgModuleMetadataType,
     Compiler,
     ModuleWithComponentFactories,
     Component
@@ -28,7 +27,7 @@ export interface FormioComponentsTemplate {
     datetime: string,
     selectboxes: string,
     content: string,
-    htmlelement: string,
+    html: string,
     currency: string,
     select: string,
     survey: string,
@@ -58,7 +57,7 @@ export class FormioComponents {
         component: any,
         element: any,
         metadata: FormioComponentMetaData,
-        module?: NgModuleMetadataType
+        module?: NgModule
     ) {
         module = module || {};
         metadata.selector = metadata.selector || 'formio-' + name;
