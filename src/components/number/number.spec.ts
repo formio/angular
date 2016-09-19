@@ -78,28 +78,23 @@ describe('NumberComponent', () => {
         // Create the number component.
         let number = new NumberComponent(this.form, settings);
 
-        let updateValue = (val: string) => {
-            number.control['setValue'](val);
-            number.control['markAsDirty']();
-        };
-
-        updateValue("");
+        number.setValue("");
         expect(number.control.valid).toEqual(false);
         expect(number.control.errors).toEqual({required: true});
         expect(number.getError('required', number.control.errors['required'])).toEqual('Number is required');
 
-        updateValue("10");
+        number.setValue("10");
         expect(number.control.valid).toEqual(true);
 
-        updateValue("1");
+        number.setValue("1");
         expect(number.control.valid).toEqual(false);
         expect(number.control.errors).toEqual({minlength: {requiredLength: 2, actualLength: 1}});
         expect(number.getError('minlength', number.control.errors['minlength'])).toEqual('Number must be at least 2 characters');
 
-        updateValue("1234567890");
+        number.setValue("1234567890");
         expect(number.control.valid).toEqual(true);
 
-        updateValue("12345678901");
+        number.setValue("12345678901");
         expect(number.control.valid).toEqual(false);
         expect(number.control.errors).toEqual({maxlength: {requiredLength: 10, actualLength: 11}});
         expect(number.getError('maxlength', number.control.errors['maxlength'])).toEqual('Number cannot be more than 10 characters');

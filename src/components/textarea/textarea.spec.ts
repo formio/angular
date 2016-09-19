@@ -86,33 +86,28 @@ describe('TextAreaComponent', () => {
         expect(textarea.label).toEqual('Textarea');
         expect(textarea.control instanceof FormControl).toEqual(true);
 
-        let updateValue = (val: string) => {
-            textarea.control['setValue'](val);
-            textarea.control['markAsDirty']();
-        };
-
-        updateValue("te");
+        textarea.setValue("te");
         expect(textarea.control.valid).toEqual(true);
 
-        updateValue('T');
+        textarea.setValue('T');
         expect(textarea.control.valid).toEqual(false);
         expect(textarea.control.errors).toEqual({minlength: {requiredLength: 2, actualLength: 1}});
         expect(textarea.getError('minlength', textarea.control.errors['minlength'])).toEqual('Textarea must be at least 2 characters');
 
-        updateValue('');
+        textarea.setValue('');
         expect(textarea.control.valid).toEqual(false);
         expect(textarea.control.errors).toEqual({required: true});
         expect(textarea.getError('required', textarea.control.errors['required'])).toEqual('Textarea is required');
 
-        updateValue("textareass");
+        textarea.setValue("textareass");
         expect(textarea.control.valid).toEqual(true);
 
-        updateValue('Testing Testing');
+        textarea.setValue('Testing Testing');
         expect(textarea.control.valid).toEqual(false);
         expect(textarea.control.errors).toEqual({maxlength: {requiredLength: 10, actualLength: 15}});
         expect(textarea.getError('maxlength', textarea.control.errors['maxlength'])).toEqual('Textarea cannot be more than 10 characters');
 
-        updateValue('Testing');
+        textarea.setValue('Testing');
         expect(textarea.control.valid).toEqual(true);
         expect(textarea.control.errors).toEqual(null);
     });

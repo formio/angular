@@ -49,37 +49,32 @@ describe('TextFieldComponent', () => {
         expect(textField.control instanceof FormControl).toEqual(true);
         expect(textField.control.value).toEqual('');
 
-        let updateValue = (val: string) => {
-            textField.control['setValue'](val);
-            textField.control['markAsDirty']();
-        };
-
-        updateValue('T');
+        textField.setValue('T');
         expect(textField.control.valid).toEqual(false);
         expect(textField.control.errors).toEqual({minlength: {requiredLength: 2, actualLength: 1}});
         expect(textField.getError('minlength', textField.control.errors['minlength'])).toEqual('First Name must be at least 2 characters');
 
-        updateValue('');
+        textField.setValue('');
         expect(textField.control.valid).toEqual(false);
         expect(textField.control.errors).toEqual({required: true});
         expect(textField.getError('required', textField.control.errors['required'])).toEqual('First Name is required');
 
-        updateValue('Testing Testing');
+        textField.setValue('Testing Testing');
         expect(textField.control.valid).toEqual(false);
         expect(textField.control.errors).toEqual({maxlength: {requiredLength: 10, actualLength: 15}});
         expect(textField.getError('maxlength', textField.control.errors['maxlength'])).toEqual('First Name cannot be more than 10 characters');
 
-        updateValue('Test-');
+        textField.setValue('Test-');
         expect(textField.control.valid).toEqual(false);
         expect(textField.control.errors).toEqual({pattern: {requiredPattern: '^[a-zA-Z0-9\\s]+$', actualValue: 'Test-'}});
         expect(textField.getError('pattern', textField.control.errors['pattern'])).toEqual('First Name must match the pattern ^[a-zA-Z0-9\\s]+$');
 
-        updateValue('Bob');
+        textField.setValue('Bob');
         expect(textField.control.valid).toEqual(false);
         expect(textField.control.errors).toEqual({custom: 'Bobs are not allowed'});
         expect(textField.getError('custom', textField.control.errors['custom'])).toEqual('Bobs are not allowed');
 
-        updateValue('Testing');
+        textField.setValue('Testing');
         expect(textField.control.valid).toEqual(true);
         expect(textField.control.errors).toEqual(null);
     });

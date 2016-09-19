@@ -65,6 +65,13 @@ export class BaseComponent<T> {
     constructor(public form: FormGroup, public settings: any) {
         this.getControl();
     }
+    public setValue(value: any) {
+        if (this.control && (this.control instanceof FormControl)) {
+            let formControl = this.control as FormControl;
+            formControl.setValue(value);
+            formControl.markAsDirty();
+        }
+    }
     set label(label: string | boolean) {
         this._label = label;
     }

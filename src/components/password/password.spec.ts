@@ -84,42 +84,37 @@ describe('PasswordComponent', () => {
         expect(password.label).toEqual('Password');
         expect(password.control instanceof FormControl).toEqual(true);
 
-        let updateValue = (val: string) => {
-            password.control['setValue'](val);
-            password.control['markAsDirty']();
-        };
-
-        updateValue('');
+        password.setValue('');
         expect(password.control.valid).toEqual(false);
         expect(password.control.errors).toEqual({required: true});
         expect(password.getError('required', password.control.errors['required'])).toEqual('Password is required');
 
         // The password must be at least 8 characters
-        updateValue('P');
+        password.setValue('P');
         expect(password.control.valid).toEqual(false);
         expect(password.control.errors).toEqual({ minlength: ({ requiredLength: 8, actualLength: 1 }), pattern: ({ requiredPattern: '^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])[0-9a-zA-Z]{8,}$', actualValue: 'P' }) });
         expect(password.getError('minlength', password.control.errors['minlength'])).toEqual('Password must be at least 8 characters');
 
         // The password should not contain only lower case letters
-        updateValue('testingg');
+        password.setValue('testingg');
         expect(password.control.valid).toEqual(false);
         expect(password.control.errors).toEqual({pattern: ({ requiredPattern: '^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])[0-9a-zA-Z]{8,}$', actualValue: 'testingg' })});
         expect(password.getError('pattern', password.control.errors['pattern'])).toEqual('Password must match the pattern ^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])[0-9a-zA-Z]{8,}$');
 
         // The password should not contain only upper case letters
-        updateValue('TESTINGG');
+        password.setValue('TESTINGG');
         expect(password.control.valid).toEqual(false);
         expect(password.control.errors).toEqual({pattern: ({ requiredPattern: '^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])[0-9a-zA-Z]{8,}$', actualValue: 'TESTINGG' })});
         expect(password.getError('pattern', password.control.errors['pattern'])).toEqual('Password must match the pattern ^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])[0-9a-zA-Z]{8,}$');
 
         // The password should contain upper case and lower case letters along with numbers
-        updateValue('Testingg');
+        password.setValue('Testingg');
         expect(password.control.valid).toEqual(false);
         expect(password.control.errors).toEqual({pattern: ({ requiredPattern: '^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])[0-9a-zA-Z]{8,}$', actualValue: 'Testingg' })});
         expect(password.getError('pattern', password.control.errors['pattern'])).toEqual('Password must match the pattern ^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])[0-9a-zA-Z]{8,}$');
 
         // The password should have atleast 1 upper case letter, 1 lower case letter and 1 number
-        updateValue('Testing123');
+        password.setValue('Testing123');
         expect(password.control.valid).toEqual(true);
     });
 
