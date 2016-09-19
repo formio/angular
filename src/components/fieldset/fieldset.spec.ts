@@ -136,7 +136,7 @@ describe('FieldSetComponent', () => {
             component.component = comp;
             component.form = this.form;
             component.ngOnInit();
-            component.form.controls[comp.key]['updateValue']('Test' + index);
+            component.form.controls[comp.key]['setValue']('Test' + index);
             component.form.controls[comp.key]['markAsDirty']();
         });
         expect(this.form.value).toEqual({firstName: 'Test1', lastName: 'Test2'});

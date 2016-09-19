@@ -1,4 +1,4 @@
-import 'reflect-metadata';
+import 'core-js/es7/reflect';
 import { Component, Input, Output, EventEmitter, OnInit }  from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormioService } from './formio.service';

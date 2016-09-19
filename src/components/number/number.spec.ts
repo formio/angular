@@ -79,7 +79,7 @@ describe('NumberComponent', () => {
         let number = new NumberComponent(this.form, settings);
 
         let updateValue = (val: string) => {
-            number.control['updateValue'](val);
+            number.control['setValue'](val);
             number.control['markAsDirty']();
         };
 
@@ -117,7 +117,7 @@ describe('NumberComponent', () => {
         });
 
         let updateValue = (index: number, val: string) => {
-            component.form.controls['number']['at'](index)['updateValue'](val);
+            component.form.controls['number']['at'](index)['setValue'](val);
             component.form.controls['number']['at'](index)['markAsDirty']();
         };
 
@@ -160,7 +160,7 @@ describe('NumberComponent', () => {
         });
 
         let updateValue = (val: string) => {
-            component.form.controls['number']['updateValue'](val);
+            component.form.controls['number']['setValue'](val);
             component.form.controls['number']['markAsDirty']();
         };
 

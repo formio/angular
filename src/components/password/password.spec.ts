@@ -85,7 +85,7 @@ describe('PasswordComponent', () => {
         expect(password.control instanceof FormControl).toEqual(true);
 
         let updateValue = (val: string) => {
-            password.control['updateValue'](val);
+            password.control['setValue'](val);
             password.control['markAsDirty']();
         };
 

@@ -11,6 +11,7 @@ describe('ColumnsComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        console.log(this.form);
     });
 
     var getSettings = (overrides: {}): ColumnsOptions => {
@@ -36,7 +37,6 @@ describe('ColumnsComponent', () => {
         let settings: ColumnsOptions = getSettings({});
         let container = new ColumnsComponent(this.form, settings);
         var index = 0;
-        expect(container.control instanceof FormControl).toEqual(true);
 
         // Iterate through each column and create the component.
         settings.columns.forEach((column: any) => {
@@ -49,7 +49,7 @@ describe('ColumnsComponent', () => {
                 component.component = comp;
                 component.form = this.form;
                 component.ngOnInit();
-                component.form.controls[comp.key]['updateValue']('Test' + index);
+                component.form.controls[comp.key]['setValue']('Test' + index);
                 component.form.controls[comp.key]['markAsDirty']();
             });
         });

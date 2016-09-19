@@ -87,7 +87,7 @@ describe('TextAreaComponent', () => {
         expect(textarea.control instanceof FormControl).toEqual(true);
 
         let updateValue = (val: string) => {
-            textarea.control['updateValue'](val);
+            textarea.control['setValue'](val);
             textarea.control['markAsDirty']();
         };
 
@@ -147,7 +147,7 @@ describe('TextAreaComponent', () => {
         });
 
         let updateValue = (val: string) => {
-            component.form.controls['textarea']['updateValue'](val);
+            component.form.controls['textarea']['setValue'](val);
             component.form.controls['textarea']['markAsDirty']();
         };
 
@@ -174,7 +174,7 @@ describe('TextAreaComponent', () => {
         });
 
         let updateValue = (index: number, val: string) => {
-            component.form.controls['textarea']['at'](index)['updateValue'](val);
+            component.form.controls['textarea']['at'](index)['setValue'](val);
             component.form.controls['textarea']['at'](index)['markAsDirty']();
         };
 

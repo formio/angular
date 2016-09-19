@@ -50,7 +50,7 @@ describe('TextFieldComponent', () => {
         expect(textField.control.value).toEqual('');
 
         let updateValue = (val: string) => {
-            textField.control['updateValue'](val);
+            textField.control['setValue'](val);
             textField.control['markAsDirty']();
         };
 
@@ -124,7 +124,7 @@ describe('TextFieldComponent', () => {
         });
 
         let updateValue = (val: string) => {
-            component.form.controls['firstName']['updateValue'](val);
+            component.form.controls['firstName']['setValue'](val);
             component.form.controls['firstName']['markAsDirty']();
         };
 
@@ -159,8 +159,7 @@ describe('TextFieldComponent', () => {
         });
 
         let updateValue = (index: number, val: string) => {
-            component.form.controls['firstName']['at'](index)['updateValue'](val);
-            component.form.controls['firstName']['at'](index)['markAsDirty']();
+            component.form.controls['firstName']['at'](index)['setValue'](val);
         };
 
         component.addComponent();

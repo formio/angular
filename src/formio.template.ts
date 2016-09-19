@@ -1,4 +1,5 @@
 import { Type, NgModule } from '@angular/core';
+let Reflect = require('core-js/es7/reflect');
 
 export interface FormioComponentMetaData {
     template?: string,

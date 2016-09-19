@@ -112,7 +112,7 @@ describe('CurrencyComponent', () => {
         });
 
         let updateValue = (index: number, val: string) => {
-            component.form.controls['currency']['at'](index)['updateValue'](val);
+            component.form.controls['currency']['at'](index)['setValue'](val);
             component.form.controls['currency']['at'](index)['markAsDirty']();
         };
 
