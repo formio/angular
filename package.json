@@ -19,7 +19,7 @@
     "formiojs": "^1.2.0",
     "lodash": "^4.15.0",
     "ng2-bootstrap": "^1.1.5",
-    "ng2-select": "^1.0.3",
+    "ng2-select": "^1.1.0",
     "rxjs": "^5.0.0-beta.12",
     "sass-loader": "^4.0.2",
     "zone.js": "^0.6.23"

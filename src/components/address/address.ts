@@ -30,7 +30,7 @@ export class AddressElement extends BaseElement<AddressComponent> {
     {
         let this1 = this;
         let selectItems: IdTextPair[] = [];
-        let url: string = "https://maps.googleapis.com/maps/api/geocode/json?address="+value+"&sensor=false";
+        let url: string = "//maps.googleapis.com/maps/api/geocode/json?address="+value+"&sensor=false";
         Formio.request(url, 'POST', {}, {}).then(function(response: any){
             response.results.forEach((item: any) => {
                 selectItems.push({id: item.formatted_address, text: item.formatted_address});

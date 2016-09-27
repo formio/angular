@@ -44,7 +44,7 @@ export class ResourceElement extends BaseElement<ResourceComponent> implements O
             for(let i=0; i < submission.length; i++){
                 selectItems.push({id: JSON.stringify(submission[i].data), text: JSON.stringify(submission[i].data)});
             }
-             this.component.settings.defaultValue = selectItems.slice(0);
+            this.component.settings.defaultValue = selectItems.slice(0);
         });
     }
     ngOnInit(){

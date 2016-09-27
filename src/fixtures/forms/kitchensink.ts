@@ -935,7 +935,7 @@ export const FORM: any = {
                 "eq": ""
             }
         },
-        /*{
+        {
             "input": true,
             "tableView": true,
             "label": "Fruits",
@@ -1042,7 +1042,7 @@ export const FORM: any = {
             "tableView": true,
             "input": true,
             "tags": []
-        },*/
+        },
         {
             "input": true,
             "tableView": true,

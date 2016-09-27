@@ -1,6 +1,6 @@
 import { FormioTemplate } from '../formio.template';
 import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
-//import { SelectModule } from 'ng2-select/ng2-select';
+import { SelectModule } from 'ng2-select/ng2-select';
 
 let getTemplate = function(template: string) {
     return {component: {template: template}};
@@ -51,27 +51,27 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         select: {
             component: {
                 template: require('./bootstrap/components/select.html')
-            }/*,
+            },
             module: {
                 imports: [SelectModule]
-            }*/
+            }
         },
         survey: getTemplate(require('./bootstrap/components/survey.html')),
         resource: {
             component: {
                 template: require('./bootstrap/components/resource.html')
-            }/*,
+            },
             module: {
                 imports: [SelectModule]
-            }*/
+            }
         },
         address: {
             component: {
                 template: require('./bootstrap/components/address.html')
-            }/*,
+            },
             module: {
                 imports: [SelectModule]
-            }*/
+            }
         }
     }
 };
