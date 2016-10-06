@@ -26,7 +26,7 @@ export const FORM: any = {
                                     "unique": false,
                                     "persistent": true,
                                     "validate": {
-                                        "required": true,
+                                        "required": false,
                                         "minLength": 6,
                                         "maxLength": 10,
                                         "pattern": "",
@@ -120,7 +120,7 @@ export const FORM: any = {
                                     "unique": false,
                                     "persistent": true,
                                     "validate": {
-                                        "required": true,
+                                        "required": false,
                                         "minLength": 2,
                                         "maxLength": 10,
                                         "pattern": "",
@@ -150,7 +150,7 @@ export const FORM: any = {
                                     "unique": false,
                                     "persistent": true,
                                     "validate": {
-                                        "required": true,
+                                        "required": false,
                                         "minLength": 2,
                                         "maxLength": 10,
                                         "custom": "",
@@ -182,7 +182,7 @@ export const FORM: any = {
                                         "eq": ""
                                     },
                                     "validate": {
-                                        "required": true,
+                                        "required": false,
                                         "minLength": 8,
                                         "maxLength": 20,
                                         "pattern": "",
@@ -372,7 +372,7 @@ export const FORM: any = {
                         "unique": false,
                         "persistent": true,
                         "validate": {
-                            "required": true,
+                            "required": false,
                             "minLength": 6,
                             "maxLength": 10,
                             "pattern": "",
@@ -403,7 +403,7 @@ export const FORM: any = {
                         "unique": false,
                         "persistent": true,
                         "validate": {
-                            "required": true,
+                            "required": false,
                             "minLength": 6,
                             "maxLength": 10,
                             "pattern": "",
@@ -446,7 +446,7 @@ export const FORM: any = {
                         "protected": false,
                         "persistent": true,
                         "validate": {
-                            "required": true
+                            "required": false
                         },
                         "type": "checkbox",
                         "conditional": {
@@ -484,7 +484,7 @@ export const FORM: any = {
             "protected": false,
             "persistent": true,
             "validate": {
-                "required": true,
+                "required": false,
                 "minLength": 5,
                 "maxLength": 100,
                 "pattern": "",
@@ -518,7 +518,7 @@ export const FORM: any = {
                 "unique": false,
                 "persistent": true,
                 "validate": {
-                    "required": true,
+                    "required": false,
                     "minLength": 6,
                     "maxLength": 10,
                     "pattern": "",
@@ -545,7 +545,7 @@ export const FORM: any = {
                 "protected": false,
                 "persistent": true,
                 "validate": {
-                    "required": true,
+                    "required": false,
                     "minLength": 5,
                     "maxLength": 100,
                     "pattern": "",
@@ -572,15 +572,15 @@ export const FORM: any = {
             "key": "radio",
             "values": [
                 {
-                    "value": "1",
+                    "value": "val1",
                     "label": "option1"
                 },
                 {
-                    "value": "2",
+                    "value": "val2",
                     "label": "option2"
                 },
                 {
-                    "value": "3",
+                    "value": "val3",
                     "label": "option3"
                 }
             ],
@@ -710,7 +710,7 @@ export const FORM: any = {
             "protected": false,
             "persistent": true,
             "validate": {
-                "required": true
+                "required": false
             },
             "type": "checkbox",
             "conditional": {
@@ -726,7 +726,7 @@ export const FORM: any = {
             "key": "selectbox",
             "values": [
                 {
-                    "value": "tea",
+                    "value": "coffee",
                     "label": "Tea"
                 },
                 {
@@ -776,7 +776,7 @@ export const FORM: any = {
                 "unique": false,
                 "persistent": true,
                 "validate": {
-                    "required": true,
+                    "required": false,
                     "minLength": 6,
                     "maxLength": 10,
                     "pattern": "",
@@ -803,7 +803,7 @@ export const FORM: any = {
                 "protected": false,
                 "persistent": true,
                 "validate": {
-                    "required": true,
+                    "required": false,
                     "minLength": 5,
                     "maxLength": 100,
                     "pattern": "",
@@ -831,30 +831,34 @@ export const FORM: any = {
             "customClass": "customClass",
             "questions": [
                 {
-                    "value": "English",
-                    "label": "English",
+                    "value": "QueValue",
+                    "label": "QueLabel",
                 },
                 {
-                    "value": "Hindi",
-                    "label": "Hindi",
+                    "value": "QueValue1",
+                    "label": "QueLabel1",
                 },
                 {
-                    "value": "Marathi",
-                    "label": "Marathi",
+                    "value": "QueValue2",
+                    "label": "QueLabel2",
                 }
             ],
             "values": [
                 {
-                    "value": "read",
-                    "label": "Read",
+                    "value": "AnsValue",
+                    "label": "AnsLabel",
                 },
                 {
-                    "value": "write",
-                    "label": "Write",
+                    "value": "AnsValue1",
+                    "label": "AnsLabel1",
                 },
                 {
-                    "value": "speak",
-                    "label": "Speak",
+                    "value": "AnsValue2",
+                    "label": "AnsLabel2",
+                },
+                {
+                    "value": "AnsValue3",
+                    "label": "AnsLabel3",
                 }
             ],
             "defaultValue": "",

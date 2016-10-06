@@ -14,7 +14,7 @@
             <tr *ngFor="let row of component.settings.questions;">
                 <td>{{row.label}}</td>
                 <td *ngFor="let col of component.settings.values;" style="text-align: center;">
-                    <input type="radio" name="{{row.label}}" [formControl]="component.control"  value="{{col.value}}"/>
+                    <input type="radio" [checked]="valueObj[row.value]==col.value ? true : false" (click)="str=getValue(row.value, col.value)" [value]="str" id="{{row.label+'-'+col.label}}" name="{{row.label+'-'+col.label}}" [formControl]="component.control" />
                 </td>
             </tr>
             </tbody>
