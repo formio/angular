@@ -8,6 +8,15 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
-  }
+    "declaration": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "./dist"
+  },
+  "files": [
+    "typings/index.d.ts",
+    "src/index.ts"
+  ],
+  "exclude": [
+    "dist"
+  ]
 }

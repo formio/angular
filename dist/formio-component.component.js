@@ -1,0 +1,168 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
+var components_1 = require('./components/components');
+var formio_common_1 = require('./formio.common');
+var FormioUtils = require('formio-utils');
+var FormioComponentComponent = (function () {
+    function FormioComponentComponent() {
+        this.show = true;
+        this.components = [];
+        this.container = new forms_1.FormArray([]);
+        this.render = new core_1.EventEmitter();
+    }
+    FormioComponentComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // Hide by default if there are conditions for this control.
+        if (this.hasConditions()) {
+            this.show = false;
+        }
+        // Add this component.
+        this.addComponent();
+        // Subscribe to the invalid event.
+        if (this.events) {
+            this.events.component.subscribe(function (type) {
+                _this.components.forEach(function (component) {
+                    switch (type) {
+                        case 'invalid':
+                            component.control.markAsDirty(true);
+                            var errors = component.errors;
+                            if (errors.length) {
+                                _this.events.errors = _this.events.errors.concat(errors);
+                            }
+                            break;
+                        case 'valueChanges':
+                            _this.checkConditions();
+                            break;
+                    }
+                });
+            });
+        }
+    };
+    FormioComponentComponent.prototype.hasConditions = function () {
+        return (this.component.customConditional ||
+            (this.component.conditional
+                && (this.component.conditional.show !== null && this.component.conditional.show !== '')
+                && (this.component.conditional.when !== null && this.component.conditional.when !== '')));
+    };
+    FormioComponentComponent.prototype.checkConditions = function () {
+        // Ensure we have conditionals to check.
+        if (this.hasConditions()) {
+            var boolean = { 'true': true, 'false': false };
+            if (this.component.customConditional) {
+                try {
+                    // Create a child block, and expose the submission data.
+                    var data = this.form.value; // eslint-disable-line no-unused-vars
+                    // Eval the custom conditional and update the show value.
+                    var show = eval('(function() { ' + this.component.customConditional.toString() + '; return show; })()');
+                    // Show by default, if an invalid type is given.
+                    this.show = boolean.hasOwnProperty(show.toString()) ? boolean[show] : true;
+                }
+                catch (err) {
+                    this.show = true;
+                }
+            }
+            else {
+                this.component.conditional.eq = this.component.conditional.eq || '';
+                var shouldShow = boolean.hasOwnProperty(this.component.conditional.show)
+                    ? boolean[this.component.conditional.show]
+                    : true;
+                var conditionValue = boolean.hasOwnProperty(this.component.conditional.eq)
+                    ? boolean[this.component.conditional.eq]
+                    : this.component.conditional.eq;
+                var value = FormioUtils.getValue({ data: this.form.value }, this.component.conditional.when);
+                var equal = (value === conditionValue);
+                this.show = (shouldShow && equal) || (!shouldShow && !equal);
+            }
+        }
+    };
+    FormioComponentComponent.prototype.addComponent = function () {
+        var component = components_1.FormioComponents.createComponent(this.component.type, this.form, this.component);
+        // Set the index.
+        component.index = this.components.length;
+        // Add the form controls.
+        if (this.component.input && this.component.key) {
+            var control = component.getControl();
+            if (control) {
+                if (this.component.multiple) {
+                    this.container.push(control);
+                    this.form.addControl(this.component.key, this.container);
+                }
+                else {
+                    this.form.addControl(this.component.key, control);
+                }
+            }
+        }
+        // Add this to the instances.
+        this.components.push(component);
+        return component;
+    };
+    FormioComponentComponent.prototype.removeAt = function (index) {
+        this.container.removeAt(index);
+        this.components.splice(index, 1);
+    };
+    Object.defineProperty(FormioComponentComponent.prototype, "errors", {
+        get: function () {
+            if (!this.component.input) {
+                return [];
+            }
+            if (!this.form.controls.hasOwnProperty(this.component.key)) {
+                return [];
+            }
+            if (this.form.controls[this.component.key].pristine) {
+                return [];
+            }
+            if (this.form.controls[this.component.key].valid) {
+                return [];
+            }
+            var errors = [];
+            this.components.forEach(function (component) {
+                var compErrs = component.errors;
+                compErrs.forEach(function (compError) {
+                    errors.push(compError.message);
+                });
+            });
+            return errors;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioComponentComponent.prototype, "component", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', forms_1.FormGroup)
+    ], FormioComponentComponent.prototype, "form", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', formio_common_1.FormioEvents)
+    ], FormioComponentComponent.prototype, "events", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioComponentComponent.prototype, "label", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], FormioComponentComponent.prototype, "render", void 0);
+    FormioComponentComponent = __decorate([
+        core_1.Component({
+            selector: 'formio-component',
+            template: '<div></div>'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], FormioComponentComponent);
+    return FormioComponentComponent;
+}());
+exports.FormioComponentComponent = FormioComponentComponent;
