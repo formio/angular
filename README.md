@@ -1,6 +1,6 @@
 ***This library is currently in pre-release and is not yet feature complete.***
 
-***Expected BETA release will be October 1, 2016***
+***Expected BETA release will be November 1, 2016***
 
 Form.io Angular 2 Renderer
 ---------------------------
@@ -8,7 +8,15 @@ This library serves as a Dynamic JSON Powered Form rendering library for [Angula
 providing a JSON schema to a ```<formio>``` Angular 2 component, where that form is dynamically rendered within the front
 end application. This allows forms to be dynamically built using JSON schemas.
 
-Here is an example of how this library could be used.
+Example
+---------------------------
+You can easily render a form within your Angular 2 application by referencing the URL of that form as follows.
+
+```
+<formio src='https://examples.form.io/example'></formio>
+```
+
+You can also pass the JSON form directly to the renderer as follows.
 
 ```
 <formio [form]="{
@@ -106,7 +114,7 @@ npm install --save ng2-formio
 You can now include the module in your Angular 2.0 application like so.
 
 ```
-import { FormioModule } from 'ng2-formio/bootstrap';
+import { FormioModule } from 'ng2-formio';
 @NgModule({
     imports: [ BrowserModule, ReactiveFormsModule, FormioModule ],
     declarations: [ AppComponent ],
