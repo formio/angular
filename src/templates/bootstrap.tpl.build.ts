@@ -2,6 +2,8 @@
 import { FormioTemplate } from '../formio.template';
 import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { SelectModule } from 'ng2-select/ng2-select';
+import { AlignDirective } from "../components/signature/signature";
+import { SignaturePadModule } from "angular2-signaturepad";
 
 let getTemplate = function(template: string) {
     return {component: {template: template}};
@@ -72,6 +74,15 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
             },
             module: {
                 imports: [SelectModule]
+            }
+        },
+        signature: {
+            component: {
+                template: "<div [formGroup]=\"form\" class=\"form-group {{component.settings.customClass}}\" [ngClass]=\"{\'required\': (component.settings.validate && component.settings.validate.required)}\">\n    <label *ngIf=\"!component.settings.hideLabel\" [attr.for]=\"component.settings.key\" class=\"control-label\">{{ component.label }}</label>\n    <div class=\"input-group\" style=\"display: block;\" align>\n        <div [style.width.px]=\"setWidth\" [style.height.px]=\"setHeight\">\n            <a class=\"btn btn-xs btn-default clearButton\" (click)=\"clearSignature()\"><span class=\"glyphicon glyphicon-refresh\"></span></a>\n            <signature-pad [options]=\"signaturePadOptions\" (onEndEvent)=\"drawComplete()\"></signature-pad>\n            <div class=\"footer\">{{component.settings.footer}}</div>\n        </div>\n    </div>\n</div>\n",
+                styles: [".clearButton {position:absolute; left: 0; top: 0; z-index: 1000}", ".footer {text-align: center; color:#C3C3C3;}"]
+            },
+            module: {
+                imports: [SignaturePadModule]
             }
         }
     }
