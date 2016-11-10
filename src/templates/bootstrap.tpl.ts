@@ -81,7 +81,8 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
                 styles: [".clearButton {position:absolute; left: 0; top: 0; z-index: 1000}", ".footer {text-align: center; color:#C3C3C3;}"]
             },
             module: {
-                imports: [SignaturePadModule]
+                imports: [SignaturePadModule],
+                declarations: [AlignDirective]
             }
         }
     }

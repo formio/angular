@@ -1,7 +1,7 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
 import { SelectBoxComponent, SelectBoxOptions } from './selectboxes';
-import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.tpl';
 import { RegisterComponents } from '../index';
 import { FormioComponentComponent } from '../../formio-component.component';
 

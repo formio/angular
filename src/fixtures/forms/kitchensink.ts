@@ -986,7 +986,7 @@ export const FORM: any = {
             "filter": "",
             "authenticate": false,
             "template": "<span>{{ item.label }}</span>",
-            "multiple": true,
+            "multiple": false,
             "protected": false,
             "unique": false,
             "persistent": true,
@@ -1077,7 +1077,7 @@ export const FORM: any = {
         {
             "input": true,
             "tableView": true,
-            "key": "name",
+            "key": "nameHidden",
             "label": "Name",
             "protected": false,
             "unique": true,

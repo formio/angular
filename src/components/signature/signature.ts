@@ -8,9 +8,7 @@ import { ViewChild, OnInit, ElementRef, Directive } from '@angular/core';
     selector: '[align]',
 })
 export class AlignDirective {
-    constructor(public el: ElementRef) {
-
-    }
+    constructor(public el: ElementRef) {}
 }
 
 export interface SignatureOptions extends BaseOptions<any> {
@@ -30,7 +28,7 @@ export class SignatureComponent extends BaseComponent<SignatureOptions> {
 
 }
 
-export class SignatureElement extends BaseElement<SignatureComponent> implements OnInit{
+export class SignatureElement extends BaseElement<SignatureComponent> implements OnInit {
     @ViewChild(SignaturePad) signaturePad: SignaturePad;
     @ViewChild(AlignDirective) alignDirective: AlignDirective;
 
@@ -46,7 +44,7 @@ export class SignatureElement extends BaseElement<SignatureComponent> implements
         'penColor': 'black'
     };
 
-    public clearSignature(){
+    public clearSignature() {
         this.signaturePad.clear();
     }
 
@@ -54,7 +52,7 @@ export class SignatureElement extends BaseElement<SignatureComponent> implements
         this.imgUrl = this.signaturePad.toDataURL();
     }
 
-    public setDimension(temp: any, getDim: any){
+    public setDimension(temp: any, getDim: any) {
         if(getDim.slice(-1)== '%'){
             this.finalDim = temp * (parseFloat(getDim.slice(0, -1)) / 100);
             return this.finalDim;
@@ -66,17 +64,22 @@ export class SignatureElement extends BaseElement<SignatureComponent> implements
     }
 
     ngOnInit() {
-        // this.setWidth = this.alignDirective.el.nativeElement.clientWidth;
-        // this.setHeight = this.alignDirective.el.nativeElement.clientHeight;
-        // this.setWidth = this.setDimension(this.setWidth, this.component.settings.width);
-        // this.setHeight = this.setDimension(this.setHeight, this.component.settings.height);
+        // this.signaturePad.fromDataURL("");
+        this.setWidth = this.alignDirective.el.nativeElement.clientWidth;
+        this.setHeight = this.alignDirective.el.nativeElement.clientHeight;
+        this.setWidth = this.setDimension(this.setWidth, this.component.settings.width);
+        this.setHeight = this.setDimension(this.setHeight, this.component.settings.height);
         this.signaturePadOptions = {
             'minWidth': this.component.settings.minWidth,
-            'canvasWidth':  500,
-            'canvasHeight': 300,
+            'canvasWidth':  this.setWidth,
+            'canvasHeight': this.setHeight,
             'backgroundColor': this.component.settings.backgroundColor,
             'penColor': this.component.settings.penColor
         }
+    }
+
+    ngAfterViewInit() {
+        this.signaturePad.clear();
     }
 }
 

@@ -1,7 +1,7 @@
 /// <reference path="../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
 import { FormioComponentComponent } from './formio-component.component';
-import { FORMIO_BOOTSTRAP } from './templates/bootstrap';
+import { FORMIO_BOOTSTRAP } from './templates/bootstrap.tpl';
 import { RegisterComponents } from './components/index';
 import { INPUT } from './fixtures/fields/input';
 describe('FormioComponentComponent', () => {
