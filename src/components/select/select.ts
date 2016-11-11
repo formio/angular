@@ -29,9 +29,13 @@ interface IdTextPair{
 }
 
 export class SelectElement extends BaseElement<SelectComponent> implements OnInit{
-    private value:any = {};
-    public refreshValue(value:any):void {
+    private value: any = {};
+    public setValues: any = {};
+    public refreshValue(value: any): void {
         this.value = value;
+    }
+    public selected(value: any): void {
+        this.setValues  = value;
     }
     ngOnInit(){
         let selectItems: IdTextPair[] = [];
