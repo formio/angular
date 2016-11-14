@@ -24,15 +24,11 @@ export interface SignatureOptions extends BaseOptions<any> {
     hideLabel?: boolean;
 }
 
-export class SignatureComponent extends BaseComponent<SignatureOptions> {
-
-}
-
+export class SignatureComponent extends BaseComponent<SignatureOptions> {}
 export class SignatureElement extends BaseElement<SignatureComponent> implements OnInit {
     @ViewChild(SignaturePad) signaturePad: SignaturePad;
     @ViewChild(AlignDirective) alignDirective: AlignDirective;
 
-    public imgUrl: string;
     public setWidth: number;
     public setHeight: number;
     public finalDim: any;
@@ -49,7 +45,7 @@ export class SignatureElement extends BaseElement<SignatureComponent> implements
     }
 
     drawComplete() {
-        this.imgUrl = this.signaturePad.toDataURL();
+        this.component.setValue(this.signaturePad.toDataURL());
     }
 
     public setDimension(temp: any, getDim: any) {
