@@ -33,8 +33,21 @@ export class SelectElement extends BaseElement<SelectComponent> implements OnIni
     public refreshValue(value: any): void {
         this.value = value;
     }
+    public submitArray: Array<any> = [];
     public selected(temp: any): void {
-        this.component.setValue(temp.id);
+        if(this.component.settings.multiple){
+            this.submitArray.push(temp.id);
+            this.component.setValue(this.submitArray);
+        }
+        else{
+            this.component.setValue(temp.id);
+        }
+    }
+    public removed(temp: any): void {
+        if(this.component.settings.multiple){
+            this.submitArray.splice(this.submitArray.indexOf(temp.id),1);
+            this.component.setValue(this.submitArray);
+        }
     }
     ngOnInit(){
         let selectItems: IdTextPair[] = [];
@@ -54,7 +67,7 @@ export class SelectElement extends BaseElement<SelectComponent> implements OnIni
                 this.component.settings.data.values = selectItems.slice(0);
                 break;
             case 'resource':
-                let baseUrl = Formio.getBaseUrl() + '/' + this.component.settings.data.resource;
+                let baseUrl = Formio.getAppUrl() + '/' + this.component.settings.data.resource;
                 let value: string = this.component.settings.valueProperty.split('.')[1];
                 (new FormioService(baseUrl)).loadSubmissions().subscribe((submission: Array<any>) => {
                     for(let i=0; i < submission.length; i++){

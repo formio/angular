@@ -3,7 +3,9 @@
     <ng-select [items]="component.settings.defaultValue"
                (data)="refreshValue($event)"
                [multiple]="component.settings.multiple"
-               placeholder="{{component.settings.placeholder}}"
-               (typed)="searchData($event)">
+               [placeholder]="component.settings.placeholder"
+               (typed)="searchData($event)"
+               (selected)="selected($event)"
+               (removed)="removed($event)">
     </ng-select>
 </div>
