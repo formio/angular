@@ -38,7 +38,9 @@ export class DateTimeElement extends BaseElement<DateTimeComponent> implements O
     public minDate: Date = void 0;
     public time: any = void 0;
     public dateFormat: any;
+    public finalDate: Date = null;
     public getDate(): Date {
+        this.finalDate = this.selectedDate.toDateString() + this.time.toLocaleString().split(' ')[1];
         return this.selectedDate;
     }
     public today():void {

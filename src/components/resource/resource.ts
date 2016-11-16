@@ -29,20 +29,18 @@ export class ResourceElement extends BaseElement<ResourceComponent> implements O
         this.value = value;
     }
     public submitArray: Array<any> = [];
-    public ch : Object = {};
-    public selected(temp: any): void {
-        if(this.component.settings.multiple){
-            this.submitArray.push(temp.id);
-            this.ch = this.ch[temp.id];
-            this.component.setValue(this.ch);
+    public selected(selectedValue: any): void {
+        if (this.component.settings.multiple) {
+            this.submitArray.push(selectedValue.id);
+            this.component.setValue(this.submitArray);
         }
-        else{
-            this.component.setValue(temp.id);
+        else {
+            this.component.setValue(selectedValue.id);
         }
     }
-    public removed(temp: any): void {
-        if(this.component.settings.multiple){
-            this.submitArray.splice(this.submitArray.indexOf(temp.id),1);
+    public removed(removedValue: any): void {
+        if (this.component.settings.multiple) {
+            this.submitArray.splice(this.submitArray.indexOf(removedValue.id),1);
             this.component.setValue(this.submitArray);
         }
     }

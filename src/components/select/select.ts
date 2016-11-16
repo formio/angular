@@ -34,18 +34,18 @@ export class SelectElement extends BaseElement<SelectComponent> implements OnIni
         this.value = value;
     }
     public submitArray: Array<any> = [];
-    public selected(temp: any): void {
+    public selected(selectedValue: any): void {
         if(this.component.settings.multiple){
-            this.submitArray.push(temp.id);
+            this.submitArray.push(selectedValue.id);
             this.component.setValue(this.submitArray);
         }
         else{
-            this.component.setValue(temp.id);
+            this.component.setValue(selectedValue.id);
         }
     }
-    public removed(temp: any): void {
+    public removed(removedValue: any): void {
         if(this.component.settings.multiple){
-            this.submitArray.splice(this.submitArray.indexOf(temp.id),1);
+            this.submitArray.splice(this.submitArray.indexOf(removedValue.id),1);
             this.component.setValue(this.submitArray);
         }
     }

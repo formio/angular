@@ -40,7 +40,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         datetime: {
             component: {
                 template:{ gulp_inject: './bootstrap/components/datetime.html' },
-                styles: []
+                styles: [".showDate {width:48vmin;border:1px solid #ccc;}", ".showTime {width:53vmin;height:22vmin;border:1px solid #ccc;}", ".buttonsSpace {padding:5px;}"]
             },
             module: {
                 imports: [DatepickerModule, TimepickerModule]
