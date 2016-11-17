@@ -6,6 +6,31 @@ import { FORM } from '../src/fixtures/forms/kitchensink.ts';
 })
 export class AppComponent extends Type {
     public form: any = FORM;
+    public submission: any = {
+      data: {
+          user: {
+              firstName: 'Joe',
+              lastName: 'Smith',
+              email: 'joe@example.com',
+              kids: [
+                  'Susie',
+                  'Jack'
+              ]
+          },
+          cars: [
+              {
+                  make: 'Jeep',
+                  model: 'Wrangler',
+                  year: '2010'
+              },
+              {
+                  make: 'Ford',
+                  model: 'Mustang',
+                  year: '2014'
+              }
+          ]
+      }
+    };
     onRender() {
         console.log('onRender');
     }

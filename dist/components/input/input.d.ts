@@ -16,7 +16,7 @@ export interface InputOptions extends ComponentOptions<string, InputValidateOpti
     suffix?: string;
 }
 export declare class InputComponent<T> extends BaseComponent<T> {
-    constructor(inputType: string, form: FormGroup, settings: any);
+    constructor(inputType: string, form: FormGroup, settings: any, data: any);
     getError(type: string, error: any): string;
     addValidators(): void;
 }

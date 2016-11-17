@@ -24,13 +24,27 @@ function CustomValidator(custom, form) {
 }
 exports.CustomValidator = CustomValidator;
 var BaseComponent = (function () {
-    function BaseComponent(form, settings) {
+    function BaseComponent(form, settings, data) {
+        if (data === void 0) { data = {}; }
         this.form = form;
         this.settings = settings;
+        this.data = data;
         this.index = 0;
         this.validators = [];
         this.getControl();
     }
+    BaseComponent.prototype.getData = function (index) {
+        if (this.data.hasOwnProperty(this.settings.key)) {
+            var data = this.data[this.settings.key];
+            if (typeof index !== 'undefined') {
+                data = data[index];
+            }
+            return data;
+        }
+        else {
+            return {};
+        }
+    };
     BaseComponent.prototype.setValue = function (value) {
         if (this.control && (this.control instanceof forms_1.FormControl)) {
             var formControl = this.control;

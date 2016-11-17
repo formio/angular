@@ -25,8 +25,8 @@ export function EmailValidator(control: FormControl) {
 }
 
 export class EmailComponent extends InputComponent<InputOptions> {
-    constructor(form: FormGroup, settings:any) {
-        super('email', form, settings);
+    constructor(form: FormGroup, settings:any, data?: any) {
+        super('email', form, settings, data);
     }
     getError(type: string, error: any) : string {
         let message = super.getError(type, error);

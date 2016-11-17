@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.tpl';
 import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
 import { CurrencyComponent } from './currency';

@@ -50,12 +50,12 @@ var FormioComponents = (function () {
             factory: null
         };
     };
-    FormioComponents.createComponent = function (name, form, component) {
+    FormioComponents.createComponent = function (name, form, component, data) {
         if (!FormioComponents.components.hasOwnProperty(name)) {
             name = 'custom';
         }
         var comp = FormioComponents.components[name];
-        return new comp.component(form, component);
+        return new comp.component(form, component, data);
     };
     FormioComponents.element = function (name, compiler) {
         if (!FormioComponents.components.hasOwnProperty(name)) {

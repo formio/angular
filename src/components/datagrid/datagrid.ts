@@ -13,6 +13,18 @@ export class DataGridComponent extends BaseComponent<DataGridOptions> {
             this.control = new FormArray([
                 new FormGroup({})
             ]);
+
+            // Add new controls for all rows in the data.
+            if (
+                this.data &&
+                this.data.hasOwnProperty(this.settings.key) &&
+                this.data[this.settings.key] &&
+                this.data[this.settings.key].length > 1
+            ) {
+                for (var i = 1; i < this.data[this.settings.key].length; i++) {
+                    this.control['push'](new FormGroup({}));
+                }
+            }
         }
         return this.control;
     }

@@ -13,7 +13,7 @@ export declare function EmailValidator(control: FormControl): {
     "invalidEmail": boolean;
 };
 export declare class EmailComponent extends InputComponent<InputOptions> {
-    constructor(form: FormGroup, settings: any);
+    constructor(form: FormGroup, settings: any, data: any);
     getError(type: string, error: any): string;
     addValidators(): void;
 }

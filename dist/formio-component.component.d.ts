@@ -8,11 +8,13 @@ export declare class FormioComponentComponent<T> implements OnInit {
     container: FormArray;
     component: BaseOptions<T>;
     form: FormGroup;
+    data: any;
+    submission: FormGroup;
     events: FormioEvents;
     label: string | boolean;
     render: EventEmitter<any>;
     ngOnInit(): void;
-    hasConditions(): string | boolean;
+    getData(key: number | string): any;
     checkConditions(): void;
     addComponent(): any;
     removeAt(index: number): void;

@@ -9,8 +9,8 @@ var base_1 = require('../base');
 var input_1 = require('../input/input');
 var PasswordComponent = (function (_super) {
     __extends(PasswordComponent, _super);
-    function PasswordComponent(form, settings) {
-        _super.call(this, 'password', form, settings);
+    function PasswordComponent(form, settings, data) {
+        _super.call(this, 'password', form, settings, data);
     }
     return PasswordComponent;
 }(input_1.InputComponent));

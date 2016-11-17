@@ -12,6 +12,7 @@ export declare class FormioComponent implements OnInit {
     events: FormioEvents;
     ready: BehaviorSubject<boolean>;
     form: FormioForm;
+    submission: any;
     src: string;
     service: FormioService;
     options: FormioOptions;

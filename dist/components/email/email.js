@@ -28,8 +28,8 @@ function EmailValidator(control) {
 exports.EmailValidator = EmailValidator;
 var EmailComponent = (function (_super) {
     __extends(EmailComponent, _super);
-    function EmailComponent(form, settings) {
-        _super.call(this, 'email', form, settings);
+    function EmailComponent(form, settings, data) {
+        _super.call(this, 'email', form, settings, data);
     }
     EmailComponent.prototype.getError = function (type, error) {
         var message = _super.prototype.getError.call(this, type, error);

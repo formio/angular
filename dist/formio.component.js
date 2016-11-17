@@ -23,6 +23,7 @@ var FormioComponent = (function () {
         this.events = new formio_common_1.FormioEvents();
         this.ready = new BehaviorSubject_1.BehaviorSubject(false);
         this.form = null;
+        this.submission = {};
         this.render = new core_1.EventEmitter();
         this.submit = new core_1.EventEmitter();
         this.change = new core_1.EventEmitter();
@@ -49,7 +50,7 @@ var FormioComponent = (function () {
         // Subscribe to value changes.
         //noinspection TypeScriptUnresolvedFunction
         this.formGroup.valueChanges
-            .debounceTime(200)
+            .debounceTime(100)
             .subscribe(function (value) {
             _this.change.emit(value);
             _this.events.component.emit('valueChanges');
@@ -87,6 +88,10 @@ var FormioComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], FormioComponent.prototype, "form", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioComponent.prototype, "submission", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)

@@ -17,6 +17,15 @@ var DataGridComponent = (function (_super) {
             this.control = new forms_1.FormArray([
                 new forms_1.FormGroup({})
             ]);
+            // Add new controls for all rows in the data.
+            if (this.data &&
+                this.data.hasOwnProperty(this.settings.key) &&
+                this.data[this.settings.key] &&
+                this.data[this.settings.key].length > 1) {
+                for (var i = 1; i < this.data[this.settings.key].length; i++) {
+                    this.control['push'](new forms_1.FormGroup({}));
+                }
+            }
         }
         return this.control;
     };

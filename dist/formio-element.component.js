@@ -26,8 +26,22 @@ var FormioElement = (function () {
             }
             var cmpRef = _this.element.createComponent(factory);
             _this.component.label = _this.label;
+            // Set the value.
+            if ((_this.component.control instanceof forms_1.FormControl) &&
+                _this.data &&
+                _this.data.hasOwnProperty(_this.component.settings.key)) {
+                var data = _this.data[_this.component.settings.key];
+                if (data instanceof Array) {
+                    _this.component.control.setValue(data[_this.component.index]);
+                }
+                else {
+                    _this.component.control.setValue(data);
+                }
+            }
             cmpRef.instance.component = _this.component;
             cmpRef.instance.form = _this.form;
+            cmpRef.instance.submission = _this.submission;
+            cmpRef.instance.data = _this.data;
             cmpRef.instance.render = _this.render;
             cmpRef.instance.events = _this.events;
         });
@@ -40,6 +54,14 @@ var FormioElement = (function () {
         core_1.Input(), 
         __metadata('design:type', forms_1.FormGroup)
     ], FormioElement.prototype, "form", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', forms_1.FormGroup)
+    ], FormioElement.prototype, "submission", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioElement.prototype, "data", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)

@@ -35,6 +35,14 @@ var FormioComponentsComponent = (function () {
     ], FormioComponentsComponent.prototype, "form", void 0);
     __decorate([
         core_1.Input(), 
+        __metadata('design:type', forms_1.FormGroup)
+    ], FormioComponentsComponent.prototype, "submission", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioComponentsComponent.prototype, "data", void 0);
+    __decorate([
+        core_1.Input(), 
         __metadata('design:type', formio_common_1.FormioEvents)
     ], FormioComponentsComponent.prototype, "events", void 0);
     __decorate([

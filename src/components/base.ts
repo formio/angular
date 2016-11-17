@@ -62,8 +62,20 @@ export class BaseComponent<T> {
     index: number = 0;
     private _label: string | boolean;
     protected validators: ValidatorFn[] = [];
-    constructor(public form: FormGroup, public settings: any) {
+    constructor(public form: FormGroup, public settings: any, public data: any = {}) {
         this.getControl();
+    }
+    getData(index?: number) : any {
+        if (this.data.hasOwnProperty(this.settings.key)) {
+            var data = this.data[this.settings.key];
+            if (typeof index !== 'undefined') {
+                data = data[index];
+            }
+            return data;
+        }
+        else {
+            return {};
+        }
     }
     public setValue(value: any) {
         if (this.control && (this.control instanceof FormControl)) {

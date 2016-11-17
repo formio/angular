@@ -43,11 +43,13 @@ export declare function CustomValidator(custom: string, form: FormGroup): (contr
 export declare class BaseComponent<T> {
     form: FormGroup;
     settings: any;
+    data: any;
     control: FormControl | FormGroup | FormArray;
     index: number;
     private _label;
     protected validators: ValidatorFn[];
-    constructor(form: FormGroup, settings: any);
+    constructor(form: FormGroup, settings: any, data?: any);
+    getData(index?: number): any;
     setValue(value: any): void;
     label: string | boolean;
     readonly defaultValue: T;

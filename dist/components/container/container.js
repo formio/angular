@@ -18,6 +18,14 @@ var ContainerComponent = (function (_super) {
         }
         return this.control;
     };
+    ContainerComponent.prototype.getData = function () {
+        if (this.data && this.data.hasOwnProperty(this.settings.key)) {
+            return this.data[this.settings.key];
+        }
+        else {
+            return {};
+        }
+    };
     return ContainerComponent;
 }(base_1.BaseComponent));
 exports.ContainerComponent = ContainerComponent;

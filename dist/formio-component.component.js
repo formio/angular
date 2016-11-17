@@ -22,12 +22,19 @@ var FormioComponentComponent = (function () {
     }
     FormioComponentComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // Hide by default if there are conditions for this control.
-        if (this.hasConditions()) {
-            this.show = false;
-        }
-        // Add this component.
+        // Add the initial component.
         this.addComponent();
+        if (this.data &&
+            this.component.multiple &&
+            this.data.hasOwnProperty(this.component.key) &&
+            (this.data[this.component.key] instanceof Array) &&
+            (this.data[this.component.key].length > 1)) {
+            // Add other components if this is an array...
+            for (var i = 1; i < this.data[this.component.key].length; i++) {
+                this.addComponent();
+            }
+        }
+        this.checkConditions();
         // Subscribe to the invalid event.
         if (this.events) {
             this.events.component.subscribe(function (type) {
@@ -48,45 +55,21 @@ var FormioComponentComponent = (function () {
             });
         }
     };
-    FormioComponentComponent.prototype.hasConditions = function () {
-        return (this.component.customConditional ||
-            (this.component.conditional
-                && (this.component.conditional.show !== null && this.component.conditional.show !== '')
-                && (this.component.conditional.when !== null && this.component.conditional.when !== '')));
-    };
-    FormioComponentComponent.prototype.checkConditions = function () {
-        // Ensure we have conditionals to check.
-        if (this.hasConditions()) {
-            var boolean = { 'true': true, 'false': false };
-            if (this.component.customConditional) {
-                try {
-                    // Create a child block, and expose the submission data.
-                    var data = this.form.value; // eslint-disable-line no-unused-vars
-                    // Eval the custom conditional and update the show value.
-                    var show = eval('(function() { ' + this.component.customConditional.toString() + '; return show; })()');
-                    // Show by default, if an invalid type is given.
-                    this.show = boolean.hasOwnProperty(show.toString()) ? boolean[show] : true;
-                }
-                catch (err) {
-                    this.show = true;
-                }
-            }
-            else {
-                this.component.conditional.eq = this.component.conditional.eq || '';
-                var shouldShow = boolean.hasOwnProperty(this.component.conditional.show)
-                    ? boolean[this.component.conditional.show]
-                    : true;
-                var conditionValue = boolean.hasOwnProperty(this.component.conditional.eq)
-                    ? boolean[this.component.conditional.eq]
-                    : this.component.conditional.eq;
-                var value = FormioUtils.getValue({ data: this.form.value }, this.component.conditional.when);
-                var equal = (value === conditionValue);
-                this.show = (shouldShow && equal) || (!shouldShow && !equal);
-            }
+    FormioComponentComponent.prototype.getData = function (key) {
+        if (this.data.hasOwnProperty(key)) {
+            return this.data[key];
+        }
+        else {
+            return {};
         }
     };
+    FormioComponentComponent.prototype.checkConditions = function () {
+        var subData = this.submission ? this.submission.value : {};
+        var compData = Object.assign({}, subData, this.form.value);
+        this.show = FormioUtils.checkCondition(this.component, compData);
+    };
     FormioComponentComponent.prototype.addComponent = function () {
-        var component = components_1.FormioComponents.createComponent(this.component.type, this.form, this.component);
+        var component = components_1.FormioComponents.createComponent(this.component.type, this.form, this.component, this.data);
         // Set the index.
         component.index = this.components.length;
         // Add the form controls.
@@ -144,6 +127,14 @@ var FormioComponentComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', forms_1.FormGroup)
     ], FormioComponentComponent.prototype, "form", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioComponentComponent.prototype, "data", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', forms_1.FormGroup)
+    ], FormioComponentComponent.prototype, "submission", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', formio_common_1.FormioEvents)

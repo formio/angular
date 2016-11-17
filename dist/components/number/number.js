@@ -9,8 +9,8 @@ var base_1 = require('../base');
 var input_1 = require('../input/input');
 var NumberComponent = (function (_super) {
     __extends(NumberComponent, _super);
-    function NumberComponent(form, settings) {
-        _super.call(this, 'number', form, settings);
+    function NumberComponent(form, settings, data) {
+        _super.call(this, 'number', form, settings, data);
     }
     return NumberComponent;
 }(input_1.InputComponent));

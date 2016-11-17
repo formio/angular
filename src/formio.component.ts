@@ -17,6 +17,7 @@ export class FormioComponent implements OnInit {
     public events: FormioEvents = new FormioEvents();
     public ready: BehaviorSubject<boolean> = new BehaviorSubject(false);
     @Input() form: FormioForm = null;
+    @Input() submission: any = {};
     @Input() src: string;
     @Input() service: FormioService;
     @Input() options: FormioOptions;
@@ -46,7 +47,7 @@ export class FormioComponent implements OnInit {
         // Subscribe to value changes.
         //noinspection TypeScriptUnresolvedFunction
         this.formGroup.valueChanges
-            .debounceTime(200)
+            .debounceTime(100)
             .subscribe((value: any) => {
                 this.change.emit(value);
                 this.events.component.emit('valueChanges');

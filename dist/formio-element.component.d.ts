@@ -6,6 +6,8 @@ export declare class FormioElement implements OnInit {
     private compiler;
     component: BaseComponent<any>;
     form: FormGroup;
+    submission: FormGroup;
+    data: any;
     label: string | boolean;
     events: FormioEvents;
     render: EventEmitter<any>;
