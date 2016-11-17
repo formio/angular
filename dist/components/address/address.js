@@ -23,18 +23,34 @@ var AddressElement = (function (_super) {
     function AddressElement() {
         _super.apply(this, arguments);
         this.value = {};
+        this.submitArray = [];
         this.selectedItem = [];
     }
     AddressElement.prototype.refreshValue = function (value) {
         this.value = value;
     };
-    AddressElement.prototype.selectedData = function (value) {
+    AddressElement.prototype.selected = function (selectedValue) {
+        if (this.component.settings.multiple) {
+            this.submitArray.push(selectedValue.id);
+            this.component.setValue(this.submitArray);
+        }
+        else {
+            this.component.setValue(selectedValue.id);
+        }
+    };
+    AddressElement.prototype.removed = function (removedValue) {
+        if (this.component.settings.multiple) {
+            this.submitArray.splice(this.submitArray.indexOf(removedValue.id), 1);
+            this.component.setValue(this.submitArray);
+        }
+    };
+    AddressElement.prototype.searchData = function (value) {
         var this1 = this;
         var selectItems = [];
         var url = "//maps.googleapis.com/maps/api/geocode/json?address=" + value + "&sensor=false";
         Formio.request(url, 'POST', {}, {}).then(function (response) {
             response.results.forEach(function (item) {
-                selectItems.push({ id: item.formatted_address, text: item.formatted_address });
+                selectItems.push({ id: item, text: item.formatted_address });
             });
             this1.selectedItem = selectItems.slice(0);
         });

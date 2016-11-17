@@ -9,8 +9,8 @@ var base_1 = require('../base');
 var input_1 = require('../input/input');
 var TextAreaComponent = (function (_super) {
     __extends(TextAreaComponent, _super);
-    function TextAreaComponent(form, settings) {
-        _super.call(this, 'textarea', form, settings);
+    function TextAreaComponent(form, settings, data) {
+        _super.call(this, 'textarea', form, settings, data);
     }
     return TextAreaComponent;
 }(input_1.InputComponent));

@@ -48,12 +48,12 @@ export class FormioComponents {
             factory: null
         };
     }
-    public static createComponent(name: string, form: FormGroup, component: any) : any {
+    public static createComponent(name: string, form: FormGroup, component: any, data: any) : any {
         if (!FormioComponents.components.hasOwnProperty(name)) {
             name = 'custom';
         }
         let comp: FormioComponentWrapper = FormioComponents.components[name];
-        return new comp.component(form, component);
+        return new comp.component(form, component, data);
     }
     public static element(
         name: string,

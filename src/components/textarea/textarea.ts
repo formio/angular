@@ -9,8 +9,8 @@ export interface TextAreaOptions extends InputOptions {
 }
 
 export class TextAreaComponent extends InputComponent<TextAreaOptions> {
-    constructor(form: FormGroup, settings:any) {
-        super('textarea', form, settings);
+    constructor(form: FormGroup, settings:any, data?: any) {
+        super('textarea', form, settings, data);
     }
 }
 

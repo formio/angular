@@ -1,5 +1,5 @@
 <form (submit)="onSubmit($event)" [formGroup]="formGroup">
     <formio-errors [errors]="events.errors" [options]="options.errors"></formio-errors>
     <i style="font-size: 2em;" *ngIf="!(ready | async)" class="formio-loading glyphicon glyphicon-refresh glyphicon-spin"></i>
-    <formio-components *ngIf="ready | async" [components]="form.components" [form]="formGroup" [events]="events" (render)="onRender()"></formio-components>
+    <formio-components *ngIf="ready | async" [components]="form.components" [form]="formGroup" [submission]="formGroup" [data]="submission.data" [events]="events" (render)="onRender()"></formio-components>
 </form>

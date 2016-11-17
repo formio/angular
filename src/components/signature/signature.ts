@@ -2,7 +2,7 @@ import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
-import { ViewChild, OnInit, ElementRef, Directive } from '@angular/core';
+import {ViewChild, OnInit, ElementRef, Directive, AfterViewInit} from '@angular/core';
 
 @Directive({
     selector: '[align]',
@@ -60,7 +60,6 @@ export class SignatureElement extends BaseElement<SignatureComponent> implements
     }
 
     ngOnInit() {
-        // this.signaturePad.fromDataURL("");
         this.setWidth = this.alignDirective.el.nativeElement.clientWidth;
         this.setHeight = this.alignDirective.el.nativeElement.clientHeight;
         this.setWidth = this.setDimension(this.setWidth, this.component.settings.width);
@@ -76,6 +75,9 @@ export class SignatureElement extends BaseElement<SignatureComponent> implements
 
     ngAfterViewInit() {
         this.signaturePad.clear();
+        if (this.component.data[this.component.settings.key] != null) {
+            this.signaturePad.fromDataURL(this.component.data[this.component.settings.key]);
+        }
     }
 }
 

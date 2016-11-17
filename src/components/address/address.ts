@@ -24,8 +24,21 @@ export class AddressElement extends BaseElement<AddressComponent> {
     public refreshValue(value:any):void {
         this.value = value;
     }
-    public selected(temp: any): void {
-        this.component.setValue(temp.id);
+    public submitArray: Array<any> = [];
+    public selected(selectedValue: any): void {
+        if (this.component.settings.multiple) {
+            this.submitArray.push(selectedValue.id);
+            this.component.setValue(this.submitArray);
+        }
+        else {
+            this.component.setValue(selectedValue.id);
+        }
+    }
+    public removed(removedValue: any): void {
+        if (this.component.settings.multiple) {
+            this.submitArray.splice(this.submitArray.indexOf(removedValue.id),1);
+            this.component.setValue(this.submitArray);
+        }
     }
     public selectedItem: Array<any> = [];
     public searchData(value:any):void {

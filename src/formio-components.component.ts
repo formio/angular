@@ -10,6 +10,8 @@ import { FormioEvents } from './formio.common';
 export class FormioComponentsComponent {
     @Input() components: Array<BaseOptions<any>>;
     @Input() form: FormGroup;
+    @Input() submission: FormGroup;
+    @Input() data: any;
     @Input() events: FormioEvents;
     @Output() render: EventEmitter<any> = new EventEmitter();
     private renderCount: number = 0;

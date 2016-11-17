@@ -14,6 +14,9 @@ export declare class ResourceComponent extends BaseComponent<ResourceOptions> {
 export declare class ResourceElement extends BaseElement<ResourceComponent> implements OnInit {
     private value;
     refreshValue(value: any): void;
+    submitArray: Array<any>;
+    selected(selectedValue: any): void;
+    removed(removedValue: any): void;
     searchData(text: any): void;
     ngOnInit(): void;
 }

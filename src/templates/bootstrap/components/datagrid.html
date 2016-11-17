@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let control of component.control.controls; let i = index;">
-                <td *ngFor="let component of component.settings.components"><formio-component [component]="component" [form]="control" [label]="false" [events]="events" (render)="onRender()"></formio-component></td>
+                <td *ngFor="let _component of component.settings.components"><formio-component [component]="_component" [form]="control" [submission]="submission" [data]="component.getData(i)" [label]="false" [events]="events" (render)="onRender()"></formio-component></td>
                 <td style="width: 1em;"><button type="button" class="btn btn-default" (click)="component.removeAt(i)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
             </tr>
         </tbody>

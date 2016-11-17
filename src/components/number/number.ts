@@ -5,8 +5,8 @@ import { FormioTemplate } from '../../formio.template';
 import { FormGroup } from '@angular/forms';
 
 export class NumberComponent extends InputComponent<InputOptions> {
-    constructor(form: FormGroup, settings:any) {
-        super('number', form, settings);
+    constructor(form: FormGroup, settings:any, data?: any) {
+        super('number', form, settings, data);
     }
 }
 

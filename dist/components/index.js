@@ -25,6 +25,7 @@ var select_1 = require('./select/select');
 var survey_1 = require('./survey/survey');
 var resource_1 = require('./resource/resource');
 var address_1 = require('./address/address');
+var signature_1 = require('./signature/signature');
 function RegisterComponents(template) {
     textfield_1.TextField(template);
     button_1.ButtonField(template);
@@ -52,5 +53,6 @@ function RegisterComponents(template) {
     survey_1.SurveyField(template);
     resource_1.ResourceField(template);
     address_1.AddressField(template);
+    signature_1.SignatureField(template);
 }
 exports.RegisterComponents = RegisterComponents;

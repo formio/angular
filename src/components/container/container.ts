@@ -15,6 +15,14 @@ export class ContainerComponent extends BaseComponent<ContainerOptions> {
         }
         return this.control;
     }
+    getData() : any {
+        if (this.data && this.data.hasOwnProperty(this.settings.key)) {
+            return this.data[this.settings.key];
+        }
+        else {
+            return {};
+        }
+    }
 }
 
 export class ContainerElement extends BaseElement<ContainerComponent> {

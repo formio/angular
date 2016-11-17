@@ -24,9 +24,25 @@ var SelectElement = (function (_super) {
     function SelectElement() {
         _super.apply(this, arguments);
         this.value = {};
+        this.submitArray = [];
     }
     SelectElement.prototype.refreshValue = function (value) {
         this.value = value;
+    };
+    SelectElement.prototype.selected = function (selectedValue) {
+        if (this.component.settings.multiple) {
+            this.submitArray.push(selectedValue.id);
+            this.component.setValue(this.submitArray);
+        }
+        else {
+            this.component.setValue(selectedValue.id);
+        }
+    };
+    SelectElement.prototype.removed = function (removedValue) {
+        if (this.component.settings.multiple) {
+            this.submitArray.splice(this.submitArray.indexOf(removedValue.id), 1);
+            this.component.setValue(this.submitArray);
+        }
     };
     SelectElement.prototype.ngOnInit = function () {
         var _this = this;
@@ -47,7 +63,7 @@ var SelectElement = (function (_super) {
                 this.component.settings.data.values = selectItems.slice(0);
                 break;
             case 'resource':
-                var baseUrl = Formio.getBaseUrl() + '/' + this.component.settings.data.resource;
+                var baseUrl = Formio.getAppUrl() + '/' + this.component.settings.data.resource;
                 var value_1 = this.component.settings.valueProperty.split('.')[1];
                 (new formio_service_1.FormioService(baseUrl)).loadSubmissions().subscribe(function (submission) {
                     for (var i = 0; i < submission.length; i++) {

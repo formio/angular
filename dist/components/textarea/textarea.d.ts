@@ -6,7 +6,7 @@ export interface TextAreaOptions extends InputOptions {
     rows?: number;
 }
 export declare class TextAreaComponent extends InputComponent<TextAreaOptions> {
-    constructor(form: FormGroup, settings: any);
+    constructor(form: FormGroup, settings: any, data?: any);
 }
 export declare class TextAreaElement extends BaseElement<TextAreaComponent> {
 }

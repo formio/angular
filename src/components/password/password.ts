@@ -5,8 +5,8 @@ import { InputComponent, InputOptions } from '../input/input';
 import { FormGroup } from '@angular/forms';
 
 export class PasswordComponent extends InputComponent<InputOptions> {
-    constructor(form: FormGroup, settings:any) {
-        super('password', form, settings);
+    constructor(form: FormGroup, settings:any, data?:any) {
+        super('password', form, settings, data);
     }
 }
 

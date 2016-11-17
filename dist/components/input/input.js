@@ -8,9 +8,9 @@ var forms_1 = require('@angular/forms');
 var base_1 = require('../base');
 var InputComponent = (function (_super) {
     __extends(InputComponent, _super);
-    function InputComponent(inputType, form, settings) {
+    function InputComponent(inputType, form, settings, data) {
         settings.inputType = inputType;
-        _super.call(this, form, settings);
+        _super.call(this, form, settings, data);
     }
     InputComponent.prototype.getError = function (type, error) {
         var message = _super.prototype.getError.call(this, type, error);

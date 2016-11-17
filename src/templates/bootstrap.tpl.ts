@@ -1,3 +1,5 @@
+/* eslint-disable */
+/* tslint-disable */
 import { FormioTemplate } from '../formio.template';
 import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { SelectModule } from 'ng2-select/ng2-select';

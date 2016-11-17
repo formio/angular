@@ -1,4 +1,4 @@
-import { FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { BaseComponent, ComponentOptions, ValidateOptions } from '../base';
 
 /**
@@ -21,9 +21,9 @@ export interface InputOptions extends ComponentOptions<string, InputValidateOpti
 }
 
 export class InputComponent<T> extends BaseComponent<T> {
-    constructor(inputType: string, form: FormGroup, settings:any) {
+    constructor(inputType: string, form: FormGroup, settings:any, data?: any) {
         settings.inputType = inputType;
-        super(form, settings);
+        super(form, settings, data);
     }
     getError(type: string, error: any) : string {
         let message = super.getError(type, error);

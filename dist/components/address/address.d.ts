@@ -10,7 +10,10 @@ export declare class AddressComponent extends BaseComponent<AddressOptions> {
 export declare class AddressElement extends BaseElement<AddressComponent> {
     private value;
     refreshValue(value: any): void;
+    submitArray: Array<any>;
+    selected(selectedValue: any): void;
+    removed(removedValue: any): void;
     selectedItem: Array<any>;
-    selectedData(value: any): void;
+    searchData(value: any): void;
 }
 export declare function AddressField(template: FormioTemplate): typeof AddressElement;
