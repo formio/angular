@@ -1,1 +1,4 @@
-<formio-components [components]="component.settings.components" [form]="component.control" [submission]="submission" [data]="component.getData()" [events]="events" (render)="onRender()"></formio-components>
+<div [formGroup]="form" class="form-group  {{component.settings.customClass}}">
+    <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label">{{ component.label }}</label>
+    <formio-components [components]="component.settings.components" [form]="component.control" [submission]="submission" [data]="component.getData()" [events]="events" (render)="onRender()"></formio-components>
+</div>

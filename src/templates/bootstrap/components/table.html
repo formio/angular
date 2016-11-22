@@ -5,11 +5,11 @@
         'table-hover': component.settings.hover,
         'table-condensed': component.settings.condensed
     }" class="table">
-        <tbody *ngFor="let control of component.control.controls;">
+        <tbody *ngFor="let control of component.control.controls; let i = index;">
         <tr *ngFor="let row of component.settings.rows">
             <td *ngFor="let data of row">
-                <div *ngFor="let component of data.components">
-                    <formio-component [component]="component" [form]="control" [events]="events" (render)="onRender()"></formio-component>
+                <div *ngFor="let _component of data.components">
+                    <formio-component [component]="_component" [form]="control" [submission]="submission" [events]="events" (render)="onRender()"></formio-component>
                 </div>
             </td>
         </tr>
