@@ -19,6 +19,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
             ]
         }
     },
+    formio_wizard: getTemplate({ gulp_inject: './bootstrap/formio-wizard.html' }),
     formio_component: getTemplate({ gulp_inject: './bootstrap/formio-component.html' }),
     formio_components: getTemplate({ gulp_inject: './bootstrap/formio-components.html' }),
     errors: getTemplate({ gulp_inject: './bootstrap/errors.html' }),

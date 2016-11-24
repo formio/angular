@@ -8,6 +8,7 @@ import { FormioComponentsComponent } from './formio-components.component';
 import { FormioErrors } from './formio.errors';
 import { RegisterComponents } from './components/index';
 import { FormioTemplate, RegisterTemplate } from './formio.template';
+import { FormioWizardComponent } from './formio.wizard';
 
 @NgModule({
     imports: [
@@ -15,6 +16,7 @@ import { FormioTemplate, RegisterTemplate } from './formio.template';
         ReactiveFormsModule
     ],
     declarations: [
+        FormioWizardComponent,
         FormioComponent,
         FormioElement,
         FormioComponentComponent,
@@ -23,6 +25,7 @@ import { FormioTemplate, RegisterTemplate } from './formio.template';
     ],
     exports: [
         FormioComponent,
+        FormioWizardComponent,
         FormioComponentComponent,
         FormioComponentsComponent
     ]
@@ -31,6 +34,7 @@ export class FormioBaseModule {
     public static setTemplate(template: FormioTemplate) {
         RegisterTemplate(FormioComponent, template.formio);
         RegisterTemplate(FormioComponentComponent, template.formio_component);
+        RegisterTemplate(FormioWizardComponent, template.formio_wizard);
         RegisterTemplate(FormioComponentsComponent, template.formio_components);
         RegisterTemplate(FormioErrors, template.errors);
         RegisterComponents(template);
