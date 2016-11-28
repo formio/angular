@@ -1092,9 +1092,9 @@ export const FORM_WIZARD: any = {
             "tableView": true,
             "inputType": "text",
             "inputMask": "",
-            "label": "Full Name",
-            "key": "fullName",
-            "placeholder": "Enter your full name",
+            "label": "First Name",
+            "key": "firstName",
+            "placeholder": "Enter your first name",
             "prefix": "",
             "suffix": "",
             "multiple": false,
@@ -1118,24 +1118,77 @@ export const FORM_WIZARD: any = {
             "type": "textfield"
             },
             {
-            "type": "button",
-            "theme": "primary",
-            "disableOnInvalid": true,
-            "action": "submit",
-            "block": false,
-            "rightIcon": "",
-            "leftIcon": "",
-            "size": "md",
-            "key": "submit",
-            "tableView": false,
-            "label": "Next",
-            "input": true
+                "input": true,
+                "tableView": true,
+                "inputType": "text",
+                "inputMask": "",
+                "label": "Last Name",
+                "key": "lastName",
+                "placeholder": "Enter your last name",
+                "prefix": "",
+                "suffix": "",
+                "multiple": false,
+                "defaultValue": "",
+                "protected": false,
+                "unique": false,
+                "persistent": true,
+                "validate": {
+                    "required": false,
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "custom": "",
+                    "customPrivate": false
+                },
+                "conditional": {
+                    "show": false,
+                    "when": null,
+                    "eq": ""
+                },
+                "type": "textfield"
             }
         ],
     },
     {
         "type": "panel",
         "title": "Page 2",
+        "isNew": true,
+        "components": [
+            {
+                "input": true,
+                "tableView": true,
+                "label": "Write about you",
+                "key": "aboutu",
+                "placeholder": "Write about yourself here",
+                "prefix": "",
+                "suffix": "",
+                "rows": 3,
+                "multiple": false,
+                "defaultValue": "",
+                "protected": false,
+                "persistent": true,
+                "validate": {
+                    "required": false,
+                    "minLength": 6,
+                    "maxLength": 100,
+                    "pattern": "",
+                    "custom": ""
+                },
+                "type": "textarea",
+                "conditional": {
+                    "show": null,
+                    "when": null,
+                    "eq": ""
+                }
+            }
+        ],
+        "input": false,
+        "key": "page2",
+        "theme": "default"
+    },
+    {
+        "type": "panel",
+        "title": "Page 3",
         "isNew": true,
         "components": [
             {
@@ -1164,24 +1217,10 @@ export const FORM_WIZARD: any = {
                     "when": null,
                     "eq": ""
                 }
-            },
-            {
-                "input": true,
-                "label": "Submit",
-                "tableView": false,
-                "key": "submit",
-                "size": "md",
-                "leftIcon": "",
-                "rightIcon": "",
-                "block": false,
-                "action": "submit",
-                "disableOnInvalid": false,
-                "theme": "primary",
-                "type": "button"
             }
-        ],
+            ],
         "input": false,
-        "key": "page2",
+        "key": "page3",
         "theme": "default"
     }
     ],

@@ -1,11 +1,11 @@
-<formio-component [component]="page" [form]="formGroup" [submission]="submission" [data]="submission.data" [events]="events" (render)="onRender()" class="form-row" (keyup)="onChange(page, $event)"></formio-component>
+<!--<formio-component [component]="page" [form]="formGroup" [submission]="submission" [data]="submission.data" [events]="events" (render)="onRender()" class="form-row" (keyup)="onChange(page, $event)"></formio-component>-->
+<formio [form]="page" [submission]="submission" (keyup)="onChange(page, $event)"></formio>
 <ul *ngIf="ready" class="list-inline">
-    <li><a class="btn btn-default" (click)="cancel()">Cancel</a></li>
     <li *ngIf="currentPage > 0"><a class="btn btn-primary" (click)="prev()">Previous</a></li>
     <li *ngIf="currentPage < (pages.length - 1)">
         <a class="btn btn-primary" (click)="next()">Next</a>
     </li>
     <li *ngIf="currentPage >= (pages.length - 1)">
-        <a class="btn btn-primary" (click)="submitWizard()">Submit Form</a>
+        <a class="btn btn-primary" (click)="onSubmitWizard()">Submit Form</a>
     </li>
 </ul>
