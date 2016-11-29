@@ -1,5 +1,4 @@
-<!--<formio-component [component]="page" [form]="formGroup" [submission]="submission" [data]="submission.data" [events]="events" (render)="onRender()" class="form-row" (keyup)="onChange(page, $event)"></formio-component>-->
-<formio [form]="page" [submission]="submission" (keyup)="onChange(page, $event)"></formio>
+<formio [form]="page" [submission]="submission" (keyup)="onChange(page, $event)" id="formio-wizard-form"></formio>
 <ul *ngIf="ready" class="list-inline">
     <li *ngIf="currentPage > 0"><a class="btn btn-primary" (click)="prev()">Previous</a></li>
     <li *ngIf="currentPage < (pages.length - 1)">
