@@ -22,8 +22,8 @@ export class FormioWizardComponent implements OnInit {
     @Input() src: string;
     @Input() service: FormioService;
     @Output() change: EventEmitter<any> = new EventEmitter();
-
     constructor(private elementRef: ElementRef) {}
+
     ngOnInit() {
         this.currentPage = 0;
         this.page = this.form.components[0];
@@ -42,7 +42,7 @@ export class FormioWizardComponent implements OnInit {
         localStorage.setItem('wizard', JSON.stringify(this.storage));
     }
     public checkErrors(): boolean {
-        //@TODO: Check validations...
+        //@TODO: Check Validations...
         return false;
     }
     public next() {
@@ -72,5 +72,11 @@ export class FormioWizardComponent implements OnInit {
         if (this.service) {
             this.service.saveSubmission(submission).subscribe((sub: {}) => {});
         }
+    }
+    public goto(index: number) {
+        if (index < 0) {return;}
+        if (index >= this.pages.length) {return;}
+        this.currentPage = index;
+        this.page = this.pages[this.currentPage];
     }
 }
