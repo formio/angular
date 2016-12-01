@@ -3,6 +3,8 @@
 import { FormioTemplate } from '../formio.template';
 import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { SelectModule } from 'ng2-select/ng2-select';
+import { AlignDirective } from "../components/signature/signature";
+import { SignaturePadModule } from "angular2-signaturepad";
 
 let getTemplate = function(template: string) {
     return {component: {template: template}};
@@ -40,7 +42,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         datetime: {
             component: {
                 template:{ gulp_inject: './bootstrap/components/datetime.html' },
-                styles: []
+                styles: [".showDate {width:48vmin;border:1px solid #ccc;}", ".showTime {width:53vmin;height:22vmin;border:1px solid #ccc;}", ".buttonsSpace {padding:5px;}"]
             },
             module: {
                 imports: [DatepickerModule, TimepickerModule]
@@ -73,6 +75,16 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
             },
             module: {
                 imports: [SelectModule]
+            }
+        },
+        signature: {
+            component: {
+                template: { gulp_inject: './bootstrap/components/signature.html' },
+                styles: [".clearButton {position:absolute; left: 0; top: 0; z-index: 1000}", ".footer {text-align: center; color:#C3C3C3;}"]
+            },
+            module: {
+                imports: [SignaturePadModule],
+                declarations: [AlignDirective]
             }
         }
     }

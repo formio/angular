@@ -16,7 +16,8 @@ export interface InputOptions extends ComponentOptions<string, InputValidateOpti
     inputMask?: string,
     placeholder?: string,
     prefix?: string,
-    suffix?: string
+    suffix?: string,
+    tabindex?: number | string
 }
 
 export class InputComponent<T> extends BaseComponent<T> {

@@ -23,13 +23,30 @@ var ResourceElement = (function (_super) {
     function ResourceElement() {
         _super.apply(this, arguments);
         this.value = {};
+        this.submitArray = [];
     }
     ResourceElement.prototype.refreshValue = function (value) {
         this.value = value;
     };
+    ResourceElement.prototype.selected = function (selectedValue) {
+        if (this.component.settings.multiple) {
+            this.submitArray.push(selectedValue.id);
+            this.component.setValue(this.submitArray);
+        }
+        else {
+            this.component.setValue(selectedValue.id);
+        }
+    };
+    ResourceElement.prototype.removed = function (removedValue) {
+        if (this.component.settings.multiple) {
+            this.submitArray.splice(this.submitArray.indexOf(removedValue.id), 1);
+            this.component.setValue(this.submitArray);
+        }
+    };
     ResourceElement.prototype.searchData = function (text) {
         var _this = this;
         var selectItems = [];
+        var templates = this.component.settings.template.split('.')[1].split(' ')[0];
         var baseUrl = Formio.getBaseUrl() + '/project/' + this.component.settings.project + '/form/' + this.component.settings.resource;
         var params = {};
         if (this.component.settings.selectFields) {
@@ -42,7 +59,7 @@ var ResourceElement = (function (_super) {
         }
         (new Formio(baseUrl)).loadSubmissions({ params: params }).then(function (submission) {
             for (var i = 0; i < submission.length; i++) {
-                selectItems.push({ id: JSON.stringify(submission[i].data), text: JSON.stringify(submission[i].data) });
+                selectItems.push({ id: submission[i], text: JSON.stringify(submission[i][templates]) });
             }
             _this.component.settings.defaultValue = selectItems.slice(0);
         });
