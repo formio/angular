@@ -94,7 +94,7 @@ exports.FORM = {
                                     "validate": {
                                         "required": false
                                     },
-                                    "type": "textfield",
+                                    "type": "phoneNumber",
                                     "conditional": {
                                         "show": "true",
                                         "when": "havePhoneNumber",

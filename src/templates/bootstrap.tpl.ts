@@ -3,8 +3,9 @@
 import { FormioTemplate } from '../formio.template';
 import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { SelectModule } from 'ng2-select/ng2-select';
-import { AlignDirective } from "../components/signature/signature";
-import { SignaturePadModule } from "angular2-signaturepad";
+import { TextMaskModule } from 'angular2-text-mask';
+import { AlignDirective } from '../components/signature/signature';
+import { SignaturePadModule } from 'angular2-signaturepad';
 
 let getTemplate = function(template: string) {
     return {component: {template: template}};
@@ -75,6 +76,14 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
             },
             module: {
                 imports: [SelectModule]
+            }
+        },
+        phoneNumber: {
+            component: {
+                template: {gulp_inject: './bootstrap/components/phonenumber.html'}
+            },
+            module: {
+                imports: [TextMaskModule]
             }
         },
         signature: {
