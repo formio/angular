@@ -14,9 +14,10 @@ export interface InputOptions extends ComponentOptions<string, InputValidateOpti
     placeholder?: string;
     prefix?: string;
     suffix?: string;
+    tabindex?: number | string;
 }
 export declare class InputComponent<T> extends BaseComponent<T> {
-    constructor(inputType: string, form: FormGroup, settings: any, data: any);
+    constructor(inputType: string, form: FormGroup, settings: any, data?: any);
     getError(type: string, error: any): string;
     addValidators(): void;
 }

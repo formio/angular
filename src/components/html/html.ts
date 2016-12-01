@@ -16,12 +16,17 @@ export interface HtmlOptions extends BaseOptions<any> {
 export class HtmlComponent extends BaseComponent<HtmlOptions> {}
 export class HtmlElement extends BaseElement<HtmlComponent> implements OnInit {
     public element: string;
-    ngOnInit(){
-        let attributes: string = '';
-        this.component.settings.attrs.forEach((item: any) => {
-            attributes = attributes + item.attr + "=" + item.value + " ";
-        });
-        this.element = "<" + this.component.settings.tag + " class='" + this.component.settings.className + "' "+ attributes +">" + this.component.settings.content + "</" + this.component.settings.tag + ">";
+    ngOnInit() {
+        if (this.component.data[this.component.settings.key] != null) {
+            this.element = this.component.data[this.component.settings.key];
+        }
+        else {
+            let attributes: string = '';
+            this.component.settings.attrs.forEach((item: any) => {
+                attributes = attributes + item.attr + "=" + item.value + " ";
+            });
+            this.element = "<" + this.component.settings.tag + " class='" + this.component.settings.className + "' " + attributes + ">" + this.component.settings.content + "</" + this.component.settings.tag + ">";
+        }
     }
 }
 
