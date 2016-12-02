@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, ElementRef }  from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormioService } from './formio.service';
-import { FormioForm, FormioEvents } from './formio.common';
+import { FormioForm, FormioEvents, FormioOptions } from './formio.common';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
@@ -16,10 +16,10 @@ export class FormioWizardComponent implements OnInit {
     public pages: Array<any> = [];
     public currentPage: number;
     public storage: Object = {};
-    public data: Object = {};
     public margin: any;
     public colClass: string;
     public localStorageKey: string;
+    @Input() options: FormioOptions;
     @Input() form: FormioForm = null;
     @Input() submission: any = {};
     @Input() src: string;
@@ -45,11 +45,10 @@ export class FormioWizardComponent implements OnInit {
     }
     onChange(page: any, event: any) {
         this.storage['page'] = this.pages.indexOf(page) + 1;
-        this.data[event.target.id] = event.target.value;
-        this.storage['data'] = this.data;
+        this.storage['data'] = event;
     }
     public checkErrors(): boolean {
-        //@TODO: Check Validations...
+        //@TODO:Check Validations...
         return false;
     }
     public next() {
@@ -69,14 +68,14 @@ export class FormioWizardComponent implements OnInit {
         }
         this.currentPage--;
         this.page = this.pages[this.currentPage];
-        this.submission.data = this.data;
+        this.submission.data = this.storage['data'];
     }
     public onSubmitWizard() {
         if (this.checkErrors()) {
             return;
         }
         localStorage.setItem(this.localStorageKey,'');
-        let submission = {data: this.data};
+        let submission = {data: this.storage['data']};
         if (this.service) {
             this.service.saveSubmission(submission).subscribe((sub: {}) => {});
         }

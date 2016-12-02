@@ -7,7 +7,7 @@
         <a (click)="goto(i)" class="bs-wizard-dot bg-primary"><div class="bs-wizard-dot-inner bg-success"></div></a>
     </div>
 </div>
-<formio [form]="page" [submission]="submission" (keyup)="onChange(page, $event)" id="formio-wizard-form"></formio>
+<formio [form]="page" [submission]="submission" (change)="onChange(page, $event)" id="formio-wizard-form"></formio>
 <ul *ngIf="ready" class="list-inline">
     <li *ngIf="currentPage > 0"><a class="btn btn-primary" (click)="prev()">Previous</a></li>
     <li *ngIf="currentPage < (pages.length - 1)">
