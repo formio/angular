@@ -1,5 +1,5 @@
 <div class="row bs-wizard" [ngClass]="{'hasTitles': (pages[0].title ? true : false)}" style="border-bottom:0;">
-    <div *ngFor="let panel of pages; let i = index;" class="{{colClass}} bs-wizard-step" [ngClass]="{'disabled': (i > currentPage), 'active': (i == currentPage), 'complete': (i < currentPage), 'noTitle': !panel.title}" >
+    <div *ngFor="let panel of pages; let i = index;" [style.marginLeft.%]="i==0 ? margin: 0" class="{{colClass}} bs-wizard-step" [ngClass]="{'disabled': (i > currentPage), 'active': (i == currentPage), 'complete': (i < currentPage), 'noTitle': !panel.title}" >
         <div class="bs-wizard-stepnum-wrapper">
             <div class="text-center bs-wizard-stepnum" *ngIf="panel.title">{{ panel.title }}</div>
         </div>
@@ -7,7 +7,7 @@
         <a (click)="goto(i)" class="bs-wizard-dot bg-primary"><div class="bs-wizard-dot-inner bg-success"></div></a>
     </div>
 </div>
-<formio [form]="page" [submission]="submission" (change)="onChange(page, $event)" id="formio-wizard-form"></formio>
+<formio [form]="page" [submission]="submission" (change)="onChange($event)" id="formio-wizard-form"></formio>
 <ul *ngIf="ready" class="list-inline">
     <li *ngIf="currentPage > 0"><a class="btn btn-primary" (click)="prev()">Previous</a></li>
     <li *ngIf="currentPage < (pages.length - 1)">

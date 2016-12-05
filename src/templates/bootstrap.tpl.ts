@@ -23,7 +23,6 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         component: {
             template:{ gulp_inject: './bootstrap/formio-wizard.html' },
             styles: [
-                '.bs-wizard > .bs-wizard-step:first-child {margin-left: 25%;}',
                 '.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;line-height: 1em;}',
                 '.bs-wizard > .bs-wizard-step {padding: 0; position: relative;}',
                 '.bs-wizard > .bs-wizard-step + .bs-wizard-step {}',

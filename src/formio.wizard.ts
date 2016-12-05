@@ -16,7 +16,7 @@ export class FormioWizardComponent implements OnInit {
     public pages: Array<any> = [];
     public currentPage: number;
     public storage: Object = {};
-    public margin: any;
+    public margin: number = 0;
     public colClass: string;
     public localStorageKey: string;
     @Input() options: FormioOptions;
@@ -30,10 +30,11 @@ export class FormioWizardComponent implements OnInit {
     ngOnInit() {
         this.currentPage = 0;
         this.page = this.form.components[0];
+        this.storage['page'] = 0;
+        this.storage['data'] = {};
         this.form.components.forEach((item: any) => {
             this.pages.push(item);
         });
-        this.updatePages();
         if (this.src) {
             this.localStorageKey = this.src.split('/')[3];
             this.service = new FormioService(this.src);
@@ -42,9 +43,10 @@ export class FormioWizardComponent implements OnInit {
         else {
             this.localStorageKey = 'form_wizard';
         }
+        this.updatePages();
+        localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
     }
-    onChange(page: any, event: any) {
-        this.storage['page'] = this.pages.indexOf(page) + 1;
+    onChange(event: any) {
         this.storage['data'] = event;
     }
     public checkErrors(): boolean {
@@ -59,8 +61,9 @@ export class FormioWizardComponent implements OnInit {
             return;
         }
         this.currentPage++;
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
         this.page = this.pages[this.currentPage];
+        this.storage['page'] = this.pages.indexOf(this.page) + 1;
+        localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
     }
     public prev() {
         if (this.currentPage < 1) {
@@ -68,16 +71,19 @@ export class FormioWizardComponent implements OnInit {
         }
         this.currentPage--;
         this.page = this.pages[this.currentPage];
+        this.storage['page'] = this.pages.indexOf(this.page);
+        localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
         this.submission.data = this.storage['data'];
     }
     public onSubmitWizard() {
         if (this.checkErrors()) {
             return;
         }
-        localStorage.setItem(this.localStorageKey,'');
-        let submission = {data: this.storage['data']};
+        localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
+        let submission = {data: JSON.parse(localStorage.getItem(this.localStorageKey)).data};
         if (this.service) {
             this.service.saveSubmission(submission).subscribe((sub: {}) => {});
+            localStorage.setItem(this.localStorageKey,'');
         }
     }
     public goto(index: number) {
