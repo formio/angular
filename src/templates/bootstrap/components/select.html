@@ -2,7 +2,9 @@
     <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label"><h3>{{ component.label }}</h3></label>
     <ng-select [items]="component.settings.data.values"
                (data)="refreshValue($event)"
+               (selected)="selected($event)"
+               (removed)="removed($event)"
                [multiple]="component.settings.multiple"
-               placeholder="{{component.settings.placeholder}}" >
+               [placeholder]="component.settings.placeholder">
     </ng-select>
 </div>

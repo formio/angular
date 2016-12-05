@@ -21,19 +21,33 @@ export class AddressComponent extends BaseComponent<AddressOptions> {
 
 export class AddressElement extends BaseElement<AddressComponent> {
     private value:any = {};
-    public refreshValue(value:any):void
-    {
+    public refreshValue(value:any):void {
         this.value = value;
     }
+    public submitArray: Array<any> = [];
+    public selected(selectedValue: any): void {
+        if (this.component.settings.multiple) {
+            this.submitArray.push(selectedValue.id);
+            this.component.setValue(this.submitArray);
+        }
+        else {
+            this.component.setValue(selectedValue.id);
+        }
+    }
+    public removed(removedValue: any): void {
+        if (this.component.settings.multiple) {
+            this.submitArray.splice(this.submitArray.indexOf(removedValue.id),1);
+            this.component.setValue(this.submitArray);
+        }
+    }
     public selectedItem: Array<any> = [];
-    public selectedData(value:any):void
-    {
+    public searchData(value:any):void {
         let this1 = this;
         let selectItems: IdTextPair[] = [];
         let url: string = "//maps.googleapis.com/maps/api/geocode/json?address="+value+"&sensor=false";
         Formio.request(url, 'POST', {}, {}).then(function(response: any){
             response.results.forEach((item: any) => {
-                selectItems.push({id: item.formatted_address, text: item.formatted_address});
+                selectItems.push({id: item, text: item.formatted_address});
             });
             this1.selectedItem = selectItems.slice(0);
         });

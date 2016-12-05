@@ -18,6 +18,9 @@ export declare class SelectComponent extends BaseComponent<SelectOptions> {
 export declare class SelectElement extends BaseElement<SelectComponent> implements OnInit {
     private value;
     refreshValue(value: any): void;
+    submitArray: Array<any>;
+    selected(selectedValue: any): void;
+    removed(removedValue: any): void;
     ngOnInit(): void;
 }
 export declare function SelectField(template: FormioTemplate): typeof SelectElement;

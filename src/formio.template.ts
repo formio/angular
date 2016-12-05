@@ -36,7 +36,9 @@ export interface FormioComponentsTemplate {
     select: FormioComponentTemplate,
     survey: FormioComponentTemplate,
     resource: FormioComponentTemplate,
-    address: FormioComponentTemplate
+    address: FormioComponentTemplate,
+    phoneNumber: FormioComponentTemplate,
+    signature: FormioComponentTemplate
 }
 
 /**

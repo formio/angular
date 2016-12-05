@@ -33,6 +33,8 @@ export interface FormioComponentsTemplate {
     survey: FormioComponentTemplate;
     resource: FormioComponentTemplate;
     address: FormioComponentTemplate;
+    phoneNumber: FormioComponentTemplate;
+    signature: FormioComponentTemplate;
 }
 /**
  * The Form.io template interface.

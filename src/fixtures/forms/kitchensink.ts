@@ -93,7 +93,7 @@ export const FORM: any = {
                                     "validate": {
                                         "required": false
                                     },
-                                    "type": "textfield",
+                                    "type": "phoneNumber",
                                     "conditional": {
                                         "show": "true",
                                         "when": "havePhoneNumber",
@@ -986,7 +986,7 @@ export const FORM: any = {
             "filter": "",
             "authenticate": false,
             "template": "<span>{{ item.label }}</span>",
-            "multiple": true,
+            "multiple": false,
             "protected": false,
             "unique": false,
             "persistent": true,
@@ -1050,7 +1050,34 @@ export const FORM: any = {
         {
             "input": true,
             "tableView": true,
-            "key": "name",
+            "label": "Signature",
+            "key": "signature",
+            "placeholder": "Please Sign here...",
+            "footer": "Sign above",
+            "width": "50%",
+            "height": "200px",
+            "penColor": "green",
+            "backgroundColor": "rgb(245,245,235)",
+            "minWidth": "0.5",
+            "maxWidth": "2.5",
+            "protected": false,
+            "persistent": true,
+            "validate": {
+                "required": false
+            },
+            "type": "signature",
+            "hideLabel": false,
+            "conditional": {
+                "show": null,
+                "when": null,
+                "eq": ""
+            },
+            "customClass": "myclass"
+        },
+        {
+            "input": true,
+            "tableView": true,
+            "key": "nameHidden",
             "label": "Name",
             "protected": false,
             "unique": true,

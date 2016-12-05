@@ -20,11 +20,16 @@ var HtmlElement = (function (_super) {
         _super.apply(this, arguments);
     }
     HtmlElement.prototype.ngOnInit = function () {
-        var attributes = '';
-        this.component.settings.attrs.forEach(function (item) {
-            attributes = attributes + item.attr + "=" + item.value + " ";
-        });
-        this.element = "<" + this.component.settings.tag + " class='" + this.component.settings.className + "' " + attributes + ">" + this.component.settings.content + "</" + this.component.settings.tag + ">";
+        if (this.component.data[this.component.settings.key] != null) {
+            this.element = this.component.data[this.component.settings.key];
+        }
+        else {
+            var attributes_1 = '';
+            this.component.settings.attrs.forEach(function (item) {
+                attributes_1 = attributes_1 + item.attr + "=" + item.value + " ";
+            });
+            this.element = "<" + this.component.settings.tag + " class='" + this.component.settings.className + "' " + attributes_1 + ">" + this.component.settings.content + "</" + this.component.settings.tag + ">";
+        }
     };
     return HtmlElement;
 }(base_1.BaseElement));
