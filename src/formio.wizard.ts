@@ -28,13 +28,10 @@ export class FormioWizardComponent implements OnInit {
     constructor(private elementRef: ElementRef) {}
 
     ngOnInit() {
-        this.currentPage = 0;
-        this.page = this.form.components[0];
-        this.storage['page'] = 0;
-        this.storage['data'] = {};
         this.form.components.forEach((item: any) => {
             this.pages.push(item);
         });
+        this.updatePages();
         if (this.src) {
             this.localStorageKey = this.src.split('/')[3];
             this.service = new FormioService(this.src);
@@ -43,8 +40,17 @@ export class FormioWizardComponent implements OnInit {
         else {
             this.localStorageKey = 'form_wizard';
         }
-        this.updatePages();
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
+        if (localStorage.getItem(this.localStorageKey)) {
+            this.currentPage = JSON.parse(localStorage.getItem(this.localStorageKey)).page;
+            this.page = this.pages[this.currentPage];
+        }
+        else {
+            this.currentPage = 0;
+            this.page = this.pages[0];
+            this.storage['page'] = 0;
+            this.storage['data'] = {};
+            localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
+        }
     }
     onChange(event: any) {
         this.storage['data'] = event;
@@ -62,7 +68,7 @@ export class FormioWizardComponent implements OnInit {
         }
         this.currentPage++;
         this.page = this.pages[this.currentPage];
-        this.storage['page'] = this.pages.indexOf(this.page) + 1;
+        this.storage['page'] = this.pages.indexOf(this.page);
         localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
     }
     public prev() {
@@ -82,8 +88,9 @@ export class FormioWizardComponent implements OnInit {
         localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
         let submission = {data: JSON.parse(localStorage.getItem(this.localStorageKey)).data};
         if (this.service) {
-            this.service.saveSubmission(submission).subscribe((sub: {}) => {});
-            localStorage.setItem(this.localStorageKey,'');
+            this.service.saveSubmission(submission).subscribe((sub: {}) => {
+                localStorage.removeItem(this.localStorageKey);
+            });
         }
     }
     public goto(index: number) {
