@@ -45,15 +45,16 @@ export class FormioWizardComponent implements OnInit {
             this.page = this.pages[this.currentPage];
         }
         else {
-            this.currentPage = 0;
-            this.page = this.pages[0];
-            this.storage['page'] = 0;
-            this.storage['data'] = {};
-            localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
+            this.initialState();
         }
     }
     onChange(event: any) {
         this.storage['data'] = event;
+        this.extend(this.storage['data'], JSON.parse(localStorage.getItem(this.localStorageKey)).data);
+    }
+    public extend(obj: Object, src: Object) {
+        Object.keys(src).forEach(function(key) { obj[key] = src[key]; });
+        return obj;
     }
     public checkErrors(): boolean {
         //@TODO:Check Validations...
@@ -92,6 +93,16 @@ export class FormioWizardComponent implements OnInit {
                 localStorage.removeItem(this.localStorageKey);
             });
         }
+    }
+    public initialState() {
+        this.currentPage = 0;
+        this.page = this.pages[0];
+        this.storage['page'] = 0;
+        this.storage['data'] = {};
+        localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
+    }
+    public cancel() {
+        this.initialState();
     }
     public goto(index: number) {
         if (index < 0) {return;}

@@ -9,6 +9,7 @@
 </div>
 <formio [form]="page" [submission]="submission" (change)="onChange($event)" id="formio-wizard-form"></formio>
 <ul *ngIf="ready" class="list-inline">
+    <li><a class="btn btn-default" (click)="cancel()">Cancel</a></li>
     <li *ngIf="currentPage > 0"><a class="btn btn-primary" (click)="prev()">Previous</a></li>
     <li *ngIf="currentPage < (pages.length - 1)">
         <a class="btn btn-primary" (click)="next()">Next</a>
