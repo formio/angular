@@ -57,8 +57,12 @@ export class FormioWizardComponent implements OnInit {
         return obj;
     }
     public checkErrors(): boolean {
-        //@TODO:Check Validations...
-        return false;
+        if (this.elementRef.nativeElement.children[1].firstElementChild.classList.contains('ng-invalid')) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     public next() {
         if (this.checkErrors()) {
