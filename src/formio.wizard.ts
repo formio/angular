@@ -41,23 +41,26 @@ export class FormioWizardComponent implements OnInit {
             this.localStorageKey = 'form_wizard';
         }
         if (localStorage.getItem(this.localStorageKey)) {
-            this.currentPage = JSON.parse(localStorage.getItem(this.localStorageKey)).page;
+            this.storage = JSON.parse(localStorage.getItem(this.localStorageKey));
+            this.currentPage = this.storage['page'];
             this.page = this.pages[this.currentPage];
         }
         else {
-            this.initialState();
+            this.initWizard();
         }
     }
     onChange(event: any) {
         this.storage['data'] = event;
-        this.extend(this.storage['data'], JSON.parse(localStorage.getItem(this.localStorageKey)).data);
+        if (localStorage.getItem(this.localStorageKey)) {
+            this.storage['data'] = this.extend(this.storage['data'], JSON.parse(localStorage.getItem(this.localStorageKey)).data);
+        }
     }
     public extend(obj: Object, src: Object) {
         Object.keys(src).forEach(function(key) { obj[key] = src[key]; });
         return obj;
     }
     public checkErrors(): boolean {
-        if (this.elementRef.nativeElement.children[1].firstElementChild.classList.contains('ng-invalid')) {
+        if (this.elementRef.nativeElement.querySelector('form').classList.contains('ng-invalid')) {
             return true;
         }
         else {
@@ -98,7 +101,7 @@ export class FormioWizardComponent implements OnInit {
             });
         }
     }
-    public initialState() {
+    public initWizard() {
         this.currentPage = 0;
         this.page = this.pages[0];
         this.storage['page'] = 0;
@@ -106,7 +109,7 @@ export class FormioWizardComponent implements OnInit {
         localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
     }
     public cancel() {
-        this.initialState();
+        this.initWizard();
     }
     public goto(index: number) {
         if (index < 0) {return;}
