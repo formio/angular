@@ -1,7 +1,3 @@
-***This library is currently in pre-release and is not yet feature complete.***
-
-***Expected BETA release will be November 1, 2016***
-
 Form.io Angular 2 Renderer
 ---------------------------
 This library serves as a Dynamic JSON Powered Form rendering library for [Angular 2](https://angular.io). This works by
