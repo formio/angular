@@ -1105,3 +1105,153 @@ export const FORM: any = {
         }
     ]
 };
+
+export const FORM_WIZARD: any = {
+    "components": [
+     {
+        "type": "panel",
+        "input": false,
+        "title": "Page 1",
+        "theme": "default",
+        "components": [
+            {
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "First Name",
+            "key": "firstName",
+            "placeholder": "Enter your first name",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": false,
+                "minLength": "",
+                "maxLength": "",
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+                },
+            "conditional": {
+            "show": false,
+            "when": null,
+            "eq": ""
+            },
+            "type": "textfield"
+            },
+            {
+                "input": true,
+                "tableView": true,
+                "inputType": "text",
+                "inputMask": "",
+                "label": "Last Name",
+                "key": "lastName",
+                "placeholder": "Enter your last name",
+                "prefix": "",
+                "suffix": "",
+                "multiple": false,
+                "defaultValue": "",
+                "protected": false,
+                "unique": false,
+                "persistent": true,
+                "validate": {
+                    "required": false,
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "custom": "",
+                    "customPrivate": false
+                },
+                "conditional": {
+                    "show": false,
+                    "when": null,
+                    "eq": ""
+                },
+                "type": "textfield"
+            }
+        ],
+    },
+    {
+        "type": "panel",
+        "title": "Page 2",
+        "isNew": true,
+        "components": [
+            {
+                "input": true,
+                "tableView": true,
+                "label": "Write about you",
+                "key": "aboutu",
+                "placeholder": "Write about yourself here",
+                "prefix": "",
+                "suffix": "",
+                "rows": 3,
+                "multiple": false,
+                "defaultValue": "",
+                "protected": false,
+                "persistent": true,
+                "validate": {
+                    "required": false,
+                    "minLength": 6,
+                    "maxLength": 100,
+                    "pattern": "",
+                    "custom": ""
+                },
+                "type": "textarea",
+                "conditional": {
+                    "show": null,
+                    "when": null,
+                    "eq": ""
+                }
+            }
+        ],
+        "input": false,
+        "key": "page2",
+        "theme": "default"
+    },
+    {
+        "type": "panel",
+        "title": "Page 3",
+        "isNew": true,
+        "components": [
+            {
+                "input": true,
+                "tableView": true,
+                "label": "Textarea",
+                "key": "textarea",
+                "placeholder": "Enter Your Text Here",
+                "prefix": "",
+                "suffix": "",
+                "rows": 3,
+                "multiple": false,
+                "defaultValue": "",
+                "protected": false,
+                "persistent": true,
+                "validate": {
+                    "required": false,
+                    "minLength": 6,
+                    "maxLength": 100,
+                    "pattern": "",
+                    "custom": ""
+                },
+                "type": "textarea",
+                "conditional": {
+                    "show": null,
+                    "when": null,
+                    "eq": ""
+                }
+            }
+            ],
+        "input": false,
+        "key": "page3",
+        "theme": "default"
+    }
+    ],
+    "display": "wizard",
+    "page": 0,
+    "numPages": 2
+};

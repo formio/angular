@@ -45,6 +45,7 @@ export interface FormioComponentsTemplate {
 export interface FormioTemplate {
     formio: FormioComponentTemplate;
     formio_component: FormioComponentTemplate;
+    formio_wizard: FormioComponentTemplate;
     formio_components: FormioComponentTemplate;
     errors: FormioComponentTemplate;
     components: FormioComponentsTemplate;

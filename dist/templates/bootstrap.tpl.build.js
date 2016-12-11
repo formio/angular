@@ -10,12 +10,40 @@ var getTemplate = function (template) {
 exports.FORMIO_BOOTSTRAP = {
     formio: {
         component: {
-            template: "<form (submit)=\"onSubmit($event)\" [formGroup]=\"formGroup\">\n    <formio-errors [errors]=\"events.errors\" [options]=\"options.errors\"></formio-errors>\n    <i style=\"font-size: 2em;\" *ngIf=\"!(ready | async)\" class=\"formio-loading glyphicon glyphicon-refresh glyphicon-spin\"></i>\n    <formio-components *ngIf=\"ready | async\" [components]=\"form.components\" [form]=\"formGroup\" [submission]=\"formGroup\" [data]=\"submission.data\" [events]=\"events\" (render)=\"onRender()\"></formio-components>\n</form>\n",
+            template: "<i style=\"font-size: 2em;\" *ngIf=\"!(ready | async)\" class=\"formio-loading glyphicon glyphicon-refresh glyphicon-spin\"></i>\n<formio-wizard *ngIf=\"(ready | async) && (form.display === \'wizard\')\" [src]=\"src\" [form]=\"form\" [submission]=\"submission\"></formio-wizard>\n<form *ngIf=\"(ready | async) && (!form.display || (form.display === \'form\'))\" (submit)=\"onSubmit($event)\" [formGroup]=\"formGroup\">\n    <formio-errors [errors]=\"events.errors\" [options]=\"options.errors\"></formio-errors>\n    <formio-components *ngIf=\"ready | async\" [components]=\"form.components\" [form]=\"formGroup\" [submission]=\"formGroup\" [data]=\"submission.data\" [events]=\"events\" (render)=\"onRender()\"></formio-components>\n</form>\n",
             styles: [
                 '.form-group.required .control-label:after { content:"*"; color:red; }',
                 '.glyphicon-spin { -webkit-animation: spin-anim 1s infinite; animation: spin-anim 1s infinite; }',
                 '@-webkit-keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}',
                 '@keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}'
+            ]
+        }
+    },
+    formio_wizard: {
+        component: {
+            template: "<div class=\"row bs-wizard\" [ngClass]=\"{\'hasTitles\': (pages[0].title ? true : false)}\" style=\"border-bottom:0;\">\n    <div *ngFor=\"let panel of pages; let i = index;\" [style.marginLeft.%]=\"i==0 ? margin: 0\" class=\"{{colClass}} bs-wizard-step\" [ngClass]=\"{\'disabled\': (i > currentPage), \'active\': (i == currentPage), \'complete\': (i < currentPage), \'noTitle\': !panel.title}\" >\n        <div class=\"bs-wizard-stepnum-wrapper\">\n            <div class=\"text-center bs-wizard-stepnum\" *ngIf=\"panel.title\">{{ panel.title }}</div>\n        </div>\n        <div class=\"progress\"><div class=\"progress-bar progress-bar-primary\"></div></div>\n        <a (click)=\"goto(i)\" class=\"bs-wizard-dot bg-primary\"><div class=\"bs-wizard-dot-inner bg-success\"></div></a>\n    </div>\n</div>\n<formio [form]=\"page\" [submission]=\"submission\" (change)=\"onChange($event)\" id=\"formio-wizard-form\"></formio>\n<ul *ngIf=\"ready\" class=\"list-inline\">\n    <li *ngIf=\"currentPage > 0\"><a class=\"btn btn-primary\" (click)=\"prev()\">Previous</a></li>\n    <li *ngIf=\"currentPage < (pages.length - 1)\">\n        <a class=\"btn btn-primary\" (click)=\"next()\">Next</a>\n    </li>\n    <li *ngIf=\"currentPage >= (pages.length - 1)\">\n        <a class=\"btn btn-primary\" (click)=\"onSubmitWizard()\">Submit Form</a>\n    </li>\n</ul>\n",
+            styles: [
+                '.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;line-height: 1em;}',
+                '.bs-wizard > .bs-wizard-step {padding: 0; position: relative;}',
+                '.bs-wizard > .bs-wizard-step + .bs-wizard-step {}',
+                '.bs-wizard > .bs-wizard-step .bs-wizard-stepnum-wrapper {position:absolute;width:100%}',
+                '.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 12px; line-height:15px;}',
+                '.bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}',
+                '.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; top: 25px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%; cursor:pointer;z-index:10;}',
+                '.bs-wizard.hasTitles > .bs-wizard-step > .bs-wizard-dot {top: 45px;}',
+                '.bs-wizard > .bs-wizard-step > .bs-wizard-dot > .bs-wizard-dot-inner {width: 14px; height: 14px; border-radius: 50px; position: absolute; top: 8px; left: 8px; }',
+                '.bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 10px; box-shadow: none; margin: 20px 0;border: none;padding: 0;}',
+                '.bs-wizard.hasTitles > .bs-wizard-step > .progress {margin-top: 40px;}',
+                '.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none;}',
+                '.bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;border-radius:0;}',
+                '.bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}',
+                '.bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}',
+                '.bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {width: 100%;}',
+                '.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {background-color: #f5f5f5;}',
+                '.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot > .bs-wizard-dot-inner {opacity: 0;}',
+                '.bs-wizard > .bs-wizard-step:first-child  > .progress {left: 50%; width: 50%;}',
+                '.bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}',
+                '.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }'
             ]
         }
     },
