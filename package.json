@@ -20,7 +20,7 @@
     "@angular/platform-browser-dynamic": "^2.2.0",
     "angular2-signaturepad": "^2.1.0",
     "core-js": "^2.4.1",
-    "formio-utils": "^0.1.10",
+    "formio-utils": "^0.2.3 ",
     "formiojs": "^1.4.2",
     "lodash": "^4.17.2",
     "ng2-bootstrap": "^1.1.16",

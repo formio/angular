@@ -19,6 +19,7 @@ export class FormioWizardComponent implements OnInit {
     public margin: number = 0;
     public colClass: string;
     public localStorageKey: string;
+    public formioAlerts: Array<any> = [];
     @Input() options: FormioOptions;
     @Input() form: FormioForm = null;
     @Input() submission: any = {};
@@ -61,6 +62,10 @@ export class FormioWizardComponent implements OnInit {
     }
     public checkErrors(): boolean {
         if (this.elementRef.nativeElement.querySelector('form').classList.contains('ng-invalid')) {
+            this.showAlerts({
+                type: 'danger',
+                message: 'Please fix the following errors before proceeding.'
+            });
             return true;
         }
         else {
@@ -71,6 +76,7 @@ export class FormioWizardComponent implements OnInit {
         if (this.checkErrors()) {
             return;
         }
+        this.formioAlerts = [];
         if (this.currentPage >= (this.pages.length - 1)) {
             return;
         }
@@ -83,21 +89,30 @@ export class FormioWizardComponent implements OnInit {
         if (this.currentPage < 1) {
             return;
         }
+        this.formioAlerts = [];
         this.currentPage--;
         this.page = this.pages[this.currentPage];
         this.storage['page'] = this.pages.indexOf(this.page);
         localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
         this.submission.data = this.storage['data'];
     }
+    public showAlerts(alerts: any) {
+        this.formioAlerts = [].concat(alerts);
+    };
     public onSubmitWizard() {
         if (this.checkErrors()) {
             return;
         }
+        this.formioAlerts = [];
         localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
         let submission = {data: JSON.parse(localStorage.getItem(this.localStorageKey)).data};
         if (this.service) {
             this.service.saveSubmission(submission).subscribe((sub: {}) => {
                 localStorage.removeItem(this.localStorageKey);
+                this.showAlerts({
+                    type: 'success',
+                    message: 'Submission Complete!'
+                });
             });
         }
     }

@@ -7,6 +7,7 @@
         <a (click)="goto(i)" class="bs-wizard-dot bg-primary"><div class="bs-wizard-dot-inner bg-success"></div></a>
     </div>
 </div>
+<div *ngFor="let alert of formioAlerts" class="alert alert-{{ alert.type }}" role="alert">{{ alert.message }}</div>
 <formio [form]="page" [submission]="submission" (change)="onChange($event)" id="formio-wizard-form"></formio>
 <ul *ngIf="ready" class="list-inline">
     <li><a class="btn btn-default" (click)="cancel()">Cancel</a></li>
