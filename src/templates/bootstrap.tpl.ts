@@ -59,6 +59,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         container: getTemplate({ gulp_inject: './bootstrap/components/container.html' }),
         datagrid: getTemplate({ gulp_inject: './bootstrap/components/datagrid.html' }),
         input: getTemplate({ gulp_inject: './bootstrap/components/input.html' }),
+        number: getTemplate({ gulp_inject: './bootstrap/components/number.html' }),
         textarea: getTemplate({ gulp_inject: './bootstrap/components/textarea.html' }),
         hidden: getTemplate({ gulp_inject: './bootstrap/components/hidden.html' }),
         radio: getTemplate({ gulp_inject: './bootstrap/components/radio.html' }),
