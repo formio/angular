@@ -39,6 +39,7 @@ export interface FormioComponentsTemplate {
     address: FormioComponentTemplate,
     phoneNumber: FormioComponentTemplate,
     signature: FormioComponentTemplate
+    day: FormioComponentTemplate
 }
 
 /**

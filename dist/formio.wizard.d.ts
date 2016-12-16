@@ -16,6 +16,7 @@ export declare class FormioWizardComponent implements OnInit {
     margin: number;
     colClass: string;
     localStorageKey: string;
+    formioAlerts: Array<any>;
     options: FormioOptions;
     form: FormioForm;
     submission: any;
@@ -25,10 +26,14 @@ export declare class FormioWizardComponent implements OnInit {
     constructor(elementRef: ElementRef);
     ngOnInit(): void;
     onChange(event: any): void;
+    extend(obj: Object, src: Object): Object;
     checkErrors(): boolean;
     next(): void;
     prev(): void;
+    showAlerts(alerts: any): void;
     onSubmitWizard(): void;
+    initWizard(): void;
+    cancel(): void;
     goto(index: number): void;
     updatePages(): void;
 }

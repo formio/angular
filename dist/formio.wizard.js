@@ -22,19 +22,17 @@ var FormioWizardComponent = (function () {
         this.pages = [];
         this.storage = {};
         this.margin = 0;
+        this.formioAlerts = [];
         this.form = null;
         this.submission = {};
         this.change = new core_1.EventEmitter();
     }
     FormioWizardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.currentPage = 0;
-        this.page = this.form.components[0];
-        this.storage['page'] = 0;
-        this.storage['data'] = {};
         this.form.components.forEach(function (item) {
             _this.pages.push(item);
         });
+        this.updatePages();
         if (this.src) {
             this.localStorageKey = this.src.split('/')[3];
             this.service = new formio_service_1.FormioService(this.src);
@@ -43,48 +41,92 @@ var FormioWizardComponent = (function () {
         else {
             this.localStorageKey = 'form_wizard';
         }
-        this.updatePages();
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
+        if (localStorage.getItem(this.localStorageKey)) {
+            this.storage = JSON.parse(localStorage.getItem(this.localStorageKey));
+            this.currentPage = this.storage['page'];
+            this.page = this.pages[this.currentPage];
+        }
+        else {
+            this.initWizard();
+        }
     };
     FormioWizardComponent.prototype.onChange = function (event) {
         this.storage['data'] = event;
+        if (localStorage.getItem(this.localStorageKey)) {
+            this.storage['data'] = this.extend(this.storage['data'], JSON.parse(localStorage.getItem(this.localStorageKey)).data);
+        }
+    };
+    FormioWizardComponent.prototype.extend = function (obj, src) {
+        Object.keys(src).forEach(function (key) { obj[key] = src[key]; });
+        return obj;
     };
     FormioWizardComponent.prototype.checkErrors = function () {
-        //@TODO:Check Validations...
-        return false;
+        if (this.elementRef.nativeElement.querySelector('form').classList.contains('ng-invalid')) {
+            this.showAlerts({
+                type: 'danger',
+                message: 'Please fix the following errors before proceeding.'
+            });
+            return true;
+        }
+        else {
+            return false;
+        }
     };
     FormioWizardComponent.prototype.next = function () {
         if (this.checkErrors()) {
             return;
         }
+        this.formioAlerts = [];
         if (this.currentPage >= (this.pages.length - 1)) {
             return;
         }
         this.currentPage++;
         this.page = this.pages[this.currentPage];
-        this.storage['page'] = this.pages.indexOf(this.page) + 1;
+        this.storage['page'] = this.pages.indexOf(this.page);
         localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
     };
     FormioWizardComponent.prototype.prev = function () {
         if (this.currentPage < 1) {
             return;
         }
+        this.formioAlerts = [];
         this.currentPage--;
         this.page = this.pages[this.currentPage];
         this.storage['page'] = this.pages.indexOf(this.page);
         localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
         this.submission.data = this.storage['data'];
     };
+    FormioWizardComponent.prototype.showAlerts = function (alerts) {
+        this.formioAlerts = [].concat(alerts);
+    };
+    ;
     FormioWizardComponent.prototype.onSubmitWizard = function () {
+        var _this = this;
         if (this.checkErrors()) {
             return;
         }
+        this.formioAlerts = [];
         localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
         var submission = { data: JSON.parse(localStorage.getItem(this.localStorageKey)).data };
         if (this.service) {
-            this.service.saveSubmission(submission).subscribe(function (sub) { });
-            localStorage.setItem(this.localStorageKey, '');
+            this.service.saveSubmission(submission).subscribe(function (sub) {
+                localStorage.removeItem(_this.localStorageKey);
+                _this.showAlerts({
+                    type: 'success',
+                    message: 'Submission Complete!'
+                });
+            });
         }
+    };
+    FormioWizardComponent.prototype.initWizard = function () {
+        this.currentPage = 0;
+        this.page = this.pages[0];
+        this.storage['page'] = 0;
+        this.storage['data'] = {};
+        localStorage.setItem(this.localStorageKey, JSON.stringify(this.storage));
+    };
+    FormioWizardComponent.prototype.cancel = function () {
+        this.initWizard();
     };
     FormioWizardComponent.prototype.goto = function (index) {
         if (index < 0) {

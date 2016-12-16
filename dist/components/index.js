@@ -27,6 +27,7 @@ var resource_1 = require('./resource/resource');
 var address_1 = require('./address/address');
 var phonenumber_1 = require('./phonenumber/phonenumber');
 var signature_1 = require('./signature/signature');
+var day_1 = require('./day/day');
 function RegisterComponents(template) {
     textfield_1.TextField(template);
     button_1.ButtonField(template);
@@ -56,5 +57,6 @@ function RegisterComponents(template) {
     address_1.AddressField(template);
     phonenumber_1.PhoneNumberField(template);
     signature_1.SignatureField(template);
+    day_1.DayField(template);
 }
 exports.RegisterComponents = RegisterComponents;
