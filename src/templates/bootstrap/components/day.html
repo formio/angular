@@ -1,23 +1,23 @@
 <div class="daySelect form row {{component.settings.customClass}}">
-    <div class="form-group col-xs-3" *ngIf="component.settings.dayFirst">
+    <div [formGroup]="form" class="form-group col-xs-3" *ngIf="component.settings.dayFirst">
         <label [attr.for]="day" [ngClass]="{'required': component.settings.fields.day.required}">{{ "Day" }}</label>
-        <input class="form-control" type="text" id="day" style="padding-right: 10px;" [placeholder]="component.settings.fields.day.placeholder"
-                (change)="getDay($event)" [min]="0" [max]="31"/>
+        <input [formControl]="component.control" class="form-control" type="text" id="day" style="padding-right: 10px;" [placeholder]="component.settings.fields.day.placeholder"
+               [(ngModel)]="date.day" (keyup)="getDay(date.day)"/>
     </div>
-    <div class="form-group col-xs-4">
+    <div [formGroup]="form" class="form-group col-xs-4">
         <label [attr.for]="month" [ngClass]="{'required': component.settings.fields.month.required}">{{ "Month" }}</label>
         <select class="form-control" id="month" #selected (change)="getMonth(selected.value)">
             <option *ngFor="let month of months; let i=index;" value="{{i}}">{{ month }}</option>
         </select>
     </div>
-    <div class="form-group col-xs-3" *ngIf="!component.settings.dayFirst">
+    <div [formGroup]="form" class="form-group col-xs-3" *ngIf="!component.settings.dayFirst">
         <label [attr.for]="day1" [ngClass]="{'required': component.settings.fields.day.required}">{{ "Day" }}</label>
-        <input class="form-control" type="text" id="day1" style="padding-right: 10px;" [placeholder]="component.settings.fields.day.placeholder"
-               (change)="getDay($event)" [min]="0" [max]="31"/>
+        <input [formControl]="component.control" class="form-control" type="text" id="day1" style="padding-right: 10px;" [placeholder]="component.settings.fields.day.placeholder"
+               [(ngModel)]="date.day" (keyup)="getDay(date.day)"/>
     </div>
-    <div class="form-group col-xs-5">
+    <div [formGroup]="form" class="form-group col-xs-5">
         <label for="year" [ngClass]="{'required': component.settings.fields.year.required}">{{ "Year" }}</label>
-        <input class="form-control" type="text" id="year" style="padding-right: 10px;" [placeholder]="component.settings.fields.year.placeholder"
-               (change)="getYear($event)" [min]="0" [max]="2100"/>
+        <input [formControl]="component.control" class="form-control" type="text" id="year" style="padding-right: 10px;" [placeholder]="component.settings.fields.year.placeholder"
+               [(ngModel)]="date.year" (keyup)="getYear(date.year)"/>
     </div>
 </div>
