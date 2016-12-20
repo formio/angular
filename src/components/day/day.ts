@@ -20,8 +20,11 @@ export class DayElement extends BaseElement<DayComponent> implements OnInit {
         if (isNaN(day)) {
             day = '';
         }
-        if (parseInt(day) < 1 || parseInt(day) > 31) {
+        if (day.length > 2) {
             day = day.substring(0, 2);
+        }
+        if (parseInt(day) < 1 || parseInt(day) > 31) {
+            day = day.substring(0, 1);
         }
         this.date['day'] = day;
     }
