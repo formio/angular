@@ -8,8 +8,9 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { AlignDirective } from '../components/signature/signature';
 import { SignaturePadModule } from 'angular2-signaturepad';
 
+let requiredCSS: string = '.required .control-label::after { content:" *"; color:red; }';
 let getTemplate = function(template: string) {
-    return {component: {template: template, styles: ['.required .control-label::after { content:" *"; color:red; }']}};
+    return {component: {template: template, styles: [requiredCSS]}};
 };
 export const FORMIO_BOOTSTRAP: FormioTemplate = {
     formio: {
@@ -72,7 +73,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         datetime: {
             component: {
                 template:"<div class=\"form-group {{component.settings.customClass}}\" [ngClass]=\"{\'required\': (component.settings.validate && component.settings.validate.required)}\">\n    <label *ngIf=\"component.label\" [attr.for]=\"component.settings.key\" class=\"control-label\">{{ component.label }}</label>\n    <div class=\"input-group\">\n        <input [formControl]=\"component.control\" value=\"{{showDateTime ? (getDate() ? (getDate()| date: dateFormat):\'\') +\' \'+ (time?(time | date:\'HH:mm\'):\'\'):\'\' }}\" [type]=\"text\" [placeholder]=\"component.settings.placeholder\" class=\"form-control\" (click)=\"selectDate()\" />\n        <span class=\"input-group-addon\" (click)=\"selectDate()\"><i *ngIf=\"component.settings.enableDate\" class=\"glyphicon glyphicon-calendar\"></i><i *ngIf=\"!component.settings.enableDate\" class=\"glyphicon glyphicon-time\"></i></span>\n    </div>\n    <div *ngIf=\"displayDate\" class=\"showDate\">\n        <datepicker ngDefaultControl [(ngModel)]=\"selectedDate\" (click)=\"selectTime(selectedDate)\" [dateDisabled]=\"component.settings.enableDate\" [showWeeks]=\"component.settings.datePicker.showWeeks\" [startingDay]=\"component.settings.datePicker.startingDay\" [minMode]=\"component.settings.datePicker.minMode\" [maxMode]=\"component.settings.datePicker.maxMode\" [yearRange]=\"component.settings.datePicker.yearRange\" [datepickerMode]=\"component.settings.datePicker.datepickerMode\"></datepicker>\n        <div class=\"buttonsSpace\">\n            <span class=\"btn-group\">\n                <button type=\"button\" class=\"btn btn-sm btn-info\" (click)=\"today()\">Today</button>\n                <button type=\"button\" class=\"btn btn-sm btn-danger\" (click)=\"clear()\">Clear</button>\n            </span>\n            <span class=\"btn-group pull-right\">\n                <button *ngIf=\"component.settings.enableTime\" type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"selectFirstTime()\">Time</button>\n                <button type=\"button\" class=\"btn btn-sm btn-success\" (click)=\"close()\">Close</button>\n            </span>\n        </div>\n    </div>\n    <div *ngIf=\"displayTime\" class=\"showTime\">\n        <timepicker ngDefaultControl [(ngModel)]=\"time\" (click)=\"checkDate()\" [hourStep]=\"component.settings.timePicker.hourStep\" [minuteStep]=\"component.settings.timePicker.minuteStep\" [showMeridian]=\"component.settings.timePicker.showMeridian\" [readonlyInput]=\"component.settings.timePicker.readonlyInput\" [mousewheel]=\"component.settings.timePicker.mousewheel\" [arrowkeys]=\"component.settings.timePicker.arrowkeys\"></timepicker>\n        <div class=\"buttonsSpace\">\n            <span class=\"btn-group pull-left\">\n                <button type=\"button\" class=\"btn btn-sm btn-info\" (click)=\"now()\">Now</button>\n                <button type=\"button\" class=\"btn btn-sm btn-danger\" (click)=\"clear()\">Clear</button>\n            </span>\n            <span class=\"btn-group pull-right\">\n                <button *ngIf=\"component.settings.enableDate\" type=\"button\" class=\"btn btn-sm btn-default\" (click)=\"selectDate()\">Date</button>\n                <button type=\"button\" class=\"btn btn-sm btn-success\" (click)=\"close()\">Close</button>\n            </span>\n        </div>\n    </div>\n</div>\n",
-                styles: ['.required .control-label::after { content:" *"; color:red; }', ".showDate {width:48vmin;border:1px solid #ccc;}", ".showTime {width:53vmin;height:22vmin;border:1px solid #ccc;}", ".buttonsSpace {padding:5px;}"]
+                styles: [requiredCSS, ".showDate {width:48vmin;border:1px solid #ccc;}", ".showTime {width:53vmin;height:22vmin;border:1px solid #ccc;}", ".buttonsSpace {padding:5px;}"]
             },
             module: {
                 imports: [DatepickerModule, TimepickerModule]
@@ -85,7 +86,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         select: {
             component: {
                 template: "<div class=\"form-group {{component.settings.customClass}}\" [ngClass]=\"{\'required\': (component.settings.validate && component.settings.validate.required)}\">\n    <label *ngIf=\"component.label\" [attr.for]=\"component.settings.key\" class=\"control-label\">{{ component.label }}</label>\n    <ng-select [items]=\"component.settings.data.values\"\n               (data)=\"refreshValue($event)\"\n               (selected)=\"selected($event)\"\n               (removed)=\"removed($event)\"\n               [multiple]=\"component.settings.multiple\"\n               [placeholder]=\"component.settings.placeholder\">\n    </ng-select>\n</div>\n",
-                styles: ['.required .control-label::after { content:" *"; color:red; }']
+                styles: [requiredCSS]
             },
             module: {
                 imports: [SelectModule]
@@ -95,7 +96,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         resource: {
             component: {
                 template: "<div class=\"form-group {{component.settings.customClass}}\" [ngClass]=\"{\'required\': (component.settings.validate && component.settings.validate.required)}\">\n    <label *ngIf=\"component.label\" [attr.for]=\"component.settings.key\" class=\"control-label\">{{ component.label }}</label>\n    <ng-select [items]=\"component.settings.defaultValue\"\n               (data)=\"refreshValue($event)\"\n               [multiple]=\"component.settings.multiple\"\n               [placeholder]=\"component.settings.placeholder\"\n               (typed)=\"searchData($event)\"\n               (selected)=\"selected($event)\"\n               (removed)=\"removed($event)\">\n    </ng-select>\n</div>\n",
-                styles: ['.required .control-label::after { content:" *"; color:red; }']
+                styles: [requiredCSS]
             },
             module: {
                 imports: [SelectModule]
@@ -104,7 +105,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         address: {
             component: {
                 template: "<div class=\"{{component.settings.customClass}}\" [ngClass]=\"{\'required\': (component.settings.validate && component.settings.validate.required)}\">\n    <label *ngIf=\"component.label\" [attr.for]=\"component.settings.key\" class=\"control-label\">{{ component.label }}</label>\n    <ng-select [items]=\"selectedItem\"\n               (data)=\"refreshValue($event)\"\n               [multiple]=\"component.settings.multiple\"\n               [placeholder]=\"component.settings.placeholder\"\n               (typed)=\"searchData($event)\"\n               (selected)=\"selected($event)\">\n    </ng-select>\n</div>\n",
-                styles: ['.required .control-label::after { content:" *"; color:red; }']
+                styles: [requiredCSS]
             },
             module: {
                 imports: [SelectModule]
@@ -113,7 +114,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         phoneNumber: {
             component: {
                 template: "<div [formGroup]=\"form\" class=\"form-group {{component.settings.customClass}}\" [ngClass]=\"{\'required\': (component.settings.validate && component.settings.validate.required)}\">\n    <label *ngIf=\"component.label\" [attr.for]=\"component.settings.key\" class=\"control-label\">{{ component.label }}</label>\n    <div [ngClass]=\"{\'input-group\': (component.settings.prefix || component.settings.suffix)}\">\n        <div *ngIf=\"component.settings.prefix\" class=\"input-group-addon\">{{ component.settings.prefix }}</div>\n        <input [textMask]=\"{mask: mask}\" [(ngModel)]=\"phone\" (keyup)=\"phone = unmask(phone)\" [type]=\"text\" [formControl]=\"component.control\" [id]=\"component.settings.key\" [placeholder]=\"component.settings.placeholder\" class=\"form-control\" />\n        <div *ngIf=\"component.settings.suffix\" class=\"input-group-addon\">{{ component.settings.suffix }}</div>\n    </div>\n</div>\n",
-                styles: ['.required .control-label::after { content:" *"; color:red; }']
+                styles: [requiredCSS]
             },
             module: {
                 imports: [TextMaskModule]

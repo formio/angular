@@ -12,7 +12,7 @@ export function NumberValidator(component: NumberComponent) {
             return {'maxValue': true};
         }
         return null;
-    }
+    };
 }
 
 export class NumberComponent extends InputComponent<InputOptions> {

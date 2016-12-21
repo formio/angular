@@ -7,8 +7,9 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { AlignDirective } from '../components/signature/signature';
 import { SignaturePadModule } from 'angular2-signaturepad';
 
+let requiredCSS: string = '.required .control-label::after { content:" *"; color:red; }';
 let getTemplate = function(template: string) {
-    return {component: {template: template, styles: ['.required .control-label::after { content:" *"; color:red; }']}};
+    return {component: {template: template, styles: [requiredCSS]}};
 };
 export const FORMIO_BOOTSTRAP: FormioTemplate = {
     formio: {
@@ -71,7 +72,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         datetime: {
             component: {
                 template:{ gulp_inject: './bootstrap/components/datetime.html' },
-                styles: ['.required .control-label::after { content:" *"; color:red; }', ".showDate {width:48vmin;border:1px solid #ccc;}", ".showTime {width:53vmin;height:22vmin;border:1px solid #ccc;}", ".buttonsSpace {padding:5px;}"]
+                styles: [requiredCSS, ".showDate {width:48vmin;border:1px solid #ccc;}", ".showTime {width:53vmin;height:22vmin;border:1px solid #ccc;}", ".buttonsSpace {padding:5px;}"]
             },
             module: {
                 imports: [DatepickerModule, TimepickerModule]
@@ -84,7 +85,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         select: {
             component: {
                 template: { gulp_inject: './bootstrap/components/select.html' },
-                styles: ['.required .control-label::after { content:" *"; color:red; }']
+                styles: [requiredCSS]
             },
             module: {
                 imports: [SelectModule]
@@ -94,7 +95,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         resource: {
             component: {
                 template: { gulp_inject: './bootstrap/components/resource.html' },
-                styles: ['.required .control-label::after { content:" *"; color:red; }']
+                styles: [requiredCSS]
             },
             module: {
                 imports: [SelectModule]
@@ -103,7 +104,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         address: {
             component: {
                 template: { gulp_inject: './bootstrap/components/address.html' },
-                styles: ['.required .control-label::after { content:" *"; color:red; }']
+                styles: [requiredCSS]
             },
             module: {
                 imports: [SelectModule]
@@ -112,7 +113,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         phoneNumber: {
             component: {
                 template: {gulp_inject: './bootstrap/components/phonenumber.html'},
-                styles: ['.required .control-label::after { content:" *"; color:red; }']
+                styles: [requiredCSS]
             },
             module: {
                 imports: [TextMaskModule]
