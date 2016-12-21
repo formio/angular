@@ -1,11 +1,11 @@
-import { Component, Type } from '@angular/core';
+import { Component } from '@angular/core';
 import { FORM } from '../src/fixtures/forms/kitchensink.ts';
 import { FORM_WIZARD } from '../src/fixtures/forms/kitchensink.ts';
 @Component({
     selector: 'app',
     template: require('./app.html')
 })
-export class AppComponent extends Type {
+export class AppComponent {
     public form: any = FORM;
     public form_wizard: any = FORM_WIZARD;
     public submission: any = {

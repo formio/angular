@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require('../base');
-var components_1 = require('../components');
+var base_1 = require("../base");
+var components_1 = require("../components");
 var Formio = require('formiojs');
 var ResourceComponent = (function (_super) {
     __extends(ResourceComponent, _super);
     function ResourceComponent() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     ResourceComponent.prototype.allowMultiple = function () {
         return false;
@@ -21,9 +21,10 @@ exports.ResourceComponent = ResourceComponent;
 var ResourceElement = (function (_super) {
     __extends(ResourceElement, _super);
     function ResourceElement() {
-        _super.apply(this, arguments);
-        this.value = {};
-        this.submitArray = [];
+        var _this = _super.apply(this, arguments) || this;
+        _this.value = {};
+        _this.submitArray = [];
+        return _this;
     }
     ResourceElement.prototype.refreshValue = function (value) {
         this.value = value;

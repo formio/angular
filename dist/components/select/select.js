@@ -4,14 +4,14 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require('../base');
-var components_1 = require('../components');
-var formio_service_1 = require('../../formio.service');
+var base_1 = require("../base");
+var components_1 = require("../components");
+var formio_service_1 = require("../../formio.service");
 var Formio = require('formiojs');
 var SelectComponent = (function (_super) {
     __extends(SelectComponent, _super);
     function SelectComponent() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     SelectComponent.prototype.allowMultiple = function () {
         return false;
@@ -22,9 +22,10 @@ exports.SelectComponent = SelectComponent;
 var SelectElement = (function (_super) {
     __extends(SelectElement, _super);
     function SelectElement() {
-        _super.apply(this, arguments);
-        this.value = {};
-        this.submitArray = [];
+        var _this = _super.apply(this, arguments) || this;
+        _this.value = {};
+        _this.submitArray = [];
+        return _this;
     }
     SelectElement.prototype.refreshValue = function (value) {
         this.value = value;

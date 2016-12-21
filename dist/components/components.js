@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
+var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
 var forms_1 = require("@angular/forms");
-var formio_1 = require('../formio');
+var formio_1 = require("../formio");
 var find = require('lodash/find');
 var cloneDeep = require('lodash/cloneDeep');
 var FormioComponents = (function () {
@@ -36,12 +36,12 @@ var FormioComponents = (function () {
         var DynamicComponentModule = (function () {
             function DynamicComponentModule() {
             }
-            DynamicComponentModule = __decorate([
-                core_1.NgModule(compTemplate.module), 
-                __metadata('design:paramtypes', [])
-            ], DynamicComponentModule);
             return DynamicComponentModule;
         }());
+        DynamicComponentModule = __decorate([
+            core_1.NgModule(compTemplate.module),
+            __metadata("design:paramtypes", [])
+        ], DynamicComponentModule);
         FormioComponents.components[name] = {
             component: component,
             element: element,
@@ -71,7 +71,7 @@ var FormioComponents = (function () {
         });
         return FormioComponents.components[name].factoryPromise;
     };
-    FormioComponents.components = {};
     return FormioComponents;
 }());
+FormioComponents.components = {};
 exports.FormioComponents = FormioComponents;

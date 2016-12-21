@@ -1,4 +1,3 @@
-/// <reference types="chai" />
 import { BaseComponent, BaseOptions, BaseElement } from '../base';
 import { FormioTemplate } from '../../formio.template';
 import { OnInit } from "@angular/core";
