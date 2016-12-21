@@ -19,6 +19,7 @@ export interface FormioComponentsTemplate {
     container: FormioComponentTemplate,
     datagrid: FormioComponentTemplate,
     input: FormioComponentTemplate,
+    number: FormioComponentTemplate,
     textarea: FormioComponentTemplate,
     hidden: FormioComponentTemplate,
     radio: FormioComponentTemplate,

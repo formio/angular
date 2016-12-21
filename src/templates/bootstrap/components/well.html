@@ -1,4 +1,4 @@
-<div [formGroup]="form" class="form-group">
+<div [formGroup]="form" class="form-group {{component.settings.customClass}}">
     <div class="well">
         <formio-components [components]="component.settings.components" [form]="component.control" [submission]="submission" [data]="data" [events]="events" (render)="onRender()"></formio-components>
     </div>
