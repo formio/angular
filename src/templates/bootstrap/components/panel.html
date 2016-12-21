@@ -1,4 +1,4 @@
-<div [formGroup]="form" class="form-group">
+<div [formGroup]="form" class="form-group {{component.settings.customClass}}">
     <div class="panel" [ngClass]="{
         'panel-default': component.settings.theme=='default',
         'panel-primary': component.settings.theme=='primary',

@@ -8,14 +8,13 @@ import { AlignDirective } from '../components/signature/signature';
 import { SignaturePadModule } from 'angular2-signaturepad';
 
 let getTemplate = function(template: string) {
-    return {component: {template: template}};
+    return {component: {template: template, styles: ['.required .control-label::after { content:" *"; color:red; }']}};
 };
 export const FORMIO_BOOTSTRAP: FormioTemplate = {
     formio: {
         component: {
             template: { gulp_inject: './bootstrap/formio.html' },
             styles: [
-                '.form-group.required .control-label:after { content:"*"; color:red; }',
                 '.glyphicon-spin { -webkit-animation: spin-anim 1s infinite; animation: spin-anim 1s infinite; }',
                 '@-webkit-keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}',
                 '@keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}'
@@ -72,7 +71,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         datetime: {
             component: {
                 template:{ gulp_inject: './bootstrap/components/datetime.html' },
-                styles: [".showDate {width:48vmin;border:1px solid #ccc;}", ".showTime {width:53vmin;height:22vmin;border:1px solid #ccc;}", ".buttonsSpace {padding:5px;}"]
+                styles: ['.required .control-label::after { content:" *"; color:red; }', ".showDate {width:48vmin;border:1px solid #ccc;}", ".showTime {width:53vmin;height:22vmin;border:1px solid #ccc;}", ".buttonsSpace {padding:5px;}"]
             },
             module: {
                 imports: [DatepickerModule, TimepickerModule]
@@ -84,7 +83,8 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         currency: getTemplate({ gulp_inject: './bootstrap/components/currency.html' }),
         select: {
             component: {
-                template: { gulp_inject: './bootstrap/components/select.html' }
+                template: { gulp_inject: './bootstrap/components/select.html' },
+                styles: ['.required .control-label::after { content:" *"; color:red; }']
             },
             module: {
                 imports: [SelectModule]
@@ -93,7 +93,8 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         survey: getTemplate({ gulp_inject: './bootstrap/components/survey.html' }),
         resource: {
             component: {
-                template: { gulp_inject: './bootstrap/components/resource.html' }
+                template: { gulp_inject: './bootstrap/components/resource.html' },
+                styles: ['.required .control-label::after { content:" *"; color:red; }']
             },
             module: {
                 imports: [SelectModule]
@@ -101,7 +102,8 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         },
         address: {
             component: {
-                template: { gulp_inject: './bootstrap/components/address.html' }
+                template: { gulp_inject: './bootstrap/components/address.html' },
+                styles: ['.required .control-label::after { content:" *"; color:red; }']
             },
             module: {
                 imports: [SelectModule]
@@ -109,7 +111,8 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         },
         phoneNumber: {
             component: {
-                template: {gulp_inject: './bootstrap/components/phonenumber.html'}
+                template: {gulp_inject: './bootstrap/components/phonenumber.html'},
+                styles: ['.required .control-label::after { content:" *"; color:red; }']
             },
             module: {
                 imports: [TextMaskModule]
@@ -118,7 +121,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         signature: {
             component: {
                 template: { gulp_inject: './bootstrap/components/signature.html' },
-                styles: [".clearButton {position:absolute; left: 0; top: 0; z-index: 1000}", ".footer {text-align: center; color:#C3C3C3;}"]
+                styles: ['.required .footer::after { content:" *"; color:red; }', ".clearButton {position:absolute; left: 0; top: 0; z-index: 1000}", ".footer {text-align: center; color:#C3C3C3;}"]
             },
             module: {
                 imports: [SignaturePadModule],
