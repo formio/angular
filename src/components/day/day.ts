@@ -21,7 +21,7 @@ export class DayElement extends BaseElement<DayComponent> implements OnInit {
         year: new FormControl()
     });
     ngOnInit() {
-        this.months = [this.component.settings.fields.month.placeholder, 'January', 'February', 'March', 'April', 'May', 'June',
+        this.months = ['January', 'February', 'March', 'April', 'May', 'June',
                 'July', 'August', 'September', 'October', 'November', 'December'];
         if (this.component.data[this.component.settings.key] != null) {
             this.date['day'] = this.component.data[this.component.settings.key].split('/')[0];
