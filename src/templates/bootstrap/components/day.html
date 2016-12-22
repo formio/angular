@@ -6,7 +6,7 @@
     </div>
     <div class="form-group col-xs-4" [ngClass]="{'required': component.settings.fields.month.required}">
         <label [attr.for]="month" class="control-label">{{ "Month" }}</label>
-        <select class="form-control" id="month" #selected (change)="getMonth(selected.value)">
+        <select class="form-control" id="month" #selected (change)="getMonth(selected.value)" [(ngModel)]="date.month" formControlName="month">
             <option *ngFor="let month of months; let i=index;" value="{{i}}">{{ month }}</option>
         </select>
     </div>

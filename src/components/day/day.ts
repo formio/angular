@@ -6,7 +6,9 @@ import { FormGroup, FormControl } from "@angular/forms";
 
 export interface DayOptions extends BaseOptions<any> {
     placeholder?: string,
-    dayFirst?: boolean
+    dayFirst?: boolean,
+    fields?: Object,
+    customClass?: string
 }
 
 export class DayComponent extends BaseComponent<DayOptions> {}
@@ -21,6 +23,15 @@ export class DayElement extends BaseElement<DayComponent> implements OnInit {
     ngOnInit() {
         this.months = [this.component.settings.fields.month.placeholder, 'January', 'February', 'March', 'April', 'May', 'June',
                 'July', 'August', 'September', 'October', 'November', 'December'];
+        if (this.component.data[this.component.settings.key] != null) {
+            this.date['day'] = this.component.data[this.component.settings.key].split('/')[0];
+            this.date['year'] = this.component.data[this.component.settings.key].split('/')[2];
+            if (this.component.data[this.component.settings.key].split('/')[1] < 10) {
+                this.date['month'] = this.component.data[this.component.settings.key].split('/')[1][1];
+            } else {
+                this.date['month'] = this.component.data[this.component.settings.key].split('/')[1];
+            }
+        }
     }
     public getDay(day: any) {
         if (isNaN(day)) {

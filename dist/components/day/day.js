@@ -30,6 +30,16 @@ var DayElement = (function (_super) {
     DayElement.prototype.ngOnInit = function () {
         this.months = [this.component.settings.fields.month.placeholder, 'January', 'February', 'March', 'April', 'May', 'June',
             'July', 'August', 'September', 'October', 'November', 'December'];
+        if (this.component.data[this.component.settings.key] != null) {
+            this.date['day'] = this.component.data[this.component.settings.key].split('/')[0];
+            this.date['year'] = this.component.data[this.component.settings.key].split('/')[2];
+            if (this.component.data[this.component.settings.key].split('/')[1] < 10) {
+                this.date['month'] = this.component.data[this.component.settings.key].split('/')[1][1];
+            }
+            else {
+                this.date['month'] = this.component.data[this.component.settings.key].split('/')[1];
+            }
+        }
     };
     DayElement.prototype.getDay = function (day) {
         if (isNaN(day)) {

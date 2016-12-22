@@ -6,6 +6,8 @@ import { FormGroup } from "@angular/forms";
 export interface DayOptions extends BaseOptions<any> {
     placeholder?: string;
     dayFirst?: boolean;
+    fields?: Object;
+    customClass?: string;
 }
 export declare class DayComponent extends BaseComponent<DayOptions> {
 }
