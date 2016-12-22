@@ -1,5 +1,5 @@
-<div [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
-    <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label"><h3>{{ component.label }}</h3></label>
+<div class="form-group {{component.settings.customClass}}" [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
+    <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label">{{ component.label }}</label>
     <div class="input-group">
         <input [formControl]="component.control" value="{{showDateTime ? (getDate() ? (getDate()| date: dateFormat):'') +' '+ (time?(time | date:'HH:mm'):''):'' }}" [type]="text" [placeholder]="component.settings.placeholder" class="form-control" (click)="selectDate()" />
         <span class="input-group-addon" (click)="selectDate()"><i *ngIf="component.settings.enableDate" class="glyphicon glyphicon-calendar"></i><i *ngIf="!component.settings.enableDate" class="glyphicon glyphicon-time"></i></span>

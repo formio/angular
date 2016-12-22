@@ -152,8 +152,9 @@ exports.FORM = {
                                     "persistent": true,
                                     "validate": {
                                         "required": false,
-                                        "minLength": 2,
-                                        "maxLength": 10,
+                                        "min": 10,
+                                        "max": 100,
+                                        "step": 5,
                                         "custom": "",
                                         "customPrivate": false
                                     },
