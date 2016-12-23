@@ -11,11 +11,38 @@ export interface DayOptions extends BaseOptions<any> {
     customClass?: string
 }
 
-export class DayComponent extends BaseComponent<DayOptions> {}
+export function DayValidator(component: DayComponent) {
+    return function(control: FormControl): any {
+        if (control.value) {
+             let date: Array<string> = control.value.split('/');
+             if ((component.settings.fields.day.required && date[0] =='00') ||
+                 (component.settings.fields.month.required && date[1] =='00') ||
+                 (component.settings.fields.year.required && date[2] =='0000')) {
+                 return {'invalidDay': true};
+             }
+        }
+        return null;
+    };
+}
+
+export class DayComponent extends BaseComponent<DayOptions> {
+    getError(type: string, error: any) : string {
+        let message = super.getError(type, error);
+        if (!message && (type === 'invalidDay')) {
+            message = this.label + ' must be a valid Date';
+        }
+        return message;
+    }
+    addValidators() {
+        super.addValidators();
+        this.validators.push(DayValidator(this));
+    }
+}
+
 export class DayElement extends BaseElement<DayComponent> implements OnInit {
     public months: Array<any> = [];
     public date: Object = { day: '', month: '', year: '' };
-    public dayForm = new FormGroup({
+    public dayGroup = new FormGroup({
         day: new FormControl(),
         month: new FormControl(),
         year: new FormControl()
@@ -24,12 +51,13 @@ export class DayElement extends BaseElement<DayComponent> implements OnInit {
         this.months = ['January', 'February', 'March', 'April', 'May', 'June',
                 'July', 'August', 'September', 'October', 'November', 'December'];
         if (this.component.data[this.component.settings.key] != null) {
-            this.date['day'] = this.component.data[this.component.settings.key].split('/')[0];
-            this.date['year'] = this.component.data[this.component.settings.key].split('/')[2];
-            if (this.component.data[this.component.settings.key].split('/')[1] < 10) {
-                this.date['month'] = this.component.data[this.component.settings.key].split('/')[1][1];
+            let assignDate: Array<string> = this.component.data[this.component.settings.key].split('/');
+            this.date['day'] = parseInt(assignDate[0]);
+            this.date['year'] = parseInt(assignDate[2]);
+            if (parseInt(assignDate[1]) < 10) {
+                this.date['month'] = parseInt(assignDate[1][1]);
             } else {
-                this.date['month'] = this.component.data[this.component.settings.key].split('/')[1];
+                this.date['month'] = parseInt(assignDate[1]);
             }
         }
     }

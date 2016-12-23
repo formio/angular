@@ -2,19 +2,22 @@
 import { OnInit } from "@angular/core";
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioTemplate } from '../../formio.template';
-import { FormGroup } from "@angular/forms";
+import { FormGroup, FormControl } from "@angular/forms";
 export interface DayOptions extends BaseOptions<any> {
     placeholder?: string;
     dayFirst?: boolean;
     fields?: Object;
     customClass?: string;
 }
+export declare function DayValidator(component: DayComponent): (control: FormControl) => any;
 export declare class DayComponent extends BaseComponent<DayOptions> {
+    getError(type: string, error: any): string;
+    addValidators(): void;
 }
 export declare class DayElement extends BaseElement<DayComponent> implements OnInit {
     months: Array<any>;
     date: Object;
-    dayForm: FormGroup;
+    dayGroup: FormGroup;
     ngOnInit(): void;
     getDay(day: any): void;
     getMonth(month: any): void;

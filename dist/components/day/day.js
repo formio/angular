@@ -7,11 +7,36 @@ var __extends = (this && this.__extends) || function (d, b) {
 var base_1 = require('../base');
 var components_1 = require('../components');
 var forms_1 = require("@angular/forms");
+function DayValidator(component) {
+    return function (control) {
+        if (control.value) {
+            var date = control.value.split('/');
+            if ((component.settings.fields.day.required && date[0] == '00') ||
+                (component.settings.fields.month.required && date[1] == '00') ||
+                (component.settings.fields.year.required && date[2] == '0000')) {
+                return { 'invalidDay': true };
+            }
+        }
+        return null;
+    };
+}
+exports.DayValidator = DayValidator;
 var DayComponent = (function (_super) {
     __extends(DayComponent, _super);
     function DayComponent() {
         _super.apply(this, arguments);
     }
+    DayComponent.prototype.getError = function (type, error) {
+        var message = _super.prototype.getError.call(this, type, error);
+        if (!message && (type === 'invalidDay')) {
+            message = this.label + ' must be a valid Date';
+        }
+        return message;
+    };
+    DayComponent.prototype.addValidators = function () {
+        _super.prototype.addValidators.call(this);
+        this.validators.push(DayValidator(this));
+    };
     return DayComponent;
 }(base_1.BaseComponent));
 exports.DayComponent = DayComponent;
@@ -21,23 +46,24 @@ var DayElement = (function (_super) {
         _super.apply(this, arguments);
         this.months = [];
         this.date = { day: '', month: '', year: '' };
-        this.dayForm = new forms_1.FormGroup({
+        this.dayGroup = new forms_1.FormGroup({
             day: new forms_1.FormControl(),
             month: new forms_1.FormControl(),
             year: new forms_1.FormControl()
         });
     }
     DayElement.prototype.ngOnInit = function () {
-        this.months = [this.component.settings.fields.month.placeholder, 'January', 'February', 'March', 'April', 'May', 'June',
+        this.months = ['January', 'February', 'March', 'April', 'May', 'June',
             'July', 'August', 'September', 'October', 'November', 'December'];
         if (this.component.data[this.component.settings.key] != null) {
-            this.date['day'] = this.component.data[this.component.settings.key].split('/')[0];
-            this.date['year'] = this.component.data[this.component.settings.key].split('/')[2];
-            if (this.component.data[this.component.settings.key].split('/')[1] < 10) {
-                this.date['month'] = this.component.data[this.component.settings.key].split('/')[1][1];
+            var assignDate = this.component.data[this.component.settings.key].split('/');
+            this.date['day'] = parseInt(assignDate[0]);
+            this.date['year'] = parseInt(assignDate[2]);
+            if (parseInt(assignDate[1]) < 10) {
+                this.date['month'] = parseInt(assignDate[1][1]);
             }
             else {
-                this.date['month'] = this.component.data[this.component.settings.key].split('/')[1];
+                this.date['month'] = parseInt(assignDate[1]);
             }
         }
     };
