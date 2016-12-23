@@ -8,7 +8,9 @@ export interface DayOptions extends BaseOptions<any> {
     placeholder?: string,
     dayFirst?: boolean,
     fields?: Object,
-    customClass?: string
+    customClass?: string,
+    tags?: Array<string>,
+    tabindex?: string
 }
 
 export function DayValidator(component: DayComponent) {

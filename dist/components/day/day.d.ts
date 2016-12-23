@@ -8,6 +8,8 @@ export interface DayOptions extends BaseOptions<any> {
     dayFirst?: boolean;
     fields?: Object;
     customClass?: string;
+    tags?: Array<string>;
+    tabindex?: string;
 }
 export declare function DayValidator(component: DayComponent): (control: FormControl) => any;
 export declare class DayComponent extends BaseComponent<DayOptions> {
