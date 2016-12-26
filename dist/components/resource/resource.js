@@ -47,7 +47,9 @@ var ResourceElement = (function (_super) {
     ResourceElement.prototype.searchData = function (text) {
         var _this = this;
         var selectItems = [];
-        var templates = this.component.settings.template.split('.')[1].split(' ')[0];
+        var templates = this.component.settings.template.split(' ')[1].split('.');
+        var data = templates[1];
+        var key = templates[2];
         var baseUrl = Formio.getBaseUrl() + '/project/' + this.component.settings.project + '/form/' + this.component.settings.resource;
         var params = {};
         if (this.component.settings.selectFields) {
@@ -60,7 +62,12 @@ var ResourceElement = (function (_super) {
         }
         (new Formio(baseUrl)).loadSubmissions({ params: params }).then(function (submission) {
             for (var i = 0; i < submission.length; i++) {
-                selectItems.push({ id: submission[i], text: JSON.stringify(submission[i][templates]) });
+                if (templates.length == 2) {
+                    selectItems.push({ id: submission[i], text: JSON.stringify(submission[i][data]) });
+                }
+                else {
+                    selectItems.push({ id: submission[i], text: submission[i][data][key] });
+                }
             }
             _this.component.settings.defaultValue = selectItems.slice(0);
         });
