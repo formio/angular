@@ -41,6 +41,7 @@ export declare class DateTimeElement extends BaseElement<DateTimeComponent> impl
     selectTime(date: any): void;
     selectFirstTime(): void;
     checkDate(): void;
+    submitDate(): void;
     now(): void;
     ngOnInit(): void;
 }

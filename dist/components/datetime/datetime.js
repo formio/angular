@@ -35,20 +35,24 @@ var DateTimeElement = (function (_super) {
         if (this.component.settings.enableTime) {
             if (!this.time) {
                 this.time = new Date().setHours(0, 0, 0, 0);
+                this.selectedDate.setHours(0, 0, 0, 0);
             }
         }
+        this.component.setValue(this.selectedDate.toISOString());
     };
     DateTimeElement.prototype.clear = function () {
         this.showDateTime = false;
         this.selectedDate = void 0;
         this.time = void 0;
+        this.component.setValue(null);
     };
     DateTimeElement.prototype.close = function () {
         this.displayDate = false;
         this.displayTime = false;
     };
     DateTimeElement.prototype.selectDate = function () {
-        if ((!this.component.settings.enableTime && this.component.settings.enableDate) || (this.component.settings.enableTime && this.component.settings.enableDate)) {
+        if ((!this.component.settings.enableTime && this.component.settings.enableDate) ||
+            (this.component.settings.enableTime && this.component.settings.enableDate)) {
             this.displayDate = true;
             this.displayTime = false;
         }
@@ -71,6 +75,7 @@ var DateTimeElement = (function (_super) {
         if (date instanceof Date) {
             this.showDateTime = true;
         }
+        this.submitDate();
     };
     DateTimeElement.prototype.selectFirstTime = function () {
         this.displayTime = true;
@@ -79,6 +84,7 @@ var DateTimeElement = (function (_super) {
         if (!this.time) {
             this.showDateTime = false;
         }
+        this.submitDate();
     };
     DateTimeElement.prototype.checkDate = function () {
         this.showDateTime = true;
@@ -88,9 +94,27 @@ var DateTimeElement = (function (_super) {
             }
         }
     };
+    DateTimeElement.prototype.submitDate = function () {
+        var finalDate;
+        if (this.selectedDate) {
+            var year = this.selectedDate.getFullYear();
+            var month = this.selectedDate.getMonth();
+            var day = this.selectedDate.getDate();
+            finalDate = new Date(year, month, day);
+        }
+        if (this.time instanceof Date) {
+            var hours = this.time.getHours();
+            var minutes = this.time.getMinutes();
+            var seconds = this.time.getSeconds();
+            var milliseconds = this.time.getMilliseconds();
+            finalDate = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+        }
+        this.component.setValue(finalDate.toISOString());
+    };
     DateTimeElement.prototype.now = function () {
         this.checkDate();
         this.time = new Date();
+        this.component.setValue(this.selectedDate.toISOString());
     };
     DateTimeElement.prototype.ngOnInit = function () {
         this.dateFormat = this.component.settings.format.split(' ')[0];

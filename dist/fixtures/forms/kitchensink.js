@@ -901,9 +901,9 @@ exports.FORM = {
                 "hourStep": 1,
                 "minuteStep": 1,
                 "showMeridian": true,
-                "readonlyInput": true,
+                "readonlyInput": false,
                 "mousewheel": true,
-                "arrowkeys": false
+                "arrowkeys": true
             },
             "protected": false,
             "persistent": true,
@@ -918,7 +918,7 @@ exports.FORM = {
                 "eq": ""
             },
             "minDate": "2016-07-01T18:30:00.000Z",
-            "maxDate": "2016-08-30T18:30:00.000Z"
+            "maxDate": "2017-08-30T18:30:00.000Z"
         },
         {
             "input": false,
@@ -1015,7 +1015,7 @@ exports.FORM = {
             "unique": false,
             "persistent": true,
             "validate": {
-                "required": true
+                "required": false
             },
             "type": "address",
             "conditional": {

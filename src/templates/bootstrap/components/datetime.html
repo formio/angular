@@ -5,7 +5,8 @@
         <span class="input-group-addon" (click)="selectDate()"><i *ngIf="component.settings.enableDate" class="glyphicon glyphicon-calendar"></i><i *ngIf="!component.settings.enableDate" class="glyphicon glyphicon-time"></i></span>
     </div>
     <div *ngIf="displayDate" class="showDate">
-        <datepicker ngDefaultControl [(ngModel)]="selectedDate" (click)="selectTime(selectedDate)" [dateDisabled]="component.settings.enableDate" [showWeeks]="component.settings.datePicker.showWeeks" [startingDay]="component.settings.datePicker.startingDay" [minMode]="component.settings.datePicker.minMode" [maxMode]="component.settings.datePicker.maxMode" [yearRange]="component.settings.datePicker.yearRange" [datepickerMode]="component.settings.datePicker.datepickerMode"></datepicker>
+        <datepicker ngDefaultControl [(ngModel)]="selectedDate" (click)="selectTime(selectedDate)" [dateDisabled]="component.settings.enableDate" [showWeeks]="component.settings.datePicker.showWeeks" [startingDay]="component.settings.datePicker.startingDay"
+                    [minMode]="component.settings.datePicker.minMode" [maxMode]="component.settings.datePicker.maxMode" [yearRange]="component.settings.datePicker.yearRange" [datepickerMode]="component.settings.datePicker.datepickerMode"></datepicker>
         <div class="buttonsSpace">
             <span class="btn-group">
                 <button type="button" class="btn btn-sm btn-info" (click)="today()">Today</button>
@@ -18,7 +19,8 @@
         </div>
     </div>
     <div *ngIf="displayTime" class="showTime">
-        <timepicker ngDefaultControl [(ngModel)]="time" (click)="checkDate()" [hourStep]="component.settings.timePicker.hourStep" [minuteStep]="component.settings.timePicker.minuteStep" [showMeridian]="component.settings.timePicker.showMeridian" [readonlyInput]="component.settings.timePicker.readonlyInput" [mousewheel]="component.settings.timePicker.mousewheel" [arrowkeys]="component.settings.timePicker.arrowkeys"></timepicker>
+        <timepicker ngDefaultControl [(ngModel)]="time" (click)="checkDate()" [hourStep]="component.settings.timePicker.hourStep" [minuteStep]="component.settings.timePicker.minuteStep" [showMeridian]="component.settings.timePicker.showMeridian"
+                    [readonlyInput]="component.settings.timePicker.readonlyInput" [mousewheel]="component.settings.timePicker.mousewheel" [arrowkeys]="component.settings.timePicker.arrowkeys"></timepicker>
         <div class="buttonsSpace">
             <span class="btn-group pull-left">
                 <button type="button" class="btn btn-sm btn-info" (click)="now()">Now</button>
