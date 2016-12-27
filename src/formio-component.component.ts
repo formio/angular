@@ -91,6 +91,7 @@ export class FormioComponentComponent<T> implements OnInit {
                         this.component.type == 'address' ||
                         this.component.type == 'resource')
                 ) {
+                    control.setValue([]);
                     this.form.addControl(this.component.key, control);
                 }
                 else if (this.component.multiple) {
