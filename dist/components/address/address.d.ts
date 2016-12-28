@@ -6,7 +6,6 @@ export interface AddressOptions extends BaseOptions<string> {
 }
 export declare class AddressComponent extends BaseComponent<AddressOptions> {
     allowMultiple(): boolean;
-    isMultipleValueComponent(): boolean;
 }
 export declare class AddressElement extends BaseElement<AddressComponent> {
     private value;

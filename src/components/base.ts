@@ -161,9 +161,6 @@ export class BaseComponent<T> {
     allowMultiple(): boolean {
         return this.settings.multiple;
     }
-    isMultipleValueComponent(): boolean {
-        return false;
-    }
 }
 
 export class BaseElement<T> implements OnInit {

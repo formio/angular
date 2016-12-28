@@ -17,10 +17,6 @@ export class AddressComponent extends BaseComponent<AddressOptions> {
     allowMultiple(): boolean {
         return false;
     }
-    //return true if component sets an array in setValue...
-    isMultipleValueComponent(): boolean {
-        return true;
-    }
 }
 
 export class AddressElement extends BaseElement<AddressComponent> {

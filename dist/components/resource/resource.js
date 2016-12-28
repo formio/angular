@@ -15,10 +15,6 @@ var ResourceComponent = (function (_super) {
     ResourceComponent.prototype.allowMultiple = function () {
         return false;
     };
-    //return true if component sets an array in setValue...
-    ResourceComponent.prototype.isMultipleValueComponent = function () {
-        return true;
-    };
     return ResourceComponent;
 }(base_1.BaseComponent));
 exports.ResourceComponent = ResourceComponent;

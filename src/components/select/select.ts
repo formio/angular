@@ -21,10 +21,6 @@ export class SelectComponent extends BaseComponent<SelectOptions> {
     allowMultiple(): boolean {
         return false;
     }
-    //return true if component sets an array in setValue...
-    isMultipleValueComponent(): boolean {
-        return true;
-    }
 }
 
 interface IdTextPair {

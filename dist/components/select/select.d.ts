@@ -14,7 +14,6 @@ export interface SelectOptions extends BaseOptions<any> {
 }
 export declare class SelectComponent extends BaseComponent<SelectOptions> {
     allowMultiple(): boolean;
-    isMultipleValueComponent(): boolean;
 }
 export declare class SelectElement extends BaseElement<SelectComponent> implements OnInit {
     private value;

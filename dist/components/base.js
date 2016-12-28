@@ -139,9 +139,6 @@ var BaseComponent = (function () {
     BaseComponent.prototype.allowMultiple = function () {
         return this.settings.multiple;
     };
-    BaseComponent.prototype.isMultipleValueComponent = function () {
-        return false;
-    };
     return BaseComponent;
 }());
 exports.BaseComponent = BaseComponent;

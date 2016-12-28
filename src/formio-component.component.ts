@@ -85,7 +85,7 @@ export class FormioComponentComponent<T> implements OnInit {
         if (this.component.input && this.component.key) {
             let control = component.getControl();
             if (control) {
-                if (this.component.multiple && component.isMultipleValueComponent()) {
+                if (this.component.multiple && !component.allowMultiple()) {
                     control.setValue([]);
                     this.form.addControl(this.component.key, control);
                 }

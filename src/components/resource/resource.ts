@@ -21,10 +21,6 @@ export class ResourceComponent extends BaseComponent<ResourceOptions> {
     allowMultiple(): boolean {
         return false;
     }
-    //return true if component sets an array in setValue...
-    isMultipleValueComponent(): boolean {
-        return true;
-    }
 }
 
 export class ResourceElement extends BaseElement<ResourceComponent> implements OnInit {

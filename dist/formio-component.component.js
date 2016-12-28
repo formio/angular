@@ -76,7 +76,7 @@ var FormioComponentComponent = (function () {
         if (this.component.input && this.component.key) {
             var control = component.getControl();
             if (control) {
-                if (this.component.multiple && component.isMultipleValueComponent()) {
+                if (this.component.multiple && !component.allowMultiple()) {
                     control.setValue([]);
                     this.form.addControl(this.component.key, control);
                 }

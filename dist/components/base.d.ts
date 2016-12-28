@@ -59,7 +59,6 @@ export declare class BaseComponent<T> {
     readonly errors: Array<FormioError>;
     addValidators(): void;
     allowMultiple(): boolean;
-    isMultipleValueComponent(): boolean;
 }
 export declare class BaseElement<T> implements OnInit {
     component: T;
