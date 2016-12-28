@@ -36,6 +36,7 @@ export interface FormioComponentsTemplate {
     address: FormioComponentTemplate;
     phoneNumber: FormioComponentTemplate;
     signature: FormioComponentTemplate;
+    day: FormioComponentTemplate;
 }
 /**
  * The Form.io template interface.

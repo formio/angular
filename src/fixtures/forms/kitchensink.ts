@@ -249,6 +249,44 @@ export const FORM: any = {
         },
         {
             "input": true,
+            "tableView": true,
+            "label": "Day",
+            "key": "day",
+            "fields": {
+                "day": {
+                    "type": "text",
+                    "placeholder": "Enter day",
+                    "required": true
+                },
+                "month": {
+                    "type": "select",
+                    "placeholder": "Select month",
+                    "required": true
+                },
+                "year": {
+                    "type": "text",
+                    "placeholder": "Enter year",
+                    "required": true
+                }
+            },
+            "dayFirst": true,
+            "protected": false,
+            "persistent": true,
+            "validate": {
+                "custom": ""
+            },
+            "type": "day",
+            "tags": [],
+            "conditional": {
+                "show": "",
+                "when": null,
+                "eq": ""
+            },
+            "customClass": "dayCustomClass",
+            "tabindex": "5"
+        },
+        {
+            "input": true,
             "tree": true,
             "components": [{
                 "input": true,

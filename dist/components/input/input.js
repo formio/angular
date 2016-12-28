@@ -4,15 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var forms_1 = require("@angular/forms");
-var base_1 = require("../base");
+var forms_1 = require('@angular/forms');
+var base_1 = require('../base');
 var InputComponent = (function (_super) {
     __extends(InputComponent, _super);
     function InputComponent(inputType, form, settings, data) {
-        var _this;
         settings.inputType = inputType;
-        _this = _super.call(this, form, settings, data) || this;
-        return _this;
+        _super.call(this, form, settings, data);
     }
     InputComponent.prototype.getError = function (type, error) {
         var message = _super.prototype.getError.call(this, type, error);

@@ -1,6 +1,6 @@
 "use strict";
-var forms_1 = require("@angular/forms");
-var formio_common_1 = require("../formio.common");
+var forms_1 = require('@angular/forms');
+var formio_common_1 = require('../formio.common');
 /**
  * Create the custom validator for validating based on Javascript.
  * @param custom

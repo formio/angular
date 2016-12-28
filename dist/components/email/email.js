@@ -4,9 +4,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var components_1 = require("../components");
-var input_1 = require("../input/input");
-var base_1 = require("../base");
+var components_1 = require('../components');
+var input_1 = require('../input/input');
+var base_1 = require('../base');
 /**
  * Create an email validator for validating based on Javascript.
  * @param custom
@@ -29,7 +29,7 @@ exports.EmailValidator = EmailValidator;
 var EmailComponent = (function (_super) {
     __extends(EmailComponent, _super);
     function EmailComponent(form, settings, data) {
-        return _super.call(this, 'email', form, settings, data) || this;
+        _super.call(this, 'email', form, settings, data);
     }
     EmailComponent.prototype.getError = function (type, error) {
         var message = _super.prototype.getError.call(this, type, error);
@@ -48,7 +48,7 @@ exports.EmailComponent = EmailComponent;
 var EmailElement = (function (_super) {
     __extends(EmailElement, _super);
     function EmailElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return EmailElement;
 }(base_1.BaseElement));

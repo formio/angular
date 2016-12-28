@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var components_1 = require("../components");
-var base_1 = require("../base");
-var input_1 = require("../input/input");
+var components_1 = require('../components');
+var base_1 = require('../base');
+var input_1 = require('../input/input');
 var PasswordComponent = (function (_super) {
     __extends(PasswordComponent, _super);
     function PasswordComponent(form, settings, data) {
-        return _super.call(this, 'password', form, settings, data) || this;
+        _super.call(this, 'password', form, settings, data);
     }
     return PasswordComponent;
 }(input_1.InputComponent));
@@ -18,7 +18,7 @@ exports.PasswordComponent = PasswordComponent;
 var PasswordElement = (function (_super) {
     __extends(PasswordElement, _super);
     function PasswordElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return PasswordElement;
 }(base_1.BaseElement));

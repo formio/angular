@@ -1,6 +1,6 @@
 "use strict";
 var Formio = require('formiojs');
-var Observable_1 = require("rxjs/Observable");
+var Observable_1 = require('rxjs/Observable');
 var FormioService = (function () {
     function FormioService(url) {
         this.url = url;

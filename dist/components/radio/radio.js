@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
+var base_1 = require('../base');
+var components_1 = require('../components');
 var RadioComponent = (function (_super) {
     __extends(RadioComponent, _super);
     function RadioComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return RadioComponent;
 }(base_1.BaseComponent));
@@ -17,7 +17,7 @@ exports.RadioComponent = RadioComponent;
 var RadioElement = (function (_super) {
     __extends(RadioElement, _super);
     function RadioElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return RadioElement;
 }(base_1.BaseElement));

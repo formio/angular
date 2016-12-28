@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
+var core_1 = require('@angular/core');
 var FormioErrors = (function () {
     function FormioErrors() {
         this.errors = [];
@@ -18,21 +18,21 @@ var FormioErrors = (function () {
             message: 'Please fix the following errors before submitting.'
         }, this.options);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], FormioErrors.prototype, "errors", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioErrors.prototype, "options", void 0);
+    FormioErrors = __decorate([
+        core_1.Component({
+            selector: 'formio-errors',
+            template: '<div></div>'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], FormioErrors);
     return FormioErrors;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array)
-], FormioErrors.prototype, "errors", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], FormioErrors.prototype, "options", void 0);
-FormioErrors = __decorate([
-    core_1.Component({
-        selector: 'formio-errors',
-        template: '<div></div>'
-    }),
-    __metadata("design:paramtypes", [])
-], FormioErrors);
 exports.FormioErrors = FormioErrors;

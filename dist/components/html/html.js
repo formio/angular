@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
+var base_1 = require('../base');
+var components_1 = require('../components');
 var HtmlComponent = (function (_super) {
     __extends(HtmlComponent, _super);
     function HtmlComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return HtmlComponent;
 }(base_1.BaseComponent));
@@ -17,7 +17,7 @@ exports.HtmlComponent = HtmlComponent;
 var HtmlElement = (function (_super) {
     __extends(HtmlElement, _super);
     function HtmlElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     HtmlElement.prototype.ngOnInit = function () {
         if (this.component.data[this.component.settings.key] != null) {

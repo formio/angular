@@ -69,6 +69,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         panel: getTemplate({ gulp_inject: './bootstrap/components/panel.html' }),
         fieldset: getTemplate({ gulp_inject: './bootstrap/components/fieldset.html' }),
         well: getTemplate({ gulp_inject: './bootstrap/components/well.html' }),
+        day: getTemplate({ gulp_inject: './bootstrap/components/day.html' }),
         datetime: {
             component: {
                 template:{ gulp_inject: './bootstrap/components/datetime.html' },
