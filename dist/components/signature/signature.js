@@ -13,27 +13,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
-var signature_pad_1 = require("angular2-signaturepad/signature-pad");
-var core_1 = require("@angular/core");
+var base_1 = require('../base');
+var components_1 = require('../components');
+var signature_pad_1 = require('angular2-signaturepad/signature-pad');
+var core_1 = require('@angular/core');
 var AlignDirective = (function () {
     function AlignDirective(el) {
         this.el = el;
     }
+    AlignDirective = __decorate([
+        core_1.Directive({
+            selector: '[align]',
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], AlignDirective);
     return AlignDirective;
 }());
-AlignDirective = __decorate([
-    core_1.Directive({
-        selector: '[align]',
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef])
-], AlignDirective);
 exports.AlignDirective = AlignDirective;
 var SignatureComponent = (function (_super) {
     __extends(SignatureComponent, _super);
     function SignatureComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return SignatureComponent;
 }(base_1.BaseComponent));
@@ -41,15 +41,14 @@ exports.SignatureComponent = SignatureComponent;
 var SignatureElement = (function (_super) {
     __extends(SignatureElement, _super);
     function SignatureElement() {
-        var _this = _super.apply(this, arguments) || this;
-        _this.signaturePadOptions = {
+        _super.apply(this, arguments);
+        this.signaturePadOptions = {
             'minWidth': 0.5,
             'canvasWidth': 500,
             'canvasHeight': 300,
             'backgroundColor': 'rgb(245,245,235)',
             'penColor': 'black'
         };
-        return _this;
     }
     SignatureElement.prototype.clearSignature = function () {
         this.signaturePad.clear();
@@ -86,16 +85,16 @@ var SignatureElement = (function (_super) {
             this.signaturePad.fromDataURL(this.component.data[this.component.settings.key]);
         }
     };
+    __decorate([
+        core_1.ViewChild(signature_pad_1.SignaturePad), 
+        __metadata('design:type', signature_pad_1.SignaturePad)
+    ], SignatureElement.prototype, "signaturePad", void 0);
+    __decorate([
+        core_1.ViewChild(AlignDirective), 
+        __metadata('design:type', AlignDirective)
+    ], SignatureElement.prototype, "alignDirective", void 0);
     return SignatureElement;
 }(base_1.BaseElement));
-__decorate([
-    core_1.ViewChild(signature_pad_1.SignaturePad),
-    __metadata("design:type", signature_pad_1.SignaturePad)
-], SignatureElement.prototype, "signaturePad", void 0);
-__decorate([
-    core_1.ViewChild(AlignDirective),
-    __metadata("design:type", AlignDirective)
-], SignatureElement.prototype, "alignDirective", void 0);
 exports.SignatureElement = SignatureElement;
 function SignatureField(template) {
     components_1.FormioComponents.register('signature', SignatureComponent, SignatureElement, template.components.signature);

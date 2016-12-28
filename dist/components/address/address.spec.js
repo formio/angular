@@ -1,10 +1,10 @@
 "use strict";
 var _this = this;
-var forms_1 = require("@angular/forms");
-var formio_component_component_1 = require("../../formio-component.component");
-var address_1 = require("./address");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
+var forms_1 = require('@angular/forms');
+var formio_component_component_1 = require('../../formio-component.component');
+var address_1 = require('./address');
+var bootstrap_tpl_1 = require('../../templates/bootstrap.tpl');
+var index_1 = require('../index');
 describe('AddressComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);

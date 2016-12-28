@@ -1,10 +1,10 @@
 "use strict";
 var _this = this;
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var button_1 = require("./button");
+var forms_1 = require('@angular/forms');
+var bootstrap_tpl_1 = require('../../templates/bootstrap.tpl');
+var index_1 = require('../index');
+var button_1 = require('./button');
 describe('ButtonComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);

@@ -1,9 +1,9 @@
 "use strict";
 var _this = this;
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
+var forms_1 = require('@angular/forms');
+var bootstrap_tpl_1 = require('../../templates/bootstrap.tpl');
+var index_1 = require('../index');
 describe('EmailComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);

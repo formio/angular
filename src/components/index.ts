@@ -27,6 +27,7 @@ import { ResourceField } from './resource/resource';
 import { AddressField } from './address/address';
 import { PhoneNumberField } from './phonenumber/phonenumber';
 import { SignatureField } from './signature/signature';
+import { DayField } from './day/day';
 export function RegisterComponents(template: FormioTemplate) {
     TextField(template);
     ButtonField(template);
@@ -56,4 +57,5 @@ export function RegisterComponents(template: FormioTemplate) {
     AddressField(template);
     PhoneNumberField(template);
     SignatureField(template);
+    DayField(template);
 }

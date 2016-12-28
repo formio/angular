@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var forms_1 = require("@angular/forms");
-var components_1 = require("./components/components");
-var base_1 = require("./components/base");
-var formio_common_1 = require("./formio.common");
+var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
+var components_1 = require('./components/components');
+var base_1 = require('./components/base');
+var formio_common_1 = require('./formio.common');
 var FormioElement = (function () {
     function FormioElement(compiler) {
         this.compiler = compiler;
@@ -46,45 +46,45 @@ var FormioElement = (function () {
             cmpRef.instance.events = _this.events;
         });
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', base_1.BaseComponent)
+    ], FormioElement.prototype, "component", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', forms_1.FormGroup)
+    ], FormioElement.prototype, "form", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', forms_1.FormGroup)
+    ], FormioElement.prototype, "submission", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioElement.prototype, "data", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioElement.prototype, "label", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', formio_common_1.FormioEvents)
+    ], FormioElement.prototype, "events", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], FormioElement.prototype, "render", void 0);
+    __decorate([
+        core_1.ViewChild('formioElement', { read: core_1.ViewContainerRef }), 
+        __metadata('design:type', core_1.ViewContainerRef)
+    ], FormioElement.prototype, "element", void 0);
+    FormioElement = __decorate([
+        core_1.Component({
+            selector: 'formio-element',
+            template: '<div #formioElement></div>'
+        }), 
+        __metadata('design:paramtypes', [core_1.Compiler])
+    ], FormioElement);
     return FormioElement;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", base_1.BaseComponent)
-], FormioElement.prototype, "component", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", forms_1.FormGroup)
-], FormioElement.prototype, "form", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", forms_1.FormGroup)
-], FormioElement.prototype, "submission", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], FormioElement.prototype, "data", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], FormioElement.prototype, "label", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", formio_common_1.FormioEvents)
-], FormioElement.prototype, "events", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", core_1.EventEmitter)
-], FormioElement.prototype, "render", void 0);
-__decorate([
-    core_1.ViewChild('formioElement', { read: core_1.ViewContainerRef }),
-    __metadata("design:type", core_1.ViewContainerRef)
-], FormioElement.prototype, "element", void 0);
-FormioElement = __decorate([
-    core_1.Component({
-        selector: 'formio-element',
-        template: '<div #formioElement></div>'
-    }),
-    __metadata("design:paramtypes", [core_1.Compiler])
-], FormioElement);
 exports.FormioElement = FormioElement;

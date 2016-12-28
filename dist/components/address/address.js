@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
+var base_1 = require('../base');
+var components_1 = require('../components');
 var Formio = require('formiojs');
 var AddressComponent = (function (_super) {
     __extends(AddressComponent, _super);
     function AddressComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     AddressComponent.prototype.allowMultiple = function () {
         return false;
@@ -21,11 +21,10 @@ exports.AddressComponent = AddressComponent;
 var AddressElement = (function (_super) {
     __extends(AddressElement, _super);
     function AddressElement() {
-        var _this = _super.apply(this, arguments) || this;
-        _this.value = {};
-        _this.submitArray = [];
-        _this.selectedItem = [];
-        return _this;
+        _super.apply(this, arguments);
+        this.value = {};
+        this.submitArray = [];
+        this.selectedItem = [];
     }
     AddressElement.prototype.refreshValue = function (value) {
         this.value = value;

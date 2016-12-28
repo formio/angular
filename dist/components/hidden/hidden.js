@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
+var base_1 = require('../base');
+var components_1 = require('../components');
 var HiddenComponent = (function (_super) {
     __extends(HiddenComponent, _super);
     function HiddenComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return HiddenComponent;
 }(base_1.BaseComponent));
@@ -17,7 +17,7 @@ exports.HiddenComponent = HiddenComponent;
 var HiddenElement = (function (_super) {
     __extends(HiddenElement, _super);
     function HiddenElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return HiddenElement;
 }(base_1.BaseElement));

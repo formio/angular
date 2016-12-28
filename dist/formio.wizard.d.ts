@@ -1,3 +1,4 @@
+/// <reference types="chai" />
 import { EventEmitter, OnInit, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormioService } from './formio.service';

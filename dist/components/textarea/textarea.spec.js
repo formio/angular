@@ -1,12 +1,12 @@
 "use strict";
 var _this = this;
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var textarea_1 = require("./textarea");
-var textarea_2 = require("../../fixtures/fields/textarea");
-var formio_component_component_1 = require("../../formio-component.component");
+var forms_1 = require('@angular/forms');
+var bootstrap_tpl_1 = require('../../templates/bootstrap.tpl');
+var index_1 = require('../index');
+var textarea_1 = require('./textarea');
+var textarea_2 = require('../../fixtures/fields/textarea');
+var formio_component_component_1 = require('../../formio-component.component');
 describe('TextAreaComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);

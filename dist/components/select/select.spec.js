@@ -1,10 +1,10 @@
 "use strict";
 var _this = this;
-var forms_1 = require("@angular/forms");
-var formio_component_component_1 = require("../../formio-component.component");
-var select_1 = require("./select");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
+var forms_1 = require('@angular/forms');
+var formio_component_component_1 = require('../../formio-component.component');
+var select_1 = require('./select');
+var bootstrap_tpl_1 = require('../../templates/bootstrap.tpl');
+var index_1 = require('../index');
 describe('SelectComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
@@ -34,8 +34,7 @@ describe('SelectComponent', function () {
                     {
                         value: "grapes",
                         label: "grapes"
-                    }
-                ],
+                    }],
                 json: [
                     {
                         label: "one",
@@ -48,8 +47,7 @@ describe('SelectComponent', function () {
                     {
                         label: "three",
                         test: "opt3"
-                    }
-                ],
+                    }],
                 url: "https://api.github.com/users/hadley/orgs",
                 resource: "manager"
             },
