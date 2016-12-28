@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require('../base');
-var components_1 = require('../components');
+var base_1 = require("../base");
+var components_1 = require("../components");
 var ColumnsComponent = (function (_super) {
     __extends(ColumnsComponent, _super);
     function ColumnsComponent() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     return ColumnsComponent;
 }(base_1.BaseComponent));
@@ -17,7 +17,7 @@ exports.ColumnsComponent = ColumnsComponent;
 var ColumnsElement = (function (_super) {
     __extends(ColumnsElement, _super);
     function ColumnsElement() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     Object.defineProperty(ColumnsElement.prototype, "numComponents", {
         get: function () {

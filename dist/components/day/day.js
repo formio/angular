@@ -4,8 +4,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require('../base');
-var components_1 = require('../components');
+var base_1 = require("../base");
+var components_1 = require("../components");
 var forms_1 = require("@angular/forms");
 function DayValidator(component) {
     return function (control) {
@@ -24,7 +24,7 @@ exports.DayValidator = DayValidator;
 var DayComponent = (function (_super) {
     __extends(DayComponent, _super);
     function DayComponent() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     DayComponent.prototype.getError = function (type, error) {
         var message = _super.prototype.getError.call(this, type, error);
@@ -43,14 +43,15 @@ exports.DayComponent = DayComponent;
 var DayElement = (function (_super) {
     __extends(DayElement, _super);
     function DayElement() {
-        _super.apply(this, arguments);
-        this.months = [];
-        this.date = { day: '', month: '', year: '' };
-        this.dayGroup = new forms_1.FormGroup({
+        var _this = _super.apply(this, arguments) || this;
+        _this.months = [];
+        _this.date = { day: '', month: '', year: '' };
+        _this.dayGroup = new forms_1.FormGroup({
             day: new forms_1.FormControl(),
             month: new forms_1.FormControl(),
             year: new forms_1.FormControl()
         });
+        return _this;
     }
     DayElement.prototype.ngOnInit = function () {
         this.months = ['January', 'February', 'March', 'April', 'May', 'June',
