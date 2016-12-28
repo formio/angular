@@ -10,6 +10,7 @@ export interface ResourceOptions extends BaseOptions<any> {
 }
 export declare class ResourceComponent extends BaseComponent<ResourceOptions> {
     allowMultiple(): boolean;
+    isMultipleValueComponent(): boolean;
 }
 export declare class ResourceElement extends BaseElement<ResourceComponent> implements OnInit {
     private value;

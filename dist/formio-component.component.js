@@ -76,11 +76,7 @@ var FormioComponentComponent = (function () {
         if (this.component.input && this.component.key) {
             var control = component.getControl();
             if (control) {
-                //@TODO: Distinguish between multiple value components and component of components...
-                if (this.component.multiple &&
-                    (this.component.type == 'select' ||
-                        this.component.type == 'address' ||
-                        this.component.type == 'resource')) {
+                if (this.component.multiple && component.isMultipleValueComponent()) {
                     control.setValue([]);
                     this.form.addControl(this.component.key, control);
                 }

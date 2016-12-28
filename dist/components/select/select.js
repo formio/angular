@@ -16,6 +16,10 @@ var SelectComponent = (function (_super) {
     SelectComponent.prototype.allowMultiple = function () {
         return false;
     };
+    //return true if component sets an array in setValue...
+    SelectComponent.prototype.isMultipleValueComponent = function () {
+        return true;
+    };
     return SelectComponent;
 }(base_1.BaseComponent));
 exports.SelectComponent = SelectComponent;

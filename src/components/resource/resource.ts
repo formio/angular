@@ -12,19 +12,23 @@ export interface ResourceOptions extends BaseOptions<any> {
     selectFields?: Array<string> | string;
 }
 
-interface IdTextPair{
+interface IdTextPair {
     id: string;
     text: string;
 }
 
 export class ResourceComponent extends BaseComponent<ResourceOptions> {
-    allowMultiple(): boolean{
+    allowMultiple(): boolean {
         return false;
+    }
+    //return true if component sets an array in setValue...
+    isMultipleValueComponent(): boolean {
+        return true;
     }
 }
 
 export class ResourceElement extends BaseElement<ResourceComponent> implements OnInit {
-    private value:any = {};
+    private value: any = {};
     public refreshValue(value: any): void {
         this.value = value;
     }

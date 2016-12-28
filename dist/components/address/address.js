@@ -15,6 +15,10 @@ var AddressComponent = (function (_super) {
     AddressComponent.prototype.allowMultiple = function () {
         return false;
     };
+    //return true if component sets an array in setValue...
+    AddressComponent.prototype.isMultipleValueComponent = function () {
+        return true;
+    };
     return AddressComponent;
 }(base_1.BaseComponent));
 exports.AddressComponent = AddressComponent;
