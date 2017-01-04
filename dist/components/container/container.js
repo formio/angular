@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var forms_1 = require('@angular/forms');
-var base_1 = require('../base');
-var components_1 = require('../components');
+var forms_1 = require("@angular/forms");
+var base_1 = require("../base");
+var components_1 = require("../components");
 var ContainerComponent = (function (_super) {
     __extends(ContainerComponent, _super);
     function ContainerComponent() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     ContainerComponent.prototype.getControl = function () {
         if (!this.control) {
@@ -32,7 +32,7 @@ exports.ContainerComponent = ContainerComponent;
 var ContainerElement = (function (_super) {
     __extends(ContainerElement, _super);
     function ContainerElement() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     Object.defineProperty(ContainerElement.prototype, "numComponents", {
         get: function () {

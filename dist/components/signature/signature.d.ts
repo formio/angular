@@ -1,4 +1,3 @@
-/// <reference types="chai" />
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioTemplate } from '../../formio.template';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';

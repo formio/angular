@@ -4,9 +4,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var components_1 = require('../components');
-var base_1 = require('../base');
-var input_1 = require('../input/input');
+var components_1 = require("../components");
+var base_1 = require("../base");
+var input_1 = require("../input/input");
 function NumberValidator(component) {
     return function (control) {
         if (control.value && control.value < component.settings.validate.min) {
@@ -22,7 +22,7 @@ exports.NumberValidator = NumberValidator;
 var NumberComponent = (function (_super) {
     __extends(NumberComponent, _super);
     function NumberComponent(form, settings, data) {
-        _super.call(this, 'number', form, settings, data);
+        return _super.call(this, 'number', form, settings, data) || this;
     }
     NumberComponent.prototype.getError = function (type, error) {
         var message = _super.prototype.getError.call(this, type, error);
@@ -36,7 +36,9 @@ var NumberComponent = (function (_super) {
     };
     NumberComponent.prototype.addValidators = function () {
         _super.prototype.addValidators.call(this);
-        this.validators.push(NumberValidator(this));
+        if (this.settings.validate.min != null || this.settings.validate.max != null) {
+            this.validators.push(NumberValidator(this));
+        }
     };
     return NumberComponent;
 }(input_1.InputComponent));
@@ -44,7 +46,7 @@ exports.NumberComponent = NumberComponent;
 var NumberElement = (function (_super) {
     __extends(NumberElement, _super);
     function NumberElement() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     return NumberElement;
 }(base_1.BaseElement));

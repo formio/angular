@@ -1,13 +1,13 @@
 "use strict";
 var _this = this;
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require('@angular/forms');
-var columns_1 = require('./columns');
-var bootstrap_tpl_1 = require('../../templates/bootstrap.tpl');
-var index_1 = require('../index');
-var formio_components_component_1 = require('../../formio-components.component');
-var formio_component_component_1 = require('../../formio-component.component');
-var input_1 = require('../../fixtures/fields/input');
+var forms_1 = require("@angular/forms");
+var columns_1 = require("./columns");
+var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
+var index_1 = require("../index");
+var formio_components_component_1 = require("../../formio-components.component");
+var formio_component_component_1 = require("../../formio-component.component");
+var input_1 = require("../../fixtures/fields/input");
 describe('ColumnsComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);

@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require('../base');
-var components_1 = require('../components');
+var base_1 = require("../base");
+var components_1 = require("../components");
 var CurrencyComponent = (function (_super) {
     __extends(CurrencyComponent, _super);
     function CurrencyComponent() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     return CurrencyComponent;
 }(base_1.BaseComponent));
@@ -17,8 +17,9 @@ exports.CurrencyComponent = CurrencyComponent;
 var CurrencyElement = (function (_super) {
     __extends(CurrencyElement, _super);
     function CurrencyElement() {
-        _super.apply(this, arguments);
-        this.inputs = null;
+        var _this = _super.apply(this, arguments) || this;
+        _this.inputs = null;
+        return _this;
     }
     CurrencyElement.prototype.onChange = function (value) {
         var splice = function (string, idx, rem, s) {

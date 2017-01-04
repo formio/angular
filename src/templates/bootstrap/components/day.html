@@ -1,4 +1,7 @@
 <div [formGroup]="dayGroup" class="form-group row {{component.settings.customClass}}" [tabindex]="component.settings.tabindex">
+    <div *ngIf="component.label" style="margin-left:15px;">
+        <label [attr.for]="component.settings.key" class="control-label">{{ component.label }}</label>
+    </div>
     <div *ngIf="component.settings.dayFirst" class="form-group col-xs-3" [ngClass]="{'required': component.settings.fields.day.required}">
         <label [attr.for]="day" class="control-label">{{ "Day" }}</label>
         <input class="form-control" type="text" id="day" style="padding-right: 10px;" [placeholder]="component.settings.fields.day.placeholder"

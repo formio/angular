@@ -31,7 +31,9 @@ export class NumberComponent extends InputComponent<InputOptions> {
     }
     addValidators() {
         super.addValidators();
-        this.validators.push(NumberValidator(this));
+        if (this.settings.validate.min != null || this.settings.validate.max != null) {
+            this.validators.push(NumberValidator(this));
+        }
     }
 }
 

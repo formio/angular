@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require('../base');
-var components_1 = require('../components');
+var base_1 = require("../base");
+var components_1 = require("../components");
 var SurveyComponent = (function (_super) {
     __extends(SurveyComponent, _super);
     function SurveyComponent() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     return SurveyComponent;
 }(base_1.BaseComponent));
@@ -17,7 +17,7 @@ exports.SurveyComponent = SurveyComponent;
 var SurveyElement = (function (_super) {
     __extends(SurveyElement, _super);
     function SurveyElement() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     SurveyElement.prototype.getValue = function (label, value) {
         this.valueObj[label] = value;
