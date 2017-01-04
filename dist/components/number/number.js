@@ -36,7 +36,9 @@ var NumberComponent = (function (_super) {
     };
     NumberComponent.prototype.addValidators = function () {
         _super.prototype.addValidators.call(this);
-        this.validators.push(NumberValidator(this));
+        if (this.settings.validate.min != null || this.settings.validate.max != null) {
+            this.validators.push(NumberValidator(this));
+        }
     };
     return NumberComponent;
 }(input_1.InputComponent));
