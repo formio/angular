@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require('../base');
-var components_1 = require('../components');
+var base_1 = require("../base");
+var components_1 = require("../components");
 var SelectBoxComponent = (function (_super) {
     __extends(SelectBoxComponent, _super);
     function SelectBoxComponent() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     return SelectBoxComponent;
 }(base_1.BaseComponent));
@@ -17,8 +17,9 @@ exports.SelectBoxComponent = SelectBoxComponent;
 var SelectBoxElement = (function (_super) {
     __extends(SelectBoxElement, _super);
     function SelectBoxElement() {
-        _super.apply(this, arguments);
-        this.selected = [];
+        var _this = _super.apply(this, arguments) || this;
+        _this.selected = [];
+        return _this;
     }
     return SelectBoxElement;
 }(base_1.BaseElement));

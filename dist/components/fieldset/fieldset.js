@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require('../base');
-var components_1 = require('../components');
-var forms_1 = require('@angular/forms');
+var base_1 = require("../base");
+var components_1 = require("../components");
+var forms_1 = require("@angular/forms");
 var FieldSetComponent = (function (_super) {
     __extends(FieldSetComponent, _super);
     function FieldSetComponent() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     FieldSetComponent.prototype.getControl = function () {
         if (!this.control) {
@@ -24,7 +24,7 @@ exports.FieldSetComponent = FieldSetComponent;
 var FieldSetElement = (function (_super) {
     __extends(FieldSetElement, _super);
     function FieldSetElement() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     Object.defineProperty(FieldSetElement.prototype, "numComponents", {
         get: function () { return 1; },

@@ -1002,7 +1002,8 @@ exports.FORM = {
                     {
                         "value": "opt4",
                         "label": "grapes"
-                    }],
+                    }
+                ],
                 "json": [
                     {
                         "label": "one",
@@ -1015,7 +1016,8 @@ exports.FORM = {
                     {
                         "label": "three",
                         "test": "opt3"
-                    }],
+                    }
+                ],
                 "url": "https://api.github.com/users/hadley/orgs",
                 "resource": "manager"
             },

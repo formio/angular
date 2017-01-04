@@ -158,7 +158,7 @@ export class BaseComponent<T> {
             this.validators.push(CustomValidator(this.settings.validate.custom, this.form));
         }
     }
-    allowMultiple(): boolean{
+    allowMultiple(): boolean {
         return this.settings.multiple;
     }
 }

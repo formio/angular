@@ -1,11 +1,11 @@
 "use strict";
 var _this = this;
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require('@angular/forms');
-var bootstrap_tpl_1 = require('../../templates/bootstrap.tpl');
-var index_1 = require('../index');
-var formio_component_component_1 = require('../../formio-component.component');
-var html_1 = require('./html');
+var forms_1 = require("@angular/forms");
+var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
+var index_1 = require("../index");
+var formio_component_component_1 = require("../../formio-component.component");
+var html_1 = require("./html");
 describe('HtmlComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);

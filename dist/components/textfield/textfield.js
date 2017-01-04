@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var components_1 = require('../components');
-var base_1 = require('../base');
-var input_1 = require('../input/input');
+var components_1 = require("../components");
+var base_1 = require("../base");
+var input_1 = require("../input/input");
 var TextFieldComponent = (function (_super) {
     __extends(TextFieldComponent, _super);
     function TextFieldComponent(form, settings, data) {
-        _super.call(this, 'text', form, settings, data);
+        return _super.call(this, 'text', form, settings, data) || this;
     }
     return TextFieldComponent;
 }(input_1.InputComponent));
@@ -18,7 +18,7 @@ exports.TextFieldComponent = TextFieldComponent;
 var TextElement = (function (_super) {
     __extends(TextElement, _super);
     function TextElement() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     return TextElement;
 }(base_1.BaseElement));

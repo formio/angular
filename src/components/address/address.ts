@@ -8,20 +8,20 @@ export interface AddressOptions extends BaseOptions<string> {
     customClass?: string
 }
 
-interface IdTextPair{
+interface IdTextPair {
     id: string;
     text: string;
 }
 
 export class AddressComponent extends BaseComponent<AddressOptions> {
-    allowMultiple(): boolean{
+    allowMultiple(): boolean {
         return false;
     }
 }
 
 export class AddressElement extends BaseElement<AddressComponent> {
-    private value:any = {};
-    public refreshValue(value:any):void {
+    private value: any = {};
+    public refreshValue(value: any): void {
         this.value = value;
     }
     public submitArray: Array<any> = [];
@@ -41,11 +41,11 @@ export class AddressElement extends BaseElement<AddressComponent> {
         }
     }
     public selectedItem: Array<any> = [];
-    public searchData(value:any):void {
+    public searchData(value: any): void {
         let this1 = this;
         let selectItems: IdTextPair[] = [];
         let url: string = "//maps.googleapis.com/maps/api/geocode/json?address="+value+"&sensor=false";
-        Formio.request(url, 'POST', {}, {}).then(function(response: any){
+        Formio.request(url, 'POST', {}, {}).then(function(response: any) {
             response.results.forEach((item: any) => {
                 selectItems.push({id: item, text: item.formatted_address});
             });

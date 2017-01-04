@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require('../base');
-var components_1 = require('../components');
+var base_1 = require("../base");
+var components_1 = require("../components");
 var Formio = require('formiojs');
 var ResourceComponent = (function (_super) {
     __extends(ResourceComponent, _super);
     function ResourceComponent() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     ResourceComponent.prototype.allowMultiple = function () {
         return false;
@@ -21,9 +21,10 @@ exports.ResourceComponent = ResourceComponent;
 var ResourceElement = (function (_super) {
     __extends(ResourceElement, _super);
     function ResourceElement() {
-        _super.apply(this, arguments);
-        this.value = {};
-        this.submitArray = [];
+        var _this = _super.apply(this, arguments) || this;
+        _this.value = {};
+        _this.submitArray = [];
+        return _this;
     }
     ResourceElement.prototype.refreshValue = function (value) {
         this.value = value;
@@ -46,7 +47,9 @@ var ResourceElement = (function (_super) {
     ResourceElement.prototype.searchData = function (text) {
         var _this = this;
         var selectItems = [];
-        var templates = this.component.settings.template.split('.')[1].split(' ')[0];
+        var templates = this.component.settings.template.split(' ')[1].split('.');
+        var data = templates[1];
+        var key = templates[2];
         var baseUrl = Formio.getBaseUrl() + '/project/' + this.component.settings.project + '/form/' + this.component.settings.resource;
         var params = {};
         if (this.component.settings.selectFields) {
@@ -59,7 +62,12 @@ var ResourceElement = (function (_super) {
         }
         (new Formio(baseUrl)).loadSubmissions({ params: params }).then(function (submission) {
             for (var i = 0; i < submission.length; i++) {
-                selectItems.push({ id: submission[i], text: JSON.stringify(submission[i][templates]) });
+                if (templates.length == 2) {
+                    selectItems.push({ id: submission[i], text: JSON.stringify(submission[i][data]) });
+                }
+                else {
+                    selectItems.push({ id: submission[i], text: submission[i][data][key] });
+                }
             }
             _this.component.settings.defaultValue = selectItems.slice(0);
         });

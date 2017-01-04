@@ -12,19 +12,19 @@ export interface ResourceOptions extends BaseOptions<any> {
     selectFields?: Array<string> | string;
 }
 
-interface IdTextPair{
+interface IdTextPair {
     id: string;
     text: string;
 }
 
 export class ResourceComponent extends BaseComponent<ResourceOptions> {
-    allowMultiple(): boolean{
+    allowMultiple(): boolean {
         return false;
     }
 }
 
 export class ResourceElement extends BaseElement<ResourceComponent> implements OnInit {
-    private value:any = {};
+    private value: any = {};
     public refreshValue(value: any): void {
         this.value = value;
     }
@@ -46,9 +46,11 @@ export class ResourceElement extends BaseElement<ResourceComponent> implements O
     }
     public searchData(text: any): void {
         let selectItems: IdTextPair[] = [];
-        let templates = this.component.settings.template.split('.')[1].split(' ')[0];
+        let templates = this.component.settings.template.split(' ')[1].split('.');
+        let data: string = templates[1];
+        let key: string = templates[2];
         let baseUrl: string = Formio.getBaseUrl() +'/project/'+ this.component.settings.project +'/form/'+ this.component.settings.resource;
-        let params:any = {};
+        let params: any = {};
         if (this.component.settings.selectFields) {
             params.select = this.component.settings.selectFields;
         }
@@ -58,13 +60,17 @@ export class ResourceElement extends BaseElement<ResourceComponent> implements O
             });
         }
         (new Formio(baseUrl)).loadSubmissions({params: params}).then((submission: any) => {
-            for(let i=0; i < submission.length; i++){
-                selectItems.push({id: submission[i], text: JSON.stringify(submission[i][templates])});
+            for(let i=0; i < submission.length; i++) {
+                if (templates.length == 2) {
+                    selectItems.push({id: submission[i], text: JSON.stringify(submission[i][data])});
+                } else {
+                    selectItems.push({id: submission[i], text: submission[i][data][key]});
+                }
             }
             this.component.settings.defaultValue = selectItems.slice(0);
         });
     }
-    ngOnInit(){
+    ngOnInit() {
         this.searchData(null);
     }
 }

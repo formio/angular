@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var forms_1 = require('@angular/forms');
-var components_1 = require('./components/components');
-var formio_common_1 = require('./formio.common');
+var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
+var components_1 = require("./components/components");
+var formio_common_1 = require("./formio.common");
 var FormioUtils = require('formio-utils');
 var FormioComponentComponent = (function () {
     function FormioComponentComponent() {
@@ -76,7 +76,11 @@ var FormioComponentComponent = (function () {
         if (this.component.input && this.component.key) {
             var control = component.getControl();
             if (control) {
-                if (this.component.multiple) {
+                if (this.component.multiple && !component.allowMultiple()) {
+                    control.setValue([]);
+                    this.form.addControl(this.component.key, control);
+                }
+                else if (this.component.multiple) {
                     this.container.push(control);
                     this.form.addControl(this.component.key, this.container);
                 }
@@ -119,41 +123,41 @@ var FormioComponentComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], FormioComponentComponent.prototype, "component", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', forms_1.FormGroup)
-    ], FormioComponentComponent.prototype, "form", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], FormioComponentComponent.prototype, "data", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', forms_1.FormGroup)
-    ], FormioComponentComponent.prototype, "submission", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', formio_common_1.FormioEvents)
-    ], FormioComponentComponent.prototype, "events", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], FormioComponentComponent.prototype, "label", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], FormioComponentComponent.prototype, "render", void 0);
-    FormioComponentComponent = __decorate([
-        core_1.Component({
-            selector: 'formio-component',
-            template: '<div></div>'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], FormioComponentComponent);
     return FormioComponentComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], FormioComponentComponent.prototype, "component", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", forms_1.FormGroup)
+], FormioComponentComponent.prototype, "form", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], FormioComponentComponent.prototype, "data", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", forms_1.FormGroup)
+], FormioComponentComponent.prototype, "submission", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", formio_common_1.FormioEvents)
+], FormioComponentComponent.prototype, "events", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], FormioComponentComponent.prototype, "label", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], FormioComponentComponent.prototype, "render", void 0);
+FormioComponentComponent = __decorate([
+    core_1.Component({
+        selector: 'formio-component',
+        template: '<div></div>'
+    }),
+    __metadata("design:paramtypes", [])
+], FormioComponentComponent);
 exports.FormioComponentComponent = FormioComponentComponent;
