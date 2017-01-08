@@ -1,6 +1,5 @@
-/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 import { FormGroup } from '@angular/forms';
-import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.tpl';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { FormioComponentComponent } from '../../formio-component.component';
 import { HtmlOptions, HtmlComponent } from './html';

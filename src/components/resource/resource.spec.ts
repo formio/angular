@@ -1,7 +1,7 @@
 import { FormGroup } from '@angular/forms';
 import { FormioComponentComponent } from '../../formio-component.component';
 import { ResourceComponent, ResourceOptions } from './resource';
-import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.tpl';
+import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 
 describe('SelectComponent', () => {

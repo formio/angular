@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FORM } from '../src/fixtures/forms/kitchensink.ts';
-import { FORM_WIZARD } from '../src/fixtures/forms/kitchensink.ts';
+import { FORM } from '../src/fixtures/forms/kitchensink';
+import { FORM_WIZARD } from '../src/fixtures/forms/kitchensink';
 @Component({
     selector: 'app',
     template: require('./app.html')
