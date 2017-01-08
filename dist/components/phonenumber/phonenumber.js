@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
+var base_1 = require('../base');
+var components_1 = require('../components');
 var PhoneNumberComponent = (function (_super) {
     __extends(PhoneNumberComponent, _super);
     function PhoneNumberComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return PhoneNumberComponent;
 }(base_1.BaseComponent));
@@ -17,7 +17,7 @@ exports.PhoneNumberComponent = PhoneNumberComponent;
 var PhoneNumberElement = (function (_super) {
     __extends(PhoneNumberElement, _super);
     function PhoneNumberElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     PhoneNumberElement.prototype.unmask = function (val) {
         return val.replace(/\D+/g, '');
@@ -36,3 +36,4 @@ function PhoneNumberField(template) {
     return PhoneNumberElement;
 }
 exports.PhoneNumberField = PhoneNumberField;
+//# sourceMappingURL=phonenumber.js.map

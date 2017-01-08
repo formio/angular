@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
-var forms_1 = require("@angular/forms");
+var base_1 = require('../base');
+var components_1 = require('../components');
+var forms_1 = require('@angular/forms');
 var PanelComponent = (function (_super) {
     __extends(PanelComponent, _super);
     function PanelComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     PanelComponent.prototype.getControl = function () {
         if (!this.control) {
@@ -24,7 +24,7 @@ exports.PanelComponent = PanelComponent;
 var PanelElement = (function (_super) {
     __extends(PanelElement, _super);
     function PanelElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     Object.defineProperty(PanelElement.prototype, "numComponents", {
         get: function () { return 1; },
@@ -39,3 +39,4 @@ function PanelField(template) {
     return PanelElement;
 }
 exports.PanelField = PanelField;
+//# sourceMappingURL=panel.js.map

@@ -1,5 +1,5 @@
 "use strict";
-var core_1 = require("@angular/core");
+var core_1 = require('@angular/core');
 var FormioError = (function () {
     function FormioError(message, component) {
         this.message = message;
@@ -16,3 +16,4 @@ var FormioEvents = (function () {
     return FormioEvents;
 }());
 exports.FormioEvents = FormioEvents;
+//# sourceMappingURL=formio.common.js.map

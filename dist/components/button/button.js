@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
+var base_1 = require('../base');
+var components_1 = require('../components');
 var ButtonComponent = (function (_super) {
     __extends(ButtonComponent, _super);
     function ButtonComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return ButtonComponent;
 }(base_1.BaseComponent));
@@ -17,7 +17,7 @@ exports.ButtonComponent = ButtonComponent;
 var ButtonElement = (function (_super) {
     __extends(ButtonElement, _super);
     function ButtonElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return ButtonElement;
 }(base_1.BaseElement));
@@ -27,3 +27,4 @@ function ButtonField(template) {
     return ButtonElement;
 }
 exports.ButtonField = ButtonField;
+//# sourceMappingURL=button.js.map

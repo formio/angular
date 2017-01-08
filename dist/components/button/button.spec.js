@@ -1,13 +1,12 @@
 "use strict";
 var _this = this;
-/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var button_1 = require("./button");
+var forms_1 = require('@angular/forms');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
+var button_1 = require('./button');
 describe('ButtonComponent', function () {
     beforeEach(function () {
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
     });
     var getSettings = function (overrides) {
@@ -34,3 +33,4 @@ describe('ButtonComponent', function () {
         expect(button.control instanceof forms_1.FormControl).toEqual(true);
     });
 });
+//# sourceMappingURL=button.spec.js.map

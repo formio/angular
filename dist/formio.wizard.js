@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var forms_1 = require("@angular/forms");
-var formio_service_1 = require("./formio.service");
-var formio_common_1 = require("./formio.common");
-var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
+var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
+var formio_service_1 = require('./formio.service');
+var formio_common_1 = require('./formio.common');
+var BehaviorSubject_1 = require('rxjs/BehaviorSubject');
 var FormioWizardComponent = (function () {
     function FormioWizardComponent(elementRef) {
         this.elementRef = elementRef;
@@ -148,37 +148,38 @@ var FormioWizardComponent = (function () {
             this.colClass = 'col-sm-2';
         }
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioWizardComponent.prototype, "options", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioWizardComponent.prototype, "form", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FormioWizardComponent.prototype, "submission", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], FormioWizardComponent.prototype, "src", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', formio_service_1.FormioService)
+    ], FormioWizardComponent.prototype, "service", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], FormioWizardComponent.prototype, "change", void 0);
+    FormioWizardComponent = __decorate([
+        core_1.Component({
+            selector: 'formio-wizard',
+            template: '<div></div>'
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], FormioWizardComponent);
     return FormioWizardComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], FormioWizardComponent.prototype, "options", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], FormioWizardComponent.prototype, "form", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], FormioWizardComponent.prototype, "submission", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], FormioWizardComponent.prototype, "src", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", formio_service_1.FormioService)
-], FormioWizardComponent.prototype, "service", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], FormioWizardComponent.prototype, "change", void 0);
-FormioWizardComponent = __decorate([
-    core_1.Component({
-        selector: 'formio-wizard',
-        template: '<div></div>'
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef])
-], FormioWizardComponent);
 exports.FormioWizardComponent = FormioWizardComponent;
+//# sourceMappingURL=formio.wizard.js.map

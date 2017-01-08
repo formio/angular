@@ -1,15 +1,14 @@
 "use strict";
 var _this = this;
-/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var survey_1 = require("./survey");
-var formio_component_component_1 = require("../../formio-component.component");
+var forms_1 = require('@angular/forms');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
+var survey_1 = require('./survey');
+var formio_component_component_1 = require('../../formio-component.component');
 describe('SurveyComponent', function () {
     beforeEach(function () {
         _this.form = new forms_1.FormGroup({});
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
     });
     // An easy method for getting new Survey settings.
     var getSettings = function (overrides) {
@@ -157,3 +156,4 @@ describe('SurveyComponent', function () {
         expect(survey.settings.questions.length).not.toEqual(0);
     });
 });
+//# sourceMappingURL=survey.spec.js.map

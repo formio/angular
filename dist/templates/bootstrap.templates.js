@@ -1,9 +1,9 @@
 "use strict";
-var ng2_bootstrap_1 = require("ng2-bootstrap/ng2-bootstrap");
-var ng2_select_1 = require("ng2-select/ng2-select");
-var angular2_text_mask_1 = require("angular2-text-mask");
-var signature_1 = require("../components/signature/signature");
-var angular2_signaturepad_1 = require("angular2-signaturepad");
+var ng2_bootstrap_1 = require('ng2-bootstrap/ng2-bootstrap');
+var ng2_select_1 = require('ng2-select/ng2-select');
+var angular2_text_mask_1 = require('angular2-text-mask');
+var signature_1 = require('../components/signature/signature');
+var angular2_signaturepad_1 = require('angular2-signaturepad');
 var requiredCSS = '.required .control-label::after { content:" *"; color:red; }';
 var getTemplate = function (template) {
     return { component: { template: template, styles: [requiredCSS] } };
@@ -129,3 +129,4 @@ exports.FORMIO_BOOTSTRAP = {
         }
     }
 };
+//# sourceMappingURL=bootstrap.templates.js.map

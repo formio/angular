@@ -20,3 +20,4 @@ function RegisterTemplate(cmp, template) {
     Reflect.defineMetadata('annotations', annotations, cmp);
 }
 exports.RegisterTemplate = RegisterTemplate;
+//# sourceMappingURL=formio.template.js.map

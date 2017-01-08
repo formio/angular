@@ -21,3 +21,4 @@ function CHECKBOX(key, label) {
     };
 }
 exports.CHECKBOX = CHECKBOX;
+//# sourceMappingURL=checkbox.js.map

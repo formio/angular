@@ -1,17 +1,16 @@
 "use strict";
 var _this = this;
-/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var well_1 = require("./well");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var formio_components_component_1 = require("../../formio-components.component");
-var formio_component_component_1 = require("../../formio-component.component");
-var input_1 = require("../../fixtures/fields/input");
-var textarea_1 = require("../../fixtures/fields/textarea");
+var forms_1 = require('@angular/forms');
+var well_1 = require('./well');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
+var formio_components_component_1 = require('../../formio-components.component');
+var formio_component_component_1 = require('../../formio-component.component');
+var input_1 = require('../../fixtures/fields/input');
+var textarea_1 = require('../../fixtures/fields/textarea');
 describe('WellComponent', function () {
     beforeEach(function () {
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
     });
     var getSettings = function (overrides) {
@@ -77,3 +76,4 @@ describe('WellComponent', function () {
         expect(settings.components.length).not.toBe(0);
     });
 });
+//# sourceMappingURL=well.spec.js.map

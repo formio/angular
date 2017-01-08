@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
+var base_1 = require('../base');
+var components_1 = require('../components');
 var SelectBoxComponent = (function (_super) {
     __extends(SelectBoxComponent, _super);
     function SelectBoxComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return SelectBoxComponent;
 }(base_1.BaseComponent));
@@ -17,9 +17,8 @@ exports.SelectBoxComponent = SelectBoxComponent;
 var SelectBoxElement = (function (_super) {
     __extends(SelectBoxElement, _super);
     function SelectBoxElement() {
-        var _this = _super.apply(this, arguments) || this;
-        _this.selected = [];
-        return _this;
+        _super.apply(this, arguments);
+        this.selected = [];
     }
     return SelectBoxElement;
 }(base_1.BaseElement));
@@ -29,3 +28,4 @@ function SelectBoxField(template) {
     return SelectBoxElement;
 }
 exports.SelectBoxField = SelectBoxField;
+//# sourceMappingURL=selectboxes.js.map

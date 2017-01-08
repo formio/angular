@@ -1,14 +1,13 @@
 "use strict";
 var _this = this;
-/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var number_1 = require("./number");
-var formio_component_component_1 = require("../../formio-component.component");
+var forms_1 = require('@angular/forms');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
+var number_1 = require('./number');
+var formio_component_component_1 = require('../../formio-component.component');
 describe('NumberComponent', function () {
     beforeEach(function () {
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
     });
     // An easy method for getting new Number settings.
@@ -178,3 +177,4 @@ describe('NumberComponent', function () {
         expect(number.settings.suffix).toEqual("@");
     });
 });
+//# sourceMappingURL=number.spec.js.map

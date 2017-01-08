@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
-var forms_1 = require("@angular/forms");
+var base_1 = require('../base');
+var components_1 = require('../components');
+var forms_1 = require('@angular/forms');
 var WellComponent = (function (_super) {
     __extends(WellComponent, _super);
     function WellComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     WellComponent.prototype.getControl = function () {
         if (!this.control) {
@@ -24,7 +24,7 @@ exports.WellComponent = WellComponent;
 var WellElement = (function (_super) {
     __extends(WellElement, _super);
     function WellElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     Object.defineProperty(WellElement.prototype, "numComponents", {
         get: function () { return 1; },
@@ -39,3 +39,4 @@ function WellField(template) {
     return WellElement;
 }
 exports.WellField = WellField;
+//# sourceMappingURL=well.js.map

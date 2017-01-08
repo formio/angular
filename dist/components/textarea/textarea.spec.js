@@ -1,15 +1,14 @@
 "use strict";
 var _this = this;
-/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var textarea_1 = require("./textarea");
-var textarea_2 = require("../../fixtures/fields/textarea");
-var formio_component_component_1 = require("../../formio-component.component");
+var forms_1 = require('@angular/forms');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
+var textarea_1 = require('./textarea');
+var textarea_2 = require('../../fixtures/fields/textarea');
+var formio_component_component_1 = require('../../formio-component.component');
 describe('TextAreaComponent', function () {
     beforeEach(function () {
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
     });
     // An easy method for getting new text area settings.
@@ -171,3 +170,4 @@ describe('TextAreaComponent', function () {
         expect(component.form.value).toEqual({ textarea: ['Joe', 'Smith'] });
     });
 });
+//# sourceMappingURL=textarea.spec.js.map

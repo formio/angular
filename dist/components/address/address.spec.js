@@ -1,13 +1,13 @@
 "use strict";
 var _this = this;
-var forms_1 = require("@angular/forms");
-var formio_component_component_1 = require("../../formio-component.component");
-var address_1 = require("./address");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
+var forms_1 = require('@angular/forms');
+var formio_component_component_1 = require('../../formio-component.component');
+var address_1 = require('./address');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
 describe('AddressComponent', function () {
     beforeEach(function () {
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
     });
     var getSettings = function (overrides) {
@@ -80,3 +80,4 @@ describe('AddressComponent', function () {
         expect(address.settings.customClass).toEqual("myclass");
     });
 });
+//# sourceMappingURL=address.spec.js.map

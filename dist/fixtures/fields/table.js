@@ -1,5 +1,5 @@
 "use strict";
-var checkbox_1 = require("./checkbox");
+var checkbox_1 = require('./checkbox');
 exports.TABLE = {
     input: false,
     numRows: 2,
@@ -27,3 +27,4 @@ exports.TABLE = {
         eq: ""
     }
 };
+//# sourceMappingURL=table.js.map

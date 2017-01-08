@@ -1,13 +1,13 @@
 "use strict";
 var _this = this;
-var forms_1 = require("@angular/forms");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var currency_1 = require("./currency");
-var formio_component_component_1 = require("../../formio-component.component");
+var forms_1 = require('@angular/forms');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
+var currency_1 = require('./currency');
+var formio_component_component_1 = require('../../formio-component.component');
 describe('CurrencyComponent', function () {
     beforeEach(function () {
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
     });
     // An easy method for getting new Currency settings.
@@ -127,3 +127,4 @@ describe('CurrencyComponent', function () {
         expect(component.form.value).toEqual({ currency: ['1,234', '52,000'] });
     });
 });
+//# sourceMappingURL=currency.spec.js.map
