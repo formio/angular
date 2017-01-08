@@ -4,9 +4,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var components_1 = require("../components");
-var base_1 = require("../base");
-var input_1 = require("../input/input");
+var components_1 = require('../components');
+var base_1 = require('../base');
+var input_1 = require('../input/input');
 function NumberValidator(component) {
     return function (control) {
         if (control.value && control.value < component.settings.validate.min) {
@@ -22,7 +22,7 @@ exports.NumberValidator = NumberValidator;
 var NumberComponent = (function (_super) {
     __extends(NumberComponent, _super);
     function NumberComponent(form, settings, data) {
-        return _super.call(this, 'number', form, settings, data) || this;
+        _super.call(this, 'number', form, settings, data);
     }
     NumberComponent.prototype.getError = function (type, error) {
         var message = _super.prototype.getError.call(this, type, error);
@@ -46,7 +46,7 @@ exports.NumberComponent = NumberComponent;
 var NumberElement = (function (_super) {
     __extends(NumberElement, _super);
     function NumberElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return NumberElement;
 }(base_1.BaseElement));
@@ -56,3 +56,4 @@ function NumberField(template) {
     return NumberElement;
 }
 exports.NumberField = NumberField;
+//# sourceMappingURL=number.js.map

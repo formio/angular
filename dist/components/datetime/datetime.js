@@ -4,12 +4,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var base_1 = require("../base");
-var components_1 = require("../components");
+var base_1 = require('../base');
+var components_1 = require('../components');
 var DateTimeComponent = (function (_super) {
     __extends(DateTimeComponent, _super);
     function DateTimeComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     return DateTimeComponent;
 }(base_1.BaseComponent));
@@ -17,14 +17,13 @@ exports.DateTimeComponent = DateTimeComponent;
 var DateTimeElement = (function (_super) {
     __extends(DateTimeElement, _super);
     function DateTimeElement() {
-        var _this = _super.apply(this, arguments) || this;
-        _this.selectedDate = null;
-        _this.checkDates = null;
-        _this.displayDate = false;
-        _this.displayTime = false;
-        _this.minDate = void 0;
-        _this.time = void 0;
-        return _this;
+        _super.apply(this, arguments);
+        this.selectedDate = null;
+        this.checkDates = null;
+        this.displayDate = false;
+        this.displayTime = false;
+        this.minDate = void 0;
+        this.time = void 0;
     }
     DateTimeElement.prototype.getDate = function () {
         return this.selectedDate;
@@ -103,3 +102,4 @@ function DateTimeField(template) {
     return DateTimeElement;
 }
 exports.DateTimeField = DateTimeField;
+//# sourceMappingURL=datetime.js.map

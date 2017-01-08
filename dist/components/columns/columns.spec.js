@@ -1,16 +1,15 @@
 "use strict";
 var _this = this;
-/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var columns_1 = require("./columns");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var formio_components_component_1 = require("../../formio-components.component");
-var formio_component_component_1 = require("../../formio-component.component");
-var input_1 = require("../../fixtures/fields/input");
+var forms_1 = require('@angular/forms');
+var columns_1 = require('./columns');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
+var formio_components_component_1 = require('../../formio-components.component');
+var formio_component_component_1 = require('../../formio-component.component');
+var input_1 = require('../../fixtures/fields/input');
 describe('ColumnsComponent', function () {
     beforeEach(function () {
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
         console.log(_this.form);
     });
@@ -54,3 +53,4 @@ describe('ColumnsComponent', function () {
         expect(_this.form.value).toEqual({ firstName: 'Test1', lastName: 'Test2' });
     });
 });
+//# sourceMappingURL=columns.spec.js.map

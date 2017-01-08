@@ -1,15 +1,14 @@
 "use strict";
 var _this = this;
-/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var fieldset_1 = require("./fieldset");
-var formio_components_component_1 = require("../../formio-components.component");
-var formio_component_component_1 = require("../../formio-component.component");
+var forms_1 = require('@angular/forms');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
+var fieldset_1 = require('./fieldset');
+var formio_components_component_1 = require('../../formio-components.component');
+var formio_component_component_1 = require('../../formio-component.component');
 describe('FieldSetComponent', function () {
     beforeEach(function () {
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
     });
     var getSettings = function (overrides) {
@@ -138,3 +137,4 @@ describe('FieldSetComponent', function () {
         expect(settings.components.length).not.toBe(0);
     });
 });
+//# sourceMappingURL=fieldset.spec.js.map

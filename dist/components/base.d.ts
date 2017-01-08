@@ -38,7 +38,7 @@ export interface BaseOptions<T> extends ComponentOptions<T, ValidateOptions> {
  * @constructor
  */
 export declare function CustomValidator(custom: string, form: FormGroup): (control: FormControl) => {
-    custom: never;
+    custom: false;
 };
 export declare class BaseComponent<T> {
     form: FormGroup;

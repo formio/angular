@@ -1,5 +1,4 @@
-/// <reference path="../typings/globals/jasmine/index.d.ts" />
-import { FORMIO_BOOTSTRAP } from './templates/bootstrap.tpl';
+import { FORMIO_BOOTSTRAP } from './templates/bootstrap.templates';
 describe('formio.ts', () => {
     it('Should have multiple templates', () => {
         expect(FORMIO_BOOTSTRAP.hasOwnProperty('formio')).toEqual(true);

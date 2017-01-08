@@ -4,13 +4,13 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var forms_1 = require("@angular/forms");
-var base_1 = require("../base");
-var components_1 = require("../components");
+var forms_1 = require('@angular/forms');
+var base_1 = require('../base');
+var components_1 = require('../components');
 var DataGridComponent = (function (_super) {
     __extends(DataGridComponent, _super);
     function DataGridComponent() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     DataGridComponent.prototype.getControl = function () {
         if (!this.control) {
@@ -41,7 +41,7 @@ exports.DataGridComponent = DataGridComponent;
 var DataGridElement = (function (_super) {
     __extends(DataGridElement, _super);
     function DataGridElement() {
-        return _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
     Object.defineProperty(DataGridElement.prototype, "numComponents", {
         get: function () {
@@ -61,3 +61,4 @@ function DataGrid(template) {
 }
 exports.DataGrid = DataGrid;
 ;
+//# sourceMappingURL=datagrid.js.map

@@ -48,3 +48,4 @@ exports.FORM = {
         }
     ]
 };
+//# sourceMappingURL=simple.js.map

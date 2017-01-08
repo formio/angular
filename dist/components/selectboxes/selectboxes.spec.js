@@ -1,14 +1,13 @@
 "use strict";
 var _this = this;
-/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var selectboxes_1 = require("./selectboxes");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var formio_component_component_1 = require("../../formio-component.component");
+var forms_1 = require('@angular/forms');
+var selectboxes_1 = require('./selectboxes');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
+var formio_component_component_1 = require('../../formio-component.component');
 describe('SelectBoxComponent', function () {
     beforeEach(function () {
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
     });
     var getSettings = function (overrides) {
@@ -131,3 +130,4 @@ describe('SelectBoxComponent', function () {
         expect(selectbox.settings.customClass).toEqual("myselect");
     });
 });
+//# sourceMappingURL=selectboxes.spec.js.map

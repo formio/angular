@@ -1,14 +1,13 @@
 "use strict";
 var _this = this;
-/// <reference path="../../../typings/globals/jasmine/index.d.ts" />
-var forms_1 = require("@angular/forms");
-var bootstrap_tpl_1 = require("../../templates/bootstrap.tpl");
-var index_1 = require("../index");
-var formio_component_component_1 = require("../../formio-component.component");
-var html_1 = require("./html");
+var forms_1 = require('@angular/forms');
+var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
+var index_1 = require('../index');
+var formio_component_component_1 = require('../../formio-component.component');
+var html_1 = require('./html');
 describe('HtmlComponent', function () {
     beforeEach(function () {
-        index_1.RegisterComponents(bootstrap_tpl_1.FORMIO_BOOTSTRAP);
+        index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
     });
     // An easy method for getting new HtmlElement settings.
@@ -84,3 +83,4 @@ describe('HtmlComponent', function () {
         expect(component.components[0].settings.attrs.length).not.toBe(0);
     });
 });
+//# sourceMappingURL=html.spec.js.map

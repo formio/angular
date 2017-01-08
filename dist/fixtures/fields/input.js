@@ -32,3 +32,4 @@ function INPUT(type, inputType, key, label) {
     };
 }
 exports.INPUT = INPUT;
+//# sourceMappingURL=input.js.map
