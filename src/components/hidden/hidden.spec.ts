@@ -3,11 +3,13 @@ import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { HiddenComponent, HiddenOptions } from './hidden';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('HiddenComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     // An easy method for getting new hidden settings.
@@ -33,7 +35,7 @@ describe('HiddenComponent', () => {
 
     let getComponent = (overrides:{}):FormioComponentComponent<string> => {
         let settings:HiddenOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -52,7 +54,7 @@ describe('HiddenComponent', () => {
         });
 
         // Create the hidden component.
-        let hidden = new HiddenComponent(this.form, settings);
+        let hidden = new HiddenComponent(this.form, settings, this.events);
         expect(hidden.settings.type).toEqual('hidden');
     });
 
@@ -62,7 +64,7 @@ describe('HiddenComponent', () => {
         });
 
         // Create the hidden component.
-        let hidden = new HiddenComponent(this.form, settings);
+        let hidden = new HiddenComponent(this.form, settings, this.events);
         expect(hidden.settings.label).toEqual('Hidden');
     });
 
@@ -72,7 +74,7 @@ describe('HiddenComponent', () => {
         });
 
         // Create the hidden component.
-        let hidden = new HiddenComponent(this.form, settings);
+        let hidden = new HiddenComponent(this.form, settings, this.events);
         expect(hidden.settings.unique).toEqual(true);
     });
 
@@ -82,7 +84,7 @@ describe('HiddenComponent', () => {
         });
 
         // Create the hidden component.
-        let hidden = new HiddenComponent(this.form, settings);
+        let hidden = new HiddenComponent(this.form, settings, this.events);
         expect(hidden.settings.key).toEqual('hidden');
     });
 

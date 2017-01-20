@@ -3,10 +3,12 @@ import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { RadioComponent, RadioOptions } from './radio';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('RadioComponent', () => {
     beforeEach(() => {
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
         RegisterComponents(FORMIO_BOOTSTRAP);
     });
 
@@ -50,7 +52,7 @@ describe('RadioComponent', () => {
 
     let getComponent = (overrides:{}):FormioComponentComponent<string> => {
         let settings:RadioOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -69,7 +71,7 @@ describe('RadioComponent', () => {
         });
 
         // Create the radio component.
-        let radio = new RadioComponent(this.form, settings);
+        let radio = new RadioComponent(this.form, settings, this.events);
         expect(radio.label).toEqual('Options');
     });
 
@@ -79,7 +81,7 @@ describe('RadioComponent', () => {
         });
 
         // Create the radio component.
-        let radio = new RadioComponent(this.form, settings);
+        let radio = new RadioComponent(this.form, settings, this.events);
         expect(radio.settings.required).toEqual(true);
     });
 
@@ -98,7 +100,7 @@ describe('RadioComponent', () => {
        });
 
         // Create the radio component.
-        let radio = new RadioComponent(this.form, settings);
+        let radio = new RadioComponent(this.form, settings, this.events);
         expect(radio.settings.values.length).not.toEqual(0);
     });
 
@@ -113,7 +115,7 @@ describe('RadioComponent', () => {
         });
 
         // Create the radio component.
-        let radio = new RadioComponent(this.form, settings);
+        let radio = new RadioComponent(this.form, settings, this.events);
         expect(radio.settings.values[0].label).not.toEqual('');
     });
     
@@ -123,7 +125,7 @@ describe('RadioComponent', () => {
         });
 
         // Create the radio component.
-        let radio = new RadioComponent(this.form, settings);
+        let radio = new RadioComponent(this.form, settings, this.events);
         expect(radio.settings.inline).toEqual(true);
     });
 

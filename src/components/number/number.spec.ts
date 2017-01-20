@@ -4,11 +4,13 @@ import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
 import { NumberComponent } from './number';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('NumberComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     // An easy method for getting new Number settings.
@@ -47,7 +49,7 @@ describe('NumberComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:InputOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -60,7 +62,7 @@ describe('NumberComponent', () => {
         });
 
         // Create the number component.
-        let number = new NumberComponent(this.form, settings);
+        let number = new NumberComponent(this.form, settings, this.events);
         expect(number.defaultValue).toEqual(0);
         expect(number.control.value).toEqual(0);
     });
@@ -75,7 +77,7 @@ describe('NumberComponent', () => {
         });
 
         // Create the number component.
-        let number = new NumberComponent(this.form, settings);
+        let number = new NumberComponent(this.form, settings, this.events);
 
         number.setValue("");
         expect(number.control.valid).toEqual(false);
@@ -184,7 +186,7 @@ describe('NumberComponent', () => {
         });
 
         // Create the number component.
-        let number = new NumberComponent(this.form, settings);
+        let number = new NumberComponent(this.form, settings, this.events);
         expect(number.settings.placeholder).toEqual("Enter Number");
     });
     
@@ -194,7 +196,7 @@ describe('NumberComponent', () => {
         });
 
         // Create the number component.
-        let number = new NumberComponent(this.form, settings);
+        let number = new NumberComponent(this.form, settings, this.events);
         expect(number.settings.prefix).toEqual("$");
     });
     
@@ -204,7 +206,7 @@ describe('NumberComponent', () => {
         });
 
         // Create the number component.
-        let number = new NumberComponent(this.form, settings);
+        let number = new NumberComponent(this.form, settings, this.events);
         expect(number.settings.suffix).toEqual("@");
     });
 });

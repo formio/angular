@@ -3,11 +3,13 @@ import { FormioComponentComponent } from '../../formio-component.component';
 import { AddressComponent, AddressOptions } from './address';
 import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
+import { FormioEvents } from '../../formio.events';
 
 describe('AddressComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): AddressOptions => {
@@ -38,7 +40,7 @@ describe('AddressComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:AddressOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -55,7 +57,7 @@ describe('AddressComponent', () => {
         });
 
         // Create the address component.
-        let address = new AddressComponent(this.form, settings);
+        let address = new AddressComponent(this.form, settings, this.events);
         expect(address.settings.type).toEqual("address");
     });
 
@@ -65,7 +67,7 @@ describe('AddressComponent', () => {
         });
 
         // Create the address component.
-        let address = new AddressComponent(this.form, settings);
+        let address = new AddressComponent(this.form, settings, this.events);
         expect(address.settings.label).toEqual("Address");
     });
 
@@ -75,7 +77,7 @@ describe('AddressComponent', () => {
         });
 
         // Create the address component.
-        let address = new AddressComponent(this.form, settings);
+        let address = new AddressComponent(this.form, settings, this.events);
         expect(address.settings.placeholder).toEqual("Enter address");
     });
 
@@ -85,7 +87,7 @@ describe('AddressComponent', () => {
         });
 
         // Create the address component.
-        let address = new AddressComponent(this.form, settings);
+        let address = new AddressComponent(this.form, settings, this.events);
         expect(address.settings.customClass).toEqual("myclass");
     });
 });

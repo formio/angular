@@ -1,4 +1,3 @@
-import { EventEmitter } from '@angular/core';
 import { BaseOptions } from './components/base';
 
 /**
@@ -13,17 +12,17 @@ export interface FormioForm {
     components?: Array<BaseOptions<any>>
 }
 
-export class FormioError {
-    constructor (public message: string, public component: BaseOptions<any>) {}
+export interface AlertsOptions {
+    submitMessage: string
 }
 
-export class FormioEvents {
-    public component: EventEmitter<any>;
-    public errors: Array<FormioError>;
-    constructor() {
-        this.component = new EventEmitter();
-        this.errors = [];
-    }
+export interface FormioAlert {
+    type: string,
+    message: string
+}
+
+export class FormioError {
+    constructor (public message: string, public component: BaseOptions<any>) {}
 }
 
 export interface ErrorsOptions {
@@ -31,5 +30,6 @@ export interface ErrorsOptions {
 }
 
 export interface FormioOptions {
-    errors: ErrorsOptions
+    errors: ErrorsOptions,
+    alerts: AlertsOptions
 }

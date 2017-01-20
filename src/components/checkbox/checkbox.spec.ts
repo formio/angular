@@ -3,12 +3,14 @@ import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { CheckBoxComponent, CheckBoxOptions } from './checkbox';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 import { CHECKBOX } from '../../fixtures/fields/checkbox';
 
 describe('CheckBoxComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     // An easy method for getting new checkbox settings.
@@ -20,7 +22,7 @@ describe('CheckBoxComponent', () => {
 
     let getComponent = (overrides:{}):FormioComponentComponent<boolean> => {
         let settings:CheckBoxOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<boolean>();
+        let component = new FormioComponentComponent<boolean>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -39,7 +41,7 @@ describe('CheckBoxComponent', () => {
         });
 
         // Create the checkbox component.
-        let checkbox = new CheckBoxComponent(this.form, settings);
+        let checkbox = new CheckBoxComponent(this.form, settings, this.events);
         expect(checkbox.defaultValue).toEqual(false);
         expect(checkbox.control.value).toEqual(false);
     });
@@ -50,7 +52,7 @@ describe('CheckBoxComponent', () => {
         });
 
         // Create the checkbox component.
-        let checkbox = new CheckBoxComponent(this.form, settings);
+        let checkbox = new CheckBoxComponent(this.form, settings, this.events);
         expect(checkbox.label).toEqual('CheckBox');
     });
 
@@ -60,7 +62,7 @@ describe('CheckBoxComponent', () => {
         });
 
         // Create the checkbox component.
-        let checkbox = new CheckBoxComponent(this.form, settings);
+        let checkbox = new CheckBoxComponent(this.form, settings, this.events);
         expect(checkbox.settings.required).toEqual(true);
     });
 

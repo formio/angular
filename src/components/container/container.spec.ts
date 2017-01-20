@@ -4,11 +4,13 @@ import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { FormioComponentsComponent } from '../../formio-components.component';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('ContainerComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): ContainerOptions => {
@@ -96,7 +98,7 @@ describe('ContainerComponent', () => {
 
     it('Should create the container control.', () => {
         let settings: ContainerOptions = getSettings({});
-        let container = new ContainerComponent(this.form, settings);
+        let container = new ContainerComponent(this.form, settings, this.events);
         expect(container.control instanceof FormGroup).toEqual(true);
 
         let index = 0;
@@ -105,7 +107,7 @@ describe('ContainerComponent', () => {
         components.form = this.form;
         settings.components.forEach((comp: any) => {
             index++;
-            let component = new FormioComponentComponent();
+            let component = new FormioComponentComponent(this.events);
             component.component = comp;
             component.form = this.form;
             component.ngOnInit();

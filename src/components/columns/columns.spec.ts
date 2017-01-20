@@ -4,13 +4,14 @@ import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { FormioComponentsComponent } from '../../formio-components.component';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 import { INPUT } from '../../fixtures/fields/input';
 
 describe('ColumnsComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
-        console.log(this.form);
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): ColumnsOptions => {
@@ -34,7 +35,7 @@ describe('ColumnsComponent', () => {
 
     it('Should create the columns control.', () => {
         let settings: ColumnsOptions = getSettings({});
-        let container = new ColumnsComponent(this.form, settings);
+        let container = new ColumnsComponent(this.form, settings, this.events);
         var index = 0;
 
         // Iterate through each column and create the component.
@@ -44,7 +45,7 @@ describe('ColumnsComponent', () => {
             components.form = this.form;
             column.components.forEach((comp: any) => {
                 index++;
-                let component = new FormioComponentComponent();
+                let component = new FormioComponentComponent(this.events);
                 component.component = comp;
                 component.form = this.form;
                 component.ngOnInit();

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, ElementRef }  from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormioService } from './formio.service';
-import { FormioForm, FormioEvents, FormioOptions } from './formio.common';
+import { FormioForm, FormioOptions } from './formio.common';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
@@ -10,7 +10,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 })
 export class FormioWizardComponent implements OnInit {
     public formGroup: FormGroup = new FormGroup({});
-    public events: FormioEvents = new FormioEvents();
     public ready: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public page: any;
     public pages: Array<any> = [];

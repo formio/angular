@@ -3,11 +3,13 @@ import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { ContentComponent, ContentOptions } from './content';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('ContentComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     // An easy method for getting new content settings.
@@ -30,7 +32,7 @@ describe('ContentComponent', () => {
 
     let getComponent = (overrides:{}):FormioComponentComponent<string> => {
         let settings:ContentOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -49,7 +51,7 @@ describe('ContentComponent', () => {
         });
 
         // Create the content component.
-        let content = new ContentComponent(this.form, settings);
+        let content = new ContentComponent(this.form, settings, this.events);
         expect(content.settings.type).toEqual('content');
     });
 
@@ -59,7 +61,7 @@ describe('ContentComponent', () => {
         });
 
         // Create the content component.
-        let content = new ContentComponent(this.form, settings);
+        let content = new ContentComponent(this.form, settings, this.events);
         expect(content.settings.key).toEqual('mycontent');
     });
 
@@ -69,7 +71,7 @@ describe('ContentComponent', () => {
         });
 
         // Create the content component.
-        let content = new ContentComponent(this.form, settings);
+        let content = new ContentComponent(this.form, settings, this.events);
         expect(content.settings.html).toEqual('<p><em><strong>Good Morning Guys!!!</strong></em></p>');
     });
 

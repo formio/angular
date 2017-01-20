@@ -18,7 +18,7 @@
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.0",
     "core-js": "^2.4.1",
-    "ng2-formio": "^0.5.0",
+    "ng2-formio": "^0.6.0",
     "rxjs": "5.0.1",
     "zone.js": "^0.7.4"
   },

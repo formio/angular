@@ -4,12 +4,14 @@ import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
 import { TextFieldComponent } from './textfield';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 import { INPUT } from '../../fixtures/fields/input';
 
 describe('TextFieldComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     // An easy method for getting new text field settings.
@@ -21,7 +23,7 @@ describe('TextFieldComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:InputOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -41,7 +43,7 @@ describe('TextFieldComponent', () => {
         });
 
         // Create the text field component.
-        let textField = new TextFieldComponent(this.form, settings);
+        let textField = new TextFieldComponent(this.form, settings, this.events);
         expect(textField.settings).toEqual(settings);
         expect(textField.defaultValue).toEqual('');
         expect(textField.label).toEqual('First Name');
@@ -84,7 +86,7 @@ describe('TextFieldComponent', () => {
         });
 
         // Create the text field component.
-        let textField = new TextFieldComponent(this.form, settings);
+        let textField = new TextFieldComponent(this.form, settings, this.events);
         expect(textField.defaultValue).toEqual('Travis');
         expect(textField.control.value).toEqual('Travis');
     });

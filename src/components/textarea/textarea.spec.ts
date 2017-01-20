@@ -4,11 +4,13 @@ import { RegisterComponents } from '../index';
 import { TextAreaComponent, TextAreaOptions } from './textarea';
 import { TEXTAREA } from '../../fixtures/fields/textarea';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('TextAreaComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     // An easy method for getting new text area settings.
@@ -20,7 +22,7 @@ describe('TextAreaComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:TextAreaOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -33,7 +35,7 @@ describe('TextAreaComponent', () => {
         });
 
         // Create the text area component.
-        let textarea = new TextAreaComponent(this.form, settings);
+        let textarea = new TextAreaComponent(this.form, settings, this.events);
         expect(textarea.label).toEqual('TextArea');
     });
 
@@ -43,7 +45,7 @@ describe('TextAreaComponent', () => {
         });
 
         // Create the text area component.
-        let textarea = new TextAreaComponent(this.form, settings);
+        let textarea = new TextAreaComponent(this.form, settings, this.events);
         expect(textarea.settings.placeholder).toEqual('Enter your text here');
     });
 
@@ -53,7 +55,7 @@ describe('TextAreaComponent', () => {
         });
 
         // Create the text area component.
-        let textarea = new TextAreaComponent(this.form, settings);
+        let textarea = new TextAreaComponent(this.form, settings, this.events);
         expect(textarea.settings.prefix).toEqual("$");
     });
 
@@ -63,7 +65,7 @@ describe('TextAreaComponent', () => {
         });
 
         // Create the text area component.
-        let textarea = new TextAreaComponent(this.form, settings);
+        let textarea = new TextAreaComponent(this.form, settings, this.events);
         expect(textarea.settings.suffix).toEqual("@");
     });
 
@@ -80,7 +82,7 @@ describe('TextAreaComponent', () => {
         });
 
         // Create the text area component.
-        let textarea = new TextAreaComponent(this.form, settings);
+        let textarea = new TextAreaComponent(this.form, settings, this.events);
         expect(textarea.settings).toEqual(settings);
         expect(textarea.label).toEqual('Textarea');
         expect(textarea.control instanceof FormControl).toEqual(true);
@@ -117,7 +119,7 @@ describe('TextAreaComponent', () => {
         });
 
         // Create the text area component.
-        let textarea = new TextAreaComponent(this.form, settings);
+        let textarea = new TextAreaComponent(this.form, settings, this.events);
         expect(textarea.defaultValue).toEqual('Textarea');
         expect(textarea.control.value).toEqual('Textarea');
     });

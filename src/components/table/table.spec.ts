@@ -4,11 +4,13 @@ import { RegisterComponents } from '../index';
 import { TableComponent, TableOptions } from './table';
 import { FormioComponentComponent } from '../../formio-component.component';
 import { TABLE } from '../../fixtures/fields/table';
+import { FormioEvents } from '../../formio.events';
 
 describe('TableComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     // An easy method for getting new Table settings.
@@ -20,7 +22,7 @@ describe('TableComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:TableOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -41,7 +43,7 @@ describe('TableComponent', () => {
         });
 
         // Create the table component.
-        let table = new TableComponent(this.form, settings);
+        let table = new TableComponent(this.form, settings, this.events);
         expect(table.settings.striped).toEqual(true);
         expect(table.settings.bordered).toEqual(true);
         expect(table.settings.hover).toEqual(true);
@@ -55,7 +57,7 @@ describe('TableComponent', () => {
         });
 
         // Create the table component.
-        let table = new TableComponent(this.form, settings);
+        let table = new TableComponent(this.form, settings, this.events);
         expect(table.settings.numRows).toEqual(2);
         expect(table.settings.numCols).toEqual(2);
     });
@@ -109,7 +111,7 @@ describe('TableComponent', () => {
         });
 
         // Create the table component.
-        let table = new TableComponent(this.form, settings);
+        let table = new TableComponent(this.form, settings, this.events);
         expect(table.settings.rows[0][0]).not.toEqual(null);
     });
 
@@ -162,7 +164,7 @@ describe('TableComponent', () => {
         });
 
         // Create the table component.
-        let table = new TableComponent(this.form, settings);
+        let table = new TableComponent(this.form, settings, this.events);
         let total = 0;
         for (let i in table.settings.rows) {
             for (let j in table.settings.rows[i]) {

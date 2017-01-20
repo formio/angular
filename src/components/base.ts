@@ -1,6 +1,7 @@
 import { EventEmitter, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
-import { FormioEvents, FormioError } from '../formio.common';
+import { FormioError } from '../formio.common';
+import { FormioEvent, FormioEvents } from '../formio.events';
 
 export interface ConditionalOptions {
     show?: string,
@@ -62,8 +63,9 @@ export class BaseComponent<T> {
     index: number = 0;
     private _label: string | boolean;
     protected validators: ValidatorFn[] = [];
-    constructor(public form: FormGroup, public settings: any, public data: any = {}) {
+    constructor(public form: FormGroup, public settings: any, public events: FormioEvents, public data: any = {}) {
         this.getControl();
+        this.registerEvents();
     }
     getData(index?: number) : any {
         if (this.data.hasOwnProperty(this.settings.key)) {
@@ -77,11 +79,25 @@ export class BaseComponent<T> {
             return {};
         }
     }
+    registerEvents() {
+        this.events.onInvalid.subscribe(() => {
+            this.control.markAsDirty(true);
+            let errors: Array<FormioError> = this.errors;
+            if (errors.length) {
+                this.events.errors = this.events.errors.concat(errors);
+            }
+        });
+    }
     public setValue(value: any) {
         if (this.control && (this.control instanceof FormControl)) {
             let formControl = this.control as FormControl;
             formControl.setValue(value);
             formControl.markAsDirty();
+        }
+    }
+    public disable() {
+        if (this.control) {
+            this.control.disable();
         }
     }
     set label(label: string | boolean) {

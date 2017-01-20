@@ -4,11 +4,13 @@ import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { FormioComponentsComponent } from '../../formio-components.component';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('PanelComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): PanelOptions => {
@@ -85,7 +87,7 @@ describe('PanelComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:PanelOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -103,7 +105,7 @@ describe('PanelComponent', () => {
         });
 
         // Create the panel component.
-        let panel = new PanelComponent(this.form, settings);
+        let panel = new PanelComponent(this.form, settings, this.events);
         expect(panel.settings.title).toEqual("Panel");
     });
 
@@ -113,7 +115,7 @@ describe('PanelComponent', () => {
         });
 
         // Create the panel component.
-        let panel = new PanelComponent(this.form, settings);
+        let panel = new PanelComponent(this.form, settings, this.events);
         expect(panel.settings.theme).toEqual("primary");
     });
 
@@ -123,13 +125,13 @@ describe('PanelComponent', () => {
         });
 
         // Create the panel component.
-        let panel = new PanelComponent(this.form, settings);
+        let panel = new PanelComponent(this.form, settings, this.events);
         expect(panel.settings.type).toEqual("panel");
     });
 
     it('Should create the Panel control.', () => {
         let settings: PanelOptions = getSettings({});
-        let panel = new PanelComponent(this.form, settings);
+        let panel = new PanelComponent(this.form, settings, this.events);
         expect(panel.control instanceof FormGroup).toEqual(true);
 
         let index = 0;
@@ -138,7 +140,7 @@ describe('PanelComponent', () => {
         components.form = this.form;
         settings.components.forEach((comp: any) => {
             index++;
-            let component = new FormioComponentComponent();
+            let component = new FormioComponentComponent(this.events);
             component.component = comp;
             component.form = this.form;
             component.ngOnInit();

@@ -1,16 +1,18 @@
 import { FormGroup } from '@angular/forms';
 import { FormioComponentComponent } from './formio-component.component';
 import { FORMIO_BOOTSTRAP } from './templates/bootstrap.templates';
+import { FormioEvents } from './formio.events';
 import { RegisterComponents } from './components/index';
 import { INPUT } from './fixtures/fields/input';
 describe('FormioComponentComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     it('Should create a component with default options.', () => {
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = INPUT('textfield', 'text', 'firstName', 'First Name');
         component.form = this.form;
         component.ngOnInit();
@@ -19,7 +21,7 @@ describe('FormioComponentComponent', () => {
     });
 
     it('Should now show by default if there are conditions.', () => {
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = INPUT('textfield', 'text', 'firstName', 'First Name');
         component.component.conditional = {
             show: 'true',

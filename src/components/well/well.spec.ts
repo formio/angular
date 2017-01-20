@@ -4,6 +4,7 @@ import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { FormioComponentsComponent } from '../../formio-components.component';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 import { INPUT } from '../../fixtures/fields/input';
 import { TEXTAREA } from '../../fixtures/fields/textarea';
 
@@ -11,6 +12,7 @@ describe('WellComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): WellOptions => {
@@ -35,7 +37,7 @@ describe('WellComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:WellOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -53,13 +55,13 @@ describe('WellComponent', () => {
         });
 
         // Create the well component.
-        let well = new WellComponent(this.form, settings);
+        let well = new WellComponent(this.form, settings, this.events);
         expect(well.settings.type).toEqual("well");
     });
 
     it('Should create Well control.', () => {
         let settings: WellOptions = getSettings({});
-        let fieldset = new WellComponent(this.form, settings);
+        let fieldset = new WellComponent(this.form, settings, this.events);
         expect(fieldset.control instanceof FormGroup).toEqual(true);
 
         let index = 0;
@@ -68,7 +70,7 @@ describe('WellComponent', () => {
         components.form = this.form;
         settings.components.forEach((comp: any) => {
             index++;
-            let component = new FormioComponentComponent();
+            let component = new FormioComponentComponent(this.events);
             component.component = comp;
             component.form = this.form;
             component.ngOnInit();

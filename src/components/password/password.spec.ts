@@ -4,11 +4,13 @@ import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
 import { PasswordComponent } from './password';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('PasswordComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     // An easy method for getting new password settings.
@@ -45,7 +47,7 @@ describe('PasswordComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:InputOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -64,7 +66,7 @@ describe('PasswordComponent', () => {
         });
 
         // Create the password component.
-        let password = new PasswordComponent(this.form, settings);
+        let password = new PasswordComponent(this.form, settings, this.events);
         expect(password.label).toEqual('Password');
     });
 
@@ -78,7 +80,7 @@ describe('PasswordComponent', () => {
         });
 
         // Create the password component.
-        let password = new PasswordComponent(this.form, settings);
+        let password = new PasswordComponent(this.form, settings, this.events);
         expect(password.settings).toEqual(settings);
         expect(password.label).toEqual('Password');
         expect(password.control instanceof FormControl).toEqual(true);
@@ -123,7 +125,7 @@ describe('PasswordComponent', () => {
         });
 
         // Create the password component.
-        let number = new PasswordComponent(this.form, settings);
+        let number = new PasswordComponent(this.form, settings, this.events);
         expect(number.settings.placeholder).toEqual("Enter Password");
     });
 
@@ -133,7 +135,7 @@ describe('PasswordComponent', () => {
         });
 
         // Create the password component.
-        let number = new PasswordComponent(this.form, settings);
+        let number = new PasswordComponent(this.form, settings, this.events);
         expect(number.settings.prefix).toEqual("$");
     });
 
@@ -143,7 +145,7 @@ describe('PasswordComponent', () => {
         });
 
         // Create the password component.
-        let number = new PasswordComponent(this.form, settings);
+        let number = new PasswordComponent(this.form, settings, this.events);
         expect(number.settings.suffix).toEqual("@");
     });
 });

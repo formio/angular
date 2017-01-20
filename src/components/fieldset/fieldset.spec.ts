@@ -4,11 +4,13 @@ import { RegisterComponents } from '../index';
 import { FieldSetComponent, FieldSetOptions } from './fieldset';
 import { FormioComponentsComponent } from '../../formio-components.component';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('FieldSetComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): FieldSetOptions => {
@@ -88,7 +90,7 @@ describe('FieldSetComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:FieldSetOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -106,7 +108,7 @@ describe('FieldSetComponent', () => {
         });
 
         // Create the fieldset component.
-        let fieldset = new FieldSetComponent(this.form, settings);
+        let fieldset = new FieldSetComponent(this.form, settings, this.events);
         expect(fieldset.settings.legend).toEqual("FieldSet");
     });
 
@@ -116,13 +118,13 @@ describe('FieldSetComponent', () => {
         });
 
         // Create the fieldset component.
-        let fieldset = new FieldSetComponent(this.form, settings);
+        let fieldset = new FieldSetComponent(this.form, settings, this.events);
         expect(fieldset.settings.type).toEqual("fieldset");
     });
 
     it('Should create the FieldSet control.', () => {
         let settings: FieldSetOptions = getSettings({});
-        let fieldset = new FieldSetComponent(this.form, settings);
+        let fieldset = new FieldSetComponent(this.form, settings, this.events);
         expect(fieldset.control instanceof FormGroup).toEqual(true);
 
         let index = 0;
@@ -131,7 +133,7 @@ describe('FieldSetComponent', () => {
         components.form = this.form;
         settings.components.forEach((comp: any) => {
             index++;
-            let component = new FormioComponentComponent();
+            let component = new FormioComponentComponent(this.events);
             component.component = comp;
             component.form = this.form;
             component.ngOnInit();

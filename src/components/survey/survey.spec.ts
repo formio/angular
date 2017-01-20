@@ -3,10 +3,12 @@ import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { SurveyComponent, SurveyOptions } from './survey';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('SurveyComponent', () => {
     beforeEach(() => {
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
         RegisterComponents(FORMIO_BOOTSTRAP);
     });
 
@@ -66,7 +68,7 @@ describe('SurveyComponent', () => {
 
     let getComponent = (overrides:{}):FormioComponentComponent<string> => {
         let settings:SurveyOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -85,7 +87,7 @@ describe('SurveyComponent', () => {
         });
 
         // Create the Survey component.
-        let survey = new SurveyComponent(this.form, settings);
+        let survey = new SurveyComponent(this.form, settings, this.events);
         expect(survey.settings.type).toEqual("survey");
     });
 
@@ -95,7 +97,7 @@ describe('SurveyComponent', () => {
         });
 
         // Create the Survey component.
-        let survey = new SurveyComponent(this.form, settings);
+        let survey = new SurveyComponent(this.form, settings, this.events);
         expect(survey.label).toEqual('Survey');
     });
 
@@ -105,7 +107,7 @@ describe('SurveyComponent', () => {
         });
 
         // Create the Survey component.
-        let survey = new SurveyComponent(this.form, settings);
+        let survey = new SurveyComponent(this.form, settings, this.events);
         expect(survey.settings.required).toEqual(false);
     });
 
@@ -128,7 +130,7 @@ describe('SurveyComponent', () => {
         });
 
         // Create the Survey component.
-        let survey = new SurveyComponent(this.form, settings);
+        let survey = new SurveyComponent(this.form, settings, this.events);
         expect(survey.settings.values.length).not.toEqual(0);
     });
 
@@ -143,7 +145,7 @@ describe('SurveyComponent', () => {
         });
 
         // Create the Survey component.
-        let survey = new SurveyComponent(this.form, settings);
+        let survey = new SurveyComponent(this.form, settings, this.events);
         expect(survey.settings.values[0].label).not.toEqual('');
     });
 
@@ -166,7 +168,7 @@ describe('SurveyComponent', () => {
         });
 
         // Create the Survey component.
-        let survey = new SurveyComponent(this.form, settings);
+        let survey = new SurveyComponent(this.form, settings, this.events);
         expect(survey.settings.questions.length).not.toEqual(0);
     });
 

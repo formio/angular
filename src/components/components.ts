@@ -4,6 +4,7 @@ import { FormGroup  } from '@angular/forms';
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormioBaseModule } from '../formio';
 import { FormioComponentMetaData, FormioComponentTemplate } from '../formio.template';
+import { FormioEvents } from '../formio.events';
 let find = require('lodash/find');
 let cloneDeep = require('lodash/cloneDeep');
 
@@ -48,12 +49,12 @@ export class FormioComponents {
             factory: null
         };
     }
-    public static createComponent(name: string, form: FormGroup, component: any, data: any) : any {
+    public static createComponent(name: string, form: FormGroup, component: any, events: FormioEvents, data: any) : any {
         if (!FormioComponents.components.hasOwnProperty(name)) {
             name = 'custom';
         }
         let comp: FormioComponentWrapper = FormioComponents.components[name];
-        return new comp.component(form, component, data);
+        return new comp.component(form, component, events, data);
     }
     public static element(
         name: string,

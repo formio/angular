@@ -3,11 +3,13 @@ import { DayComponent, DayOptions } from './day';
 import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('PanelComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): DayOptions => {
@@ -55,7 +57,7 @@ describe('PanelComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:DayOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -73,7 +75,7 @@ describe('PanelComponent', () => {
         });
 
         // Create the day component.
-        let day = new DayComponent(this.form, settings);
+        let day = new DayComponent(this.form, settings, this.events);
         expect(day.settings.type).toEqual("day");
     });
 
@@ -83,7 +85,7 @@ describe('PanelComponent', () => {
         });
 
         // Create the day component.
-        let day = new DayComponent(this.form, settings);
+        let day = new DayComponent(this.form, settings, this.events);
         expect(day.settings.fields.day.placeholder).toEqual("Enter day");
         expect(day.settings.fields.month.placeholder).toEqual("Select month");
         expect(day.settings.fields.year.placeholder).toEqual("Enter year");
@@ -95,7 +97,7 @@ describe('PanelComponent', () => {
         });
 
         // Create the day component.
-        let day = new DayComponent(this.form, settings);
+        let day = new DayComponent(this.form, settings, this.events);
         expect(day.settings.customClass).toEqual("dayCustomClass");
     });
 
@@ -105,7 +107,7 @@ describe('PanelComponent', () => {
         });
 
         // Create the day component.
-        let day = new DayComponent(this.form, settings);
+        let day = new DayComponent(this.form, settings, this.events);
         expect(day.settings.fields.day.required).toEqual(true);
         expect(day.settings.fields.month.required).toEqual(true);
         expect(day.settings.fields.year.required).toEqual(true);

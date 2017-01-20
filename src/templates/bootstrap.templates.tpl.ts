@@ -53,6 +53,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
     formio_component: getTemplate({ gulp_inject: './bootstrap/formio-component.html' }),
     formio_components: getTemplate({ gulp_inject: './bootstrap/formio-components.html' }),
     errors: getTemplate({ gulp_inject: './bootstrap/errors.html' }),
+    alerts: getTemplate({ gulp_inject: './bootstrap/alerts.html' }),
     components: {
         button: getTemplate({ gulp_inject: './bootstrap/components/button.html' }),
         columns: getTemplate({ gulp_inject: './bootstrap/components/columns.html' }),

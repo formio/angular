@@ -3,11 +3,13 @@ import { SignatureComponent, SignatureOptions } from './signature';
 import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('SignatureComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): SignatureOptions => {
@@ -44,7 +46,7 @@ describe('SignatureComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:SignatureOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -63,7 +65,7 @@ describe('SignatureComponent', () => {
         });
 
         // Create the signature component.
-        let signature = new SignatureComponent(this.form, settings);
+        let signature = new SignatureComponent(this.form, settings, this.events);
         expect(signature.settings.type).toEqual("signature");
     });
 
@@ -73,7 +75,7 @@ describe('SignatureComponent', () => {
         });
 
         // Create the signature component.
-        let signature = new SignatureComponent(this.form, settings);
+        let signature = new SignatureComponent(this.form, settings, this.events);
         expect(signature.label).toEqual('Signature');
     });
 
@@ -83,7 +85,7 @@ describe('SignatureComponent', () => {
         });
 
         // Create the signature component.
-        let signature = new SignatureComponent(this.form, settings);
+        let signature = new SignatureComponent(this.form, settings, this.events);
         expect(signature.settings.required).toEqual(false);
     });
 
@@ -93,7 +95,7 @@ describe('SignatureComponent', () => {
         });
 
         // Create the signature component.
-        let signature = new SignatureComponent(this.form, settings);
+        let signature = new SignatureComponent(this.form, settings, this.events);
         expect(signature.settings.width).toEqual("100%");
     });
 
@@ -103,7 +105,7 @@ describe('SignatureComponent', () => {
         });
 
         // Create the signature component.
-        let signature = new SignatureComponent(this.form, settings);
+        let signature = new SignatureComponent(this.form, settings, this.events);
         expect(signature.settings.height).toEqual("300px");
     });
 
@@ -113,7 +115,7 @@ describe('SignatureComponent', () => {
         });
 
         // Create the signature component.
-        let signature = new SignatureComponent(this.form, settings);
+        let signature = new SignatureComponent(this.form, settings, this.events);
         expect(signature.settings.penColor).toEqual("green");
     });
 
@@ -123,7 +125,7 @@ describe('SignatureComponent', () => {
         });
 
         // Create the signature component.
-        let signature = new SignatureComponent(this.form, settings);
+        let signature = new SignatureComponent(this.form, settings, this.events);
         expect(signature.settings.backgroundColor).toEqual("rgb(245,245,235)");
     });
 
@@ -134,7 +136,7 @@ describe('SignatureComponent', () => {
         });
 
         // Create the signature component.
-        let signature = new SignatureComponent(this.form, settings);
+        let signature = new SignatureComponent(this.form, settings, this.events);
         expect(signature.settings.minWidth).toEqual("0.5");
         expect(signature.settings.maxWidth).toEqual("2.5");
     });

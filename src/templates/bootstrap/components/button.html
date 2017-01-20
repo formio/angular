@@ -1,1 +1,6 @@
-<button type="submit" [disabled]="component.settings.disableOnInvalid && !form.valid" class="btn btn-{{ component.settings.theme }}">{{ component.settings.label }}</button>
+<button type="{{ component.settings.action }}" [disabled]="disabled || (component.settings.disableOnInvalid && !form.valid)" class="btn btn-{{ component.settings.theme }}">
+  <span *ngIf="component.settings.leftIcon" class="{{ component.settings.leftIcon }}" aria-hidden="true"></span>
+  <span *ngIf="component.settings.leftIcon && component.settings.label">&nbsp;</span>{{ component.settings.label }}<span *ngIf="component.settings.rightIcon && component.settings.label">&nbsp;</span>
+  <span *ngIf="component.settings.rightIcon" class="{{ component.settings.rightIcon }}" aria-hidden="true"></span>
+  <i *ngIf="submitting" class="glyphicon glyphicon-refresh glyphicon-spin"></i>
+</button>

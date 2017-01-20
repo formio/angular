@@ -4,11 +4,13 @@ import { RegisterComponents } from '../index';
 import { InputOptions } from '../input/input';
 import { CurrencyComponent } from './currency';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('CurrencyComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     // An easy method for getting new Currency settings.
@@ -43,7 +45,7 @@ describe('CurrencyComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:InputOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -56,7 +58,7 @@ describe('CurrencyComponent', () => {
         });
 
         // Create the currency component.
-        let currency = new CurrencyComponent(this.form, settings);
+        let currency = new CurrencyComponent(this.form, settings, this.events);
         expect(currency.label).toEqual('Currency');
     });
 
@@ -66,7 +68,7 @@ describe('CurrencyComponent', () => {
         });
 
         // Create the Currency component.
-        let currency = new CurrencyComponent(this.form, settings);
+        let currency = new CurrencyComponent(this.form, settings, this.events);
         expect(currency.defaultValue).toEqual(123);
     });
 
@@ -82,7 +84,7 @@ describe('CurrencyComponent', () => {
         });
 
         // Create the Currency component.
-        let currency = new CurrencyComponent(this.form, settings);
+        let currency = new CurrencyComponent(this.form, settings, this.events);
         expect(currency.settings.placeholder).toEqual("currency");
     });
 
@@ -92,7 +94,7 @@ describe('CurrencyComponent', () => {
         });
 
         // Create the Currency component.
-        let currency = new CurrencyComponent(this.form, settings);
+        let currency = new CurrencyComponent(this.form, settings, this.events);
         expect(currency.settings.prefix).toEqual("$");
     });
 
@@ -102,7 +104,7 @@ describe('CurrencyComponent', () => {
         });
 
         // Create the Currency component.
-        let currency = new CurrencyComponent(this.form, settings);
+        let currency = new CurrencyComponent(this.form, settings, this.events);
         expect(currency.settings.suffix).toEqual("@");
     });
 

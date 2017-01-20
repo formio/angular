@@ -3,11 +3,13 @@ import { FormioComponentComponent } from '../../formio-component.component';
 import { PhoneNumberComponent, PhoneNumberOptions } from './phonenumber';
 import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
+import { FormioEvents } from '../../formio.events';
 
 describe('PhoneNumberComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): PhoneNumberOptions => {
@@ -42,7 +44,7 @@ describe('PhoneNumberComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:PhoneNumberOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -60,7 +62,7 @@ describe('PhoneNumberComponent', () => {
         });
 
         // Create the phone component.
-        let phone = new PhoneNumberComponent(this.form, settings);
+        let phone = new PhoneNumberComponent(this.form, settings, this.events);
         expect(phone.settings.type).toEqual("phoneNumber");
     });
 
@@ -70,7 +72,7 @@ describe('PhoneNumberComponent', () => {
         });
 
         // Create the phone component.
-        let phone = new PhoneNumberComponent(this.form, settings);
+        let phone = new PhoneNumberComponent(this.form, settings, this.events);
         expect(phone.settings.label).toEqual("Phone Number");
     });
 
@@ -80,7 +82,7 @@ describe('PhoneNumberComponent', () => {
         });
 
         // Create the phone component.
-        let phone = new PhoneNumberComponent(this.form, settings);
+        let phone = new PhoneNumberComponent(this.form, settings, this.events);
         expect(phone.settings.placeholder).toEqual("Enter Phone Number");
     });
 
@@ -90,7 +92,7 @@ describe('PhoneNumberComponent', () => {
         });
 
         // Create the phone component.
-        let phone = new PhoneNumberComponent(this.form, settings);
+        let phone = new PhoneNumberComponent(this.form, settings, this.events);
         expect(phone.settings.inputMask).toEqual("(999) 999-9999");
     });
 
@@ -100,7 +102,7 @@ describe('PhoneNumberComponent', () => {
         });
 
         // Create the phone component.
-        let phone = new PhoneNumberComponent(this.form, settings);
+        let phone = new PhoneNumberComponent(this.form, settings, this.events);
         expect(phone.settings.customClass).toEqual("myclass");
     });
 
@@ -110,7 +112,7 @@ describe('PhoneNumberComponent', () => {
         });
 
         // Create the phone component.
-        let phone = new PhoneNumberComponent(this.form, settings);
+        let phone = new PhoneNumberComponent(this.form, settings, this.events);
         expect(phone.settings.prefix).toEqual("$");
     });
 
@@ -120,7 +122,7 @@ describe('PhoneNumberComponent', () => {
         });
 
         // Create the phone component.
-        let phone = new PhoneNumberComponent(this.form, settings);
+        let phone = new PhoneNumberComponent(this.form, settings, this.events);
         expect(phone.settings.suffix).toEqual("@");
     });
 

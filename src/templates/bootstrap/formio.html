@@ -1,6 +1,7 @@
 <i style="font-size: 2em;" *ngIf="!(ready | async)" class="formio-loading glyphicon glyphicon-refresh glyphicon-spin"></i>
 <formio-wizard *ngIf="(ready | async) && (form.display === 'wizard')" [src]="src" [form]="form" [submission]="submission"></formio-wizard>
 <form *ngIf="(ready | async) && (!form.display || (form.display === 'form'))" (submit)="onSubmit($event)" [formGroup]="formGroup">
+    <formio-alerts [alerts]="events.alerts"></formio-alerts>
     <formio-errors [errors]="events.errors" [options]="options.errors"></formio-errors>
-    <formio-components *ngIf="ready | async" [components]="form.components" [form]="formGroup" [submission]="formGroup" [data]="submission.data" [events]="events" (render)="onRender()"></formio-components>
+    <formio-components *ngIf="ready | async" [components]="form.components" [form]="formGroup" [submission]="formGroup" [data]="submission.data" (render)="onRender()"></formio-components>
 </form>

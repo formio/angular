@@ -1,8 +1,9 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormArray } from '@angular/forms';
 import { FormioComponents } from './components/components';
 import { BaseOptions, BaseComponent } from './components/base';
-import { FormioEvents, FormioError } from './formio.common';
+import { FormioError } from './formio.common';
+import { FormioEvent, FormioEvents } from './formio.events';
 var FormioUtils = require('formio-utils');
 
 @Component({
@@ -17,9 +18,9 @@ export class FormioComponentComponent<T> implements OnInit {
     @Input() form: FormGroup;
     @Input() data: any;
     @Input() submission: FormGroup;
-    @Input() events: FormioEvents;
     @Input() label: string | boolean;
     @Output() render: EventEmitter<any> = new EventEmitter();
+    constructor(private events: FormioEvents) {}
     ngOnInit() {
         // Add the initial component.
         this.addComponent();
@@ -36,26 +37,7 @@ export class FormioComponentComponent<T> implements OnInit {
             }
         }
         this.checkConditions();
-
-        // Subscribe to the invalid event.
-        if (this.events) {
-            this.events.component.subscribe((type: string) => {
-                this.components.forEach((component: BaseComponent<any>) => {
-                    switch (type) {
-                        case 'invalid':
-                            component.control.markAsDirty(true);
-                            let errors: Array<FormioError> = component.errors;
-                            if (errors.length) {
-                                this.events.errors = this.events.errors.concat(errors);
-                            }
-                            break;
-                        case 'valueChanges':
-                            this.checkConditions();
-                            break;
-                    }
-                });
-            });
-        }
+        this.events.onChange.subscribe(() => this.checkConditions());
     }
     getData(key: number | string) : any {
         if (this.data.hasOwnProperty(key)) {
@@ -75,10 +57,11 @@ export class FormioComponentComponent<T> implements OnInit {
             this.component.type,
             this.form,
             this.component,
+            this.events,
             this.data
         );
 
-        // Set the index.
+        // Set the index and readOnly flag.
         component.index = this.components.length;
 
         // Add the form controls.

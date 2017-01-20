@@ -3,11 +3,13 @@ import { FormioComponentComponent } from '../../formio-component.component';
 import { DateTimeComponent, DateTimeOptions } from './datetime';
 import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
+import { FormioEvents } from '../../formio.events';
 
 describe('SelectComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): DateTimeOptions => {
@@ -59,7 +61,7 @@ describe('SelectComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:DateTimeOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -76,7 +78,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the datetime component.
-        let datetime = new DateTimeComponent(this.form, settings);
+        let datetime = new DateTimeComponent(this.form, settings, this.events);
         expect(datetime.settings.type).toEqual("datetime");
     });
 
@@ -86,7 +88,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the datetime component.
-        let datetime = new DateTimeComponent(this.form, settings);
+        let datetime = new DateTimeComponent(this.form, settings, this.events);
         expect(datetime.settings.label).toEqual("DateTime");
     });
 
@@ -96,7 +98,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the datetime component.
-        let datetime = new DateTimeComponent(this.form, settings);
+        let datetime = new DateTimeComponent(this.form, settings, this.events);
         expect(datetime.settings.placeholder).toEqual("Select date and time");
     });
 
@@ -116,7 +118,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the datetime component.
-        let datetime = new DateTimeComponent(this.form, settings);
+        let datetime = new DateTimeComponent(this.form, settings, this.events);
         expect(datetime.settings.format).toEqual("yyyy-MM-dd HH:mm");
     });
 
@@ -132,7 +134,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the datetime component.
-        let datetime = new DateTimeComponent(this.form, settings);
+        let datetime = new DateTimeComponent(this.form, settings, this.events);
         expect(datetime.settings.showWeeks).toEqual(true);
         expect(datetime.settings.startingDay).toEqual('0');
         expect(datetime.settings.initDate).toEqual("2016-01-01");
@@ -154,7 +156,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the datetime component.
-        let datetime = new DateTimeComponent(this.form, settings);
+        let datetime = new DateTimeComponent(this.form, settings, this.events);
         expect(datetime.settings.hourStep).toEqual(1);
         expect(datetime.settings.minuteStep).toEqual(1);
         expect(datetime.settings.showMeridian).toEqual(true);

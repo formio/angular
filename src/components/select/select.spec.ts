@@ -3,11 +3,13 @@ import { FormioComponentComponent } from '../../formio-component.component';
 import { SelectComponent, SelectOptions } from './select';
 import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
+import { FormioEvents } from '../../formio.events';
 
 describe('SelectComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): SelectOptions => {
@@ -79,7 +81,7 @@ describe('SelectComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:SelectOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -96,7 +98,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the select component.
-        let select = new SelectComponent(this.form, settings);
+        let select = new SelectComponent(this.form, settings, this.events);
         expect(select.settings.type).toEqual("select");
     });
 
@@ -106,7 +108,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the select component.
-        let select = new SelectComponent(this.form, settings);
+        let select = new SelectComponent(this.form, settings, this.events);
         expect(select.settings.label).toEqual("Fruits");
     });
 
@@ -116,7 +118,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the select component.
-        let select = new SelectComponent(this.form, settings);
+        let select = new SelectComponent(this.form, settings, this.events);
         expect(select.settings.placeholder).toEqual("Select one fruit");
     });
 
@@ -126,7 +128,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the select component.
-        let select = new SelectComponent(this.form, settings);
+        let select = new SelectComponent(this.form, settings, this.events);
         expect(select.settings.valueProperty).toEqual("fullName");
     });
 
@@ -136,7 +138,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the select component.
-        let select = new SelectComponent(this.form, settings);
+        let select = new SelectComponent(this.form, settings, this.events);
         expect(select.settings.template).toEqual("{{ item.label }}");
     });
 

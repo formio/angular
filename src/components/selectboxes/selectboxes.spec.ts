@@ -3,11 +3,13 @@ import { SelectBoxComponent, SelectBoxOptions } from './selectboxes';
 import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { FormioComponentComponent } from '../../formio-component.component';
+import { FormioEvents } from '../../formio.events';
 
 describe('SelectBoxComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): SelectBoxOptions => {
@@ -50,7 +52,7 @@ describe('SelectBoxComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:SelectBoxOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -68,7 +70,7 @@ describe('SelectBoxComponent', () => {
         });
 
         // Create the selectbox component.
-        let selectbox = new SelectBoxComponent(this.form, settings);
+        let selectbox = new SelectBoxComponent(this.form, settings, this.events);
         expect(selectbox.settings.type).toEqual("selectboxes");
     });
 
@@ -78,7 +80,7 @@ describe('SelectBoxComponent', () => {
         });
 
         // Create the selectbox component.
-        let selectbox = new SelectBoxComponent(this.form, settings);
+        let selectbox = new SelectBoxComponent(this.form, settings, this.events);
         expect(selectbox.settings.label).toEqual("SelectBox");
     });
 
@@ -88,7 +90,7 @@ describe('SelectBoxComponent', () => {
         });
 
         // Create the selectbox component.
-        let selectbox = new SelectBoxComponent(this.form, settings);
+        let selectbox = new SelectBoxComponent(this.form, settings, this.events);
         expect(selectbox.settings.required).toEqual(true);
     });
 
@@ -107,7 +109,7 @@ describe('SelectBoxComponent', () => {
         });
 
         // Create the selectbox component.
-        let selectbox = new SelectBoxComponent(this.form, settings);
+        let selectbox = new SelectBoxComponent(this.form, settings, this.events);
         expect(selectbox.settings.values.length).not.toEqual(0);
     });
 
@@ -122,7 +124,7 @@ describe('SelectBoxComponent', () => {
         });
 
         // Create the selectbox component.
-        let selectbox = new SelectBoxComponent(this.form, settings);
+        let selectbox = new SelectBoxComponent(this.form, settings, this.events);
         expect(selectbox.settings.values[0].label).not.toEqual('');
     });
 
@@ -132,7 +134,7 @@ describe('SelectBoxComponent', () => {
         });
 
         // Create the selectbox component.
-        let selectbox = new SelectBoxComponent(this.form, settings);
+        let selectbox = new SelectBoxComponent(this.form, settings, this.events);
         expect(selectbox.settings.inline).toEqual(true);
     });
 
@@ -142,7 +144,7 @@ describe('SelectBoxComponent', () => {
         });
 
         // Create the selectbox component.
-        let selectbox = new SelectBoxComponent(this.form, settings);
+        let selectbox = new SelectBoxComponent(this.form, settings, this.events);
         expect(selectbox.settings.customClass).toEqual("myselect");
     });
 });

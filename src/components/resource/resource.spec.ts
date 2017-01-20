@@ -3,11 +3,13 @@ import { FormioComponentComponent } from '../../formio-component.component';
 import { ResourceComponent, ResourceOptions } from './resource';
 import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
+import { FormioEvents } from '../../formio.events';
 
 describe('SelectComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     var getSettings = (overrides: {}): ResourceOptions => {
@@ -42,7 +44,7 @@ describe('SelectComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:ResourceOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -59,7 +61,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the resource component.
-        let resource = new ResourceComponent(this.form, settings);
+        let resource = new ResourceComponent(this.form, settings, this.events);
         expect(resource.settings.type).toEqual("resource");
     });
 
@@ -69,7 +71,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the resource component.
-        let resource = new ResourceComponent(this.form, settings);
+        let resource = new ResourceComponent(this.form, settings, this.events);
         expect(resource.settings.label).toEqual("Resource");
     });
 
@@ -79,7 +81,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the resource component.
-        let resource = new ResourceComponent(this.form, settings);
+        let resource = new ResourceComponent(this.form, settings, this.events);
         expect(resource.settings.placeholder).toEqual("Select one");
     });
 
@@ -89,7 +91,7 @@ describe('SelectComponent', () => {
         });
 
         // Create the resource component.
-        let resource = new ResourceComponent(this.form, settings);
+        let resource = new ResourceComponent(this.form, settings, this.events);
         expect(resource.settings.template).toEqual("<span>{{ item.data }}</span>");
     });
 });

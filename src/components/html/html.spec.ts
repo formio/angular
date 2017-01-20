@@ -3,11 +3,13 @@ import { FORMIO_BOOTSTRAP } from '../../templates/bootstrap.templates';
 import { RegisterComponents } from '../index';
 import { FormioComponentComponent } from '../../formio-component.component';
 import { HtmlOptions, HtmlComponent } from './html';
+import { FormioEvents } from '../../formio.events';
 
 describe('HtmlComponent', () => {
     beforeEach(() => {
         RegisterComponents(FORMIO_BOOTSTRAP);
         this.form = new FormGroup({});
+        this.events = new FormioEvents();
     });
 
     // An easy method for getting new HtmlElement settings.
@@ -36,7 +38,7 @@ describe('HtmlComponent', () => {
 
     let getComponent = (overrides: {}): FormioComponentComponent<string> => {
         let settings:HtmlOptions = getSettings(overrides);
-        let component = new FormioComponentComponent<string>();
+        let component = new FormioComponentComponent<string>(this.events);
         component.component = settings;
         component.form = this.form;
         component.ngOnInit();
@@ -55,7 +57,7 @@ describe('HtmlComponent', () => {
         });
 
         // Create the htmlelement component.
-        let htmlelement = new HtmlComponent(this.form, settings);
+        let htmlelement = new HtmlComponent(this.form, settings, this.events);
         expect(htmlelement.settings.type).toEqual('htmlelement');
     });
 
@@ -65,7 +67,7 @@ describe('HtmlComponent', () => {
         });
 
         // Create the htmlelement component.
-        let htmlelement = new HtmlComponent(this.form, settings);
+        let htmlelement = new HtmlComponent(this.form, settings, this.events);
         expect(htmlelement.settings.className).toEqual('customClass');
     });
 
@@ -75,7 +77,7 @@ describe('HtmlComponent', () => {
         });
 
         // Create the htmlelement component.
-        let htmlelement = new HtmlComponent(this.form, settings);
+        let htmlelement = new HtmlComponent(this.form, settings, this.events);
         expect(htmlelement.settings.tag).toEqual('p');
     });
 
@@ -85,7 +87,7 @@ describe('HtmlComponent', () => {
         });
 
         // Create the htmlelement component.
-        let htmlelement = new HtmlComponent(this.form, settings);
+        let htmlelement = new HtmlComponent(this.form, settings, this.events);
         expect(htmlelement.settings.content).toEqual('Hello, Good Morning !!!');
     });
 
