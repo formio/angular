@@ -9,7 +9,7 @@ import { AlignDirective } from '../components/signature/signature';
 import { SignaturePadModule } from 'angular2-signaturepad';
 
 let requiredCSS: string = '.required .control-label::after { content:" *"; color:red; }';
-let getTemplate = function(template: string, styles: Array = [], module: Object = {}) {
+let getTemplate = function(template: string, styles: Array<string> = [], module: Object = {}) {
     return {
         component: {
             template: template,
