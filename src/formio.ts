@@ -10,12 +10,15 @@ import { FormioAlerts } from './formio.alerts';
 import { FormioEvents } from './formio.events';
 import { RegisterComponents } from './components/index';
 import { FormioTemplate, RegisterTemplate } from './formio.template';
+import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap';
 import { FormioWizardComponent } from './formio.wizard';
 
 @NgModule({
     imports: [
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        DatepickerModule.forRoot(),
+        TimepickerModule.forRoot()
     ],
     declarations: [
         FormioWizardComponent,

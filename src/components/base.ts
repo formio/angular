@@ -1,7 +1,7 @@
 import { EventEmitter, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { FormioError } from '../formio.common';
-import { FormioEvent, FormioEvents } from '../formio.events';
+import { FormioEvents } from '../formio.events';
 
 export interface ConditionalOptions {
     show?: string,

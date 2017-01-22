@@ -1,15 +1,21 @@
 /* eslint-disable */
 /* tslint-disable */
 import { FormioTemplate } from '../formio.template';
-import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap';
 import { SelectModule } from 'ng2-select/ng2-select';
 import { TextMaskModule } from 'angular2-text-mask';
 import { AlignDirective } from '../components/signature/signature';
 import { SignaturePadModule } from 'angular2-signaturepad';
 
 let requiredCSS: string = '.required .control-label::after { content:" *"; color:red; }';
-let getTemplate = function(template: string) {
-    return {component: {template: template, styles: [requiredCSS]}};
+let getTemplate = function(template: string, styles: Array = [], module: Object = {}) {
+    return {
+        component: {
+            template: template,
+            styles: [requiredCSS].concat(styles)
+        },
+        module: module
+    };
 };
 export const FORMIO_BOOTSTRAP: FormioTemplate = {
     formio: {
@@ -71,65 +77,35 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         fieldset: getTemplate({ gulp_inject: './bootstrap/components/fieldset.html' }),
         well: getTemplate({ gulp_inject: './bootstrap/components/well.html' }),
         day: getTemplate({ gulp_inject: './bootstrap/components/day.html' }),
-        datetime: {
-            component: {
-                template:{ gulp_inject: './bootstrap/components/datetime.html' },
-                styles: [requiredCSS, ".showDate {width:48vmin;border:1px solid #ccc;}", ".showTime {width:53vmin;height:22vmin;border:1px solid #ccc;}", ".buttonsSpace {padding:5px;}"]
-            },
-            module: {
-                imports: [DatepickerModule, TimepickerModule]
-            }
-        },
+        datetime: getTemplate(
+            { gulp_inject: './bootstrap/components/datetime.html' },
+            ['.showDate, .showTime { display: inline-block; border: 2px solid #eee; padding: 10px;}'], {
+            imports: [DatepickerModule.forRoot(), TimepickerModule.forRoot()]
+        }),
         selectboxes: getTemplate({ gulp_inject: './bootstrap/components/selectboxes.html' }),
         content: getTemplate({ gulp_inject: './bootstrap/components/content.html' }),
         html: getTemplate({ gulp_inject: './bootstrap/components/html.html' }),
         currency: getTemplate({ gulp_inject: './bootstrap/components/currency.html' }),
-        select: {
-            component: {
-                template: { gulp_inject: './bootstrap/components/select.html' },
-                styles: [requiredCSS]
-            },
-            module: {
-                imports: [SelectModule]
-            }
-        },
+        select: getTemplate({ gulp_inject: './bootstrap/components/select.html' }, [], {
+            imports: [SelectModule]
+        }),
         survey: getTemplate({ gulp_inject: './bootstrap/components/survey.html' }),
-        resource: {
-            component: {
-                template: { gulp_inject: './bootstrap/components/resource.html' },
-                styles: [requiredCSS]
-            },
-            module: {
-                imports: [SelectModule]
-            }
-        },
-        address: {
-            component: {
-                template: { gulp_inject: './bootstrap/components/address.html' },
-                styles: [requiredCSS]
-            },
-            module: {
-                imports: [SelectModule]
-            }
-        },
-        phoneNumber: {
-            component: {
-                template: {gulp_inject: './bootstrap/components/phonenumber.html'},
-                styles: [requiredCSS]
-            },
-            module: {
-                imports: [TextMaskModule]
-            }
-        },
-        signature: {
-            component: {
-                template: { gulp_inject: './bootstrap/components/signature.html' },
-                styles: ['.required .footer::after { content:" *"; color:red; }', ".clearButton {position:absolute; left: 0; top: 0; z-index: 1000}", ".footer {text-align: center; color:#C3C3C3;}"]
-            },
-            module: {
+        resource: getTemplate({ gulp_inject: './bootstrap/components/resource.html' }, [], {
+            imports: [SelectModule]
+        }),
+        address: getTemplate({ gulp_inject: './bootstrap/components/address.html' }, [], {
+            imports: [SelectModule]
+        }),
+        phoneNumber: getTemplate({gulp_inject: './bootstrap/components/phonenumber.html'}, [], {
+            imports: [TextMaskModule]
+        }),
+        signature: getTemplate(
+            { gulp_inject: './bootstrap/components/signature.html' },
+            ['.required .footer::after { content:" *"; color:red; }', ".clearButton {position:absolute; left: 0; top: 0; z-index: 1000}", ".footer {text-align: center; color:#C3C3C3;}"],
+            {
                 imports: [SignaturePadModule],
                 declarations: [AlignDirective]
             }
-        }
+        )
     }
 };

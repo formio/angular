@@ -2,7 +2,6 @@ import { OnInit } from "@angular/core";
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
-
 export interface DateTimeOptions extends BaseOptions<any> {
     placeholder?: string,
     format?: string,
@@ -25,86 +24,52 @@ export interface DateTimeOptions extends BaseOptions<any> {
     maxDate?: string
 }
 
-export class DateTimeComponent extends BaseComponent<DateTimeOptions> {
-
-}
-
+export class DateTimeComponent extends BaseComponent<DateTimeOptions> {}
 export class DateTimeElement extends BaseElement<DateTimeComponent> implements OnInit {
-    public selectedDate: Date = null;
-    public showDateTime:any;
-    public checkDates: Date = null;
-    public displayDate: Boolean = false;
-    public displayTime: Boolean = false;
-    public minDate: Date = void 0;
-    public time: any = void 0;
-    public dateFormat: any;
-    public getDate(): Date {
-        return this.selectedDate;
+    public date: Date;
+    public displayDate: boolean = false;
+    public displayTime: boolean = false;
+    selectDate() {
+        this.displayDate = true;
+        this.displayTime = false;
     }
-    public today():void {
-        this.showDateTime =true;
-        this.selectedDate = new Date();
-        if(this.component.settings.enableTime) {
-            if (!this.time) {
-                this.time = new Date().setHours(0, 0, 0, 0);
-            }
-        }
+
+    registerTime(timepicker: any) {
+        timepicker.selected = this.date;
+        timepicker.registerOnChange((time: Date) => {
+            this.date.setHours(time.getHours());
+            this.date.setMinutes(time.getMinutes());
+            this.setDate(this.date);
+        });
+        return true;
     }
-    public clear():void {
-        this.showDateTime =false;
-        this.selectedDate = void 0;
-        this.time = void 0;
+
+    selectTime() {
+        this.displayDate = false;
+        this.displayTime = true;
     }
-    public close(): void {
+
+    setDate(date: Date) {
+        this.date = date;
+        this.component.control.setValue(date);
+    }
+
+    now() {
+        this.setDate(new Date());
+    }
+
+    clear() {
+        this.setDate(null);
+    }
+
+    close() {
         this.displayDate = false;
         this.displayTime = false;
     }
-    public selectDate():void {
-        if((!this.component.settings.enableTime && this.component.settings.enableDate) || (this.component.settings.enableTime && this.component.settings.enableDate) ){
-            this.displayDate = true;
-            this.displayTime = false;
-        }else if(this.component.settings.enableTime && !this.component.settings.enableDate){
-            this.displayDate = false;
-            this.displayTime = true;   
-        }
-    }
-    public selectTime(date: any):void {
-        if(this.component.settings.enableTime){
-            if(date!= this.checkDates){
-                this.checkDates = date;
-                this.displayTime = true;
-                this.displayDate = false;
-            }
-            if(!this.time){
-                this.time = new Date().setHours(0,0,0,0);
-            }
-        }
-        if(date instanceof Date){
-            this.showDateTime =true;
-        }
-    }
-    public selectFirstTime(): void {
-        this.displayTime = true;
-        this.displayDate = false;
-        this.checkDate();
-        if(!this.time){
-            this.showDateTime =false;
-        }
-    }
-    public checkDate() {
-        this.showDateTime =true;
-        if(this.component.settings.enableDate){
-            if(!this.selectedDate){
-                this.selectedDate = new Date();
-            }
-         }
-    }
-    public now():void {
-        this.checkDate();
-        this.time = new Date();
-    }
+
     ngOnInit() {
-        this.dateFormat = this.component.settings.format.split(' ')[0];
+        super.ngOnInit();
+        this.setDate(new Date());
     }
 }
 
