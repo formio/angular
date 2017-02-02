@@ -130,7 +130,7 @@ npm install
 npm start
 ```
 
-You can now see the Form.io section within the **Forms | Form.io** section. 
+You can now see the Form.io section within the **Forms | Dynamic Forms** section. 
 
 For a visual of the changes that needed to happen to incorporate Form.io into this theme, then [take a look at the following diff](https://github.com/formio/ng2-admin/compare/20031c3980a57291c211dee669b36e933adb751e...master)
 
