@@ -123,14 +123,17 @@ For an example of an application using Form.io, you can look at the [Examples Fo
 
 Try it out
 -----------------
-To get this working, you can download this repo and then run the following commands.
+To see this working within a live application, you can clone our fork of the amazing [ng2-admin](https://github.com/formio/ng2-admin) theme. Then do the following.
 
 ```
 npm install
 npm start
 ```
 
-The application will now be running @ http://localhost:8080. Feel free to modify the ```app/app.html``` file to see how the Form renderer works within Angular 2.
+You can now see the Form.io section within the **Forms | Form.io** section. 
+
+For a visual of the changes that needed to happen to incorporate Form.io into this theme, then [take a look at the following diff](https://github.com/formio/ng2-admin/compare/20031c3980a57291c211dee669b36e933adb751e...master)
+
 
 Using with Form.io
 -----------------
