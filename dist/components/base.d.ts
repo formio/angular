@@ -1,6 +1,7 @@
 import { EventEmitter, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
-import { FormioEvents, FormioError } from '../formio.common';
+import { FormioError } from '../formio.common';
+import { FormioEvents } from '../formio.events';
 export interface ConditionalOptions {
     show?: string;
     when?: any;
@@ -43,14 +44,17 @@ export declare function CustomValidator(custom: string, form: FormGroup): (contr
 export declare class BaseComponent<T> {
     form: FormGroup;
     settings: any;
+    events: FormioEvents;
     data: any;
     control: FormControl | FormGroup | FormArray;
     index: number;
     private _label;
     protected validators: ValidatorFn[];
-    constructor(form: FormGroup, settings: any, data?: any);
+    constructor(form: FormGroup, settings: any, events: FormioEvents, data?: any);
     getData(index?: number): any;
+    registerEvents(): void;
     setValue(value: any): void;
+    disable(): void;
     label: string | boolean;
     readonly defaultValue: T;
     getControl(): FormArray | FormGroup | FormControl;

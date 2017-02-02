@@ -5,10 +5,12 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var number_1 = require('./number');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('NumberComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     // An easy method for getting new Number settings.
     var getSettings = function (overrides) {
@@ -45,7 +47,7 @@ describe('NumberComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -56,7 +58,7 @@ describe('NumberComponent', function () {
             defaultValue: 0
         });
         // Create the number component.
-        var number = new number_1.NumberComponent(_this.form, settings);
+        var number = new number_1.NumberComponent(_this.form, settings, _this.events);
         expect(number.defaultValue).toEqual(0);
         expect(number.control.value).toEqual(0);
     });
@@ -69,7 +71,7 @@ describe('NumberComponent', function () {
             }
         });
         // Create the number component.
-        var number = new number_1.NumberComponent(_this.form, settings);
+        var number = new number_1.NumberComponent(_this.form, settings, _this.events);
         number.setValue("");
         expect(number.control.valid).toEqual(false);
         expect(number.control.errors).toEqual({ required: true });
@@ -157,7 +159,7 @@ describe('NumberComponent', function () {
             placeholder: "Enter Number"
         });
         // Create the number component.
-        var number = new number_1.NumberComponent(_this.form, settings);
+        var number = new number_1.NumberComponent(_this.form, settings, _this.events);
         expect(number.settings.placeholder).toEqual("Enter Number");
     });
     it('Should allow prefix', function () {
@@ -165,7 +167,7 @@ describe('NumberComponent', function () {
             prefix: "$"
         });
         // Create the number component.
-        var number = new number_1.NumberComponent(_this.form, settings);
+        var number = new number_1.NumberComponent(_this.form, settings, _this.events);
         expect(number.settings.prefix).toEqual("$");
     });
     it('Should allow suffix', function () {
@@ -173,7 +175,7 @@ describe('NumberComponent', function () {
             suffix: "@"
         });
         // Create the number component.
-        var number = new number_1.NumberComponent(_this.form, settings);
+        var number = new number_1.NumberComponent(_this.form, settings, _this.events);
         expect(number.settings.suffix).toEqual("@");
     });
 });

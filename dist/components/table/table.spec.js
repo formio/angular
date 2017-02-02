@@ -6,10 +6,12 @@ var index_1 = require('../index');
 var table_1 = require('./table');
 var formio_component_component_1 = require('../../formio-component.component');
 var table_2 = require('../../fixtures/fields/table');
+var formio_events_1 = require('../../formio.events');
 describe('TableComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     // An easy method for getting new Table settings.
     var getSettings = function (overrides) {
@@ -19,7 +21,7 @@ describe('TableComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -37,7 +39,7 @@ describe('TableComponent', function () {
             condensed: false
         });
         // Create the table component.
-        var table = new table_1.TableComponent(_this.form, settings);
+        var table = new table_1.TableComponent(_this.form, settings, _this.events);
         expect(table.settings.striped).toEqual(true);
         expect(table.settings.bordered).toEqual(true);
         expect(table.settings.hover).toEqual(true);
@@ -49,7 +51,7 @@ describe('TableComponent', function () {
             numCols: 2
         });
         // Create the table component.
-        var table = new table_1.TableComponent(_this.form, settings);
+        var table = new table_1.TableComponent(_this.form, settings, _this.events);
         expect(table.settings.numRows).toEqual(2);
         expect(table.settings.numCols).toEqual(2);
     });
@@ -101,7 +103,7 @@ describe('TableComponent', function () {
             ]
         });
         // Create the table component.
-        var table = new table_1.TableComponent(_this.form, settings);
+        var table = new table_1.TableComponent(_this.form, settings, _this.events);
         expect(table.settings.rows[0][0]).not.toEqual(null);
     });
     it('All components rendered or not', function () {
@@ -152,7 +154,7 @@ describe('TableComponent', function () {
             ]
         });
         // Create the table component.
-        var table = new table_1.TableComponent(_this.form, settings);
+        var table = new table_1.TableComponent(_this.form, settings, _this.events);
         var total = 0;
         for (var i in table.settings.rows) {
             for (var j in table.settings.rows[i]) {

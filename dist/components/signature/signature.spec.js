@@ -5,10 +5,12 @@ var signature_1 = require('./signature');
 var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('SignatureComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -43,7 +45,7 @@ describe('SignatureComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -59,7 +61,7 @@ describe('SignatureComponent', function () {
             type: "signature"
         });
         // Create the signature component.
-        var signature = new signature_1.SignatureComponent(_this.form, settings);
+        var signature = new signature_1.SignatureComponent(_this.form, settings, _this.events);
         expect(signature.settings.type).toEqual("signature");
     });
     it('Should allow label value', function () {
@@ -67,7 +69,7 @@ describe('SignatureComponent', function () {
             label: 'Signature'
         });
         // Create the signature component.
-        var signature = new signature_1.SignatureComponent(_this.form, settings);
+        var signature = new signature_1.SignatureComponent(_this.form, settings, _this.events);
         expect(signature.label).toEqual('Signature');
     });
     it('Should allow Signature component with required', function () {
@@ -75,7 +77,7 @@ describe('SignatureComponent', function () {
             required: false
         });
         // Create the signature component.
-        var signature = new signature_1.SignatureComponent(_this.form, settings);
+        var signature = new signature_1.SignatureComponent(_this.form, settings, _this.events);
         expect(signature.settings.required).toEqual(false);
     });
     it('Should allow width', function () {
@@ -83,7 +85,7 @@ describe('SignatureComponent', function () {
             width: "100%"
         });
         // Create the signature component.
-        var signature = new signature_1.SignatureComponent(_this.form, settings);
+        var signature = new signature_1.SignatureComponent(_this.form, settings, _this.events);
         expect(signature.settings.width).toEqual("100%");
     });
     it('Should allow height', function () {
@@ -91,7 +93,7 @@ describe('SignatureComponent', function () {
             height: "300px"
         });
         // Create the signature component.
-        var signature = new signature_1.SignatureComponent(_this.form, settings);
+        var signature = new signature_1.SignatureComponent(_this.form, settings, _this.events);
         expect(signature.settings.height).toEqual("300px");
     });
     it('Should allow penColor', function () {
@@ -99,7 +101,7 @@ describe('SignatureComponent', function () {
             penColor: "green"
         });
         // Create the signature component.
-        var signature = new signature_1.SignatureComponent(_this.form, settings);
+        var signature = new signature_1.SignatureComponent(_this.form, settings, _this.events);
         expect(signature.settings.penColor).toEqual("green");
     });
     it('Should allow backgroundColor', function () {
@@ -107,7 +109,7 @@ describe('SignatureComponent', function () {
             backgroundColor: "rgb(245,245,235)"
         });
         // Create the signature component.
-        var signature = new signature_1.SignatureComponent(_this.form, settings);
+        var signature = new signature_1.SignatureComponent(_this.form, settings, _this.events);
         expect(signature.settings.backgroundColor).toEqual("rgb(245,245,235)");
     });
     it('Should allow minWidth and maxWidth', function () {
@@ -116,7 +118,7 @@ describe('SignatureComponent', function () {
             maxWidth: "2.5"
         });
         // Create the signature component.
-        var signature = new signature_1.SignatureComponent(_this.form, settings);
+        var signature = new signature_1.SignatureComponent(_this.form, settings, _this.events);
         expect(signature.settings.minWidth).toEqual("0.5");
         expect(signature.settings.maxWidth).toEqual("2.5");
     });

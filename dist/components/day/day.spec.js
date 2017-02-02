@@ -5,10 +5,12 @@ var day_1 = require('./day');
 var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('PanelComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -54,7 +56,7 @@ describe('PanelComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -69,7 +71,7 @@ describe('PanelComponent', function () {
             type: "day"
         });
         // Create the day component.
-        var day = new day_1.DayComponent(_this.form, settings);
+        var day = new day_1.DayComponent(_this.form, settings, _this.events);
         expect(day.settings.type).toEqual("day");
     });
     it('Should allow day placeholder', function () {
@@ -77,7 +79,7 @@ describe('PanelComponent', function () {
             placeholder: "Enter day"
         });
         // Create the day component.
-        var day = new day_1.DayComponent(_this.form, settings);
+        var day = new day_1.DayComponent(_this.form, settings, _this.events);
         expect(day.settings.fields.day.placeholder).toEqual("Enter day");
         expect(day.settings.fields.month.placeholder).toEqual("Select month");
         expect(day.settings.fields.year.placeholder).toEqual("Enter year");
@@ -87,7 +89,7 @@ describe('PanelComponent', function () {
             customClass: "dayCustomClass"
         });
         // Create the day component.
-        var day = new day_1.DayComponent(_this.form, settings);
+        var day = new day_1.DayComponent(_this.form, settings, _this.events);
         expect(day.settings.customClass).toEqual("dayCustomClass");
     });
     it('Should allow required property', function () {
@@ -95,7 +97,7 @@ describe('PanelComponent', function () {
             required: true
         });
         // Create the day component.
-        var day = new day_1.DayComponent(_this.form, settings);
+        var day = new day_1.DayComponent(_this.form, settings, _this.events);
         expect(day.settings.fields.day.required).toEqual(true);
         expect(day.settings.fields.month.required).toEqual(true);
         expect(day.settings.fields.year.required).toEqual(true);

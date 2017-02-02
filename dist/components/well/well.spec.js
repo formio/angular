@@ -6,12 +6,14 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var formio_components_component_1 = require('../../formio-components.component');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 var input_1 = require('../../fixtures/fields/input');
 var textarea_1 = require('../../fixtures/fields/textarea');
 describe('WellComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -34,7 +36,7 @@ describe('WellComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -49,12 +51,12 @@ describe('WellComponent', function () {
             type: "well"
         });
         // Create the well component.
-        var well = new well_1.WellComponent(_this.form, settings);
+        var well = new well_1.WellComponent(_this.form, settings, _this.events);
         expect(well.settings.type).toEqual("well");
     });
     it('Should create Well control.', function () {
         var settings = getSettings({});
-        var fieldset = new well_1.WellComponent(_this.form, settings);
+        var fieldset = new well_1.WellComponent(_this.form, settings, _this.events);
         expect(fieldset.control instanceof forms_1.FormGroup).toEqual(true);
         var index = 0;
         var components = new formio_components_component_1.FormioComponentsComponent();
@@ -62,7 +64,7 @@ describe('WellComponent', function () {
         components.form = _this.form;
         settings.components.forEach(function (comp) {
             index++;
-            var component = new formio_component_component_1.FormioComponentComponent();
+            var component = new formio_component_component_1.FormioComponentComponent(_this.events);
             component.component = comp;
             component.form = _this.form;
             component.ngOnInit();

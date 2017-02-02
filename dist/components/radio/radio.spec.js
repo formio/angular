@@ -5,9 +5,11 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var radio_1 = require('./radio');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('RadioComponent', function () {
     beforeEach(function () {
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
     });
     // An easy method for getting new Radio settings.
@@ -49,7 +51,7 @@ describe('RadioComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -65,7 +67,7 @@ describe('RadioComponent', function () {
             label: 'Options'
         });
         // Create the radio component.
-        var radio = new radio_1.RadioComponent(_this.form, settings);
+        var radio = new radio_1.RadioComponent(_this.form, settings, _this.events);
         expect(radio.label).toEqual('Options');
     });
     it('Should allow Radio component with required', function () {
@@ -73,7 +75,7 @@ describe('RadioComponent', function () {
             required: true
         });
         // Create the radio component.
-        var radio = new radio_1.RadioComponent(_this.form, settings);
+        var radio = new radio_1.RadioComponent(_this.form, settings, _this.events);
         expect(radio.settings.required).toEqual(true);
     });
     it('Check radio option values are available or not', function () {
@@ -90,7 +92,7 @@ describe('RadioComponent', function () {
             ]
         });
         // Create the radio component.
-        var radio = new radio_1.RadioComponent(_this.form, settings);
+        var radio = new radio_1.RadioComponent(_this.form, settings, _this.events);
         expect(radio.settings.values.length).not.toEqual(0);
     });
     it('Check radio options contains labels or not', function () {
@@ -103,7 +105,7 @@ describe('RadioComponent', function () {
             ]
         });
         // Create the radio component.
-        var radio = new radio_1.RadioComponent(_this.form, settings);
+        var radio = new radio_1.RadioComponent(_this.form, settings, _this.events);
         expect(radio.settings.values[0].label).not.toEqual('');
     });
     it('Check radio options appears in inline or not', function () {
@@ -111,7 +113,7 @@ describe('RadioComponent', function () {
             inline: true
         });
         // Create the radio component.
-        var radio = new radio_1.RadioComponent(_this.form, settings);
+        var radio = new radio_1.RadioComponent(_this.form, settings, _this.events);
         expect(radio.settings.inline).toEqual(true);
     });
 });

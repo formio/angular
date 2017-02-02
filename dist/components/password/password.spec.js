@@ -5,10 +5,12 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var password_1 = require('./password');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('PasswordComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     // An easy method for getting new password settings.
     var getSettings = function (overrides) {
@@ -43,7 +45,7 @@ describe('PasswordComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -59,7 +61,7 @@ describe('PasswordComponent', function () {
             label: 'Password'
         });
         // Create the password component.
-        var password = new password_1.PasswordComponent(_this.form, settings);
+        var password = new password_1.PasswordComponent(_this.form, settings, _this.events);
         expect(password.label).toEqual('Password');
     });
     it('Should not allow invalid Password values.', function () {
@@ -71,7 +73,7 @@ describe('PasswordComponent', function () {
             }
         });
         // Create the password component.
-        var password = new password_1.PasswordComponent(_this.form, settings);
+        var password = new password_1.PasswordComponent(_this.form, settings, _this.events);
         expect(password.settings).toEqual(settings);
         expect(password.label).toEqual('Password');
         expect(password.control instanceof forms_1.FormControl).toEqual(true);
@@ -108,7 +110,7 @@ describe('PasswordComponent', function () {
             placeholder: "Enter Password"
         });
         // Create the password component.
-        var number = new password_1.PasswordComponent(_this.form, settings);
+        var number = new password_1.PasswordComponent(_this.form, settings, _this.events);
         expect(number.settings.placeholder).toEqual("Enter Password");
     });
     it('Should allow prefix', function () {
@@ -116,7 +118,7 @@ describe('PasswordComponent', function () {
             prefix: "$"
         });
         // Create the password component.
-        var number = new password_1.PasswordComponent(_this.form, settings);
+        var number = new password_1.PasswordComponent(_this.form, settings, _this.events);
         expect(number.settings.prefix).toEqual("$");
     });
     it('Should allow suffix', function () {
@@ -124,7 +126,7 @@ describe('PasswordComponent', function () {
             suffix: "@"
         });
         // Create the password component.
-        var number = new password_1.PasswordComponent(_this.form, settings);
+        var number = new password_1.PasswordComponent(_this.form, settings, _this.events);
         expect(number.settings.suffix).toEqual("@");
     });
 });

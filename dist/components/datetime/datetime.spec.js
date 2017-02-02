@@ -5,10 +5,12 @@ var formio_component_component_1 = require('../../formio-component.component');
 var datetime_1 = require('./datetime');
 var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
+var formio_events_1 = require('../../formio.events');
 describe('SelectComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -58,7 +60,7 @@ describe('SelectComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -73,7 +75,7 @@ describe('SelectComponent', function () {
             type: "datetime"
         });
         // Create the datetime component.
-        var datetime = new datetime_1.DateTimeComponent(_this.form, settings);
+        var datetime = new datetime_1.DateTimeComponent(_this.form, settings, _this.events);
         expect(datetime.settings.type).toEqual("datetime");
     });
     it('Should allow label', function () {
@@ -81,7 +83,7 @@ describe('SelectComponent', function () {
             label: "DateTime"
         });
         // Create the datetime component.
-        var datetime = new datetime_1.DateTimeComponent(_this.form, settings);
+        var datetime = new datetime_1.DateTimeComponent(_this.form, settings, _this.events);
         expect(datetime.settings.label).toEqual("DateTime");
     });
     it('Should allow placeholder', function () {
@@ -89,7 +91,7 @@ describe('SelectComponent', function () {
             placeholder: "Select date and time"
         });
         // Create the datetime component.
-        var datetime = new datetime_1.DateTimeComponent(_this.form, settings);
+        var datetime = new datetime_1.DateTimeComponent(_this.form, settings, _this.events);
         expect(datetime.settings.placeholder).toEqual("Select date and time");
     });
     it('Should allow minDate', function () {
@@ -105,7 +107,7 @@ describe('SelectComponent', function () {
             format: "yyyy-MM-dd HH:mm"
         });
         // Create the datetime component.
-        var datetime = new datetime_1.DateTimeComponent(_this.form, settings);
+        var datetime = new datetime_1.DateTimeComponent(_this.form, settings, _this.events);
         expect(datetime.settings.format).toEqual("yyyy-MM-dd HH:mm");
     });
     it('Should allow datepicker options', function () {
@@ -119,7 +121,7 @@ describe('SelectComponent', function () {
             datepickerMode: "day"
         });
         // Create the datetime component.
-        var datetime = new datetime_1.DateTimeComponent(_this.form, settings);
+        var datetime = new datetime_1.DateTimeComponent(_this.form, settings, _this.events);
         expect(datetime.settings.showWeeks).toEqual(true);
         expect(datetime.settings.startingDay).toEqual('0');
         expect(datetime.settings.initDate).toEqual("2016-01-01");
@@ -138,7 +140,7 @@ describe('SelectComponent', function () {
             arrowkeys: false
         });
         // Create the datetime component.
-        var datetime = new datetime_1.DateTimeComponent(_this.form, settings);
+        var datetime = new datetime_1.DateTimeComponent(_this.form, settings, _this.events);
         expect(datetime.settings.hourStep).toEqual(1);
         expect(datetime.settings.minuteStep).toEqual(1);
         expect(datetime.settings.showMeridian).toEqual(true);

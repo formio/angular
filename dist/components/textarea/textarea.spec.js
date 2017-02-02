@@ -6,10 +6,12 @@ var index_1 = require('../index');
 var textarea_1 = require('./textarea');
 var textarea_2 = require('../../fixtures/fields/textarea');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('TextAreaComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     // An easy method for getting new text area settings.
     var getSettings = function (overrides) {
@@ -19,7 +21,7 @@ describe('TextAreaComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -30,7 +32,7 @@ describe('TextAreaComponent', function () {
             label: 'TextArea'
         });
         // Create the text area component.
-        var textarea = new textarea_1.TextAreaComponent(_this.form, settings);
+        var textarea = new textarea_1.TextAreaComponent(_this.form, settings, _this.events);
         expect(textarea.label).toEqual('TextArea');
     });
     it('Should allow placeholder value', function () {
@@ -38,7 +40,7 @@ describe('TextAreaComponent', function () {
             placeholder: 'Enter your text here'
         });
         // Create the text area component.
-        var textarea = new textarea_1.TextAreaComponent(_this.form, settings);
+        var textarea = new textarea_1.TextAreaComponent(_this.form, settings, _this.events);
         expect(textarea.settings.placeholder).toEqual('Enter your text here');
     });
     it('Should allow prefix', function () {
@@ -46,7 +48,7 @@ describe('TextAreaComponent', function () {
             prefix: "$"
         });
         // Create the text area component.
-        var textarea = new textarea_1.TextAreaComponent(_this.form, settings);
+        var textarea = new textarea_1.TextAreaComponent(_this.form, settings, _this.events);
         expect(textarea.settings.prefix).toEqual("$");
     });
     it('Should allow suffix', function () {
@@ -54,7 +56,7 @@ describe('TextAreaComponent', function () {
             suffix: "@"
         });
         // Create the text area component.
-        var textarea = new textarea_1.TextAreaComponent(_this.form, settings);
+        var textarea = new textarea_1.TextAreaComponent(_this.form, settings, _this.events);
         expect(textarea.settings.suffix).toEqual("@");
     });
     it('Should not allow invalid TextArea values.', function () {
@@ -69,7 +71,7 @@ describe('TextAreaComponent', function () {
             }
         });
         // Create the text area component.
-        var textarea = new textarea_1.TextAreaComponent(_this.form, settings);
+        var textarea = new textarea_1.TextAreaComponent(_this.form, settings, _this.events);
         expect(textarea.settings).toEqual(settings);
         expect(textarea.label).toEqual('Textarea');
         expect(textarea.control instanceof forms_1.FormControl).toEqual(true);
@@ -98,7 +100,7 @@ describe('TextAreaComponent', function () {
             defaultValue: 'Textarea'
         });
         // Create the text area component.
-        var textarea = new textarea_1.TextAreaComponent(_this.form, settings);
+        var textarea = new textarea_1.TextAreaComponent(_this.form, settings, _this.events);
         expect(textarea.defaultValue).toEqual('Textarea');
         expect(textarea.control.value).toEqual('Textarea');
     });

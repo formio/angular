@@ -5,10 +5,12 @@ var selectboxes_1 = require('./selectboxes');
 var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('SelectBoxComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -49,7 +51,7 @@ describe('SelectBoxComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -64,7 +66,7 @@ describe('SelectBoxComponent', function () {
             type: "selectboxes"
         });
         // Create the selectbox component.
-        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings);
+        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings, _this.events);
         expect(selectbox.settings.type).toEqual("selectboxes");
     });
     it('Should allow label value', function () {
@@ -72,7 +74,7 @@ describe('SelectBoxComponent', function () {
             label: "SelectBox"
         });
         // Create the selectbox component.
-        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings);
+        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings, _this.events);
         expect(selectbox.settings.label).toEqual("SelectBox");
     });
     it('Should allow SelectBox component with required', function () {
@@ -80,7 +82,7 @@ describe('SelectBoxComponent', function () {
             required: true
         });
         // Create the selectbox component.
-        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings);
+        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings, _this.events);
         expect(selectbox.settings.required).toEqual(true);
     });
     it('Check SelectBox option values are available or not', function () {
@@ -97,7 +99,7 @@ describe('SelectBoxComponent', function () {
             ]
         });
         // Create the selectbox component.
-        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings);
+        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings, _this.events);
         expect(selectbox.settings.values.length).not.toEqual(0);
     });
     it('Check SelectBox options contains labels or not', function () {
@@ -110,7 +112,7 @@ describe('SelectBoxComponent', function () {
             ]
         });
         // Create the selectbox component.
-        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings);
+        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings, _this.events);
         expect(selectbox.settings.values[0].label).not.toEqual('');
     });
     it('Check SelectBox options appears in inline or not', function () {
@@ -118,7 +120,7 @@ describe('SelectBoxComponent', function () {
             inline: true
         });
         // Create the selectbox component.
-        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings);
+        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings, _this.events);
         expect(selectbox.settings.inline).toEqual(true);
     });
     it('Should allow custom class', function () {
@@ -126,7 +128,7 @@ describe('SelectBoxComponent', function () {
             customClass: "myselect"
         });
         // Create the selectbox component.
-        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings);
+        var selectbox = new selectboxes_1.SelectBoxComponent(_this.form, settings, _this.events);
         expect(selectbox.settings.customClass).toEqual("myselect");
     });
 });

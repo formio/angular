@@ -25,23 +25,16 @@ export interface DateTimeOptions extends BaseOptions<any> {
 export declare class DateTimeComponent extends BaseComponent<DateTimeOptions> {
 }
 export declare class DateTimeElement extends BaseElement<DateTimeComponent> implements OnInit {
-    selectedDate: Date;
-    showDateTime: any;
-    checkDates: Date;
-    displayDate: Boolean;
-    displayTime: Boolean;
-    minDate: Date;
-    time: any;
-    dateFormat: any;
-    getDate(): Date;
-    today(): void;
+    date: Date;
+    displayDate: boolean;
+    displayTime: boolean;
+    selectDate(): void;
+    registerTime(timepicker: any): boolean;
+    selectTime(): void;
+    setDate(date: Date): void;
+    now(): void;
     clear(): void;
     close(): void;
-    selectDate(): void;
-    selectTime(date: any): void;
-    selectFirstTime(): void;
-    checkDate(): void;
-    now(): void;
     ngOnInit(): void;
 }
 export declare function DateTimeField(template: FormioTemplate): typeof DateTimeElement;

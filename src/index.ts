@@ -1,3 +1,4 @@
+import { ModuleWithProviders } from '@angular/core';
 import { FormioBaseModule } from './formio';
 import { FORMIO_BOOTSTRAP } from './templates/bootstrap.templates';
 FormioBaseModule.setTemplate(FORMIO_BOOTSTRAP);

@@ -1,4 +1,4 @@
-import { Type, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 export interface FormioComponentMetaData {
     template?: string;
     selector?: string;
@@ -50,6 +50,7 @@ export interface FormioTemplate {
     formio_wizard: FormioComponentTemplate;
     formio_components: FormioComponentTemplate;
     errors: FormioComponentTemplate;
+    alerts: FormioComponentTemplate;
     components: FormioComponentsTemplate;
 }
 /**
@@ -60,4 +61,4 @@ export interface FormioTemplate {
  * @param template - The template to add to this component.
  * @constructor
  */
-export declare function RegisterTemplate(cmp: Type<any>, template: FormioComponentTemplate): void;
+export declare function RegisterTemplate(cmp: any, template: FormioComponentTemplate): void;

@@ -5,11 +5,13 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var textfield_1 = require('./textfield');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 var input_1 = require('../../fixtures/fields/input');
 describe('TextFieldComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     // An easy method for getting new text field settings.
     var getSettings = function (overrides) {
@@ -19,7 +21,7 @@ describe('TextFieldComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -37,7 +39,7 @@ describe('TextFieldComponent', function () {
             }
         });
         // Create the text field component.
-        var textField = new textfield_1.TextFieldComponent(_this.form, settings);
+        var textField = new textfield_1.TextFieldComponent(_this.form, settings, _this.events);
         expect(textField.settings).toEqual(settings);
         expect(textField.defaultValue).toEqual('');
         expect(textField.label).toEqual('First Name');
@@ -72,7 +74,7 @@ describe('TextFieldComponent', function () {
             defaultValue: 'Travis'
         });
         // Create the text field component.
-        var textField = new textfield_1.TextFieldComponent(_this.form, settings);
+        var textField = new textfield_1.TextFieldComponent(_this.form, settings, _this.events);
         expect(textField.defaultValue).toEqual('Travis');
         expect(textField.control.value).toEqual('Travis');
     });

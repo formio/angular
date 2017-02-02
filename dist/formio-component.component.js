@@ -11,10 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var components_1 = require('./components/components');
-var formio_common_1 = require('./formio.common');
+var formio_events_1 = require('./formio.events');
 var FormioUtils = require('formio-utils');
 var FormioComponentComponent = (function () {
-    function FormioComponentComponent() {
+    function FormioComponentComponent(events) {
+        this.events = events;
         this.show = true;
         this.components = [];
         this.container = new forms_1.FormArray([]);
@@ -35,25 +36,7 @@ var FormioComponentComponent = (function () {
             }
         }
         this.checkConditions();
-        // Subscribe to the invalid event.
-        if (this.events) {
-            this.events.component.subscribe(function (type) {
-                _this.components.forEach(function (component) {
-                    switch (type) {
-                        case 'invalid':
-                            component.control.markAsDirty(true);
-                            var errors = component.errors;
-                            if (errors.length) {
-                                _this.events.errors = _this.events.errors.concat(errors);
-                            }
-                            break;
-                        case 'valueChanges':
-                            _this.checkConditions();
-                            break;
-                    }
-                });
-            });
-        }
+        this.events.onChange.subscribe(function () { return _this.checkConditions(); });
     };
     FormioComponentComponent.prototype.getData = function (key) {
         if (this.data.hasOwnProperty(key)) {
@@ -69,8 +52,8 @@ var FormioComponentComponent = (function () {
         this.show = FormioUtils.checkCondition(this.component, compData);
     };
     FormioComponentComponent.prototype.addComponent = function () {
-        var component = components_1.FormioComponents.createComponent(this.component.type, this.form, this.component, this.data);
-        // Set the index.
+        var component = components_1.FormioComponents.createComponent(this.component.type, this.form, this.component, this.events, this.data);
+        // Set the index and readOnly flag.
         component.index = this.components.length;
         // Add the form controls.
         if (this.component.input && this.component.key) {
@@ -141,10 +124,6 @@ var FormioComponentComponent = (function () {
     ], FormioComponentComponent.prototype, "submission", void 0);
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', formio_common_1.FormioEvents)
-    ], FormioComponentComponent.prototype, "events", void 0);
-    __decorate([
-        core_1.Input(), 
         __metadata('design:type', Object)
     ], FormioComponentComponent.prototype, "label", void 0);
     __decorate([
@@ -156,7 +135,7 @@ var FormioComponentComponent = (function () {
             selector: 'formio-component',
             template: '<div></div>'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [formio_events_1.FormioEvents])
     ], FormioComponentComponent);
     return FormioComponentComponent;
 }());

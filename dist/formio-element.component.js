@@ -12,10 +12,11 @@ var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var components_1 = require('./components/components');
 var base_1 = require('./components/base');
-var formio_common_1 = require('./formio.common');
+var formio_events_1 = require('./formio.events');
 var FormioElement = (function () {
-    function FormioElement(compiler) {
+    function FormioElement(compiler, events) {
         this.compiler = compiler;
+        this.events = events;
     }
     FormioElement.prototype.ngOnInit = function () {
         var _this = this;
@@ -43,7 +44,6 @@ var FormioElement = (function () {
             cmpRef.instance.submission = _this.submission;
             cmpRef.instance.data = _this.data;
             cmpRef.instance.render = _this.render;
-            cmpRef.instance.events = _this.events;
         });
     };
     __decorate([
@@ -68,10 +68,6 @@ var FormioElement = (function () {
     ], FormioElement.prototype, "label", void 0);
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', formio_common_1.FormioEvents)
-    ], FormioElement.prototype, "events", void 0);
-    __decorate([
-        core_1.Input(), 
         __metadata('design:type', core_1.EventEmitter)
     ], FormioElement.prototype, "render", void 0);
     __decorate([
@@ -83,7 +79,7 @@ var FormioElement = (function () {
             selector: 'formio-element',
             template: '<div #formioElement></div>'
         }), 
-        __metadata('design:paramtypes', [core_1.Compiler])
+        __metadata('design:paramtypes', [core_1.Compiler, formio_events_1.FormioEvents])
     ], FormioElement);
     return FormioElement;
 }());

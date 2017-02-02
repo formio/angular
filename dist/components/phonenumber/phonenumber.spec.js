@@ -5,10 +5,12 @@ var formio_component_component_1 = require('../../formio-component.component');
 var phonenumber_1 = require('./phonenumber');
 var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
+var formio_events_1 = require('../../formio.events');
 describe('PhoneNumberComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -41,7 +43,7 @@ describe('PhoneNumberComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -56,7 +58,7 @@ describe('PhoneNumberComponent', function () {
             type: "phoneNumber"
         });
         // Create the phone component.
-        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings);
+        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings, _this.events);
         expect(phone.settings.type).toEqual("phoneNumber");
     });
     it('Should allow label', function () {
@@ -64,7 +66,7 @@ describe('PhoneNumberComponent', function () {
             label: "Phone Number"
         });
         // Create the phone component.
-        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings);
+        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings, _this.events);
         expect(phone.settings.label).toEqual("Phone Number");
     });
     it('Should allow placeholder', function () {
@@ -72,7 +74,7 @@ describe('PhoneNumberComponent', function () {
             placeholder: "Enter Phone Number"
         });
         // Create the phone component.
-        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings);
+        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings, _this.events);
         expect(phone.settings.placeholder).toEqual("Enter Phone Number");
     });
     it('Should allow inputMask', function () {
@@ -80,7 +82,7 @@ describe('PhoneNumberComponent', function () {
             inputMask: "(999) 999-9999"
         });
         // Create the phone component.
-        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings);
+        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings, _this.events);
         expect(phone.settings.inputMask).toEqual("(999) 999-9999");
     });
     it('Should allow customClass', function () {
@@ -88,7 +90,7 @@ describe('PhoneNumberComponent', function () {
             customClass: "myclass"
         });
         // Create the phone component.
-        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings);
+        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings, _this.events);
         expect(phone.settings.customClass).toEqual("myclass");
     });
     it('Should allow prefix', function () {
@@ -96,7 +98,7 @@ describe('PhoneNumberComponent', function () {
             prefix: "$"
         });
         // Create the phone component.
-        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings);
+        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings, _this.events);
         expect(phone.settings.prefix).toEqual("$");
     });
     it('Should allow suffix', function () {
@@ -104,7 +106,7 @@ describe('PhoneNumberComponent', function () {
             suffix: "@"
         });
         // Create the phone component.
-        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings);
+        var phone = new phonenumber_1.PhoneNumberComponent(_this.form, settings, _this.events);
         expect(phone.settings.suffix).toEqual("@");
     });
     it('Should allow multiple phone number fields', function () {

@@ -5,10 +5,12 @@ var formio_component_component_1 = require('../../formio-component.component');
 var select_1 = require('./select');
 var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
+var formio_events_1 = require('../../formio.events');
 describe('SelectComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -78,7 +80,7 @@ describe('SelectComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -93,7 +95,7 @@ describe('SelectComponent', function () {
             type: "select"
         });
         // Create the select component.
-        var select = new select_1.SelectComponent(_this.form, settings);
+        var select = new select_1.SelectComponent(_this.form, settings, _this.events);
         expect(select.settings.type).toEqual("select");
     });
     it('Should allow label', function () {
@@ -101,7 +103,7 @@ describe('SelectComponent', function () {
             label: "Fruits"
         });
         // Create the select component.
-        var select = new select_1.SelectComponent(_this.form, settings);
+        var select = new select_1.SelectComponent(_this.form, settings, _this.events);
         expect(select.settings.label).toEqual("Fruits");
     });
     it('Should allow placeholder', function () {
@@ -109,7 +111,7 @@ describe('SelectComponent', function () {
             placeholder: "Select one fruit"
         });
         // Create the select component.
-        var select = new select_1.SelectComponent(_this.form, settings);
+        var select = new select_1.SelectComponent(_this.form, settings, _this.events);
         expect(select.settings.placeholder).toEqual("Select one fruit");
     });
     it('Should allow valueProperty', function () {
@@ -117,7 +119,7 @@ describe('SelectComponent', function () {
             valueProperty: "fullName"
         });
         // Create the select component.
-        var select = new select_1.SelectComponent(_this.form, settings);
+        var select = new select_1.SelectComponent(_this.form, settings, _this.events);
         expect(select.settings.valueProperty).toEqual("fullName");
     });
     it('Should allow template', function () {
@@ -125,7 +127,7 @@ describe('SelectComponent', function () {
             template: "{{ item.label }}"
         });
         // Create the select component.
-        var select = new select_1.SelectComponent(_this.form, settings);
+        var select = new select_1.SelectComponent(_this.form, settings, _this.events);
         expect(select.settings.template).toEqual("{{ item.label }}");
     });
     it('Should set the data according to dataSrc', function () {

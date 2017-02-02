@@ -18,7 +18,21 @@ var ButtonElement = (function (_super) {
     __extends(ButtonElement, _super);
     function ButtonElement() {
         _super.apply(this, arguments);
+        this.disabled = false;
+        this.submitting = false;
     }
+    ButtonElement.prototype.ngOnInit = function () {
+        var _this = this;
+        _super.prototype.ngOnInit.call(this);
+        if (this.component.settings.action === 'submit') {
+            this.component.events.beforeSubmit.subscribe(function () {
+                _this.disabled = _this.submitting = true;
+            });
+            this.component.events.onSubmit.subscribe(function () {
+                _this.disabled = _this.submitting = false;
+            });
+        }
+    };
     return ButtonElement;
 }(base_1.BaseElement));
 exports.ButtonElement = ButtonElement;

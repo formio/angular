@@ -5,10 +5,12 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var hidden_1 = require('./hidden');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('HiddenComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     // An easy method for getting new hidden settings.
     var getSettings = function (overrides) {
@@ -32,7 +34,7 @@ describe('HiddenComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -48,7 +50,7 @@ describe('HiddenComponent', function () {
             type: 'hidden'
         });
         // Create the hidden component.
-        var hidden = new hidden_1.HiddenComponent(_this.form, settings);
+        var hidden = new hidden_1.HiddenComponent(_this.form, settings, _this.events);
         expect(hidden.settings.type).toEqual('hidden');
     });
     it('Should allow label value', function () {
@@ -56,7 +58,7 @@ describe('HiddenComponent', function () {
             label: 'Hidden'
         });
         // Create the hidden component.
-        var hidden = new hidden_1.HiddenComponent(_this.form, settings);
+        var hidden = new hidden_1.HiddenComponent(_this.form, settings, _this.events);
         expect(hidden.settings.label).toEqual('Hidden');
     });
     it('Should allow unique property', function () {
@@ -64,7 +66,7 @@ describe('HiddenComponent', function () {
             unique: true
         });
         // Create the hidden component.
-        var hidden = new hidden_1.HiddenComponent(_this.form, settings);
+        var hidden = new hidden_1.HiddenComponent(_this.form, settings, _this.events);
         expect(hidden.settings.unique).toEqual(true);
     });
     it('Should allow key', function () {
@@ -72,7 +74,7 @@ describe('HiddenComponent', function () {
             key: 'hidden'
         });
         // Create the hidden component.
-        var hidden = new hidden_1.HiddenComponent(_this.form, settings);
+        var hidden = new hidden_1.HiddenComponent(_this.form, settings, _this.events);
         expect(hidden.settings.key).toEqual('hidden');
     });
 });

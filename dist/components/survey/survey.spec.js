@@ -5,9 +5,11 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var survey_1 = require('./survey');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('SurveyComponent', function () {
     beforeEach(function () {
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
     });
     // An easy method for getting new Survey settings.
@@ -65,7 +67,7 @@ describe('SurveyComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -81,7 +83,7 @@ describe('SurveyComponent', function () {
             type: "survey"
         });
         // Create the Survey component.
-        var survey = new survey_1.SurveyComponent(_this.form, settings);
+        var survey = new survey_1.SurveyComponent(_this.form, settings, _this.events);
         expect(survey.settings.type).toEqual("survey");
     });
     it('Should allow label value', function () {
@@ -89,7 +91,7 @@ describe('SurveyComponent', function () {
             label: 'Survey'
         });
         // Create the Survey component.
-        var survey = new survey_1.SurveyComponent(_this.form, settings);
+        var survey = new survey_1.SurveyComponent(_this.form, settings, _this.events);
         expect(survey.label).toEqual('Survey');
     });
     it('Should allow Survey component with required', function () {
@@ -97,7 +99,7 @@ describe('SurveyComponent', function () {
             required: false
         });
         // Create the Survey component.
-        var survey = new survey_1.SurveyComponent(_this.form, settings);
+        var survey = new survey_1.SurveyComponent(_this.form, settings, _this.events);
         expect(survey.settings.required).toEqual(false);
     });
     it('Check Survey values are available or not', function () {
@@ -118,7 +120,7 @@ describe('SurveyComponent', function () {
             ]
         });
         // Create the Survey component.
-        var survey = new survey_1.SurveyComponent(_this.form, settings);
+        var survey = new survey_1.SurveyComponent(_this.form, settings, _this.events);
         expect(survey.settings.values.length).not.toEqual(0);
     });
     it('Check Survey values contains labels or not', function () {
@@ -131,7 +133,7 @@ describe('SurveyComponent', function () {
             ]
         });
         // Create the Survey component.
-        var survey = new survey_1.SurveyComponent(_this.form, settings);
+        var survey = new survey_1.SurveyComponent(_this.form, settings, _this.events);
         expect(survey.settings.values[0].label).not.toEqual('');
     });
     it('Check Survey Questions are available or not', function () {
@@ -152,7 +154,7 @@ describe('SurveyComponent', function () {
             ]
         });
         // Create the Survey component.
-        var survey = new survey_1.SurveyComponent(_this.form, settings);
+        var survey = new survey_1.SurveyComponent(_this.form, settings, _this.events);
         expect(survey.settings.questions.length).not.toEqual(0);
     });
 });

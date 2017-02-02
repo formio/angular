@@ -12,5 +12,8 @@ export interface ButtonOptions extends BaseOptions<boolean> {
 export declare class ButtonComponent extends BaseComponent<ButtonOptions> {
 }
 export declare class ButtonElement extends BaseElement<ButtonComponent> {
+    disabled: boolean;
+    submitting: boolean;
+    ngOnInit(): void;
 }
 export declare function ButtonField(template: FormioTemplate): typeof ButtonElement;

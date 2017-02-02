@@ -24,14 +24,16 @@ function CustomValidator(custom, form) {
 }
 exports.CustomValidator = CustomValidator;
 var BaseComponent = (function () {
-    function BaseComponent(form, settings, data) {
+    function BaseComponent(form, settings, events, data) {
         if (data === void 0) { data = {}; }
         this.form = form;
         this.settings = settings;
+        this.events = events;
         this.data = data;
         this.index = 0;
         this.validators = [];
         this.getControl();
+        this.registerEvents();
     }
     BaseComponent.prototype.getData = function (index) {
         if (this.data.hasOwnProperty(this.settings.key)) {
@@ -45,11 +47,26 @@ var BaseComponent = (function () {
             return {};
         }
     };
+    BaseComponent.prototype.registerEvents = function () {
+        var _this = this;
+        this.events.onInvalid.subscribe(function () {
+            _this.control.markAsDirty(true);
+            var errors = _this.errors;
+            if (errors.length) {
+                _this.events.errors = _this.events.errors.concat(errors);
+            }
+        });
+    };
     BaseComponent.prototype.setValue = function (value) {
         if (this.control && (this.control instanceof forms_1.FormControl)) {
             var formControl = this.control;
             formControl.setValue(value);
             formControl.markAsDirty();
+        }
+    };
+    BaseComponent.prototype.disable = function () {
+        if (this.control) {
+            this.control.disable();
         }
     };
     Object.defineProperty(BaseComponent.prototype, "label", {

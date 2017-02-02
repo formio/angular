@@ -5,10 +5,12 @@ var formio_component_component_1 = require('../../formio-component.component');
 var address_1 = require('./address');
 var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
+var formio_events_1 = require('../../formio.events');
 describe('AddressComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -37,7 +39,7 @@ describe('AddressComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -52,7 +54,7 @@ describe('AddressComponent', function () {
             type: "address"
         });
         // Create the address component.
-        var address = new address_1.AddressComponent(_this.form, settings);
+        var address = new address_1.AddressComponent(_this.form, settings, _this.events);
         expect(address.settings.type).toEqual("address");
     });
     it('Should allow label', function () {
@@ -60,7 +62,7 @@ describe('AddressComponent', function () {
             label: "Address"
         });
         // Create the address component.
-        var address = new address_1.AddressComponent(_this.form, settings);
+        var address = new address_1.AddressComponent(_this.form, settings, _this.events);
         expect(address.settings.label).toEqual("Address");
     });
     it('Should allow placeholder', function () {
@@ -68,7 +70,7 @@ describe('AddressComponent', function () {
             placeholder: "Enter address"
         });
         // Create the address component.
-        var address = new address_1.AddressComponent(_this.form, settings);
+        var address = new address_1.AddressComponent(_this.form, settings, _this.events);
         expect(address.settings.placeholder).toEqual("Enter address");
     });
     it('Should allow customClass', function () {
@@ -76,7 +78,7 @@ describe('AddressComponent', function () {
             customClass: "myclass"
         });
         // Create the address component.
-        var address = new address_1.AddressComponent(_this.form, settings);
+        var address = new address_1.AddressComponent(_this.form, settings, _this.events);
         expect(address.settings.customClass).toEqual("myclass");
     });
 });

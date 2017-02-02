@@ -1,4 +1,5 @@
 import { OnInit } from "@angular/core";
+import { FormControl } from '@angular/forms';
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
@@ -51,7 +52,7 @@ export class DateTimeElement extends BaseElement<DateTimeComponent> implements O
 
     setDate(date: Date) {
         this.date = date;
-        this.component.control.setValue(date);
+        (<FormControl>this.component.control).setValue(date);
     }
 
     now() {

@@ -5,10 +5,12 @@ var formio_component_component_1 = require('../../formio-component.component');
 var resource_1 = require('./resource');
 var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
+var formio_events_1 = require('../../formio.events');
 describe('SelectComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -41,7 +43,7 @@ describe('SelectComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -56,7 +58,7 @@ describe('SelectComponent', function () {
             type: "resource"
         });
         // Create the resource component.
-        var resource = new resource_1.ResourceComponent(_this.form, settings);
+        var resource = new resource_1.ResourceComponent(_this.form, settings, _this.events);
         expect(resource.settings.type).toEqual("resource");
     });
     it('Should allow label', function () {
@@ -64,7 +66,7 @@ describe('SelectComponent', function () {
             label: "Resource"
         });
         // Create the resource component.
-        var resource = new resource_1.ResourceComponent(_this.form, settings);
+        var resource = new resource_1.ResourceComponent(_this.form, settings, _this.events);
         expect(resource.settings.label).toEqual("Resource");
     });
     it('Should allow placeholder', function () {
@@ -72,7 +74,7 @@ describe('SelectComponent', function () {
             placeholder: "Select one"
         });
         // Create the resource component.
-        var resource = new resource_1.ResourceComponent(_this.form, settings);
+        var resource = new resource_1.ResourceComponent(_this.form, settings, _this.events);
         expect(resource.settings.placeholder).toEqual("Select one");
     });
     it('Should allow template', function () {
@@ -80,7 +82,7 @@ describe('SelectComponent', function () {
             template: "<span>{{ item.data }}</span>"
         });
         // Create the resource component.
-        var resource = new resource_1.ResourceComponent(_this.form, settings);
+        var resource = new resource_1.ResourceComponent(_this.form, settings, _this.events);
         expect(resource.settings.template).toEqual("<span>{{ item.data }}</span>");
     });
 });

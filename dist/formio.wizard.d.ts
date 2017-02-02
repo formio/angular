@@ -1,12 +1,11 @@
 import { EventEmitter, OnInit, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormioService } from './formio.service';
-import { FormioForm, FormioEvents, FormioOptions } from './formio.common';
+import { FormioForm, FormioOptions } from './formio.common';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export declare class FormioWizardComponent implements OnInit {
     private elementRef;
     formGroup: FormGroup;
-    events: FormioEvents;
     ready: BehaviorSubject<boolean>;
     page: any;
     pages: Array<any>;

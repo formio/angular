@@ -5,10 +5,12 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var content_1 = require('./content');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('ContentComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     // An easy method for getting new content settings.
     var getSettings = function (overrides) {
@@ -29,7 +31,7 @@ describe('ContentComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -45,7 +47,7 @@ describe('ContentComponent', function () {
             type: 'content'
         });
         // Create the content component.
-        var content = new content_1.ContentComponent(_this.form, settings);
+        var content = new content_1.ContentComponent(_this.form, settings, _this.events);
         expect(content.settings.type).toEqual('content');
     });
     it('Should allow key', function () {
@@ -53,7 +55,7 @@ describe('ContentComponent', function () {
             key: 'mycontent'
         });
         // Create the content component.
-        var content = new content_1.ContentComponent(_this.form, settings);
+        var content = new content_1.ContentComponent(_this.form, settings, _this.events);
         expect(content.settings.key).toEqual('mycontent');
     });
     it('Should allow html', function () {
@@ -61,7 +63,7 @@ describe('ContentComponent', function () {
             html: "<p><em><strong>Good Morning Guys!!!</strong></em></p>"
         });
         // Create the content component.
-        var content = new content_1.ContentComponent(_this.form, settings);
+        var content = new content_1.ContentComponent(_this.form, settings, _this.events);
         expect(content.settings.html).toEqual('<p><em><strong>Good Morning Guys!!!</strong></em></p>');
     });
 });

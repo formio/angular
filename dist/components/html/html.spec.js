@@ -5,10 +5,12 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var formio_component_component_1 = require('../../formio-component.component');
 var html_1 = require('./html');
+var formio_events_1 = require('../../formio.events');
 describe('HtmlComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     // An easy method for getting new HtmlElement settings.
     var getSettings = function (overrides) {
@@ -35,7 +37,7 @@ describe('HtmlComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -51,7 +53,7 @@ describe('HtmlComponent', function () {
             type: 'htmlelement'
         });
         // Create the htmlelement component.
-        var htmlelement = new html_1.HtmlComponent(_this.form, settings);
+        var htmlelement = new html_1.HtmlComponent(_this.form, settings, _this.events);
         expect(htmlelement.settings.type).toEqual('htmlelement');
     });
     it('Should allow className', function () {
@@ -59,7 +61,7 @@ describe('HtmlComponent', function () {
             className: 'customClass'
         });
         // Create the htmlelement component.
-        var htmlelement = new html_1.HtmlComponent(_this.form, settings);
+        var htmlelement = new html_1.HtmlComponent(_this.form, settings, _this.events);
         expect(htmlelement.settings.className).toEqual('customClass');
     });
     it('Should allow tag', function () {
@@ -67,7 +69,7 @@ describe('HtmlComponent', function () {
             tag: 'p'
         });
         // Create the htmlelement component.
-        var htmlelement = new html_1.HtmlComponent(_this.form, settings);
+        var htmlelement = new html_1.HtmlComponent(_this.form, settings, _this.events);
         expect(htmlelement.settings.tag).toEqual('p');
     });
     it('Should allow content', function () {
@@ -75,7 +77,7 @@ describe('HtmlComponent', function () {
             content: 'Hello, Good Morning !!!'
         });
         // Create the htmlelement component.
-        var htmlelement = new html_1.HtmlComponent(_this.form, settings);
+        var htmlelement = new html_1.HtmlComponent(_this.form, settings, _this.events);
         expect(htmlelement.settings.content).toEqual('Hello, Good Morning !!!');
     });
     it('Should have attributes', function () {

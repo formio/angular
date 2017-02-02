@@ -12,18 +12,19 @@ require('core-js/es7/reflect');
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var formio_service_1 = require('./formio.service');
-var formio_common_1 = require('./formio.common');
+var formio_events_1 = require('./formio.events');
 var BehaviorSubject_1 = require('rxjs/BehaviorSubject');
 /**
  * The <formio> component.
  */
 var FormioComponent = (function () {
-    function FormioComponent() {
+    function FormioComponent(events) {
+        this.events = events;
         this.formGroup = new forms_1.FormGroup({});
-        this.events = new formio_common_1.FormioEvents();
         this.ready = new BehaviorSubject_1.BehaviorSubject(false);
         this.form = null;
         this.submission = {};
+        this.readOnly = false;
         this.render = new core_1.EventEmitter();
         this.submit = new core_1.EventEmitter();
         this.change = new core_1.EventEmitter();
@@ -33,6 +34,9 @@ var FormioComponent = (function () {
         this.options = Object.assign({
             errors: {
                 message: 'Please fix the following errors before submitting.'
+            },
+            alerts: {
+                submitMessage: 'Submission Complete.'
             }
         }, this.options);
         if (this.form) {
@@ -45,6 +49,14 @@ var FormioComponent = (function () {
                     _this.form = form;
                     _this.ready.next(true);
                 }
+                // If a submission is also provided.
+                if (_this.service.formio.submissionId) {
+                    _this.service.loadSubmission().subscribe(function (submission) {
+                        _this.submission = submission;
+                        _this.formGroup.setValue(submission.data);
+                        _this.formGroup.disable();
+                    });
+                }
             });
         }
         // Subscribe to value changes.
@@ -53,8 +65,12 @@ var FormioComponent = (function () {
             .debounceTime(100)
             .subscribe(function (value) {
             _this.change.emit(value);
-            _this.events.component.emit('valueChanges');
+            _this.events.onChange.emit(value);
         });
+        // If this is a read only form, then disable the formGroup.
+        if (this.readOnly) {
+            this.formGroup.disable();
+        }
     };
     FormioComponent.prototype.onRender = function () {
         // The form is done rendering.
@@ -66,22 +82,35 @@ var FormioComponent = (function () {
             $event.preventDefault();
             $event.stopPropagation();
         }
-        // Reset the errors.
+        // Reset the errors and alerts.
         this.events.errors = [];
+        this.events.alerts = [];
         // Check if the form is valid.
         if (!this.formGroup.valid) {
             this.formGroup.markAsDirty(true);
-            this.events.component.emit('invalid');
+            this.events.onInvalid.emit(true);
             return;
         }
         var submission = { data: this.formGroup.value };
+        // Trigger to components that we are submitting.
+        this.events.beforeSubmit.emit(submission);
         if (this.service) {
             this.service.saveSubmission(submission).subscribe(function (sub) {
                 _this.submit.emit(sub);
+                _this.events.onSubmit.emit(sub);
+                _this.events.alerts.push({
+                    type: 'success',
+                    message: _this.options.alerts.submitMessage
+                });
             });
         }
         else {
             this.submit.emit(submission);
+            this.events.onSubmit.emit(submission);
+            this.events.alerts.push({
+                type: 'success',
+                message: this.options.alerts.submitMessage
+            });
         }
     };
     __decorate([
@@ -105,6 +134,10 @@ var FormioComponent = (function () {
         __metadata('design:type', Object)
     ], FormioComponent.prototype, "options", void 0);
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], FormioComponent.prototype, "readOnly", void 0);
+    __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], FormioComponent.prototype, "render", void 0);
@@ -121,7 +154,7 @@ var FormioComponent = (function () {
             selector: 'formio',
             template: '<div></div>'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [formio_events_1.FormioEvents])
     ], FormioComponent);
     return FormioComponent;
 }());

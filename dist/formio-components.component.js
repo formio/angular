@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
-var formio_common_1 = require('./formio.common');
 var FormioComponentsComponent = (function () {
     function FormioComponentsComponent() {
         this.render = new core_1.EventEmitter();
@@ -41,10 +40,6 @@ var FormioComponentsComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], FormioComponentsComponent.prototype, "data", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', formio_common_1.FormioEvents)
-    ], FormioComponentsComponent.prototype, "events", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)

@@ -4,10 +4,12 @@ var forms_1 = require('@angular/forms');
 var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var button_1 = require('./button');
+var formio_events_1 = require('../../formio.events');
 describe('ButtonComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -29,7 +31,7 @@ describe('ButtonComponent', function () {
     };
     it('Should create the control.', function () {
         var settings = getSettings({});
-        var button = new button_1.ButtonComponent(_this.form, settings);
+        var button = new button_1.ButtonComponent(_this.form, settings, _this.events);
         expect(button.control instanceof forms_1.FormControl).toEqual(true);
     });
 });

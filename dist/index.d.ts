@@ -1,2 +1,2 @@
-import { FormioBaseModule } from './formio';
-export declare const FormioModule: typeof FormioBaseModule;
+import { ModuleWithProviders } from '@angular/core';
+export declare const FormioModule: ModuleWithProviders;

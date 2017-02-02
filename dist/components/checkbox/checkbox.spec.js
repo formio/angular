@@ -5,11 +5,13 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var checkbox_1 = require('./checkbox');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 var checkbox_2 = require('../../fixtures/fields/checkbox');
 describe('CheckBoxComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     // An easy method for getting new checkbox settings.
     var getSettings = function (overrides) {
@@ -19,7 +21,7 @@ describe('CheckBoxComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -35,7 +37,7 @@ describe('CheckBoxComponent', function () {
             defaultValue: false
         });
         // Create the checkbox component.
-        var checkbox = new checkbox_1.CheckBoxComponent(_this.form, settings);
+        var checkbox = new checkbox_1.CheckBoxComponent(_this.form, settings, _this.events);
         expect(checkbox.defaultValue).toEqual(false);
         expect(checkbox.control.value).toEqual(false);
     });
@@ -44,7 +46,7 @@ describe('CheckBoxComponent', function () {
             label: 'CheckBox'
         });
         // Create the checkbox component.
-        var checkbox = new checkbox_1.CheckBoxComponent(_this.form, settings);
+        var checkbox = new checkbox_1.CheckBoxComponent(_this.form, settings, _this.events);
         expect(checkbox.label).toEqual('CheckBox');
     });
     it('Should allow check box with required', function () {
@@ -52,7 +54,7 @@ describe('CheckBoxComponent', function () {
             required: true
         });
         // Create the checkbox component.
-        var checkbox = new checkbox_1.CheckBoxComponent(_this.form, settings);
+        var checkbox = new checkbox_1.CheckBoxComponent(_this.form, settings, _this.events);
         expect(checkbox.settings.required).toEqual(true);
     });
 });

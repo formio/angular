@@ -5,10 +5,12 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var currency_1 = require('./currency');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 describe('CurrencyComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
+        _this.events = new formio_events_1.FormioEvents();
     });
     // An easy method for getting new Currency settings.
     var getSettings = function (overrides) {
@@ -41,7 +43,7 @@ describe('CurrencyComponent', function () {
     };
     var getComponent = function (overrides) {
         var settings = getSettings(overrides);
-        var component = new formio_component_component_1.FormioComponentComponent();
+        var component = new formio_component_component_1.FormioComponentComponent(_this.events);
         component.component = settings;
         component.form = _this.form;
         component.ngOnInit();
@@ -52,7 +54,7 @@ describe('CurrencyComponent', function () {
             label: 'Currency'
         });
         // Create the currency component.
-        var currency = new currency_1.CurrencyComponent(_this.form, settings);
+        var currency = new currency_1.CurrencyComponent(_this.form, settings, _this.events);
         expect(currency.label).toEqual('Currency');
     });
     it('Should allow default values', function () {
@@ -60,7 +62,7 @@ describe('CurrencyComponent', function () {
             defaultValue: 123
         });
         // Create the Currency component.
-        var currency = new currency_1.CurrencyComponent(_this.form, settings);
+        var currency = new currency_1.CurrencyComponent(_this.form, settings, _this.events);
         expect(currency.defaultValue).toEqual(123);
     });
     it('Test FormioComponent for Currency', function () {
@@ -73,7 +75,7 @@ describe('CurrencyComponent', function () {
             placeholder: "currency"
         });
         // Create the Currency component.
-        var currency = new currency_1.CurrencyComponent(_this.form, settings);
+        var currency = new currency_1.CurrencyComponent(_this.form, settings, _this.events);
         expect(currency.settings.placeholder).toEqual("currency");
     });
     it('Should allow prefix', function () {
@@ -81,7 +83,7 @@ describe('CurrencyComponent', function () {
             prefix: "$"
         });
         // Create the Currency component.
-        var currency = new currency_1.CurrencyComponent(_this.form, settings);
+        var currency = new currency_1.CurrencyComponent(_this.form, settings, _this.events);
         expect(currency.settings.prefix).toEqual("$");
     });
     it('Should allow suffix', function () {
@@ -89,7 +91,7 @@ describe('CurrencyComponent', function () {
             suffix: "@"
         });
         // Create the Currency component.
-        var currency = new currency_1.CurrencyComponent(_this.form, settings);
+        var currency = new currency_1.CurrencyComponent(_this.form, settings, _this.events);
         expect(currency.settings.suffix).toEqual("@");
     });
     it('Should allow multiple currency fields', function () {

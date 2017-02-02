@@ -6,12 +6,13 @@ var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
 var formio_components_component_1 = require('../../formio-components.component');
 var formio_component_component_1 = require('../../formio-component.component');
+var formio_events_1 = require('../../formio.events');
 var input_1 = require('../../fixtures/fields/input');
 describe('ColumnsComponent', function () {
     beforeEach(function () {
         index_1.RegisterComponents(bootstrap_templates_1.FORMIO_BOOTSTRAP);
         _this.form = new forms_1.FormGroup({});
-        console.log(_this.form);
+        _this.events = new formio_events_1.FormioEvents();
     });
     var getSettings = function (overrides) {
         var settings = {
@@ -33,7 +34,7 @@ describe('ColumnsComponent', function () {
     };
     it('Should create the columns control.', function () {
         var settings = getSettings({});
-        var container = new columns_1.ColumnsComponent(_this.form, settings);
+        var container = new columns_1.ColumnsComponent(_this.form, settings, _this.events);
         var index = 0;
         // Iterate through each column and create the component.
         settings.columns.forEach(function (column) {
@@ -42,7 +43,7 @@ describe('ColumnsComponent', function () {
             components.form = _this.form;
             column.components.forEach(function (comp) {
                 index++;
-                var component = new formio_component_component_1.FormioComponentComponent();
+                var component = new formio_component_component_1.FormioComponentComponent(_this.events);
                 component.component = comp;
                 component.form = _this.form;
                 component.ngOnInit();

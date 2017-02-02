@@ -11,13 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var formio_service_1 = require('./formio.service');
-var formio_common_1 = require('./formio.common');
 var BehaviorSubject_1 = require('rxjs/BehaviorSubject');
 var FormioWizardComponent = (function () {
     function FormioWizardComponent(elementRef) {
         this.elementRef = elementRef;
         this.formGroup = new forms_1.FormGroup({});
-        this.events = new formio_common_1.FormioEvents();
         this.ready = new BehaviorSubject_1.BehaviorSubject(false);
         this.pages = [];
         this.storage = {};

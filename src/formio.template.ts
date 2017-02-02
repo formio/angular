@@ -1,4 +1,4 @@
-import { Type, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 let Reflect = require('core-js/es7/reflect');
 
 export interface FormioComponentMetaData {
@@ -67,7 +67,7 @@ export interface FormioTemplate {
  * @param template - The template to add to this component.
  * @constructor
  */
-export function RegisterTemplate(cmp: Type<any>, template: FormioComponentTemplate) {
+export function RegisterTemplate(cmp: any, template: FormioComponentTemplate) {
     //noinspection TypeScriptUnresolvedFunction
     let annotations = Reflect.getMetadata('annotations', cmp);
     annotations[0].template = template.component.template;
