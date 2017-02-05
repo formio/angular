@@ -119,6 +119,45 @@ import { FormioModule } from 'ng2-formio';
 export class AppModule { }
 ```
 
+Events
+------------
+With the ```<formio>``` directive, you can register for a number of different events that fire as the Form is being used and submitted. These events can be attached with the typical Angular 2 way using the following syntax.
+
+```
+<formio src="https://examples.form.io/example" (submit)="onSubmit($event)"></formio>
+```
+
+The following events are provided.
+
+<table>
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Description</th>
+        </tr>
+    </thead>
+    <tr>
+        <th>(submit)</th>
+        <td>Called when the form is submitted. The submission object is passed to the callback function.</td>
+    </tr>
+    <tr>
+        <th>(render)</th>
+        <td>Called when the form is done rendering.</td>
+    </tr>
+    <tr>
+        <th>(beforeSubmit)</th>
+        <td>Called before a submission is made where it is triggered synchronously. The submission object is passed to the callback function.</td>
+    </tr>
+    <tr>
+        <th>(change)</th>
+        <td>Called when the form has been changed as in when someone is filling it out.</td>
+    </tr>
+    <tr>
+        <th>(invalid)</th>
+        <td>Called when the form is invalid.</td>
+    </tr>
+</table>
+
 For an example of an application using Form.io, you can look at the [Examples Folder](https://github.com/formio/ng2-formio/tree/master/example)
 
 Try it out
