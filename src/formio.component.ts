@@ -22,10 +22,18 @@ export class FormioComponent implements OnInit {
     @Input() service: FormioService;
     @Input() options: FormioOptions;
     @Input() readOnly: boolean = false;
-    @Output() render: EventEmitter<any> = new EventEmitter();
-    @Output() submit: EventEmitter<any> = new EventEmitter();
-    @Output() change: EventEmitter<any> = new EventEmitter();
-    constructor(private events: FormioEvents) {}
+    @Output() render: EventEmitter<Object>;
+    @Output() submit: EventEmitter<Object>;
+    @Output() beforeSubmit: EventEmitter<Object>;
+    @Output() change: EventEmitter<Object>;
+    @Output() invalid: EventEmitter<boolean>;
+    constructor(public events: FormioEvents) {
+        this.beforeSubmit = this.events.onBeforeSubmit;
+        this.submit = this.events.onSubmit;
+        this.change = this.events.onChange;
+        this.render = this.events.onRender;
+        this.invalid = this.events.onInvalid;
+    }
     ngOnInit() {
         this.options = Object.assign({
             errors: {
@@ -63,7 +71,6 @@ export class FormioComponent implements OnInit {
         this.formGroup.valueChanges
             .debounceTime(100)
             .subscribe((value: any) => {
-                this.change.emit(value);
                 this.events.onChange.emit(value);
             });
 
@@ -73,8 +80,7 @@ export class FormioComponent implements OnInit {
         }
     }
     onRender() {
-        // The form is done rendering.
-        this.render.emit(true);
+        this.events.onRender.emit(true);
     }
     onSubmit($event: any) {
         if ($event) {
@@ -96,11 +102,10 @@ export class FormioComponent implements OnInit {
         let submission = {data: this.formGroup.value};
 
         // Trigger to components that we are submitting.
-        this.events.beforeSubmit.emit(submission);
+        this.events.onBeforeSubmit.emit(submission);
 
         if (this.service) {
             this.service.saveSubmission(submission).subscribe((sub: {}) => {
-                this.submit.emit(sub);
                 this.events.onSubmit.emit(sub);
                 this.events.alerts.push({
                     type: 'success',
@@ -109,7 +114,6 @@ export class FormioComponent implements OnInit {
             });
         }
         else {
-            this.submit.emit(submission);
             this.events.onSubmit.emit(submission);
             this.events.alerts.push({
                 type: 'success',

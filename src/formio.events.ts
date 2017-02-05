@@ -8,17 +8,19 @@ export interface FormioEvent {
 
 @Injectable()
 export class FormioEvents {
-    public beforeSubmit: EventEmitter<Object>;
+    public onBeforeSubmit: EventEmitter<Object>;
     public onSubmit: EventEmitter<Object>;
     public onInvalid: EventEmitter<boolean>;
     public onChange: EventEmitter<Object>;
+    public onRender: EventEmitter<any>;
     public errors: Array<FormioError>;
     public alerts: Array<FormioAlert>;
     constructor() {
-        this.beforeSubmit = new EventEmitter();
+        this.onBeforeSubmit = new EventEmitter(true);
         this.onSubmit = new EventEmitter();
         this.onInvalid = new EventEmitter();
         this.onChange = new EventEmitter();
+        this.onRender = new EventEmitter();
         this.errors = [];
         this.alerts = [];
     }

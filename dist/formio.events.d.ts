@@ -5,10 +5,11 @@ export interface FormioEvent {
     data?: Object;
 }
 export declare class FormioEvents {
-    beforeSubmit: EventEmitter<Object>;
+    onBeforeSubmit: EventEmitter<Object>;
     onSubmit: EventEmitter<Object>;
     onInvalid: EventEmitter<boolean>;
     onChange: EventEmitter<Object>;
+    onRender: EventEmitter<any>;
     errors: Array<FormioError>;
     alerts: Array<FormioAlert>;
     constructor();

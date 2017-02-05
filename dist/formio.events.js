@@ -11,10 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var FormioEvents = (function () {
     function FormioEvents() {
-        this.beforeSubmit = new core_1.EventEmitter();
+        this.onBeforeSubmit = new core_1.EventEmitter(true);
         this.onSubmit = new core_1.EventEmitter();
         this.onInvalid = new core_1.EventEmitter();
         this.onChange = new core_1.EventEmitter();
+        this.onRender = new core_1.EventEmitter();
         this.errors = [];
         this.alerts = [];
     }

@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
  * The <formio> component.
  */
 export declare class FormioComponent implements OnInit {
-    private events;
+    events: FormioEvents;
     formGroup: FormGroup;
     ready: BehaviorSubject<boolean>;
     form: FormioForm;
@@ -18,9 +18,11 @@ export declare class FormioComponent implements OnInit {
     service: FormioService;
     options: FormioOptions;
     readOnly: boolean;
-    render: EventEmitter<any>;
-    submit: EventEmitter<any>;
-    change: EventEmitter<any>;
+    render: EventEmitter<Object>;
+    submit: EventEmitter<Object>;
+    beforeSubmit: EventEmitter<Object>;
+    change: EventEmitter<Object>;
+    invalid: EventEmitter<boolean>;
     constructor(events: FormioEvents);
     ngOnInit(): void;
     onRender(): void;

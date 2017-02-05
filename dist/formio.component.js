@@ -25,9 +25,11 @@ var FormioComponent = (function () {
         this.form = null;
         this.submission = {};
         this.readOnly = false;
-        this.render = new core_1.EventEmitter();
-        this.submit = new core_1.EventEmitter();
-        this.change = new core_1.EventEmitter();
+        this.beforeSubmit = this.events.onBeforeSubmit;
+        this.submit = this.events.onSubmit;
+        this.change = this.events.onChange;
+        this.render = this.events.onRender;
+        this.invalid = this.events.onInvalid;
     }
     FormioComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -64,7 +66,6 @@ var FormioComponent = (function () {
         this.formGroup.valueChanges
             .debounceTime(100)
             .subscribe(function (value) {
-            _this.change.emit(value);
             _this.events.onChange.emit(value);
         });
         // If this is a read only form, then disable the formGroup.
@@ -73,8 +74,7 @@ var FormioComponent = (function () {
         }
     };
     FormioComponent.prototype.onRender = function () {
-        // The form is done rendering.
-        this.render.emit(true);
+        this.events.onRender.emit(true);
     };
     FormioComponent.prototype.onSubmit = function ($event) {
         var _this = this;
@@ -93,10 +93,9 @@ var FormioComponent = (function () {
         }
         var submission = { data: this.formGroup.value };
         // Trigger to components that we are submitting.
-        this.events.beforeSubmit.emit(submission);
+        this.events.onBeforeSubmit.emit(submission);
         if (this.service) {
             this.service.saveSubmission(submission).subscribe(function (sub) {
-                _this.submit.emit(sub);
                 _this.events.onSubmit.emit(sub);
                 _this.events.alerts.push({
                     type: 'success',
@@ -105,7 +104,6 @@ var FormioComponent = (function () {
             });
         }
         else {
-            this.submit.emit(submission);
             this.events.onSubmit.emit(submission);
             this.events.alerts.push({
                 type: 'success',
@@ -148,7 +146,15 @@ var FormioComponent = (function () {
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
+    ], FormioComponent.prototype, "beforeSubmit", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
     ], FormioComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], FormioComponent.prototype, "invalid", void 0);
     FormioComponent = __decorate([
         core_1.Component({
             selector: 'formio',

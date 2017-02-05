@@ -25,7 +25,7 @@ var ButtonElement = (function (_super) {
         var _this = this;
         _super.prototype.ngOnInit.call(this);
         if (this.component.settings.action === 'submit') {
-            this.component.events.beforeSubmit.subscribe(function () {
+            this.component.events.onBeforeSubmit.subscribe(function () {
                 _this.disabled = _this.submitting = true;
             });
             this.component.events.onSubmit.subscribe(function () {

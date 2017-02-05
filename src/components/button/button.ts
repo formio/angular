@@ -18,7 +18,7 @@ export class ButtonElement extends BaseElement<ButtonComponent> {
     ngOnInit() {
         super.ngOnInit();
         if (this.component.settings.action === 'submit') {
-            this.component.events.beforeSubmit.subscribe(() => {
+            this.component.events.onBeforeSubmit.subscribe(() => {
                 this.disabled = this.submitting = true;
             });
             this.component.events.onSubmit.subscribe(() => {
