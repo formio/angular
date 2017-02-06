@@ -26,5 +26,6 @@ export declare class FormioComponent implements OnInit {
     constructor(events: FormioEvents);
     ngOnInit(): void;
     onRender(): void;
+    submitForm(submission: Object): void;
     onSubmit($event: any): void;
 }

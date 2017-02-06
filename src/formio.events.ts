@@ -16,7 +16,7 @@ export class FormioEvents {
     public errors: Array<FormioError>;
     public alerts: Array<FormioAlert>;
     constructor() {
-        this.onBeforeSubmit = new EventEmitter(true);
+        this.onBeforeSubmit = new EventEmitter();
         this.onSubmit = new EventEmitter();
         this.onInvalid = new EventEmitter();
         this.onChange = new EventEmitter();

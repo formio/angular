@@ -15,6 +15,9 @@ export class PhoneNumberComponent extends BaseComponent<PhoneNumberOptions> {}
 export class PhoneNumberElement extends BaseElement<PhoneNumberComponent> implements OnInit {
     public mask: Array<any>;
     public unmask(val: any): any {
+        if (!val) {
+            return val;
+        }
         return val.replace(/\D+/g, '');
     }
     ngOnInit() {

@@ -20,6 +20,9 @@ var PhoneNumberElement = (function (_super) {
         _super.apply(this, arguments);
     }
     PhoneNumberElement.prototype.unmask = function (val) {
+        if (!val) {
+            return val;
+        }
         return val.replace(/\D+/g, '');
     };
     PhoneNumberElement.prototype.ngOnInit = function () {

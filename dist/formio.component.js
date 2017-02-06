@@ -39,6 +39,9 @@ var FormioComponent = (function () {
             },
             alerts: {
                 submitMessage: 'Submission Complete.'
+            },
+            hooks: {
+                beforeSubmit: null
             }
         }, this.options);
         if (this.form) {
@@ -76,6 +79,25 @@ var FormioComponent = (function () {
     FormioComponent.prototype.onRender = function () {
         this.events.onRender.emit(true);
     };
+    FormioComponent.prototype.submitForm = function (submission) {
+        var _this = this;
+        if (this.service) {
+            this.service.saveSubmission(submission).subscribe(function (sub) {
+                _this.events.onSubmit.emit(sub);
+                _this.events.alerts.push({
+                    type: 'success',
+                    message: _this.options.alerts.submitMessage
+                });
+            });
+        }
+        else {
+            this.events.onSubmit.emit(submission);
+            this.events.alerts.push({
+                type: 'success',
+                message: this.options.alerts.submitMessage
+            });
+        }
+    };
     FormioComponent.prototype.onSubmit = function ($event) {
         var _this = this;
         if ($event) {
@@ -92,23 +114,20 @@ var FormioComponent = (function () {
             return;
         }
         var submission = { data: this.formGroup.value };
-        // Trigger to components that we are submitting.
         this.events.onBeforeSubmit.emit(submission);
-        if (this.service) {
-            this.service.saveSubmission(submission).subscribe(function (sub) {
-                _this.events.onSubmit.emit(sub);
-                _this.events.alerts.push({
-                    type: 'success',
-                    message: _this.options.alerts.submitMessage
-                });
+        // If they provide a beforeSubmit hook, then allow them to alter the submission asynchronously
+        // or even provide a custom Error method.
+        if (this.options.hooks.beforeSubmit) {
+            this.options.hooks.beforeSubmit(submission, function (err, sub) {
+                if (err) {
+                    _this.events.errors.push(err);
+                    return;
+                }
+                _this.submitForm(sub);
             });
         }
         else {
-            this.events.onSubmit.emit(submission);
-            this.events.alerts.push({
-                type: 'success',
-                message: this.options.alerts.submitMessage
-            });
+            this.submitForm(submission);
         }
     };
     __decorate([

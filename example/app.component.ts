@@ -8,6 +8,15 @@ import { FORM_WIZARD } from '../src/fixtures/forms/kitchensink';
 export class AppComponent {
     public form: any = FORM;
     public form_wizard: any = FORM_WIZARD;
+    public options: any = {
+      hooks: {
+          beforeSubmit: (submission:Object, cb: any) => {
+              console.log('Before Submit');
+              console.log(submission);
+              setTimeout(() => cb(null, submission), 1000);
+          }
+      }
+    };
     public submission: any = {
       data: {
           user: {

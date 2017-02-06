@@ -1,2 +1,12 @@
 <!--<formio src="https://pjmfogrfqptslvi.form.io/test" (render)="onRender()" (submit)="onSubmit($event)"></formio>-->
+
+<!--<formio src="https://examples.form.io/example" [submission]='{
+  "data": {
+    "firstName": "Joe",
+    "lastName": "Smith",
+    "email": "joe@example.com"
+  }
+}' [options]="options" (render)="onRender()" (submit)="onSubmit($event)" (change)="onChange($event)"></formio>-->
+
+
 <formio [form]="form" [submission]="submission" (render)="onRender()" (submit)="onSubmit($event)" (change)="onChange($event)"></formio>

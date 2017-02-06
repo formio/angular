@@ -2,7 +2,7 @@ import 'core-js/es7/reflect';
 import { Component, Input, Output, EventEmitter, OnInit }  from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormioService } from './formio.service';
-import { FormioForm, FormioOptions } from './formio.common';
+import { FormioForm, FormioOptions, FormioError } from './formio.common';
 import { FormioEvents } from './formio.events';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -41,6 +41,9 @@ export class FormioComponent implements OnInit {
             },
             alerts: {
                 submitMessage: 'Submission Complete.'
+            },
+            hooks: {
+                beforeSubmit: null
             }
         }, this.options);
 
@@ -82,6 +85,24 @@ export class FormioComponent implements OnInit {
     onRender() {
         this.events.onRender.emit(true);
     }
+    submitForm(submission: Object) {
+        if (this.service) {
+            this.service.saveSubmission(submission).subscribe((sub: {}) => {
+                this.events.onSubmit.emit(sub);
+                this.events.alerts.push({
+                    type: 'success',
+                    message: this.options.alerts.submitMessage
+                });
+            });
+        }
+        else {
+            this.events.onSubmit.emit(submission);
+            this.events.alerts.push({
+                type: 'success',
+                message: this.options.alerts.submitMessage
+            });
+        }
+    }
     onSubmit($event: any) {
         if ($event) {
             $event.preventDefault();
@@ -100,25 +121,21 @@ export class FormioComponent implements OnInit {
         }
 
         let submission = {data: this.formGroup.value};
-
-        // Trigger to components that we are submitting.
         this.events.onBeforeSubmit.emit(submission);
 
-        if (this.service) {
-            this.service.saveSubmission(submission).subscribe((sub: {}) => {
-                this.events.onSubmit.emit(sub);
-                this.events.alerts.push({
-                    type: 'success',
-                    message: this.options.alerts.submitMessage
-                });
+        // If they provide a beforeSubmit hook, then allow them to alter the submission asynchronously
+        // or even provide a custom Error method.
+        if (this.options.hooks.beforeSubmit) {
+            this.options.hooks.beforeSubmit(submission, (err: FormioError, sub:Object) => {
+                if (err) {
+                    this.events.errors.push(err);
+                    return;
+                }
+                this.submitForm(sub);
             });
         }
         else {
-            this.events.onSubmit.emit(submission);
-            this.events.alerts.push({
-                type: 'success',
-                message: this.options.alerts.submitMessage
-            });
+            this.submitForm(submission);
         }
     }
 }

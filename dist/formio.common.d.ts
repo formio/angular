@@ -25,7 +25,17 @@ export declare class FormioError {
 export interface ErrorsOptions {
     message: string;
 }
+export interface FormioSubmissionCallback {
+    (error: FormioError, submission: Object): void;
+}
+export interface FormioBeforeSubmit {
+    (submission: Object, callback: FormioSubmissionCallback): void;
+}
+export interface FormioHookOptions {
+    beforeSubmit: FormioBeforeSubmit;
+}
 export interface FormioOptions {
     errors: ErrorsOptions;
     alerts: AlertsOptions;
+    hooks: FormioHookOptions;
 }
