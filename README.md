@@ -195,6 +195,44 @@ The following inputs are accepted.
     </tr>
 </table>
 
+### Hooking into Form Submissions
+Let's suppose you need to hook into the Form submission, make a call to your own service to perform a custom validation on that submission, and then when your validation passes, allow the submission to be handled. You may also want to tell the form that an error occurred within the Form submission and then provide the error. To do this, you will need to provide the ```options.hooks.beforeSubmit``` callback, which works as follows.
+
+```html
+<formio src='https://examples.form.io/example' options='{
+  "hooks": {
+    "beforeSubmit": function(submission, callback) {
+        console.log(submission);
+        // Do something asynchronously.
+        setTimeout(function() {
+          // Callback with a possibly manipulated submission.
+          callback(null, submission);
+        }, 1000);
+    }
+  }
+}'></formio>
+```
+
+You may also wish to provide your own custom error.
+
+```html
+<formio src='https://examples.form.io/example' options='{
+  "hooks": {
+    "beforeSubmit": function(submission, callback) {
+        console.log(submission);
+        // Do something asynchronously.
+        setTimeout(function() {
+          // Callback with a possibly manipulated submission.
+          callback({
+            message: "Something bad happened.",
+            component: null
+          }, null);
+        }, 1000);
+    }
+  }
+}'></formio>
+```
+
 Outputs (Events)
 ------------
 With the ```<formio>``` directive, you can register for a number of different events that fire as the Form is being used and submitted. These events can be attached with the typical Angular 2 way using the following syntax.
