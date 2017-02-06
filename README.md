@@ -156,7 +156,7 @@ The following inputs are accepted.
     </tr>
     <tr>
         <td>service</td>
-        <td>Your own instance of the <a href="">FormioService</a> object to perform the requests.</td>
+        <td>Your own instance of the <a href="https://github.com/formio/ng2-formio/blob/master/src/formio.service.ts">FormioService</a> object to perform the requests.</td>
     </tr>
     <tr>
         <td>readOnly</td>
