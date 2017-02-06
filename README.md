@@ -15,9 +15,9 @@ You can easily render a form within your Angular 2 application by referencing th
 You can also pass the JSON form directly to the renderer as follows.
 
 ```
-<formio [form]="{
-    title: 'My Test Form',
-    components: [
+<formio [form]='{
+    "title": "My Test Form",
+    "components": [
         {
             "type": "textfield",
             "input": true,
@@ -93,7 +93,7 @@ You can also pass the JSON form directly to the renderer as follows.
             "type": "button"
         }
     ]
-}"></formio>
+}'></formio>
 ```
 
 This is a very simple example. This library is capable of building very complex forms which include e-signatures, columns,
@@ -118,6 +118,159 @@ import { FormioModule } from 'ng2-formio';
 })
 export class AppModule { }
 ```
+
+Inputs
+----------
+The inputs for the ```<formio>``` directive allow you to control how the form renderer behaves. For example, to set the ```submission``` of a form (which will pre-populate the form with data), you can provide the following code which will set the form.
+
+```html
+<formio src="https://examples.form.io/example" [submission]='{
+  "data": {
+    "firstName": "Joe",
+    "lastName": "Smith",
+    "email": "joe@example.com"
+  }
+}'></formio>
+```
+
+The following inputs are accepted.
+
+<table>
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Description</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>src</td>
+        <td>To set the source URL of the form (or submission) to be rendered. Example: <code>src="https://examples.form.io/example"</code></td>
+    </tr>
+    <tr>
+        <td>form</td>
+        <td>To render the JSON schema of a form. Example: <code>[form]='{"components":[...]}'</code></td>
+    </tr>
+    <tr>
+        <td>submission</td>
+        <td>The submission JSON to pre-poulate the form. Example: <code>[submission]='{"data": {"name": "Joe Smith"}}'</code></td>
+    </tr>
+    <tr>
+        <td>service</td>
+        <td>Your own instance of the <a href="">FormioService</a> object to perform the requests.</td>
+    </tr>
+    <tr>
+        <td>readOnly</td>
+        <td>Make the form (and submission) read only. Great for when you are rendering a previous submission that should not be editable.</td>
+    </tr>
+    <tr>
+        <td>options</td>
+        <td>A JSON object of the follwoing options.
+            <table>
+                <tr>
+                    <td>hooks</td>
+                    <td>Hooks that allow you to hook into the behavior of the form directly. For now there are only the following.
+                        <ul>
+                        <li><strong>beforeSubmit</strong> - Called before the form submits. See section below on <strong>Hooking into form submissions.</strong></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>alerts</td>
+                    <td>Provide configuration for the alters that are triggered.
+                        <ul>
+                        <li><strong>submitMessage</strong> - Provide the submit message that is shown when the form submits.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>errors</td>
+                    <td>Provide configuration for the errors that are triggered.
+                        <ul>
+                        <li><strong>message</strong> - Provide the submit message that is shown when an error occurs.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+### Hooking into Form Submissions
+Let's suppose you need to hook into the Form submission, make a call to your own service to perform a custom validation on that submission, and then when your validation passes, allow the submission to be handled. You may also want to tell the form that an error occurred within the Form submission and then provide the error. To do this, you will need to provide the ```options.hooks.beforeSubmit``` callback, which works as follows.
+
+```html
+<formio src='https://examples.form.io/example' options='{
+  "hooks": {
+    "beforeSubmit": function(submission, callback) {
+        console.log(submission);
+        // Do something asynchronously.
+        setTimeout(function() {
+          // Callback with a possibly manipulated submission.
+          callback(null, submission);
+        }, 1000);
+    }
+  }
+}'></formio>
+```
+
+You may also wish to provide your own custom error.
+
+```html
+<formio src='https://examples.form.io/example' options='{
+  "hooks": {
+    "beforeSubmit": function(submission, callback) {
+        console.log(submission);
+        // Do something asynchronously.
+        setTimeout(function() {
+          // Callback with a possibly manipulated submission.
+          callback({
+            message: "Something bad happened.",
+            component: null
+          }, null);
+        }, 1000);
+    }
+  }
+}'></formio>
+```
+
+Outputs (Events)
+------------
+With the ```<formio>``` directive, you can register for a number of different events that fire as the Form is being used and submitted. These events can be attached with the typical Angular 2 way using the following syntax.
+
+```
+<formio src="https://examples.form.io/example" (submit)="onSubmit($event)"></formio>
+```
+
+The following events are provided.
+
+<table>
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Description</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>(submit)</td>
+        <td>Called when the form is submitted. The submission object is passed to the callback function.</td>
+    </tr>
+    <tr>
+        <td>(render)</td>
+        <td>Called when the form is done rendering.</td>
+    </tr>
+    <tr>
+        <td>(beforeSubmit)</td>
+        <td>Called before a submission is made. The submission object is passed to the callback function. <strong>Note: </strong> If you need to manipulate the data, or even provide custom validations, then you should use the <code>options.hooks.beforeSubmit</code> handler instead. See documentation above.</td>
+    </tr>
+    <tr>
+        <td>(change)</td>
+        <td>Called when the form has been changed as in when someone is filling it out.</td>
+    </tr>
+    <tr>
+        <td>(invalid)</td>
+        <td>Called when the form is invalid.</td>
+    </tr>
+</table>
 
 For an example of an application using Form.io, you can look at the [Examples Folder](https://github.com/formio/ng2-formio/tree/master/example)
 
