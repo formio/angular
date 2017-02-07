@@ -9,9 +9,7 @@ export interface WellOptions extends BaseOptions<any> {
 
 export class WellComponent extends BaseComponent<WellOptions> {
     getControl(): FormArray | FormGroup | FormControl {
-        if (!this.control) {
-            this.control = new FormGroup({});
-        }
+        this.control = this.form;
         return this.control;
     }
 }

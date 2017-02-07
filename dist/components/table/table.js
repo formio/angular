@@ -6,18 +6,13 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var base_1 = require('../base');
 var components_1 = require('../components');
-var forms_1 = require('@angular/forms');
 var TableComponent = (function (_super) {
     __extends(TableComponent, _super);
     function TableComponent() {
         _super.apply(this, arguments);
     }
     TableComponent.prototype.getControl = function () {
-        if (!this.control) {
-            this.control = new forms_1.FormArray([
-                new forms_1.FormGroup({})
-            ]);
-        }
+        this.control = this.form;
         return this.control;
     };
     return TableComponent;

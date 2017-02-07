@@ -13,6 +13,7 @@ export class ContainerComponent extends BaseComponent<ContainerOptions> {
         if (!this.control) {
             this.control = new FormGroup({});
         }
+        this.form.addControl(this.settings.key, this.control);
         return this.control;
     }
     getData() : any {

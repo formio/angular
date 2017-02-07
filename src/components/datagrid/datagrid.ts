@@ -26,6 +26,7 @@ export class DataGridComponent extends BaseComponent<DataGridOptions> {
                 }
             }
         }
+        this.form.addControl(this.settings.key, this.control);
         return this.control;
     }
     addAnother() {

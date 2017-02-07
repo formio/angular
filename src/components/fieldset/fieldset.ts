@@ -10,9 +10,7 @@ export interface FieldSetOptions extends BaseOptions<any> {
 
 export class FieldSetComponent extends BaseComponent<FieldSetOptions> {
     getControl(): FormArray | FormGroup | FormControl {
-        if (!this.control) {
-            this.control = new FormGroup({});
-        }
+        this.control = this.form;
         return this.control;
     }
 }

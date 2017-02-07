@@ -6,16 +6,13 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var base_1 = require('../base');
 var components_1 = require('../components');
-var forms_1 = require('@angular/forms');
 var FieldSetComponent = (function (_super) {
     __extends(FieldSetComponent, _super);
     function FieldSetComponent() {
         _super.apply(this, arguments);
     }
     FieldSetComponent.prototype.getControl = function () {
-        if (!this.control) {
-            this.control = new forms_1.FormGroup({});
-        }
+        this.control = this.form;
         return this.control;
     };
     return FieldSetComponent;

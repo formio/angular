@@ -18,11 +18,7 @@ export interface TableOptions extends BaseOptions<any> {
 
 export class TableComponent extends BaseComponent<TableOptions> {
     getControl(): FormArray | FormGroup | FormControl {
-        if (!this.control) {
-            this.control = new FormArray([
-                new FormGroup({})
-            ]);
-        }
+        this.control = this.form;
         return this.control;
     }
 }

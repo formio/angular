@@ -16,6 +16,7 @@ var ContainerComponent = (function (_super) {
         if (!this.control) {
             this.control = new forms_1.FormGroup({});
         }
+        this.form.addControl(this.settings.key, this.control);
         return this.control;
     };
     ContainerComponent.prototype.getData = function () {

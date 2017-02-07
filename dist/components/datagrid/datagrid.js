@@ -27,6 +27,7 @@ var DataGridComponent = (function (_super) {
                 }
             }
         }
+        this.form.addControl(this.settings.key, this.control);
         return this.control;
     };
     DataGridComponent.prototype.addAnother = function () {
