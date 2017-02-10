@@ -10,6 +10,7 @@ export interface FormioEvent {
 export class FormioEvents {
     public onBeforeSubmit: EventEmitter<Object>;
     public onSubmit: EventEmitter<Object>;
+    public onError: EventEmitter<FormioError>;
     public onInvalid: EventEmitter<boolean>;
     public onChange: EventEmitter<Object>;
     public onRender: EventEmitter<any>;
@@ -18,6 +19,7 @@ export class FormioEvents {
     constructor() {
         this.onBeforeSubmit = new EventEmitter();
         this.onSubmit = new EventEmitter();
+        this.onError = new EventEmitter();
         this.onInvalid = new EventEmitter();
         this.onChange = new EventEmitter();
         this.onRender = new EventEmitter();

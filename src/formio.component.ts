@@ -27,12 +27,14 @@ export class FormioComponent implements OnInit {
     @Output() beforeSubmit: EventEmitter<Object>;
     @Output() change: EventEmitter<Object>;
     @Output() invalid: EventEmitter<boolean>;
+    @Output() error: EventEmitter<any>;
     constructor(public events: FormioEvents) {
         this.beforeSubmit = this.events.onBeforeSubmit;
         this.submit = this.events.onSubmit;
         this.change = this.events.onChange;
         this.render = this.events.onRender;
         this.invalid = this.events.onInvalid;
+        this.error = this.events.onError;
     }
     ngOnInit() {
         this.options = Object.assign({
@@ -64,9 +66,9 @@ export class FormioComponent implements OnInit {
                         this.submission = submission;
                         this.formGroup.setValue(submission.data);
                         this.formGroup.disable();
-                    });
+                    }, (err) => this.onError(err));
                 }
-            });
+            }, (err) => this.onError(err));
         }
 
         // Subscribe to value changes.
@@ -85,6 +87,11 @@ export class FormioComponent implements OnInit {
     onRender() {
         this.events.onRender.emit(true);
     }
+    onError(err: any) {
+        let error = new FormioError(err);
+        this.events.onError.emit(err);
+        this.events.errors.push(error);
+    }
     submitForm(submission: Object) {
         if (this.service) {
             this.service.saveSubmission(submission).subscribe((sub: {}) => {
@@ -93,7 +100,7 @@ export class FormioComponent implements OnInit {
                     type: 'success',
                     message: this.options.alerts.submitMessage
                 });
-            });
+            }, (err) => this.onError(err));
         }
         else {
             this.events.onSubmit.emit(submission);
@@ -128,7 +135,7 @@ export class FormioComponent implements OnInit {
         if (this.options.hooks.beforeSubmit) {
             this.options.hooks.beforeSubmit(submission, (err: FormioError, sub:Object) => {
                 if (err) {
-                    this.events.errors.push(err);
+                    this.onError(err);
                     return;
                 }
                 this.submitForm(sub);

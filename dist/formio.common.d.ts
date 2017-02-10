@@ -20,7 +20,7 @@ export interface FormioAlert {
 export declare class FormioError {
     message: string;
     component: BaseOptions<any>;
-    constructor(message: string, component: BaseOptions<any>);
+    constructor(message: string, component?: BaseOptions<any>);
 }
 export interface ErrorsOptions {
     message: string;

@@ -31,6 +31,9 @@ var ButtonElement = (function (_super) {
             this.component.events.onSubmit.subscribe(function () {
                 _this.disabled = _this.submitting = false;
             });
+            this.component.events.onError.subscribe(function () {
+                _this.disabled = _this.submitting = false;
+            });
         }
     };
     return ButtonElement;

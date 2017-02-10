@@ -23,9 +23,11 @@ export declare class FormioComponent implements OnInit {
     beforeSubmit: EventEmitter<Object>;
     change: EventEmitter<Object>;
     invalid: EventEmitter<boolean>;
+    error: EventEmitter<any>;
     constructor(events: FormioEvents);
     ngOnInit(): void;
     onRender(): void;
+    onError(err: any): void;
     submitForm(submission: Object): void;
     onSubmit($event: any): void;
 }

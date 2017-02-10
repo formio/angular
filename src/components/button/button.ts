@@ -24,6 +24,9 @@ export class ButtonElement extends BaseElement<ButtonComponent> {
             this.component.events.onSubmit.subscribe(() => {
                 this.disabled = this.submitting = false;
             });
+            this.component.events.onError.subscribe(() => {
+                this.disabled = this.submitting = false;
+            });
         }
     }
 }

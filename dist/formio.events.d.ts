@@ -7,6 +7,7 @@ export interface FormioEvent {
 export declare class FormioEvents {
     onBeforeSubmit: EventEmitter<Object>;
     onSubmit: EventEmitter<Object>;
+    onError: EventEmitter<FormioError>;
     onInvalid: EventEmitter<boolean>;
     onChange: EventEmitter<Object>;
     onRender: EventEmitter<any>;

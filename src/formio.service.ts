@@ -9,34 +9,54 @@ export class FormioService {
     }
     loadForm(): Observable<FormioForm> {
         return Observable.create((observer:Observer<FormioForm>) => {
-            this.formio.loadForm().then((form: FormioForm) => {
-                observer.next(form);
-                observer.complete();
-            });
+            try {
+                this.formio.loadForm().then((form: FormioForm) => {
+                    observer.next(form);
+                    observer.complete();
+                }).catch((err: any) => observer.error(err));
+            }
+            catch (err) {
+                observer.error(err);
+            }
         });
     }
     loadSubmission(): Observable<{}> {
         return Observable.create((observer:Observer<{}>) => {
-            this.formio.loadSubmission().then((form: FormioForm) => {
-                observer.next(form);
-                observer.complete();
-            });
+            try {
+                this.formio.loadSubmission().then((form: FormioForm) => {
+                    observer.next(form);
+                    observer.complete();
+                }).catch((err: any) => observer.error(err));
+            }
+            catch (err) {
+                observer.error(err);
+            }
         });
     }
     saveSubmission(submission: {}): Observable<{}> {
         return Observable.create((observer: Observer<{}>) => {
-            this.formio.saveSubmission(submission).then((submission: {}) => {
-                observer.next(submission);
-                observer.complete();
-            });
+            try {
+                this.formio.saveSubmission(submission).then((submission: {}) => {
+                    observer.next(submission);
+                    observer.complete();
+                }).catch((err: any) => observer.error(err));
+            }
+            catch (err) {
+                observer.error(err);
+            }
         });
     }
     loadSubmissions(): Observable<{}>{
         return Observable.create((observer: Observer<{}>) => {
-            this.formio.loadSubmissions().then((submission: {}) => {
-                observer.next(submission);
-                observer.complete();
-            });
+            try {
+                this.formio.loadSubmissions().then((submission: {}) => {
+                    observer.next(submission);
+                    observer.complete();
+                }).catch((err: any) => observer.error(err));
+            }
+            catch (err) {
+                observer.error(err);
+            }
         });
     }
 }

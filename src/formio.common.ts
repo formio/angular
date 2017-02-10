@@ -22,7 +22,7 @@ export interface FormioAlert {
 }
 
 export class FormioError {
-    constructor (public message: string, public component: BaseOptions<any>) {}
+    constructor (public message: string, public component: BaseOptions<any> = null) {}
 }
 
 export interface ErrorsOptions {

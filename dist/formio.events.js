@@ -13,6 +13,7 @@ var FormioEvents = (function () {
     function FormioEvents() {
         this.onBeforeSubmit = new core_1.EventEmitter();
         this.onSubmit = new core_1.EventEmitter();
+        this.onError = new core_1.EventEmitter();
         this.onInvalid = new core_1.EventEmitter();
         this.onChange = new core_1.EventEmitter();
         this.onRender = new core_1.EventEmitter();

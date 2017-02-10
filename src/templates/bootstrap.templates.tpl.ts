@@ -22,9 +22,7 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         component: {
             template: { gulp_inject: './bootstrap/formio.html' },
             styles: [
-                '.glyphicon-spin { -webkit-animation: spin-anim 1s infinite; animation: spin-anim 1s infinite; }@-webkit-keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}@keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}',
-                '@-webkit-keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}',
-                '@keyframes spin-anim {0% { -webkit-transform: rotate(0deg);transform: rotate(0deg);}100% { -webkit-transform: rotate(359deg);transform: rotate(359deg);}}'
+                '.glyphicon-spin{-webkit-animation:a 1s infinite;animation:a 1s infinite}@-webkit-keyframes a{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}@keyframes a{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}'
             ]
         }
     },
@@ -61,7 +59,10 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
     errors: getTemplate({ gulp_inject: './bootstrap/errors.html' }),
     alerts: getTemplate({ gulp_inject: './bootstrap/alerts.html' }),
     components: {
-        button: getTemplate({ gulp_inject: './bootstrap/components/button.html' }),
+        button: getTemplate(
+            { gulp_inject: './bootstrap/components/button.html' },
+            ['.glyphicon-spin{-webkit-animation:a 1s infinite;animation:a 1s infinite}@-webkit-keyframes a{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}@keyframes a{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}']
+        ),
         columns: getTemplate({ gulp_inject: './bootstrap/components/columns.html' }),
         container: getTemplate({ gulp_inject: './bootstrap/components/container.html' }),
         datagrid: getTemplate({ gulp_inject: './bootstrap/components/datagrid.html' }),

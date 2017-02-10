@@ -12,6 +12,7 @@ require('core-js/es7/reflect');
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var formio_service_1 = require('./formio.service');
+var formio_common_1 = require('./formio.common');
 var formio_events_1 = require('./formio.events');
 var BehaviorSubject_1 = require('rxjs/BehaviorSubject');
 /**
@@ -30,6 +31,7 @@ var FormioComponent = (function () {
         this.change = this.events.onChange;
         this.render = this.events.onRender;
         this.invalid = this.events.onInvalid;
+        this.error = this.events.onError;
     }
     FormioComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -60,9 +62,9 @@ var FormioComponent = (function () {
                         _this.submission = submission;
                         _this.formGroup.setValue(submission.data);
                         _this.formGroup.disable();
-                    });
+                    }, function (err) { return _this.onError(err); });
                 }
-            });
+            }, function (err) { return _this.onError(err); });
         }
         // Subscribe to value changes.
         //noinspection TypeScriptUnresolvedFunction
@@ -79,6 +81,11 @@ var FormioComponent = (function () {
     FormioComponent.prototype.onRender = function () {
         this.events.onRender.emit(true);
     };
+    FormioComponent.prototype.onError = function (err) {
+        var error = new formio_common_1.FormioError(err);
+        this.events.onError.emit(err);
+        this.events.errors.push(error);
+    };
     FormioComponent.prototype.submitForm = function (submission) {
         var _this = this;
         if (this.service) {
@@ -88,7 +95,7 @@ var FormioComponent = (function () {
                     type: 'success',
                     message: _this.options.alerts.submitMessage
                 });
-            });
+            }, function (err) { return _this.onError(err); });
         }
         else {
             this.events.onSubmit.emit(submission);
@@ -120,7 +127,7 @@ var FormioComponent = (function () {
         if (this.options.hooks.beforeSubmit) {
             this.options.hooks.beforeSubmit(submission, function (err, sub) {
                 if (err) {
-                    _this.events.errors.push(err);
+                    _this.onError(err);
                     return;
                 }
                 _this.submitForm(sub);
@@ -174,6 +181,10 @@ var FormioComponent = (function () {
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], FormioComponent.prototype, "invalid", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], FormioComponent.prototype, "error", void 0);
     FormioComponent = __decorate([
         core_1.Component({
             selector: 'formio',
