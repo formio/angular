@@ -7,6 +7,7 @@ export interface ContainerOptions extends BaseOptions<{}> {
 }
 export declare class ContainerComponent extends BaseComponent<ContainerOptions> {
     getControl(): FormArray | FormGroup | FormControl;
+    setValue(value: any): void;
     getData(): any;
 }
 export declare class ContainerElement extends BaseElement<ContainerComponent> {

@@ -19,6 +19,13 @@ var ContainerComponent = (function (_super) {
         this.form.addControl(this.settings.key, this.control);
         return this.control;
     };
+    ContainerComponent.prototype.setValue = function (value) {
+        if (this.control) {
+            var formControl = this.control;
+            formControl.setValue(value);
+            formControl.markAsDirty();
+        }
+    };
     ContainerComponent.prototype.getData = function () {
         if (this.data && this.data.hasOwnProperty(this.settings.key)) {
             return this.data[this.settings.key];

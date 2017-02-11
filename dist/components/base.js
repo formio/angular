@@ -58,7 +58,7 @@ var BaseComponent = (function () {
         });
     };
     BaseComponent.prototype.setValue = function (value) {
-        if (this.control && (this.control instanceof forms_1.FormControl)) {
+        if (this.control) {
             var formControl = this.control;
             formControl.setValue(value);
             formControl.markAsDirty();

@@ -100,20 +100,5 @@ describe('ContainerComponent', () => {
         let settings: ContainerOptions = getSettings({});
         let container = new ContainerComponent(this.form, settings, this.events);
         expect(container.control instanceof FormGroup).toEqual(true);
-
-        let index = 0;
-        let components = new FormioComponentsComponent();
-        components.components = settings.components;
-        components.form = this.form;
-        settings.components.forEach((comp: any) => {
-            index++;
-            let component = new FormioComponentComponent(this.events);
-            component.component = comp;
-            component.form = this.form;
-            component.ngOnInit();
-            component.form.controls[comp.key]['setValue']('Test' + index);
-            component.form.controls[comp.key]['markAsDirty']();
-        });
-        expect(this.form.value).toEqual({firstName: 'Test1', lastName: 'Test2'});
     });
 });

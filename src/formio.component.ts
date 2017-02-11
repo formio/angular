@@ -64,7 +64,7 @@ export class FormioComponent implements OnInit {
                 if (this.service.formio.submissionId) {
                     this.service.loadSubmission().subscribe((submission: any) => {
                         this.submission = submission;
-                        this.formGroup.setValue(submission.data);
+                        this.formGroup.patchValue(submission.data);
                         this.formGroup.disable();
                     }, (err) => this.onError(err));
                 }

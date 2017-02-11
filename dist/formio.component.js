@@ -60,7 +60,7 @@ var FormioComponent = (function () {
                 if (_this.service.formio.submissionId) {
                     _this.service.loadSubmission().subscribe(function (submission) {
                         _this.submission = submission;
-                        _this.formGroup.setValue(submission.data);
+                        _this.formGroup.patchValue(submission.data);
                         _this.formGroup.disable();
                     }, function (err) { return _this.onError(err); });
                 }

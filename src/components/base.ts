@@ -89,7 +89,7 @@ export class BaseComponent<T> {
         });
     }
     public setValue(value: any) {
-        if (this.control && (this.control instanceof FormControl)) {
+        if (this.control) {
             let formControl = this.control as FormControl;
             formControl.setValue(value);
             formControl.markAsDirty();

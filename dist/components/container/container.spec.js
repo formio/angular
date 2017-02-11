@@ -4,8 +4,6 @@ var forms_1 = require('@angular/forms');
 var container_1 = require('./container');
 var bootstrap_templates_1 = require('../../templates/bootstrap.templates');
 var index_1 = require('../index');
-var formio_components_component_1 = require('../../formio-components.component');
-var formio_component_component_1 = require('../../formio-component.component');
 var formio_events_1 = require('../../formio.events');
 describe('ContainerComponent', function () {
     beforeEach(function () {
@@ -99,20 +97,6 @@ describe('ContainerComponent', function () {
         var settings = getSettings({});
         var container = new container_1.ContainerComponent(_this.form, settings, _this.events);
         expect(container.control instanceof forms_1.FormGroup).toEqual(true);
-        var index = 0;
-        var components = new formio_components_component_1.FormioComponentsComponent();
-        components.components = settings.components;
-        components.form = _this.form;
-        settings.components.forEach(function (comp) {
-            index++;
-            var component = new formio_component_component_1.FormioComponentComponent(_this.events);
-            component.component = comp;
-            component.form = _this.form;
-            component.ngOnInit();
-            component.form.controls[comp.key]['setValue']('Test' + index);
-            component.form.controls[comp.key]['markAsDirty']();
-        });
-        expect(_this.form.value).toEqual({ firstName: 'Test1', lastName: 'Test2' });
     });
 });
 //# sourceMappingURL=container.spec.js.map

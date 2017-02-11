@@ -16,6 +16,13 @@ export class ContainerComponent extends BaseComponent<ContainerOptions> {
         this.form.addControl(this.settings.key, this.control);
         return this.control;
     }
+    public setValue(value: any) {
+        if (this.control) {
+            let formControl = this.control as FormGroup;
+            formControl.setValue(value);
+            formControl.markAsDirty();
+        }
+    }
     getData() : any {
         if (this.data && this.data.hasOwnProperty(this.settings.key)) {
             return this.data[this.settings.key];

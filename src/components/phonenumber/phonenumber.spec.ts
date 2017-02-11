@@ -132,7 +132,7 @@ describe('PhoneNumberComponent', () => {
         });
 
         let updateValue = (index: number, val: string) => {
-            component.form.controls['phoneNumber']['at'](index)['updateValue'](val);
+            component.form.controls['phoneNumber']['at'](index)['setValue'](val);
             component.form.controls['phoneNumber']['at'](index)['markAsDirty']();
         };
 

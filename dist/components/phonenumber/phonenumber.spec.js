@@ -114,7 +114,7 @@ describe('PhoneNumberComponent', function () {
             multiple: true
         });
         var updateValue = function (index, val) {
-            component.form.controls['phoneNumber']['at'](index)['updateValue'](val);
+            component.form.controls['phoneNumber']['at'](index)['setValue'](val);
             component.form.controls['phoneNumber']['at'](index)['markAsDirty']();
         };
         component.addComponent();
