@@ -50,7 +50,7 @@ export class FormioComponentComponent<T> implements OnInit {
     checkConditions() {
         var subData = this.submission ? this.submission.value : {};
         var compData = Object.assign({}, subData, this.form.value);
-        this.show = FormioUtils.checkCondition(this.component, compData);
+        this.show = FormioUtils.checkCondition(this.component, compData, this.data);
     }
     addComponent() {
         let component = FormioComponents.createComponent(
