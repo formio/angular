@@ -119,6 +119,10 @@ import { FormioModule } from 'ng2-formio';
 export class AppModule { }
 ```
 
+Application Starter Kit
+----------
+For help in getting started using this library, we created the [ng2-app-starterkit](https://github.com/formio/ng2-app-starterkit) repository to help you get started with best practices with using Form.io within an Angular 2 application.
+
 Inputs
 ----------
 The inputs for the ```<formio>``` directive allow you to control how the form renderer behaves. For example, to set the ```submission``` of a form (which will pre-populate the form with data), you can provide the following code which will set the form.
