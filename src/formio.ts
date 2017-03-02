@@ -37,13 +37,7 @@ import { FormioWizardComponent } from './formio.wizard';
     ]
 })
 export class FormioBaseModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: FormioBaseModule,
-            providers: [FormioEvents]
-        };
-    }
-    public static setTemplate(template: FormioTemplate) {
+    static forRoot(template: FormioTemplate): ModuleWithProviders {
         RegisterTemplate(FormioComponent, template.formio);
         RegisterTemplate(FormioComponentComponent, template.formio_component);
         RegisterTemplate(FormioWizardComponent, template.formio_wizard);
@@ -51,6 +45,10 @@ export class FormioBaseModule {
         RegisterTemplate(FormioErrors, template.errors);
         RegisterTemplate(FormioAlerts, template.alerts);
         RegisterComponents(template);
+        return {
+            ngModule: FormioBaseModule,
+            providers: [FormioEvents]
+        };
     }
 }
 
