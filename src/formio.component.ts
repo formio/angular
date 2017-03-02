@@ -52,7 +52,10 @@ export class FormioComponent implements OnInit {
         if (this.form) {
             this.ready.next(true);
         }
-        else if (this.src && !this.service) {
+        else if (this.src) {
+          if (!this.service){
+            this.service = new FormioService(this.src);
+            }
             this.service = new FormioService(this.src);
             this.service.loadForm().subscribe((form: FormioForm) => {
                 if (form && form.components) {
