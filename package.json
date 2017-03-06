@@ -1,6 +1,6 @@
 {
   "name": "ng2-formio",
-  "version": "0.10.0",
+  "version": "1.0.0-beta.1",
   "description": "The JSON powered form renderer for Form.io and Angular 2",
   "scripts": {
     "start": "webpack-dev-server --inline --progress --content-base /example --port 8080",
@@ -14,7 +14,10 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "auth.js",
+    "resource.js",
+    "grid.js"
   ],
   "dependencies": {
     "@angular/common": "^2.4.8",
@@ -23,10 +26,12 @@
     "angular2-signaturepad": "^2.2.0",
     "angular2-text-mask": "^2.1.0",
     "core-js": "^2.4.1",
+    "flatpickr": "^2.4.3",
     "formio-utils": "^0.2.3",
     "formiojs": "^1.5.3",
     "lodash": "^4.17.4",
-    "ng2-bootstrap": "^1.2.6",
+    "native-promise-only": "^0.8.1",
+    "ng2-bootstrap": "^1.3.3",
     "ng2-select": "^1.2.0",
     "rxjs": "^5.0.1",
     "zone.js": "^0.7.4"

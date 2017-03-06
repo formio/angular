@@ -1,0 +1,155 @@
+import { EventEmitter, Injectable }  from '@angular/core';
+import { FormioAuthConfig } from './auth.config';
+let Promise = require('native-promise-only');
+let _each = require('lodash/each');
+let Formio = require('formiojs');
+
+
+@Injectable()
+export class FormioAuthService {
+  public user: any;
+  public role: string;
+  public authenticated: boolean = false;
+
+  public loginForm: string;
+  public onLogin: EventEmitter<Object>;
+  public onLogout: EventEmitter<Object>;
+
+  public registerForm: string;
+  public onRegister: EventEmitter<Object>;
+  public onUser: EventEmitter<Object>;
+  public onError: EventEmitter<any>;
+
+  public ready: Promise<boolean>;
+  public readyResolve: any;
+  public readyReject: any;
+
+  public projectReady: Promise<any>;
+  public accessReady: Promise<any>;
+  public userReady: Promise<any>;
+  public formAccess: any = {};
+  public submissionAccess: any = {};
+  public roles: any;
+  public is: any = {};
+
+  constructor(private config: FormioAuthConfig) {
+    this.user = null;
+    this.loginForm = this.config.app.appUrl + '/' + this.config.login.form;
+    this.registerForm = this.config.app.appUrl + '/' + this.config.register.form;
+    this.onLogin = new EventEmitter();
+    this.onLogout = new EventEmitter();
+    this.onRegister = new EventEmitter();
+    this.onUser = new EventEmitter();
+    this.onError = new EventEmitter();
+
+    this.ready = new Promise((resolve: any, reject: any) => {
+      this.readyResolve = resolve;
+      this.readyReject = reject;
+    });
+
+    // Register for the core events.
+    Formio.events.on('formio.badToken', () => this.logoutError());
+    Formio.events.on('formio.sessionExpired', () => this.logoutError());
+    this.init();
+  }
+
+  onLoginSubmit(submission: Object) {
+    this.user = submission;
+    this.onLogin.emit(submission);
+  }
+
+  onRegisterSubmit(submission: Object) {
+    this.user = submission;
+    this.onRegister.emit(submission);
+  }
+
+  init() {
+    this.projectReady = Formio.makeStaticRequest(this.config.app.appUrl).then((project: any) => {
+      _each(project.access, (access: any) => {
+        this.formAccess[access.type] = access.roles;
+      });
+    }, (err: any): any => {
+      this.formAccess = {};
+      return null;
+    });
+
+
+    // Get the access for this project.
+    this.accessReady = Formio.makeStaticRequest(this.config.app.appUrl + '/access').then((access: any) => {
+      _each(access.forms, (form: any) => {
+        this.submissionAccess[form.name] = {};
+        form.submissionAccess.forEach((access: any) => {
+          this.submissionAccess[form.name][access.type] = access.roles;
+        });
+      });
+      this.roles = access.roles;
+      return access;
+    }, (err: any): any => {
+      this.roles = {};
+      return null;
+    });
+
+    this.userReady = Formio.currentUser().then((user: any) => {
+      this.setUser(user, localStorage.getItem('formioRole'));
+      return user;
+    });
+
+    // Trigger we are redy when all promises have resolved.
+    this.accessReady
+      .then(() => this.projectReady)
+      .then(() => this.userReady)
+      .then(() => this.readyResolve(true))
+      .catch((err: any) => this.readyReject(err));
+  }
+
+  setUser(user: any, role: string) {
+    if (user) {
+      this.user = user;
+      localStorage.setItem('formioAppUser', JSON.stringify(user));
+      this.setUserRoles();
+    }
+    else {
+      this.user = null;
+      this.is = {};
+      localStorage.removeItem('formioAppUser');
+      Formio.clearCache();
+      Formio.setUser(null);
+    }
+
+    if (!role) {
+      this.role = null;
+      localStorage.removeItem('formioAppRole');
+    }
+    else {
+      this.role = role.toLowerCase();
+      localStorage.setItem('formioAppRole', role);
+    }
+    this.authenticated = !!Formio.getToken();
+    this.onUser.emit({
+      user: this.user,
+      role: this.role
+    });
+  }
+
+  setUserRoles() {
+    this.accessReady.then(() => {
+      _each(this.roles, (role: any, roleName: string) => {
+        if (this.user.roles.indexOf(role._id) !== -1) {
+          this.is[roleName] = true;
+        }
+      });
+    });
+  }
+
+  logoutError() {
+    this.setUser(null, null);
+    localStorage.removeItem('formioToken');
+    this.onError.emit();
+  }
+
+  logout() {
+    this.setUser(null, null);
+    localStorage.removeItem('formioToken');
+    Formio.logout().then(() => this.onLogout.emit()).catch(() => this.logoutError());
+  }
+}

@@ -1,33 +1,7 @@
 <div class="form-group {{component.settings.customClass}}" [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
     <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label">{{ component.label }}</label>
     <div class="input-group">
-        <input [formControl]="component.control" type="text" [placeholder]="component.settings.placeholder" class="form-control" (click)="selectDate()" />
-        <span class="input-group-addon" (click)="selectDate()"><i *ngIf="component.settings.enableDate" class="glyphicon glyphicon-calendar"></i><i *ngIf="!component.settings.enableDate" class="glyphicon glyphicon-time"></i></span>
-    </div>
-    <div *ngIf="displayDate && component.settings.enableDate" class="showDate">
-        <datepicker (selectionDone)="setDate($event)" [activeDate]="date" [showWeeks]="component.settings.datePicker.showWeeks" [startingDay]="component.settings.datePicker.startingDay" [minMode]="component.settings.datePicker.minMode" [maxMode]="component.settings.datePicker.maxMode" [yearRange]="component.settings.datePicker.yearRange" [datepickerMode]="component.settings.datePicker.datepickerMode"></datepicker>
-        <div class="buttonsSpace">
-            <span class="btn-group">
-                <button type="button" class="btn btn-sm btn-info" (click)="now()">Today</button>
-                <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
-            </span>
-            <span class="btn-group pull-right">
-                <button *ngIf="component.settings.enableTime" type="button" class="btn btn-sm btn-default" (click)="selectTime()">Time</button>
-                <button type="button" class="btn btn-sm btn-success" (click)="close()">Close</button>
-            </span>
-        </div>
-    </div>
-    <div *ngIf="displayTime && component.settings.enableTime" class="showTime">
-        <timepicker [hourStep]="component.settings.timePicker.hourStep" [minuteStep]="component.settings.timePicker.minuteStep" [showMeridian]="component.settings.timePicker.showMeridian" [readonlyInput]="component.settings.timePicker.readonlyInput" [mousewheel]="component.settings.timePicker.mousewheel" [arrowkeys]="component.settings.timePicker.arrowkeys" #timepicker></timepicker>
-        <div class="buttonsSpace" *ngIf="registerTime(timepicker)">
-            <span class="btn-group pull-left">
-                <button type="button" class="btn btn-sm btn-info" (click)="now()">Now</button>
-                <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
-            </span>
-            <span class="btn-group pull-right">
-                <button *ngIf="component.settings.enableDate" type="button" class="btn btn-sm btn-default" (click)="selectDate()">Date</button>
-                <button type="button" class="btn btn-sm btn-success" (click)="close()">Close</button>
-            </span>
-        </div>
+        <input #flatpickr [formControl]="component.control" type="text" [placeholder]="component.settings.placeholder" class="form-control" />
+        <span class="input-group-addon"><i *ngIf="component.settings.enableDate" class="glyphicon glyphicon-calendar"></i><i *ngIf="!component.settings.enableDate" class="glyphicon glyphicon-time"></i></span>
     </div>
 </div>

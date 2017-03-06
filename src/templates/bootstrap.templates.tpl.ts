@@ -1,7 +1,6 @@
 /* eslint-disable */
 /* tslint-disable */
 import { FormioTemplate } from '../formio.template';
-import { DatepickerModule, TimepickerModule } from 'ng2-bootstrap';
 import { SelectModule } from 'ng2-select/ng2-select';
 import { TextMaskModule } from 'angular2-text-mask';
 import { AlignDirective } from '../components/signature/signature';
@@ -79,10 +78,8 @@ export const FORMIO_BOOTSTRAP: FormioTemplate = {
         well: getTemplate({ gulp_inject: './bootstrap/components/well.html' }),
         day: getTemplate({ gulp_inject: './bootstrap/components/day.html' }),
         datetime: getTemplate(
-            { gulp_inject: './bootstrap/components/datetime.html' },
-            ['.showDate, .showTime { display: inline-block; border: 2px solid #eee; padding: 10px;}'], {
-            imports: [DatepickerModule.forRoot(), TimepickerModule.forRoot()]
-        }),
+            { gulp_inject: './bootstrap/components/datetime.html' }
+        ),
         selectboxes: getTemplate({ gulp_inject: './bootstrap/components/selectboxes.html' }),
         content: getTemplate({ gulp_inject: './bootstrap/components/content.html' }),
         html: getTemplate({ gulp_inject: './bootstrap/components/html.html' }),
