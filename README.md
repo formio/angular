@@ -119,6 +119,17 @@ import { FormioModule } from 'ng2-formio';
 export class AppModule { }
 ```
 
+Included Libraries
+-----------------
+This library is a combination of multiple libraries that enable rapid Serverless application development using Form.io. These libraries are as follows.
+
+1. [Form Renderer](https://github.com/formio/ng2-formio/wiki/Form-Renderer) - The form renderer in Angular 2
+2. [Authentication](https://github.com/formio/ng2-formio/wiki/User-Authentication) - Allows an easy way to provide Form.io authentication into your application.
+3. [Resource](https://github.com/formio/ng2-formio/wiki/3.%29-Resource-Management) - A way to include the Resources within your application with full CRUDI support (Create, Read, Update, Delete, Index)
+4. [Data Table (Grid)](https://github.com/formio/ng2-formio/wiki/4.%29-Data-Table-%28Grid%29) - A way to render data within a Table format, which includes pagination, sorting, etc.
+
+Click on each of those links to read more about how they work and how to utilize them to their fullest potential.
+
 Application Starter Kit
 ----------
 For help in getting started using this library, we created the [ng2-app-starterkit](https://github.com/formio/ng2-app-starterkit) repository to help you get started with best practices with using Form.io within an Angular 2 application.
@@ -136,7 +147,7 @@ npm install -g formio-cli
 formio bootstrap formio/ng2-app-starterkit
 ```
 
-Using with Form.io
+About Form.io
 -----------------
 <a href="https://form.io" target="_blank">Form.io</a> is a combined form and data management API platform created for developers who are building "Serverless" form-based applications.  Form.io provides an easy drag-and-drop form builder workflow allowing you to build complex forms for enterprise applications quickly and easily. These forms are then embedded directly into your application with a single line of code that dynamically renders the form (using Angular or React) in your app while at the very same time generating the RESTful API to support those forms. The Form.io platform also offers numerous 3rd-party services that are fully integrated into the form building process allowing you to extend the power and capability of your apps while saving time and effort.
 
