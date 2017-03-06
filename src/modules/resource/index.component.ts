@@ -5,7 +5,7 @@ import { FormioResourceService } from './resource.service';
 @Component({
     template:
         '<formio-grid [src]="service.formUrl" [onForm]="service.formLoaded" (select)="onSelect($event)"></formio-grid>' +
-        '<button class="btn btn-primary" *ngIf="service.form" routerLink="new">New {{ service.form.title }}</button>'
+        '<button class="btn btn-primary" *ngIf="service.form" routerLink="new"><span class="glyphicon glyphicon-plus"></span> New {{ service.form.title }}</button>'
 })
 export class FormioResourceIndexComponent {
     constructor(
