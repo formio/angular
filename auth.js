@@ -1,5 +1,9 @@
 'use strict';
-let __modules = require('./dist/modules/auth');
-for (let __module in __modules) {
-    exports[__module] = __modules[__module];
-}
+var modules = require('./dist/modules/auth/index');
+exports.FormioAuth = modules.FormioAuth;
+exports.FormioAuthComponent = modules.FormioAuthComponent;
+exports.FormioAuthConfig = modules.FormioAuthConfig;
+exports.FormioAuthLoginComponent = modules.FormioAuthLoginComponent;
+exports.FormioAuthRegisterComponent = modules.FormioAuthRegisterComponent;
+exports.FormioAuthRoutes = modules.FormioAuthRoutes;
+exports.FormioAuthService = modules.FormioAuthService;

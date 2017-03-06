@@ -1,5 +1,12 @@
 'use strict';
-let __modules = require('./dist/modules/resource');
-for (let __module in __modules) {
-    exports[__module] = __modules[__module];
-}
+var modules = require('./dist/modules/resource/index');
+exports.FormioResource = modules.FormioResource;
+exports.FormioResourceConfig = modules.FormioResourceConfig;
+exports.FormioResourceRoutes = modules.FormioResourceRoutes;
+exports.FormioResourceService = modules.FormioResourceService;
+exports.FormioResourceComponent = modules.FormioResourceComponent;
+exports.FormioResourceViewComponent = modules.FormioResourceViewComponent;
+exports.FormioResourceCreateComponent = modules.FormioResourceCreateComponent;
+exports.FormioResourceDeleteComponent = modules.FormioResourceDeleteComponent;
+exports.FormioResourceEditComponent = modules.FormioResourceEditComponent;
+exports.FormioResourceIndexComponent = modules.FormioResourceIndexComponent;

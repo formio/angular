@@ -1,5 +1,4 @@
 'use strict';
-let __modules = require('./dist/modules/grid');
-for (let __module in __modules) {
-    exports[__module] = __modules[__module];
-}
+var modules = require('./dist/modules/grid/index');
+exports.FormioGrid = modules.FormioGrid;
+
