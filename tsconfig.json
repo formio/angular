@@ -10,6 +10,7 @@
     "noImplicitAny": true,
     "outDir": "./dist",
     "sourceMap": true,
+    "sourceRoot": "src",
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5",
     "typeRoots": ["node_modules/@types"],
@@ -21,6 +22,7 @@
   "exclude": [
     "dist",
     "src/**/*.tpl.ts",
-    "typings"
+    "typings",
+    "node_modules"
   ]
 }
