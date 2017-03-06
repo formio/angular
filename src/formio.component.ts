@@ -5,6 +5,7 @@ import { FormioService } from './formio.service';
 import { FormioForm, FormioOptions, FormioError } from './formio.common';
 import { FormioEvents } from './formio.events';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import "rxjs/add/operator/debounceTime";
 
 /**
  * The <formio> component.
@@ -37,6 +38,8 @@ export class FormioComponent implements OnInit {
         this.error = this.events.onError;
     }
     ngOnInit() {
+        this.events.errors = [];
+        this.events.alerts = [];
         this.options = Object.assign({
             errors: {
                 message: 'Please fix the following errors before submitting.'
@@ -52,8 +55,10 @@ export class FormioComponent implements OnInit {
         if (this.form) {
             this.ready.next(true);
         }
-        else if (this.src && !this.service) {
-            this.service = new FormioService(this.src);
+        else if (this.src) {
+            if (!this.service) {
+                this.service = new FormioService(this.src);
+            }
             this.service.loadForm().subscribe((form: FormioForm) => {
                 if (form && form.components) {
                     this.form = form;
