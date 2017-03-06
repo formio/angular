@@ -119,180 +119,31 @@ import { FormioModule } from 'ng2-formio';
 export class AppModule { }
 ```
 
+Included Libraries
+-----------------
+This library is a combination of multiple libraries that enable rapid Serverless application development using Form.io. These libraries are as follows.
+
+1. [Form Renderer](https://github.com/formio/ng2-formio/wiki/Form-Renderer) - The form renderer in Angular 2
+2. [Authentication](https://github.com/formio/ng2-formio/wiki/User-Authentication) - Allows an easy way to provide Form.io authentication into your application.
+3. [Resource](https://github.com/formio/ng2-formio/wiki/3.%29-Resource-Management) - A way to include the Resources within your application with full CRUDI support (Create, Read, Update, Delete, Index)
+4. [Data Table (Grid)](https://github.com/formio/ng2-formio/wiki/4.%29-Data-Table-%28Grid%29) - A way to render data within a Table format, which includes pagination, sorting, etc.
+
+Click on each of those links to read more about how they work and how to utilize them to their fullest potential.
+
 Application Starter Kit
 ----------
-For help in getting started using this library, we created the [ng2-app-starterkit](https://github.com/formio/ng2-app-starterkit) repository to help you get started with best practices with using Form.io within an Angular 2 application.
-
-Inputs
-----------
-The inputs for the ```<formio>``` directive allow you to control how the form renderer behaves. For example, to set the ```submission``` of a form (which will pre-populate the form with data), you can provide the following code which will set the form.
-
-```html
-<formio src="https://examples.form.io/example" [submission]='{
-  "data": {
-    "firstName": "Joe",
-    "lastName": "Smith",
-    "email": "joe@example.com"
-  }
-}'></formio>
-```
-
-The following inputs are accepted.
-
-<table>
-    <thead>
-        <tr>
-        <th>Name</th>
-        <th>Description</th>
-        </tr>
-    </thead>
-    <tr>
-        <td>src</td>
-        <td>To set the source URL of the form (or submission) to be rendered. Example: <code>src="https://examples.form.io/example"</code></td>
-    </tr>
-    <tr>
-        <td>form</td>
-        <td>To render the JSON schema of a form. Example: <code>[form]='{"components":[...]}'</code></td>
-    </tr>
-    <tr>
-        <td>submission</td>
-        <td>The submission JSON to pre-poulate the form. Example: <code>[submission]='{"data": {"name": "Joe Smith"}}'</code></td>
-    </tr>
-    <tr>
-        <td>service</td>
-        <td>Your own instance of the <a href="https://github.com/formio/ng2-formio/blob/master/src/formio.service.ts">FormioService</a> object to perform the requests.</td>
-    </tr>
-    <tr>
-        <td>readOnly</td>
-        <td>Make the form (and submission) read only. Great for when you are rendering a previous submission that should not be editable.</td>
-    </tr>
-    <tr>
-        <td>options</td>
-        <td>A JSON object of the follwoing options.
-            <table>
-                <tr>
-                    <td>hooks</td>
-                    <td>Hooks that allow you to hook into the behavior of the form directly. For now there are only the following.
-                        <ul>
-                        <li><strong>beforeSubmit</strong> - Called before the form submits. See section below on <strong>Hooking into form submissions.</strong></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>alerts</td>
-                    <td>Provide configuration for the alters that are triggered.
-                        <ul>
-                        <li><strong>submitMessage</strong> - Provide the submit message that is shown when the form submits.</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>errors</td>
-                    <td>Provide configuration for the errors that are triggered.
-                        <ul>
-                        <li><strong>message</strong> - Provide the submit message that is shown when an error occurs.</li>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
-
-### Hooking into Form Submissions
-Let's suppose you need to hook into the Form submission, make a call to your own service to perform a custom validation on that submission, and then when your validation passes, allow the submission to be handled. You may also want to tell the form that an error occurred within the Form submission and then provide the error. To do this, you will need to provide the ```options.hooks.beforeSubmit``` callback, which works as follows.
-
-```html
-<formio src='https://examples.form.io/example' options='{
-  "hooks": {
-    "beforeSubmit": function(submission, callback) {
-        console.log(submission);
-        // Do something asynchronously.
-        setTimeout(function() {
-          // Callback with a possibly manipulated submission.
-          callback(null, submission);
-        }, 1000);
-    }
-  }
-}'></formio>
-```
-
-You may also wish to provide your own custom error.
-
-```html
-<formio src='https://examples.form.io/example' options='{
-  "hooks": {
-    "beforeSubmit": function(submission, callback) {
-        console.log(submission);
-        // Do something asynchronously.
-        setTimeout(function() {
-          // Callback with a possibly manipulated submission.
-          callback({
-            message: "Something bad happened.",
-            component: null
-          }, null);
-        }, 1000);
-    }
-  }
-}'></formio>
-```
-
-Outputs (Events)
-------------
-With the ```<formio>``` directive, you can register for a number of different events that fire as the Form is being used and submitted. These events can be attached with the typical Angular 2 way using the following syntax.
-
-```
-<formio src="https://examples.form.io/example" (submit)="onSubmit($event)"></formio>
-```
-
-The following events are provided.
-
-<table>
-    <thead>
-        <tr>
-        <th>Name</th>
-        <th>Description</th>
-        </tr>
-    </thead>
-    <tr>
-        <td>(submit)</td>
-        <td>Called when the form is submitted. The submission object is passed to the callback function.</td>
-    </tr>
-    <tr>
-        <td>(render)</td>
-        <td>Called when the form is done rendering.</td>
-    </tr>
-    <tr>
-        <td>(beforeSubmit)</td>
-        <td>Called before a submission is made. The submission object is passed to the callback function. <strong>Note: </strong> If you need to manipulate the data, or even provide custom validations, then you should use the <code>options.hooks.beforeSubmit</code> handler instead. See documentation above.</td>
-    </tr>
-    <tr>
-        <td>(change)</td>
-        <td>Called when the form has been changed as in when someone is filling it out.</td>
-    </tr>
-    <tr>
-        <td>(invalid)</td>
-        <td>Called when the form is invalid.</td>
-    </tr>
-</table>
-
-For an example of an application using Form.io, you can look at the [Examples Folder](https://github.com/formio/ng2-formio/tree/master/example)
-
-Try it out
------------------
-To see this working within a live application, you can clone our fork of the amazing [ng2-admin](https://github.com/formio/ng2-admin) theme. Then do the following.
+For help in getting started using this library, we created the [ng2-app-starterkit](https://github.com/formio/ng2-app-starterkit) repository to help you get started with best practices with using Form.io within an Angular 2 application. You can try this applicatoin by downloading that application and then doing the following.
 
 ```
 npm install
-npm start
+npm run serve
 ```
 
-You can now see the Form.io section within the **Forms | Dynamic Forms** section. 
+Full Documentation
+------------------
+To read up on the full documentation of this library, please check out the [Wiki Page](https://github.com/formio/ng2-formio/wiki)
 
-For a visual of the changes that needed to happen to incorporate Form.io into this theme, then [take a look at the following diff](https://github.com/formio/ng2-admin/compare/20031c3980a57291c211dee669b36e933adb751e...master)
-
-
-Using with Form.io
+About Form.io
 -----------------
 <a href="https://form.io" target="_blank">Form.io</a> is a combined form and data management API platform created for developers who are building "Serverless" form-based applications.  Form.io provides an easy drag-and-drop form builder workflow allowing you to build complex forms for enterprise applications quickly and easily. These forms are then embedded directly into your application with a single line of code that dynamically renders the form (using Angular or React) in your app while at the very same time generating the RESTful API to support those forms. The Form.io platform also offers numerous 3rd-party services that are fully integrated into the form building process allowing you to extend the power and capability of your apps while saving time and effort.
 
