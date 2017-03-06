@@ -132,20 +132,16 @@ Click on each of those links to read more about how they work and how to utilize
 
 Application Starter Kit
 ----------
-For help in getting started using this library, we created the [ng2-app-starterkit](https://github.com/formio/ng2-app-starterkit) repository to help you get started with best practices with using Form.io within an Angular 2 application.
+For help in getting started using this library, we created the [ng2-app-starterkit](https://github.com/formio/ng2-app-starterkit) repository to help you get started with best practices with using Form.io within an Angular 2 application. You can try this applicatoin by downloading that application and then doing the following.
+
+```
+npm install
+npm run serve
+```
 
 Full Documentation
 ------------------
 To read up on the full documentation of this library, please check out the [Wiki Page](https://github.com/formio/ng2-formio/wiki)
-
-Try it out
------------------
-The best way to try out this project is to install and use the [Angular 2 Starter Kit](https://github.com/formio/ng2-app-starterkit). This can be quickly bootstrapped with the following command.
-
-```
-npm install -g formio-cli
-formio bootstrap formio/ng2-app-starterkit
-```
 
 About Form.io
 -----------------
