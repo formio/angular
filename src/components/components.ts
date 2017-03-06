@@ -2,7 +2,7 @@ import { NgModule, Compiler, Component, ComponentFactory } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup  } from '@angular/forms';
 import { ReactiveFormsModule } from "@angular/forms";
-import { FormioBaseModule } from '../formio';
+import { FormioBaseModule } from '../formio.base';
 import { FormioComponentMetaData, FormioComponentTemplate } from '../formio.template';
 import { FormioEvents } from '../formio.events';
 let find = require('lodash/find');
