@@ -123,8 +123,8 @@ Included Libraries
 -----------------
 This library is a combination of multiple libraries that enable rapid Serverless application development using Form.io. These libraries are as follows.
 
-1. [Form Renderer](https://github.com/formio/ng2-formio/wiki/Form-Renderer) - The form renderer in Angular 2
-2. [Authentication](https://github.com/formio/ng2-formio/wiki/User-Authentication) - Allows an easy way to provide Form.io authentication into your application.
+1. [Form Renderer](https://github.com/formio/ng2-formio/wiki/1.%29-Form-Renderer) - The form renderer in Angular 2
+2. [Authentication](https://github.com/formio/ng2-formio/wiki/2.%29-User-Authentication) - Allows an easy way to provide Form.io authentication into your application.
 3. [Resource](https://github.com/formio/ng2-formio/wiki/3.%29-Resource-Management) - A way to include the Resources within your application with full CRUDI support (Create, Read, Update, Delete, Index)
 4. [Data Table (Grid)](https://github.com/formio/ng2-formio/wiki/4.%29-Data-Table-%28Grid%29) - A way to render data within a Table format, which includes pagination, sorting, etc.
 
