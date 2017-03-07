@@ -27,6 +27,8 @@ export class FormioResourceService {
     public formReject: any;
 
     constructor(private config: FormioResourceConfig) {
+        Formio.setBaseUrl(this.config.app.apiUrl);
+        Formio.setAppUrl(this.config.app.appUrl);
         this.formUrl = this.config.app.appUrl + '/' + this.config.form;
         this.onIndexSelect = new EventEmitter();
         this.resourceLoaded = new Promise((resolve: any, reject: any) => {

@@ -8,7 +8,6 @@ let Formio = require('formiojs');
 @Injectable()
 export class FormioAuthService {
   public user: any;
-  public role: string;
   public authenticated: boolean = false;
 
   public loginForm: string;
@@ -34,6 +33,8 @@ export class FormioAuthService {
 
   constructor(private config: FormioAuthConfig) {
     this.user = null;
+    Formio.setBaseUrl(this.config.app.apiUrl);
+    Formio.setAppUrl(this.config.app.appUrl);
     this.loginForm = this.config.app.appUrl + '/' + this.config.login.form;
     this.registerForm = this.config.app.appUrl + '/' + this.config.register.form;
     this.onLogin = new EventEmitter();
@@ -54,12 +55,12 @@ export class FormioAuthService {
   }
 
   onLoginSubmit(submission: Object) {
-    this.user = submission;
+    this.setUser(submission);
     this.onLogin.emit(submission);
   }
 
   onRegisterSubmit(submission: Object) {
-    this.user = submission;
+    this.setUser(submission);
     this.onRegister.emit(submission);
   }
 
@@ -90,7 +91,7 @@ export class FormioAuthService {
     });
 
     this.userReady = Formio.currentUser().then((user: any) => {
-      this.setUser(user, localStorage.getItem('formioRole'));
+      this.setUser(user);
       return user;
     });
 
@@ -102,7 +103,7 @@ export class FormioAuthService {
       .catch((err: any) => this.readyReject(err));
   }
 
-  setUser(user: any, role: string) {
+  setUser(user: any) {
     if (user) {
       this.user = user;
       localStorage.setItem('formioAppUser', JSON.stringify(user));
@@ -116,19 +117,8 @@ export class FormioAuthService {
       Formio.setUser(null);
     }
 
-    if (!role) {
-      this.role = null;
-      localStorage.removeItem('formioAppRole');
-    }
-    else {
-      this.role = role.toLowerCase();
-      localStorage.setItem('formioAppRole', role);
-    }
     this.authenticated = !!Formio.getToken();
-    this.onUser.emit({
-      user: this.user,
-      role: this.role
-    });
+    this.onUser.emit(this.user);
   }
 
   setUserRoles() {
@@ -142,13 +132,13 @@ export class FormioAuthService {
   }
 
   logoutError() {
-    this.setUser(null, null);
+    this.setUser(null);
     localStorage.removeItem('formioToken');
     this.onError.emit();
   }
 
   logout() {
-    this.setUser(null, null);
+    this.setUser(null);
     localStorage.removeItem('formioToken');
     Formio.logout().then(() => this.onLogout.emit()).catch(() => this.logoutError());
   }
