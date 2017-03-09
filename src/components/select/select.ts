@@ -3,7 +3,7 @@ import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
 import { FormioService } from '../../formio.service';
-var Formio = require('formiojs');
+let Formio = require('formiojs');
 
 export interface SelectOptions extends BaseOptions<any> {
     placeholder?: string;

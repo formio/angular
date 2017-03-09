@@ -35,7 +35,7 @@ import { FormioWizardComponent } from './formio.wizard';
 })
 export class FormioBaseModule {
     static forRoot(template: FormioTemplate): ModuleWithProviders {
-        RegisterTemplate(FormioComponent, template.formio);
+        //RegisterTemplate(FormioComponent, template.formio);
         RegisterTemplate(FormioComponentComponent, template.formio_component);
         RegisterTemplate(FormioWizardComponent, template.formio_wizard);
         RegisterTemplate(FormioComponentsComponent, template.formio_components);

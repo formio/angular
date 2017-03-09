@@ -1,9 +1,8 @@
 import { EventEmitter, Injectable }  from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig } from './resource.config';
-
-let Promise = require('native-promise-only');
 let Formio = require('formiojs');
+let Promise = require('native-promise-only');
 
 @Injectable()
 export class FormioResourceService {

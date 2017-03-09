@@ -1,7 +1,7 @@
-let Formio = require('formiojs');
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { FormioForm } from './formio.common';
+let Formio = require('formiojs');
 export class FormioService {
     public formio: any;
     constructor(public url: string) {

@@ -1,7 +1,7 @@
 import { BaseComponent, BaseOptions, BaseElement} from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
-var Formio = require('formiojs');
+let Formio = require('formiojs');
 
 export interface AddressOptions extends BaseOptions<string> {
     placeholder?: string,

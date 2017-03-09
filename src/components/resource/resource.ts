@@ -2,8 +2,7 @@ import { OnInit } from "@angular/core";
 import { BaseComponent, BaseElement, BaseOptions } from '../base';
 import { FormioComponents } from '../components';
 import { FormioTemplate } from '../../formio.template';
-var Formio = require('formiojs');
-
+let Formio = require('formiojs');
 export interface ResourceOptions extends BaseOptions<any> {
     placeholder?: string;
     template: string;
