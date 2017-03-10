@@ -43,7 +43,7 @@
     "@angular/router": "^3.4.8",
     "@types/chai": "^3.4.34",
     "@types/core-js": "^0.9.35",
-    "@types/jasmine": "^2.5.40",
+    "@types/jasmine": "2.5.41",
     "@types/node": "^6.0.58",
     "angular2-template-loader": "^0.4.0",
     "awesome-typescript-loader": "^2.2.4",
