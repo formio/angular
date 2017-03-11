@@ -643,7 +643,7 @@ export const FORM: any = {
         {
             "input": false,
             "tableView": true,
-            "legend": "FieldSet",
+            "legend": "User Information",
             "type": "fieldset",
             "conditional": {
                 "show": null,

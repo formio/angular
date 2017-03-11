@@ -5,7 +5,8 @@ import { FormioResourceService } from './resource.service';
 @Component({
     styles: ['.back-button { font-size: 0.8em; }'],
     template:
-        '<h3 *ngIf="service.form"><a routerLink="../" class="back-button"><span class="glyphicon glyphicon-chevron-left"></span></a> | New {{ service.form.title }}</h3>' +
+        '<h3 *ngIf="service.form" style="margin-top:0;"><a routerLink="../" class="back-button"><span class="glyphicon glyphicon-chevron-left"></span></a> | New {{ service.form.title }}</h3>' +
+        '<formio-loader></formio-loader>' +
         '<formio *ngIf="service.form" [form]="service.form" (submit)="onSubmit($event)"></formio>'
 })
 export class FormioResourceCreateComponent {

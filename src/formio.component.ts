@@ -1,18 +1,14 @@
-import 'core-js/es7/reflect';
 import { Component, Input, Output, EventEmitter, OnInit, ElementRef, ViewEncapsulation }  from '@angular/core';
 import { FormioService } from './formio.service';
+import { FormioLoader } from './formio.loader';
 import { FormioForm, FormioOptions, FormioError } from './formio.common';
-import { FormioEvents } from './formio.events';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import "rxjs/add/operator/debounceTime";
 let FormioFormCore = require('formiojs/build/formio.form.js');
 
-/**
- * The <formio> component.
- */
 @Component({
     selector: 'formio',
-    template: '<div></div>',
+    template: '<div><formio-loader></formio-loader></div>',
+    styles: ['@@import formio.component.css'],
     encapsulation: ViewEncapsulation.None
 })
 export class FormioComponent implements OnInit {
@@ -30,27 +26,19 @@ export class FormioComponent implements OnInit {
     @Output() invalid: EventEmitter<boolean>;
     @Output() error: EventEmitter<any>;
     private formio: any;
-    constructor(public events: FormioEvents, private elementRef: ElementRef) {
-        this.beforeSubmit = this.events.onBeforeSubmit;
-        this.submit = this.events.onSubmit;
-        this.change = this.events.onChange;
-        this.render = this.events.onRender;
-        this.invalid = this.events.onInvalid;
-        this.error = this.events.onError;
+    constructor(private elementRef: ElementRef, private loader: FormioLoader) {
+        this.beforeSubmit = new EventEmitter();
+        this.submit = new EventEmitter();
+        this.error = new EventEmitter();
+        this.invalid = new EventEmitter();
+        this.change = new EventEmitter();
+        this.render = new EventEmitter();
     }
     ngOnInit() {
         this.formio = new FormioFormCore(null, {
             readOnly: this.readOnly
         });
-        this.events.errors = [];
-        this.events.alerts = [];
         this.options = Object.assign({
-            errors: {
-                message: 'Please fix the following errors before submitting.'
-            },
-            alerts: {
-                submitMessage: 'Submission Complete.'
-            },
             hooks: {
                 beforeSubmit: null
             }
@@ -58,71 +46,61 @@ export class FormioComponent implements OnInit {
 
         if (this.form) {
             this.formio.form = this.form;
+            this.loader.loading = false;
             this.ready.next(true);
         }
         else if (this.src) {
             if (!this.service) {
                 this.service = new FormioService(this.src);
             }
+            this.loader.loading = true;
             this.service.loadForm().subscribe((form: FormioForm) => {
                 if (form && form.components) {
                     this.form = this.formio.form = form;
+                    this.loader.loading = false;
                     this.ready.next(true);
                 }
 
                 // If a submission is also provided.
-                if (this.service.formio.submissionId) {
+                if (!this.submission && this.service.formio.submissionId) {
                     this.service.loadSubmission().subscribe((submission: any) => {
                         this.submission = this.formio.submission = submission;
-                    }, (err) => this.onError(err));
+                    }, (err) => this.error.emit(err));
                 }
-            }, (err) => this.onError(err));
+            }, (err) => this.error.emit(err));
         }
 
-        this.formio.on('change', (value: any) => this.events.onChange.emit(value));
+        // Add the submission if it was provided.
+        if (this.submission) {
+            this.formio.submission = this.submission;
+        }
+
+        this.formio.on('change', (value: any) => this.change.emit(value));
         this.formio.on('submit', (submission: any) => this.onSubmit(submission));
-    }
-    ngAfterContentInit() {
+        this.formio.on('error', (err: any) => this.error.emit(err));
+        this.formio.on('render', () => this.render.emit(true));
         this.formio.setElement(this.elementRef.nativeElement);
-    }
-    onRender() {
-        this.events.onRender.emit(true);
-    }
-    onError(err: any) {
-        let error = new FormioError(err);
-        this.events.onError.emit(err);
-        this.events.errors.push(error);
     }
     submitForm(submission: Object) {
         if (this.service) {
-            this.service.saveSubmission(submission).subscribe((sub: {}) => {
-                this.events.onSubmit.emit(sub);
-                this.events.alerts.push({
-                    type: 'success',
-                    message: this.options.alerts.submitMessage
-                });
-            }, (err) => this.onError(err));
+            this.service.saveSubmission(submission).subscribe(
+                (sub: {}) => this.submit.emit(sub),
+                (err) => this.error.emit(err)
+            );
         }
         else {
-            this.events.onSubmit.emit(submission);
-            this.events.alerts.push({
-                type: 'success',
-                message: this.options.alerts.submitMessage
-            });
+            this.submit.emit(submission);
         }
     }
     onSubmit(submission: any) {
-        // Reset the errors and alerts.
-        this.events.errors = [];
-        this.events.alerts = [];
-        this.events.onBeforeSubmit.emit(submission);
+        this.beforeSubmit.emit(submission);
 
         // If they provide a beforeSubmit hook, then allow them to alter the submission asynchronously
         // or even provide a custom Error method.
         if (this.options.hooks.beforeSubmit) {
             this.options.hooks.beforeSubmit(submission, (err: FormioError, sub:Object) => {
                 if (err) {
-                    this.onError(err);
+                    this.error.emit(err);
                     return;
                 }
                 this.submitForm(sub);

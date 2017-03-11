@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormioLoaderStyles } from '../../formio.config';
 let Formio = require('formiojs');
 let Promise = require('native-promise-only');
 let FormioUtils = require('formio-utils');
@@ -13,12 +12,11 @@ let _each = require('lodash/each');
         ':host >>> ul.pagination { margin: 5px 0; }',
         '.item-counter { margin: 5px 0; }',
         '.page-num { font-size: 1.4em; }',
-        '.grid-refresh { height: 400px; width: 100%; }',
-        ...FormioLoaderStyles
+        '.grid-refresh { height: 400px; width: 100%; }'
     ],
     template:
         '<div class="formio-grid">' +
-            '<div *ngIf="isLoading" style="position:relative;height:200px"><div class="formio-loader-wrapper"><div class="formio-loader"></div></div></div>' +
+            '<formio-loader></formio-loader>' +
             '<table class="table table-condensed table-bordered table-striped table-hover">' +
                 '<thead>' +
                     '<tr>' +

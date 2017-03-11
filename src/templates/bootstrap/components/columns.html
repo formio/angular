@@ -1,5 +1,0 @@
-<div class="row">
-    <div *ngFor="let column of component.settings.columns" class="col col-sm-6">
-        <formio-components [components]="column.components" [form]="form" [submission]="submission" [data]="data" (render)="onRender()"></formio-components>
-    </div>
-</div>

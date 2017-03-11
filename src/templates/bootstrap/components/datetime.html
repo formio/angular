@@ -1,7 +1,0 @@
-<div class="form-group {{component.settings.customClass}}" [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
-    <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label">{{ component.label }}</label>
-    <div class="input-group">
-        <input #flatpickr [formControl]="component.control" type="text" [placeholder]="component.settings.placeholder" class="form-control" />
-        <span class="input-group-addon"><i *ngIf="component.settings.enableDate" class="glyphicon glyphicon-calendar"></i><i *ngIf="!component.settings.enableDate" class="glyphicon glyphicon-time"></i></span>
-    </div>
-</div>
