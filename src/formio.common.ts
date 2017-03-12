@@ -40,6 +40,14 @@ export interface FormioForm {
     components?: Array<BaseOptions<any>>
 }
 
+export interface AlertsOptions {
+    submitMessage: string
+}
+
+export interface ErrorsOptions {
+    message: string
+}
+
 export class FormioError {
     constructor (public message: string, public component: BaseOptions<any> = null) {}
 }
@@ -57,5 +65,7 @@ export interface FormioHookOptions {
 }
 
 export interface FormioOptions {
+    errors: ErrorsOptions,
+    alerts: AlertsOptions,
     hooks: FormioHookOptions
 }

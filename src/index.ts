@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormioComponent } from './formio.component';
+import { FormioAlertsComponent, FormioAlerts } from './formio.alerts';
 import { FormioLoader, FormioLoaderComponent } from './formio.loader';
 @NgModule({
     imports: [
@@ -8,14 +9,17 @@ import { FormioLoader, FormioLoaderComponent } from './formio.loader';
     ],
     declarations: [
         FormioComponent,
-        FormioLoaderComponent
+        FormioLoaderComponent,
+        FormioAlertsComponent
     ],
     exports: [
         FormioComponent,
-        FormioLoaderComponent
+        FormioLoaderComponent,
+        FormioAlertsComponent
     ],
     providers: [
-        FormioLoader
+        FormioLoader,
+        FormioAlerts
     ]
 })
 export class FormioModule {}
