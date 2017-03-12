@@ -1,11 +1,28 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormioAlert } from './formio.common';
+import { Component, Injectable } from '@angular/core';
+
+export interface FormioAlert {
+    type: string,
+    message: string
+}
+
+@Injectable()
+export class FormioAlerts {
+    public alerts: Array<FormioAlert> = [];
+    setAlert(alert: FormioAlert) {
+        this.alerts = [alert];
+    }
+    addAlert(alert: FormioAlert) {
+        this.alerts.push(alert);
+    }
+    setAlerts(alerts: Array<FormioAlert>) {
+        this.alerts = alerts;
+    }
+}
 
 @Component({
     selector: 'formio-alerts',
-    template: '<div></div>'
+    template: '<div *ngFor="let alert of alerts.alerts" class="alert alert-{{ alert.type }}" role="alert">{{ alert.message }}</div>'
 })
-export class FormioAlerts implements OnInit {
-    @Input() alerts: Array<FormioAlert> = [];
-    ngOnInit() {}
+export class FormioAlertsComponent {
+    constructor(private alerts: FormioAlerts) {}
 }

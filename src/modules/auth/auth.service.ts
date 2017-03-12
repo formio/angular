@@ -1,9 +1,8 @@
 import { EventEmitter, Injectable }  from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
+let Formio = require('formiojs');
 let Promise = require('native-promise-only');
 let _each = require('lodash/each');
-let Formio = require('formiojs');
-
 
 @Injectable()
 export class FormioAuthService {

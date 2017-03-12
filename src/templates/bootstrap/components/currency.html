@@ -1,8 +1,0 @@
-<div [formGroup]="form" class="form-group {{component.settings.customClass}}" [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
-    <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label">{{ component.label }}</label>
-    <div [ngClass]="{'input-group': (component.settings.prefix || component.settings.suffix)}">
-        <div *ngIf="component.settings.prefix" class="input-group-addon">{{ component.settings.prefix }}</div>
-        <input type="text" [formControl]="component.control" [(ngModel)]="inputs" (keyup)="inputs = onChange(inputs)" [id]="component.settings.key" [placeholder]="component.settings.placeholder" class="form-control" />
-        <div *ngIf="component.settings.suffix" class="input-group-addon">{{ component.settings.suffix }}</div>
-    </div>
-</div>

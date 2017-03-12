@@ -1,8 +1,36 @@
-import { BaseOptions } from './components/base';
+export interface ConditionalOptions {
+    show?: string,
+    when?: any,
+    eq?: any
+}
 
-/**
- * The form structure.
- */
+export interface ValidateOptions {
+    required?: boolean,
+    custom?: string,
+    customPrivate?: boolean
+}
+
+export interface ComponentOptions<T, V> {
+    defaultValue?: T | Array<T>,
+    type?: string,
+    key?: string,
+    label?: string,
+    input?: boolean,
+    required?: boolean,
+    multiple?: boolean,
+    protected?: boolean,
+    unique?: boolean,
+    persistent?: boolean,
+    tableView?: boolean,
+    lockKey?: boolean,
+    validate?: V,
+    conditional?: ConditionalOptions,
+    customConditional?: string
+}
+
+export interface BaseOptions<T> extends ComponentOptions<T, ValidateOptions> {
+}
+
 export interface FormioForm {
     title?: string,
     name?: string,
@@ -16,17 +44,12 @@ export interface AlertsOptions {
     submitMessage: string
 }
 
-export interface FormioAlert {
-    type: string,
+export interface ErrorsOptions {
     message: string
 }
 
 export class FormioError {
     constructor (public message: string, public component: BaseOptions<any> = null) {}
-}
-
-export interface ErrorsOptions {
-    message: string
 }
 
 export interface FormioSubmissionCallback {

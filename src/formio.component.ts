@@ -1,21 +1,21 @@
-import 'core-js/es7/reflect';
-import { Component, Input, Output, EventEmitter, OnInit }  from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, OnInit, ElementRef, ViewEncapsulation }  from '@angular/core';
 import { FormioService } from './formio.service';
+import { FormioLoader } from './formio.loader';
+import { FormioAlerts } from './formio.alerts';
 import { FormioForm, FormioOptions, FormioError } from './formio.common';
-import { FormioEvents } from './formio.events';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import "rxjs/add/operator/debounceTime";
+let FormioFormCore = require('formiojs/build/formio.form.js');
 
-/**
- * The <formio> component.
- */
 @Component({
     selector: 'formio',
-    template: '<div></div>'
+    template: '<div>' +
+        '<formio-loader></formio-loader>' +
+        '<formio-alerts></formio-alerts>' +
+    '</div>',
+    styles: ['@@import formio.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class FormioComponent implements OnInit {
-    public formGroup: FormGroup = new FormGroup({});
     public ready: BehaviorSubject<boolean> = new BehaviorSubject(false);
     @Input() form: FormioForm = null;
     @Input() submission: any = {};
@@ -29,17 +29,24 @@ export class FormioComponent implements OnInit {
     @Output() change: EventEmitter<Object>;
     @Output() invalid: EventEmitter<boolean>;
     @Output() error: EventEmitter<any>;
-    constructor(public events: FormioEvents) {
-        this.beforeSubmit = this.events.onBeforeSubmit;
-        this.submit = this.events.onSubmit;
-        this.change = this.events.onChange;
-        this.render = this.events.onRender;
-        this.invalid = this.events.onInvalid;
-        this.error = this.events.onError;
+    private formio: any;
+    constructor(
+        private elementRef: ElementRef,
+        private loader: FormioLoader,
+        private alerts: FormioAlerts
+    ) {
+        this.beforeSubmit = new EventEmitter();
+        this.submit = new EventEmitter();
+        this.error = new EventEmitter();
+        this.invalid = new EventEmitter();
+        this.change = new EventEmitter();
+        this.render = new EventEmitter();
     }
     ngOnInit() {
-        this.events.errors = [];
-        this.events.alerts = [];
+        this.formio = new FormioFormCore(null, {
+            readOnly: this.readOnly,
+            noAlerts: true
+        });
         this.options = Object.assign({
             errors: {
                 message: 'Please fix the following errors before submitting.'
@@ -53,87 +60,69 @@ export class FormioComponent implements OnInit {
         }, this.options);
 
         if (this.form) {
+            this.formio.form = this.form;
+            this.loader.loading = false;
             this.ready.next(true);
         }
         else if (this.src) {
             if (!this.service) {
                 this.service = new FormioService(this.src);
             }
+            this.loader.loading = true;
             this.service.loadForm().subscribe((form: FormioForm) => {
                 if (form && form.components) {
-                    this.form = form;
+                    this.form = this.formio.form = form;
+                    this.loader.loading = false;
                     this.ready.next(true);
                 }
 
                 // If a submission is also provided.
-                if (this.service.formio.submissionId) {
+                if (!this.submission && this.service.formio.submissionId) {
                     this.service.loadSubmission().subscribe((submission: any) => {
-                        this.submission = submission;
-                        this.formGroup.patchValue(submission.data);
-                        this.formGroup.disable();
+                        this.submission = this.formio.submission = submission;
                     }, (err) => this.onError(err));
                 }
             }, (err) => this.onError(err));
         }
 
-        // Subscribe to value changes.
-        //noinspection TypeScriptUnresolvedFunction
-        this.formGroup.valueChanges
-            .debounceTime(100)
-            .subscribe((value: any) => {
-                this.events.onChange.emit(value);
-            });
-
-        // If this is a read only form, then disable the formGroup.
-        if (this.readOnly) {
-            this.formGroup.disable();
+        // Add the submission if it was provided.
+        if (this.submission) {
+            this.formio.submission = this.submission;
         }
+
+        this.formio.on('change', (value: any) => this.change.emit(value));
+        this.formio.on('submit', (submission: any) => this.submitForm(submission));
+        this.formio.on('error', (err: any) => this.onError(err));
+        this.formio.on('render', () => this.render.emit(true));
+        this.formio.setElement(this.elementRef.nativeElement);
     }
-    onRender() {
-        this.events.onRender.emit(true);
+    onSubmit(submission:any) {
+        this.submit.emit(submission);
+        this.alerts.setAlert({
+            type: 'success',
+            message: this.options.alerts.submitMessage
+        });
     }
     onError(err: any) {
-        let error = new FormioError(err);
-        this.events.onError.emit(err);
-        this.events.errors.push(error);
+        this.error.emit(err);
+        this.alerts.setAlert({
+            type: 'danger',
+            message: err.message || err.toString()
+        });
     }
-    submitForm(submission: Object) {
+    submitExecute(submission: Object) {
         if (this.service) {
-            this.service.saveSubmission(submission).subscribe((sub: {}) => {
-                this.events.onSubmit.emit(sub);
-                this.events.alerts.push({
-                    type: 'success',
-                    message: this.options.alerts.submitMessage
-                });
-            }, (err) => this.onError(err));
+            this.service.saveSubmission(submission).subscribe(
+                (sub: {}) => this.onSubmit(sub),
+                (err) => this.onError(err)
+            );
         }
         else {
-            this.events.onSubmit.emit(submission);
-            this.events.alerts.push({
-                type: 'success',
-                message: this.options.alerts.submitMessage
-            });
+            this.onSubmit(submission);
         }
     }
-    onSubmit($event: any) {
-        if ($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-        }
-
-        // Reset the errors and alerts.
-        this.events.errors = [];
-        this.events.alerts = [];
-
-        // Check if the form is valid.
-        if (!this.formGroup.valid) {
-            this.formGroup.markAsDirty(true);
-            this.events.onInvalid.emit(true);
-            return;
-        }
-
-        let submission = {data: this.formGroup.value};
-        this.events.onBeforeSubmit.emit(submission);
+    submitForm(submission: any) {
+        this.beforeSubmit.emit(submission);
 
         // If they provide a beforeSubmit hook, then allow them to alter the submission asynchronously
         // or even provide a custom Error method.
@@ -143,11 +132,11 @@ export class FormioComponent implements OnInit {
                     this.onError(err);
                     return;
                 }
-                this.submitForm(sub);
+                this.submitExecute(sub);
             });
         }
         else {
-            this.submitForm(submission);
+            this.submitExecute(submission);
         }
     }
 }
