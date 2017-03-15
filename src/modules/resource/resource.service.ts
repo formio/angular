@@ -60,6 +60,9 @@ export class FormioResourceService {
             return this.resourceLoading;
         }
         let id = route.snapshot.params['id'];
+        if (!id) {
+            return Promise.reject('No resource ID provided.');
+        }
         this.resourceUrl = this.config.app.appUrl + '/' + this.config.form;
         this.resourceUrl += '/submission/' + id;
         this.formio = (new Formio(this.resourceUrl));
@@ -72,7 +75,7 @@ export class FormioResourceService {
     }
 
     save(resource:any) {
-        let formio = resource._id ? this.formio : this.formFormio;
+        let formio = this.formio || this.formFormio;
         return formio.saveSubmission(resource).then((resource: any) => {
             this.resource = resource;
             return resource;
