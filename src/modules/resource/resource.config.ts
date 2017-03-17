@@ -5,5 +5,6 @@ import { FormioAppConfig } from '../../index';
 export class FormioResourceConfig {
     app: FormioAppConfig;
     name: string;
-    form: string
+    form: string;
+    parents: Array<string> = [];
 }

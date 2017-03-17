@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable }  from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormioResourceRegistry } from './resource.registry';
 import { FormioResourceConfig } from './resource.config';
 import { FormioLoader } from '../../index';
 let Formio = require('formiojs');
@@ -26,11 +27,23 @@ export class FormioResourceService {
     public formResolve: any;
     public formReject: any;
 
-    constructor(private config: FormioResourceConfig, private loader: FormioLoader) {
+    constructor(
+        private config: FormioResourceConfig,
+        private loader: FormioLoader,
+        private registry: FormioResourceRegistry
+    ) {
         Formio.setBaseUrl(this.config.app.apiUrl);
         Formio.setAppUrl(this.config.app.appUrl);
+
+        // Add this resource service to the list of all resources in context.
+        if (this.registry) {
+            this.registry.resources[this.config.name] = this;
+        }
+
+        // Create the form url and load the resources.
         this.formUrl = this.config.app.appUrl + '/' + this.config.form;
         this.onIndexSelect = new EventEmitter();
+        this.resource = {data: {}};
         this.resourceLoaded = new Promise((resolve: any, reject: any) => {
             this.resourceResolve = resolve;
             this.resourceReject = reject;
@@ -40,6 +53,7 @@ export class FormioResourceService {
             this.formReject = reject;
         });
         this.loadForm();
+        this.setParents();
     }
 
     loadForm() {
@@ -55,6 +69,30 @@ export class FormioResourceService {
             return form;
         }, (err: any) => this.formReject(err)).catch((err: any) => this.formReject(err));
         return this.formLoading;
+    }
+
+    setParents() {
+        if (!this.config.parents || !this.config.parents.length) {
+            return;
+        }
+
+        if (!this.registry) {
+            console.warn('You must provide the FormioResourceRegistry within your application to use nested resources.');
+            return;
+        }
+
+        // Iterate through the list of parents.
+        this.config.parents.forEach((parent: string) => {
+            // See if this parent is already in context.
+            if (this.registry.resources.hasOwnProperty(parent)) {
+                this.registry.resources[parent].resourceLoaded.then((resource) => {
+                    if (!this.resourceLoading) {
+                        // Set the value of this parent in the submission data.
+                        this.resource.data[parent] = resource;
+                    }
+                });
+            }
+        });
     }
 
     loadResource(route: ActivatedRoute) {

@@ -7,7 +7,7 @@ import { FormioResourceService } from './resource.service';
     template:
         '<h3 *ngIf="service.form" style="margin-top:0;"><a routerLink="../" class="back-button"><span class="glyphicon glyphicon-chevron-left"></span></a> | New {{ service.form.title }}</h3>' +
         '<formio-loader></formio-loader>' +
-        '<formio *ngIf="service.form" [form]="service.form" (submit)="onSubmit($event)"></formio>'
+        '<formio *ngIf="service.form" [form]="service.form" [submission]="service.resource" (submit)="onSubmit($event)"></formio>'
 })
 export class FormioResourceCreateComponent {
     constructor(

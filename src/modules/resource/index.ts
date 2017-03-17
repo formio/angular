@@ -73,6 +73,7 @@ export function FormioResourceRoutes(config?: any): Routes {
 export class FormioResource {}
 
 export { FormioResourceConfig } from './resource.config';
+export { FormioResourceRegistry } from './resource.registry';
 export { FormioResourceComponent } from './resource.component';
 export { FormioResourceViewComponent } from './view.component';
 export { FormioResourceEditComponent } from './edit.component';
