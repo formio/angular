@@ -47,6 +47,7 @@ export class FormioGridComponent implements OnInit {
         skip: 0
     };
     @Output() select: EventEmitter<Object>;
+    @Output() error: EventEmitter<any>;
 
     private columns: Array<any> = [];
     private rows: Array<any> = [];
@@ -61,6 +62,7 @@ export class FormioGridComponent implements OnInit {
 
     constructor() {
         this.select = new EventEmitter();
+        this.error = new EventEmitter();
     }
 
     ngOnInit() {
@@ -91,6 +93,10 @@ export class FormioGridComponent implements OnInit {
         this.isLoading = _loading;
     }
 
+    onError(error: any) {
+        this.error.emit(error);
+    }
+
     refresh() {
         this.loading = true;
         this.formio.loadSubmissions({params: this.query}).then((submissions:any) => {
@@ -103,7 +109,7 @@ export class FormioGridComponent implements OnInit {
                 this.rows.push(submission);
             });
             this.loading = false;
-        });
+        }, (err: any) => this.onError(err)).catch((err: any) => this.onError(err));
     }
 
     setPage(num: number = -1) {

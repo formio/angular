@@ -1,7 +1,6 @@
 import { EventEmitter, Injectable }  from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormioResourceRegistry } from './resource.registry';
-import { FormioResourceConfig } from './resource.config';
+import { FormioResourceConfig, FormioResources } from './resource.config';
 import { FormioLoader } from '../../index';
 let Formio = require('formiojs');
 let Promise = require('native-promise-only');
@@ -30,14 +29,14 @@ export class FormioResourceService {
     constructor(
         private config: FormioResourceConfig,
         private loader: FormioLoader,
-        private registry: FormioResourceRegistry
+        private resources: FormioResources
     ) {
         Formio.setBaseUrl(this.config.app.apiUrl);
         Formio.setAppUrl(this.config.app.appUrl);
 
         // Add this resource service to the list of all resources in context.
-        if (this.registry) {
-            this.registry.resources[this.config.name] = this;
+        if (this.resources) {
+            this.resources.resources[this.config.name] = this;
         }
 
         // Create the form url and load the resources.
@@ -56,6 +55,17 @@ export class FormioResourceService {
         this.setParents();
     }
 
+    onError(error: any) {
+        if (this.resources) {
+            this.resources.error.emit(error);
+        }
+    }
+
+    onFormError(err: any) {
+        this.formReject(err);
+        this.onError(err);
+    }
+
     loadForm() {
         if (this.formLoading) {
             return this.formLoading;
@@ -67,7 +77,7 @@ export class FormioResourceService {
             this.formResolve(form);
             this.loader.loading = false;
             return form;
-        }, (err: any) => this.formReject(err)).catch((err: any) => this.formReject(err));
+        }, (err: any) => this.onFormError(err)).catch((err: any) => this.onFormError(err));
         return this.formLoading;
     }
 
@@ -76,7 +86,7 @@ export class FormioResourceService {
             return;
         }
 
-        if (!this.registry) {
+        if (!this.resources) {
             console.warn('You must provide the FormioResourceRegistry within your application to use nested resources.');
             return;
         }
@@ -84,8 +94,8 @@ export class FormioResourceService {
         // Iterate through the list of parents.
         this.config.parents.forEach((parent: string) => {
             // See if this parent is already in context.
-            if (this.registry.resources.hasOwnProperty(parent)) {
-                this.registry.resources[parent].resourceLoaded.then((resource) => {
+            if (this.resources.resources.hasOwnProperty(parent)) {
+                this.resources.resources[parent].resourceLoaded.then((resource: any) => {
                     if (!this.resourceLoading) {
                         // Set the value of this parent in the submission data.
                         this.resource.data[parent] = resource;
@@ -93,6 +103,11 @@ export class FormioResourceService {
                 });
             }
         });
+    }
+
+    onSubmissionError(err: any) {
+        this.resourceReject(err);
+        this.onError(err);
     }
 
     loadResource(route: ActivatedRoute) {
@@ -109,7 +124,7 @@ export class FormioResourceService {
             this.resourceResolve(resource);
             this.loader.loading = false;
             return resource;
-        }, (err: any) => this.resourceReject(err)).catch((err: any) => this.resourceReject(err));
+        }, (err: any) => this.onSubmissionError(err)).catch((err: any) => this.onSubmissionError(err));
         return this.resourceLoading;
     }
 
@@ -120,12 +135,12 @@ export class FormioResourceService {
             this.resource = resource;
             this.loader.loading = false;
             return resource;
-        });
+        }, (err: any) => this.onError(err)).catch((err: any) => this.onError(err));
     }
 
     remove() {
         return this.formio.deleteSubmission().then(() => {
            this.resource = null;
-        });
+        }, (err: any) => this.onError(err)).catch((err: any) => this.onError(err));
     }
 }
