@@ -5,6 +5,7 @@ import { FormioAlerts } from './formio.alerts';
 import { FormioForm, FormioOptions, FormioError } from './formio.common';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 let FormioFormCore = require('formiojs/build/formio.form.js');
+let FormioWizard = require('formiojs/build/formio.wizard.js');
 
 @Component({
     selector: 'formio',
@@ -35,9 +36,6 @@ export class FormioComponent implements OnInit {
         private loader: FormioLoader,
         private alerts: FormioAlerts
     ) {
-        this.formio = new FormioFormCore(null, {
-            noAlerts: true
-        });
         this.beforeSubmit = new EventEmitter();
         this.submit = new EventEmitter();
         this.error = new EventEmitter();
@@ -45,8 +43,31 @@ export class FormioComponent implements OnInit {
         this.change = new EventEmitter();
         this.render = new EventEmitter();
     }
+    setForm(form: FormioForm) {
+        this.form = form;
+        if (this.form.display === 'form') {
+            this.formio = new FormioFormCore(null, {
+                noAlerts: true,
+                readOnly: this.readOnly
+            });
+        }
+        else if (this.form.display === 'wizard') {
+            this.formio = new FormioWizard(null, {
+                noAlerts: true,
+                readOnly: this.readOnly
+            });
+        }
+
+        this.formio.on('change', (value: any) => this.change.emit(value));
+        this.formio.on('submit', (submission: any) => this.submitForm(submission));
+        this.formio.on('error', (err: any) => this.onError(err));
+        this.formio.on('render', () => this.render.emit(true));
+        this.formio.setElement(this.elementRef.nativeElement);
+        this.formio.form = this.form;
+        this.loader.loading = false;
+        this.ready.next(true);
+    }
     ngOnInit() {
-        this.formio.options.readOnly = this.readOnly;
         this.options = Object.assign({
             errors: {
                 message: 'Please fix the following errors before submitting.'
@@ -60,9 +81,7 @@ export class FormioComponent implements OnInit {
         }, this.options);
 
         if (this.form) {
-            this.formio.form = this.form;
-            this.loader.loading = false;
-            this.ready.next(true);
+            this.setForm(this.form);
         }
         else if (this.src) {
             if (!this.service) {
@@ -71,9 +90,7 @@ export class FormioComponent implements OnInit {
             this.loader.loading = true;
             this.service.loadForm().subscribe((form: FormioForm) => {
                 if (form && form.components) {
-                    this.form = this.formio.form = form;
-                    this.loader.loading = false;
-                    this.ready.next(true);
+                    this.setForm(form);
                 }
 
                 // If a submission is also provided.
@@ -84,20 +101,16 @@ export class FormioComponent implements OnInit {
                 }
             }, (err) => this.onError(err));
         }
-
-        this.formio.on('change', (value: any) => this.change.emit(value));
-        this.formio.on('submit', (submission: any) => this.submitForm(submission));
-        this.formio.on('error', (err: any) => this.onError(err));
-        this.formio.on('render', () => this.render.emit(true));
-        this.formio.setElement(this.elementRef.nativeElement);
     }
     ngOnChanges(changes: any) {
-        if (changes.form) {
-            this.formio.form = changes.form.currentValue;
-        }
-        if (changes.submission) {
-            this.formio.submission = changes.submission.currentValue;
-        }
+        this.ready.subscribe(() => {
+            if (changes.form) {
+                this.formio.form = changes.form.currentValue;
+            }
+            if (changes.submission) {
+                this.formio.submission = changes.submission.currentValue;
+            }
+        });
     }
     onSubmit(submission:any) {
         this.submit.emit(submission);

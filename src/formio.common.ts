@@ -33,6 +33,7 @@ export interface BaseOptions<T> extends ComponentOptions<T, ValidateOptions> {
 
 export interface FormioForm {
     title?: string,
+    display?: string,
     name?: string,
     path?: string,
     project?: string,
