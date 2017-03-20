@@ -96,7 +96,10 @@ export class FormioComponent implements OnInit {
                 // If a submission is also provided.
                 if (!this.submission && this.service.formio.submissionId) {
                     this.service.loadSubmission().subscribe((submission: any) => {
-                        this.submission = this.formio.submission = submission;
+                        this.submission = submission;
+                        if (this.formio) {
+                            this.formio.submission = submission;
+                        }
                     }, (err) => this.onError(err));
                 }
             }, (err) => this.onError(err));
@@ -104,11 +107,13 @@ export class FormioComponent implements OnInit {
     }
     ngOnChanges(changes: any) {
         this.ready.subscribe(() => {
-            if (changes.form) {
-                this.formio.form = changes.form.currentValue;
-            }
-            if (changes.submission) {
-                this.formio.submission = changes.submission.currentValue;
+            if (this.formio) {
+                if (changes.form) {
+                    this.formio.form = changes.form.currentValue;
+                }
+                if (changes.submission) {
+                    this.formio.submission = changes.submission.currentValue;
+                }
             }
         });
     }
