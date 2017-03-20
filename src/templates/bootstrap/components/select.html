@@ -1,5 +1,5 @@
 <div class="form-group {{component.settings.customClass}}" [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
-    <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label">{{ component.label }}</label>
+    <label *ngIf="component._label" [attr.for]="component.settings.key" class="control-label">{{ component.label }}</label>
     <ng-select [items]="component.settings.data.values"
                (data)="refreshValue($event)"
                (selected)="selected($event)"
