@@ -1,13 +1,11 @@
 'use strict';
-var fs = require('fs');
-var gulp = require('gulp');
-var gulpsync = require('gulp-sync')(gulp);
-var replace = require('gulp-replace');
-var inject = require('gulp-js-text-inject');
-var sass = require('gulp-sass');
-var cleanCSS = require('gulp-clean-css');
-var ts = require('gulp-typescript');
-
+const gulp = require('gulp');
+const gulpsync = require('gulp-sync')(gulp);
+const replace = require('gulp-replace');
+const inject = require('gulp-js-text-inject');
+const sass = require('gulp-sass');
+const cleanCSS = require('gulp-clean-css');
+const ts = require('gulp-typescript');
 gulp.task('styles', () => {
     return gulp.src(['./src/formio.component.scss'])
         .pipe(sass().on('error', sass.logError))

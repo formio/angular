@@ -1,0 +1,12 @@
+$icon-font-path: "../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+@import "../node_modules/bootswatch/yeti/_variables.scss";
+@import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "../node_modules/bootswatch/yeti/_bootswatch.scss";
+
+.footer {
+  text-align: center;
+  padding: 3em;
+  color: #777;
+  border-top: .05rem solid #e5e5e5;
+  margin-top: 20px;
+}

@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 let Formio = require('formiojs');
-let Promise = require('native-promise-only');
 let FormioUtils = require('formio-utils');
 let _get = require('lodash/get');
 let _each = require('lodash/each');

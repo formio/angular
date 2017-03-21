@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig, FormioResources } from './resource.config';
 import { FormioLoader } from '../../index';
 let Formio = require('formiojs');
-let Promise = require('native-promise-only');
 
 @Injectable()
 export class FormioResourceService {
