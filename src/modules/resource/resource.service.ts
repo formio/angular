@@ -33,6 +33,7 @@ export class FormioResourceService {
     ) {
         Formio.setBaseUrl(this.config.app.apiUrl);
         Formio.setAppUrl(this.config.app.appUrl);
+        Formio.setFormOnly(this.config.app.formOnly);
 
         // Add this resource service to the list of all resources in context.
         if (this.resources) {

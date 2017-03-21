@@ -34,6 +34,7 @@ export class FormioAuthService {
     this.user = null;
     Formio.setBaseUrl(this.config.app.apiUrl);
     Formio.setAppUrl(this.config.app.appUrl);
+    Formio.setFormOnly(this.config.app.formOnly);
     this.loginForm = this.config.app.appUrl + '/' + this.config.login.form;
     this.registerForm = this.config.app.appUrl + '/' + this.config.register.form;
     this.onLogin = new EventEmitter();
