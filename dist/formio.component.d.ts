@@ -1,0 +1,38 @@
+import { EventEmitter, OnInit, ElementRef } from '@angular/core';
+import { FormioService } from './formio.service';
+import { FormioLoader } from './formio.loader';
+import { FormioAlerts } from './formio.alerts';
+import { FormioAppConfig } from './formio.config';
+import { FormioForm, FormioOptions, FormioRefreshValue } from './formio.common';
+export declare class FormioComponent implements OnInit {
+    private config;
+    private elementRef;
+    private loader;
+    private alerts;
+    ready: Promise<boolean>;
+    readyResolve: any;
+    form: FormioForm;
+    submission: any;
+    src: string;
+    service: FormioService;
+    options: FormioOptions;
+    readOnly: boolean;
+    hideComponents: Array<string>;
+    refresh: EventEmitter<FormioRefreshValue>;
+    render: EventEmitter<Object>;
+    submit: EventEmitter<Object>;
+    beforeSubmit: EventEmitter<Object>;
+    change: EventEmitter<Object>;
+    invalid: EventEmitter<boolean>;
+    error: EventEmitter<any>;
+    private formio;
+    constructor(config: FormioAppConfig, elementRef: ElementRef, loader: FormioLoader, alerts: FormioAlerts);
+    setForm(form: FormioForm): void;
+    ngOnInit(): void;
+    onRefresh(refresh: FormioRefreshValue): void;
+    ngOnChanges(changes: any): void;
+    onSubmit(submission: any): void;
+    onError(err: any): void;
+    submitExecute(submission: Object): void;
+    submitForm(submission: any): void;
+}
