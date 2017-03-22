@@ -9,7 +9,7 @@ export interface FormioAuthFormConfig {
 
 @Injectable()
 export class FormioAuthConfig {
-    app: FormioAppConfig;
+    app?: FormioAppConfig;
     component?: any;
     login?: FormioAuthFormConfig;
     register?: FormioAuthFormConfig;

@@ -24,8 +24,9 @@
     "@angular/forms": "^2.4.10",
     "@angular/router": "^3.4.10",
     "core-js": "^2.4.1",
-    "formiojs": "^2.1.0",
+    "formiojs": "^2.2.0",
     "lodash": "^4.17.4",
+    "native-promise-only": "^0.8.1",
     "ng2-bootstrap": "^1.4.2",
     "rxjs": "^5.2.0",
     "zone.js": "^0.7.8"

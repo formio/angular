@@ -31,6 +31,11 @@ export interface ComponentOptions<T, V> {
 export interface BaseOptions<T> extends ComponentOptions<T, ValidateOptions> {
 }
 
+export interface FormioRefreshValue {
+    property: string;
+    value: Object;
+}
+
 export interface FormioForm {
     title?: string,
     display?: string,

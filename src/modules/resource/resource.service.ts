@@ -1,7 +1,9 @@
 import { EventEmitter, Injectable }  from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormioResourceConfig, FormioResources } from './resource.config';
-import { FormioLoader } from '../../index';
+import { FormioResourceConfig, FormioResources, FormioResourceMap } from './resource.config';
+import { FormioLoader, FormioAppConfig } from '../../index';
+import { FormioRefreshValue } from '../../formio.common';
+let Promise = require('native-promise-only');
 let Formio = require('formiojs');
 
 @Injectable()
@@ -13,7 +15,9 @@ export class FormioResourceService {
     public formFormio: any;
     public formio: any;
 
+    public onParents: EventEmitter<Array<Object>>;
     public onIndexSelect: EventEmitter<Object>;
+    public refresh: EventEmitter<FormioRefreshValue>;
 
     public resourceLoading: Promise<any>;
     public resourceLoaded: Promise<any>;
@@ -24,23 +28,38 @@ export class FormioResourceService {
     public formLoaded: Promise<any>;
     public formResolve: any;
     public formReject: any;
+    public resources: FormioResourceMap;
 
     constructor(
+        private appConfig: FormioAppConfig,
         private config: FormioResourceConfig,
         private loader: FormioLoader,
-        private resources: FormioResources
+        private resourcesService: FormioResources
     ) {
-        Formio.setBaseUrl(this.config.app.apiUrl);
-        Formio.setAppUrl(this.config.app.appUrl);
+        // Allow them to provide different app config per instance.
+        if (this.config.app) {
+            this.appConfig = this.config.app;
+        }
+
+        if (this.appConfig && this.appConfig.appUrl) {
+            Formio.setBaseUrl(this.appConfig.apiUrl);
+            Formio.setAppUrl(this.appConfig.appUrl);
+        }
+        else {
+            console.warn('You must provide an AppConfig within your application!');
+        }
 
         // Add this resource service to the list of all resources in context.
-        if (this.resources) {
-            this.resources.resources[this.config.name] = this;
+        if (this.resourcesService) {
+            this.resourcesService.resources[this.config.name] = this;
+            this.resources = this.resourcesService.resources;
         }
 
         // Create the form url and load the resources.
-        this.formUrl = this.config.app.appUrl + '/' + this.config.form;
+        this.formUrl = this.appConfig.appUrl + '/' + this.config.form;
+        this.onParents = new EventEmitter();
         this.onIndexSelect = new EventEmitter();
+        this.refresh = new EventEmitter();
         this.resource = {data: {}};
         this.resourceLoaded = new Promise((resolve: any, reject: any) => {
             this.resourceResolve = resolve;
@@ -55,8 +74,8 @@ export class FormioResourceService {
     }
 
     onError(error: any) {
-        if (this.resources) {
-            this.resources.error.emit(error);
+        if (this.resourcesService) {
+            this.resourcesService.error.emit(error);
         }
     }
 
@@ -85,23 +104,36 @@ export class FormioResourceService {
             return;
         }
 
-        if (!this.resources) {
+        if (!this.resourcesService) {
             console.warn('You must provide the FormioResourceRegistry within your application to use nested resources.');
             return;
         }
 
         // Iterate through the list of parents.
+        let parentsLoaded: Array<Promise<any>> = [];
         this.config.parents.forEach((parent: string) => {
             // See if this parent is already in context.
-            if (this.resources.resources.hasOwnProperty(parent)) {
-                this.resources.resources[parent].resourceLoaded.then((resource: any) => {
+            if (this.resources.hasOwnProperty(parent)) {
+                parentsLoaded.push(this.resources[parent].resourceLoaded.then((resource: any) => {
                     if (!this.resourceLoading) {
                         // Set the value of this parent in the submission data.
                         this.resource.data[parent] = resource;
+                        this.refresh.emit({
+                            property: 'submission',
+                            value: this.resource
+                        });
+                        return {
+                            name: parent,
+                            resource: resource
+                        };
                     }
-                });
+                    return null;
+                }));
             }
         });
+
+        // When all the parents have loaded, emit that to the onParents emitter.
+        Promise.all(parentsLoaded).then((parents: any) => this.onParents.emit(parents));
     }
 
     onSubmissionError(err: any) {
@@ -114,7 +146,7 @@ export class FormioResourceService {
             return this.resourceLoading;
         }
         let id = route.snapshot.params['id'];
-        this.resourceUrl = this.config.app.appUrl + '/' + this.config.form;
+        this.resourceUrl = this.appConfig.appUrl + '/' + this.config.form;
         this.resourceUrl += '/submission/' + id;
         this.formio = (new Formio(this.resourceUrl));
         this.loader.loading = true;

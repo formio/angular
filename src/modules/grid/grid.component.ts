@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 let Formio = require('formiojs');
-let FormioUtils = require('formio-utils');
+let FormioUtils = require('formiojs/utils');
 let _get = require('lodash/get');
 let _each = require('lodash/each');
+let _assign = require('lodash/assign');
 
 @Component({
     selector: 'formio-grid',
@@ -24,7 +25,7 @@ let _each = require('lodash/each');
                 '</thead>' +
                 '<tbody *ngIf="!isLoading">' +
                     '<tr *ngFor="let row of rows" (click)="onClick(row)">' +
-                        '<td *ngFor="let col of columns">{{ data(row, col) }}</td>' +
+                        '<td *ngFor="let col of columns" [innerHTML]="data(row, col)"></td>' +
                     '</tr>' +
                 '</tbody>' +
                 '<tfoot>' +
@@ -41,10 +42,8 @@ let _each = require('lodash/each');
 export class FormioGridComponent implements OnInit {
     @Input() src: string;
     @Input() onForm: Promise<any>;
-    @Input() query: any = {
-        limit: 10,
-        skip: 0
-    };
+    @Input() query: any;
+    @Input() refresh: EventEmitter<Object>;
     @Output() select: EventEmitter<Object>;
     @Output() error: EventEmitter<any>;
 
@@ -64,7 +63,16 @@ export class FormioGridComponent implements OnInit {
         this.error = new EventEmitter();
     }
 
-    ngOnInit() {
+    loadGrid(src?: string) {
+        // If no source is provided, then skip.
+        if (!src) {
+            return;
+        }
+        // Do not double load.
+        if (this.formio && (src === this.src)) {
+            return;
+        }
+
         this.formio = new Formio(this.src);
         if (!this.onForm) {
             this.onForm = this.formio.loadForm();
@@ -76,13 +84,29 @@ export class FormioGridComponent implements OnInit {
         this.setPage(0);
     }
 
+    ngOnInit() {
+        if (this.refresh) {
+            this.refresh.subscribe((query: Object) => this.refreshGrid(query));
+        }
+
+        // Load the grid.
+        this.loadGrid(this.src);
+    }
+
+    ngOnChanges(changes: any) {
+        if (changes.src && changes.src.currentValue) {
+            this.loadGrid(changes.src.currentValue);
+        }
+    }
+
     setupColumns() {
         FormioUtils.eachComponent(this.form.components, (component:any) => {
             if (component.input && component.tableView) {
                 this.columns.push({
                     label: component.label,
                     key: 'data.' + component.key,
-                    sort: ''
+                    sort: '',
+                    component: component
                 });
             }
         });
@@ -96,9 +120,17 @@ export class FormioGridComponent implements OnInit {
         this.error.emit(error);
     }
 
-    refresh() {
+    refreshGrid(query?: any) {
+        query = query || {};
+        query = _assign(query, this.query);
+        if (!query.hasOwnProperty('limit')) {
+            query.limit = 10;
+        }
+        if (!query.hasOwnProperty('skip')) {
+            query.skip = 0;
+        }
         this.loading = true;
-        this.formio.loadSubmissions({params: this.query}).then((submissions:any) => {
+        this.formio.loadSubmissions({params: query}).then((submissions:any) => {
             this.firstItem = this.query.skip + 1;
             this.lastItem = this.firstItem + submissions.length - 1;
             this.total = submissions.serverCount;
@@ -113,8 +145,14 @@ export class FormioGridComponent implements OnInit {
 
     setPage(num: number = -1) {
         this.page = (num !== -1) ? num : this.page;
+        if (!this.query.hasOwnProperty('limit')) {
+            this.query.limit = 10;
+        }
+        if (!this.query.hasOwnProperty('skip')) {
+            this.query.skip = 0;
+        }
         this.query.skip = this.page * this.query.limit;
-        this.refresh();
+        this.refreshGrid();
     }
 
     sortColumn(column:any) {
@@ -138,7 +176,7 @@ export class FormioGridComponent implements OnInit {
                 this.query.sort = column.key;
                 break;
         }
-        this.refresh();
+        this.refreshGrid();
     }
 
     pageChanged(page:any) {
@@ -150,6 +188,10 @@ export class FormioGridComponent implements OnInit {
     }
 
     data(row:any, col:any) {
-        return _get(row, col.key);
+        let cellValue: any = _get(row, col.key);
+        if (col.component && col.component.template) {
+            return FormioUtils.interpolate(col.component.template, {item: cellValue});
+        }
+        return cellValue;
     }
 }

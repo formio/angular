@@ -19,8 +19,8 @@ export class FormioResources {
 
 @Injectable()
 export class FormioResourceConfig {
-    app: FormioAppConfig;
+    app?: FormioAppConfig;
     name: string;
     form: string;
-    parents: Array<string> = [];
+    parents: Array<string>;
 }

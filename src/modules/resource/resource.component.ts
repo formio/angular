@@ -18,7 +18,10 @@ import { FormioResourceService } from './resource.service';
         '<router-outlet></router-outlet>'
 })
 export class FormioResourceComponent {
-    constructor(private service: FormioResourceService, private route: ActivatedRoute) {
+    constructor(
+        private service: FormioResourceService,
+        private route: ActivatedRoute
+    ) {
         this.service.loadResource(this.route);
     }
 }

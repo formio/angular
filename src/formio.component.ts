@@ -2,10 +2,12 @@ import { Component, Input, Output, EventEmitter, OnInit, ElementRef, ViewEncapsu
 import { FormioService } from './formio.service';
 import { FormioLoader } from './formio.loader';
 import { FormioAlerts } from './formio.alerts';
-import { FormioForm, FormioOptions, FormioError } from './formio.common';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-let FormioFormCore = require('formiojs/build/formio.form.js');
-let FormioWizard = require('formiojs/build/formio.wizard.js');
+import { FormioAppConfig } from './formio.config';
+import { FormioForm, FormioOptions, FormioError, FormioRefreshValue } from './formio.common';
+let Promise = require('native-promise-only');
+let Formio = require('formiojs');
+let FormioFormCore = require('formiojs/form');
+let FormioWizard = require('formiojs/wizard');
 
 @Component({
     selector: 'formio',
@@ -17,13 +19,16 @@ let FormioWizard = require('formiojs/build/formio.wizard.js');
     encapsulation: ViewEncapsulation.None
 })
 export class FormioComponent implements OnInit {
-    public ready: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    public ready: Promise<boolean>;
+    public readyResolve: any;
     @Input() form: FormioForm = null;
     @Input() submission: any = {};
     @Input() src: string;
     @Input() service: FormioService;
     @Input() options: FormioOptions;
     @Input() readOnly: boolean = false;
+    @Input() hideComponents: Array<string>;
+    @Input() refresh: EventEmitter<FormioRefreshValue>;
     @Output() render: EventEmitter<Object>;
     @Output() submit: EventEmitter<Object>;
     @Output() beforeSubmit: EventEmitter<Object>;
@@ -32,19 +37,43 @@ export class FormioComponent implements OnInit {
     @Output() error: EventEmitter<any>;
     private formio: any;
     constructor(
+        private config: FormioAppConfig,
         private elementRef: ElementRef,
         private loader: FormioLoader,
         private alerts: FormioAlerts
     ) {
+        if (this.config) {
+            Formio.setBaseUrl(this.config.apiUrl);
+            Formio.setAppUrl(this.config.appUrl);
+            FormioFormCore.setBaseUrl(this.config.apiUrl);
+            FormioFormCore.setAppUrl(this.config.appUrl);
+            FormioWizard.setBaseUrl(this.config.apiUrl);
+            FormioWizard.setAppUrl(this.config.appUrl);
+        }
+        else {
+            console.warn('You must provide an AppConfig within your application!');
+        }
+
+        this.ready = new Promise((resolve: any) => {
+            this.readyResolve = resolve;
+        });
+
         this.beforeSubmit = new EventEmitter();
         this.submit = new EventEmitter();
         this.error = new EventEmitter();
         this.invalid = new EventEmitter();
         this.change = new EventEmitter();
         this.render = new EventEmitter();
+        this.alerts.alerts = [];
     }
     setForm(form: FormioForm) {
         this.form = form;
+
+        // Only initialize a single formio instance.
+        if (this.formio) {
+            this.formio.form = this.form;
+            return;
+        }
         if (this.form.display === 'wizard') {
             this.formio = new FormioWizard(null, {
                 noAlerts: true,
@@ -65,7 +94,7 @@ export class FormioComponent implements OnInit {
         this.formio.setElement(this.elementRef.nativeElement);
         this.formio.form = this.form;
         this.loader.loading = false;
-        this.ready.next(true);
+        this.readyResolve();
     }
     ngOnInit() {
         this.options = Object.assign({
@@ -79,6 +108,10 @@ export class FormioComponent implements OnInit {
                 beforeSubmit: null
             }
         }, this.options);
+
+        if (this.refresh) {
+            this.refresh.subscribe((refresh: FormioRefreshValue) => this.onRefresh(refresh));
+        }
 
         if (this.form) {
             this.setForm(this.form);
@@ -102,16 +135,28 @@ export class FormioComponent implements OnInit {
             }, (err) => this.onError(err));
         }
     }
-    ngOnChanges(changes: any) {
-        if (!this.formio) {
-            return;
+    onRefresh(refresh: FormioRefreshValue) {
+        switch (refresh.property) {
+            case 'submission':
+                this.formio.submission = refresh.value;
+                break;
+            case 'form':
+                this.formio.form = refresh.value;
+                break;
         }
-        this.ready.subscribe(() => {
-            if (changes.form && changes.form.currentValue) {
-                this.formio.form = changes.form.currentValue;
-            }
+    }
+    ngOnChanges(changes: any) {
+        if (changes.form && changes.form.currentValue) {
+            this.setForm(changes.form.currentValue);
+        }
+
+        this.ready.then(() => {
             if (changes.submission && changes.submission.currentValue) {
                 this.formio.submission = changes.submission.currentValue;
+            }
+
+            if (changes.hideComponents) {
+                this.formio.hideComponents(changes.hideComponents.currentValue);
             }
         });
     }
