@@ -44,6 +44,7 @@ export class FormioResourceService {
         if (this.appConfig && this.appConfig.appUrl) {
             Formio.setBaseUrl(this.appConfig.apiUrl);
             Formio.setAppUrl(this.appConfig.appUrl);
+            Formio.setFormOnly(this.appConfig.formOnly);
         }
         else {
             console.warn('You must provide an AppConfig within your application!');
