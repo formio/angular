@@ -4,5 +4,5 @@ import { Injectable } from '@angular/core';
 export class FormioAppConfig {
     appUrl: string;
     apiUrl: string;
-    formOnly: boolean;
+    formOnly?: boolean;
 }
