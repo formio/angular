@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var auth_config_1 = require("./auth.config");
@@ -34,7 +37,7 @@ var FormioAuthService = (function () {
             Formio.formOnly = !!this.appConfig.formOnly;
         }
         else {
-            console.warn('You must provide an AppConfig within your application!');
+            console.error('You must provide an AppConfig within your application!');
         }
         this.loginForm = this.appConfig.appUrl + '/' + this.config.login.form;
         this.registerForm = this.appConfig.appUrl + '/' + this.config.register.form;
@@ -136,6 +139,7 @@ var FormioAuthService = (function () {
 }());
 FormioAuthService = __decorate([
     core_1.Injectable(),
+    __param(1, core_1.Optional()),
     __metadata("design:paramtypes", [auth_config_1.FormioAuthConfig,
         index_1.FormioAppConfig])
 ], FormioAuthService);

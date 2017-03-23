@@ -23,7 +23,7 @@ export declare class FormioAuthService {
     submissionAccess: any;
     roles: any;
     is: any;
-    constructor(config: FormioAuthConfig, appConfig?: FormioAppConfig);
+    constructor(config: FormioAuthConfig, appConfig: FormioAppConfig);
     onLoginSubmit(submission: Object): void;
     onRegisterSubmit(submission: Object): void;
     init(): void;

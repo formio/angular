@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable }  from '@angular/core';
+import { EventEmitter, Injectable, Optional }  from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
 import { FormioAppConfig } from '../../index';
 let Formio = require('formiojs');
@@ -32,7 +32,7 @@ export class FormioAuthService {
 
   constructor(
       private config: FormioAuthConfig,
-      private appConfig?: FormioAppConfig,
+      @Optional() private appConfig: FormioAppConfig,
   ) {
     this.user = null;
 
@@ -47,7 +47,7 @@ export class FormioAuthService {
       Formio.formOnly = !!this.appConfig.formOnly;
     }
     else {
-      console.warn('You must provide an AppConfig within your application!');
+      console.error('You must provide an AppConfig within your application!');
     }
 
     this.loginForm = this.appConfig.appUrl + '/' + this.config.login.form;

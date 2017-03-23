@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable }  from '@angular/core';
+import { EventEmitter, Injectable, Optional }  from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig, FormioResources, FormioResourceMap } from './resource.config';
 import { FormioLoader, FormioAppConfig } from '../../index';
@@ -34,7 +34,7 @@ export class FormioResourceService {
         private config: FormioResourceConfig,
         private loader: FormioLoader,
         private resourcesService: FormioResources,
-        private appConfig?: FormioAppConfig
+        @Optional() private appConfig: FormioAppConfig
     ) {
         // Allow them to provide different app config per instance.
         if (this.config.app) {
@@ -47,7 +47,7 @@ export class FormioResourceService {
             Formio.formOnly = !!this.appConfig.formOnly;
         }
         else {
-            console.warn('You must provide an AppConfig within your application!');
+            console.error('You must provide an AppConfig within your application!');
         }
 
         // Add this resource service to the list of all resources in context.
@@ -106,7 +106,7 @@ export class FormioResourceService {
         }
 
         if (!this.resourcesService) {
-            console.warn('You must provide the FormioResourceRegistry within your application to use nested resources.');
+            console.warn('You must provide the FormioResources within your application to use nested resources.');
             return;
         }
 

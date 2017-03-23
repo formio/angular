@@ -26,7 +26,7 @@ export declare class FormioResourceService {
     formResolve: any;
     formReject: any;
     resources: FormioResourceMap;
-    constructor(config: FormioResourceConfig, loader: FormioLoader, resourcesService: FormioResources, appConfig?: FormioAppConfig);
+    constructor(config: FormioResourceConfig, loader: FormioLoader, resourcesService: FormioResources, appConfig: FormioAppConfig);
     onError(error: any): void;
     onFormError(err: any): void;
     loadForm(): Promise<any>;
