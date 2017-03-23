@@ -73,7 +73,7 @@ export class FormioGridComponent implements OnInit {
             return;
         }
 
-        this.formio = new Formio(this.src);
+        this.formio = new Formio(this.src, {formOnly: true});
         if (!this.onForm) {
             this.onForm = this.formio.loadForm();
         }
