@@ -15,10 +15,10 @@ var index_1 = require("../../index");
 var Formio = require('formiojs');
 var _each = require('lodash/each');
 var FormioAuthService = (function () {
-    function FormioAuthService(appConfig, config) {
+    function FormioAuthService(config, appConfig) {
         var _this = this;
-        this.appConfig = appConfig;
         this.config = config;
+        this.appConfig = appConfig;
         this.authenticated = false;
         this.formAccess = {};
         this.submissionAccess = {};
@@ -136,7 +136,7 @@ var FormioAuthService = (function () {
 }());
 FormioAuthService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [index_1.FormioAppConfig,
-        auth_config_1.FormioAuthConfig])
+    __metadata("design:paramtypes", [auth_config_1.FormioAuthConfig,
+        index_1.FormioAppConfig])
 ], FormioAuthService);
 exports.FormioAuthService = FormioAuthService;

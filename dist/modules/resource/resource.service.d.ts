@@ -4,10 +4,10 @@ import { FormioResourceConfig, FormioResources, FormioResourceMap } from './reso
 import { FormioLoader, FormioAppConfig } from '../../index';
 import { FormioRefreshValue } from '../../formio.common';
 export declare class FormioResourceService {
-    private appConfig;
     private config;
     private loader;
     private resourcesService;
+    private appConfig;
     form: any;
     resource: any;
     resourceUrl: string;
@@ -26,7 +26,7 @@ export declare class FormioResourceService {
     formResolve: any;
     formReject: any;
     resources: FormioResourceMap;
-    constructor(appConfig: FormioAppConfig, config: FormioResourceConfig, loader: FormioLoader, resourcesService: FormioResources);
+    constructor(config: FormioResourceConfig, loader: FormioLoader, resourcesService: FormioResources, appConfig?: FormioAppConfig);
     onError(error: any): void;
     onFormError(err: any): void;
     loadForm(): Promise<any>;

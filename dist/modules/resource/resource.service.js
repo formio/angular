@@ -15,12 +15,12 @@ var index_1 = require("../../index");
 var Promise = require('native-promise-only');
 var Formio = require('formiojs');
 var FormioResourceService = (function () {
-    function FormioResourceService(appConfig, config, loader, resourcesService) {
+    function FormioResourceService(config, loader, resourcesService, appConfig) {
         var _this = this;
-        this.appConfig = appConfig;
         this.config = config;
         this.loader = loader;
         this.resourcesService = resourcesService;
+        this.appConfig = appConfig;
         // Allow them to provide different app config per instance.
         if (this.config.app) {
             this.appConfig = this.config.app;
@@ -155,9 +155,9 @@ var FormioResourceService = (function () {
 }());
 FormioResourceService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [index_1.FormioAppConfig,
-        resource_config_1.FormioResourceConfig,
+    __metadata("design:paramtypes", [resource_config_1.FormioResourceConfig,
         index_1.FormioLoader,
-        resource_config_1.FormioResources])
+        resource_config_1.FormioResources,
+        index_1.FormioAppConfig])
 ], FormioResourceService);
 exports.FormioResourceService = FormioResourceService;

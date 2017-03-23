@@ -31,10 +31,10 @@ export class FormioResourceService {
     public resources: FormioResourceMap;
 
     constructor(
-        private appConfig: FormioAppConfig,
         private config: FormioResourceConfig,
         private loader: FormioLoader,
-        private resourcesService: FormioResources
+        private resourcesService: FormioResources,
+        private appConfig?: FormioAppConfig
     ) {
         // Allow them to provide different app config per instance.
         if (this.config.app) {
