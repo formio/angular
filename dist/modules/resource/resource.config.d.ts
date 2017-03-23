@@ -14,5 +14,5 @@ export declare class FormioResourceConfig {
     name: string;
     form: string;
     parents: Array<string>;
-    constructor(app?: FormioAppConfig);
+    constructor(app: FormioAppConfig);
 }

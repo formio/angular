@@ -9,5 +9,5 @@ export declare class FormioAuthConfig {
     component?: any;
     login?: FormioAuthFormConfig;
     register?: FormioAuthFormConfig;
-    constructor(app?: FormioAppConfig);
+    constructor(app: FormioAppConfig);
 }

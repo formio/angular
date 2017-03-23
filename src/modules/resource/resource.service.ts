@@ -1,7 +1,7 @@
-import { EventEmitter, Injectable, Optional }  from '@angular/core';
+import { EventEmitter, Injectable }  from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig, FormioResources, FormioResourceMap } from './resource.config';
-import { FormioLoader, FormioAppConfig } from '../../index';
+import { FormioLoader } from '../../index';
 import { FormioRefreshValue } from '../../formio.common';
 let Promise = require('native-promise-only');
 let Formio = require('formiojs');
@@ -38,7 +38,7 @@ export class FormioResourceService {
         if (this.config.app && this.config.app.appUrl) {
             Formio.setBaseUrl(this.config.app.apiUrl);
             Formio.setAppUrl(this.config.app.appUrl);
-            Formio.formOnly = !!this.config.app.formOnly;
+            Formio.formOnly = this.config.app.formOnly;
         }
         else {
             console.error('You must provide an AppConfig within your application!');

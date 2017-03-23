@@ -23,7 +23,7 @@ var FormioResourceService = (function () {
         if (this.config.app && this.config.app.appUrl) {
             Formio.setBaseUrl(this.config.app.apiUrl);
             Formio.setAppUrl(this.config.app.appUrl);
-            Formio.formOnly = !!this.config.app.formOnly;
+            Formio.formOnly = this.config.app.formOnly;
         }
         else {
             console.error('You must provide an AppConfig within your application!');

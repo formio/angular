@@ -1,6 +1,5 @@
-import { EventEmitter, Injectable, Optional }  from '@angular/core';
+import { EventEmitter, Injectable }  from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
-import { FormioAppConfig } from '../../index';
 let Formio = require('formiojs');
 let _each = require('lodash/each');
 
