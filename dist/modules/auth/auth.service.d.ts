@@ -1,9 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
-import { FormioAppConfig } from '../../index';
 export declare class FormioAuthService {
     private config;
-    private appConfig;
     user: any;
     authenticated: boolean;
     loginForm: string;
@@ -23,7 +21,7 @@ export declare class FormioAuthService {
     submissionAccess: any;
     roles: any;
     is: any;
-    constructor(config: FormioAuthConfig, appConfig: FormioAppConfig);
+    constructor(config: FormioAuthConfig);
     onLoginSubmit(submission: Object): void;
     onRegisterSubmit(submission: Object): void;
     init(): void;

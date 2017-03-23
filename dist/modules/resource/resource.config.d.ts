@@ -10,8 +10,9 @@ export declare class FormioResources {
     constructor();
 }
 export declare class FormioResourceConfig {
-    app?: FormioAppConfig;
+    app: FormioAppConfig;
     name: string;
     form: string;
     parents: Array<string>;
+    constructor(app?: FormioAppConfig);
 }

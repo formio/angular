@@ -1,13 +1,12 @@
 import { EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig, FormioResources, FormioResourceMap } from './resource.config';
-import { FormioLoader, FormioAppConfig } from '../../index';
+import { FormioLoader } from '../../index';
 import { FormioRefreshValue } from '../../formio.common';
 export declare class FormioResourceService {
     private config;
     private loader;
     private resourcesService;
-    private appConfig;
     form: any;
     resource: any;
     resourceUrl: string;
@@ -26,7 +25,7 @@ export declare class FormioResourceService {
     formResolve: any;
     formReject: any;
     resources: FormioResourceMap;
-    constructor(config: FormioResourceConfig, loader: FormioLoader, resourcesService: FormioResources, appConfig: FormioAppConfig);
+    constructor(config: FormioResourceConfig, loader: FormioLoader, resourcesService: FormioResources);
     onError(error: any): void;
     onFormError(err: any): void;
     loadForm(): Promise<any>;

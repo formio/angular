@@ -8,39 +8,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var auth_config_1 = require("./auth.config");
-var index_1 = require("../../index");
 var Formio = require('formiojs');
 var _each = require('lodash/each');
 var FormioAuthService = (function () {
-    function FormioAuthService(config, appConfig) {
+    function FormioAuthService(config) {
         var _this = this;
         this.config = config;
-        this.appConfig = appConfig;
         this.authenticated = false;
         this.formAccess = {};
         this.submissionAccess = {};
         this.is = {};
         this.user = null;
-        // Allow them to provide different app config per instance.
-        if (this.config.app) {
-            this.appConfig = this.config.app;
-        }
-        if (this.appConfig && this.appConfig.appUrl) {
-            Formio.setBaseUrl(this.appConfig.apiUrl);
-            Formio.setAppUrl(this.appConfig.appUrl);
-            Formio.formOnly = !!this.appConfig.formOnly;
+        if (this.config.app && this.config.app.appUrl) {
+            Formio.setBaseUrl(this.config.app.apiUrl);
+            Formio.setAppUrl(this.config.app.appUrl);
+            Formio.formOnly = !!this.config.app.formOnly;
         }
         else {
             console.error('You must provide an AppConfig within your application!');
         }
-        this.loginForm = this.appConfig.appUrl + '/' + this.config.login.form;
-        this.registerForm = this.appConfig.appUrl + '/' + this.config.register.form;
+        this.loginForm = this.config.app.appUrl + '/' + this.config.login.form;
+        this.registerForm = this.config.app.appUrl + '/' + this.config.register.form;
         this.onLogin = new core_1.EventEmitter();
         this.onLogout = new core_1.EventEmitter();
         this.onRegister = new core_1.EventEmitter();
@@ -65,7 +56,7 @@ var FormioAuthService = (function () {
     };
     FormioAuthService.prototype.init = function () {
         var _this = this;
-        this.projectReady = Formio.makeStaticRequest(this.appConfig.appUrl).then(function (project) {
+        this.projectReady = Formio.makeStaticRequest(this.config.app.appUrl).then(function (project) {
             _each(project.access, function (access) {
                 _this.formAccess[access.type] = access.roles;
             });
@@ -74,7 +65,7 @@ var FormioAuthService = (function () {
             return null;
         });
         // Get the access for this project.
-        this.accessReady = Formio.makeStaticRequest(this.appConfig.appUrl + '/access').then(function (access) {
+        this.accessReady = Formio.makeStaticRequest(this.config.app.appUrl + '/access').then(function (access) {
             _each(access.forms, function (form) {
                 _this.submissionAccess[form.name] = {};
                 form.submissionAccess.forEach(function (access) {
@@ -139,8 +130,6 @@ var FormioAuthService = (function () {
 }());
 FormioAuthService = __decorate([
     core_1.Injectable(),
-    __param(1, core_1.Optional()),
-    __metadata("design:paramtypes", [auth_config_1.FormioAuthConfig,
-        index_1.FormioAppConfig])
+    __metadata("design:paramtypes", [auth_config_1.FormioAuthConfig])
 ], FormioAuthService);
 exports.FormioAuthService = FormioAuthService;

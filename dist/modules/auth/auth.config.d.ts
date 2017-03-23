@@ -5,8 +5,9 @@ export interface FormioAuthFormConfig {
     component?: any;
 }
 export declare class FormioAuthConfig {
-    app?: FormioAppConfig;
+    app: FormioAppConfig;
     component?: any;
     login?: FormioAuthFormConfig;
     register?: FormioAuthFormConfig;
+    constructor(app?: FormioAppConfig);
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { FormioAppConfig } from '../../index';
 
 export interface FormioAuthFormConfig {
@@ -9,8 +9,8 @@ export interface FormioAuthFormConfig {
 
 @Injectable()
 export class FormioAuthConfig {
-    app?: FormioAppConfig;
     component?: any;
     login?: FormioAuthFormConfig;
     register?: FormioAuthFormConfig;
+    constructor(@Optional() public app?: FormioAppConfig) {}
 }

@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var resource_config_1 = require("./resource.config");
@@ -18,20 +15,15 @@ var index_1 = require("../../index");
 var Promise = require('native-promise-only');
 var Formio = require('formiojs');
 var FormioResourceService = (function () {
-    function FormioResourceService(config, loader, resourcesService, appConfig) {
+    function FormioResourceService(config, loader, resourcesService) {
         var _this = this;
         this.config = config;
         this.loader = loader;
         this.resourcesService = resourcesService;
-        this.appConfig = appConfig;
-        // Allow them to provide different app config per instance.
-        if (this.config.app) {
-            this.appConfig = this.config.app;
-        }
-        if (this.appConfig && this.appConfig.appUrl) {
-            Formio.setBaseUrl(this.appConfig.apiUrl);
-            Formio.setAppUrl(this.appConfig.appUrl);
-            Formio.formOnly = !!this.appConfig.formOnly;
+        if (this.config.app && this.config.app.appUrl) {
+            Formio.setBaseUrl(this.config.app.apiUrl);
+            Formio.setAppUrl(this.config.app.appUrl);
+            Formio.formOnly = !!this.config.app.formOnly;
         }
         else {
             console.error('You must provide an AppConfig within your application!');
@@ -42,7 +34,7 @@ var FormioResourceService = (function () {
             this.resources = this.resourcesService.resources;
         }
         // Create the form url and load the resources.
-        this.formUrl = this.appConfig.appUrl + '/' + this.config.form;
+        this.formUrl = this.config.app.appUrl + '/' + this.config.form;
         this.onParents = new core_1.EventEmitter();
         this.onIndexSelect = new core_1.EventEmitter();
         this.refresh = new core_1.EventEmitter();
@@ -126,7 +118,7 @@ var FormioResourceService = (function () {
             return this.resourceLoading;
         }
         var id = route.snapshot.params['id'];
-        this.resourceUrl = this.appConfig.appUrl + '/' + this.config.form;
+        this.resourceUrl = this.config.app.appUrl + '/' + this.config.form;
         this.resourceUrl += '/submission/' + id;
         this.formio = (new Formio(this.resourceUrl));
         this.loader.loading = true;
@@ -158,10 +150,8 @@ var FormioResourceService = (function () {
 }());
 FormioResourceService = __decorate([
     core_1.Injectable(),
-    __param(3, core_1.Optional()),
     __metadata("design:paramtypes", [resource_config_1.FormioResourceConfig,
         index_1.FormioLoader,
-        resource_config_1.FormioResources,
-        index_1.FormioAppConfig])
+        resource_config_1.FormioResources])
 ], FormioResourceService);
 exports.FormioResourceService = FormioResourceService;
