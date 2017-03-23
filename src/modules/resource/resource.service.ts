@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable }  from '@angular/core';
+import { EventEmitter, Injectable, Optional }  from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig, FormioResources, FormioResourceMap } from './resource.config';
 import { FormioLoader, FormioAppConfig } from '../../index';
@@ -34,7 +34,7 @@ export class FormioResourceService {
         private appConfig: FormioAppConfig,
         private config: FormioResourceConfig,
         private loader: FormioLoader,
-        private resourcesService: FormioResources
+        @Optional() private resourcesService: FormioResources
     ) {
         if (this.appConfig && this.appConfig.appUrl) {
             Formio.setBaseUrl(this.appConfig.apiUrl);

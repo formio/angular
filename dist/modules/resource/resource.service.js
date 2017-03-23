@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var resource_config_1 = require("./resource.config");
@@ -151,6 +154,7 @@ var FormioResourceService = (function () {
 }());
 FormioResourceService = __decorate([
     core_1.Injectable(),
+    __param(3, core_1.Optional()),
     __metadata("design:paramtypes", [index_1.FormioAppConfig,
         resource_config_1.FormioResourceConfig,
         index_1.FormioLoader,
