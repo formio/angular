@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable }  from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig, FormioResources, FormioResourceMap } from './resource.config';
-import { FormioLoader } from '../../index';
+import { FormioLoader, FormioAppConfig } from '../../index';
 import { FormioRefreshValue } from '../../formio.common';
 let Promise = require('native-promise-only');
 let Formio = require('formiojs');
@@ -31,14 +31,15 @@ export class FormioResourceService {
     public resources: FormioResourceMap;
 
     constructor(
+        private appConfig: FormioAppConfig,
         private config: FormioResourceConfig,
         private loader: FormioLoader,
         private resourcesService: FormioResources
     ) {
-        if (this.config.app && this.config.app.appUrl) {
-            Formio.setBaseUrl(this.config.app.apiUrl);
-            Formio.setAppUrl(this.config.app.appUrl);
-            Formio.formOnly = this.config.app.formOnly;
+        if (this.appConfig && this.appConfig.appUrl) {
+            Formio.setBaseUrl(this.appConfig.apiUrl);
+            Formio.setAppUrl(this.appConfig.appUrl);
+            Formio.formOnly = this.appConfig.formOnly;
         }
         else {
             console.error('You must provide an AppConfig within your application!');
@@ -51,7 +52,7 @@ export class FormioResourceService {
         }
 
         // Create the form url and load the resources.
-        this.formUrl = this.config.app.appUrl + '/' + this.config.form;
+        this.formUrl = this.appConfig.appUrl + '/' + this.config.form;
         this.onParents = new EventEmitter();
         this.onIndexSelect = new EventEmitter();
         this.refresh = new EventEmitter();
@@ -141,7 +142,7 @@ export class FormioResourceService {
             return this.resourceLoading;
         }
         let id = route.snapshot.params['id'];
-        this.resourceUrl = this.config.app.appUrl + '/' + this.config.form;
+        this.resourceUrl = this.appConfig.appUrl + '/' + this.config.form;
         this.resourceUrl += '/submission/' + id;
         this.formio = (new Formio(this.resourceUrl));
         this.loader.loading = true;

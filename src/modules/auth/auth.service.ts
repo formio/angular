@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable }  from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
+import { FormioAppConfig } from '../../index';
 let Formio = require('formiojs');
 let _each = require('lodash/each');
 
@@ -29,20 +30,23 @@ export class FormioAuthService {
   public roles: any;
   public is: any = {};
 
-  constructor(private config: FormioAuthConfig) {
+  constructor(
+    private appConfig: FormioAppConfig,
+    private config: FormioAuthConfig
+  ) {
     this.user = null;
 
-    if (this.config.app && this.config.app.appUrl) {
-      Formio.setBaseUrl(this.config.app.apiUrl);
-      Formio.setAppUrl(this.config.app.appUrl);
-      Formio.formOnly = !!this.config.app.formOnly;
+    if (this.appConfig && this.appConfig.appUrl) {
+      Formio.setBaseUrl(this.appConfig.apiUrl);
+      Formio.setAppUrl(this.appConfig.appUrl);
+      Formio.formOnly = !!this.appConfig.formOnly;
     }
     else {
       console.error('You must provide an AppConfig within your application!');
     }
 
-    this.loginForm = this.config.app.appUrl + '/' + this.config.login.form;
-    this.registerForm = this.config.app.appUrl + '/' + this.config.register.form;
+    this.loginForm = this.appConfig.appUrl + '/' + this.config.login.form;
+    this.registerForm = this.appConfig.appUrl + '/' + this.config.register.form;
     this.onLogin = new EventEmitter();
     this.onLogout = new EventEmitter();
     this.onRegister = new EventEmitter();
@@ -71,7 +75,7 @@ export class FormioAuthService {
   }
 
   init() {
-    this.projectReady = Formio.makeStaticRequest(this.config.app.appUrl).then((project: any) => {
+    this.projectReady = Formio.makeStaticRequest(this.appConfig.appUrl).then((project: any) => {
       _each(project.access, (access: any) => {
         this.formAccess[access.type] = access.roles;
       });
@@ -82,7 +86,7 @@ export class FormioAuthService {
 
 
     // Get the access for this project.
-    this.accessReady = Formio.makeStaticRequest(this.config.app.appUrl + '/access').then((access: any) => {
+    this.accessReady = Formio.makeStaticRequest(this.appConfig.appUrl + '/access').then((access: any) => {
       _each(access.forms, (form: any) => {
         this.submissionAccess[form.name] = {};
         form.submissionAccess.forEach((access: any) => {

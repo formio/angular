@@ -15,15 +15,16 @@ var index_1 = require("../../index");
 var Promise = require('native-promise-only');
 var Formio = require('formiojs');
 var FormioResourceService = (function () {
-    function FormioResourceService(config, loader, resourcesService) {
+    function FormioResourceService(appConfig, config, loader, resourcesService) {
         var _this = this;
+        this.appConfig = appConfig;
         this.config = config;
         this.loader = loader;
         this.resourcesService = resourcesService;
-        if (this.config.app && this.config.app.appUrl) {
-            Formio.setBaseUrl(this.config.app.apiUrl);
-            Formio.setAppUrl(this.config.app.appUrl);
-            Formio.formOnly = this.config.app.formOnly;
+        if (this.appConfig && this.appConfig.appUrl) {
+            Formio.setBaseUrl(this.appConfig.apiUrl);
+            Formio.setAppUrl(this.appConfig.appUrl);
+            Formio.formOnly = this.appConfig.formOnly;
         }
         else {
             console.error('You must provide an AppConfig within your application!');
@@ -34,7 +35,7 @@ var FormioResourceService = (function () {
             this.resources = this.resourcesService.resources;
         }
         // Create the form url and load the resources.
-        this.formUrl = this.config.app.appUrl + '/' + this.config.form;
+        this.formUrl = this.appConfig.appUrl + '/' + this.config.form;
         this.onParents = new core_1.EventEmitter();
         this.onIndexSelect = new core_1.EventEmitter();
         this.refresh = new core_1.EventEmitter();
@@ -118,7 +119,7 @@ var FormioResourceService = (function () {
             return this.resourceLoading;
         }
         var id = route.snapshot.params['id'];
-        this.resourceUrl = this.config.app.appUrl + '/' + this.config.form;
+        this.resourceUrl = this.appConfig.appUrl + '/' + this.config.form;
         this.resourceUrl += '/submission/' + id;
         this.formio = (new Formio(this.resourceUrl));
         this.loader.loading = true;
@@ -150,7 +151,8 @@ var FormioResourceService = (function () {
 }());
 FormioResourceService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [resource_config_1.FormioResourceConfig,
+    __metadata("design:paramtypes", [index_1.FormioAppConfig,
+        resource_config_1.FormioResourceConfig,
         index_1.FormioLoader,
         resource_config_1.FormioResources])
 ], FormioResourceService);

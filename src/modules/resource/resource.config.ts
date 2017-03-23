@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { FormioAppConfig } from '../../index';
 
 export interface FormioResourceMap {
     [name: string]: any;
@@ -22,5 +21,4 @@ export class FormioResourceConfig {
     name: string;
     form: string;
     parents: Array<string>;
-    constructor(public app: FormioAppConfig) {}
 }

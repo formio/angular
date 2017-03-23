@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var index_1 = require("../../index");
 var FormioResources = (function () {
     function FormioResources() {
         this.resources = {};
@@ -26,13 +25,11 @@ FormioResources = __decorate([
 ], FormioResources);
 exports.FormioResources = FormioResources;
 var FormioResourceConfig = (function () {
-    function FormioResourceConfig(app) {
-        this.app = app;
+    function FormioResourceConfig() {
     }
     return FormioResourceConfig;
 }());
 FormioResourceConfig = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [index_1.FormioAppConfig])
+    core_1.Injectable()
 ], FormioResourceConfig);
 exports.FormioResourceConfig = FormioResourceConfig;
