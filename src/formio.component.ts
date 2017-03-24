@@ -32,6 +32,8 @@ export class FormioComponent implements OnInit {
     @Input() refresh: EventEmitter<FormioRefreshValue>;
     @Output() render: EventEmitter<Object>;
     @Output() submit: EventEmitter<Object>;
+    @Output() prevPage: EventEmitter<Object>;
+    @Output() nextPage: EventEmitter<Object>;
     @Output() beforeSubmit: EventEmitter<Object>;
     @Output() change: EventEmitter<Object>;
     @Output() invalid: EventEmitter<boolean>;
@@ -60,6 +62,8 @@ export class FormioComponent implements OnInit {
         });
 
         this.beforeSubmit = new EventEmitter();
+        this.prevPage = new EventEmitter();
+        this.nextPage = new EventEmitter();
         this.submit = new EventEmitter();
         this.error = new EventEmitter();
         this.invalid = new EventEmitter();
@@ -88,6 +92,8 @@ export class FormioComponent implements OnInit {
             });
         }
 
+        this.formio.on('prevPage', (data: any) => this.onPrevPage(data));
+        this.formio.on('nextPage', (data: any) => this.onNextPage(data));
         this.formio.on('change', (value: any) => this.change.emit(value));
         this.formio.on('submit', (submission: any) => this.submitForm(submission));
         this.formio.on('error', (err: any) => this.onError(err));
@@ -160,6 +166,14 @@ export class FormioComponent implements OnInit {
                 this.formio.hideComponents(changes.hideComponents.currentValue);
             }
         });
+    }
+    onPrevPage(data: any) {
+        this.alerts.setAlerts([]);
+        this.prevPage.emit(data)
+    }
+    onNextPage(data: any) {
+        this.alerts.setAlerts([]);
+        this.nextPage.emit(data)
     }
     onSubmit(submission: any) {
         submission.saved = true;
