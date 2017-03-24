@@ -22,7 +22,9 @@ var FormioResourceEditComponent = (function () {
     }
     FormioResourceEditComponent.prototype.onSubmit = function (submission) {
         var _this = this;
-        this.service.save(submission).then(function () {
+        var edit = this.service.resource;
+        edit.data = submission.data;
+        this.service.save(edit).then(function () {
             _this.router.navigate(['../', 'view'], { relativeTo: _this.route });
         });
     };
