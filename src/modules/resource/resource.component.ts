@@ -14,7 +14,6 @@ import { FormioResourceService } from './resource.service';
             '<li role="presentation" routerLinkActive="active"><a routerLink="edit">Edit</a></li>' +
             '<li role="presentation pull-right" routerLinkActive="active"><a routerLink="delete"><span class="glyphicon glyphicon-trash"></span></a></li>' +
         '</ul>' +
-        '<formio-loader></formio-loader>' +
         '<router-outlet></router-outlet>'
 })
 export class FormioResourceComponent {

@@ -32,7 +32,6 @@ FormioResourceComponent = __decorate([
             '<li role="presentation" routerLinkActive="active"><a routerLink="edit">Edit</a></li>' +
             '<li role="presentation pull-right" routerLinkActive="active"><a routerLink="delete"><span class="glyphicon glyphicon-trash"></span></a></li>' +
             '</ul>' +
-            '<formio-loader></formio-loader>' +
             '<router-outlet></router-outlet>'
     }),
     __metadata("design:paramtypes", [resource_service_1.FormioResourceService,
