@@ -171,7 +171,7 @@ export class FormioComponent implements OnInit {
         this.error.emit(err);
         this.alerts.setAlert({
             type: 'danger',
-            message: err.message || err.toString()
+            message: err.message || err.error || err.toString()
         });
     }
     submitExecute(submission: Object) {

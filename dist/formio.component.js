@@ -151,7 +151,7 @@ var FormioComponent = (function () {
         this.error.emit(err);
         this.alerts.setAlert({
             type: 'danger',
-            message: err.message || err.toString()
+            message: err.message || err.error || err.toString()
         });
     };
     FormioComponent.prototype.submitExecute = function (submission) {
