@@ -44,6 +44,8 @@ var FormioComponent = (function () {
             _this.readyResolve = resolve;
         });
         this.beforeSubmit = new core_1.EventEmitter();
+        this.prevPage = new core_1.EventEmitter();
+        this.nextPage = new core_1.EventEmitter();
         this.submit = new core_1.EventEmitter();
         this.error = new core_1.EventEmitter();
         this.invalid = new core_1.EventEmitter();
@@ -71,6 +73,8 @@ var FormioComponent = (function () {
                 readOnly: this.readOnly
             });
         }
+        this.formio.on('prevPage', function (data) { return _this.onPrevPage(data); });
+        this.formio.on('nextPage', function (data) { return _this.onNextPage(data); });
         this.formio.on('change', function (value) { return _this.change.emit(value); });
         this.formio.on('submit', function (submission) { return _this.submitForm(submission); });
         this.formio.on('error', function (err) { return _this.onError(err); });
@@ -140,6 +144,14 @@ var FormioComponent = (function () {
                 _this.formio.hideComponents(changes.hideComponents.currentValue);
             }
         });
+    };
+    FormioComponent.prototype.onPrevPage = function (data) {
+        this.alerts.setAlerts([]);
+        this.prevPage.emit(data);
+    };
+    FormioComponent.prototype.onNextPage = function (data) {
+        this.alerts.setAlerts([]);
+        this.nextPage.emit(data);
     };
     FormioComponent.prototype.onSubmit = function (submission) {
         submission.saved = true;
@@ -237,6 +249,14 @@ __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
 ], FormioComponent.prototype, "submit", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], FormioComponent.prototype, "prevPage", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], FormioComponent.prototype, "nextPage", void 0);
 __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)

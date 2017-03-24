@@ -21,6 +21,8 @@ export declare class FormioComponent implements OnInit {
     refresh: EventEmitter<FormioRefreshValue>;
     render: EventEmitter<Object>;
     submit: EventEmitter<Object>;
+    prevPage: EventEmitter<Object>;
+    nextPage: EventEmitter<Object>;
     beforeSubmit: EventEmitter<Object>;
     change: EventEmitter<Object>;
     invalid: EventEmitter<boolean>;
@@ -31,6 +33,8 @@ export declare class FormioComponent implements OnInit {
     ngOnInit(): void;
     onRefresh(refresh: FormioRefreshValue): void;
     ngOnChanges(changes: any): void;
+    onPrevPage(data: any): void;
+    onNextPage(data: any): void;
     onSubmit(submission: any): void;
     onError(err: any): void;
     submitExecute(submission: Object): void;
