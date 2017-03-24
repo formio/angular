@@ -175,9 +175,10 @@ export class FormioComponent implements OnInit {
         this.alerts.setAlerts([]);
         this.nextPage.emit(data)
     }
-    onSubmit(submission: any) {
-        submission.saved = true;
-        this.formio.emit('submit', submission);
+    onSubmit(submission: any, saved: boolean) {
+        if (saved) {
+            this.formio.emit('submitDone', submission);
+        }
         this.submit.emit(submission);
         this.alerts.setAlert({
             type: 'success',
@@ -207,12 +208,12 @@ export class FormioComponent implements OnInit {
     submitExecute(submission: Object) {
         if (this.service) {
             this.service.saveSubmission(submission).subscribe(
-                (sub: {}) => this.onSubmit(sub),
+                (sub: {}) => this.onSubmit(sub, true),
                 (err) => this.onError(err)
             );
         }
         else {
-            this.onSubmit(submission);
+            this.onSubmit(submission, false);
         }
     }
     submitForm(submission: any) {

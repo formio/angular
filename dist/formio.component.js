@@ -153,9 +153,10 @@ var FormioComponent = (function () {
         this.alerts.setAlerts([]);
         this.nextPage.emit(data);
     };
-    FormioComponent.prototype.onSubmit = function (submission) {
-        submission.saved = true;
-        this.formio.emit('submit', submission);
+    FormioComponent.prototype.onSubmit = function (submission, saved) {
+        if (saved) {
+            this.formio.emit('submitDone', submission);
+        }
         this.submit.emit(submission);
         this.alerts.setAlert({
             type: 'success',
@@ -183,10 +184,10 @@ var FormioComponent = (function () {
     FormioComponent.prototype.submitExecute = function (submission) {
         var _this = this;
         if (this.service) {
-            this.service.saveSubmission(submission).subscribe(function (sub) { return _this.onSubmit(sub); }, function (err) { return _this.onError(err); });
+            this.service.saveSubmission(submission).subscribe(function (sub) { return _this.onSubmit(sub, true); }, function (err) { return _this.onError(err); });
         }
         else {
-            this.onSubmit(submission);
+            this.onSubmit(submission, false);
         }
     };
     FormioComponent.prototype.submitForm = function (submission) {

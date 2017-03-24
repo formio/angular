@@ -35,7 +35,7 @@ export declare class FormioComponent implements OnInit {
     ngOnChanges(changes: any): void;
     onPrevPage(data: any): void;
     onNextPage(data: any): void;
-    onSubmit(submission: any): void;
+    onSubmit(submission: any, saved: boolean): void;
     onError(err: any): void;
     submitExecute(submission: Object): void;
     submitForm(submission: any): void;
