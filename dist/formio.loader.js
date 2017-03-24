@@ -12,8 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var FormioLoader = (function () {
     function FormioLoader() {
-        this.loading = true;
+        this._loading = false;
     }
+    Object.defineProperty(FormioLoader.prototype, "loading", {
+        get: function () {
+            return this._loading;
+        },
+        set: function (loading) {
+            this._loading = loading;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return FormioLoader;
 }());
 FormioLoader = __decorate([
