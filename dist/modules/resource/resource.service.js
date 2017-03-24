@@ -137,10 +137,8 @@ var FormioResourceService = (function () {
     FormioResourceService.prototype.save = function (resource) {
         var _this = this;
         var formio = resource._id ? this.formio : this.formFormio;
-        this.loader.loading = true;
         return formio.saveSubmission(resource).then(function (resource) {
             _this.resource = resource;
-            _this.loader.loading = false;
             return resource;
         }, function (err) { return _this.onError(err); }).catch(function (err) { return _this.onError(err); });
     };

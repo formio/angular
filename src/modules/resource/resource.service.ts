@@ -157,10 +157,8 @@ export class FormioResourceService {
 
     save(resource:any) {
         let formio = resource._id ? this.formio : this.formFormio;
-        this.loader.loading = true;
         return formio.saveSubmission(resource).then((resource: any) => {
             this.resource = resource;
-            this.loader.loading = false;
             return resource;
         }, (err: any) => this.onError(err)).catch((err: any) => this.onError(err));
     }

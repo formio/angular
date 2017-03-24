@@ -2,13 +2,7 @@ import { Component, Injectable } from '@angular/core';
 
 @Injectable()
 export class FormioLoader {
-    private _loading: boolean = false;
-    set loading(loading: boolean) {
-        this._loading = loading;
-    }
-    get loading() {
-        return this._loading;
-    }
+    public loading: boolean = true;
 }
 
 @Component({
