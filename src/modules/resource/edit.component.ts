@@ -15,7 +15,9 @@ export class FormioResourceEditComponent {
     ) {}
 
     onSubmit(submission: any) {
-        this.service.save(submission).then(() => {
+        let edit = this.service.resource;
+        edit.data = submission.data;
+        this.service.save(edit).then(() => {
             this.router.navigate(['../', 'view'], {relativeTo: this.route});
         });
     }
