@@ -1,13 +1,14 @@
 import { Component, Input, Output, EventEmitter, OnInit, ElementRef, ViewEncapsulation }  from '@angular/core';
 import { FormioService } from './formio.service';
 import { FormioLoader } from './formio.loader';
-import { FormioAlerts } from './formio.alerts';
+import { FormioAlerts, FormioAlert } from './formio.alerts';
 import { FormioAppConfig } from './formio.config';
 import { FormioForm, FormioOptions, FormioError, FormioRefreshValue } from './formio.common';
 let Promise = require('native-promise-only');
 let Formio = require('formiojs');
 let FormioFormCore = require('formiojs/form');
 let FormioWizard = require('formiojs/wizard');
+let _each = require('lodash/each');
 
 @Component({
     selector: 'formio',
@@ -161,6 +162,8 @@ export class FormioComponent implements OnInit {
         });
     }
     onSubmit(submission: any) {
+        submission.saved = true;
+        this.formio.emit('submit', submission);
         this.submit.emit(submission);
         this.alerts.setAlert({
             type: 'success',
@@ -168,10 +171,23 @@ export class FormioComponent implements OnInit {
         });
     }
     onError(err: any) {
+        this.alerts.setAlerts([]);
+        if (!err) {
+            return;
+        }
+
+        // Make sure it is an array.
+        err = (err instanceof Array) ? err : [err];
+
+        // Emit these errors again.
         this.error.emit(err);
-        this.alerts.setAlert({
-            type: 'danger',
-            message: err.message || err.error || err.toString()
+
+        // Iterate through each one and set the alerts array.
+        _each(err, (error: any) => {
+            this.alerts.setAlert({
+                type: 'danger',
+                message: error.message || error.toString()
+            });
         });
     }
     submitExecute(submission: Object) {

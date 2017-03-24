@@ -18,6 +18,7 @@ var Promise = require('native-promise-only');
 var Formio = require('formiojs');
 var FormioFormCore = require('formiojs/form');
 var FormioWizard = require('formiojs/wizard');
+var _each = require('lodash/each');
 var FormioComponent = (function () {
     function FormioComponent(config, elementRef, loader, alerts) {
         var _this = this;
@@ -141,6 +142,8 @@ var FormioComponent = (function () {
         });
     };
     FormioComponent.prototype.onSubmit = function (submission) {
+        submission.saved = true;
+        this.formio.emit('submit', submission);
         this.submit.emit(submission);
         this.alerts.setAlert({
             type: 'success',
@@ -148,10 +151,21 @@ var FormioComponent = (function () {
         });
     };
     FormioComponent.prototype.onError = function (err) {
+        var _this = this;
+        this.alerts.setAlerts([]);
+        if (!err) {
+            return;
+        }
+        // Make sure it is an array.
+        err = (err instanceof Array) ? err : [err];
+        // Emit these errors again.
         this.error.emit(err);
-        this.alerts.setAlert({
-            type: 'danger',
-            message: err.message || err.error || err.toString()
+        // Iterate through each one and set the alerts array.
+        _each(err, function (error) {
+            _this.alerts.setAlert({
+                type: 'danger',
+                message: error.message || error.toString()
+            });
         });
     };
     FormioComponent.prototype.submitExecute = function (submission) {
