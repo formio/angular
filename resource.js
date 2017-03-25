@@ -1,6 +1,7 @@
 'use strict';
 var modules = require('./dist/modules/resource/index');
 exports.FormioResource = modules.FormioResource;
+exports.FormioResources = modules.FormioResources;
 exports.FormioResourceConfig = modules.FormioResourceConfig;
 exports.FormioResourceRoutes = modules.FormioResourceRoutes;
 exports.FormioResourceService = modules.FormioResourceService;

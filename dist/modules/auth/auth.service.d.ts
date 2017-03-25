@@ -1,0 +1,34 @@
+import { EventEmitter } from '@angular/core';
+import { FormioAuthConfig } from './auth.config';
+import { FormioAppConfig } from '../../index';
+export declare class FormioAuthService {
+    private appConfig;
+    private config;
+    user: any;
+    authenticated: boolean;
+    loginForm: string;
+    onLogin: EventEmitter<Object>;
+    onLogout: EventEmitter<Object>;
+    registerForm: string;
+    onRegister: EventEmitter<Object>;
+    onUser: EventEmitter<Object>;
+    onError: EventEmitter<any>;
+    ready: Promise<boolean>;
+    readyResolve: any;
+    readyReject: any;
+    projectReady: Promise<any>;
+    accessReady: Promise<any>;
+    userReady: Promise<any>;
+    formAccess: any;
+    submissionAccess: any;
+    roles: any;
+    is: any;
+    constructor(appConfig: FormioAppConfig, config: FormioAuthConfig);
+    onLoginSubmit(submission: Object): void;
+    onRegisterSubmit(submission: Object): void;
+    init(): void;
+    setUser(user: any): void;
+    setUserRoles(): void;
+    logoutError(): void;
+    logout(): void;
+}

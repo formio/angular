@@ -1,6 +1,0 @@
-<div [formGroup]="form" class="form-group {{component.settings.customClass}}">
-    <fieldset>
-        <legend *ngIf="component.settings.legend">{{ component.settings.legend }}</legend>
-        <formio-components [components]="component.settings.components" [form]="component.control" [submission]="submission" [data]="data" (render)="onRender()"></formio-components>
-    </fieldset>
-</div>

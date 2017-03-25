@@ -1,0 +1,4 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li *ngFor="let form of forms" role="presentation" routeLinkActive="active"><a [routerLink]="'/' + form.path" role="tab" data-toggle="tab">{{ form.title }}</a></li>
+</ul>
+<router-outlet></router-outlet>

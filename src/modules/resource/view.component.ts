@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { FormioResourceService } from './resource.service';
+import { FormioResourceConfig } from './resource.config';
 
 @Component({
-    template: '<formio *ngIf="service.form && service.resource" [form]="service.form" [submission]="service.resource" [readOnly]="true"></formio>'
+    template: '<formio [form]="service.form" [submission]="service.resource" [hideComponents]="config.parents" [readOnly]="true"></formio>'
 })
 export class FormioResourceViewComponent {
-    constructor(private service: FormioResourceService) {}
+    constructor(
+        private service: FormioResourceService,
+        private config: FormioResourceConfig
+    ) {}
 }

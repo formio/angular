@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from './resource.service';
+import { FormioResourceConfig } from './resource.config';
 
 @Component({
-    template: '<formio *ngIf="service.form && service.resource" [form]="service.form" [submission]="service.resource" (submit)="onSubmit($event)"></formio>'
+    template: '<formio [form]="service.form" [submission]="service.resource" [refresh]="service.refresh" [hideComponents]="config.parents" (submit)="onSubmit($event)"></formio>'
 })
 export class FormioResourceEditComponent {
     constructor(
         private service: FormioResourceService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private config: FormioResourceConfig
     ) {}
 
     onSubmit(submission: any) {

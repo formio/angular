@@ -1,9 +1,0 @@
-<div [formGroup]="form" class="form-group radio {{component.settings.customClass}}" [ngClass]="{'required': (component.settings.validate && component.settings.validate.required)}">
-    <label *ngIf="component.label" [attr.for]="component.settings.key" class="control-label">{{ component.label }}</label>
-    <div *ngFor="let option of component.settings.values" [class.radio-inline]="component.settings.inline">
-        <label [attr.for]="component.settings.key">
-            <input type="radio" [formControl]="component.control" class="radio" name="{{component.settings.key}}" value="{{option.value}}" />
-            {{ option.label }}
-        </label>
-    </div>
-</div>

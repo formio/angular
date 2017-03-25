@@ -1,14 +1,15 @@
-let Formio = require('formiojs');
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { FormioForm } from './formio.common';
+let Formio = require('formiojs');
+
 export class FormioService {
     public formio: any;
     constructor(public url: string) {
         this.formio = new Formio(this.url);
     }
     loadForm(): Observable<FormioForm> {
-        return Observable.create((observer:Observer<FormioForm>) => {
+        return Observable.create((observer: Observer<FormioForm>) => {
             try {
                 this.formio.loadForm().then((form: FormioForm) => {
                     observer.next(form);
@@ -21,7 +22,7 @@ export class FormioService {
         });
     }
     loadSubmission(): Observable<{}> {
-        return Observable.create((observer:Observer<{}>) => {
+        return Observable.create((observer: Observer<{}>) => {
             try {
                 this.formio.loadSubmission().then((form: FormioForm) => {
                     observer.next(form);
