@@ -5,10 +5,10 @@ import { FormioAlerts } from './formio.alerts';
 import { FormioAppConfig } from './formio.config';
 import { FormioForm, FormioOptions, FormioRefreshValue } from './formio.common';
 export declare class FormioComponent implements OnInit {
-    private config;
     private elementRef;
     private loader;
     private alerts;
+    private config;
     ready: Promise<boolean>;
     readyResolve: any;
     form: FormioForm;
@@ -28,7 +28,7 @@ export declare class FormioComponent implements OnInit {
     invalid: EventEmitter<boolean>;
     error: EventEmitter<any>;
     private formio;
-    constructor(config: FormioAppConfig, elementRef: ElementRef, loader: FormioLoader, alerts: FormioAlerts);
+    constructor(elementRef: ElementRef, loader: FormioLoader, alerts: FormioAlerts, config: FormioAppConfig);
     setForm(form: FormioForm): void;
     ngOnInit(): void;
     onRefresh(refresh: FormioRefreshValue): void;

@@ -1,6 +1,6 @@
 {
   "name": "ng2-formio",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "The JSON powered form renderer for Form.io and Angular 2",
   "scripts": {
     "start": "webpack-dev-server --inline --progress --content-base /example --port 8080",
@@ -19,23 +19,23 @@
     "grid.js"
   ],
   "dependencies": {
-    "@angular/common": "^2.4.10",
-    "@angular/core": "^2.4.10",
-    "@angular/forms": "^2.4.10",
-    "@angular/router": "^3.4.10",
+    "@angular/common": "^4.1.0",
+    "@angular/core": "^4.1.0",
+    "@angular/forms": "^4.1.0",
+    "@angular/router": "^4.1.0",
     "core-js": "^2.4.1",
-    "formiojs": "^2.3.4",
+    "formiojs": "^2.7.2",
     "lodash": "^4.17.4",
     "native-promise-only": "^0.8.1",
-    "ng2-bootstrap": "^1.4.2",
-    "rxjs": "^5.2.0",
-    "zone.js": "^0.7.8"
+    "ng2-bootstrap": "^1.6.3",
+    "rxjs": "^5.3.1",
+    "zone.js": "^0.8.10"
   },
   "devDependencies": {
-    "@angular/compiler": "^2.4.10",
-    "@angular/http": "^2.4.10",
-    "@angular/platform-browser": "^2.4.10",
-    "@angular/platform-browser-dynamic": "^2.4.10",
+    "@angular/compiler": "^4.1.0",
+    "@angular/http": "^4.1.0",
+    "@angular/platform-browser": "^4.1.0",
+    "@angular/platform-browser-dynamic": "^4.1.0",
     "@types/es6-shim": "^0.31.32",
     "@types/jasmine": "^2.5.43",
     "@types/node": "^7.0.5",
@@ -89,6 +89,7 @@
     "tslint-loader": "^3.4.2",
     "typescript": "^2.2.1",
     "webpack": "^2.2.1",
-    "webpack-fail-plugin": "^1.0.6"
+    "webpack-fail-plugin": "^1.0.6",
+    "webpack-merge": "^4.1.0"
   }
 }

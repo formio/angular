@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, ElementRef, ViewEncapsulation }  from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ElementRef, ViewEncapsulation, Optional }  from '@angular/core';
 import { FormioService } from './formio.service';
 import { FormioLoader } from './formio.loader';
 import { FormioAlerts, FormioAlert } from './formio.alerts';
@@ -40,10 +40,10 @@ export class FormioComponent implements OnInit {
     @Output() error: EventEmitter<any>;
     private formio: any;
     constructor(
-        private config: FormioAppConfig,
         private elementRef: ElementRef,
         private loader: FormioLoader,
-        private alerts: FormioAlerts
+        private alerts: FormioAlerts,
+        @Optional() private config: FormioAppConfig
     ) {
         if (this.config) {
             Formio.setBaseUrl(this.config.apiUrl);
