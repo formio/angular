@@ -3,6 +3,7 @@
   "version": "1.0.0-rc.4",
   "description": "The JSON powered form renderer for Form.io and Angular 2",
   "scripts": {
+    "prepublish": "gulp build",
     "start": "webpack-dev-server --inline --progress --content-base /example --port 8080",
     "test": "karma start",
     "build": "gulp build",
