@@ -7,7 +7,7 @@ import { FormioResourceConfig } from './resource.config';
 })
 export class FormioResourceViewComponent {
     constructor(
-        private service: FormioResourceService,
-        private config: FormioResourceConfig
+        public service: FormioResourceService,
+        public config: FormioResourceConfig
     ) {}
 }

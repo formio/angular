@@ -8,13 +8,13 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "outDir": "./dist",
-    "sourceMap": true,
-    "sourceRoot": "src",
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5",
     "typeRoots": ["node_modules/@types"],
     "types": ["node", "jasmine"]
+  },
+  "angularCompilerOptions": {
+    "genDir": "compiled"
   },
   "include": [
     "src/**/*.ts"

@@ -8,10 +8,10 @@ import { FormioResourceConfig } from './resource.config';
 })
 export class FormioResourceEditComponent {
     constructor(
-        private service: FormioResourceService,
-        private route: ActivatedRoute,
-        private router: Router,
-        private config: FormioResourceConfig
+        public service: FormioResourceService,
+        public route: ActivatedRoute,
+        public router: Router,
+        public config: FormioResourceConfig
     ) {}
 
     onSubmit(submission: any) {

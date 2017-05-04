@@ -10,10 +10,10 @@
     "typescript": "tsc"
   },
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
   "files": [
-    "dist",
+    "src",
     "auth.js",
     "resource.js",
     "grid.js"
@@ -33,9 +33,11 @@
   },
   "devDependencies": {
     "@angular/compiler": "^4.1.0",
+    "@angular/compiler-cli": "^4.1.0",
     "@angular/http": "^4.1.0",
     "@angular/platform-browser": "^4.1.0",
     "@angular/platform-browser-dynamic": "^4.1.0",
+    "@angular/platform-server": "^4.1.0",
     "@types/es6-shim": "^0.31.32",
     "@types/jasmine": "^2.5.43",
     "@types/node": "^7.0.5",
@@ -87,7 +89,7 @@
     "ts-loader": "^2.0.2",
     "tslint": "^4.4.2",
     "tslint-loader": "^3.4.2",
-    "typescript": "^2.2.1",
+    "typescript": "^2.3.2",
     "webpack": "^2.2.1",
     "webpack-fail-plugin": "^1.0.6",
     "webpack-merge": "^4.1.0"

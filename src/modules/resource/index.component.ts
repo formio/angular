@@ -10,13 +10,13 @@ const _each = require('lodash/each');
         '<button class="btn btn-primary" *ngIf="service.form" routerLink="new"><span class="glyphicon glyphicon-plus"></span> New {{ service.form.title }}</button>'
 })
 export class FormioResourceIndexComponent {
-    private gridSrc: string;
-    private gridQuery: any;
+    public gridSrc: string;
+    public gridQuery: any;
     constructor(
-        private service: FormioResourceService,
-        private route: ActivatedRoute,
-        private router: Router,
-        private config: FormioResourceConfig
+        public service: FormioResourceService,
+        public route: ActivatedRoute,
+        public router: Router,
+        public config: FormioResourceConfig
     ) {
         this.gridQuery = {};
         if (this.config.parents && this.config.parents.length) {

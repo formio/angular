@@ -1,6 +1,15 @@
 node_modules
 typings
 npm-debug.log
+*.metadata.json
+*.ngfactory.ts
+*.ngsummary.json
+*.ngstyle.ts
+*.map.js
+*.d.ts
+*.ngfactory.js
+src/**/*.js
+src/formio.component.css
 .DS_Store
 .idea
 .vscode

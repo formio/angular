@@ -47,16 +47,16 @@ export class FormioGridComponent implements OnInit {
     @Output() select: EventEmitter<Object>;
     @Output() error: EventEmitter<any>;
 
-    private columns: Array<any> = [];
-    private rows: Array<any> = [];
-    private formio: any;
-    private form: any;
-    private total: number = 0;
-    private page: number = 0;
-    private firstItem: number = 0;
-    private lastItem: number = 0;
-    private skip: number = 0;
-    private isLoading: boolean = false;
+    public columns: Array<any> = [];
+    public rows: Array<any> = [];
+    public formio: any;
+    public form: any;
+    public total: number = 0;
+    public page: number = 0;
+    public firstItem: number = 0;
+    public lastItem: number = 0;
+    public skip: number = 0;
+    public isLoading: boolean = false;
 
     constructor() {
         this.select = new EventEmitter();

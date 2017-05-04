@@ -4,5 +4,5 @@ import { FormioAuthService } from './auth.service';
   template: '<formio [src]="service.loginForm" (submit)="service.onLoginSubmit($event)"></formio>'
 })
 export class FormioAuthLoginComponent {
-  constructor(private service: FormioAuthService) {}
+  constructor(public service: FormioAuthService) {}
 }

@@ -15,5 +15,5 @@ export class FormioLoader {
     template: '<div *ngIf="loader.loading" style="position:relative;height:200px"><div class="formio-loader-wrapper"><div class="formio-loader"></div></div></div>'
 })
 export class FormioLoaderComponent {
-    constructor(private loader: FormioLoader) {}
+    constructor(public loader: FormioLoader) {}
 }

@@ -24,5 +24,5 @@ export class FormioAlerts {
     template: '<div *ngFor="let alert of alerts.alerts" class="alert alert-{{ alert.type }}" role="alert">{{ alert.message }}</div>'
 })
 export class FormioAlertsComponent {
-    constructor(private alerts: FormioAlerts) {}
+    constructor(public alerts: FormioAlerts) {}
 }
