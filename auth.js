@@ -1,5 +1,5 @@
 'use strict';
-var modules = require('./dist/modules/auth/index');
+var modules = require('./src/modules/auth/index');
 exports.FormioAuth = modules.FormioAuth;
 exports.FormioAuthComponent = modules.FormioAuthComponent;
 exports.FormioAuthConfig = modules.FormioAuthConfig;
