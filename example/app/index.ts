@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutes } from './routes';
-import { FormioModule } from '../../dist';
+import { FormioModule } from '../..';
 import { MainComponent } from './components/main';
 import { HeaderComponent } from './components/header';
 import { FooterComponent } from './components/footer';

@@ -13,11 +13,11 @@ gulp.task('styles', () => {
         .pipe(gulp.dest('src'));
 });
 gulp.task('inline-style', () => {
-    return gulp.src(['./dist/formio.component.js'])
+    return gulp.src(['./src/formio.component.js'])
         .pipe(inject({
-            basepath: 'dist/'
+            basepath: 'src/'
         }))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('src'));
 });
 gulp.task('scripts', (done) => {
   exec('ngc -p "tsconfig.json"', function (err, stdout, stderr) {
@@ -26,5 +26,4 @@ gulp.task('scripts', (done) => {
     done();
   });
 });
-gulp.task('clean', require('del').bind(null, ['dist']));
-gulp.task('build', gulpsync.sync([['clean'], ['styles'], ['scripts'], 'inline-style']));
+gulp.task('build', gulpsync.sync([['styles'], ['scripts'], 'inline-style']));
