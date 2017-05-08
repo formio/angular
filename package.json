@@ -1,6 +1,6 @@
 {
   "name": "ng2-formio",
-  "version": "1.0.0-rc.6",
+  "version": "1.0.0-rc.7",
   "description": "The JSON powered form renderer for Form.io and Angular 2",
   "scripts": {
     "prepublish": "gulp build",
@@ -18,7 +18,9 @@
     "src/**/*.metadata.json",
     "auth.js",
     "resource.js",
-    "grid.js"
+    "grid.js",
+    "*.d.ts",
+    "*.metadata.json"
   ],
   "dependencies": {
     "@angular/common": "^4.1.0",

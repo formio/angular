@@ -1,13 +1,6 @@
-'use strict';
-var modules = require('./src/modules/resource/index');
-exports.FormioResource = modules.FormioResource;
-exports.FormioResources = modules.FormioResources;
-exports.FormioResourceConfig = modules.FormioResourceConfig;
-exports.FormioResourceRoutes = modules.FormioResourceRoutes;
-exports.FormioResourceService = modules.FormioResourceService;
-exports.FormioResourceComponent = modules.FormioResourceComponent;
-exports.FormioResourceViewComponent = modules.FormioResourceViewComponent;
-exports.FormioResourceCreateComponent = modules.FormioResourceCreateComponent;
-exports.FormioResourceDeleteComponent = modules.FormioResourceDeleteComponent;
-exports.FormioResourceEditComponent = modules.FormioResourceEditComponent;
-exports.FormioResourceIndexComponent = modules.FormioResourceIndexComponent;
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(require("./src/modules/resource/index"));
