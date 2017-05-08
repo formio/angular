@@ -1,2 +1,1 @@
-export * from './src/modules/grid/index';
-
+export { FormioGrid } from './src/modules/grid/index';
