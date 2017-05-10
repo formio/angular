@@ -31,10 +31,10 @@ export class FormioResourceService {
     public resources: FormioResourceMap;
 
     constructor(
-        private appConfig: FormioAppConfig,
-        private config: FormioResourceConfig,
-        private loader: FormioLoader,
-        @Optional() private resourcesService: FormioResources
+        public appConfig: FormioAppConfig,
+        public config: FormioResourceConfig,
+        public loader: FormioLoader,
+        @Optional() public resourcesService: FormioResources
     ) {
         if (this.appConfig && this.appConfig.appUrl) {
             Formio.setBaseUrl(this.appConfig.apiUrl);

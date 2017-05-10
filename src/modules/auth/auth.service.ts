@@ -31,8 +31,8 @@ export class FormioAuthService {
   public is: any = {};
 
   constructor(
-    private appConfig: FormioAppConfig,
-    private config: FormioAuthConfig
+      public appConfig: FormioAppConfig,
+      public config: FormioAuthConfig
   ) {
     this.user = null;
 

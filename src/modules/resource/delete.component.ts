@@ -12,9 +12,9 @@ import { FormioResourceService } from './resource.service';
 })
 export class FormioResourceDeleteComponent {
     constructor(
-        private service: FormioResourceService,
-        private route: ActivatedRoute,
-        private router: Router
+        public service: FormioResourceService,
+        public route: ActivatedRoute,
+        public router: Router
     ) {}
 
     onDelete() {
