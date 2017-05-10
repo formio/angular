@@ -13,9 +13,6 @@
     "typeRoots": ["node_modules/@types"],
     "types": ["node", "jasmine"]
   },
-  "angularCompilerOptions": {
-    "genDir": "compiled"
-  },
   "include": [
     "src/**/*.ts",
     "auth.ts",
