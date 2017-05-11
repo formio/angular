@@ -1,6 +1,6 @@
 {
   "name": "ng2-formio",
-  "version": "1.0.0-rc.12",
+  "version": "1.0.0-rc.13",
   "description": "The JSON powered form renderer for Form.io and Angular 2",
   "scripts": {
     "prepublish": "gulp build",
@@ -23,25 +23,25 @@
     "*.metadata.json"
   ],
   "dependencies": {
-    "@angular/common": "^4.1.0",
-    "@angular/core": "^4.1.0",
-    "@angular/forms": "^4.1.0",
-    "@angular/router": "^4.1.0",
-    "core-js": "^2.4.1",
+    "@angular/common": "^2.4.10 || ^4.1.0",
+    "@angular/core": "^2.4.10 || ^4.1.0",
+    "@angular/forms": "^2.4.10 || ^4.1.0",
+    "@angular/router": "^2.4.10 || ^4.1.0",
+    "core-js": "^2.4.10 || ^2.4.1",
     "formiojs": "^2.7.3",
     "lodash": "^4.17.4",
     "native-promise-only": "^0.8.1",
     "ng2-bootstrap": "^1.6.3",
-    "rxjs": "^5.3.1",
-    "zone.js": "^0.8.10"
+    "rxjs": "^5.1.1 || ^5.3.1",
+    "zone.js": "^0.7.8 || ^0.8.10"
   },
   "devDependencies": {
-    "@angular/compiler": "^4.1.0",
-    "@angular/compiler-cli": "^4.1.0",
-    "@angular/http": "^4.1.0",
-    "@angular/platform-browser": "^4.1.0",
-    "@angular/platform-browser-dynamic": "^4.1.0",
-    "@angular/platform-server": "^4.1.0",
+    "@angular/compiler": "^2.4.10 || ^4.1.0",
+    "@angular/compiler-cli": "^2.4.10 || ^4.1.0",
+    "@angular/http": "^2.4.10 || ^4.1.0",
+    "@angular/platform-browser": "^2.4.10 || ^4.1.0",
+    "@angular/platform-browser-dynamic": "^2.4.10 || ^4.1.0",
+    "@angular/platform-server": "^2.4.10 || ^4.1.0",
     "@types/es6-shim": "^0.31.32",
     "@types/jasmine": "^2.5.43",
     "@types/node": "^7.0.5",
