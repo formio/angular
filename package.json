@@ -1,6 +1,6 @@
 {
   "name": "ng2-formio",
-  "version": "1.0.0-rc.13",
+  "version": "1.0.0-rc.14",
   "description": "The JSON powered form renderer for Form.io and Angular 2",
   "scripts": {
     "prepublish": "gulp build",
@@ -28,7 +28,7 @@
     "@angular/forms": "^2.4.10 || ^4.1.0",
     "@angular/router": "^2.4.10 || ^4.1.0",
     "core-js": "^2.4.10 || ^2.4.1",
-    "formiojs": "^2.7.3",
+    "formiojs": "^2.7.4",
     "lodash": "^4.17.4",
     "native-promise-only": "^0.8.1",
     "ng2-bootstrap": "^1.6.3",
