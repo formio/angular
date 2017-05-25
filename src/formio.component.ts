@@ -31,6 +31,7 @@ export class FormioComponent implements OnInit {
     @Input() hideComponents: Array<string>;
     @Input() refresh: EventEmitter<FormioRefreshValue>;
     @Output() render: EventEmitter<Object>;
+    @Output() customEvent: EventEmitter<Object>;
     @Output() submit: EventEmitter<Object>;
     @Output() prevPage: EventEmitter<Object>;
     @Output() nextPage: EventEmitter<Object>;
@@ -68,6 +69,7 @@ export class FormioComponent implements OnInit {
         this.error = new EventEmitter();
         this.invalid = new EventEmitter();
         this.change = new EventEmitter();
+        this.customEvent = new EventEmitter();
         this.render = new EventEmitter();
         this.alerts.alerts = [];
     }
@@ -95,6 +97,7 @@ export class FormioComponent implements OnInit {
         this.formio.on('prevPage', (data: any) => this.onPrevPage(data));
         this.formio.on('nextPage', (data: any) => this.onNextPage(data));
         this.formio.on('change', (value: any) => this.change.emit(value));
+        this.formio.on('customEvent', (event: any) => this.customEvent.emit(event));
         this.formio.on('submit', (submission: any) => this.submitForm(submission));
         this.formio.on('error', (err: any) => this.onError(err));
         this.formio.on('render', () => this.render.emit(true));
