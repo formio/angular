@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from './resource.service';
 
 @Component({
@@ -19,6 +19,7 @@ import { FormioResourceService } from './resource.service';
 export class FormioResourceComponent {
     constructor(
         public service: FormioResourceService,
+        public router: Router,
         public route: ActivatedRoute
     ) {
         this.service.loadResource(this.route);

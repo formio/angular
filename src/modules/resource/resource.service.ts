@@ -23,6 +23,7 @@ export class FormioResourceService {
     public resourceLoaded: Promise<any>;
     public resourceResolve: any;
     public resourceReject: any;
+    public resourceId: string;
 
     public formLoading: Promise<any>;
     public formLoaded: Promise<any>;
@@ -138,12 +139,17 @@ export class FormioResourceService {
     }
 
     loadResource(route: ActivatedRoute) {
+        if (route.snapshot.params['id'] !== this.resourceId) {
+            this.resourceLoading = null;
+        }
+
         if (this.resourceLoading) {
             return this.resourceLoading;
         }
-        let id = route.snapshot.params['id'];
+        this.resourceId = route.snapshot.params['id'];
+        this.resource = {data: {}};
         this.resourceUrl = this.appConfig.appUrl + '/' + this.config.form;
-        this.resourceUrl += '/submission/' + id;
+        this.resourceUrl += '/submission/' + this.resourceId;
         this.formio = (new Formio(this.resourceUrl));
         this.loader.loading = true;
         this.resourceLoading = this.formio.loadSubmission().then((resource: any) => {

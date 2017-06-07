@@ -15,7 +15,11 @@ export class FormioResourceCreateComponent {
         public route: ActivatedRoute,
         public router: Router,
         public config: FormioResourceConfig
-    ) {}
+    ) {
+        // Start with fresh data.
+        this.service.resourceLoading = null;
+        this.service.resource = {data: {}};
+    }
 
     onSubmit(submission: any) {
         this.service.save(submission).then(() => {

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, ElementRef, ViewEncapsulation, Optional }  from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewEncapsulation, Optional, ElementRef, ViewChild }  from '@angular/core';
 import { FormioService } from './formio.service';
 import { FormioLoader } from './formio.loader';
 import { FormioAlerts, FormioAlert } from './formio.alerts';
@@ -15,6 +15,7 @@ let _each = require('lodash/each');
     template: '<div>' +
         '<formio-loader></formio-loader>' +
         '<formio-alerts></formio-alerts>' +
+        '<div #formio></div>' +
     '</div>',
     styles: ['@@import formio.component.css'],
     encapsulation: ViewEncapsulation.None
@@ -39,9 +40,10 @@ export class FormioComponent implements OnInit {
     @Output() change: EventEmitter<Object>;
     @Output() invalid: EventEmitter<boolean>;
     @Output() error: EventEmitter<any>;
+    @ViewChild('formio') formioElement:ElementRef;
+
     private formio: any;
     constructor(
-        private elementRef: ElementRef,
         private loader: FormioLoader,
         private alerts: FormioAlerts,
         @Optional() private config: FormioAppConfig
@@ -101,7 +103,7 @@ export class FormioComponent implements OnInit {
         this.formio.on('submit', (submission: any) => this.submitForm(submission));
         this.formio.on('error', (err: any) => this.onError(err));
         this.formio.on('render', () => this.render.emit(true));
-        this.formio.setElement(this.elementRef.nativeElement);
+        this.formio.setElement(this.formioElement.nativeElement);
         this.formio.form = this.form;
         this.loader.loading = false;
         this.readyResolve();
@@ -123,17 +125,14 @@ export class FormioComponent implements OnInit {
             this.refresh.subscribe((refresh: FormioRefreshValue) => this.onRefresh(refresh));
         }
 
-        if (this.form) {
-            this.setForm(this.form);
-        }
-        else if (this.src) {
+        if (this.src) {
             if (!this.service) {
                 this.service = new FormioService(this.src);
             }
             this.loader.loading = true;
             this.service.loadForm().subscribe((form: FormioForm) => {
                 if (form && form.components) {
-                    this.setForm(form);
+                    this.form = form;
                 }
 
                 // if a submission is also provided.

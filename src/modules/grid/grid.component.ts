@@ -57,6 +57,7 @@ export class FormioGridComponent implements OnInit {
     public lastItem: number = 0;
     public skip: number = 0;
     public isLoading: boolean = false;
+    public pageReady: boolean = true;
 
     constructor() {
         this.select = new EventEmitter();
@@ -134,7 +135,7 @@ export class FormioGridComponent implements OnInit {
             this.firstItem = this.query.skip + 1;
             this.lastItem = this.firstItem + submissions.length - 1;
             this.total = submissions.serverCount;
-            this.skip = submissions.skip;
+            this.skip = Math.floor(submissions.skip / query.limit) + 1;
             this.rows = [];
             _each(submissions, (submission:any) => {
                 this.rows.push(submission);
@@ -144,6 +145,9 @@ export class FormioGridComponent implements OnInit {
     }
 
     setPage(num: number = -1) {
+        if (this.isLoading) {
+            return;
+        }
         this.page = (num !== -1) ? num : this.page;
         if (!this.query.hasOwnProperty('limit')) {
             this.query.limit = 10;
