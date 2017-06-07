@@ -19,7 +19,6 @@ import { FormioResourceService } from './resource.service';
 export class FormioResourceComponent {
     constructor(
         public service: FormioResourceService,
-        public router: Router,
         public route: ActivatedRoute
     ) {
         this.service.loadResource(this.route);
