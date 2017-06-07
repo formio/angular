@@ -132,7 +132,7 @@ export class FormioComponent implements OnInit {
             this.loader.loading = true;
             this.service.loadForm().subscribe((form: FormioForm) => {
                 if (form && form.components) {
-                    this.form = form;
+                    this.setForm(form);
                 }
 
                 // if a submission is also provided.
