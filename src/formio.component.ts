@@ -5,7 +5,7 @@ import { FormioAlerts, FormioAlert } from './formio.alerts';
 import { FormioAppConfig } from './formio.config';
 import { FormioForm, FormioOptions, FormioError, FormioRefreshValue } from './formio.common';
 let Promise = require('native-promise-only');
-let Formio = require('formiojs/form');
+let Formio = require('formiojs/full');
 let _each = require('lodash/each');
 
 @Component({
