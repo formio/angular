@@ -5,9 +5,7 @@ import { FormioAlerts, FormioAlert } from './formio.alerts';
 import { FormioAppConfig } from './formio.config';
 import { FormioForm, FormioOptions, FormioError, FormioRefreshValue } from './formio.common';
 let Promise = require('native-promise-only');
-let Formio = require('formiojs');
-let FormioFormCore = require('formiojs/form');
-let FormioWizard = require('formiojs/wizard');
+let Formio = require('formiojs/form');
 let _each = require('lodash/each');
 
 @Component({
@@ -49,12 +47,8 @@ export class FormioComponent implements OnInit {
         @Optional() private config: FormioAppConfig
     ) {
         if (this.config) {
-            Formio.setBaseUrl(this.config.apiUrl);
-            Formio.setAppUrl(this.config.appUrl);
-            FormioFormCore.setBaseUrl(this.config.apiUrl);
-            FormioFormCore.setAppUrl(this.config.appUrl);
-            FormioWizard.setBaseUrl(this.config.apiUrl);
-            FormioWizard.setAppUrl(this.config.appUrl);
+            Formio.Formio.setBaseUrl(this.config.apiUrl);
+            Formio.Formio.setAppUrl(this.config.appUrl);
         }
         else {
             console.warn('You must provide an AppConfig within your application!');
@@ -84,13 +78,13 @@ export class FormioComponent implements OnInit {
             return;
         }
         if (this.form.display === 'wizard') {
-            this.formio = new FormioWizard(null, {
+            this.formio = new Formio.FormioWizard(null, {
                 noAlerts: true,
                 readOnly: this.readOnly
             });
         }
         else {
-            this.formio = new FormioFormCore(null, {
+            this.formio = new Formio.FormioForm(null, {
                 noAlerts: true,
                 readOnly: this.readOnly
             });
