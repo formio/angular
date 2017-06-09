@@ -29,7 +29,7 @@
     "@angular/router": "^2.4.10 || ^4.1.0",
     "core-js": "^2.4.10 || ^2.4.1",
     "formio": "^1.18.4",
-    "formiojs": "^2.9.1",
+    "formiojs": "^2.9.2",
     "lodash": "^4.17.4",
     "native-promise-only": "^0.8.1",
     "ng2-bootstrap": "^1.6.3",
