@@ -38,6 +38,7 @@ export class FormioComponent implements OnInit {
     @Output() change: EventEmitter<Object>;
     @Output() invalid: EventEmitter<boolean>;
     @Output() error: EventEmitter<any>;
+    @Output() formLoad: EventEmitter<any>;
     @ViewChild('formio') formioElement:ElementRef;
 
     private formio: any;
@@ -67,6 +68,7 @@ export class FormioComponent implements OnInit {
         this.change = new EventEmitter();
         this.customEvent = new EventEmitter();
         this.render = new EventEmitter();
+        this.formLoad = new EventEmitter();
         this.alerts.alerts = [];
     }
     setForm(form: FormioForm) {
@@ -97,6 +99,7 @@ export class FormioComponent implements OnInit {
         this.formio.on('submit', (submission: any) => this.submitForm(submission));
         this.formio.on('error', (err: any) => this.onError(err));
         this.formio.on('render', () => this.render.emit(true));
+        this.formio.on('formLoad', (form: any) => this.formLoad.emit(form));
         this.formio.setElement(this.formioElement.nativeElement);
         this.formio.form = this.form;
         this.loader.loading = false;
