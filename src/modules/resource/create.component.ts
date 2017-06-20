@@ -17,8 +17,7 @@ export class FormioResourceCreateComponent {
         public config: FormioResourceConfig
     ) {
         // Start with fresh data.
-        this.service.resourceLoading = null;
-        this.service.resource = {data: {}};
+        this.service.initialize();
     }
 
     onSubmit(submission: any) {

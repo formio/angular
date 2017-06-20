@@ -5,6 +5,7 @@ import { FormioLoader, FormioAppConfig } from '../../index';
 import { FormioRefreshValue } from '../../formio.common';
 let Promise = require('native-promise-only');
 let Formio = require('formiojs');
+let FormioUtils = require('formiojs/utils');
 
 @Injectable()
 export class FormioResourceService {
@@ -46,17 +47,17 @@ export class FormioResourceService {
             console.error('You must provide an AppConfig within your application!');
         }
 
-        // Add this resource service to the list of all resources in context.
-        if (this.resourcesService) {
-            this.resourcesService.resources[this.config.name] = this;
-            this.resources = this.resourcesService.resources;
-        }
-
         // Create the form url and load the resources.
         this.formUrl = this.appConfig.appUrl + '/' + this.config.form;
+        this.initialize();
+    }
+
+    initialize() {
         this.onParents = new EventEmitter();
         this.onIndexSelect = new EventEmitter();
         this.refresh = new EventEmitter();
+        this.resourceLoading = null;
+        this.formLoading = null;
         this.resource = {data: {}};
         this.resourceLoaded = new Promise((resolve: any, reject: any) => {
             this.resourceResolve = resolve;
@@ -66,6 +67,13 @@ export class FormioResourceService {
             this.formResolve = resolve;
             this.formReject = reject;
         });
+
+        // Add this resource service to the list of all resources in context.
+        if (this.resourcesService) {
+            this.resourcesService.resources[this.config.name] = this;
+            this.resources = this.resourcesService.resources;
+        }
+
         this.loadForm();
         this.setParents();
     }
@@ -112,6 +120,18 @@ export class FormioResourceService {
             // See if this parent is already in context.
             if (this.resources.hasOwnProperty(parent)) {
                 parentsLoaded.push(this.resources[parent].resourceLoaded.then((resource: any) => {
+                    // Make sure we hide the component that is the parent.
+                    this.formLoaded.then((form) => {
+                        let component = FormioUtils.getComponent(form.components, parent);
+                        if (component) {
+                            component.hidden = true;
+                            this.refresh.emit({
+                                property: 'form',
+                                value: form
+                            });
+                        }
+                    });
+
                     if (!this.resourceLoading) {
                         // Set the value of this parent in the submission data.
                         this.resource.data[parent] = resource;
@@ -119,6 +139,7 @@ export class FormioResourceService {
                             property: 'submission',
                             value: this.resource
                         });
+
                         return {
                             name: parent,
                             resource: resource

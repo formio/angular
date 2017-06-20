@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 let Formio = require('formiojs');
 let FormioUtils = require('formiojs/utils');
+let Components = require('formiojs/build/components')
 let _get = require('lodash/get');
 let _each = require('lodash/each');
 let _assign = require('lodash/assign');
@@ -107,7 +108,7 @@ export class FormioGridComponent implements OnInit {
                     label: component.label,
                     key: 'data.' + component.key,
                     sort: '',
-                    component: component
+                    component: Components.create(component, null, null, true)
                 });
             }
         });
@@ -193,9 +194,6 @@ export class FormioGridComponent implements OnInit {
 
     data(row:any, col:any) {
         let cellValue: any = _get(row, col.key);
-        if (col.component && col.component.template) {
-            return FormioUtils.interpolate(col.component.template, {item: cellValue});
-        }
-        return cellValue;
+        return col.component.asString(cellValue);
     }
 }

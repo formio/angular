@@ -21,6 +21,7 @@ export class FormioResourceComponent {
         public service: FormioResourceService,
         public route: ActivatedRoute
     ) {
+        this.service.initialize();
         this.service.loadResource(this.route);
     }
 }

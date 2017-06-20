@@ -18,12 +18,15 @@ export class FormioResourceIndexComponent {
         public router: Router,
         public config: FormioResourceConfig
     ) {
+        this.service.initialize();
         this.gridQuery = {};
         if (this.config.parents && this.config.parents.length) {
             // Wait for the parents to load before loading this grid.
             this.service.onParents.subscribe((parents: any) => {
                 _each(parents, (parent: any) => {
-                    this.gridQuery['data.' + parent.name + '._id'] = parent.resource._id;
+                    if (parent) {
+                        this.gridQuery['data.' + parent.name + '._id'] = parent.resource._id;
+                    }
                 });
 
                 // Set the source to load the grid.
