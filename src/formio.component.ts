@@ -24,6 +24,7 @@ export class FormioComponent implements OnInit {
     @Input() form: FormioForm = null;
     @Input() submission: any = {};
     @Input() src: string;
+    @Input() url: string;
     @Input() service: FormioService;
     @Input() options: FormioOptions;
     @Input() readOnly: boolean = false;
@@ -92,6 +93,12 @@ export class FormioComponent implements OnInit {
             });
         }
 
+        if (this.url) {
+            this.formio.url = this.url;
+        }
+        if (this.src) {
+            this.formio.url = this.src;
+        }
         this.formio.on('prevPage', (data: any) => this.onPrevPage(data));
         this.formio.on('nextPage', (data: any) => this.onNextPage(data));
         this.formio.on('change', (value: any) => this.change.emit(value));

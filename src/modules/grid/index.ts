@@ -3,7 +3,7 @@ import { CommonModule }   from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FormioModule } from '../../index';
 import { FormioGridComponent } from './grid.component';
-import { PaginationModule } from 'ng2-bootstrap/pagination';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 @NgModule({
     imports: [
         CommonModule,
