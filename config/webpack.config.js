@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const FailPlugin = require('webpack-fail-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
@@ -53,7 +52,6 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    FailPlugin,
     new webpack.optimize.CommonsChunkPlugin({
       name: ['main', 'vendor', 'polyfills']
     }),

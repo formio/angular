@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, ViewEncapsulation, Optional, ElementRef, ViewChild }  from '@angular/core';
 import { FormioService } from './formio.service';
 import { FormioLoader } from './formio.loader';
-import { FormioAlerts, FormioAlert } from './formio.alerts';
+import { FormioAlerts } from './formio.alerts';
 import { FormioAppConfig } from './formio.config';
 import { FormioForm, FormioOptions, FormioError, FormioRefreshValue } from './formio.common';
 let Promise = require('native-promise-only');
