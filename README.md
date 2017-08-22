@@ -136,7 +136,7 @@ For help in getting started using this library, we created the [ng2-app-starterk
 
 ```
 npm install
-npm run serve
+npm run start
 ```
 
 Full Documentation
