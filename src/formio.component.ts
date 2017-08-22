@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, ViewEncapsulation, Optional, ElementRef, ViewChild }  from '@angular/core';
 import { FormioService } from './formio.service';
 import { FormioLoader } from './formio.loader';
-import { FormioAlerts } from './formio.alerts';
+import { FormioAlerts, FormioAlert } from './formio.alerts';
 import { FormioAppConfig } from './formio.config';
 import { FormioForm, FormioOptions, FormioError, FormioRefreshValue } from './formio.common';
 
@@ -32,6 +32,8 @@ export class FormioComponent implements OnInit, OnChanges {
   @Input() readOnly: boolean = false;
   @Input() hideComponents: string[];
   @Input() refresh: EventEmitter<FormioRefreshValue>;
+  @Input() error: EventEmitter<any>;
+  @Input() success: EventEmitter<object>;
   @Output() render: EventEmitter<object>;
   @Output() customEvent: EventEmitter<object>;
   @Output() submit: EventEmitter<object>;
@@ -40,7 +42,7 @@ export class FormioComponent implements OnInit, OnChanges {
   @Output() beforeSubmit: EventEmitter<object>;
   @Output() change: EventEmitter<object>;
   @Output() invalid: EventEmitter<boolean>;
-  @Output() error: EventEmitter<any>;
+  @Output() errorChange: EventEmitter<any>;
   @Output() formLoad: EventEmitter<any>;
   @ViewChild('formio') formioElement:ElementRef;
 
@@ -67,7 +69,7 @@ export class FormioComponent implements OnInit, OnChanges {
     this.prevPage = new EventEmitter();
     this.nextPage = new EventEmitter();
     this.submit = new EventEmitter();
-    this.error = new EventEmitter();
+    this.errorChange = new EventEmitter();
     this.invalid = new EventEmitter();
     this.change = new EventEmitter();
     this.customEvent = new EventEmitter();
@@ -138,6 +140,19 @@ export class FormioComponent implements OnInit, OnChanges {
       this.refresh.subscribe((refresh: FormioRefreshValue) => this.onRefresh(refresh));
     }
 
+    if (this.error) {
+      this.error.subscribe((err: any) => this.onError(err))
+    }
+
+    if (this.success) {
+      this.success.subscribe((message: string) => {
+        this.alerts.setAlert({
+          type: 'success',
+          message: message || this.options.alerts.submitMessage
+        });
+      });
+    }
+
     if (this.src) {
       if (!this.service) {
         this.service = new FormioService(this.src);
@@ -197,10 +212,12 @@ export class FormioComponent implements OnInit, OnChanges {
       this.formio.emit('submitDone', submission);
     }
     this.submit.emit(submission);
-    this.alerts.setAlert({
-      type: 'success',
-      message: this.options.alerts.submitMessage
-    });
+    if (!this.success) {
+      this.alerts.setAlert({
+        type: 'success',
+        message: this.options.alerts.submitMessage
+      });
+    }
   }
   onError(err: any) {
     this.alerts.setAlerts([]);
@@ -212,7 +229,7 @@ export class FormioComponent implements OnInit, OnChanges {
     err = (err instanceof Array) ? err : [err];
 
     // Emit these errors again.
-    this.error.emit(err);
+    this.errorChange.emit(err);
 
     // Iterate through each one and set the alerts array.
     _each(err, (error: any) => {

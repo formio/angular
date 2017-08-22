@@ -4,12 +4,14 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormioDemoComponent } from './demo.component';
 import { FormioFormsModule } from './forms';
-import { FormioModule } from '../src';
+import { FormioModule, FormioAppConfig } from '../src';
 import { FormioGridModule } from '../src/grid';
 import { AuthDemoModule } from './auth/auth.module';
 import { HomeComponent } from './home.component';
 import { DataComponent } from './data.component';
-import { EventsModule } from './events/events.module';
+import { EventModule } from './event/event.module';
+import { FormioAuthService, FormioAuthConfig } from '../src/auth';
+import { AppConfig } from './config';
 
 @NgModule({
   declarations: [
@@ -40,9 +42,21 @@ import { EventsModule } from './events/events.module';
       },
       {
         path: 'event',
-        loadChildren: () => EventsModule
+        loadChildren: () => EventModule
       }
     ])
+  ],
+  providers: [
+    FormioAuthService,
+    {provide: FormioAppConfig, useValue: AppConfig},
+    {provide: FormioAuthConfig, useValue: {
+      login: {
+        form: 'user/login'
+      },
+      register: {
+        form: 'user/register'
+      }
+    }}
   ],
   bootstrap: [FormioDemoComponent]
 })

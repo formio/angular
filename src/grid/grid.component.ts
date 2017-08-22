@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
 import { FormioLoader } from '../formio.loader';
+import { FormioAlerts } from '../formio.alerts';
 
 /* tslint:disable */
 let Formio = require('formiojs');
@@ -19,7 +20,7 @@ let _assign = require('lodash/assign');
     '.page-num { font-size: 1.4em; }',
     '.grid-refresh { height: 400px; width: 100%; }'
   ],
-  template: require('./grid.component.html')
+  template: require('./grid.component.html').toString()
 })
 export class FormioGridComponent implements OnInit, OnChanges {
   @Input() src: string;
@@ -41,7 +42,7 @@ export class FormioGridComponent implements OnInit, OnChanges {
   public isLoading: boolean = false;
   public initialized: boolean = false;
 
-  constructor(public loader: FormioLoader) {
+  constructor(public loader: FormioLoader, public alerts: FormioAlerts) {
     this.select = new EventEmitter();
     this.error = new EventEmitter();
     this.loader.loading = true;
@@ -69,6 +70,7 @@ export class FormioGridComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.alerts.setAlerts([]);
     this.query = this.query || {};
 
     if (this.refresh) {
@@ -105,6 +107,10 @@ export class FormioGridComponent implements OnInit, OnChanges {
 
   onError(error: any) {
     this.error.emit(error);
+    this.alerts.setAlert({
+      type: 'danger',
+      message: error
+    });
   }
 
   refreshGrid(query?: any) {

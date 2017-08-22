@@ -8,9 +8,7 @@ const _each = require('lodash/each');
 /* tslint:enable */
 
 @Component({
-    template:
-        '<formio-grid [src]="gridSrc" [query]="gridQuery" [onForm]="service.formLoaded" (select)="onSelect($event)" (error)="service.onError($event)"></formio-grid>' +
-        '<button class="btn btn-primary" *ngIf="service.form" routerLink="new"><span class="glyphicon glyphicon-plus"></span> New {{ service.form.title }}</button>'
+    template: require('./index.component.html').toString()
 })
 export class FormioResourceIndexComponent {
     public gridSrc: string;

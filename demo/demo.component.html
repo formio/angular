@@ -7,8 +7,12 @@
       <li routerLinkActive="active"><a routerLink="forms">Examples</a></li>
       <li routerLinkActive="active"><a routerLink="auth">Authentication</a></li>
       <li routerLinkActive="active"><a routerLink="data">Data Table</a></li>
-      <li><a href="https://github.com/formio/ngx-formio#installation">Installation</a></li>
-      <li><a href="https://formio.github.io/ngx-formio/docs/">Documentation</a></li>
+      <li routerLinkActive="active"><a routerLink="event">CRUD</a></li>
+      <li><a href="https://formio.github.io/angular-formio/docs/">Documentation</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li *ngIf="!auth.authenticated"><a routerLink="auth"><span class="glyphicon glyphicon-log-in"></span> Login | Register</a></li>
+      <li class="navbar-link" *ngIf="auth.authenticated"><a (click)="auth.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
 </nav>

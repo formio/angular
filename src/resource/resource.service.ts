@@ -84,6 +84,7 @@ export class FormioResourceService {
         if (this.resourcesService) {
             this.resourcesService.error.emit(error);
         }
+        throw error;
     }
 
     onFormError(err: any) {
