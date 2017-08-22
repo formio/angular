@@ -1,0 +1,14 @@
+{
+  "generator-angular-library": {
+    "githubUsername": "formio",
+    "githubRepoName": "ngx-formio",
+    "npmModuleName": "ngx-formio",
+    "moduleGlobal": "ngxFormio",
+    "ngModuleName": "FormioModule",
+    "selectorPrefix": "formio",
+    "projectTitle": "NgFormio",
+    "projectDescription": "The Form.io dynamic form and data management system for Angular.",
+    "authorName": "Travis Tidwell",
+    "packageManager": "npm"
+  }
+}

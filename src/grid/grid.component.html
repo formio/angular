@@ -1,0 +1,23 @@
+<div class="formio-grid">
+  <table class="table table-condensed table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th *ngFor="let col of columns"><a (click)="sortColumn(col)">{{ col.label }} <span [ngClass]="{'glyphicon-triangle-top': (col.sort === 'asc'), 'glyphicon-triangle-bottom': (col.sort === 'desc')}" class="glyphicon" *ngIf="col.sort"></span></a></th>
+      </tr>
+    </thead>
+    <formio-loader></formio-loader>
+    <tbody *ngIf="!isLoading">
+      <tr *ngFor="let row of rows" (click)="onClick(row)">
+        <td *ngFor="let col of columns" [innerHTML]="data(row, col)"></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td [colSpan]="columns.length">
+          <pagination [totalItems]="total" [(ngModel)]="skip" (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
+          <span class="pull-right item-counter"><span class="page-num">{{ firstItem }} - {{ lastItem }}</span> / {{ total }} total</span>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "es2015",
+    "outDir": "./dist",
+    "baseUrl": "",
+    "emitDecoratorMetadata": false,
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types"]
+  },
+  "exclude": [
+    "test"
+  ],
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true,
+    "skipMetadataEmit" : true,
+    "genDir": "./dist",
+    "entryModule": "demo/demo.module#DemoModule",
+    "trace": true
+  }
+}

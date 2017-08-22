@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-xs-2">
+    <ul class="nav nav-tabs tabs-left" id="htabs">
+      <li *ngFor="let form of forms" routerLinkActive="active"><a [routerLink]="form.path" data-toggle="tab">{{ form.title }}</a></li>
+    </ul>
+  </div>
+  <div class="col-xs-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>

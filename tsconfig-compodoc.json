@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "demo",
+    "test",
+    "karma.conf.ts",
+    "webpack.config.ts",
+    "webpack.config.umd.ts"
+  ]
+}
