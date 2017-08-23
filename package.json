@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The Form.io dynamic form and data management system for Angular.",
   "main": "./bundles/angular-formio.umd.js",
   "module": "./index.js",
@@ -115,7 +115,8 @@
     "zone.js": "^0.8.4"
   },
   "peerDependencies": {
-    "@angular/core": ">=2.0.0 <5.0.0"
+    "@angular/core": ">=2.0.0 <5.0.0",
+    "@angular/forms": ">=2.0.0 <5.0.0"
   },
   "config": {
     "commitizen": {
