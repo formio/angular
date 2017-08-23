@@ -104,13 +104,13 @@ Usage
 To use this library within your project, you will first need to install it as a dependency.
 
 ```
-npm install --save ng2-formio
+npm install --save angular-formio
 ```
 
-You can now include the module in your Angular 2.0 application like so.
+You can now include the module in your Angular application like so.
 
 ```
-import { FormioModule } from 'ng2-formio';
+import { FormioModule } from 'angular-formio';
 @NgModule({
     imports: [ BrowserModule, ReactiveFormsModule, FormioModule ],
     declarations: [ AppComponent ],
