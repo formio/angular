@@ -1,31 +1,31 @@
 export interface ConditionalOptions {
-  show?: string,
-  when?: any,
-  eq?: any
+  show?: string;
+  when?: any;
+  eq?: any;
 }
 
 export interface ValidateOptions {
-  required?: boolean,
-  custom?: string,
-  customPrivate?: boolean
+  required?: boolean;
+  custom?: string;
+  customPrivate?: boolean;
 }
 
 export interface ComponentOptions<T, V> {
-  defaultValue?: T | T[],
-  type?: string,
-  key?: string,
-  label?: string,
-  input?: boolean,
-  required?: boolean,
-  multiple?: boolean,
-  protected?: boolean,
-  unique?: boolean,
-  persistent?: boolean,
-  tableView?: boolean,
-  lockKey?: boolean,
-  validate?: V,
-  conditional?: ConditionalOptions,
-  customConditional?: string
+  defaultValue?: T | T[];
+  type?: string;
+  key?: string;
+  label?: string;
+  input?: boolean;
+  required?: boolean;
+  multiple?: boolean;
+  protected?: boolean;
+  unique?: boolean;
+  persistent?: boolean;
+  tableView?: boolean;
+  lockKey?: boolean;
+  validate?: V;
+  conditional?: ConditionalOptions;
+  customConditional?: string;
 }
 
 export interface FormioRefreshValue {
@@ -34,37 +34,47 @@ export interface FormioRefreshValue {
 }
 
 export interface FormioForm {
-  title?: string,
-  display?: string,
-  name?: string,
-  path?: string,
-  project?: string,
-  template?: string,
-  components?: Array<ComponentOptions<any, ValidateOptions>>
+  title?: string;
+  display?: string;
+  name?: string;
+  path?: string;
+  project?: string;
+  template?: string;
+  components?: Array<ComponentOptions<any, ValidateOptions>>;
 }
 
 export interface AlertsOptions {
-  submitMessage: string
+  submitMessage: string;
 }
 
 export interface ErrorsOptions {
-  message: string
+  message: string;
 }
 
 export class FormioError {
-  constructor (public message: string, public component: ComponentOptions<any, ValidateOptions>) {}
+  constructor(
+    public message: string,
+    public component: ComponentOptions<any, ValidateOptions>
+  ) {}
 }
 
-export type FormioSubmissionCallback = (error: FormioError, submission: object) => void;
-export type FormioBeforeSubmit = (submission: object, callback: FormioSubmissionCallback) => void;
+export type FormioSubmissionCallback = (
+  error: FormioError,
+  submission: object
+) => void;
+export type FormioBeforeSubmit = (
+  submission: object,
+  callback: FormioSubmissionCallback
+) => void;
 
 export interface FormioHookOptions {
-  beforeSubmit: FormioBeforeSubmit
+  beforeSubmit: FormioBeforeSubmit;
 }
 
 export interface FormioOptions {
-  errors: ErrorsOptions,
-  alerts: AlertsOptions,
-  i18n: object,
-  hooks: FormioHookOptions
+  errors: ErrorsOptions;
+  alerts: AlertsOptions;
+  i18n: object;
+  fileService: object;
+  hooks: FormioHookOptions;
 }
