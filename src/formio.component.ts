@@ -24,6 +24,7 @@ import {
 /* tslint:disable */
 const Formio = require('formiojs/full');
 const _each = require('lodash/each');
+const _get = require('lodash/get');
 /* tslint:enable */
 
 @Component({
@@ -51,6 +52,7 @@ export class FormioComponent implements OnInit, OnChanges {
   @Input() refresh: EventEmitter<FormioRefreshValue>;
   @Input() error: EventEmitter<any>;
   @Input() success: EventEmitter<object>;
+  @Input() language: EventEmitter<string>;
   @Output() render: EventEmitter<object>;
   @Output() customEvent: EventEmitter<object>;
   @Output() submit: EventEmitter<object>;
@@ -164,6 +166,12 @@ export class FormioComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.initialize();
 
+    if (this.language) {
+      this.language.subscribe((lang: string) => {
+        this.formio.language = lang;
+      });
+    }
+
     if (this.refresh) {
       this.refresh.subscribe((refresh: FormioRefreshValue) =>
         this.onRefresh(refresh)
@@ -178,7 +186,7 @@ export class FormioComponent implements OnInit, OnChanges {
       this.success.subscribe((message: string) => {
         this.alerts.setAlert({
           type: 'success',
-          message: message || this.options.alerts.submitMessage
+          message: message || _get(this.options, 'alerts.submitMessage')
         });
       });
     }
@@ -251,7 +259,7 @@ export class FormioComponent implements OnInit, OnChanges {
     if (!this.success) {
       this.alerts.setAlert({
         type: 'success',
-        message: this.options.alerts.submitMessage
+        message: _get(this.options, 'alerts.submitMessage')
       });
     }
   }
@@ -292,17 +300,15 @@ export class FormioComponent implements OnInit, OnChanges {
 
     // if they provide a beforeSubmit hook, then allow them to alter the submission asynchronously
     // or even provide a custom Error method.
-    if (this.options.hooks.beforeSubmit) {
-      this.options.hooks.beforeSubmit(
-        submission,
-        (err: FormioError, sub: object) => {
-          if (err) {
-            this.onError(err);
-            return;
-          }
-          this.submitExecute(sub);
+    const beforeSubmit = _get(this.options, 'hooks.beforeSubmit');
+    if (beforeSubmit) {
+      beforeSubmit(submission, (err: FormioError, sub: object) => {
+        if (err) {
+          this.onError(err);
+          return;
         }
-      );
+        this.submitExecute(sub);
+      });
     } else {
       this.submitExecute(submission);
     }
