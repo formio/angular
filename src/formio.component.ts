@@ -25,6 +25,7 @@ import {
 const Formio = require('formiojs/full');
 const _each = require('lodash/each');
 const _get = require('lodash/get');
+const _isEmpty = require('lodash/isEmpty');
 /* tslint:enable */
 
 @Component({
@@ -203,9 +204,12 @@ export class FormioComponent implements OnInit, OnChanges {
           }
 
           // if a submission is also provided.
-          if (!this.submission && this.service.formio.submissionId) {
+          if (_isEmpty(this.submission) && this.service.formio.submissionId) {
             this.service.loadSubmission().subscribe(
               (submission: any) => {
+                if (this.readOnly) {
+                  this.formio.options.readOnly = true;
+                }
                 this.submission = this.formio.submission = submission;
               },
               err => this.onError(err)

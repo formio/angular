@@ -29,6 +29,9 @@ export class LanguageFormComponent implements OnInit {
           Survey: 'Encuesta',
           'How would you rate the Form.io platform?':
             '¿Cómo calificaría la plataforma Form.io?',
+          'How was Customer Support?':
+            '¿Cómo fue el servicio de atención al cliente?',
+          'Overall Experience?': '¿Experiencia general?',
           Excellent: 'Excelente',
           Great: 'Estupendo',
           Good: 'Bueno',
@@ -51,6 +54,8 @@ export class LanguageFormComponent implements OnInit {
           'Form.io Example Form': 'Form.io示例表单',
           Survey: '调查',
           'How would you rate the Form.io platform?': '你如何评价Form.io平台？',
+          'How was Customer Support?': '客户支持如何？',
+          'Overall Experience?': '总体体验？',
           Excellent: '优秀',
           Great: '大',
           Good: '好',
