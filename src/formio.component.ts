@@ -108,7 +108,8 @@ export class FormioComponent implements OnInit, OnChanges {
       .createForm(this.formioElement.nativeElement, this.form, {
         noAlerts: true,
         readOnly: this.readOnly,
-        i18n: this.options.i18n
+        i18n: this.options.i18n,
+        fileService: this.options.fileService
       })
       .then((formio: any) => {
         this.formio = formio;
