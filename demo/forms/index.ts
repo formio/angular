@@ -4,7 +4,9 @@ import { RouterModule } from '@angular/router';
 import { FormioModule } from '../../src';
 import { SimpleFormComponent } from './simple';
 import { WizardFormComponent } from './wizard';
+import { PDFFormComponent } from './pdf';
 import { KitchenSinkFormComponent } from './kitchen';
+import { LanguageFormComponent } from './language';
 import { FormioFormsComponent } from './forms.component';
 
 export const FormRoutes: any = [
@@ -15,7 +17,7 @@ export const FormRoutes: any = [
       {
         path: '',
         redirectTo: 'simple',
-        pathMatch: 'full',
+        pathMatch: 'full'
       },
       {
         path: 'simple',
@@ -28,6 +30,16 @@ export const FormRoutes: any = [
         component: WizardFormComponent
       },
       {
+        path: 'pdf',
+        title: 'PDF Form',
+        component: PDFFormComponent
+      },
+      {
+        path: 'language',
+        title: 'Multi-Language',
+        component: LanguageFormComponent
+      },
+      {
         path: 'kitchen',
         title: 'Kitchen Sink',
         component: KitchenSinkFormComponent
@@ -37,15 +49,13 @@ export const FormRoutes: any = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormioModule,
-    RouterModule.forChild(FormRoutes)
-  ],
+  imports: [CommonModule, FormioModule, RouterModule.forChild(FormRoutes)],
   declarations: [
     FormioFormsComponent,
     SimpleFormComponent,
     WizardFormComponent,
+    LanguageFormComponent,
+    PDFFormComponent,
     KitchenSinkFormComponent
   ],
   bootstrap: [FormioFormsComponent]

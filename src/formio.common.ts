@@ -72,9 +72,9 @@ export interface FormioHookOptions {
 }
 
 export interface FormioOptions {
-  errors: ErrorsOptions;
-  alerts: AlertsOptions;
-  i18n: object;
-  fileService: object;
-  hooks: FormioHookOptions;
+  errors?: ErrorsOptions;
+  alerts?: AlertsOptions;
+  i18n?: object;
+  fileService?: object;
+  hooks?: FormioHookOptions;
 }

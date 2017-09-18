@@ -131,7 +131,7 @@
     }
   },
   "dependencies": {
-    "formiojs": "^2.14.1",
+    "formiojs": "^2.17.2",
     "lodash": "^4.17.4",
     "ngx-bootstrap": "^1.8.1"
   }
