@@ -1,12 +1,12 @@
 Form.io Angular 4 Renderer
 ---------------------------
-This library serves as a Dynamic JSON Powered Form rendering library for [Angular 2](https://angular.io). This works by
+This library serves as a Dynamic JSON Powered Form rendering library for [Angular 4](https://angular.io). This works by
 providing a JSON schema to a ```<formio>``` Angular 4 component, where that form is dynamically rendered within the front
 end application. This allows forms to be dynamically built using JSON schemas.
 
 Example
 ---------------------------
-You can easily render a form within your Angular 2 application by referencing the URL of that form as follows.
+You can easily render a form within your Angular 4 application by referencing the URL of that form as follows.
 
 ```
 <formio src='https://examples.form.io/example'></formio>
