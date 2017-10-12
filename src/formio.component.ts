@@ -40,7 +40,7 @@ const _isEmpty = require('lodash/isEmpty');
   encapsulation: ViewEncapsulation.None
 })
 export class FormioComponent implements OnInit, OnChanges {
-  public ready: Promise<boolean>;
+  public ready: Promise<object>;
   public readyResolve: any;
   @Input() form: FormioForm;
   @Input() submission: any = {};
@@ -66,8 +66,8 @@ export class FormioComponent implements OnInit, OnChanges {
   @Output() formLoad: EventEmitter<any>;
   @ViewChild('formio') formioElement: ElementRef;
 
-  private formio: any;
-  private initialized: boolean;
+  public formio: any;
+  public initialized: boolean;
   constructor(
     private loader: FormioLoader,
     private alerts: FormioAlerts,
@@ -138,7 +138,8 @@ export class FormioComponent implements OnInit, OnChanges {
           this.formLoad.emit(loadedForm)
         );
         this.loader.loading = false;
-        this.readyResolve();
+        this.readyResolve(this.formio);
+        return this.formio;
       });
   }
 
