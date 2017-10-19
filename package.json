@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "The Form.io dynamic form and data management system for Angular.",
   "main": "./bundles/angular-formio.umd.js",
   "module": "./index.js",
