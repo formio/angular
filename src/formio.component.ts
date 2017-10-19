@@ -33,7 +33,7 @@ const _isEmpty = require('lodash/isEmpty');
   template:
     '<div>' +
     '<formio-loader></formio-loader>' +
-    '<formio-alerts></formio-alerts>' +
+    '<formio-alerts *ngIf="!this.options.disableAlerts"></formio-alerts>' +
     '<div #formio></div>' +
     '</div>',
   styles: [require('./formio.component.scss').toString()],
@@ -156,6 +156,7 @@ export class FormioComponent implements OnInit, OnChanges {
         alerts: {
           submitMessage: 'Submission Complete.'
         },
+        disableAlerts: false,
         hooks: {
           beforeSubmit: null
         }
