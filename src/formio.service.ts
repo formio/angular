@@ -10,79 +10,42 @@ export class FormioService {
   constructor(public url: string, public options?: object) {
     this.formio = new Formio(this.url, this.options);
   }
-  saveForm(form: FormioForm): Observable<FormioForm> {
-    return Observable.create((observer: Observer<FormioForm>) => {
+  requestWrapper(fn: any) {
+    let record: any;
+    let called: boolean = false;
+    return Observable.create((observer: Observer<any>) => {
       try {
-        this.formio
-          .saveForm(form)
-          .then((updatedForm: FormioForm) => {
-            observer.next(updatedForm);
-            observer.complete();
-          })
-          .catch((err: any) => observer.error(err));
+        if (!called) {
+          called = true;
+          fn()
+            .then((_record: any) => {
+              record = _record;
+              observer.next(record);
+              observer.complete();
+            })
+            .catch((err: any) => observer.error(err));
+        } else if (record) {
+          observer.next(record);
+          observer.complete();
+        }
       } catch (err) {
         observer.error(err);
       }
     });
+  }
+  saveForm(form: FormioForm): Observable<FormioForm> {
+    return this.requestWrapper(() => this.formio.saveForm(form));
   }
   loadForm(): Observable<FormioForm> {
-    return Observable.create((observer: Observer<FormioForm>) => {
-      try {
-        this.formio
-          .loadForm()
-          .then((form: FormioForm) => {
-            observer.next(form);
-            observer.complete();
-          })
-          .catch((err: any) => observer.error(err));
-      } catch (err) {
-        observer.error(err);
-      }
-    });
+    return this.requestWrapper(() => this.formio.loadForm());
   }
   loadSubmission(): Observable<{}> {
-    return Observable.create((observer: Observer<{}>) => {
-      try {
-        this.formio
-          .loadSubmission()
-          .then((form: FormioForm) => {
-            observer.next(form);
-            observer.complete();
-          })
-          .catch((err: any) => observer.error(err));
-      } catch (err) {
-        observer.error(err);
-      }
-    });
+    return this.requestWrapper(() => this.formio.loadSubmission());
   }
   saveSubmission(submission: {}): Observable<{}> {
-    return Observable.create((observer: Observer<{}>) => {
-      try {
-        this.formio
-          .saveSubmission(submission)
-          .then((saved: {}) => {
-            observer.next(saved);
-            observer.complete();
-          })
-          .catch((err: any) => observer.error(err));
-      } catch (err) {
-        observer.error(err);
-      }
-    });
+    return this.requestWrapper(() => this.formio.saveSubmission(submission));
   }
   loadSubmissions(): Observable<{}> {
-    return Observable.create((observer: Observer<{}>) => {
-      try {
-        this.formio
-          .loadSubmissions()
-          .then((submission: {}) => {
-            observer.next(submission);
-            observer.complete();
-          })
-          .catch((err: any) => observer.error(err));
-      } catch (err) {
-        observer.error(err);
-      }
-    });
+    return this.requestWrapper(() => this.formio.loadSubmissions());
   }
 }

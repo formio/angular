@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "The Form.io dynamic form and data management system for Angular.",
   "main": "./bundles/angular-formio.umd.js",
   "module": "./index.js",
@@ -131,7 +131,7 @@
     }
   },
   "dependencies": {
-    "formiojs": "^2.21.3",
+    "formiojs": "^2.22.0",
     "lodash": "^4.17.4",
     "ngx-bootstrap": "^1.9.3"
   }
