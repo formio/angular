@@ -7,8 +7,8 @@ const Formio = require('formiojs');
 
 export class FormioService {
   public formio: any;
-  constructor(public url: string) {
-    this.formio = new Formio(this.url);
+  constructor(public url: string, public options?: object) {
+    this.formio = new Formio(this.url, this.options);
   }
   saveForm(form: FormioForm): Observable<FormioForm> {
     return Observable.create((observer: Observer<FormioForm>) => {
