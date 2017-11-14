@@ -33,6 +33,11 @@ export interface FormioRefreshValue {
   value: object;
 }
 
+export interface AccessSetting {
+  type: string;
+  roles: Array<string>;
+}
+
 export interface FormioForm {
   title?: string;
   display?: string;
@@ -41,6 +46,9 @@ export interface FormioForm {
   project?: string;
   template?: string;
   components?: Array<ComponentOptions<any, ValidateOptions>>;
+  tags?: Array<string>;
+  access?: Array<AccessSetting>;
+  submissionAccess?: Array<AccessSetting>;
 }
 
 export interface AlertsOptions {
