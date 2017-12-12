@@ -43,6 +43,7 @@ export interface FormioForm {
   display?: string;
   name?: string;
   path?: string;
+  type?: string;
   project?: string;
   template?: string;
   components?: Array<ComponentOptions<any, ValidateOptions>>;
