@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormioModule }   from '../';
-import { FormioGrid } from '../grid';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormioModule } from '../';
+import { FormioGrid } from '../grid';
 import { FormioResourceComponent } from './resource.component';
 import { FormioResourceViewComponent } from './view.component';
 import { FormioResourceEditComponent } from './edit.component';
@@ -11,20 +11,15 @@ import { FormioResourceCreateComponent } from './create.component';
 import { FormioResourceIndexComponent } from './index.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormioModule,
-        FormioGrid,
-        RouterModule.forChild([])
-    ],
-    declarations: [
-        FormioResourceComponent,
-        FormioResourceCreateComponent,
-        FormioResourceIndexComponent,
-        FormioResourceViewComponent,
-        FormioResourceEditComponent,
-        FormioResourceDeleteComponent
-    ]
+  imports: [CommonModule, FormioModule, FormioGrid, RouterModule],
+  declarations: [
+    FormioResourceComponent,
+    FormioResourceCreateComponent,
+    FormioResourceIndexComponent,
+    FormioResourceViewComponent,
+    FormioResourceEditComponent,
+    FormioResourceDeleteComponent
+  ]
 })
 export class FormioResourceModule {}
 

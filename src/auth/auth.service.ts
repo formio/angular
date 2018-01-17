@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable }  from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
 import { FormioAppConfig } from '../index';
 
@@ -46,10 +46,9 @@ export class FormioAuthService {
 
     if (this.appConfig && this.appConfig.appUrl) {
       Formio.setBaseUrl(this.appConfig.apiUrl);
-      Formio.setAppUrl(this.appConfig.appUrl);
+      Formio.setProjectUrl(this.appConfig.appUrl);
       Formio.formOnly = !!this.appConfig.formOnly;
-    }
-    else {
+    } else {
       console.error('You must provide an AppConfig within your application!');
     }
 
@@ -83,30 +82,37 @@ export class FormioAuthService {
   }
 
   init() {
-    this.projectReady = Formio.makeStaticRequest(this.appConfig.appUrl).then((project: any) => {
-      _each(project.access, (access: any) => {
-        this.formAccess[access.type] = access.roles;
-      });
-    }, (): any => {
-      this.formAccess = {};
-      return null;
-    });
-
+    this.projectReady = Formio.makeStaticRequest(this.appConfig.appUrl).then(
+      (project: any) => {
+        _each(project.access, (access: any) => {
+          this.formAccess[access.type] = access.roles;
+        });
+      },
+      (): any => {
+        this.formAccess = {};
+        return null;
+      }
+    );
 
     // Get the access for this project.
-    this.accessReady = Formio.makeStaticRequest(this.appConfig.appUrl + '/access').then((access: any) => {
-      _each(access.forms, (form: any) => {
-        this.submissionAccess[form.name] = {};
-        form.submissionAccess.forEach((subAccess: any) => {
-          this.submissionAccess[form.name][subAccess.type] = subAccess.roles;
+    this.accessReady = Formio.makeStaticRequest(
+      this.appConfig.appUrl + '/access'
+    ).then(
+      (access: any) => {
+        _each(access.forms, (form: any) => {
+          this.submissionAccess[form.name] = {};
+          form.submissionAccess.forEach((subAccess: any) => {
+            this.submissionAccess[form.name][subAccess.type] = subAccess.roles;
+          });
         });
-      });
-      this.roles = access.roles;
-      return access;
-    }, (): any => {
-      this.roles = {};
-      return null;
-    });
+        this.roles = access.roles;
+        return access;
+      },
+      (): any => {
+        this.roles = {};
+        return null;
+      }
+    );
 
     this.userReady = Formio.currentUser().then((user: any) => {
       this.setUser(user);
@@ -126,8 +132,7 @@ export class FormioAuthService {
       this.user = user;
       localStorage.setItem('formioAppUser', JSON.stringify(user));
       this.setUserRoles();
-    }
-    else {
+    } else {
       this.user = null;
       this.is = {};
       localStorage.removeItem('formioAppUser');
@@ -158,6 +163,8 @@ export class FormioAuthService {
   logout() {
     this.setUser(null);
     localStorage.removeItem('formioToken');
-    Formio.logout().then(() => this.onLogout.emit()).catch(() => this.logoutError());
+    Formio.logout()
+      .then(() => this.onLogout.emit())
+      .catch(() => this.logoutError());
   }
 }

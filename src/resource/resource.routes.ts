@@ -13,38 +13,38 @@ import { FormioResourceIndexComponent } from './index.component';
  * @constructor
  */
 export function FormioResourceRoutes(config?: any): Routes {
-    config = config || {};
-    return [
+  config = config || {};
+  return [
+    {
+      path: '',
+      component: config.index || FormioResourceIndexComponent
+    },
+    {
+      path: 'new',
+      component: config.create || FormioResourceCreateComponent
+    },
+    {
+      path: ':id',
+      component: config.resource || FormioResourceComponent,
+      children: [
         {
-            path: '',
-            component: config.index || FormioResourceIndexComponent
+          path: '',
+          redirectTo: 'view',
+          pathMatch: 'full'
         },
         {
-            path: 'new',
-            component: config.create || FormioResourceCreateComponent
+          path: 'view',
+          component: config.view || FormioResourceViewComponent
         },
         {
-            path: ':id',
-            component: config.resource || FormioResourceComponent,
-            children: [
-                {
-                    path: '',
-                    redirectTo: 'view',
-                    pathMatch: 'full'
-                },
-                {
-                    path: 'view',
-                    component: config.view || FormioResourceViewComponent
-                },
-                {
-                    path: 'edit',
-                    component: config.edit || FormioResourceEditComponent
-                },
-                {
-                    path: 'delete',
-                    component: config.delete || FormioResourceDeleteComponent
-                }
-            ]
+          path: 'edit',
+          component: config.edit || FormioResourceEditComponent
+        },
+        {
+          path: 'delete',
+          component: config.delete || FormioResourceDeleteComponent
         }
-    ];
-};
+      ]
+    }
+  ];
+}
