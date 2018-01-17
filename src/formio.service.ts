@@ -36,8 +36,8 @@ export class FormioService {
   saveForm(form: FormioForm): Observable<FormioForm> {
     return this.requestWrapper(() => this.formio.saveForm(form));
   }
-  loadForm(): Observable<FormioForm> {
-    return this.requestWrapper(() => this.formio.loadForm());
+  loadForm(options?: any): Observable<FormioForm> {
+    return this.requestWrapper(() => this.formio.loadForm(options));
   }
   loadSubmission(): Observable<{}> {
     return this.requestWrapper(() => this.formio.loadSubmission());

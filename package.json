@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "The Form.io dynamic form and data management system for Angular.",
   "main": "./bundles/angular-formio.umd.js",
   "module": "./index.js",
@@ -38,6 +38,7 @@
     "url": "git+https://github.com/formio/angular-formio.git"
   },
   "keywords": [
+    "angular5",
     "angular4",
     "angular2",
     "angular"
@@ -49,15 +50,15 @@
   },
   "homepage": "https://github.com/formio/angular-formio#readme",
   "devDependencies": {
-    "@angular/common": "^4.0.0 || ^2.0.0",
-    "@angular/compiler": "^4.0.0 || ^2.0.0",
-    "@angular/compiler-cli": "^4.0.0 || ^2.0.0",
-    "@angular/core": "^4.0.0 || ^2.0.0",
-    "@angular/forms": "^4.0.0 || ^2.0.0",
-    "@angular/language-service": "^4.0.0 || ^2.0.0",
-    "@angular/platform-browser": "^4.0.0 || ^2.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0 || ^2.0.0",
-    "@angular/router": "^4.0.0 || ^3.0.0",
+    "@angular/common": "^5.0.0 || ^4.0.0 || ^2.0.0",
+    "@angular/compiler": "^5.0.0 || ^4.0.0 || ^2.0.0",
+    "@angular/compiler-cli": "^5.0.0 || ^4.0.0 || ^2.0.0",
+    "@angular/core": "^5.0.0 || ^4.0.0 || ^2.0.0",
+    "@angular/forms": "^5.0.0 || ^4.0.0 || ^2.0.0",
+    "@angular/language-service": "^5.0.0 || ^4.0.0 || ^2.0.0",
+    "@angular/platform-browser": "^5.0.0 || ^4.0.0 || ^2.0.0",
+    "@angular/platform-browser-dynamic": "^5.0.0 || ^4.0.0 || ^2.0.0",
+    "@angular/router": "^5.0.0 || ^4.0.0 || ^3.0.0",
     "@compodoc/compodoc": "^1.0.0-beta.3",
     "@mattlewis92/webpack-karma-die-hard": "^1.0.4",
     "@ngtools/webpack": "^1.5.2",
@@ -122,8 +123,8 @@
     "zone.js": "^0.8.4"
   },
   "peerDependencies": {
-    "@angular/core": ">=2.0.0 <5.0.0",
-    "@angular/forms": ">=2.0.0 <5.0.0"
+    "@angular/core": ">=2.0.0 <6.0.0",
+    "@angular/forms": ">=2.0.0 <6.0.0"
   },
   "config": {
     "commitizen": {
@@ -131,7 +132,8 @@
     }
   },
   "dependencies": {
-    "formiojs": "^2.25.3",
+    "@types/lodash": "^4.14.92",
+    "formiojs": "^2.28.0",
     "lodash": "^4.17.4",
     "ngx-bootstrap": "^1.9.3"
   }

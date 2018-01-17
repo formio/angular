@@ -33,7 +33,7 @@ const _isEmpty = require('lodash/isEmpty');
   template:
     '<div>' +
     '<formio-loader></formio-loader>' +
-    '<formio-alerts *ngIf="!this.options.disableAlerts"></formio-alerts>' +
+    '<formio-alerts *ngIf="!this.options.disableAlerts" [alerts]="alerts"></formio-alerts>' +
     '<div #formio></div>' +
     '</div>',
   styles: [require('./formio.component.scss').toString()],
@@ -68,14 +68,14 @@ export class FormioComponent implements OnInit, OnChanges {
 
   public formio: any;
   public initialized: boolean;
+  private alerts: FormioAlerts;
   constructor(
     private loader: FormioLoader,
-    private alerts: FormioAlerts,
     @Optional() private config: FormioAppConfig
   ) {
     if (this.config) {
       Formio.Formio.setBaseUrl(this.config.apiUrl);
-      Formio.Formio.setAppUrl(this.config.appUrl);
+      Formio.Formio.setProjectUrl(this.config.appUrl);
     } else {
       console.warn('You must provide an AppConfig within your application!');
     }
@@ -84,6 +84,7 @@ export class FormioComponent implements OnInit, OnChanges {
       this.readyResolve = resolve;
     });
 
+    this.alerts = new FormioAlerts();
     this.beforeSubmit = new EventEmitter();
     this.prevPage = new EventEmitter();
     this.nextPage = new EventEmitter();
@@ -109,6 +110,7 @@ export class FormioComponent implements OnInit, OnChanges {
     // Create the form.
     return Formio.Formio
       .createForm(this.formioElement.nativeElement, this.form, {
+        icons: this.config.icons,
         noAlerts: true,
         readOnly: this.readOnly,
         i18n: this.options.i18n,
@@ -199,7 +201,7 @@ export class FormioComponent implements OnInit, OnChanges {
         this.service = new FormioService(this.src);
       }
       this.loader.loading = true;
-      this.service.loadForm().subscribe(
+      this.service.loadForm({ params: { live: 1 } }).subscribe(
         (form: FormioForm) => {
           if (form && form.components) {
             this.setForm(form);
@@ -223,14 +225,16 @@ export class FormioComponent implements OnInit, OnChanges {
     }
   }
   onRefresh(refresh: FormioRefreshValue) {
-    switch (refresh.property) {
-      case 'submission':
-        this.formio.submission = refresh.value;
-        break;
-      case 'form':
-        this.formio.form = refresh.value;
-        break;
-    }
+    this.ready.then(() => {
+      switch (refresh.property) {
+        case 'submission':
+          this.formio.submission = refresh.value;
+          break;
+        case 'form':
+          this.formio.form = refresh.value;
+          break;
+      }
+    });
   }
   ngOnChanges(changes: any) {
     this.initialize();
