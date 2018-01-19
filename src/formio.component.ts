@@ -110,7 +110,7 @@ export class FormioComponent implements OnInit, OnChanges {
     // Create the form.
     return Formio.Formio
       .createForm(this.formioElement.nativeElement, this.form, {
-        icons: this.config.icons,
+        icons: this.config ? this.config.icons : '',
         noAlerts: true,
         readOnly: this.readOnly,
         i18n: this.options.i18n,
