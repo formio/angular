@@ -1,4 +1,11 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnChanges
+} from '@angular/core';
 import { FormioLoader } from '../formio.loader';
 import { FormioAlerts } from '../formio.alerts';
 
@@ -22,7 +29,7 @@ let _assign = require('lodash/assign');
   ],
   template:
     '<div class="formio-grid">' +
-    '  <formio-alerts></formio-alerts>' +
+    '  <formio-alerts [alerts]="alerts"></formio-alerts>' +
     '  <table class="table table-condensed table-bordered table-striped table-hover">' +
     '    <thead>' +
     '      <tr>' +
@@ -78,11 +85,11 @@ export class FormioGridComponent implements OnInit, OnChanges {
       return;
     }
     // Do not double load.
-    if (this.formio && (src === this.src)) {
+    if (this.formio && src === this.src) {
       return;
     }
 
-    this.formio = new Formio(this.src, {formOnly: true});
+    this.formio = new Formio(this.src, { formOnly: true });
     this.formio.loadForm().then((form: any) => {
       this.form = form;
       this.setupColumns();
@@ -110,7 +117,7 @@ export class FormioGridComponent implements OnInit, OnChanges {
   }
 
   setupColumns() {
-    FormioUtils.eachComponent(this.form.components, (component:any) => {
+    FormioUtils.eachComponent(this.form.components, (component: any) => {
       if (component.input && component.tableView) {
         this.columns.push({
           label: component.label,
@@ -135,6 +142,7 @@ export class FormioGridComponent implements OnInit, OnChanges {
   }
 
   refreshGrid(query?: any) {
+    this.alerts.setAlerts([]);
     query = query || {};
     query = _assign(query, this.query);
     if (!query.hasOwnProperty('limit')) {
@@ -144,24 +152,30 @@ export class FormioGridComponent implements OnInit, OnChanges {
       query.skip = 0;
     }
     this.loading = true;
-    this.formio.loadSubmissions({params: query}).then((submissions:any) => {
-      this.firstItem = this.query.skip + 1;
-      this.lastItem = this.firstItem + submissions.length - 1;
-      this.total = submissions.serverCount;
-      this.skip = Math.floor(submissions.skip / query.limit) + 1;
-      this.rows = [];
-      _each(submissions, (submission:any) => {
-        this.rows.push(submission);
-      });
-      this.loading = false;
-    }, (err: any) => this.onError(err)).catch((err: any) => this.onError(err));
+    this.formio
+      .loadSubmissions({ params: query })
+      .then(
+        (submissions: any) => {
+          this.firstItem = this.query.skip + 1;
+          this.lastItem = this.firstItem + submissions.length - 1;
+          this.total = submissions.serverCount;
+          this.skip = Math.floor(submissions.skip / query.limit) + 1;
+          this.rows = [];
+          _each(submissions, (submission: any) => {
+            this.rows.push(submission);
+          });
+          this.loading = false;
+        },
+        (err: any) => this.onError(err)
+      )
+      .catch((err: any) => this.onError(err));
   }
 
   setPage(num: number = -1) {
     if (this.isLoading) {
       return;
     }
-    this.page = (num !== -1) ? num : this.page;
+    this.page = num !== -1 ? num : this.page;
     if (!this.query.hasOwnProperty('limit')) {
       this.query.limit = 10;
     }
@@ -172,9 +186,9 @@ export class FormioGridComponent implements OnInit, OnChanges {
     this.refreshGrid();
   }
 
-  sortColumn(column:any) {
+  sortColumn(column: any) {
     // Reset all other column sorts.
-    _each(this.columns, (col:any) => {
+    _each(this.columns, (col: any) => {
       if (col.key !== column.key) {
         col.sort = '';
       }
@@ -196,15 +210,15 @@ export class FormioGridComponent implements OnInit, OnChanges {
     this.refreshGrid();
   }
 
-  pageChanged(page:any) {
+  pageChanged(page: any) {
     this.setPage(page.page - 1);
   }
 
-  onClick(row:any) {
+  onClick(row: any) {
     this.select.emit(row);
   }
 
-  data(row:any, col:any) {
+  data(row: any, col: any) {
     const cellValue: any = _get(row, col.key);
     return col.component.asString(cellValue);
   }
