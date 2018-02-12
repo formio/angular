@@ -17,7 +17,7 @@ gulp.task('styles', () => {
 gulp.task('inline-styles', () => {
   const css = fs.readFileSync('./dist/formio.component.css').toString();
   return gulp.src(['./dist/formio.component.js'])
-    .pipe(replace("styleUrls: ['formio.component.css']", "styles: ['" + css.replace(/\\'/g, "'").replace(/'/g, "\\'") + "']"))
+    .pipe(replace("styleUrls: ['formio.component.scss']", "styles: ['" + css.replace(/\\'/g, "'").replace(/'/g, "\\'") + "']"))
     .pipe(gulp.dest('dist'));
 });
 
