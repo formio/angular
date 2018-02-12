@@ -36,7 +36,7 @@ const _isEmpty = require('lodash/isEmpty');
     '<formio-alerts *ngIf="!this.options.disableAlerts" [alerts]="alerts"></formio-alerts>' +
     '<div #formio></div>' +
     '</div>',
-  styleUrls: ['/formio.component.scss'],
+  styleUrls: ['formio.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class FormioComponent implements OnInit, OnChanges {

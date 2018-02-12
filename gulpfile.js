@@ -8,6 +8,7 @@ const cleanCSS = require('gulp-clean-css');
 
 gulp.task('styles', () => {
   return gulp.src(['./src/formio.component.scss'])
+    .pipe(gulp.dest('dist'))
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('dist'));
@@ -16,7 +17,7 @@ gulp.task('styles', () => {
 gulp.task('inline-styles', () => {
   const css = fs.readFileSync('./dist/formio.component.css').toString();
   return gulp.src(['./dist/formio.component.js'])
-    .pipe(replace("/formio.component.scss", "'" + css.replace(/\\'/g, "'").replace(/'/g, "\\'") + "'"))
+    .pipe(replace("styleUrls: ['formio.component.css']", "styles: ['" + css.replace(/\\'/g, "'").replace(/'/g, "\\'") + "']"))
     .pipe(gulp.dest('dist'));
 });
 
