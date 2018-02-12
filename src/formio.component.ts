@@ -36,7 +36,7 @@ const _isEmpty = require('lodash/isEmpty');
     '<formio-alerts *ngIf="!this.options.disableAlerts" [alerts]="alerts"></formio-alerts>' +
     '<div #formio></div>' +
     '</div>',
-  styles: [require('./formio.component.scss').toString()],
+  styleUrls: ['/formio.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class FormioComponent implements OnInit, OnChanges {
@@ -108,41 +108,43 @@ export class FormioComponent implements OnInit, OnChanges {
     }
 
     // Create the form.
-    return Formio.Formio
-      .createForm(this.formioElement.nativeElement, this.form, {
+    return Formio.Formio.createForm(
+      this.formioElement.nativeElement,
+      this.form,
+      {
         icons: this.config ? this.config.icons : '',
         noAlerts: true,
         readOnly: this.readOnly,
         i18n: this.options.i18n,
         fileService: this.options.fileService
-      })
-      .then((formio: any) => {
-        this.formio = formio;
-        if (this.url) {
-          this.formio.url = this.url;
-        }
-        if (this.src) {
-          this.formio.url = this.src;
-        }
-        this.formio.nosubmit = true;
-        this.formio.on('prevPage', (data: any) => this.onPrevPage(data));
-        this.formio.on('nextPage', (data: any) => this.onNextPage(data));
-        this.formio.on('change', (value: any) => this.change.emit(value));
-        this.formio.on('customEvent', (event: any) =>
-          this.customEvent.emit(event)
-        );
-        this.formio.on('submit', (submission: any) =>
-          this.submitForm(submission)
-        );
-        this.formio.on('error', (err: any) => this.onError(err));
-        this.formio.on('render', () => this.render.emit());
-        this.formio.on('formLoad', (loadedForm: any) =>
-          this.formLoad.emit(loadedForm)
-        );
-        this.loader.loading = false;
-        this.readyResolve(this.formio);
-        return this.formio;
-      });
+      }
+    ).then((formio: any) => {
+      this.formio = formio;
+      if (this.url) {
+        this.formio.url = this.url;
+      }
+      if (this.src) {
+        this.formio.url = this.src;
+      }
+      this.formio.nosubmit = true;
+      this.formio.on('prevPage', (data: any) => this.onPrevPage(data));
+      this.formio.on('nextPage', (data: any) => this.onNextPage(data));
+      this.formio.on('change', (value: any) => this.change.emit(value));
+      this.formio.on('customEvent', (event: any) =>
+        this.customEvent.emit(event)
+      );
+      this.formio.on('submit', (submission: any) =>
+        this.submitForm(submission)
+      );
+      this.formio.on('error', (err: any) => this.onError(err));
+      this.formio.on('render', () => this.render.emit());
+      this.formio.on('formLoad', (loadedForm: any) =>
+        this.formLoad.emit(loadedForm)
+      );
+      this.loader.loading = false;
+      this.readyResolve(this.formio);
+      return this.formio;
+    });
   }
 
   initialize() {
