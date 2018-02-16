@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormioResourceIndexComponent, FormioResourceService, FormioResourceConfig } from '../../src/resource';
+import { FormioResourceIndexComponent, FormioResourceService, FormioResourceConfig } from '../../dist/resource';
 
 @Component({
   template:

@@ -41,8 +41,8 @@ export class FormioAuthService {
     this.user = null;
 
     if (this.appConfig && this.appConfig.appUrl) {
-      Formio.default.setBaseUrl(this.appConfig.apiUrl);
-      Formio.default.setProjectUrl(this.appConfig.appUrl);
+      Formio.setBaseUrl(this.appConfig.apiUrl);
+      Formio.setProjectUrl(this.appConfig.appUrl);
       Formio.formOnly = !!this.appConfig.formOnly;
     } else {
       console.error('You must provide an AppConfig within your application!');

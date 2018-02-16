@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormioAuthComponent, FormioAuthService } from '../../src/auth';
+import { FormioAuthComponent, FormioAuthService } from '../../dist/auth';
 
 @Component({
   template: require('./auth.component.html')

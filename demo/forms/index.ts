@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormioModule } from '../../src';
+import { FormioModule } from '../../dist';
 import { SimpleFormComponent } from './simple';
 import { WizardFormComponent } from './wizard';
 import { PDFFormComponent } from './pdf';

@@ -4,13 +4,13 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormioDemoComponent } from './demo.component';
 import { FormioFormsModule } from './forms';
-import { FormioModule, FormioAppConfig } from '../src';
-import { FormioGridModule } from '../src/grid';
+import { FormioModule, FormioAppConfig } from '../dist';
+import { FormioGridModule } from '../dist/grid';
 import { AuthDemoModule } from './auth/auth.module';
 import { HomeComponent } from './home.component';
 import { DataComponent } from './data.component';
 import { EventModule } from './event/event.module';
-import { FormioAuthService, FormioAuthConfig } from '../src/auth';
+import { FormioAuthService, FormioAuthConfig } from '../dist/auth';
 import { AppConfig } from './config';
 
 @NgModule({

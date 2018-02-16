@@ -1,5 +1,5 @@
 import { Component, EventEmitter } from '@angular/core';
-import { FormioOptions } from '../../../src';
+import { FormioOptions } from '../../../dist';
 
 @Component({
   template: require('./language.html')

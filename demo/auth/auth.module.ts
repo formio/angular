@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormioAuthModule, FormioAuthRoutes } from '../../src/auth';
+import { FormioAuthModule, FormioAuthRoutes } from '../../dist/auth';
 import { AuthComponent } from "./auth.component";
 
 export const authRoutes = FormioAuthRoutes({

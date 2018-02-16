@@ -1,6 +1,6 @@
 /* tslint: disable */
 import { Component } from '@angular/core';
-import { FormioAuthService } from '../src/auth';
+import { FormioAuthService } from '../dist/auth';
 
 @Component({
   selector: 'formio-demo-app',
