@@ -221,6 +221,9 @@ export class FormioGridComponent implements OnInit, OnChanges {
 
   data(row: any, col: any) {
     const cellValue: any = _get(row, col.key);
-    return col.component.getView(cellValue);
+    if (typeof col.component.getView === 'function') {
+      return col.component.getView(cellValue);
+    }
+    return col.component.asString(cellValue);
   }
 }
