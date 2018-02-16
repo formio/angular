@@ -1,14 +1,13 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { FormioOptions } from '../../../src';
 
 @Component({
   template: require('./language.html')
 })
-export class LanguageFormComponent implements OnInit {
+export class LanguageFormComponent {
   public language: EventEmitter<string>;
   public options: FormioOptions;
-
-  ngOnInit() {
+  constructor() {
     this.language = new EventEmitter();
     this.options = {
       i18n: {
