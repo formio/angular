@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { FormioForm } from './formio.common';
 /* tslint:disable */
-const Formio = require('formiojs');
+import Formio from 'formiojs';
 /* tslint:enable */
 
 export class FormioService {

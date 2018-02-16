@@ -10,7 +10,7 @@ import { FormioLoader } from '../formio.loader';
 import { FormioAlerts } from '../formio.alerts';
 
 /* tslint:disable */
-let Formio = require('formiojs');
+import Formio from 'formiojs';
 let FormioUtils = require('formiojs/utils');
 let Components = require('formiojs/build/components');
 let _get = require('lodash/get');

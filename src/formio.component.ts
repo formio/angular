@@ -227,6 +227,12 @@ export class FormioComponent implements OnInit, OnChanges {
         err => this.onError(err)
       );
     }
+
+    if (this.url) {
+      if (!this.service) {
+        this.service = new FormioService(this.url);
+      }
+    }
   }
   onRefresh(refresh: FormioRefreshValue) {
     this.ready.then(() => {
