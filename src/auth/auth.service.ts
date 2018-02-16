@@ -3,7 +3,8 @@ import { FormioAuthConfig } from './auth.config';
 import { FormioAppConfig } from '../index';
 
 /* tslint:disable */
-import Formio from 'formiojs';
+let Formio = require('formiojs');
+Formio = Formio.default;
 let _ = require('lodash');
 /* tslint:enable */
 

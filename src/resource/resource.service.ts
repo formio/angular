@@ -7,7 +7,8 @@ import { FormioRefreshValue } from '../formio.common';
 
 /* tslint:disable */
 let Promise = require('native-promise-only');
-import Formio from 'formiojs';
+let Formio = require('formiojs');
+Formio = Formio.default;
 let FormioUtils = require('formiojs/utils');
 /* tslint:enable */
 
