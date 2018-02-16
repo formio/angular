@@ -54,10 +54,10 @@ let _assign = require('lodash/assign');
     '</div>'
 })
 export class FormioGridComponent implements OnInit, OnChanges {
-  @Input() src: string;
-  @Input() onForm: Promise<any>;
+  @Input() src?: string;
+  @Input() onForm?: Promise<any>;
   @Input() query: any;
-  @Input() refresh: EventEmitter<object>;
+  @Input() refresh?: EventEmitter<object>;
   @Output() select: EventEmitter<object>;
   @Output() error: EventEmitter<any>;
 

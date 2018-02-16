@@ -4,7 +4,7 @@ import { FormioAppConfig } from '../index';
 
 /* tslint:disable */
 import Formio from 'formiojs';
-let _each = require('lodash/each');
+let _ = require('lodash');
 /* tslint:enable */
 
 @Injectable()
@@ -25,9 +25,9 @@ export class FormioAuthService {
   public readyResolve: any;
   public readyReject: any;
 
-  public projectReady: Promise<any>;
-  public accessReady: Promise<any>;
-  public userReady: Promise<any>;
+  public projectReady?: Promise<any>;
+  public accessReady?: Promise<any>;
+  public userReady?: Promise<any>;
   public formAccess: any = {};
   public submissionAccess: any = {};
   public roles: any;
@@ -39,21 +39,22 @@ export class FormioAuthService {
   ) {
     this.user = null;
 
-    if (!this.config || !this.config.login || !this.config.register) {
-      console.error('You must provide a FormioAuthConfig.');
-      return;
-    }
-
     if (this.appConfig && this.appConfig.appUrl) {
-      Formio.setBaseUrl(this.appConfig.apiUrl);
-      Formio.setProjectUrl(this.appConfig.appUrl);
+      Formio.default.setBaseUrl(this.appConfig.apiUrl);
+      Formio.default.setProjectUrl(this.appConfig.appUrl);
       Formio.formOnly = !!this.appConfig.formOnly;
     } else {
       console.error('You must provide an AppConfig within your application!');
     }
 
-    this.loginForm = this.appConfig.appUrl + '/' + this.config.login.form;
-    this.registerForm = this.appConfig.appUrl + '/' + this.config.register.form;
+    this.loginForm =
+      this.appConfig.appUrl +
+      '/' +
+      _.get(this.config, 'login.form', 'user/login');
+    this.registerForm =
+      this.appConfig.appUrl +
+      '/' +
+      _.get(this.config, 'register.form', 'user/login');
     this.onLogin = new EventEmitter();
     this.onLogout = new EventEmitter();
     this.onRegister = new EventEmitter();
@@ -84,7 +85,7 @@ export class FormioAuthService {
   init() {
     this.projectReady = Formio.makeStaticRequest(this.appConfig.appUrl).then(
       (project: any) => {
-        _each(project.access, (access: any) => {
+        _.each(project.access, (access: any) => {
           this.formAccess[access.type] = access.roles;
         });
       },
@@ -99,7 +100,7 @@ export class FormioAuthService {
       this.appConfig.appUrl + '/access'
     ).then(
       (access: any) => {
-        _each(access.forms, (form: any) => {
+        _.each(access.forms, (form: any) => {
           this.submissionAccess[form.name] = {};
           form.submissionAccess.forEach((subAccess: any) => {
             this.submissionAccess[form.name][subAccess.type] = subAccess.roles;
@@ -120,11 +121,13 @@ export class FormioAuthService {
     });
 
     // Trigger we are redy when all promises have resolved.
-    this.accessReady
-      .then(() => this.projectReady)
-      .then(() => this.userReady)
-      .then(() => this.readyResolve(true))
-      .catch((err: any) => this.readyReject(err));
+    if (this.accessReady) {
+      this.accessReady
+        .then(() => this.projectReady)
+        .then(() => this.userReady)
+        .then(() => this.readyResolve(true))
+        .catch((err: any) => this.readyReject(err));
+    }
   }
 
   setUser(user: any) {
@@ -145,13 +148,15 @@ export class FormioAuthService {
   }
 
   setUserRoles() {
-    this.accessReady.then(() => {
-      _each(this.roles, (role: any, roleName: string) => {
-        if (this.user.roles.indexOf(role._id) !== -1) {
-          this.is[roleName] = true;
-        }
+    if (this.accessReady) {
+      this.accessReady.then(() => {
+        _.each(this.roles, (role: any, roleName: string) => {
+          if (this.user.roles.indexOf(role._id) !== -1) {
+            this.is[roleName] = true;
+          }
+        });
       });
-    });
+    }
   }
 
   logoutError() {

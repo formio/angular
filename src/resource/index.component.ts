@@ -13,7 +13,7 @@ const _each = require('lodash/each');
       <button class="btn btn-primary" *ngIf="service.form" routerLink="new"><span class="glyphicon glyphicon-plus"></span> New {{ service.form.title }}</button>`
 })
 export class FormioResourceIndexComponent implements OnInit {
-  public gridSrc: string;
+  public gridSrc?: string;
   public gridQuery: any;
   constructor(
     public service: FormioResourceService,
@@ -25,7 +25,12 @@ export class FormioResourceIndexComponent implements OnInit {
   ngOnInit() {
     this.service.initialize();
     this.gridQuery = {};
-    if (this.config.parents && this.config.parents.length) {
+    if (
+      this.service &&
+      this.service.onParents &&
+      this.config.parents &&
+      this.config.parents.length
+    ) {
       // Wait for the parents to load before loading this grid.
       this.service.onParents.subscribe((parents: any) => {
         _each(parents, (parent: any) => {

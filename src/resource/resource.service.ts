@@ -15,26 +15,26 @@ let FormioUtils = require('formiojs/utils');
 export class FormioResourceService {
   public form: any;
   public resource: any;
-  public resourceUrl: string;
+  public resourceUrl?: string;
   public formUrl: string;
   public formFormio: any;
   public formio: any;
 
-  public onParents: EventEmitter<object[]>;
-  public onIndexSelect: EventEmitter<object>;
-  public refresh: EventEmitter<FormioRefreshValue>;
+  public onParents: EventEmitter<object[]> = new EventEmitter();
+  public onIndexSelect: EventEmitter<object> = new EventEmitter();
+  public refresh: EventEmitter<FormioRefreshValue> = new EventEmitter();
 
-  public resourceLoading: Promise<any>;
-  public resourceLoaded: Promise<any>;
+  public resourceLoading?: Promise<any>;
+  public resourceLoaded?: Promise<any>;
   public resourceResolve: any;
   public resourceReject: any;
-  public resourceId: string;
+  public resourceId?: string;
 
-  public formLoading: Promise<any>;
-  public formLoaded: Promise<any>;
+  public formLoading?: Promise<any>;
+  public formLoaded: Promise<any> = new Promise(() => {});
   public formResolve: any;
   public formReject: any;
-  public resources: FormioResourceMap;
+  public resources: FormioResourceMap = {};
 
   constructor(
     public appConfig: FormioAppConfig,
@@ -152,7 +152,7 @@ export class FormioResourceService {
 
             return {
               name: parent,
-              resource: resource
+              resource
             };
           })
         );

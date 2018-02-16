@@ -8,5 +8,7 @@ import { FormioAlerts } from './formio.alerts';
 })
 export class FormioAlertsComponent {
   @Input() alerts: FormioAlerts;
-  constructor() {}
+  constructor() {
+    this.alerts = new FormioAlerts();
+  }
 }
