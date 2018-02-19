@@ -13,7 +13,7 @@ import { FormioAlerts } from '../formio.alerts';
 let Formio = require('formiojs');
 Formio = Formio.default;
 let FormioUtils = require('formiojs/utils');
-let Components = require('formiojs/build/components');
+let Components = require('formiojs/lib/components');
 let _get = require('lodash/get');
 let _each = require('lodash/each');
 let _assign = require('lodash/assign');
