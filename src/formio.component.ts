@@ -43,18 +43,19 @@ export class FormioComponent implements OnInit, OnChanges {
   public ready: Promise<object>;
   public readyResolve: any;
   @Input() form?: FormioForm;
-  @Input() submission: any = {};
+  @Input() submission?: any = {};
   @Input() src?: string;
   @Input() url?: string;
   @Input() service?: FormioService;
   @Input() options?: FormioOptions;
-  @Input() readOnly: boolean = false;
-  @Input() viewOnly: boolean = false;
+  @Input() readOnly?: boolean = false;
+  @Input() viewOnly?: boolean = false;
   @Input() hideComponents?: string[];
   @Input() refresh?: EventEmitter<FormioRefreshValue>;
   @Input() error?: EventEmitter<any>;
   @Input() success?: EventEmitter<object>;
   @Input() language?: EventEmitter<string>;
+  @Input() hooks?: any = {};
   @Output() render: EventEmitter<object>;
   @Output() customEvent: EventEmitter<object>;
   @Output() submit: EventEmitter<object>;
@@ -118,7 +119,8 @@ export class FormioComponent implements OnInit, OnChanges {
         readOnly: this.readOnly,
         viewAsHtml: this.viewOnly,
         i18n: _.get(this.options, 'i18n', null),
-        fileService: _.get(this.options, 'fileService', null)
+        fileService: _.get(this.options, 'fileService', null),
+        hooks: this.hooks
       }
     ).then((formio: any) => {
       this.formio = formio;
