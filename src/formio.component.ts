@@ -20,11 +20,8 @@ import {
   FormioError,
   FormioRefreshValue
 } from './formio.common';
-
-/* tslint:disable */
-const Formio = require('formiojs/full');
-const _ = require('lodash');
-/* tslint:enable */
+import { each, isEmpty, get } from 'lodash';
+const Formio = require('formiojs');
 
 /* tslint:disable */
 @Component({
@@ -110,16 +107,16 @@ export class FormioComponent implements OnInit, OnChanges {
     }
 
     // Create the form.
-    return Formio.Formio.createForm(
-      _.get(this.formioElement, 'nativeElement', null),
+    return Formio.createForm(
+      get(this.formioElement, 'nativeElement', null),
       this.form,
       {
         icons: this.config ? this.config.icons : '',
         noAlerts: true,
         readOnly: this.readOnly,
         viewAsHtml: this.viewOnly,
-        i18n: _.get(this.options, 'i18n', null),
-        fileService: _.get(this.options, 'fileService', null),
+        i18n: get(this.options, 'i18n', null),
+        fileService: get(this.options, 'fileService', null),
         hooks: this.hooks
       }
     ).then((formio: any) => {
@@ -197,7 +194,7 @@ export class FormioComponent implements OnInit, OnChanges {
       this.success.subscribe((message: string) => {
         this.alerts.setAlert({
           type: 'success',
-          message: message || _.get(this.options, 'alerts.submitMessage')
+          message: message || get(this.options, 'alerts.submitMessage')
         });
       });
     }
@@ -215,7 +212,7 @@ export class FormioComponent implements OnInit, OnChanges {
 
           // if a submission is also provided.
           if (
-            _.isEmpty(this.submission) &&
+            isEmpty(this.submission) &&
             this.service &&
             this.service.formio.submissionId
           ) {
@@ -284,7 +281,7 @@ export class FormioComponent implements OnInit, OnChanges {
     if (!this.success) {
       this.alerts.setAlert({
         type: 'success',
-        message: _.get(this.options, 'alerts.submitMessage')
+        message: get(this.options, 'alerts.submitMessage')
       });
     }
   }
@@ -301,7 +298,7 @@ export class FormioComponent implements OnInit, OnChanges {
     this.errorChange.emit(err);
 
     // Iterate through each one and set the alerts array.
-    _.each(err, (error: any) => {
+    each(err, (error: any) => {
       this.alerts.setAlert({
         type: 'danger',
         message: error.message || error.toString()
@@ -325,7 +322,7 @@ export class FormioComponent implements OnInit, OnChanges {
 
     // if they provide a beforeSubmit hook, then allow them to alter the submission asynchronously
     // or even provide a custom Error method.
-    const beforeSubmit = _.get(this.options, 'hooks.beforeSubmit');
+    const beforeSubmit = get(this.options, 'hooks.beforeSubmit');
     if (beforeSubmit) {
       beforeSubmit(submission, (err: FormioError, sub: object) => {
         if (err) {

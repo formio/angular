@@ -5,12 +5,9 @@ import { FormioResources, FormioResourceMap } from './resources.service';
 import { FormioLoader, FormioAppConfig } from '../index';
 import { FormioRefreshValue } from '../formio.common';
 
-/* tslint:disable */
-let Promise = require('native-promise-only');
-let Formio = require('formiojs');
-Formio = Formio.default;
-let FormioUtils = require('formiojs/utils');
-/* tslint:enable */
+const Promise = require('native-promise-only');
+const Formio = require('formiojs').default;
+const FormioUtils = require('formiojs/utils');
 
 @Injectable()
 export class FormioResourceService {

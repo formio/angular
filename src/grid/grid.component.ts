@@ -8,16 +8,10 @@ import {
 } from '@angular/core';
 import { FormioLoader } from '../formio.loader';
 import { FormioAlerts } from '../formio.alerts';
-
-/* tslint:disable */
-let Formio = require('formiojs');
-Formio = Formio.default;
-let FormioUtils = require('formiojs/utils');
-let Components = require('formiojs/lib/components');
-let _get = require('lodash/get');
-let _each = require('lodash/each');
-let _assign = require('lodash/assign');
-/* tslint:enable */
+import { assign, each, get } from 'lodash';
+const Formio = require('formiojs').default;
+const FormioUtils = require('formiojs/utils');
+const FormioComponentsIndex = require('formiojs/lib/components');
 
 @Component({
   selector: 'formio-grid',
@@ -124,7 +118,7 @@ export class FormioGridComponent implements OnInit, OnChanges {
           label: component.label,
           key: 'data.' + component.key,
           sort: '',
-          component: Components.create(component, null, null, true)
+          component: FormioComponentsIndex.create(component, null, null, true)
         });
       }
     });
@@ -145,7 +139,7 @@ export class FormioGridComponent implements OnInit, OnChanges {
   refreshGrid(query?: any) {
     this.alerts.setAlerts([]);
     query = query || {};
-    query = _assign(query, this.query);
+    query = assign(query, this.query);
     if (!query.hasOwnProperty('limit')) {
       query.limit = 10;
     }
@@ -162,7 +156,7 @@ export class FormioGridComponent implements OnInit, OnChanges {
           this.total = submissions.serverCount;
           this.skip = Math.floor(submissions.skip / query.limit) + 1;
           this.rows = [];
-          _each(submissions, (submission: any) => {
+          each(submissions, (submission: any) => {
             this.rows.push(submission);
           });
           this.loading = false;
@@ -189,7 +183,7 @@ export class FormioGridComponent implements OnInit, OnChanges {
 
   sortColumn(column: any) {
     // Reset all other column sorts.
-    _each(this.columns, (col: any) => {
+    each(this.columns, (col: any) => {
       if (col.key !== column.key) {
         col.sort = '';
       }
@@ -220,7 +214,7 @@ export class FormioGridComponent implements OnInit, OnChanges {
   }
 
   data(row: any, col: any) {
-    const cellValue: any = _get(row, col.key);
+    const cellValue: any = get(row, col.key);
     if (typeof col.component.getView === 'function') {
       return col.component.getView(cellValue);
     }

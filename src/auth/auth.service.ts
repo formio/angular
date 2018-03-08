@@ -1,12 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
 import { FormioAppConfig } from '../index';
-
-/* tslint:disable */
-let Formio = require('formiojs');
-Formio = Formio.default;
-let _ = require('lodash');
-/* tslint:enable */
+import { get, each } from 'lodash';
+const Formio = require('formiojs').default;
 
 @Injectable()
 export class FormioAuthService {
@@ -51,11 +47,11 @@ export class FormioAuthService {
     this.loginForm =
       this.appConfig.appUrl +
       '/' +
-      _.get(this.config, 'login.form', 'user/login');
+      get(this.config, 'login.form', 'user/login');
     this.registerForm =
       this.appConfig.appUrl +
       '/' +
-      _.get(this.config, 'register.form', 'user/login');
+      get(this.config, 'register.form', 'user/login');
     this.onLogin = new EventEmitter();
     this.onLogout = new EventEmitter();
     this.onRegister = new EventEmitter();
@@ -86,7 +82,7 @@ export class FormioAuthService {
   init() {
     this.projectReady = Formio.makeStaticRequest(this.appConfig.appUrl).then(
       (project: any) => {
-        _.each(project.access, (access: any) => {
+        each(project.access, (access: any) => {
           this.formAccess[access.type] = access.roles;
         });
       },
@@ -101,7 +97,7 @@ export class FormioAuthService {
       this.appConfig.appUrl + '/access'
     ).then(
       (access: any) => {
-        _.each(access.forms, (form: any) => {
+        each(access.forms, (form: any) => {
           this.submissionAccess[form.name] = {};
           form.submissionAccess.forEach((subAccess: any) => {
             this.submissionAccess[form.name][subAccess.type] = subAccess.roles;
@@ -151,7 +147,7 @@ export class FormioAuthService {
   setUserRoles() {
     if (this.accessReady) {
       this.accessReady.then(() => {
-        _.each(this.roles, (role: any, roleName: string) => {
+        each(this.roles, (role: any, roleName: string) => {
           if (this.user.roles.indexOf(role._id) !== -1) {
             this.is[roleName] = true;
           }

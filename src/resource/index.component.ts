@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from './resource.service';
 import { FormioResourceConfig } from './resource.config';
-
-/* tslint:disable */
-const _each = require('lodash/each');
-/* tslint:enable */
+import { each } from 'lodash';
 
 @Component({
   template: `
@@ -33,7 +30,7 @@ export class FormioResourceIndexComponent implements OnInit {
     ) {
       // Wait for the parents to load before loading this grid.
       this.service.onParents.subscribe((parents: any) => {
-        _each(parents, (parent: any) => {
+        each(parents, (parent: any) => {
           if (parent) {
             this.gridQuery['data.' + parent.name + '._id'] =
               parent.resource._id;

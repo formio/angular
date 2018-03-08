@@ -1,10 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { FormioForm } from './formio.common';
-/* tslint:disable */
-let Formio = require('formiojs');
-Formio = Formio.default;
-/* tslint:enable */
+const Formio = require('formiojs').default;
 
 export class FormioService {
   public formio: any;

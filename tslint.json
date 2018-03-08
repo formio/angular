@@ -4,6 +4,7 @@
     "directive-selector": [true, "attribute", "formio", "camelCase"],
     "component-selector": false,
     "pipe-naming": [true, "camelCase", "formio"],
-    "no-inferrable-types": false
+    "no-inferrable-types": false,
+    "no-var-requires": false
   }
 }
