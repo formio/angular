@@ -3,6 +3,9 @@ var gulp = require('gulp'),
   path = require('path'),
   ngc = require('@angular/compiler-cli/src/main').main,
   rollup = require('gulp-rollup'),
+  sass = require('gulp-sass'),
+  cleanCSS = require('gulp-clean-css'),
+  replace = require('gulp-replace'),
   rename = require('gulp-rename'),
   fs = require('fs-extra'),
   runSequence = require('run-sequence'),
@@ -32,6 +35,19 @@ gulp.task('clean:dist', function () {
 gulp.task('copy:source', function () {
   return gulp.src([`${srcFolder}/**/*`, `!${srcFolder}/node_modules`])
     .pipe(gulp.dest(tmpFolder));
+});
+
+gulp.task('styles', () => {
+  return gulp.src([`${tmpFolder}/components/formio/formio.component.scss`])
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest(`${tmpFolder}/components/formio`));
+});
+
+gulp.task('formio-css', () => {
+  return gulp.src([`${tmpFolder}/components/formio/formio.component.ts`])
+    .pipe(replace("formio.component.scss", "formio.component.css"))
+    .pipe(gulp.dest(`${tmpFolder}/components/formio`));
 });
 
 /**
@@ -226,6 +242,8 @@ gulp.task('compile', function () {
   runSequence(
     'clean:dist',
     'copy:source',
+    'styles',
+    'formio-css',
     'inline-resources',
     'ngc',
     'ngc-auth',
