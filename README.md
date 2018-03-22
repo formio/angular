@@ -4,7 +4,17 @@ This library serves as a Dynamic JSON Powered Form rendering library for [Angula
 providing a JSON schema to a ```<formio>``` Angular component, where that form is dynamically rendered within the front
 end application. This allows forms to be dynamically built using JSON schemas.
 
-Example
+Running Demo
+--------------------------
+To run a demo of the Form.io Angular renderer, please follow these steps.
+
+ 1. Download this repo to your local computer.
+ 2. With your terminal, type ```npm install```
+ 3. Now type ```npm run demo```
+ 
+This will startup an example application where you can see all the features provided by this module.
+
+Using within your application
 ---------------------------
 You can easily render a form within your Angular 4 application by referencing the URL of that form as follows.
 
@@ -136,7 +146,7 @@ For help in getting started using this library, we created the [angular-app-star
 
 ```
 npm install
-npm run start
+npm start
 ```
 
 Full Documentation
