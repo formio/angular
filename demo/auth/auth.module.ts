@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormioAuthModule, FormioAuthRoutes } from '../../dist/auth';
-import { AuthComponent } from "./auth.component";
+import { FormioAuth, FormioAuthRoutes } from '../../dist/auth';
+import { AuthComponent } from './auth.component';
 
 export const authRoutes = FormioAuthRoutes({
   auth: AuthComponent
@@ -11,7 +11,7 @@ export const authRoutes = FormioAuthRoutes({
 @NgModule({
   imports: [
     CommonModule,
-    FormioAuthModule,
+    FormioAuth,
     RouterModule.forChild(authRoutes)
   ],
   declarations: [

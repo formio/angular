@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { FormioForm } from './formio.common';
-const Formio = require('formiojs').default;
+import { Formio } from 'formiojs';
 
 export class FormioService {
   public formio: any;
@@ -10,7 +10,7 @@ export class FormioService {
   }
   requestWrapper(fn: any) {
     let record: any;
-    let called: boolean = false;
+    let called = false;
     return Observable.create((observer: Observer<any>) => {
       try {
         if (!called) {

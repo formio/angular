@@ -15,15 +15,6 @@ import 'core-js/es6/set';
 import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
-import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DemoModule } from './demo.module';
-
-declare const ENV: string;
-if (ENV === 'production') {
-  const { install } = require('offline-plugin/runtime'); // tslint:disable-line
-  install();
-  enableProdMode();
-}
-
 platformBrowserDynamic().bootstrapModule(DemoModule);

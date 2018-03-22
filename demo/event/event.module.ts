@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormioAppConfig } from '../../dist';
-import { FormioGridModule } from '../../dist/grid';
-import { FormioResourceModule, FormioResourceService, FormioResourceConfig, FormioResourceRoutes } from '../../dist/resource';
+import { FormioGrid } from '../../dist/grid';
+import { FormioResource, FormioResourceService, FormioResourceConfig, FormioResourceRoutes } from '../../dist/resource';
 import { AppConfig } from '../config';
 import { EventIndexComponent } from './event.index';
 
@@ -14,8 +14,8 @@ export const eventRoutes = FormioResourceRoutes({
 @NgModule({
   imports: [
     CommonModule,
-    FormioGridModule,
-    FormioResourceModule,
+    FormioGrid,
+    FormioResource,
     RouterModule.forChild(eventRoutes)
   ],
   declarations: [

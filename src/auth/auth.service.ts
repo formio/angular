@@ -1,13 +1,13 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Inject } from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
-import { FormioAppConfig } from '../index';
+import { FormioAppConfig } from '../formio.config';
 import { get, each } from 'lodash';
-const Formio = require('formiojs').default;
+import { Formio } from 'formiojs';
 
 @Injectable()
 export class FormioAuthService {
   public user: any;
-  public authenticated: boolean = false;
+  public authenticated = false;
 
   public loginForm: string;
   public onLogin: EventEmitter<object>;

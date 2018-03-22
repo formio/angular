@@ -2,12 +2,12 @@ import { EventEmitter, Injectable, Optional } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig } from './resource.config';
 import { FormioResources, FormioResourceMap } from './resources.service';
-import { FormioLoader, FormioAppConfig } from '../index';
+import { FormioLoader } from '../components/loader/formio.loader';
+import { FormioAppConfig } from '../formio.config';
 import { FormioRefreshValue } from '../formio.common';
-
-const Promise = require('native-promise-only');
-const Formio = require('formiojs').default;
-const FormioUtils = require('formiojs/utils');
+import Promise from 'native-promise-only';
+import { Formio } from 'formiojs';
+import FormioUtils from 'formiojs/utils';
 
 @Injectable()
 export class FormioResourceService {

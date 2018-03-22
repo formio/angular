@@ -1,21 +1,4 @@
 language: node_js
-
+sudo: false
 node_js:
-- '8'
-
-script: npm test
-
-notifications:
-  email: false
-
-cache:
-  directories:
-    - node_modules
-
-after_success:
-- npm run codecov
-
-addons:
-  chrome: stable
-
-dist: trusty
+- '4.2.1'

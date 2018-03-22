@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class FormioAppConfig {
-  appUrl: string = '';
-  apiUrl: string = '';
+  appUrl = '';
+  apiUrl = '';
   icons?: string;
   formOnly?: boolean;
 }

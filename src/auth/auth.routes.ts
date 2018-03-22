@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { FormioAuthRouteConfig } from './auth.config';
 import { FormioAuthComponent } from './auth.component';
-import { FormioAuthLoginComponent } from './login.component';
-import { FormioAuthRegisterComponent } from './register.component';
+import { FormioAuthLoginComponent } from './login/login.component';
+import { FormioAuthRegisterComponent } from './register/register.component';
 
 export function FormioAuthRoutes(config?: FormioAuthRouteConfig): Routes {
   config = config || {};

@@ -1,36 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormioModule } from '../';
-import { FormioGrid } from '../grid';
-import { FormioResourceComponent } from './resource.component';
-import { FormioResourceViewComponent } from './view.component';
-import { FormioResourceEditComponent } from './edit.component';
-import { FormioResourceDeleteComponent } from './delete.component';
-import { FormioResourceCreateComponent } from './create.component';
-import { FormioResourceIndexComponent } from './index.component';
-
-@NgModule({
-  imports: [CommonModule, FormioModule, FormioGrid, RouterModule],
-  declarations: [
-    FormioResourceComponent,
-    FormioResourceCreateComponent,
-    FormioResourceIndexComponent,
-    FormioResourceViewComponent,
-    FormioResourceEditComponent,
-    FormioResourceDeleteComponent
-  ]
-})
-export class FormioResourceModule {}
-
-export const FormioResource = FormioResourceModule;
-export { FormioResourceRoutes } from './resource.routes';
 export { FormioResourceConfig } from './resource.config';
 export { FormioResources } from './resources.service';
-export { FormioResourceComponent } from './resource.component';
-export { FormioResourceViewComponent } from './view.component';
-export { FormioResourceEditComponent } from './edit.component';
-export { FormioResourceDeleteComponent } from './delete.component';
-export { FormioResourceCreateComponent } from './create.component';
-export { FormioResourceIndexComponent } from './index.component';
 export { FormioResourceService } from './resource.service';
+export { FormioResourceComponent } from './resource.component';
+export { FormioResourceViewComponent } from './view/view.component';
+export { FormioResourceEditComponent } from './edit/edit.component';
+export { FormioResourceDeleteComponent } from './delete/delete.component';
+export { FormioResourceCreateComponent } from './create/create.component';
+export { FormioResourceIndexComponent } from './index/index.component';
+export { FormioResourceRoutes } from './resource.routes';
+export { FormioResource } from './resource.module';

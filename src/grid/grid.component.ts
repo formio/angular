@@ -6,47 +6,17 @@ import {
   OnInit,
   OnChanges
 } from '@angular/core';
-import { FormioLoader } from '../formio.loader';
-import { FormioAlerts } from '../formio.alerts';
+import { FormioLoader } from '../components/loader/formio.loader';
+import { FormioAlerts } from '../components/alerts/formio.alerts';
 import { assign, each, get } from 'lodash';
-const Formio = require('formiojs').default;
-const FormioUtils = require('formiojs/utils');
-const FormioComponentsIndex = require('formiojs/lib/components');
+import { Formio } from 'formiojs';
+import FormioUtils from 'formiojs/utils';
+import FormioComponentsIndex from 'formiojs/lib/components';
 
 @Component({
   selector: 'formio-grid',
-  styles: [
-    ':host .formio-grid { position: relative; width: 100%; }',
-    ':host >>> ul.pagination { margin: 5px 0; }',
-    '.item-counter { margin: 5px 0; }',
-    '.page-num { font-size: 1.4em; }',
-    '.grid-refresh { height: 400px; width: 100%; }'
-  ],
-  template:
-    '<div class="formio-grid">' +
-    '  <formio-alerts [alerts]="alerts"></formio-alerts>' +
-    '  <table class="table table-condensed table-bordered table-striped table-hover">' +
-    '    <thead>' +
-    '      <tr>' +
-    '        <th *ngFor="let col of columns"><a (click)="sortColumn(col)">{{ col.label }} <span [ngClass]="{\'glyphicon-triangle-top\': (col.sort === \'asc\'), \'glyphicon-triangle-bottom\': (col.sort === \'desc\')}" class="glyphicon" *ngIf="col.sort"></span></a></th>' +
-    '      </tr>' +
-    '    </thead>' +
-    '    <formio-loader></formio-loader>' +
-    '    <tbody *ngIf="!isLoading">' +
-    '      <tr *ngFor="let row of rows" (click)="onClick(row)">' +
-    '        <td *ngFor="let col of columns" [innerHTML]="data(row, col)"></td>' +
-    '      </tr>' +
-    '    </tbody>' +
-    '    <tfoot>' +
-    '      <tr>' +
-    '        <td [colSpan]="columns.length">' +
-    '          <pagination [totalItems]="total" [(ngModel)]="skip" (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>' +
-    '          <span class="pull-right item-counter"><span class="page-num">{{ firstItem }} - {{ lastItem }}</span> / {{ total }} total</span>' +
-    '        </td>' +
-    '      </tr>' +
-    '    </tfoot>' +
-    '  </table>' +
-    '</div>'
+  styleUrls: ['./grid.component.scss'],
+  templateUrl: './grid.component.html'
 })
 export class FormioGridComponent implements OnInit, OnChanges {
   @Input() src?: string;
@@ -60,13 +30,13 @@ export class FormioGridComponent implements OnInit, OnChanges {
   public rows: any[] = [];
   public formio: any;
   public form: any;
-  public total: number = 0;
-  public page: number = 0;
-  public firstItem: number = 0;
-  public lastItem: number = 0;
-  public skip: number = 0;
-  public isLoading: boolean = false;
-  public initialized: boolean = false;
+  public total = 0;
+  public page = 0;
+  public firstItem = 0;
+  public lastItem = 0;
+  public skip = 0;
+  public isLoading = false;
+  public initialized = false;
 
   constructor(public loader: FormioLoader, public alerts: FormioAlerts) {
     this.select = new EventEmitter();

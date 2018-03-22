@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormioComponent } from './formio.component';
-import { FormioAlerts } from './formio.alerts';
-import { FormioAlertsComponent } from './formio.alerts.component';
-import { FormioLoader } from './formio.loader';
-import { FormioLoaderComponent } from './formio.loader.component';
+import { FormioComponent } from './components/formio/formio.component';
+import { FormioAlerts } from './components/alerts/formio.alerts';
+import { FormioAlertsComponent } from './components/alerts/formio.alerts.component';
+import { FormioLoader } from './components/loader/formio.loader';
+import { FormioLoaderComponent } from './components/loader/formio.loader.component';
 
 @NgModule({
   declarations: [

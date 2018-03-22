@@ -2,16 +2,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormioDemoComponent } from './demo.component';
+import { FormioAppConfig, FormioModule } from '../dist';
+import { FormioAuth, FormioAuthConfig, FormioAuthService } from '../dist/auth';
+import { FormioGrid } from '../dist/grid';
+import { AppConfig } from './config';
 import { FormioFormsModule } from './forms';
-import { FormioModule, FormioAppConfig } from '../dist';
-import { FormioGridModule } from '../dist/grid';
+import { FormioDemoComponent } from './demo.component';
 import { AuthDemoModule } from './auth/auth.module';
 import { HomeComponent } from './home.component';
 import { DataComponent } from './data.component';
 import { EventModule } from './event/event.module';
-import { FormioAuthService, FormioAuthConfig } from '../dist/auth';
-import { AppConfig } from './config';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { AppConfig } from './config';
   imports: [
     BrowserModule,
     FormioModule,
-    FormioGridModule,
+    FormioAuth,
+    FormioGrid,
     RouterModule.forRoot([
       {
         path: '',

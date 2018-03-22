@@ -1,16 +1,13 @@
 import { Routes } from '@angular/router';
 import { FormioResourceComponent } from './resource.component';
-import { FormioResourceViewComponent } from './view.component';
-import { FormioResourceEditComponent } from './edit.component';
-import { FormioResourceDeleteComponent } from './delete.component';
-import { FormioResourceCreateComponent } from './create.component';
-import { FormioResourceIndexComponent } from './index.component';
+import { FormioResourceViewComponent } from './view/view.component';
+import { FormioResourceEditComponent } from './edit/edit.component';
+import { FormioResourceDeleteComponent } from './delete/delete.component';
+import { FormioResourceCreateComponent } from './create/create.component';
+import { FormioResourceIndexComponent } from './index/index.component';
 
 /**
  * The routes used to define a resource.
- *
- * @param config
- * @constructor
  */
 export function FormioResourceRoutes(config?: any): Routes {
   config = config || {};
