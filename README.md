@@ -1,5 +1,5 @@
-Form.io Angular Renderer
----------------------------
+Form.io Angular JSON Form Renderer
+==========================
 This library serves as a Dynamic JSON Powered Form rendering library for [Angular](https://angular.io). This works by
 providing a JSON schema to a ```<formio>``` Angular component, where that form is dynamically rendered within the front
 end application. This allows forms to be dynamically built using JSON schemas.
