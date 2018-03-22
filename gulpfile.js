@@ -17,6 +17,18 @@ const tmpFolder = path.join(rootFolder, '.tmp');
 const buildFolder = path.join(rootFolder, 'build');
 const distFolder = path.join(rootFolder, 'dist');
 
+gulp.task('package-version', function() {
+  const pkg = require('./package.json');
+  return gulp.src([
+    `${distFolder}/package.json`,
+    `${distFolder}/auth/package.json`,
+    `${distFolder}/resource/package.json`,
+    `${distFolder}/grid/package.json`
+  ], {base: distFolder})
+    .pipe(replace(/"version": "[^"]+"/, `"version": "${pkg.version}"`))
+    .pipe(gulp.dest(distFolder));
+});
+
 /**
  * 1. Delete /dist folder
  */
