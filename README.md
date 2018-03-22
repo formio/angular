@@ -10,6 +10,7 @@ To run a demo of the Form.io Angular renderer, please follow these steps.
 
  1. Download this repo to your local computer.
  2. With your terminal, type ```npm install```
+ 3. Type ```npm run build```
  3. Now type ```npm run demo```
  
 This will startup an example application where you can see all the features provided by this module.
