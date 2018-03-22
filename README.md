@@ -1,72 +1,158 @@
-# angular-formio
+Form.io Angular Renderer
+---------------------------
+This library serves as a Dynamic JSON Powered Form rendering library for [Angular](https://angular.io). This works by
+providing a JSON schema to a ```<formio>``` Angular component, where that form is dynamically rendered within the front
+end application. This allows forms to be dynamically built using JSON schemas.
 
-## Installation
+Example
+---------------------------
+You can easily render a form within your Angular 4 application by referencing the URL of that form as follows.
 
-To install this library, run:
-
-```bash
-$ npm install angular-formio --save
+```
+<formio src='https://examples.form.io/example'></formio>
 ```
 
-## Consuming your library
+You can also pass the JSON form directly to the renderer as follows.
 
-Once you have published your library to npm, you can import your library in any Angular application by running:
-
-```bash
-$ npm install angular-formio
+```
+<formio [form]='{
+    "title": "My Test Form",
+    "components": [
+        {
+            "type": "textfield",
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "First Name",
+            "key": "firstName",
+            "placeholder": "Enter your first name",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": true,
+                "minLength": 2,
+                "maxLength": 10,
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+            },
+            "conditional": {
+                "show": "",
+                "when": null,
+                "eq": ""
+            }
+        },
+        {
+            "type": "textfield",
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "Last Name",
+            "key": "lastName",
+            "placeholder": "Enter your last name",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": true,
+                "minLength": 2,
+                "maxLength": 10,
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+            },
+            "conditional": {
+                "show": "",
+                "when": null,
+                "eq": ""
+            }
+        },
+        {
+            "input": true,
+            "label": "Submit",
+            "tableView": false,
+            "key": "submit",
+            "size": "md",
+            "leftIcon": "",
+            "rightIcon": "",
+            "block": false,
+            "action": "submit",
+            "disableOnInvalid": true,
+            "theme": "primary",
+            "type": "button"
+        }
+    ]
+}'></formio>
 ```
 
-and then from your Angular `AppModule`:
+This is a very simple example. This library is capable of building very complex forms which include e-signatures, columns,
+panels, field conditionals, validation requirements, and the list goes on and on.
 
-```typescript
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+Usage
+----------------
+To use this library within your project, you will first need to install it as a dependency.
 
-import { AppComponent } from './app.component';
+```
+npm install --save angular-formio
+```
 
-// Import your library
-import { SampleModule } from 'angular-formio';
+You can now include the module in your Angular application like so.
 
+```
+import { FormioModule } from 'angular-formio';
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-
-    // Specify your library as an import
-    LibraryModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [ BrowserModule, ReactiveFormsModule, FormioModule ],
+    declarations: [ AppComponent ],
+    bootstrap: [ AppComponent ]
 })
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
+Included Libraries
+-----------------
+This library is a combination of multiple libraries that enable rapid Serverless application development using Form.io. These libraries are as follows.
 
-```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
-<sampleComponent></sampleComponent>
+1. [Form Renderer](https://github.com/formio/angular-formio/wiki/Form-Renderer) - The form renderer in Angular
+2. [Authentication](https://github.com/formio/angular-formio/wiki/User-Authentication) - Allows an easy way to provide Form.io authentication into your application.
+3. [Resource](https://github.com/formio/angular-formio/wiki/Resource-Management) - A way to include the Resources within your application with full CRUDI support (Create, Read, Update, Delete, Index)
+4. [Data Table (Grid)](https://github.com/formio/angular-formio/wiki/Data-Table) - A way to render data within a Table format, which includes pagination, sorting, etc.
+
+Click on each of those links to read more about how they work and how to utilize them to their fullest potential.
+
+Application Starter Kit
+----------
+For help in getting started using this library, we created the [angular-app-starterkit](https://github.com/formio/angular-app-starterkit) repository to help you get started with best practices with using Form.io within an Angular application. You can try this applicatoin by downloading that application and then doing the following.
+
+```
+npm install
+npm run start
 ```
 
-## Development
+Full Documentation
+------------------
+To read up on the full documentation of this library, please check out the [Wiki Page](https://github.com/formio/angular-formio/wiki)
 
-To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
+About Form.io
+-----------------
+<a href="https://form.io" target="_blank">Form.io</a> is a combined form and data management API platform created for developers who are building "Serverless" form-based applications.  Form.io provides an easy drag-and-drop form builder workflow allowing you to build complex forms for enterprise applications quickly and easily. These forms are then embedded directly into your application with a single line of code that dynamically renders the form (using Angular or React) in your app while at the very same time generating the RESTful API to support those forms. The Form.io platform also offers numerous 3rd-party services that are fully integrated into the form building process allowing you to extend the power and capability of your apps while saving time and effort.
 
-```bash
-$ npm run build
-```
+You can use this renderer with Form.io by simply pointing the ```src``` parameter to the URL of the form. For example, the following URL points to the JSON schema of a form built on Form.io.
 
-To lint all `*.ts` files:
+  https://pjmfogrfqptslvi.form.io/test
+  
+To render this form, you simply provide that URL to the ```<formio>``` directive like so.
 
-```bash
-$ npm run lint
-```
+```<formio src="https://pjmfogrfqptslvi.form.io/test"></formio>```
 
-## License
-
-MIT © [Travis Tidwell](mailto:travis@form.io)
+Not only will this render the form, but it will also submit that form to the provided API endpoint.
