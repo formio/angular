@@ -83,8 +83,18 @@ gulp.task('ngc', function () {
   return Promise.resolve()
 });
 
+gulp.task('ngc-angular', function () {
+  ngc(['--project', `${tmpFolder}/tsconfig.angular.json`]);
+  return Promise.resolve()
+});
+
 gulp.task('ngc-auth', function () {
   ngc(['--project', `${tmpFolder}/auth/tsconfig.es5.json`]);
+  return Promise.resolve()
+});
+
+gulp.task('ngc-auth-angular', function () {
+  ngc(['--project', `${tmpFolder}/auth/tsconfig.angular.json`]);
   return Promise.resolve()
 });
 
@@ -93,8 +103,18 @@ gulp.task('ngc-grid', function () {
   return Promise.resolve()
 });
 
+gulp.task('ngc-grid-angular', function () {
+  ngc(['--project', `${tmpFolder}/grid/tsconfig.angular.json`]);
+  return Promise.resolve()
+});
+
 gulp.task('ngc-resource', function () {
   ngc(['--project', `${tmpFolder}/resource/tsconfig.es5.json`]);
+  return Promise.resolve()
+});
+
+gulp.task('ngc-resource-angular', function () {
+  ngc(['--project', `${tmpFolder}/resource/tsconfig.angular.json`]);
   return Promise.resolve()
 });
 
@@ -258,9 +278,13 @@ gulp.task('compile', function () {
     'formio-css',
     'inline-resources',
     'ngc',
+    'ngc-angular',
     'ngc-auth',
+    'ngc-auth-angular',
     'ngc-grid',
+    'ngc-grid-angular',
     'ngc-resource',
+    'ngc-resource-angular',
     /*'rollup:fesm',   // This currently causes a problem with the decorators.
     'rollup-auth:fesm',
     'rollup-grid:fesm',
