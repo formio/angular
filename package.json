@@ -93,7 +93,7 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "formiojs": "^2.29.13",
+    "formiojs": "^2.30.2",
     "lodash": "^4.17.5",
     "ngx-bootstrap": "^2.0.3"
   }
