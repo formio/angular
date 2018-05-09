@@ -25,7 +25,9 @@ gulp.task('package-version', function() {
     `${distFolder}/resource/package.json`,
     `${distFolder}/grid/package.json`
   ], {base: distFolder})
-    .pipe(replace(/"version": "[^"]+"/, `"version": "${pkg.version}"`))
+    .pipe(replace(/"version": ""/, `"version": "${pkg.version}"`))
+    .pipe(replace(/"dependencies": {}/, `"dependencies": ${JSON.stringify(pkg.dependencies, null, 2)}`))
+    .pipe(replace(/"peerDependencies": {}/, `"peerDependencies": ${JSON.stringify(pkg.peerDependencies, null, 2)}`))
     .pipe(gulp.dest(distFolder));
 });
 
