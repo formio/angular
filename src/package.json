@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/formio/angular-formio"
@@ -26,15 +26,15 @@
   "jsnext:main": "index.js",
   "typings": "index.d.ts",
   "peerDependencies": {
-    "@angular/core": "^4.0.0 || ^5.0.0",
-    "@angular/common": "^4.0.0 || ^5.0.0",
-    "@angular/forms": "^4.0.0 || ^5.0.0",
-    "@angular/router": "^4.0.0 || ^5.0.0",
-    "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4"
+    "@angular/core": "^4.0.0 || ^5.0.0 || ^6.0.0",
+    "@angular/common": "^4.0.0 || ^5.0.0 || ^6.0.0",
+    "@angular/forms": "^4.0.0 || ^5.0.0 || ^6.0.0",
+    "@angular/router": "^4.0.0 || ^5.0.0 || ^6.0.0",
+    "rxjs": "^6.1.0",
+    "zone.js": "^0.8.14"
   },
   "dependencies": {
-    "formiojs": "^2.29.13",
+    "formiojs": "^3.0.0-alpha.8",
     "lodash": "^4.17.5",
     "ngx-bootstrap": "^2.0.3"
   }

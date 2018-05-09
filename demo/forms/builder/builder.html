@@ -1,0 +1,11 @@
+<h3>Dynamic JSON Form Builder</h3>
+<strong>builder.html</strong>
+<pre>&lt;form-builder [form]="form" (change)="onChange($event)"&gt;&lt;/form-builder&gt;</pre>
+<strong>builder.ts</strong>
+<pre #code></pre>
+<form-builder [form]="form" (change)="onChange($event)"></form-builder>
+<hr/>
+<h3 class="text-center text-muted">As JSON Schema</h3>
+<div class="well jsonviewer">
+  <pre id="json" #json></pre>
+</div>

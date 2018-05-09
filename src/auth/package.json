@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "angular-formio": "*",
-    "formiojs": "^2.29.13",
+    "formiojs": "^3.0.0-alpha.7",
     "lodash": "^4.17.5",
     "ngx-bootstrap": "^2.0.3"
   }

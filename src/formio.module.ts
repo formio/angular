@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormioComponent } from './components/formio/formio.component';
+import { FormBuilderComponent } from './components/formbuilder/formbuilder.component';
 import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAlertsComponent } from './components/alerts/formio.alerts.component';
 import { FormioLoader } from './components/loader/formio.loader';
@@ -9,6 +10,7 @@ import { FormioLoaderComponent } from './components/loader/formio.loader.compone
 @NgModule({
   declarations: [
     FormioComponent,
+    FormBuilderComponent,
     FormioLoaderComponent,
     FormioAlertsComponent
   ],
@@ -17,6 +19,7 @@ import { FormioLoaderComponent } from './components/loader/formio.loader.compone
   ],
   exports: [
     FormioComponent,
+    FormBuilderComponent,
     FormioLoaderComponent,
     FormioAlertsComponent
   ],

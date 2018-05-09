@@ -21,7 +21,7 @@ import {
   FormioRefreshValue
 } from '../../formio.common';
 import { each, isEmpty, get } from 'lodash';
-import { Formio } from 'formiojs/full';
+import { Formio } from 'formiojs';
 
 /* tslint:disable */
 @Component({

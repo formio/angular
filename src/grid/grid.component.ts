@@ -11,7 +11,7 @@ import { FormioAlerts } from '../components/alerts/formio.alerts';
 import { assign, each, get } from 'lodash';
 import { Formio } from 'formiojs';
 import FormioUtils from 'formiojs/utils';
-import FormioComponentsIndex from 'formiojs/lib/components';
+import FormioComponentsIndex from 'formiojs/components';
 
 @Component({
   selector: 'formio-grid',

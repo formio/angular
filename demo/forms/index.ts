@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormioModule } from '../../dist';
+import { BuilderComponent } from './builder';
 import { SimpleFormComponent } from './simple';
 import { WizardFormComponent } from './wizard';
 import { PDFFormComponent } from './pdf';
@@ -16,8 +17,13 @@ export const FormRoutes: any = [
     children: [
       {
         path: '',
-        redirectTo: 'simple',
+        redirectTo: 'builder',
         pathMatch: 'full'
+      },
+      {
+        path: 'builder',
+        title: 'Form Builder',
+        component: BuilderComponent
       },
       {
         path: 'simple',
@@ -53,6 +59,7 @@ export const FormRoutes: any = [
   declarations: [
     FormioFormsComponent,
     SimpleFormComponent,
+    BuilderComponent,
     WizardFormComponent,
     LanguageFormComponent,
     PDFFormComponent,
