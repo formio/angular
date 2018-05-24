@@ -11,7 +11,7 @@ import { FormioAlerts } from '../components/alerts/formio.alerts';
 import { assign, each, get } from 'lodash';
 import { Formio } from 'formiojs';
 import FormioUtils from 'formiojs/utils';
-import FormioComponentsIndex from 'formiojs/components';
+import Components from 'formiojs/components/Components';
 
 @Component({
   selector: 'formio-grid',
@@ -88,7 +88,7 @@ export class FormioGridComponent implements OnInit, OnChanges {
           label: component.label,
           key: 'data.' + component.key,
           sort: '',
-          component: FormioComponentsIndex.create(component, null, null, true)
+          component: Components.create(component, null, null, true)
         });
       }
     });
