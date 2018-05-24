@@ -121,8 +121,8 @@ export class FormioComponent implements OnInit, OnChanges {
       }
       if (this.src) {
         this.formio.url = this.src;
-        this.formio.nosubmit = true;
       }
+      this.formio.nosubmit = true;
       this.formio.on('prevPage', (data: any) => this.onPrevPage(data));
       this.formio.on('nextPage', (data: any) => this.onNextPage(data));
       this.formio.on('change', (value: any) => this.change.emit(value));
@@ -225,10 +225,8 @@ export class FormioComponent implements OnInit, OnChanges {
         err => this.onError(err)
       );
     }
-    if (this.url) {
-      if (!this.service) {
-        this.service = new FormioService(this.url);
-      }
+    if (this.url && !this.service) {
+      this.service = new FormioService(this.url);
     }
   }
   onRefresh(refresh: FormioRefreshValue) {
@@ -301,7 +299,7 @@ export class FormioComponent implements OnInit, OnChanges {
     });
   }
   submitExecute(submission: object) {
-    if (this.service) {
+    if (this.service && !this.url) {
       this.service
         .saveSubmission(submission)
         .subscribe(
