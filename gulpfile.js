@@ -51,17 +51,30 @@ gulp.task('copy:source', function () {
     .pipe(gulp.dest(tmpFolder));
 });
 
-gulp.task('styles', () => {
+gulp.task('styles-formio', () => {
   return gulp.src([`${tmpFolder}/components/formio/formio.component.scss`])
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest(`${tmpFolder}/components/formio`));
 });
 
+gulp.task('styles-builder', () => {
+  return gulp.src([`${tmpFolder}/components/formbuilder/formbuilder.component.scss`])
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest(`${tmpFolder}/components/formbuilder`));
+});
+
 gulp.task('formio-css', () => {
   return gulp.src([`${tmpFolder}/components/formio/formio.component.ts`])
     .pipe(replace("formio.component.scss", "formio.component.css"))
     .pipe(gulp.dest(`${tmpFolder}/components/formio`));
+});
+
+gulp.task('builder-css', () => {
+  return gulp.src([`${tmpFolder}/components/formbuilder/formbuilder.component.ts`])
+    .pipe(replace("formbuilder.component.scss", "formbuilder.component.css"))
+    .pipe(gulp.dest(`${tmpFolder}/components/formbuilder`));
 });
 
 /**
@@ -278,8 +291,10 @@ gulp.task('compile', function () {
   runSequence(
     'clean:dist',
     'copy:source',
-    'styles',
+    'styles-formio',
+    'styles-builder',
     'formio-css',
+    'builder-css',
     'inline-resources',
     'ngc',
     'ngc-angular',
