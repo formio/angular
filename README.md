@@ -153,6 +153,36 @@ Full Documentation
 ------------------
 To read up on the full documentation of this library, please check out the [Wiki Page](https://github.com/formio/angular-formio/wiki)
 
+Running in Docker
+------------------
+
+Install Docker, then:
+
+```
+docker build -t af .
+docker run -p 8000:8000 af
+```
+
+To stop a container:
+
+```
+docker ps  #show list of running containers
+docker stop <container id>
+```
+
+You should be able to access the app at http://localhost:8000. If it isn't acessible, add this line to webpack.config.ts and restart:
+
+```
+        devServer: {
+            host: '0.0.0.0',  // ADD THIS
+            port: 8000,
+            inline: true,
+            hot: true,
+            historyApiFallback: true,
+            overlay: true
+        },
+```
+
 About Form.io
 -----------------
 <a href="https://form.io" target="_blank">Form.io</a> is a combined form and data management API platform created for developers who are building "Serverless" form-based applications.  Form.io provides an easy drag-and-drop form builder workflow allowing you to build complex forms for enterprise applications quickly and easily. These forms are then embedded directly into your application with a single line of code that dynamically renders the form (using Angular or React) in your app while at the very same time generating the RESTful API to support those forms. The Form.io platform also offers numerous 3rd-party services that are fully integrated into the form building process allowing you to extend the power and capability of your apps while saving time and effort.
