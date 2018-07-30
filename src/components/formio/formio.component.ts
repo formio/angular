@@ -62,7 +62,7 @@ export class FormioComponent implements OnInit, OnChanges {
 
   public formio: any;
   public initialized: boolean;
-  private alerts: FormioAlerts;
+  public alerts: FormioAlerts;
   constructor(
     private loader: FormioLoader,
     @Optional() private config: FormioAppConfig
@@ -103,7 +103,7 @@ export class FormioComponent implements OnInit, OnChanges {
 
     // Create the form.
     return Formio.createForm(
-      get(this.formioElement, 'nativeElement', null),
+      this.formioElement ? this.formioElement.nativeElement : null,
       this.form,
       {
         icons: this.config ? this.config.icons : '',

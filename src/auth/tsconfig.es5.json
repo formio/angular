@@ -21,6 +21,7 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
+    "fullTemplateTypeCheck": true,
     "flatModuleOutFile": "formio-auth.js",
     "flatModuleId": "formio-auth"
   },
