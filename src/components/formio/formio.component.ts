@@ -60,6 +60,7 @@ export class FormioComponent implements OnInit, OnChanges {
   @Output() formLoad: EventEmitter<any>;
   @ViewChild('formio') formioElement?: ElementRef;
 
+  private submitting: boolean;
   public formio: any;
   public initialized: boolean;
   public alerts: FormioAlerts;
@@ -78,6 +79,7 @@ export class FormioComponent implements OnInit, OnChanges {
       this.readyResolve = resolve;
     });
 
+    this.submitting = false;
     this.alerts = new FormioAlerts();
     this.beforeSubmit = new EventEmitter();
     this.prevPage = new EventEmitter();
@@ -267,6 +269,7 @@ export class FormioComponent implements OnInit, OnChanges {
     this.nextPage.emit(data);
   }
   onSubmit(submission: any, saved: boolean) {
+    this.submitting = false;
     if (saved) {
       this.formio.emit('submitDone', submission);
     }
@@ -280,6 +283,7 @@ export class FormioComponent implements OnInit, OnChanges {
   }
   onError(err: any) {
     this.alerts.setAlerts([]);
+    this.submitting = false;
     if (!err) {
       return;
     }
@@ -311,6 +315,11 @@ export class FormioComponent implements OnInit, OnChanges {
     }
   }
   submitForm(submission: any) {
+    // Keep double submits from occurring...
+    if (this.submitting) {
+      return;
+    }
+    this.submitting = true;
     this.beforeSubmit.emit(submission);
 
     // if they provide a beforeSubmit hook, then allow them to alter the submission asynchronously
