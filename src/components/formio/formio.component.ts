@@ -109,7 +109,7 @@ export class FormioComponent implements OnInit, OnChanges {
       this.form,
       {
         icons: this.config ? this.config.icons : '',
-        noAlerts: true,
+        noAlerts: get(this.options, 'noAlerts', true),
         readOnly: this.readOnly,
         viewAsHtml: this.viewOnly,
         i18n: get(this.options, 'i18n', null),
@@ -296,7 +296,7 @@ export class FormioComponent implements OnInit, OnChanges {
 
     // Iterate through each one and set the alerts array.
     each(err, (error: any) => {
-      this.alerts.setAlert({
+      this.alerts.addAlert({
         type: 'danger',
         message: error.message || error.toString()
       });
