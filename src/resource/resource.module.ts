@@ -9,6 +9,9 @@ import { FormioResourceEditComponent } from './edit/edit.component';
 import { FormioResourceDeleteComponent } from './delete/delete.component';
 import { FormioResourceCreateComponent } from './create/create.component';
 import { FormioResourceIndexComponent } from './index/index.component';
+import { FormioResourceRouteConfig } from './resource.config';
+import { FormioResourceRoutes } from './resource.routes';
+import { extendRouter } from '../formio.utils';
 
 @NgModule({
   imports: [
@@ -26,4 +29,11 @@ import { FormioResourceIndexComponent } from './index/index.component';
     FormioResourceDeleteComponent
   ]
 })
-export class FormioResource {}
+export class FormioResource {
+  static forChild(config?: FormioResourceRouteConfig): any {
+    return extendRouter(FormioResource, config, FormioResourceRoutes);
+  }
+  static forRoot(config?: FormioResourceRouteConfig): any {
+    return extendRouter(FormioResource, config, FormioResourceRoutes);
+  }
+}

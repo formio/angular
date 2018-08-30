@@ -7,9 +7,9 @@ export interface FormioAuthFormConfig {
 }
 
 export interface FormioAuthRouteConfig {
-  auth?: any,
-  login?: any,
-  register?: any
+  auth?: any;
+  login?: any;
+  register?: any;
 }
 
 @Injectable()

@@ -4,75 +4,104 @@ import {
   Output,
   EventEmitter,
   OnInit,
-  OnChanges
+  AfterViewInit,
+  OnChanges,
+  ViewChild,
+  ViewContainerRef,
+  ComponentFactoryResolver
 } from '@angular/core';
 import { FormioLoader } from '../components/loader/formio.loader';
 import { FormioAlerts } from '../components/alerts/formio.alerts';
 import { assign, each, get } from 'lodash';
 import { Formio } from 'formiojs';
-import FormioUtils from 'formiojs/utils';
-import Components from 'formiojs/components/Components';
+import { GridHeaderComponent } from './GridHeaderComponent';
+import { GridBodyComponent } from './GridBodyComponent';
+import { GridFooterComponent } from './GridFooterComponent';
+import FormComponents from './form/index';
+import SubmissionComponents from './submission/index';
 
 @Component({
   selector: 'formio-grid',
   styleUrls: ['./grid.component.scss'],
   templateUrl: './grid.component.html'
 })
-export class FormioGridComponent implements OnInit, OnChanges {
+export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() src?: string;
   @Input() onForm?: Promise<any>;
-  @Input() query: any;
+  @Input() query?: any;
   @Input() refresh?: EventEmitter<object>;
-  @Output() select: EventEmitter<object>;
+  @Input() gridType?: string;
+  @Input() components?: any;
+  @Input() formio?: Formio;
+  @Output() rowSelect: EventEmitter<object>;
+  @Output() rowAction: EventEmitter<object>;
+  @Output() createItem: EventEmitter<any>;
   @Output() error: EventEmitter<any>;
+  @ViewChild('headerTemplate', {read: ViewContainerRef}) headerElement: ViewContainerRef;
+  @ViewChild('bodyTemplate', {read: ViewContainerRef}) bodyElement: ViewContainerRef;
+  @ViewChild('footerTemplate', {read: ViewContainerRef}) footerElement: ViewContainerRef;
 
-  public columns: any[] = [];
-  public rows: any[] = [];
-  public formio: any;
-  public form: any;
-  public total = 0;
   public page = 0;
-  public firstItem = 0;
-  public lastItem = 0;
-  public skip = 0;
   public isLoading = false;
   public initialized = false;
+  public header: GridHeaderComponent;
+  public body: GridBodyComponent;
+  public footer: GridFooterComponent;
 
-  constructor(public loader: FormioLoader, public alerts: FormioAlerts) {
-    this.select = new EventEmitter();
+  constructor(
+    public loader: FormioLoader,
+    public alerts: FormioAlerts,
+    private resolver: ComponentFactoryResolver
+  ) {
+    this.rowSelect = new EventEmitter();
+    this.rowAction = new EventEmitter();
+    this.createItem = new EventEmitter();
     this.error = new EventEmitter();
     this.loader.loading = true;
   }
 
+  createComponent(property, component) {
+    const factory = this.resolver.resolveComponentFactory(component);
+    const componentRef = property.createComponent(factory);
+    return componentRef.instance;
+  }
+
   loadGrid(src?: string) {
     // If no source is provided, then skip.
-    if (!src) {
+    if (!src && !this.formio) {
       return;
     }
     // Do not double load.
-    if (this.formio && src === this.src) {
+    if (this.formio && this.src && (src === this.src)) {
       return;
     }
 
-    this.formio = new Formio(this.src, { formOnly: true });
-    this.formio.loadForm().then((form: any) => {
-      this.form = form;
-      this.setupColumns();
-    });
-    this.setPage(0);
+    if (src) {
+      this.src = src;
+      this.formio = new Formio(this.src, { formOnly: true });
+    }
+
+    // Load the header.
+    this.header.load(this.formio).then(() => this.setPage(0));
   }
 
   ngOnInit() {
-    this.alerts.setAlerts([]);
-    this.query = this.query || {};
+    // Create our components.
+    const comps = this.components || ((this.gridType === 'form') ? FormComponents : SubmissionComponents);
 
-    if (this.refresh) {
-      this.refresh.subscribe((query: object) => this.refreshGrid(query));
-    }
+    this.header = this.createComponent(this.headerElement, comps.header);
+    this.header.sort.subscribe(header => this.sortColumn(header));
 
-    // Load the grid.
-    this.loadGrid(this.src);
-    this.initialized = true;
+    this.body = this.createComponent(this.bodyElement, comps.body);
+    this.body.header = this.header;
+    this.body.rowSelect.subscribe(row => this.rowSelect.emit(row));
+    this.body.rowAction.subscribe(action => this.rowAction.emit(action));
+
+    this.footer = this.createComponent(this.footerElement, comps.footer);
+    this.footer.header = this.header;
+    this.footer.body = this.body;
+    this.footer.pageChanged.subscribe(page => this.pageChanged(page));
+    this.footer.createItem.subscribe(item => this.createItem.emit(item));
   }
 
   ngOnChanges(changes: any) {
@@ -81,17 +110,15 @@ export class FormioGridComponent implements OnInit, OnChanges {
     }
   }
 
-  setupColumns() {
-    FormioUtils.eachComponent(this.form.components, (component: any) => {
-      if (component.input && component.tableView) {
-        this.columns.push({
-          label: component.label,
-          key: 'data.' + component.key,
-          sort: '',
-          component: Components.create(component, null, null, true)
-        });
-      }
-    });
+  ngAfterViewInit() {
+    this.alerts.setAlerts([]);
+    this.query = this.query || {};
+    if (this.refresh) {
+      this.refresh.subscribe((query: object) => this.refreshGrid(query));
+    }
+
+    // Load the grid.
+    this.loadGrid(this.src);
   }
 
   set loading(_loading: boolean) {
@@ -117,26 +144,13 @@ export class FormioGridComponent implements OnInit, OnChanges {
       query.skip = 0;
     }
     this.loading = true;
-    this.formio
-      .loadSubmissions({ params: query })
-      .then(
-        (submissions: any) => {
-          this.firstItem = this.query.skip + 1;
-          this.lastItem = this.firstItem + submissions.length - 1;
-          this.total = submissions.serverCount;
-          this.skip = Math.floor(submissions.skip / query.limit) + 1;
-          this.rows = [];
-          each(submissions, (submission: any) => {
-            this.rows.push(submission);
-          });
-          this.loading = false;
-        },
-        (err: any) => this.onError(err)
-      )
-      .catch((err: any) => this.onError(err));
+    this.body.load(this.formio, this.query).then(info => {
+      this.loading = false;
+      this.initialized = true;
+    });
   }
 
-  setPage(num: number = -1) {
+  setPage(num = -1) {
     if (this.isLoading) {
       return;
     }
@@ -151,25 +165,25 @@ export class FormioGridComponent implements OnInit, OnChanges {
     this.refreshGrid();
   }
 
-  sortColumn(column: any) {
+  sortColumn(header: any) {
     // Reset all other column sorts.
-    each(this.columns, (col: any) => {
-      if (col.key !== column.key) {
+    each(this.header.headers, (col: any) => {
+      if (col.key !== header.key) {
         col.sort = '';
       }
     });
-    switch (column.sort) {
+    switch (header.sort) {
       case 'asc':
-        column.sort = 'desc';
-        this.query.sort = '-' + column.key;
+        header.sort = 'desc';
+        this.query.sort = '-' + header.key;
         break;
       case 'desc':
-        column.sort = '';
+        header.sort = '';
         delete this.query.sort;
         break;
       case '':
-        column.sort = 'asc';
-        this.query.sort = column.key;
+        header.sort = 'asc';
+        this.query.sort = header.key;
         break;
     }
     this.refreshGrid();
@@ -177,17 +191,5 @@ export class FormioGridComponent implements OnInit, OnChanges {
 
   pageChanged(page: any) {
     this.setPage(page.page - 1);
-  }
-
-  onClick(row: any) {
-    this.select.emit(row);
-  }
-
-  data(row: any, col: any) {
-    const cellValue: any = get(row, col.key);
-    if (typeof col.component.getView === 'function') {
-      return col.component.getView(cellValue);
-    }
-    return col.component.asString(cellValue);
   }
 }

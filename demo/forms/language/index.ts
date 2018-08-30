@@ -1,6 +1,7 @@
 import { Component, EventEmitter } from '@angular/core';
 import { FormioOptions } from '../../../dist';
 
+/* tslint:disable:max-line-length */
 @Component({
   template: require('./language.html')
 })
@@ -71,3 +72,4 @@ export class LanguageFormComponent {
     this.language.emit(lang);
   }
 }
+/* tslint:enable:max-line-length */
