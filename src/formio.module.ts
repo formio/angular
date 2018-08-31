@@ -26,6 +26,10 @@ import { FormioLoaderComponent } from './components/loader/formio.loader.compone
   providers: [
     FormioLoader,
     FormioAlerts
+  ],
+  entryComponents: [
+    FormioComponent,
+    FormBuilderComponent
   ]
 })
 export class FormioModule {}

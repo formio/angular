@@ -5,11 +5,12 @@ import { FormioResourceEditComponent } from './edit/edit.component';
 import { FormioResourceDeleteComponent } from './delete/delete.component';
 import { FormioResourceCreateComponent } from './create/create.component';
 import { FormioResourceIndexComponent } from './index/index.component';
+import { FormioResourceRouteConfig } from './resource.config';
 
 /**
  * The routes used to define a resource.
  */
-export function FormioResourceRoutes(config?: any): Routes {
+export function FormioResourceRoutes(config?: FormioResourceRouteConfig): Routes {
   config = config || {};
   return [
     {

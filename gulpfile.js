@@ -113,6 +113,16 @@ gulp.task('ngc-auth-angular', function () {
   return Promise.resolve()
 });
 
+gulp.task('ngc-manager', function () {
+  ngc(['--project', `${tmpFolder}/manager/tsconfig.es5.json`]);
+  return Promise.resolve()
+});
+
+gulp.task('ngc-manager-angular', function () {
+  ngc(['--project', `${tmpFolder}/manager/tsconfig.angular.json`]);
+  return Promise.resolve()
+});
+
 gulp.task('ngc-grid', function () {
   ngc(['--project', `${tmpFolder}/grid/tsconfig.es5.json`]);
   return Promise.resolve()
@@ -170,6 +180,7 @@ const rollupFesm = function(name, path) {
 };
 gulp.task('rollup:fesm', () => rollupFesm('angular-formio'));
 gulp.task('rollup-auth:fesm', () => rollupFesm('formio-auth', '/auth'));
+gulp.task('rollup-manager:fesm', () => rollupFesm('formio-manager', '/manager'));
 gulp.task('rollup-grid:fesm', () => rollupFesm('formio-grid', '/grid'));
 gulp.task('rollup-resource:fesm', () => rollupFesm('formio-resource', '/resource'));
 
@@ -229,6 +240,7 @@ const rollupUmd = function(name, path) {
 };
 gulp.task('rollup:umd', () => rollupUmd('angular-formio'));
 gulp.task('rollup-auth:umd', () => rollupUmd('formio-auth', '/auth'));
+gulp.task('rollup-manager:umd', () => rollupUmd('formio-manager', '/manager'));
 gulp.task('rollup-grid:umd', () => rollupUmd('formio-grid', '/grid'));
 gulp.task('rollup-resource:umd', () => rollupUmd('formio-resource', '/resource'));
 
@@ -254,6 +266,10 @@ gulp.task('copy:manifest', function () {
 });
 gulp.task('copy-auth:manifest', function () {
   return gulp.src([`${srcFolder}/auth/package.json`])
+    .pipe(gulp.dest(`${distFolder}/auth`));
+});
+gulp.task('copy-manager:manifest', function () {
+  return gulp.src([`${srcFolder}/manager/package.json`])
     .pipe(gulp.dest(`${distFolder}/auth`));
 });
 gulp.task('copy-grid:manifest', function () {
@@ -300,6 +316,8 @@ gulp.task('compile', function () {
     'ngc-angular',
     'ngc-auth',
     'ngc-auth-angular',
+    'ngc-manager',
+    'ngc-manager-angular',
     'ngc-grid',
     'ngc-grid-angular',
     'ngc-resource',
@@ -310,11 +328,13 @@ gulp.task('compile', function () {
     'rollup-resource:fesm',*/
     'rollup:umd',
     'rollup-auth:umd',
+    'rollup-manager:umd',
     'rollup-grid:umd',
     'rollup-resource:umd',
     'copy:build',
     'copy:manifest',
     'copy-auth:manifest',
+    'copy-manager:manifest',
     'copy-grid:manifest',
     'copy-resource:manifest',
     'copy:readme',

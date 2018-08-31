@@ -1,28 +1,12 @@
+<ng-template #headerTemplate></ng-template>
+<ng-template #bodyTemplate></ng-template>
+<ng-template #footerTemplate></ng-template>
 <div class="formio-grid">
   <formio-alerts [alerts]="alerts"></formio-alerts>
-  <table class="table table-condensed table-bordered table-striped table-hover">
-    <thead>
-      <tr>
-        <th *ngFor="let col of columns">
-          <a (click)="sortColumn(col)">
-            {{ col.label }}&nbsp;<span [ngClass]="{'glyphicon-triangle-top': (col.sort === 'asc'), 'glyphicon-triangle-bottom': (col.sort === 'desc')}" class="glyphicon" *ngIf="col.sort"></span>
-          </a>
-        </th>
-      </tr>
-    </thead>
+  <table class="table table-bordered table-striped table-hover">
+    <ng-container *ngIf="initialized" [ngTemplateOutlet]="header.template"></ng-container>
     <formio-loader></formio-loader>
-    <tbody *ngIf="!isLoading">
-      <tr *ngFor="let row of rows" (click)="onClick(row)">
-        <td *ngFor="let col of columns" [innerHTML]="data(row, col)"></td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td [colSpan]="columns.length">
-          <pagination [totalItems]="total" [(ngModel)]="skip" (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
-          <span class="pull-right item-counter"><span class="page-num">{{ firstItem }} - {{ lastItem }}</span> / {{ total }} total</span>
-        </td>
-      </tr>
-    </tfoot>
+    <ng-container *ngIf="initialized" [ngTemplateOutlet]="body.template"></ng-container>
+    <ng-container *ngIf="initialized" [ngTemplateOutlet]="footer.template"></ng-container>
   </table>
 </div>

@@ -3,6 +3,7 @@ import { FORM } from './form';
 @Component({
   template: require('./kitchen.html')
 })
+/* tslint:disable:max-line-length */
 export class KitchenSinkFormComponent {
   private form: any = FORM;
   private options: any = {
@@ -53,3 +54,4 @@ export class KitchenSinkFormComponent {
     console.log(value);
   }
 }
+/* tslint:enable:max-line-length */

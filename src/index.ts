@@ -1,6 +1,7 @@
 export * from './formio.config';
 export * from './formio.common';
 export * from './formio.service';
+export * from './formio.utils';
 export * from './components/formio/formio.component';
 export * from './components/formbuilder/formbuilder.component';
 export * from './components/loader/formio.loader';
