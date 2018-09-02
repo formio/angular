@@ -6,9 +6,9 @@ import { BuilderComponent } from './builder';
 import { SimpleFormComponent } from './simple';
 import { WizardFormComponent } from './wizard';
 import { PDFFormComponent } from './pdf';
-import { KitchenSinkFormComponent } from './kitchen';
 import { LanguageFormComponent } from './language';
 import { FormioFormsComponent } from './forms.component';
+import { FormRendererComponent } from './renderer/renderer';
 
 export const FormRoutes: any = [
   {
@@ -17,8 +17,13 @@ export const FormRoutes: any = [
     children: [
       {
         path: '',
-        redirectTo: 'builder',
+        redirectTo: 'renderer',
         pathMatch: 'full'
+      },
+      {
+        path: 'renderer',
+        title: 'Form Renderer',
+        component: FormRendererComponent
       },
       {
         path: 'builder',
@@ -44,11 +49,6 @@ export const FormRoutes: any = [
         path: 'language',
         title: 'Multi-Language',
         component: LanguageFormComponent
-      },
-      {
-        path: 'kitchen',
-        title: 'Kitchen Sink',
-        component: KitchenSinkFormComponent
       }
     ]
   }
@@ -62,8 +62,8 @@ export const FormRoutes: any = [
     BuilderComponent,
     WizardFormComponent,
     LanguageFormComponent,
-    PDFFormComponent,
-    KitchenSinkFormComponent
+    FormRendererComponent,
+    PDFFormComponent
   ],
   bootstrap: [FormioFormsComponent]
 })

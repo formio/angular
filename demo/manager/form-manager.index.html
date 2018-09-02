@@ -1,0 +1,11 @@
+<div class="alert alert-info" *ngIf="!auth.authenticated">You must <button class="btn btn-primary" routerLink="../auth"><i class="fa fa-sign-in"></i> Login</button> to use the Form Manager.</div>
+<formio-grid
+  *ngIf="auth.authenticated"
+  [formio]="service.formio"
+  [gridType]="'form'"
+  [query]="{tags: config.tag, type: 'form'}"
+  (rowAction)="onAction($event)"
+  (rowSelect)="onSelect($event)"
+  [createText]="'Create Form'"
+  (createItem)="onCreateItem()"
+></formio-grid>

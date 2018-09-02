@@ -1,4 +1,4 @@
-import { Injectable, } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormioAppConfig } from '../formio.config';
 import { FormManagerConfig } from './form-manager.config';
 import { Formio } from 'formiojs';

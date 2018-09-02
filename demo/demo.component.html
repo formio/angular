@@ -1,19 +1,38 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">angular-formio</a>
+    <a class="navbar-brand" href="#"><img height="25px;" src="https://portal.form.io/images/formio-logo.png"> Angular Demo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Components
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="forms/renderer"><i class="fa fa-check-square-o"></i> Form Renderer</a>
+            <a class="dropdown-item" routerLink="forms/builder"><i class="fa fa-th-list"></i> Form Builder</a>
+            <a class="dropdown-item" routerLink="manager"><i class="fa fa-folder-open-o"></i> Form Manager</a>
+            <a class="dropdown-item" routerLink="auth"><i class="fa fa-user-secret"></i> Authentication</a>
+            <a class="dropdown-item" routerLink="data"><i class="fa fa-table"></i> Data Table</a>
+            <a class="dropdown-item" routerLink="event">CRUD (Resources)</a>
+          </div>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="forms">Examples</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" href="https://github.com/formio/angular-formio/wiki">Docs</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active">
+          <a *ngIf="!auth.authenticated" class="nav-link" routerLink="auth"><i class="fa fa-sign-in"></i> Login | Register</a>
+          <a *ngIf="auth.authenticated" class="nav-link" routerLink="auth" (click)="auth.logout()"><i class="fa fa-sign-out"></i> Logout</a>
+        </li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav hidden-xs">
-      <li routerLinkActive="active"><a routerLink="forms">Examples</a></li>
-      <li routerLinkActive="active"><a routerLink="auth">Authentication</a></li>
-      <li routerLinkActive="active"><a routerLink="data">Data Table</a></li>
-      <li routerLinkActive="active"><a routerLink="event">CRUD</a></li>
-      <li><a href="https://github.com/formio/angular-formio/wiki">Documentation</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!auth.authenticated"><a routerLink="auth"><span class="glyphicon glyphicon-log-in"></span> Login | Register</a></li>
-      <li class="navbar-link" *ngIf="auth.authenticated"><a (click)="auth.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-    </ul>
   </div>
 </nav>
 <div class="container container-demo">

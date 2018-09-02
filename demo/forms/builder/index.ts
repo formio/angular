@@ -1,6 +1,5 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import Prism from 'prismjs';
-
+declare var Prism: any;
 @Component({
   template: require('./builder.html')
 })
@@ -18,17 +17,6 @@ export class BuilderComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let formattedCode = Prism.highlight(`import { Component, ElementRef, ViewChild } from '@angular/core';
-@Component({
-  template: require('./builder.html')
-})
-export class BuilderComponent {
-  @ViewChild('json') jsonElement?: ElementRef;
-  public form: Object = {components: []};
-  onChange(event) {
-    console.log(event.form);
-  }
-}`, Prism.languages.javascript, 'javascript');
-    this.codeElement.nativeElement.innerHTML = formattedCode;
+    Prism.highlightAll();
   }
 }

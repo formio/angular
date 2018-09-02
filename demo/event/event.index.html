@@ -2,5 +2,13 @@
 <p>This feature allows you to embed the full CRUD capabilities for Form.io Resources within your application.</p>
 <p>This is provided through the <code>FormioResourceModule</code>.</p>
 <a class="btn btn-primary" href="https://github.com/formio/angular-formio/wiki" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-book"></span> Resources Documentation</a>
-
-
+<div class="alert alert-info" *ngIf="!auth.authenticated">You must <button class="btn btn-primary" routerLink="../auth"><i class="fa fa-sign-in"></i> Login</button> to use the resources.</div>
+<formio-grid
+  *ngIf="auth.authenticated"
+  [src]="gridSrc"
+  [query]="gridQuery"
+  [onForm]="service.formLoaded"
+  (select)="onSelect($event)"
+  (error)="service.onError($event)"
+  (createItem)="onCreateItem()"
+></formio-grid>

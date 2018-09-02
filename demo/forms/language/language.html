@@ -1,7 +1,7 @@
 <h3>Multiple Languages</h3>
-<div class="btn-group">
-  <button type="button" class="btn btn-default" (click)="changeLanguage('en')">English</button>
-  <button type="button" class="btn btn-default" (click)="changeLanguage('sp')">Español</button>
-  <button type="button" class="btn btn-default" (click)="changeLanguage('ch')">中文</button>
+<div class="mb-2">
+  <button type="button" class="btn btn-primary mr-2" (click)="changeLanguage('en')">English</button>
+  <button type="button" class="btn btn-primary mr-2" (click)="changeLanguage('sp')">Español</button>
+  <button type="button" class="btn btn-primary" (click)="changeLanguage('ch')">中文</button>
 </div>
-<formio src="https://examples.form.io/example" [language]="language" [options]="options"></formio>
+<formio src="{{ config.appUrl }}/example" [language]="language" [options]="options"></formio>

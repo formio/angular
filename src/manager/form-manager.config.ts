@@ -16,5 +16,5 @@ export interface FormManagerRouteConfig {
 
 @Injectable()
 export class FormManagerConfig {
-  tag = '';
+  public tag: string = '';
 }

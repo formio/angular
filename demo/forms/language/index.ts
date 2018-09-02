@@ -1,5 +1,5 @@
 import { Component, EventEmitter } from '@angular/core';
-import { FormioOptions } from '../../../dist';
+import { FormioOptions, FormioAppConfig } from '../../../dist';
 
 /* tslint:disable:max-line-length */
 @Component({
@@ -8,7 +8,7 @@ import { FormioOptions } from '../../../dist';
 export class LanguageFormComponent {
   public language: EventEmitter<string>;
   public options: FormioOptions;
-  constructor() {
+  constructor(public config: FormioAppConfig) {
     this.language = new EventEmitter();
     this.options = {
       i18n: {

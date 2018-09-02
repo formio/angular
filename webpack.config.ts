@@ -1,7 +1,7 @@
 import * as webpack from 'webpack';
 import * as path from 'path';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
-import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 export default (environment = 'development') => {
     return {
         mode: 'development',
@@ -46,12 +46,8 @@ export default (environment = 'development') => {
                 {
                     test: /\.(svg|png|jpg|gif)$/,
                     use: [
-                        {
-                            loader: 'url-loader',
-                            options: {
-                                limit: 8192
-                            }
-                        }
+                      'file-loader',
+                      'url-loader'
                     ]
                 }
             ]

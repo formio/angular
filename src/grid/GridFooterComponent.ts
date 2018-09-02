@@ -4,6 +4,7 @@ import { GridBodyComponent } from './GridBodyComponent';
 export class GridFooterComponent {
   @Input() header: GridHeaderComponent;
   @Input() body: GridBodyComponent;
+  @Input() createText: String;
   @Output() pageChanged: EventEmitter<any>;
   @Output() createItem: EventEmitter<any>;
   @ViewChild(TemplateRef) template: TemplateRef<any>;

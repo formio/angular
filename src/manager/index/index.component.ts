@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormManagerService } from '../form-manager.service';
+import { FormManagerConfig } from '../form-manager.config';
 
 @Component({
   templateUrl: './index.component.html'
@@ -9,7 +10,8 @@ export class FormManagerIndexComponent {
   constructor(
     public service: FormManagerService,
     public route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public config: FormManagerConfig
   ) {}
 
   onAction(action: any) {

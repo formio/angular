@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormioAuthComponent, FormioAuthService } from '../../dist/auth';
 
 @Component({

@@ -1,0 +1,8 @@
+<div class="alert alert-info">
+  <p>You can use the following to login.</p>
+  <ul>
+    <li><strong>Email:</strong> demo@form.io</li>
+    <li><strong>Password:</strong> testing</li>
+  </ul>
+</div>
+<formio [src]="service.loginForm" (submit)="service.onLoginSubmit($event)"></formio>

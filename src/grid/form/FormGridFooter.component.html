@@ -2,7 +2,7 @@
   <tfoot class="formio-grid-footer">
     <tr>
       <td *ngIf="header" [colSpan]="header.numHeaders">
-        <button class="btn btn-primary pull-left float-left" (click)="createItem.emit('form')"><i class="glyphicon glyphicon-plus fa fa-plus"></i> Create Form</button>
+        <button class="btn btn-primary pull-left float-left" (click)="createItem.emit('form')"><i class="glyphicon glyphicon-plus fa fa-plus"></i> {{ createText }}</button>
         <span class="pull-right float-right item-counter"><span class="page-num">{{ body.firstItem }} - {{ body.lastItem }}</span> / {{ body.total }} total</span>
         <pagination [totalItems]="body.total" [(ngModel)]="body.skip" (pageChanged)="pageChanged.emit($event)" class="justify-content-center pagination-sm"></pagination>
       </td>

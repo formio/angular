@@ -1,1 +1,8 @@
-<formio-grid [formio]="service.formio" [gridType]="'form'" (rowAction)="onAction($event)" (rowSelect)="onSelect($event)" (createItem)="onCreateItem()"></formio-grid>
+<formio-grid
+  [formio]="service.formio"
+  [gridType]="'form'"
+  [query]="{tags: config.tag, type: 'form'}"
+  (rowAction)="onAction($event)"
+  (rowSelect)="onSelect($event)"
+  (createItem)="onCreateItem()"
+></formio-grid>

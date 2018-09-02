@@ -45,25 +45,28 @@ export function FormManagerRoutes(config?: FormManagerRouteConfig): Routes {
         },
         {
           path: 'submission',
-          component: config.submissionIndex || SubmissionIndexComponent,
+          component: config.submissionIndex || SubmissionIndexComponent
+        },
+        {
+          path: 'submission/:id',
+          component: config.submission || SubmissionComponent,
           children: [
             {
-              path: ':id',
-              component: config.submission || SubmissionComponent,
-              children: [
-                {
-                  path: 'view',
-                  component: config.submissionView || SubmissionViewComponent
-                },
-                {
-                  path: 'edit',
-                  component: config.submissionEdit || SubmissionEditComponent
-                },
-                {
-                  path: 'delete',
-                  component: config.submissionDelete || SubmissionDeleteComponent
-                }
-              ]
+              path: '',
+              redirectTo: 'view',
+              pathMatch: 'full'
+            },
+            {
+              path: 'view',
+              component: config.submissionView || SubmissionViewComponent
+            },
+            {
+              path: 'edit',
+              component: config.submissionEdit || SubmissionEditComponent
+            },
+            {
+              path: 'delete',
+              component: config.submissionDelete || SubmissionDeleteComponent
             }
           ]
         }

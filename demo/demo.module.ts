@@ -12,6 +12,8 @@ import { AuthDemoModule } from './auth/auth.module';
 import { HomeComponent } from './home.component';
 import { DataComponent } from './data.component';
 import { EventModule } from './event/event.module';
+import { FormManagerModule, FormManagerService, FormManagerConfig } from '../dist/manager';
+import { DemoFormManagerIndexComponent } from './manager/form-manager.index';
 
 @NgModule({
   declarations: [
@@ -44,11 +46,21 @@ import { EventModule } from './event/event.module';
       {
         path: 'event',
         loadChildren: () => EventModule
+      },
+      {
+        path: 'manager',
+        loadChildren: () => FormManagerModule.forChild({
+          formIndex: DemoFormManagerIndexComponent
+        })
       }
     ])
   ],
   providers: [
     FormioAuthService,
+    FormManagerService,
+    {provide: FormManagerConfig, useValue: {
+      tag: 'common'
+    }},
     {provide: FormioAppConfig, useValue: AppConfig},
     {provide: FormioAuthConfig, useValue: {
       login: {

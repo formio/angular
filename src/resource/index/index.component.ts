@@ -46,4 +46,8 @@ export class FormioResourceIndexComponent implements OnInit {
   onSelect(row: any) {
     this.router.navigate([row._id, 'view'], { relativeTo: this.route });
   }
+
+  onCreateItem() {
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
 }

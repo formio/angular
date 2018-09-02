@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var auth_config_1 = require("./auth.config");
+exports.FormioAuthConfig = auth_config_1.FormioAuthConfig;
+var auth_service_1 = require("./auth.service");
+exports.FormioAuthService = auth_service_1.FormioAuthService;
+var auth_component_1 = require("./auth.component");
+exports.FormioAuthComponent = auth_component_1.FormioAuthComponent;
+var login_component_1 = require("./login/login.component");
+exports.FormioAuthLoginComponent = login_component_1.FormioAuthLoginComponent;
+var register_component_1 = require("./register/register.component");
+exports.FormioAuthRegisterComponent = register_component_1.FormioAuthRegisterComponent;
+var auth_routes_1 = require("./auth.routes");
+exports.FormioAuthRoutes = auth_routes_1.FormioAuthRoutes;
+var auth_module_1 = require("./auth.module");
+exports.FormioAuth = auth_module_1.FormioAuth;

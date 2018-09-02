@@ -5,6 +5,7 @@ import { GridBodyComponent } from '../GridBodyComponent';
 
 @Component({
   selector: 'form-grid-body',
+  styleUrls: ['./FormGridBody.component.scss'],
   templateUrl: './FormGridBody.component.html'
 })
 export class FormGridBodyComponent extends GridBodyComponent {

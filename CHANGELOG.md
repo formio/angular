@@ -7,6 +7,8 @@ This is a reverse-compatible release that has the following changes over 2.x bra
 
 #### Changes
  - This release introduces the Form Manager system, see Wiki for documentation.
+ - Now defaults to Bootstrap 4 instead of Bootstrap 3 and provides Font Awesome by default.
+ - Changed the (click) event for formio-grid to (rowSelect).
  - You now no longer need a separate module to bring in each component. You can mount the components using the ```Component.forChild()``` method. For example, if you wish to bring in the Authentication system into your application, you just need to do the following.
  
  ```js

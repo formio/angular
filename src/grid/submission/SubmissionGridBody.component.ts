@@ -7,7 +7,6 @@ import { GridBodyComponent } from '../GridBodyComponent';
   templateUrl: './SubmissionGridBody.component.html'
 })
 export class SubmissionGridBodyComponent extends GridBodyComponent {
-  public rows: Array<any>;
   load(formio: Formio, query?: any) {
     query = query || {};
     return formio.loadSubmissions({ params: query })

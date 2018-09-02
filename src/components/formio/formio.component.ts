@@ -108,7 +108,7 @@ export class FormioComponent implements OnInit, OnChanges {
       this.formioElement ? this.formioElement.nativeElement : null,
       this.form,
       {
-        icons: this.config ? this.config.icons : '',
+        icons: get(this.config, 'icons', 'fontawesome'),
         noAlerts: get(this.options, 'noAlerts', true),
         readOnly: this.readOnly,
         viewAsHtml: this.viewOnly,
@@ -282,6 +282,7 @@ export class FormioComponent implements OnInit, OnChanges {
     }
   }
   onError(err: any) {
+    this.loader.loading = false;
     this.alerts.setAlerts([]);
     this.submitting = false;
     if (!err) {

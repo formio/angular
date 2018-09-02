@@ -33,6 +33,8 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() gridType?: string;
   @Input() components?: any;
   @Input() formio?: Formio;
+  @Input() createText: String;
+  @Output() select: EventEmitter<object>;
   @Output() rowSelect: EventEmitter<object>;
   @Output() rowAction: EventEmitter<object>;
   @Output() createItem: EventEmitter<any>;
@@ -53,7 +55,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     public alerts: FormioAlerts,
     private resolver: ComponentFactoryResolver
   ) {
-    this.rowSelect = new EventEmitter();
+    this.select = this.rowSelect = new EventEmitter();
     this.rowAction = new EventEmitter();
     this.createItem = new EventEmitter();
     this.error = new EventEmitter();
@@ -82,7 +84,9 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     }
 
     // Load the header.
-    this.header.load(this.formio).then(() => this.setPage(0));
+    this.header.load(this.formio)
+      .then(() => this.setPage(0))
+      .catch(error => this.onError(error));
   }
 
   ngOnInit() {
@@ -100,6 +104,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.footer = this.createComponent(this.footerElement, comps.footer);
     this.footer.header = this.header;
     this.footer.body = this.body;
+    this.footer.createText = this.createText;
     this.footer.pageChanged.subscribe(page => this.pageChanged(page));
     this.footer.createItem.subscribe(item => this.createItem.emit(item));
   }
@@ -126,6 +131,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   }
 
   onError(error: any) {
+    this.loading = false;
     this.error.emit(error);
     this.alerts.setAlert({
       type: 'danger',
@@ -147,7 +153,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.body.load(this.formio, this.query).then(info => {
       this.loading = false;
       this.initialized = true;
-    });
+    }).catch(error => this.onError(error));
   }
 
   setPage(num = -1) {
