@@ -10,7 +10,7 @@
     "docs:watch": "npm run docs:build -- -s -w",
     "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
     "lite": "lite-server",
-    "build:demo": "webpack --mode=development",
+    "build:demo": "webpack --mode=production",
     "demo": "gulp build && concurrently --raw \"webpack-dev-server --open\" \"npm run test:watch\"",
     "publish": "gulp build && gulp package-version && npm publish dist",
     "test": "tsc && karma start",
