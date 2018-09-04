@@ -8,7 +8,8 @@ import {
   OnChanges,
   ViewChild,
   ViewContainerRef,
-  ComponentFactoryResolver
+  ComponentFactoryResolver,
+  ChangeDetectorRef
 } from '@angular/core';
 import { FormioLoader } from '../components/loader/formio.loader';
 import { FormioAlerts } from '../components/alerts/formio.alerts';
@@ -53,7 +54,8 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   constructor(
     public loader: FormioLoader,
     public alerts: FormioAlerts,
-    private resolver: ComponentFactoryResolver
+    private resolver: ComponentFactoryResolver,
+    private ref: ChangeDetectorRef
   ) {
     this.select = this.rowSelect = new EventEmitter();
     this.rowAction = new EventEmitter();
@@ -129,6 +131,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     }
     this.loadGrid(this.src);
     this.initialized = true;
+    this.ref.detectChanges();
   }
 
   set loading(_loading: boolean) {
@@ -155,9 +158,11 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
       query.skip = 0;
     }
     this.loading = true;
+    this.ref.detectChanges();
     this.body.load(this.formio, this.query).then(info => {
       this.loading = false;
       this.initialized = true;
+      this.ref.detectChanges();
     }).catch(error => this.onError(error));
   }
 

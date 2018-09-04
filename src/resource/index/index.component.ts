@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
@@ -10,15 +10,23 @@ import { each } from 'lodash';
 export class FormioResourceIndexComponent implements OnInit {
   public gridSrc?: string;
   public gridQuery: any;
+  public formTitle: String;
   constructor(
     public service: FormioResourceService,
     public route: ActivatedRoute,
     public router: Router,
-    public config: FormioResourceConfig
-  ) {}
+    public config: FormioResourceConfig,
+    private ref: ChangeDetectorRef
+  ) {
+    this.formTitle = '';
+  }
 
   ngOnInit() {
     this.gridQuery = {};
+    this.service.formLoaded.then(() => {
+      this.formTitle = this.service.form.title;
+      this.ref.detectChanges();
+    });
     if (
       this.service &&
       this.config.parents &&

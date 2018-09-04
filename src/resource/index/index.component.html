@@ -1,10 +1,10 @@
 <formio-grid
-  *ngIf="service.form"
+  *ngIf="formTitle"
   [src]="gridSrc"
   [query]="gridQuery"
   [onForm]="service.formLoaded"
   (rowSelect)="onSelect($event)"
   (error)="service.onError($event)"
   (createItem)="onCreateItem()"
-  [createText]="'New ' + service.form.title"
+  [createText]="'New ' + formTitle"
 ></formio-grid>
