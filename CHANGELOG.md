@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.4
+#### Fixed
+ - The route declarations to make it more AOT compatible (although still more work to do I think).
+
+#### Added
+ - A formioOptions parameter to the <formio> component to allow you to pass options to the Formio instance.
+ - A renderOptions parameter to the <formio> component to allow you to pass options to the createForm method and Webform instance.
+
 ### 3.1.3
 #### Fixed
  - Issues with nested resources where it would provide a filter when you don't want it to.
