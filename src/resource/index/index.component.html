@@ -1,4 +1,5 @@
 <formio-grid
+  *ngIf="service.form"
   [src]="gridSrc"
   [query]="gridQuery"
   [onForm]="service.formLoaded"

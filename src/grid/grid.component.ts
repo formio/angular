@@ -110,7 +110,13 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   }
 
   ngOnChanges(changes: any) {
-    if (this.initialized && changes.src && changes.src.currentValue) {
+    if (
+      this.initialized &&
+      (
+        (changes.src && changes.src.currentValue) ||
+        (changes.formio && changes.formio.currentValue)
+      )
+    ) {
       this.loadGrid(changes.src.currentValue);
     }
   }
@@ -121,9 +127,8 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     if (this.refresh) {
       this.refresh.subscribe((query: object) => this.refreshGrid(query));
     }
-
-    // Load the grid.
     this.loadGrid(this.src);
+    this.initialized = true;
   }
 
   set loading(_loading: boolean) {

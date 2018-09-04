@@ -32,8 +32,8 @@ import { Formio } from 'formiojs';
 })
 /* tslint:enable */
 export class FormioComponent implements OnInit, OnChanges {
-  public ready: Promise<object>;
-  public readyResolve: any;
+  private formioReady: Promise<Formio>;
+  private formioReadyResolve: any;
   @Input() form?: FormioForm;
   @Input() submission?: any = {};
   @Input() src?: string;
@@ -58,6 +58,7 @@ export class FormioComponent implements OnInit, OnChanges {
   @Output() invalid: EventEmitter<boolean>;
   @Output() errorChange: EventEmitter<any>;
   @Output() formLoad: EventEmitter<any>;
+  @Output() ready: EventEmitter<FormioComponent>;
   @ViewChild('formio') formioElement?: ElementRef;
 
   private submitting: boolean;
@@ -75,8 +76,8 @@ export class FormioComponent implements OnInit, OnChanges {
       console.warn('You must provide an AppConfig within your application!');
     }
 
-    this.ready = new Promise((resolve: any) => {
-      this.readyResolve = resolve;
+    this.formioReady = new Promise(ready => {
+      this.formioReadyResolve = ready;
     });
 
     this.submitting = false;
@@ -91,6 +92,7 @@ export class FormioComponent implements OnInit, OnChanges {
     this.customEvent = new EventEmitter();
     this.render = new EventEmitter();
     this.formLoad = new EventEmitter();
+    this.ready = new EventEmitter();
     this.initialized = false;
     this.alerts.alerts = [];
   }
@@ -116,7 +118,7 @@ export class FormioComponent implements OnInit, OnChanges {
         fileService: get(this.options, 'fileService', null),
         hooks: this.hooks
       }
-    ).then((formio: any) => {
+    ).then((formio: Formio) => {
       this.formio = formio;
       if (this.url) {
         this.formio.url = this.url;
@@ -140,7 +142,8 @@ export class FormioComponent implements OnInit, OnChanges {
         this.formLoad.emit(loadedForm)
       );
       this.loader.loading = false;
-      this.readyResolve(this.formio);
+      this.ready.emit(this);
+      this.formioReadyResolve(this.formio);
       return this.formio;
     });
   }
@@ -232,14 +235,24 @@ export class FormioComponent implements OnInit, OnChanges {
     }
   }
   onRefresh(refresh: FormioRefreshValue) {
-    this.ready.then(() => {
-      switch (refresh.property) {
-        case 'submission':
-          this.formio.submission = refresh.value;
-          break;
-        case 'form':
-          this.formio.form = refresh.value;
-          break;
+    this.formioReady.then(() => {
+      if (refresh.form) {
+        this.formio.setForm(refresh.form).then(() => {
+          if (refresh.submission) {
+            this.formio.setSubmission(refresh.submission);
+          }
+        });
+      } else if (refresh.submission) {
+        this.formio.setSubmission(refresh.submission);
+      } else {
+        switch (refresh.property) {
+          case 'submission':
+            this.formio.submission = refresh.value;
+            break;
+          case 'form':
+            this.formio.form = refresh.value;
+            break;
+        }
       }
     });
   }
@@ -250,7 +263,7 @@ export class FormioComponent implements OnInit, OnChanges {
       this.setForm(changes.form.currentValue);
     }
 
-    this.ready.then(() => {
+    this.formioReady.then(() => {
       if (changes.submission && changes.submission.currentValue) {
         this.formio.submission = changes.submission.currentValue;
       }

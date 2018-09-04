@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
@@ -7,7 +7,7 @@ import { FormioResourceConfig } from '../resource.config';
   styleUrls: ['./create.component.scss'],
   templateUrl: './create.component.html'
 })
-export class FormioResourceCreateComponent implements OnInit {
+export class FormioResourceCreateComponent {
   public onError: EventEmitter<any>;
   public onSuccess: EventEmitter<any>;
   constructor(
@@ -18,11 +18,6 @@ export class FormioResourceCreateComponent implements OnInit {
   ) {
     this.onError = new EventEmitter();
     this.onSuccess = new EventEmitter();
-  }
-
-  ngOnInit() {
-    // Start with fresh data.
-    this.service.initialize();
   }
 
   onSubmit(submission: any) {

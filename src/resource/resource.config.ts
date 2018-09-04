@@ -13,5 +13,5 @@ export interface FormioResourceRouteConfig {
 export class FormioResourceConfig {
   name = '';
   form = '';
-  parents: string[] = [];
+  parents: any[] = [];
 }

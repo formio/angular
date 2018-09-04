@@ -29,8 +29,10 @@ export interface ComponentOptions<T, V> {
 }
 
 export interface FormioRefreshValue {
-  property: string;
-  value: object;
+  property?: string;
+  value?: object;
+  form?: object;
+  submission?: object;
 }
 
 export interface AccessSetting {

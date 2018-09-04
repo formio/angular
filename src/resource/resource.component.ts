@@ -12,7 +12,6 @@ export class FormioResourceComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.service.initialize();
     this.service.loadResource(this.route);
   }
 }

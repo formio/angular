@@ -18,16 +18,14 @@ export class FormioResourceIndexComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.service.initialize();
     this.gridQuery = {};
     if (
       this.service &&
-      this.service.onParents &&
       this.config.parents &&
       this.config.parents.length
     ) {
       // Wait for the parents to load before loading this grid.
-      this.service.onParents.subscribe((parents: any) => {
+      this.service.parentsLoaded.then((parents: any) => {
         each(parents, (parent: any) => {
           if (parent) {
             this.gridQuery['data.' + parent.name + '._id'] =

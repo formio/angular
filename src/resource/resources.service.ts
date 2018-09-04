@@ -1,4 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { FormioAuthService } from '../auth/auth.service';
 
 export interface FormioResourceMap {
   [name: string]: any;
@@ -9,9 +10,15 @@ export class FormioResources {
   resources: FormioResourceMap = {};
   error: EventEmitter<any>;
   onError: EventEmitter<any>;
-  constructor() {
+  constructor(
+    public auth?: FormioAuthService
+  ) {
     this.error = new EventEmitter();
     this.onError = this.error;
-    this.resources = {};
+    this.resources = {
+      currentUser: {
+        resourceLoaded: this.auth.userReady
+      }
+    };
   }
 }
