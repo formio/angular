@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.2
+#### Changed
+ - Upgraded dependencies.
+
 ### 3.1.1
 #### Fixed
  - Problems with the data grid throwing change errors.
