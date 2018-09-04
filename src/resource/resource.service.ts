@@ -127,6 +127,7 @@ export class FormioResourceService {
     this.config.parents.forEach((parent: any) => {
       const resourceName = parent.resource || parent;
       const resourceField = parent.field || parent;
+      const filterResource = parent.hasOwnProperty('filter') ? parent.filter : true;
       if (this.resources.hasOwnProperty(resourceName)) {
         _parentsLoaded.push(
           this.resources[resourceName].resourceLoaded.then((resource: any) => {
@@ -141,6 +142,7 @@ export class FormioResourceService {
             });
             return {
               name: parentPath,
+              filter: filterResource,
               resource
             };
           })
