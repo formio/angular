@@ -14,6 +14,8 @@ To run a demo of the Form.io Angular renderer, please follow these steps.
  
 This will startup an example application where you can see all the features provided by this module.
 
+Here is the hosted demo application [https://formio.github.io/angular-demo/](https://formio.github.io/angular-demo)
+
 Using within your application
 ---------------------------
 You can easily render a form within your Angular 4 application by referencing the URL of that form as follows.
