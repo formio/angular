@@ -134,9 +134,11 @@ Included Libraries
 This library is a combination of multiple libraries that enable rapid Serverless application development using Form.io. These libraries are as follows.
 
 1. [Form Renderer](https://github.com/formio/angular-formio/wiki/Form-Renderer) - The form renderer in Angular
-2. [Authentication](https://github.com/formio/angular-formio/wiki/User-Authentication) - Allows an easy way to provide Form.io authentication into your application.
-3. [Resource](https://github.com/formio/angular-formio/wiki/Resource-Management) - A way to include the Resources within your application with full CRUDI support (Create, Read, Update, Delete, Index)
-4. [Data Table (Grid)](https://github.com/formio/angular-formio/wiki/Data-Table) - A way to render data within a Table format, which includes pagination, sorting, etc.
+2. [Form Builder](https://github.com/formio/angular-formio/wiki/Form-Builder) - The form builder in Angular
+3. [Form Manager](https://github.com/formio/angular-formio/wiki/Form-Mananger) - The form management application used to manage forms.
+4. [Authentication](https://github.com/formio/angular-formio/wiki/User-Authentication) - Allows an easy way to provide Form.io authentication into your application.
+5. [Resource](https://github.com/formio/angular-formio/wiki/Resource-Management) - A way to include the Resources within your application with full CRUDI support (Create, Read, Update, Delete, Index)
+6. [Data Table (Grid)](https://github.com/formio/angular-formio/wiki/Data-Table) - A way to render data within a Table format, which includes pagination, sorting, etc.
 
 Click on each of those links to read more about how they work and how to utilize them to their fullest potential.
 
