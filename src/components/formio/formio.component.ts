@@ -20,7 +20,7 @@ import {
   FormioError,
   FormioRefreshValue
 } from '../../formio.common';
-import { each, isEmpty, get } from 'lodash';
+import { each, isEmpty, get, assign } from 'lodash';
 import { Formio } from 'formiojs';
 
 /* tslint:disable */
@@ -40,6 +40,8 @@ export class FormioComponent implements OnInit, OnChanges {
   @Input() url?: string;
   @Input() service?: FormioService;
   @Input() options?: FormioOptions;
+  @Input() formioOptions?: any;
+  @Input() renderOptions?: any;
   @Input() readOnly ? = false;
   @Input() viewOnly ? = false;
   @Input() hideComponents?: string[];
@@ -109,7 +111,7 @@ export class FormioComponent implements OnInit, OnChanges {
     return Formio.createForm(
       this.formioElement ? this.formioElement.nativeElement : null,
       this.form,
-      {
+      assign({}, {
         icons: get(this.config, 'icons', 'fontawesome'),
         noAlerts: get(this.options, 'noAlerts', true),
         readOnly: this.readOnly,
@@ -117,14 +119,14 @@ export class FormioComponent implements OnInit, OnChanges {
         i18n: get(this.options, 'i18n', null),
         fileService: get(this.options, 'fileService', null),
         hooks: this.hooks
-      }
+      }, this.renderOptions || {})
     ).then((formio: Formio) => {
       this.formio = formio;
       if (this.url) {
-        this.formio.url = this.url;
+        this.formio.setUrl(this.url, this.formioOptions || {});
       }
       if (this.src) {
-        this.formio.url = this.src;
+        this.formio.setUrl(this.src, this.formioOptions || {});
       }
       this.formio.nosubmit = true;
       this.formio.on('prevPage', (data: any) => this.onPrevPage(data));

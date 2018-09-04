@@ -10,21 +10,19 @@ import { SubmissionViewComponent } from './submission/view/view.component';
 import { SubmissionIndexComponent } from './submission/index/index.component';
 import { SubmissionComponent } from './submission/submission/submission.component';
 import { FormManagerRouteConfig } from './form-manager.config';
-
 export function FormManagerRoutes(config?: FormManagerRouteConfig): Routes {
-  config = config || {};
   return [
     {
       path: '',
-      component: config.formIndex || FormManagerIndexComponent
+      component: config && config.formIndex ? config.formIndex : FormManagerIndexComponent
     },
     {
       path: 'create',
-      component: config.formCreate || FormManagerEditComponent
+      component: config && config.formCreate ? config.formCreate : FormManagerEditComponent
     },
     {
       path: ':id',
-      component: config.form || FormManagerFormComponent,
+      component: config && config.form ? config.form : FormManagerFormComponent,
       children: [
         {
           path: '',
@@ -33,23 +31,23 @@ export function FormManagerRoutes(config?: FormManagerRouteConfig): Routes {
         },
         {
           path: 'view',
-          component: config.formView || FormManagerViewComponent
+          component: config && config.formView ? config.formView : FormManagerViewComponent
         },
         {
           path: 'edit',
-          component: config.formEdit || FormManagerEditComponent
+          component: config && config.formEdit ? config.formEdit : FormManagerEditComponent
         },
         {
           path: 'delete',
-          component: config.formDelete || FormManagerDeleteComponent
+          component: config && config.formDelete ? config.formDelete : FormManagerDeleteComponent
         },
         {
           path: 'submission',
-          component: config.submissionIndex || SubmissionIndexComponent
+          component: config && config.submissionIndex ? config.submissionIndex : SubmissionIndexComponent
         },
         {
           path: 'submission/:id',
-          component: config.submission || SubmissionComponent,
+          component: config && config.submission ? config.submission : SubmissionComponent,
           children: [
             {
               path: '',
@@ -58,15 +56,15 @@ export function FormManagerRoutes(config?: FormManagerRouteConfig): Routes {
             },
             {
               path: 'view',
-              component: config.submissionView || SubmissionViewComponent
+              component: config && config.submissionView ? config.submissionView : SubmissionViewComponent
             },
             {
               path: 'edit',
-              component: config.submissionEdit || SubmissionEditComponent
+              component: config && config.submissionEdit ? config.submissionEdit : SubmissionEditComponent
             },
             {
               path: 'delete',
-              component: config.submissionDelete || SubmissionDeleteComponent
+              component: config && config.submissionDelete ? config.submissionDelete : SubmissionDeleteComponent
             }
           ]
         }

@@ -6,24 +6,19 @@ import { FormioResourceDeleteComponent } from './delete/delete.component';
 import { FormioResourceCreateComponent } from './create/create.component';
 import { FormioResourceIndexComponent } from './index/index.component';
 import { FormioResourceRouteConfig } from './resource.config';
-
-/**
- * The routes used to define a resource.
- */
 export function FormioResourceRoutes(config?: FormioResourceRouteConfig): Routes {
-  config = config || {};
   return [
     {
       path: '',
-      component: config.index || FormioResourceIndexComponent
+      component: config && config.index ? config.index : FormioResourceIndexComponent
     },
     {
       path: 'new',
-      component: config.create || FormioResourceCreateComponent
+      component: config && config.create ? config.create : FormioResourceCreateComponent
     },
     {
       path: ':id',
-      component: config.resource || FormioResourceComponent,
+      component: config && config.resource ? config.resource : FormioResourceComponent,
       children: [
         {
           path: '',
@@ -32,15 +27,15 @@ export function FormioResourceRoutes(config?: FormioResourceRouteConfig): Routes
         },
         {
           path: 'view',
-          component: config.view || FormioResourceViewComponent
+          component: config && config.view ? config.view : FormioResourceViewComponent
         },
         {
           path: 'edit',
-          component: config.edit || FormioResourceEditComponent
+          component: config && config.edit ? config.edit : FormioResourceEditComponent
         },
         {
           path: 'delete',
-          component: config.delete || FormioResourceDeleteComponent
+          component: config && config.delete ? config.delete : FormioResourceDeleteComponent
         }
       ]
     }

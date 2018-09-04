@@ -3,13 +3,11 @@ import { FormioAuthRouteConfig } from './auth.config';
 import { FormioAuthComponent } from './auth.component';
 import { FormioAuthLoginComponent } from './login/login.component';
 import { FormioAuthRegisterComponent } from './register/register.component';
-
 export function FormioAuthRoutes(config?: FormioAuthRouteConfig): Routes {
-  config = config || {};
   return [
     {
       path: '',
-      component: config.auth || FormioAuthComponent,
+      component: config && config.auth ? config.auth : FormioAuthComponent,
       children: [
         {
           path: '',
@@ -18,13 +16,13 @@ export function FormioAuthRoutes(config?: FormioAuthRouteConfig): Routes {
         },
         {
           path: 'login',
-          component: config.login || FormioAuthLoginComponent
+          component: config && config.login ? config.login : FormioAuthLoginComponent
         },
         {
           path: 'register',
-          component: config.register || FormioAuthRegisterComponent
+          component: config && config.register ? config.register : FormioAuthRegisterComponent
         }
       ]
     }
   ];
-};
+}
