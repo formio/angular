@@ -50,7 +50,6 @@ export class FormioResourceService {
     }
 
     // Create the form url and load the resources.
-    this.resources = this.resourcesService.resources;
     this.formUrl = this.appConfig.appUrl + '/' + this.config.form;
     this.refresh = new EventEmitter();
     this.resource = { data: {} };
@@ -69,6 +68,7 @@ export class FormioResourceService {
 
     // Add this resource service to the list of all resources in context.
     if (this.resourcesService) {
+      this.resources = this.resourcesService.resources;
       this.resources[this.config.name] = this;
     }
 

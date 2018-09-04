@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.0
+#### Fixed
+ - Many issues related to resources, and nested resources.
+
 ### 3.0.0
 This is a reverse-compatible release that has the following changes over 2.x branch.
 
