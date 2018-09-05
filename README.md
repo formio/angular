@@ -7,10 +7,11 @@ end application. This allows forms to be dynamically built using JSON schemas.
 Running Demo
 --------------------------
 To run a demo of the Form.io Angular renderer, please follow these steps.
-
- 1. Download this repo to your local computer.
- 2. With your terminal, type ```npm install```
- 3. Now type ```npm run demo```
+ 
+ 1. Make sure you have the [Angular CLI](https://angular.io) installed on your machine.
+ 2. Download the [Angular Demo Application](https://github.com/formio/angular-demo) to your computer.
+ 3. With your terminal, type ```npm install```
+ 4. Now type ```ng serve```
  
 This will startup an example application where you can see all the features provided by this module.
 
