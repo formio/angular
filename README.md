@@ -144,6 +144,10 @@ This library is a combination of multiple libraries that enable rapid Serverless
 
 Click on each of those links to read more about how they work and how to utilize them to their fullest potential.
 
+Demo Application
+----------
+If you would like to run a demonstration of all the features of this module, then you can check out the [Angular Demo Application](https://github.com/formio/angular-demo), which is the code behind the following hosted application @ [https://formio.github.io/angular-demo](https://formio.github.io/angular-demo)
+
 Application Starter Kit
 ----------
 For help in getting started using this library, we created the [angular-app-starterkit](https://github.com/formio/angular-app-starterkit) repository to help you get started with best practices with using Form.io within an Angular application. You can try this applicatoin by downloading that application and then doing the following.
