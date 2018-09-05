@@ -20,13 +20,13 @@ Using within your application
 ---------------------------
 You can easily render a form within your Angular 4 application by referencing the URL of that form as follows.
 
-```
+```html
 <formio src='https://examples.form.io/example'></formio>
 ```
 
 You can also pass the JSON form directly to the renderer as follows.
 
-```
+```html
 <formio [form]='{
     "title": "My Test Form",
     "components": [
@@ -121,7 +121,7 @@ npm install --save angular-formio
 
 You can now include the module in your Angular application like so.
 
-```
+```js
 import { FormioModule } from 'angular-formio';
 @NgModule({
     imports: [ BrowserModule, ReactiveFormsModule, FormioModule ],
