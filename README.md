@@ -124,7 +124,7 @@ You can now include the module in your Angular application like so.
 ```js
 import { FormioModule } from 'angular-formio';
 @NgModule({
-    imports: [ BrowserModule, ReactiveFormsModule, FormioModule ],
+    imports: [ BrowserModule, CommonModule, FormioModule ],
     declarations: [ AppComponent ],
     bootstrap: [ AppComponent ]
 })
