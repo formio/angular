@@ -23,6 +23,7 @@ export class FormioResourceIndexComponent implements OnInit {
 
   ngOnInit() {
     this.gridQuery = {};
+    this.service.setContext(this.route);
     this.service.formLoaded.then(() => {
       this.formTitle = this.service.form.title;
       this.ref.detectChanges();

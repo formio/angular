@@ -91,6 +91,16 @@ export class FormioResourceService {
     this.onError(err);
   }
 
+  setContext(route: ActivatedRoute) {
+    this.resourceId = route.snapshot.params['id'];
+    this.resource = { data: {} };
+    this.resourceUrl = this.appConfig.appUrl + '/' + this.config.form;
+    if (this.resourceId) {
+      this.resourceUrl += '/submission/' + this.resourceId;
+    }
+    this.formio = new Formio(this.resourceUrl);
+  }
+
   loadForm() {
     this.formFormio = new Formio(this.formUrl);
     this.loader.loading = true;
@@ -166,11 +176,7 @@ export class FormioResourceService {
   }
 
   loadResource(route: ActivatedRoute) {
-    this.resourceId = route.snapshot.params['id'];
-    this.resource = { data: {} };
-    this.resourceUrl = this.appConfig.appUrl + '/' + this.config.form;
-    this.resourceUrl += '/submission/' + this.resourceId;
-    this.formio = new Formio(this.resourceUrl);
+    this.setContext(route);
     this.loader.loading = true;
     this.resourceLoading = this.formio
       .loadSubmission()
