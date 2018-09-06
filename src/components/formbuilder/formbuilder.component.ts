@@ -14,6 +14,7 @@ import {
   FormioOptions
 } from '../../formio.common';
 import { Formio, FormBuilder } from 'formiojs';
+import { assign } from 'lodash';
 
 /* tslint:disable */
 @Component({
@@ -64,7 +65,7 @@ export class FormBuilderComponent implements AfterViewInit, OnChanges {
     this.builder = new Formio.FormBuilder(
       this.builderElement.nativeElement,
       form,
-      this.options || {}
+      assign({icons: 'fontawesome'}, this.options || {})
     );
     this.builder.render().then((instance) => {
       this.formio = instance;
