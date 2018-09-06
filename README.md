@@ -7,10 +7,11 @@ end application. This allows forms to be dynamically built using JSON schemas.
 Running Demo
 --------------------------
 To run a demo of the Form.io Angular renderer, please follow these steps.
-
- 1. Download this repo to your local computer.
- 2. With your terminal, type ```npm install```
- 3. Now type ```npm run demo```
+ 
+ 1. Make sure you have the [Angular CLI](https://angular.io) installed on your machine.
+ 2. Download the [Angular Demo Application](https://github.com/formio/angular-demo) to your computer.
+ 3. With your terminal, type ```npm install```
+ 4. Now type ```ng serve```
  
 This will startup an example application where you can see all the features provided by this module.
 
@@ -20,13 +21,13 @@ Using within your application
 ---------------------------
 You can easily render a form within your Angular 4 application by referencing the URL of that form as follows.
 
-```
+```html
 <formio src='https://examples.form.io/example'></formio>
 ```
 
 You can also pass the JSON form directly to the renderer as follows.
 
-```
+```html
 <formio [form]='{
     "title": "My Test Form",
     "components": [
@@ -121,10 +122,10 @@ npm install --save angular-formio
 
 You can now include the module in your Angular application like so.
 
-```
+```js
 import { FormioModule } from 'angular-formio';
 @NgModule({
-    imports: [ BrowserModule, ReactiveFormsModule, FormioModule ],
+    imports: [ BrowserModule, CommonModule, FormioModule ],
     declarations: [ AppComponent ],
     bootstrap: [ AppComponent ]
 })
@@ -144,6 +145,10 @@ This library is a combination of multiple libraries that enable rapid Serverless
 
 Click on each of those links to read more about how they work and how to utilize them to their fullest potential.
 
+Demo Application
+----------
+If you would like to run a demonstration of all the features of this module, then you can check out the [Angular Demo Application](https://github.com/formio/angular-demo), which is the code behind the following hosted application @ [https://formio.github.io/angular-demo](https://formio.github.io/angular-demo)
+
 Application Starter Kit
 ----------
 For help in getting started using this library, we created the [angular-app-starterkit](https://github.com/formio/angular-app-starterkit) repository to help you get started with best practices with using Form.io within an Angular application. You can try this applicatoin by downloading that application and then doing the following.
@@ -156,36 +161,6 @@ npm start
 Full Documentation
 ------------------
 To read up on the full documentation of this library, please check out the [Wiki Page](https://github.com/formio/angular-formio/wiki)
-
-Running in Docker
-------------------
-
-Install Docker, then:
-
-```
-docker build -t af .
-docker run -p 8000:8000 af
-```
-
-To stop a container:
-
-```
-docker ps  #show list of running containers
-docker stop <container id>
-```
-
-You should be able to access the app at http://localhost:8000. If it isn't acessible, add this line to webpack.config.ts and restart:
-
-```
-        devServer: {
-            host: '0.0.0.0',  // ADD THIS
-            port: 8000,
-            inline: true,
-            hot: true,
-            historyApiFallback: true,
-            overlay: true
-        },
-```
 
 About Form.io
 -----------------
