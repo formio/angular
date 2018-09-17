@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.1.8
+### Fixed
+ - Issue with nested resources not getting set properly.
+ - Remove cache on resource load to fix problem where ZoneAwarePromise's were setting cached values to incorrect values.
+
+### 3.1.7
+### Changed
+ - Upgrade formiojs library.
+
 ### 3.1.6
 ### Fixed
  - Problems where the context would not get restart when changing between resources.

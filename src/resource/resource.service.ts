@@ -99,6 +99,7 @@ export class FormioResourceService {
       this.resourceUrl += '/submission/' + this.resourceId;
     }
     this.formio = new Formio(this.resourceUrl);
+    this.setParents();
   }
 
   loadForm() {
@@ -121,7 +122,7 @@ export class FormioResourceService {
   }
 
   setParents() {
-    if (!this.config.parents || !this.config.parents.length) {
+    if (!this.config.parents || !this.config.parents.length || !this.form) {
       return;
     }
 
@@ -145,6 +146,7 @@ export class FormioResourceService {
             Utils.eachComponent(this.form.components, (component, path) => {
               if (component.key === resourceField) {
                 component.hidden = true;
+                component.clearOnHide = false;
                 _.set(this.resource.data, path, resource);
                 parentPath = path;
                 return true;
@@ -179,7 +181,7 @@ export class FormioResourceService {
     this.setContext(route);
     this.loader.loading = true;
     this.resourceLoading = this.formio
-      .loadSubmission()
+      .loadSubmission(null, {ignoreCache: true})
       .then(
         (resource: any) => {
           this.resource = resource;
