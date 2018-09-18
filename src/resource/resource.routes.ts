@@ -8,7 +8,7 @@ import { FormioResourceIndexComponent } from './index.component';
 
 /**
  * The routes used to define a resource.
- *
+ * Test
  * @param config
  * @constructor
  */
