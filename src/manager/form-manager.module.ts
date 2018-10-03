@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { FormioModule } from '../formio.module';
 import { FormioGrid } from '../grid/grid.module';
 import { FormManagerIndexComponent } from './index/index.component';
+import { FormManagerCreateComponent } from './create/create.component';
 import { FormManagerFormComponent } from './form/form.component';
 import { FormManagerViewComponent } from './view/view.component';
 import { FormManagerEditComponent } from './edit/edit.component';
@@ -29,6 +30,7 @@ import { extendRouter } from '../formio.utils';
   ],
   declarations: [
     FormManagerIndexComponent,
+    FormManagerCreateComponent,
     FormManagerFormComponent,
     FormManagerViewComponent,
     FormManagerEditComponent,

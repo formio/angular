@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormManagerService } from '../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormManagerConfig } from '../form-manager.config';
@@ -8,7 +8,7 @@ import _ from 'lodash';
 @Component({
   templateUrl: './edit.component.html'
 })
-export class FormManagerEditComponent implements AfterViewInit, OnInit {
+export class FormManagerEditComponent implements AfterViewInit {
   @ViewChild(FormBuilderComponent) builder: FormBuilderComponent;
   @ViewChild('title') formTitle: ElementRef;
   @ViewChild('type') formType: ElementRef;
@@ -28,10 +28,6 @@ export class FormManagerEditComponent implements AfterViewInit, OnInit {
     this.formReady = false;
     this.loading = false;
     this.editMode = false;
-  }
-
-  ngOnInit() {
-    this.service.reset();
   }
 
   ngAfterViewInit() {

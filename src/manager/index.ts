@@ -2,6 +2,7 @@ export { FormManagerConfig } from './form-manager.config';
 export { FormManagerService } from './form-manager.service';
 export { FormManagerRoutes } from './form-manager.routes';
 export { FormManagerIndexComponent } from './index/index.component';
+export { FormManagerCreateComponent } from './create/create.component';
 export { FormManagerFormComponent } from './form/form.component';
 export { FormManagerViewComponent } from './view/view.component';
 export { FormManagerEditComponent } from './edit/edit.component';

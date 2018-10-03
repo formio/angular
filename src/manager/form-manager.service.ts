@@ -28,7 +28,11 @@ export class FormManagerService {
 
   setForm(route: ActivatedRoute) {
     route.params.subscribe(params => {
-      this.formio = new Formio(`${this.formio.formsUrl}/${params.id}`);
+      if (params.id) {
+        this.formio = new Formio(`${this.formio.formsUrl}/${params.id}`);
+      } else {
+        this.reset();
+      }
     });
   }
 

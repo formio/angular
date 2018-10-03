@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -42,8 +42,8 @@
     "@angular/platform-browser-dynamic": "^6.1.9",
     "@angular/router": "^6.1.9",
     "@compodoc/compodoc": "^1.1.5",
-    "@types/jasmine": "^2.8.8",
-    "@types/node": "^10.11.3",
+    "@types/jasmine": "^2.8.9",
+    "@types/node": "^10.11.4",
     "angular-in-memory-web-api": "^0.6.1",
     "codelyzer": "^4.4.4",
     "concurrently": "^4.0.1",

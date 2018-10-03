@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { FormManagerIndexComponent } from './index/index.component';
+import { FormManagerCreateComponent } from './create/create.component';
 import { FormManagerFormComponent } from './form/form.component';
 import { FormManagerViewComponent } from './view/view.component';
 import { FormManagerEditComponent } from './edit/edit.component';
@@ -18,7 +19,7 @@ export function FormManagerRoutes(config?: FormManagerRouteConfig): Routes {
     },
     {
       path: 'create',
-      component: config && config.formCreate ? config.formCreate : FormManagerEditComponent
+      component: config && config.formCreate ? config.formCreate : FormManagerCreateComponent
     },
     {
       path: ':id',
