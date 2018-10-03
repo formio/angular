@@ -19,6 +19,10 @@ export class FormManagerService {
       console.error('You must provide an AppConfig within your application!');
     }
 
+    this.reset();
+  }
+
+  reset() {
     this.formio = new Formio(this.appConfig.appUrl);
   }
 
