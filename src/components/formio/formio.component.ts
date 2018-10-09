@@ -314,7 +314,7 @@ export class FormioComponent implements OnInit, OnChanges {
     each(err, (error: any) => {
       let message = '';
       if (!error.message) {
-        error.details.forEach(function (e) {
+        error.details.forEach((e) => {
           message = e.message + ' ';
         });
       }
