@@ -312,9 +312,15 @@ export class FormioComponent implements OnInit, OnChanges {
 
     // Iterate through each one and set the alerts array.
     each(err, (error: any) => {
+      let message = '';
+      if (!error.message) {
+        error.details.forEach((e) => {
+          message = e.message + ' ';
+        });
+      }
       this.alerts.addAlert({
         type: 'danger',
-        message: error.message || error.toString()
+        message: message
       });
     });
   }
