@@ -317,6 +317,8 @@ export class FormioComponent implements OnInit, OnChanges {
         error.details.forEach((e) => {
           message = e.message + ' ';
         });
+      } else {
+        message = error.message;
       }
       this.alerts.addAlert({
         type: 'danger',
