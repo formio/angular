@@ -17,4 +17,5 @@ export interface FormManagerRouteConfig {
 @Injectable()
 export class FormManagerConfig {
   public tag: string = '';
+  public includeSearch: boolean = false;
 }

@@ -35,6 +35,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() components?: any;
   @Input() formio?: Formio;
   @Input() createText: String;
+  @Input() isActionAllowed: any;
   @Output() select: EventEmitter<object>;
   @Output() rowSelect: EventEmitter<object>;
   @Output() rowAction: EventEmitter<object>;
@@ -96,16 +97,19 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     const comps = this.components || ((this.gridType === 'form') ? FormComponents : SubmissionComponents);
 
     this.header = this.createComponent(this.headerElement, comps.header);
+    this.header.actionAllowed = this.actionAllowed.bind(this);
     this.header.sort.subscribe(header => this.sortColumn(header));
 
     this.body = this.createComponent(this.bodyElement, comps.body);
     this.body.header = this.header;
+    this.body.actionAllowed = this.actionAllowed.bind(this);
     this.body.rowSelect.subscribe(row => this.rowSelect.emit(row));
     this.body.rowAction.subscribe(action => this.rowAction.emit(action));
 
     this.footer = this.createComponent(this.footerElement, comps.footer);
     this.footer.header = this.header;
     this.footer.body = this.body;
+    this.footer.actionAllowed = this.actionAllowed.bind(this);
     this.footer.createText = this.createText;
     this.footer.pageChanged.subscribe(page => this.pageChanged(page));
     this.footer.createItem.subscribe(item => this.createItem.emit(item));
@@ -138,6 +142,14 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.loader.loading = this.isLoading = _loading;
   }
 
+  actionAllowed(action) {
+    if (this.isActionAllowed) {
+      return this.isActionAllowed(action);
+    } else {
+      return true;
+    }
+  }
+
   onError(error: any) {
     this.loading = false;
     this.error.emit(error);
@@ -159,7 +171,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     }
     this.loading = true;
     this.ref.detectChanges();
-    this.body.load(this.formio, this.query).then(info => {
+    this.body.load(this.formio, query).then(info => {
       this.loading = false;
       this.initialized = true;
       this.ref.detectChanges();

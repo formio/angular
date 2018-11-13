@@ -21,7 +21,7 @@ import {
   FormioRefreshValue
 } from '../../formio.common';
 import { each, isEmpty, get, assign } from 'lodash';
-import { Formio } from 'formiojs';
+import { Formio, Form } from 'formiojs';
 
 /* tslint:disable */
 @Component({
@@ -32,7 +32,7 @@ import { Formio } from 'formiojs';
 })
 /* tslint:enable */
 export class FormioComponent implements OnInit, OnChanges {
-  private formioReady: Promise<Formio>;
+  private formioReady: Promise<any>;
   private formioReadyResolve: any;
   @Input() form?: FormioForm;
   @Input() submission?: any = {};
@@ -68,7 +68,7 @@ export class FormioComponent implements OnInit, OnChanges {
   public initialized: boolean;
   public alerts: FormioAlerts;
   constructor(
-    private loader: FormioLoader,
+    public loader: FormioLoader,
     @Optional() private config: FormioAppConfig
   ) {
     if (this.config) {
@@ -100,16 +100,10 @@ export class FormioComponent implements OnInit, OnChanges {
   }
   setForm(form: FormioForm) {
     this.form = form;
-
-    // Only initialize a single formio instance.
     if (this.formio) {
-      this.formio.form = this.form;
-      return;
+      this.formio.destroy();
     }
-
-    // Create the form.
-    return Formio.createForm(
-      this.formioElement ? this.formioElement.nativeElement : null,
+    this.formio = (new Form(this.formioElement ? this.formioElement.nativeElement : null,
       this.form,
       assign({}, {
         icons: get(this.config, 'icons', 'fontawesome'),
@@ -119,30 +113,32 @@ export class FormioComponent implements OnInit, OnChanges {
         i18n: get(this.options, 'i18n', null),
         fileService: get(this.options, 'fileService', null),
         hooks: this.hooks
-      }, this.renderOptions || {})
-    ).then((formio: Formio) => {
-      this.formio = formio;
-      if (this.url) {
-        this.formio.setUrl(this.url, this.formioOptions || {});
-      }
-      if (this.src) {
-        this.formio.setUrl(this.src, this.formioOptions || {});
-      }
-      this.formio.nosubmit = true;
-      this.formio.on('prevPage', (data: any) => this.onPrevPage(data));
-      this.formio.on('nextPage', (data: any) => this.onNextPage(data));
-      this.formio.on('change', (value: any) => this.change.emit(value));
-      this.formio.on('customEvent', (event: any) =>
-        this.customEvent.emit(event)
-      );
-      this.formio.on('submit', (submission: any) =>
-        this.submitForm(submission)
-      );
-      this.formio.on('error', (err: any) => this.onError(err));
-      this.formio.on('render', () => this.render.emit());
-      this.formio.on('formLoad', (loadedForm: any) =>
-        this.formLoad.emit(loadedForm)
-      );
+      }, this.renderOptions || {}))).create();
+
+    if (this.url) {
+      this.formio.setUrl(this.url, this.formioOptions || {});
+    }
+    if (this.src) {
+      this.formio.setUrl(this.src, this.formioOptions || {});
+    }
+    this.formio.nosubmit = true;
+    this.formio.on('prevPage', (data: any) => this.onPrevPage(data));
+    this.formio.on('nextPage', (data: any) => this.onNextPage(data));
+    this.formio.on('change', (value: any) => this.change.emit(value));
+    this.formio.on('customEvent', (event: any) =>
+      this.customEvent.emit(event)
+    );
+    this.formio.on('submit', (submission: any) =>
+      this.submitForm(submission)
+    );
+    this.formio.on('error', (err: any) => this.onError(err));
+    this.formio.on('render', () => this.render.emit());
+    this.formio.on('formLoad', (loadedForm: any) =>
+      this.formLoad.emit(loadedForm)
+    );
+
+    this.formio.form = this.form;
+    return this.formio.ready.then(() => {
       this.loader.loading = false;
       this.ready.emit(this);
       this.formioReadyResolve(this.formio);
