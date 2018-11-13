@@ -12,6 +12,7 @@ export class FormManagerEditComponent implements AfterViewInit {
   @ViewChild(FormBuilderComponent) builder: FormBuilderComponent;
   @ViewChild('title') formTitle: ElementRef;
   @ViewChild('type') formType: ElementRef;
+  public builderReady: Promise<any>;
   public form: any;
   public loading: Boolean;
   public formReady: Boolean;
@@ -30,7 +31,15 @@ export class FormManagerEditComponent implements AfterViewInit {
     this.editMode = false;
   }
 
+  checkBuilder(cb) {
+    if (this.builder) {
+      return cb(this.builder);
+    }
+    setTimeout(() => this.checkBuilder(cb), 100);
+  }
+
   ngAfterViewInit() {
+    this.builderReady = new Promise((resolve) => this.checkBuilder(resolve));
     this.route.url.subscribe( url => {
       // See if we are editing a form or creating one.
       if (url[0].path === 'edit') {
@@ -39,7 +48,7 @@ export class FormManagerEditComponent implements AfterViewInit {
         this.editMode = true;
         this.formReady = this.service.formio.loadForm().then(form => {
           this.form = form;
-          this.builder.buildForm(form);
+          this.builderReady.then(() => this.builder.buildForm(form));
           this.loading = false;
           this.ref.detectChanges();
           this.formTitle.nativeElement.value = form.title;
@@ -48,32 +57,34 @@ export class FormManagerEditComponent implements AfterViewInit {
       }
 
       this.formType.nativeElement.addEventListener('change', () => {
-        this.builder.setDisplay(this.formType.nativeElement.value);
+        this.builderReady.then(() => this.builder.setDisplay(this.formType.nativeElement.value));
       });
     });
   }
 
   onSave() {
     this.loading = true;
-    this.form.title = this.formTitle.nativeElement.value;
-    this.form.display = this.formType.nativeElement.value;
-    this.form.components = this.builder.formio.schema.components;
-    if (this.config.tag) {
-      this.form.tags = this.form.tags || [];
-      this.form.tags.push(this.config.tag);
-    }
-    if (!this.form._id) {
-      this.form.name = _.camelCase(this.form.title).toLowerCase();
-      this.form.path = this.form.name;
-    }
-    this.service.formio.saveForm(this.form).then(form => {
-      this.form = form;
-      this.loading = false;
-      if (this.editMode) {
-        this.router.navigate(['../', 'view'], {relativeTo: this.route});
-      } else {
-        this.router.navigate(['../', form._id, 'view'], {relativeTo: this.route});
+    this.builderReady.then(() => {
+      this.form.title = this.formTitle.nativeElement.value;
+      this.form.display = this.formType.nativeElement.value;
+      this.form.components = this.builder.formio.schema.components;
+      if (this.config.tag) {
+        this.form.tags = this.form.tags || [];
+        this.form.tags.push(this.config.tag);
       }
+      if (!this.form._id) {
+        this.form.name = _.camelCase(this.form.title).toLowerCase();
+        this.form.path = this.form.name;
+      }
+      this.service.formio.saveForm(this.form).then(form => {
+        this.form = form;
+        this.loading = false;
+        if (this.editMode) {
+          this.router.navigate(['../', 'view'], {relativeTo: this.route});
+        } else {
+          this.router.navigate(['../', form._id, 'view'], {relativeTo: this.route});
+        }
+      });
     });
   }
 }
