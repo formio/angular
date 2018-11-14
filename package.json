@@ -43,7 +43,7 @@
     "@angular/router": "^7.0.3",
     "@compodoc/compodoc": "^1.1.6",
     "@types/jasmine": "^2.8.11",
-    "@types/node": "^10.12.6",
+    "@types/node": "^10.12.7",
     "angular-in-memory-web-api": "^0.7.0",
     "codelyzer": "^4.5.0",
     "concurrently": "^4.0.1",
@@ -104,7 +104,7 @@
     "zone.js": "^0.8.26"
   },
   "dependencies": {
-    "formiojs": "^3.7.1",
+    "formiojs": "^3.8.0",
     "lodash": "^4.17.11",
     "ngx-bootstrap": "^3.1.1"
   }
