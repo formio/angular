@@ -1,7 +1,8 @@
-import { Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
+import { Output, EventEmitter, ViewChild, TemplateRef, Input } from '@angular/core';
 import { Formio } from 'formiojs';
 
 export class GridHeaderComponent {
+  @Input() actionAllowed: any;
   @Output() sort: EventEmitter<any>;
   @ViewChild(TemplateRef) template: TemplateRef<any>;
   public headers: Array<any>;

@@ -5,6 +5,7 @@ import { GridHeaderComponent } from './GridHeaderComponent';
 
 export class GridBodyComponent {
   @Input() header: GridHeaderComponent;
+  @Input() actionAllowed: any;
   @Output() rowSelect: EventEmitter<any>;
   @Output() rowAction: EventEmitter<any>;
   @ViewChild(TemplateRef) template: TemplateRef<any>;

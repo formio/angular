@@ -13,6 +13,6 @@ export class FormManagerFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.service.setForm(this.route);
+    this.service.reset(this.route);
   }
 }

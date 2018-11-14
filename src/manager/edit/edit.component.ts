@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } fr
 import { FormManagerService } from '../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormManagerConfig } from '../form-manager.config';
+import { FormioAlerts } from '../../components/alerts/formio.alerts';
 import { FormBuilderComponent } from '../../components/formbuilder/formbuilder.component';
 import _ from 'lodash';
 
@@ -23,7 +24,8 @@ export class FormManagerEditComponent implements AfterViewInit {
     public router: Router,
     public route: ActivatedRoute,
     public config: FormManagerConfig,
-    private ref: ChangeDetectorRef
+    public ref: ChangeDetectorRef,
+    public alerts: FormioAlerts
   ) {
     this.form = {components: []};
     this.formReady = false;
@@ -46,13 +48,18 @@ export class FormManagerEditComponent implements AfterViewInit {
         this.loading = true;
         this.ref.detectChanges();
         this.editMode = true;
-        this.formReady = this.service.formio.loadForm().then(form => {
+        this.formReady = this.service.loadForm().then(form => {
           this.form = form;
-          this.builderReady.then(() => this.builder.buildForm(form));
-          this.loading = false;
           this.ref.detectChanges();
           this.formTitle.nativeElement.value = form.title;
           this.formType.nativeElement.value = form.display || 'form';
+          this.builderReady.then(() => {
+            this.builder.buildForm(form);
+            this.loading = false;
+          });
+        }).catch(err => {
+          this.alerts.setAlert({type: 'danger', message: (err.message || err)});
+          this.loading = false;
         });
       }
 
@@ -84,6 +91,9 @@ export class FormManagerEditComponent implements AfterViewInit {
         } else {
           this.router.navigate(['../', form._id, 'view'], {relativeTo: this.route});
         }
+      }).catch(err => {
+        this.alerts.setAlert({type: 'danger', message: (err.message || err)});
+        this.loading = false;
       });
     });
   }

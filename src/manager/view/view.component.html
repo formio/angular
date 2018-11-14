@@ -1,1 +1,1 @@
-<formio [src]="service.formio.formUrl" (submit)="onSubmit($event)"></formio>
+<formio [src]="service.formio.formUrl" (submit)="onSubmit($event)" (formLoad)="service.setForm($event)"></formio>
