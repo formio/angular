@@ -117,23 +117,25 @@ export class FormManagerService {
   }
 
   setForm(form: any) {
-    // Check if they have access here.
-    form.access.forEach(access => {
-      // Check for all access.
-      if (this.allAccessMap[access.type] && !this.access[this.allAccessMap[access.type]]) {
-        this.access[this.allAccessMap[access.type]] = this.hasAccess(access.roles);
-      }
+    if (form.access) {
+      // Check if they have access here.
+      form.access.forEach(access => {
+        // Check for all access.
+        if (this.allAccessMap[access.type] && !this.access[this.allAccessMap[access.type]]) {
+          this.access[this.allAccessMap[access.type]] = this.hasAccess(access.roles);
+        }
 
-      // Check for own access.
-      if (
-        this.auth && this.auth.user &&
-        (form._id === this.auth.user._id) &&
-        this.ownAccessMap[access.type] &&
-        !this.access[this.ownAccessMap[access.type]]
-      ) {
-        this.access[this.ownAccessMap[access.type]] = this.hasAccess(access.roles);
-      }
-    });
+        // Check for own access.
+        if (
+          this.auth && this.auth.user &&
+          (form._id === this.auth.user._id) &&
+          this.ownAccessMap[access.type] &&
+          !this.access[this.ownAccessMap[access.type]]
+        ) {
+          this.access[this.ownAccessMap[access.type]] = this.hasAccess(access.roles);
+        }
+      });
+    }
     return form;
   }
 

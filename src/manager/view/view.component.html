@@ -1,1 +1,1 @@
-<formio [src]="service.formio.formUrl" (submit)="onSubmit($event)" (formLoad)="service.setForm($event)"></formio>
+<formio *ngIf="currentForm" [url]="service.formio.formUrl" [form]="currentForm" [submission]="submission" (submit)="onSubmit($event)" (change)="onChange($event)"></formio>

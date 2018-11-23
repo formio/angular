@@ -16,6 +16,7 @@ export interface FormManagerRouteConfig {
 
 @Injectable()
 export class FormManagerConfig {
-  public tag: string = '';
-  public includeSearch: boolean = false;
+  public tag = '';
+  public includeSearch = false;
+  public saveDraft = false;
 }
