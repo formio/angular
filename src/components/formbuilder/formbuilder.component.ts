@@ -31,6 +31,7 @@ export class FormBuilderComponent implements AfterViewInit, OnChanges {
   public builder: FormBuilder;
   @Input() form?: FormioForm;
   @Input() options?: FormioOptions;
+  @Input() formbuilder?: any;
   @Output() change?: EventEmitter<object>;
   @ViewChild('builder') builderElement?: ElementRef;
 
@@ -62,7 +63,8 @@ export class FormBuilderComponent implements AfterViewInit, OnChanges {
     if (this.builder) {
       return this.builder.instance.form = form;
     }
-    this.builder = new Formio.FormBuilder(
+    const Builder = this.formbuilder || FormBuilder;
+    this.builder = new Builder(
       this.builderElement.nativeElement,
       form,
       assign({icons: 'fontawesome'}, this.options || {})

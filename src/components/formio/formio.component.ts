@@ -50,6 +50,7 @@ export class FormioComponent implements OnInit, OnChanges {
   @Input() success?: EventEmitter<object>;
   @Input() language?: EventEmitter<string>;
   @Input() hooks?: any = {};
+  @Input() renderer?: any;
   @Output() render: EventEmitter<object>;
   @Output() customEvent: EventEmitter<object>;
   @Output() submit: EventEmitter<object>;
@@ -103,7 +104,8 @@ export class FormioComponent implements OnInit, OnChanges {
     if (this.formio) {
       this.formio.destroy();
     }
-    this.formio = (new Form(this.formioElement ? this.formioElement.nativeElement : null,
+    const Renderer = this.renderer || Form;
+    this.formio = (new Renderer(this.formioElement ? this.formioElement.nativeElement : null,
       this.form,
       assign({}, {
         icons: get(this.config, 'icons', 'fontawesome'),

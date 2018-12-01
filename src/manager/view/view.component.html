@@ -1,4 +1,5 @@
 <formio *ngIf="currentForm"
+  [renderer]="config.renderer"
   [url]="service.formio.formUrl"
   [form]="currentForm"
   [submission]="submission"
