@@ -19,4 +19,6 @@ export class FormManagerConfig {
   public tag = '';
   public includeSearch = false;
   public saveDraft = false;
+  public builder: any;
+  public renderer: any;
 }
