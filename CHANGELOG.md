@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.9.2
+#### Added
+ - Ability to provide your own renderer and builder.
+
 ### 3.9.0
 #### Added
  - The save draft feature.

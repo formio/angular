@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "3.9.1",
+  "version": "3.9.2",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -43,7 +43,7 @@
     "@angular/router": "^7.1.1",
     "@compodoc/compodoc": "^1.1.7",
     "@types/jasmine": "^3.3.0",
-    "@types/node": "^10.12.10",
+    "@types/node": "^10.12.11",
     "angular-in-memory-web-api": "^0.7.0",
     "codelyzer": "^4.5.0",
     "concurrently": "^4.1.0",
@@ -85,7 +85,7 @@
     "tsickle": "^0.34.0",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.6.0",
-    "typescript": "^3.1.6",
+    "typescript": "<3.2.0",
     "url-loader": "^1.1.2",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
