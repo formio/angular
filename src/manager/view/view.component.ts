@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormManagerConfig } from '../form-manager.config';
 import { FormManagerService } from '../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,6 +17,8 @@ export class FormManagerViewComponent implements OnInit {
   public savingDraft: any;
   public triggerSaveDraft: any;
   public currentForm: any;
+  public onSuccess: EventEmitter<object> = new EventEmitter();
+  public onError: EventEmitter<object> = new EventEmitter();
   constructor(
     public service: FormManagerService,
     public router: Router,
@@ -77,7 +79,8 @@ export class FormManagerViewComponent implements OnInit {
     this.submission.data = submission.data;
     this.submission.state = 'complete';
     this.service.formio.saveSubmission(this.submission).then(saved => {
+      this.onSuccess.emit();
       this.router.navigate(['../', 'submission', saved._id], {relativeTo: this.route});
-    });
+    }).catch((err) => this.onError.emit(err));
   }
 }

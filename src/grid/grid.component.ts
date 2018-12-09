@@ -125,6 +125,10 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     ) {
       this.loadGrid(changes.src.currentValue);
     }
+
+    if (changes.createText && changes.createText.currentValue) {
+      this.footer.createText = changes.createText.currentValue;
+    }
   }
 
   ngAfterViewInit() {

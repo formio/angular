@@ -11,13 +11,14 @@ import _ from 'lodash';
 
 @Injectable()
 export class FormioResourceService {
+  public initialized = false;
   public form: any;
   public resource: any;
   public resourceUrl?: string;
   public formUrl: string;
   public formFormio: any;
   public formio: any;
-  public refresh: EventEmitter<FormioRefreshValue> = new EventEmitter();
+  public refresh: EventEmitter<FormioRefreshValue>;
 
   public resourceLoading?: Promise<any>;
   public resourceLoaded?: Promise<any>;
@@ -25,7 +26,7 @@ export class FormioResourceService {
   public resources: any;
 
   public formLoading?: Promise<any>;
-  public formLoaded: Promise<any> = new Promise(() => {});
+  public formLoaded: Promise<any>;
   public formResolve: any;
   public formReject: any;
 
@@ -35,6 +36,23 @@ export class FormioResourceService {
     public loader: FormioLoader,
     @Optional() public resourcesService: FormioResources
   ) {
+    this.refresh = new EventEmitter();
+    this.formLoaded = new Promise((resolve: any, reject: any) => {
+      this.formResolve = resolve;
+      this.formReject = reject;
+    });
+    this.init();
+  }
+
+  initialize() {
+    console.warn('FormioResourceService.initialize() has been deprecated.');
+  }
+
+  init() {
+    if (this.initialized) {
+      return;
+    }
+    this.initialized = true;
     if (this.appConfig && this.appConfig.appUrl) {
       Formio.setBaseUrl(this.appConfig.apiUrl);
       Formio.setProjectUrl(this.appConfig.appUrl);
@@ -45,12 +63,7 @@ export class FormioResourceService {
 
     // Create the form url and load the resources.
     this.formUrl = this.appConfig.appUrl + '/' + this.config.form;
-    this.refresh = new EventEmitter();
     this.resource = { data: {} };
-    this.formLoaded = new Promise((resolve: any, reject: any) => {
-      this.formResolve = resolve;
-      this.formReject = reject;
-    });
 
     // Add this resource service to the list of all resources in context.
     if (this.resourcesService) {
@@ -58,11 +71,7 @@ export class FormioResourceService {
       this.resources[this.config.name] = this;
     }
 
-    this.loadForm();
-  }
-
-  initialize() {
-    console.warn('FormioResourceService.initialize() has been deprecated.');
+    return this.loadForm();
   }
 
   onError(error: any) {
