@@ -149,8 +149,11 @@ export class FormManagerService {
   }
 
   setSubmission(route: ActivatedRoute) {
-    route.params.subscribe(params => {
-      this.formio = new Formio(`${this.formio.submissionsUrl}/${params.id}`);
+    return new Promise((resolve) => {
+      route.params.subscribe(params => {
+        this.formio = new Formio(`${this.formio.submissionsUrl}/${params.id}`);
+        resolve(this.formio);
+      });
     });
   }
 

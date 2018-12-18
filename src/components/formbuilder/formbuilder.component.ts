@@ -51,8 +51,26 @@ export class FormBuilderComponent implements AfterViewInit, OnChanges {
     });
   }
 
+  setInstance(instance: any) {
+    this.formio = instance;
+    instance.on('saveComponent', () => this.change.emit({
+      type: 'saveComponent',
+      form: instance.schema
+    }));
+    instance.on('updateComponent', () => this.change.emit({
+      type: 'updateComponent',
+      form: instance.schema
+    }));
+    instance.on('deleteComponent', () => this.change.emit({
+      type: 'deleteComponent',
+      form: instance.schema
+    }));
+    this.readyResolve(instance);
+    return instance;
+  }
+
   setDisplay(display: String) {
-    return this.builder.setDisplay(display);
+    return this.builder.setDisplay(display).then(instance => this.setInstance(instance));
   }
 
   buildForm(form) {
@@ -69,23 +87,7 @@ export class FormBuilderComponent implements AfterViewInit, OnChanges {
       form,
       assign({icons: 'fontawesome'}, this.options || {})
     );
-    this.builder.render().then((instance) => {
-      this.formio = instance;
-      instance.on('saveComponent', () => this.change.emit({
-        type: 'saveComponent',
-        form: instance.schema
-      }));
-      instance.on('updateComponent', () => this.change.emit({
-        type: 'updateComponent',
-        form: instance.schema
-      }));
-      instance.on('deleteComponent', () => this.change.emit({
-        type: 'deleteComponent',
-        form: instance.schema
-      }));
-      this.readyResolve(instance);
-      return instance;
-    });
+    this.builder.render().then(instance => this.setInstance(instance));
   }
 
   ngOnChanges(changes: any) {

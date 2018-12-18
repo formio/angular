@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.9.4
+#### Fixed
+ - Issues where the form could get reset when the display type changes.
+ - Only show the builder when it is ready.
+ 
+#### Added
+ - PDF downloads.
+ 
+#### Changed
+ - Upgraded formiojs@3.9.4, ngx-bootstrap@3.1.3, @angular/cli@7.1.3, @angular/common@7.1.3, @angular/compiler@7.1.3, @angular/compiler-cli@7.1.3, @angular/core@7.1.3, @angular/forms@7.1.3, @angular/platform-browser@
+            7.1.3, @angular/platform-browser-dynamic@7.1.3, @angular/router@7.1.3, @types/jasmine@3.3.2, @types/node@10.12.15, karma@3.1.4, node-sass@4.11.0, fork-ts-checker-webpack-plugin@0.5.2, rollup@0.68.0
+
 ### 3.9.2
 #### Added
  - Ability to provide your own renderer and builder.
