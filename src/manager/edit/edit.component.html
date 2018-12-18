@@ -15,5 +15,5 @@
   </div>
 </div>
 <formio-alerts [alerts]="alerts"></formio-alerts>
-<form-builder [formbuilder]="config.builder" [form]="form" #builder></form-builder>
+<form-builder *ngIf="formReady" [formbuilder]="config.builder" [form]="form" #builder></form-builder>
 <button class="btn btn-primary" style="margin-top: 10px;" (click)="onSave()">Save Form</button>

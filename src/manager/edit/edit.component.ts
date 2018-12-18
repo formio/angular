@@ -48,11 +48,12 @@ export class FormManagerEditComponent implements AfterViewInit {
         this.loading = true;
         this.ref.detectChanges();
         this.editMode = true;
-        this.formReady = this.service.loadForm().then(form => {
+        this.service.loadForm().then(form => {
           this.form = form;
           this.ref.detectChanges();
           this.formTitle.nativeElement.value = form.title;
           this.formType.nativeElement.value = form.display || 'form';
+          this.formReady = true;
           this.builderReady.then(() => {
             this.builder.buildForm(form);
             this.loading = false;
@@ -60,7 +61,10 @@ export class FormManagerEditComponent implements AfterViewInit {
         }).catch(err => {
           this.alerts.setAlert({type: 'danger', message: (err.message || err)});
           this.loading = false;
+          this.formReady = true;
         });
+      } else {
+        this.formReady = true;
       }
 
       this.formType.nativeElement.addEventListener('change', () => {
