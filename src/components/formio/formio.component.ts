@@ -91,6 +91,10 @@ export class FormioComponent implements OnInit, OnChanges {
     if (this.formio) {
       this.formio.destroy();
     }
+    // Clear out the element to render the new form.
+    if (this.formioElement && this.formioElement.nativeElement) {
+      this.formioElement.nativeElement.innerHTML = '';
+    }
     const Renderer = this.renderer || Form;
     this.formio = (new Renderer(this.formioElement ? this.formioElement.nativeElement : null,
       this.form,

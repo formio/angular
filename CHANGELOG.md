@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.9.5
+#### Fixed
+ - Problem where the form manager would add duplicate tags.
+ - Issues where the form renderer would sometimes duplicate entries when re-rendered.
+
 ### 3.9.4
 #### Fixed
  - Issues where the form could get reset when the display type changes.
