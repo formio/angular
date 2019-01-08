@@ -277,12 +277,14 @@ export class FormioComponent implements OnInit, OnChanges {
     this.nextPage.emit(data);
   }
 
-  onSubmit(submission: any, saved: boolean) {
+  onSubmit(submission: any, saved: boolean, noemit?: boolean) {
     this.submitting = false;
     if (saved) {
       this.formio.emit('submitDone', submission);
     }
-    this.submit.emit(submission);
+    if (!noemit) {
+      this.submit.emit(submission);
+    }
     if (!this.success) {
       this.alerts.setAlert({
         type: 'success',

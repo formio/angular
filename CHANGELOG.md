@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.9.6
+#### Changed
+ - The saveDraft feature to use the core version of the implementation.
+ - Added a way to stop the emit of onSubmit handler when onSubmit is called.
+
 ### 3.9.5
 #### Fixed
  - Problem where the form manager would add duplicate tags.
