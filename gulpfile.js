@@ -249,8 +249,7 @@ gulp.task('rollup-resource:umd', () => rollupUmd('formio-resource', '/resource')
  */
 gulp.task('copy:build', function copyBuild() {
   return gulp.src([
-    `${buildFolder}/**/*`,
-    //`!${buildFolder}/**/*.js`
+    `${buildFolder}/**/*`
   ])
     .pipe(gulp.dest(distFolder));
 });
@@ -334,8 +333,8 @@ gulp.task('compile', gulp.series(
     'rollup-grid:umd',
     'rollup-resource:umd'
   ),
+  'copy:build',
   gulp.parallel(
-    'copy:build',
     'copy:manifest',
     'copy-auth:manifest',
     'copy-manager:manifest',
