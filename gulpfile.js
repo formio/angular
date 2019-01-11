@@ -17,7 +17,7 @@ const tmpFolder = path.join(rootFolder, '.tmp');
 const buildFolder = path.join(rootFolder, 'build');
 const distFolder = path.join(rootFolder, 'dist');
 
-gulp.task('package-version', function() {
+gulp.task('package-version', function packageVersion() {
   const pkg = require('./package.json');
   return gulp.src([
     `${distFolder}/package.json`,
@@ -34,11 +34,10 @@ gulp.task('package-version', function() {
 /**
  * 1. Delete /dist folder
  */
-gulp.task('clean:dist', function () {
-
+gulp.task('clean:dist', function cleanDist() {
   // Delete contents but not dist folder to avoid broken npm links
   // when dist directory is removed while npm link references it.
-  return fs.emptyDirSync(distFolder);
+  return fs.emptyDir(distFolder);
 });
 
 /**
@@ -82,8 +81,7 @@ gulp.task('builder-css', () => {
  *    We do this on the /.tmp folder to avoid editing the original /src files
  */
 gulp.task('inline-resources', function () {
-  return Promise.resolve()
-    .then(() => inlineResources(tmpFolder));
+  return inlineResources(tmpFolder);
 });
 
 
@@ -93,54 +91,54 @@ gulp.task('inline-resources', function () {
  *
  *    As of Angular 5, ngc accepts an array and no longer returns a promise.
  */
-gulp.task('ngc', function () {
+gulp.task('ngc', function (done) {
   ngc(['--project', `${tmpFolder}/tsconfig.es5.json`]);
-  return Promise.resolve()
+  return done()
 });
 
-gulp.task('ngc-angular', function () {
+gulp.task('ngc-angular', function (done) {
   ngc(['--project', `${tmpFolder}/tsconfig.angular.json`]);
-  return Promise.resolve()
+  return done()
 });
 
-gulp.task('ngc-auth', function () {
+gulp.task('ngc-auth', function (done) {
   ngc(['--project', `${tmpFolder}/auth/tsconfig.es5.json`]);
-  return Promise.resolve()
+  return done()
 });
 
-gulp.task('ngc-auth-angular', function () {
+gulp.task('ngc-auth-angular', function (done) {
   ngc(['--project', `${tmpFolder}/auth/tsconfig.angular.json`]);
-  return Promise.resolve()
+  return done()
 });
 
-gulp.task('ngc-manager', function () {
+gulp.task('ngc-manager', function (done) {
   ngc(['--project', `${tmpFolder}/manager/tsconfig.es5.json`]);
-  return Promise.resolve()
+  return done()
 });
 
-gulp.task('ngc-manager-angular', function () {
+gulp.task('ngc-manager-angular', function (done) {
   ngc(['--project', `${tmpFolder}/manager/tsconfig.angular.json`]);
-  return Promise.resolve()
+  return done()
 });
 
-gulp.task('ngc-grid', function () {
+gulp.task('ngc-grid', function (done) {
   ngc(['--project', `${tmpFolder}/grid/tsconfig.es5.json`]);
-  return Promise.resolve()
+  return done()
 });
 
-gulp.task('ngc-grid-angular', function () {
+gulp.task('ngc-grid-angular', function (done) {
   ngc(['--project', `${tmpFolder}/grid/tsconfig.angular.json`]);
-  return Promise.resolve()
+  return done()
 });
 
-gulp.task('ngc-resource', function () {
+gulp.task('ngc-resource', function (done) {
   ngc(['--project', `${tmpFolder}/resource/tsconfig.es5.json`]);
-  return Promise.resolve()
+  return done()
 });
 
-gulp.task('ngc-resource-angular', function () {
+gulp.task('ngc-resource-angular', function (done) {
   ngc(['--project', `${tmpFolder}/resource/tsconfig.angular.json`]);
-  return Promise.resolve()
+  return done()
 });
 
 /**
@@ -249,7 +247,7 @@ gulp.task('rollup-resource:umd', () => rollupUmd('formio-resource', '/resource')
  *    because with don't need individual modules anymore, just the Flat ES module generated
  *    on step 5.
  */
-gulp.task('copy:build', function () {
+gulp.task('copy:build', function copyBuild() {
   return gulp.src([
     `${buildFolder}/**/*`,
     //`!${buildFolder}/**/*.js`
@@ -260,23 +258,23 @@ gulp.task('copy:build', function () {
 /**
  * 8. Copy package.json from /src to /dist
  */
-gulp.task('copy:manifest', function () {
+gulp.task('copy:manifest', function copyManifest() {
   return gulp.src([`${srcFolder}/package.json`])
     .pipe(gulp.dest(distFolder));
 });
-gulp.task('copy-auth:manifest', function () {
+gulp.task('copy-auth:manifest', function copyAuthManifest() {
   return gulp.src([`${srcFolder}/auth/package.json`])
     .pipe(gulp.dest(`${distFolder}/auth`));
 });
-gulp.task('copy-manager:manifest', function () {
+gulp.task('copy-manager:manifest', function copyManagerManifest() {
   return gulp.src([`${srcFolder}/manager/package.json`])
     .pipe(gulp.dest(`${distFolder}/auth`));
 });
-gulp.task('copy-grid:manifest', function () {
+gulp.task('copy-grid:manifest', function copyGridManifest() {
   return gulp.src([`${srcFolder}/grid/package.json`])
     .pipe(gulp.dest(`${distFolder}/grid`));
 });
-gulp.task('copy-resource:manifest', function () {
+gulp.task('copy-resource:manifest', function copyResourceManifest() {
   return gulp.src([`${srcFolder}/resource/package.json`])
     .pipe(gulp.dest(`${distFolder}/resource`));
 });
@@ -284,7 +282,7 @@ gulp.task('copy-resource:manifest', function () {
 /**
  * 9. Copy README.md from / to /dist
  */
-gulp.task('copy:readme', function () {
+gulp.task('copy:readme', function cleanReadme() {
   return gulp.src([path.join(rootFolder, 'README.MD')])
     .pipe(gulp.dest(distFolder));
 });
@@ -292,26 +290,28 @@ gulp.task('copy:readme', function () {
 /**
  * 10. Delete /.tmp folder
  */
-gulp.task('clean:tmp', function () {
-  return deleteFolder(tmpFolder);
+gulp.task('clean:tmp', function cleanTemp() {
+  return fs.remove(tmpFolder);
 });
 
 /**
  * 11. Delete /build folder
  */
-gulp.task('clean:build', function () {
-  return deleteFolder(buildFolder);
+gulp.task('clean:build', function cleanBuild() {
+  return fs.remove(buildFolder);
 });
 
-gulp.task('compile', function () {
-  runSequence(
-    'clean:dist',
-    'copy:source',
+gulp.task('compile', gulp.series(
+  'clean:dist',
+  'copy:source',
+  gulp.parallel(
     'styles-formio',
     'styles-builder',
     'formio-css',
-    'builder-css',
-    'inline-resources',
+    'builder-css'
+  ),
+  'inline-resources',
+  gulp.parallel(
     'ngc',
     'ngc-angular',
     'ngc-auth',
@@ -321,61 +321,42 @@ gulp.task('compile', function () {
     'ngc-grid',
     'ngc-grid-angular',
     'ngc-resource',
-    'ngc-resource-angular',
-    /*'rollup:fesm',   // This currently causes a problem with the decorators.
+    'ngc-resource-angular'
+  ),
+  gulp.parallel(
+    'rollup:fesm',
     'rollup-auth:fesm',
     'rollup-grid:fesm',
-    'rollup-resource:fesm',*/
+    'rollup-resource:fesm',
     'rollup:umd',
     'rollup-auth:umd',
     'rollup-manager:umd',
     'rollup-grid:umd',
-    'rollup-resource:umd',
+    'rollup-resource:umd'
+  ),
+  gulp.parallel(
     'copy:build',
     'copy:manifest',
     'copy-auth:manifest',
     'copy-manager:manifest',
     'copy-grid:manifest',
     'copy-resource:manifest',
-    'copy:readme',
+    'copy:readme'
+  ),
+  gulp.parallel(
     'clean:build',
-    'clean:tmp',
-    function (err) {
-      if (err) {
-        console.log('ERROR:', err.message);
-        deleteFolder(distFolder);
-        deleteFolder(tmpFolder);
-        deleteFolder(buildFolder);
-      } else {
-        console.log('Compilation finished succesfully');
-      }
-    });
-});
+    'clean:tmp'
+  )
+));
 
 /**
  * Watch for any change in the /src folder and compile files
  */
-gulp.task('watch', function () {
-  gulp.watch(`${srcFolder}/**/*`, ['compile']);
+gulp.task('watch', function watch() {
+  return gulp.watch(`${srcFolder}/**/*`, gulp.series('compile'));
 });
 
-gulp.task('clean', function (callback) {
-  runSequence('clean:dist', 'clean:tmp', 'clean:build', callback);
-});
-
-gulp.task('build', function (callback) {
-  runSequence('clean', 'compile', callback);
-});
-
-gulp.task('build:watch', function (callback) {
-  runSequence('build', 'watch', callback);
-});
-
-gulp.task('default', ['build:watch']);
-
-/**
- * Deletes the specified folder
- */
-function deleteFolder(folder) {
-  return fs.removeSync(folder);
-}
+gulp.task('clean', gulp.parallel('clean:dist', 'clean:tmp', 'clean:build'));
+gulp.task('build', gulp.series('clean', 'compile'));
+gulp.task('build:watch', gulp.series('build', 'watch'));
+gulp.task('default', gulp.series('build:watch'));
