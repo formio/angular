@@ -4,6 +4,7 @@ import { FormManagerConfig } from './form-manager.config';
 import { Formio } from 'formiojs';
 import { ActivatedRoute } from '@angular/router';
 import { FormioAuthService } from '../auth/auth.service';
+import { submissionPermissions } from '../formio.utils';
 import _each from 'lodash/each';
 import _intersection from 'lodash/intersection';
 
@@ -15,6 +16,8 @@ export class FormManagerService {
   public ownAccessMap: any;
   public ready: Promise<any>;
   public actionAllowed: any;
+  public form = null;
+  public perms = {delete: false, edit: false};
 
   constructor(
     public appConfig: FormioAppConfig,
@@ -122,6 +125,7 @@ export class FormManagerService {
   }
 
   setForm(form: any) {
+    this.form = form;
     if (form.access) {
       // Check if they have access here.
       form.access.forEach(access => {
@@ -153,6 +157,15 @@ export class FormManagerService {
       route.params.subscribe(params => {
         this.formio = new Formio(`${this.formio.submissionsUrl}/${params.id}`);
         resolve(this.formio);
+      });
+    });
+  }
+
+  submissionLoaded(submission: any) {
+    this.auth.ready.then(() => {
+      submissionPermissions(this.formio, this.form, submission, this.auth.user).then((perms) => {
+        this.perms.delete = perms.delete;
+        this.perms.edit = perms.edit;
       });
     });
   }

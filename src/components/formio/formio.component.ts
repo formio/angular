@@ -59,6 +59,7 @@ export class FormioComponent implements OnInit, OnChanges {
   @Output() invalid = new EventEmitter<boolean>();
   @Output() errorChange = new EventEmitter<any>();
   @Output() formLoad = new EventEmitter<any>();
+  @Output() submissionLoad = new EventEmitter<any>();
   @Output() ready = new EventEmitter<FormioComponent>();
   @ViewChild('formio') formioElement?: ElementRef;
 
@@ -135,6 +136,11 @@ export class FormioComponent implements OnInit, OnChanges {
       this.loader.loading = false;
       this.ready.emit(this);
       this.formioReadyResolve(this.formio);
+      if (this.formio.submissionReady) {
+        this.formio.submissionReady.then((submission) => {
+          this.submissionLoad.emit(submission);
+        });
+      }
       return this.formio;
     });
   }

@@ -3,4 +3,5 @@
   [src]="service.formio.submissionUrl"
   [readOnly]="true"
   (formLoad)="service.setForm($event)"
+  (submissionLoad)="service.submissionLoaded($event)"
 ></formio>

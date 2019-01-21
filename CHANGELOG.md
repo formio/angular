@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.10.0
+### Changed
+ - Upgraded all dependencies.
+ 
+### Fixed
+ - Issue where delete and edit tabs would show up when they do not have permissions for those operations.
+
 ### 3.9.6
 #### Changed
  - The saveDraft feature to use the core version of the implementation.

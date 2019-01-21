@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
@@ -7,6 +7,7 @@ import { FormioResourceConfig } from '../resource.config';
   templateUrl: './edit.component.html'
 })
 export class FormioResourceEditComponent {
+  public triggerError: EventEmitter<any> = new EventEmitter();
   constructor(
     public service: FormioResourceService,
     public route: ActivatedRoute,
@@ -17,8 +18,10 @@ export class FormioResourceEditComponent {
   onSubmit(submission: any) {
     const edit = this.service.resource;
     edit.data = submission.data;
-    this.service.save(edit).then(() => {
-      this.router.navigate(['../', 'view'], { relativeTo: this.route });
-    });
+    this.service.save(edit)
+      .then(() => {
+        this.router.navigate(['../', 'view'], { relativeTo: this.route });
+      })
+      .catch((err) => this.triggerError.emit(err));
   }
 }
