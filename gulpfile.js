@@ -334,7 +334,7 @@ gulp.task('compile', gulp.series(
     'rollup-resource:umd'
   ),
   'copy:build',
-  gulp.parallel(
+  gulp.series(
     'copy:manifest',
     'copy-auth:manifest',
     'copy-manager:manifest',
