@@ -14,6 +14,7 @@ export class GridBodyComponent {
   public firstItem = 0;
   public lastItem = 0;
   public skip = 0;
+  public limit = 0;
   public total = 0;
   constructor() {
     this.rowSelect = new EventEmitter();
@@ -47,6 +48,7 @@ export class GridBodyComponent {
     this.firstItem = query.skip + 1;
     this.lastItem = this.firstItem + items.length - 1;
     this.total = items.serverCount;
+    this.limit = query.limit;
     this.skip = Math.floor(items.skip / query.limit) + 1;
     this.loading = false;
     each(items, (item: any) => {
