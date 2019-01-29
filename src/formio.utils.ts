@@ -40,15 +40,15 @@ export function submissionPermissions(formio: any, form: any, submission: any, u
         if (
           perm.type === 'delete_all' ||
           perm.type === 'delete_own' ||
-          perm.type === 'edit_all' ||
-          perm.type === 'edit_own'
+          perm.type === 'update_all' ||
+          perm.type === 'update_own'
         ) {
           if (intersection(perm.roles, user.roles).length) {
-            if (perm.type === 'edit_all') {
+            if (perm.type === 'update_all') {
               perms.edit = true;
             } else if (perm.type === 'delete_all') {
               perms.delete = true;
-            } else if (perm.type === 'edit_own' && (user._id === submission.owner)) {
+            } else if (perm.type === 'update_own' && (user._id === submission.owner)) {
               perms.edit = true;
             } else if (perm.type === 'delete_own' && (user._id === submission.owner)) {
               perms.delete = true;
