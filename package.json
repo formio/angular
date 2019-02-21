@@ -104,6 +104,7 @@
     "zone.js": "^0.8.26"
   },
   "dependencies": {
+    "@ng-bootstrap/ng-bootstrap": "^4.0.3",
     "formiojs": "^3.13.1",
     "lodash": "^4.17.11",
     "ngx-bootstrap": "^3.2.0"

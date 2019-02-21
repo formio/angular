@@ -6,6 +6,7 @@ export interface FormManagerRouteConfig {
   form?: any;
   formView?: any;
   formEdit?: any;
+  formEmbed?: any;
   formDelete?: any;
   submissionIndex?: any;
   submission?: any;
