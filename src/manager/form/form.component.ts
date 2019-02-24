@@ -10,7 +10,7 @@ import { Formio } from 'formiojs';
   templateUrl: './form.component.html'
 })
 export class FormManagerFormComponent implements OnInit {
-  choice: any = 'isUrl';
+  choice: any = 'isEmbed';
   embedCode: any;
   formio: any;
   formUrl: any;

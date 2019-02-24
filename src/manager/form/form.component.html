@@ -6,12 +6,12 @@
     <li *ngIf="service.actionAllowed('formEdit')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="edit" routerLinkActive="active"><i class="fa fa-edit glyphicon glyphicon-edit"></i> Edit Form</a></li>
     <li *ngIf="service.actionAllowed('formDelete')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="delete" routerLinkActive="active"><span class="fa fa-trash glyphicon glyphicon-trash"></span></a></li>
   </ul>
-  <button *ngIf="options.activateEmbed" class="btn btn-sm btn-outline-primary" (click)="openLg(content)"><i class="fa fa-share-alt glyphicon glyphicon-share"></i> Share Form</button>
+  <button *ngIf="options.activateEmbed" class="btn btn-sm btn-outline-primary" (click)="openLg(content)"><i class="fa fa-share-alt glyphicon glyphicon-share"></i> Embed Code</button>
 </div>
 <router-outlet></router-outlet>
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Share Form</h4>
+    <h4 class="modal-title">Embed Code</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -19,10 +19,10 @@
   <div class="modal-body">
     <ul class="nav nav-tabs mr-auto">
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active': choice === 'isUrl'}" (click)="choices('isUrl')"><i class="fa fa-link"></i> URL</a>
+        <a class="nav-link" [ngClass]="{'active': choice === 'isEmbed'}" (click)="choices('isEmbed')"><i class="fa fa-code"></i> Embed Code</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active': choice === 'isEmbed'}" (click)="choices('isEmbed')"><i class="fa fa-code"></i> Embed Code</a>
+        <a class="nav-link" [ngClass]="{'active': choice === 'isUrl'}" (click)="choices('isUrl')"><i class="fa fa-link"></i>Share Form URL</a>
       </li>
     </ul>
     <h5 class="mt-1" *ngIf="choice === 'isUrl'">Share url</h5>

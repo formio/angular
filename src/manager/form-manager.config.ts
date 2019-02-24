@@ -21,6 +21,6 @@ export class FormManagerConfig {
   public includeSearch = false;
   public saveDraft = false;
   public builder: any;
-  public activateEmbed = true;
+  public activateEmbed?: true;
   public renderer: any;
 }
