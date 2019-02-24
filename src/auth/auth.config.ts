@@ -10,6 +10,8 @@ export interface FormioAuthRouteConfig {
   auth?: any;
   login?: any;
   register?: any;
+  verify?: any;
+
 }
 
 @Injectable()
@@ -17,4 +19,6 @@ export class FormioAuthConfig {
   component?: any;
   login?: FormioAuthFormConfig;
   register?: FormioAuthFormConfig;
+  verify?: FormioAuthFormConfig;
+  redirect =  '';
 }

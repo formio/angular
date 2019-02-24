@@ -18,6 +18,9 @@ export class FormioAuthService {
   public onUser: EventEmitter<object>;
   public onError: EventEmitter<any>;
 
+  public verifyForm: string;
+  public onVerify: EventEmitter<object>;
+
   public ready: Promise<boolean>;
   public readyResolve: any;
   public readyReject: any;
@@ -52,6 +55,10 @@ export class FormioAuthService {
       this.appConfig.appUrl +
       '/' +
       get(this.config, 'register.form', 'user/login');
+    this.verifyForm =
+      this.appConfig.appUrl +
+      '/' +
+      get(this.config, 'verify.form', 'createpassword');
     this.onLogin = new EventEmitter();
     this.onLogout = new EventEmitter();
     this.onRegister = new EventEmitter();

@@ -8,6 +8,7 @@ import { FormioAuthRegisterComponent } from './register/register.component';
 import { FormioAuthRouteConfig } from './auth.config';
 import { FormioAuthRoutes } from './auth.routes';
 import { extendRouter } from '../formio.utils';
+import {FormioAuthVerifyComponent} from './verify/verify.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { extendRouter } from '../formio.utils';
   declarations: [
     FormioAuthComponent,
     FormioAuthLoginComponent,
-    FormioAuthRegisterComponent
+    FormioAuthRegisterComponent,
+    FormioAuthVerifyComponent
   ]
 })
 export class FormioAuth {

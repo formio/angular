@@ -52,6 +52,8 @@ export class UsersIndexComponent implements OnInit {
         }
       });
       this.inviteSubmission.data.invited = true;
+      this.inviteSubmission.data.appUrl = window.location.origin;
+      this.inviteSubmission.data.projectUrl = encodeURIComponent(this.service.formio.projectUrl);
     });
     this.modalService.open(content, { size: 'lg' });
   }

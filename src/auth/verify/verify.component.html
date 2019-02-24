@@ -1,0 +1,2 @@
+<h5 *ngIf="isVerified" class="text-center">Thanks for verify your account, please create your password.</h5>
+<formio *ngIf="isVerified" [src]="service.verifyForm" [submission]="submission" (submit)="onSubmit($event)"></formio>
