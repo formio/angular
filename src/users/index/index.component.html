@@ -1,0 +1,22 @@
+<formio-grid
+  [src]="gridSrc"
+  (rowSelect)="onSelect($event)"
+  (error)="service.onError($event)"
+  (createItem)="config.userInvite ? inviteUser(userForm): onCreateItem()"
+  [createText]="createText"
+></formio-grid>
+<ng-template #userForm let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Send Invite</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <formio *ngIf="!inviting" [form]="inviteForm" [submission]="inviteSubmission" (submit)="sendInvite($event, modal)"></formio>
+    <h4 *ngIf="inviting">Sending invite...</h4>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

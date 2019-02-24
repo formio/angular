@@ -22,8 +22,8 @@
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
     "fullTemplateTypeCheck": true,
-    "flatModuleOutFile": "user-manager.js",
-    "flatModuleId": "user-manager"
+    "flatModuleOutFile": "formio-users.js",
+    "flatModuleId": "formio-users"
   },
   "files": [
     "./index.ts"

@@ -1,0 +1,13 @@
+<h3 *ngIf="service.form" style="margin-top:0;">
+  <a routerLink="../" class="back-button">
+    <i class="fa fa-chevron-left glyphicon glyphicon-chevron-left"></i>
+  </a> | New {{ service.form.title }}
+</h3>
+<formio
+  [form]="service.form"
+  [submission]="service.resource"
+  [refresh]="service.refresh"
+  [error]="onError"
+  [success]="onSuccess"
+  (submit)="onSubmit($event)"
+></formio>

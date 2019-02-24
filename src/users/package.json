@@ -1,5 +1,5 @@
 {
-  "name": "user-manager",
+  "name": "formio-resource",
   "version": "",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/formio/angular-formio/issues"
   },
-  "main": "user-manager.umd.js",
+  "main": "formio-users.umd.js",
   "module": "index.js",
   "jsnext:main": "index.js",
   "typings": "index.d.ts",

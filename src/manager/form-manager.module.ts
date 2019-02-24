@@ -19,6 +19,7 @@ import { FormManagerRouteConfig } from './form-manager.config';
 import { FormManagerRoutes } from './form-manager.routes';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { extendRouter } from '../formio.utils';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +27,7 @@ import { extendRouter } from '../formio.utils';
     RouterModule,
     FormsModule,
     FormioGrid,
+    NgbModule,
     PaginationModule.forRoot()
   ],
   declarations: [
