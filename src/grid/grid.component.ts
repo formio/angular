@@ -20,6 +20,7 @@ import { GridBodyComponent } from './GridBodyComponent';
 import { GridFooterComponent } from './GridFooterComponent';
 import FormComponents from './form/index';
 import SubmissionComponents from './submission/index';
+import UserComponents from './users/index';
 
 @Component({
   selector: 'formio-grid',
@@ -94,7 +95,10 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
 
   ngOnInit() {
     // Create our components.
-    const comps = this.components || ((this.gridType === 'form') ? FormComponents : SubmissionComponents);
+    let comps = this.components || ((this.gridType === 'form') ? FormComponents : SubmissionComponents);
+    if (this.gridType === 'user') {
+      comps = this.components || UserComponents;
+    }
 
     this.header = this.createComponent(this.headerElement, comps.header);
     this.header.actionAllowed = this.actionAllowed.bind(this);
