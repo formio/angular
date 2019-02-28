@@ -11,6 +11,7 @@ export interface FormioAuthRouteConfig {
   login?: any;
   register?: any;
   verify?: any;
+  reset?: any;
 
 }
 
@@ -20,5 +21,7 @@ export class FormioAuthConfig {
   login?: FormioAuthFormConfig;
   register?: FormioAuthFormConfig;
   verify?: FormioAuthFormConfig;
+  reset?: FormioAuthFormConfig;
+  enableReset?: true;
   redirect =  '';
 }

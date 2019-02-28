@@ -4,6 +4,7 @@ import { FormioAuthComponent } from './auth.component';
 import { FormioAuthLoginComponent } from './login/login.component';
 import { FormioAuthRegisterComponent } from './register/register.component';
 import {FormioAuthVerifyComponent} from './verify/verify.component';
+import {FormioAuthResetComponent} from './reset/reset.component';
 export function FormioAuthRoutes(config?: FormioAuthRouteConfig): Routes {
   return [
     {
@@ -26,6 +27,10 @@ export function FormioAuthRoutes(config?: FormioAuthRouteConfig): Routes {
         {
           path: 'verify',
           component: config && config.verify ? config.verify : FormioAuthVerifyComponent
+        },
+        {
+          path: 'reset',
+          component: config && config.reset ? config.reset : FormioAuthResetComponent
         }
       ]
     }

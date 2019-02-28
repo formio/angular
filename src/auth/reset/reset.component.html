@@ -1,0 +1,2 @@
+<h5 *ngIf="emailSent" class="text-center">Thanks, we have sent an email. Check your inbox.</h5>
+<formio *ngIf="!emailSent" [src]="service.resetForm" [submission]="submission" (submit)="onSubmit($event)"></formio>

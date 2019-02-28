@@ -9,6 +9,7 @@ import { FormioAuthRouteConfig } from './auth.config';
 import { FormioAuthRoutes } from './auth.routes';
 import { extendRouter } from '../formio.utils';
 import {FormioAuthVerifyComponent} from './verify/verify.component';
+import {FormioAuthResetComponent} from './reset/reset.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {FormioAuthVerifyComponent} from './verify/verify.component';
     FormioAuthComponent,
     FormioAuthLoginComponent,
     FormioAuthRegisterComponent,
-    FormioAuthVerifyComponent
+    FormioAuthVerifyComponent,
+    FormioAuthResetComponent
   ]
 })
 export class FormioAuth {
