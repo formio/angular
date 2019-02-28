@@ -5,8 +5,8 @@ import {FormioUsersService} from '../users.service';
 import {FormioUsersConfig} from '../users.config';
 import {FormioAppConfig} from '../../formio.config';
 import FormioUtils from 'formiojs/utils';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormioGridComponent} from '../../grid/grid.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   templateUrl: './index.component.html'
