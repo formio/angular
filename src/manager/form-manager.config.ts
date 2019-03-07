@@ -6,6 +6,7 @@ export interface FormManagerRouteConfig {
   form?: any;
   formView?: any;
   formEdit?: any;
+  formEmbed?: any;
   formDelete?: any;
   submissionIndex?: any;
   submission?: any;
@@ -19,6 +20,7 @@ export class FormManagerConfig {
   public tag = '';
   public includeSearch = false;
   public saveDraft = false;
-  public builder: any;
+  public builder?: any;
+  public viewer?: string;
   public renderer: any;
 }

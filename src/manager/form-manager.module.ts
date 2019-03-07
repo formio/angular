@@ -18,6 +18,7 @@ import { SubmissionIndexComponent } from './submission/index/index.component';
 import { FormManagerRouteConfig } from './form-manager.config';
 import { FormManagerRoutes } from './form-manager.routes';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { extendRouter } from '../formio.utils';
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { extendRouter } from '../formio.utils';
     RouterModule,
     FormsModule,
     FormioGrid,
+    ModalModule.forRoot(),
     PaginationModule.forRoot()
   ],
   declarations: [
