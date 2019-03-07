@@ -121,16 +121,6 @@ gulp.task('ngc-manager-angular', function (done) {
   return done()
 });
 
-gulp.task('ngc-user', function (done) {
-  ngc(['--project', `${tmpFolder}/user/tsconfig.es5.json`]);
-  return done()
-});
-
-gulp.task('ngc-user-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/user/tsconfig.angular.json`]);
-  return done()
-});
-
 gulp.task('ngc-grid', function (done) {
   ngc(['--project', `${tmpFolder}/grid/tsconfig.es5.json`]);
   return done()
@@ -189,7 +179,6 @@ const rollupFesm = function(name, path) {
 gulp.task('rollup:fesm', () => rollupFesm('angular-formio'));
 gulp.task('rollup-auth:fesm', () => rollupFesm('formio-auth', '/auth'));
 gulp.task('rollup-manager:fesm', () => rollupFesm('formio-manager', '/manager'));
-gulp.task('rollup-user:fesm', () => rollupFesm('user-manager', '/user'));
 gulp.task('rollup-grid:fesm', () => rollupFesm('formio-grid', '/grid'));
 gulp.task('rollup-resource:fesm', () => rollupFesm('formio-resource', '/resource'));
 
@@ -250,7 +239,6 @@ const rollupUmd = function(name, path) {
 gulp.task('rollup:umd', () => rollupUmd('angular-formio'));
 gulp.task('rollup-auth:umd', () => rollupUmd('formio-auth', '/auth'));
 gulp.task('rollup-manager:umd', () => rollupUmd('formio-manager', '/manager'));
-gulp.task('rollup-user:umd', () => rollupUmd('user-manager', '/user'));
 gulp.task('rollup-grid:umd', () => rollupUmd('formio-grid', '/grid'));
 gulp.task('rollup-resource:umd', () => rollupUmd('formio-resource', '/resource'));
 
@@ -279,10 +267,6 @@ gulp.task('copy-auth:manifest', function copyAuthManifest() {
 });
 gulp.task('copy-manager:manifest', function copyManagerManifest() {
   return gulp.src([`${srcFolder}/manager/package.json`])
-    .pipe(gulp.dest(`${distFolder}/auth`));
-});
-gulp.task('copy-user:manifest', function copyUserManifest() {
-  return gulp.src([`${srcFolder}/user/package.json`])
     .pipe(gulp.dest(`${distFolder}/auth`));
 });
 gulp.task('copy-grid:manifest', function copyGridManifest() {
@@ -333,8 +317,6 @@ gulp.task('compile', gulp.series(
     'ngc-auth-angular',
     'ngc-manager',
     'ngc-manager-angular',
-    'ngc-user',
-    'ngc-user-angular',
     'ngc-grid',
     'ngc-grid-angular',
     'ngc-resource',
@@ -348,7 +330,6 @@ gulp.task('compile', gulp.series(
     'rollup:umd',
     'rollup-auth:umd',
     'rollup-manager:umd',
-    'rollup-user:umd',
     'rollup-grid:umd',
     'rollup-resource:umd'
   ),
@@ -357,7 +338,6 @@ gulp.task('compile', gulp.series(
     'copy:manifest',
     'copy-auth:manifest',
     'copy-manager:manifest',
-    'copy-user:manifest',
     'copy-grid:manifest',
     'copy-resource:manifest',
     'copy:readme'

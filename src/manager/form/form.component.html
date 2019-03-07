@@ -6,13 +6,13 @@
     <li *ngIf="service.actionAllowed('formEdit')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="edit" routerLinkActive="active"><i class="fa fa-edit glyphicon glyphicon-edit"></i> Edit Form</a></li>
     <li *ngIf="service.actionAllowed('formDelete')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="delete" routerLinkActive="active"><span class="fa fa-trash glyphicon glyphicon-trash"></span></a></li>
   </ul>
-  <button *ngIf="options.activateEmbed" class="btn btn-sm btn-outline-primary" (click)="openLg(content)"><i class="fa fa-share-alt glyphicon glyphicon-share"></i> Embed Code</button>
+  <button *ngIf="options.viewer" class="btn btn-sm btn-outline-primary" (click)="openEmbed(content)"><i class="fa fa-share-alt glyphicon glyphicon-share"></i> Embed Code</button>
 </div>
 <router-outlet></router-outlet>
-<ng-template #content let-modal>
+<ng-template #content>
   <div class="modal-header">
     <h4 class="modal-title">Embed Code</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -31,6 +31,6 @@
     <pre  *ngIf="choice === 'isEmbed'"><textarea onclick="this.focus();this.select()" readonly="readonly" style="width:100%;" rows="8" [ngModel]="embedCode"></textarea></pre>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-light" (click)="modalRef.hide()">Close</button>
   </div>
 </ng-template>
