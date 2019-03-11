@@ -1,15 +1,18 @@
-import { Component, OnInit, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormManagerService } from '../form-manager.service';
 import { FormManagerConfig } from '../form-manager.config';
+import {FormioGridComponent} from '../../grid/grid.component';
 
 @Component({
-  templateUrl: './index.component.html'
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss']
 })
 export class FormManagerIndexComponent implements OnInit {
+  @ViewChild(FormioGridComponent) formGrid: FormioGridComponent;
   public gridQuery: any;
   public refreshGrid: EventEmitter<object>;
-  @ViewChild('search') search: ElementRef;
+  public search = '';
   constructor(
     public service: FormManagerService,
     public route: ActivatedRoute,
@@ -20,19 +23,46 @@ export class FormManagerIndexComponent implements OnInit {
     this.refreshGrid = new EventEmitter();
   }
 
+  loadGrid() {
+    this.search = localStorage.getItem('searchInput');
+    this.gridQuery = JSON.parse(localStorage.getItem('query')) || this.gridQuery;
+    const currentPage = +localStorage.getItem('currentPage') || 1;
+    this.formGrid.refreshGrid(this.gridQuery);
+    this.formGrid.setPage(currentPage);
+  }
+
   ngOnInit() {
     this.service.reset();
+    this.service.ready.then(() => {
+      this.loadGrid();
+      this.formGrid.footer.pageChanged.subscribe(page => {
+        localStorage.setItem('currentPage', page.page);
+      });
+    });
   }
 
   onSearch() {
-    const searchInput = this.search.nativeElement.value;
+    const searchInput = this.search;
     if (searchInput.length > 0) {
       this.gridQuery.skip = 0;
       this.gridQuery.title__regex = '/' + searchInput + '/i';
     } else {
       delete this.gridQuery.title__regex;
     }
+    localStorage.setItem('query', JSON.stringify(this.gridQuery));
+    localStorage.setItem('searchInput', this.search);
+    this.formGrid.pageChanged(1);
     this.refreshGrid.emit(this.gridQuery);
+  }
+
+  clearSearch() {
+    this.gridQuery = {tags: this.config.tag, type: 'form'};
+    localStorage.removeItem('query');
+    localStorage.removeItem('searchInput');
+    localStorage.removeItem('currentPage');
+    this.search = '';
+    this.formGrid.pageChanged(1);
+    this.formGrid.refreshGrid(this.gridQuery);
   }
 
   onAction(action: any) {

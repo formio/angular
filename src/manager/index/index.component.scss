@@ -1,0 +1,21 @@
+.form-clear {
+  align-items: center;
+  background: #cecece;
+  border-radius: 50%;
+  bottom: 8px;
+  color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  height: 24px;
+  position: absolute;
+  right: 90px;
+  top: 6px;
+  width: 24px;
+  z-index: 10;
+}
+
+.form-clear .fa {
+  font-size: 16px;
+  font-weight: 500;
+}

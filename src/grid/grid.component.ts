@@ -32,6 +32,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() query?: any;
   @Input() refresh?: EventEmitter<object>;
   @Input() gridType?: string;
+  @Input() size?: number;
   @Input() components?: any;
   @Input() formio?: Formio;
   @Input() createText: String;
@@ -111,6 +112,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.footer.body = this.body;
     this.footer.actionAllowed = this.actionAllowed.bind(this);
     this.footer.createText = this.createText;
+    this.footer.size = this.size;
     this.footer.pageChanged.subscribe(page => this.pageChanged(page));
     this.footer.createItem.subscribe(item => this.createItem.emit(item));
   }
@@ -175,6 +177,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     }
     this.loading = true;
     this.ref.detectChanges();
+    Formio.cache = {};
     this.body.load(this.formio, query).then(info => {
       this.loading = false;
       this.initialized = true;
