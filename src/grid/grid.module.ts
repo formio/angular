@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {RouterModule} from '@angular/router';
 import { FormioModule } from '../formio.module';
 import { FormioLoader } from '../components/loader/formio.loader';
 import { FormioAlerts } from '../components/alerts/formio.alerts';
@@ -17,6 +18,7 @@ import { SubmissionGridFooterComponent } from './submission/SubmissionGridFooter
     CommonModule,
     FormsModule,
     FormioModule,
+    RouterModule,
     PaginationModule.forRoot()
   ],
   declarations: [

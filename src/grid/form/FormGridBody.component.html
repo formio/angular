@@ -4,7 +4,7 @@
       <td>
         <div class="row">
           <div class="col-sm-8">
-            <a href="#" (click)="onRowSelect($event, form)"><h5>{{ form.title }}</h5></a>
+            <a routerLink="{{form._id}}/view" (click)="onRowSelect($event, form)"><h5>{{ form.title }}</h5></a>
           </div>
           <div class="col-sm-4">
             <button *ngIf="actionAllowed('formView')" class="btn btn-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'view')"><span class="fa fa-pencil"></span> Enter Data</button>&nbsp;
