@@ -15,6 +15,7 @@ export interface FormioAuthRouteConfig {
 @Injectable()
 export class FormioAuthConfig {
   component?: any;
+  delayAuth?: any;
   login?: FormioAuthFormConfig;
   register?: FormioAuthFormConfig;
 }

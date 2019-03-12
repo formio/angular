@@ -66,7 +66,9 @@ export class FormioAuthService {
     // Register for the core events.
     Formio.events.on('formio.badToken', () => this.logoutError());
     Formio.events.on('formio.sessionExpired', () => this.logoutError());
-    this.init();
+    if (!this.config.delayAuth) {
+      this.init();
+    }
   }
 
   onLoginSubmit(submission: object) {
