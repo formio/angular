@@ -15,5 +15,8 @@ export class FormGridFooterComponent extends GridFooterComponent implements OnIn
     if (!this.createText) {
       this.createText = 'Create Form';
     }
+    if (!this.size) {
+      this.size = 7;
+    }
   }
 }

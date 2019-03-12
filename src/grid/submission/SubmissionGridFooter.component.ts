@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { GridFooterComponent } from '../GridFooterComponent';
 
 @Component({
@@ -6,4 +6,14 @@ import { GridFooterComponent } from '../GridFooterComponent';
   styleUrls: ['../grid.footer.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SubmissionGridFooterComponent extends GridFooterComponent {}
+export class SubmissionGridFooterComponent extends GridFooterComponent implements OnInit {
+  constructor() {
+    super();
+  }
+
+  ngOnInit() {
+    if (!this.size) {
+      this.size = 7;
+    }
+  }
+}

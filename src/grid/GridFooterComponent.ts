@@ -5,6 +5,7 @@ export class GridFooterComponent {
   @Input() header: GridHeaderComponent;
   @Input() body: GridBodyComponent;
   @Input() createText: String;
+  @Input() size: number;
   @Input() actionAllowed: any;
   @Output() pageChanged: EventEmitter<any>;
   @Output() createItem: EventEmitter<any>;
