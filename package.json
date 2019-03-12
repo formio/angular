@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "3.11.0",
+  "version": "3.11.1",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -43,7 +43,7 @@
     "@angular/router": "^7.2.8",
     "@compodoc/compodoc": "^1.1.9",
     "@types/jasmine": "^3.3.9",
-    "@types/node": "^11.10.5",
+    "@types/node": "^11.11.1",
     "angular-in-memory-web-api": "^0.8.0",
     "codelyzer": "^4.5.0",
     "concurrently": "^4.1.0",
@@ -74,7 +74,7 @@
     "path": "^0.12.7",
     "prismjs": "^1.15.0",
     "protractor": "^5.4.2",
-    "rollup": "^1.5.0",
+    "rollup": "^1.6.0",
     "run-sequence": "^2.2.1",
     "rxjs": "^6.4.0",
     "sass-loader": "^7.1.0",
