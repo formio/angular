@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.11.2
+### Fixed
+ - Honor token namespacing when saving and loading the formio user object.
+
 ### 3.10.2
 ### Fixed
  - Issue with the edit permissions in the form resource view pages.

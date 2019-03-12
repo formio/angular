@@ -128,14 +128,15 @@ export class FormioAuthService {
   }
 
   setUser(user: any) {
+    const namespace = Formio.namespace || 'formio';
     if (user) {
       this.user = user;
-      localStorage.setItem('formioAppUser', JSON.stringify(user));
+      localStorage.setItem(`${namespace}AppUser`, JSON.stringify(user));
       this.setUserRoles();
     } else {
       this.user = null;
       this.is = {};
-      localStorage.removeItem('formioAppUser');
+      localStorage.removeItem(`${namespace}AppUser`);
       Formio.clearCache();
       Formio.setUser(null);
     }
