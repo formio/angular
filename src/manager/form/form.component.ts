@@ -13,7 +13,6 @@ export class FormManagerFormComponent implements OnInit {
   choice: any = 'isUrl';
   embedCode: any;
   formio: any;
-  src: any;
   shareUrl: any;
   projectId: any;
   pathName: any;
@@ -33,14 +32,23 @@ export class FormManagerFormComponent implements OnInit {
       this.formio.loadForm().then(form => {
         this.projectId = form.project;
         this.pathName = form.path;
+        this.getShareUrl();
       });
       this.service.reset(this.route);
     });
   }
 
+  public getShareUrl() {
+    const src = this.appConfig.appUrl + '/' + this.pathName;
+    this.shareUrl = `${this.options.viewer}#/?src=${encodeURIComponent(src)}`;
+    return this.shareUrl;
+  }
+
   openEmbed(content: TemplateRef<any>) {
-    this.src = this.appConfig.appUrl + '/' + this.pathName;
-    this.shareUrl = `${this.options.viewer}#/?src=${encodeURIComponent(this.src)}`;
+    let goto = '';
+    if (this.goTo) {
+      goto += `if (d && d.formSubmission && d.formSubmission._id) { window.location.href = "${this.goTo}";}`;
+    }
     let embedCode = '<script type="text/javascript">';
     embedCode += '(function a(d, w, u) {';
     embedCode +=    'var h = d.getElementsByTagName("head")[0];';
@@ -52,14 +60,13 @@ export class FormManagerFormComponent implements OnInit {
     embedCode +=       'if (!f || (typeof w.seamless === u)) {';
     embedCode +=          'return setTimeout(b, 100);';
     embedCode +=       '}';
-    embedCode +=       'w.seamless(f, {fallback:false}).receive(function(d, e) {';
-    embedCode +=          this.goTo ? 'if (d && d.formSubmission && d.formSubmission._id) { window.location.href = "' + this.goTo + '";}' : '';
-    embedCode +=        '});';
+    embedCode +=       'w.seamless(f, {fallback:false}).receive(function(d, e) {' + goto + '});';
     embedCode +=    '};';
     embedCode +=    'h.appendChild(s);';
     embedCode += '})(document, window);';
     embedCode += '</script>';
-    embedCode += '<iframe id="formio-form-' + this.formio.formId + '" style="width:100%;border:none;" height="800px" src="' + this.shareUrl + '&iframe=1"></iframe>';
+    embedCode += '<iframe id="formio-form-' + this.formio.formId + '" ';
+    embedCode +=     'style="width:100%;border:none;" height="800px" src="' + this.shareUrl + '&iframe=1"></iframe>';
     this.embedCode = embedCode;
     this.modalRef = this.modalService.show(content, { class: 'modal-lg' });
   }
