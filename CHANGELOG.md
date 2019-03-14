@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.11.5
+### Fixed
+ - Fix Clear Search, Fix Pagination on Refresh
+
 ### 3.11.3
 ### Added
  - The ability to delay the authentication initialization.
