@@ -32,6 +32,7 @@ export class FormManagerIndexComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.gridQuery = {tags: this.config.tag, type: 'form'};
     this.service.reset();
     this.service.ready.then(() => {
       this.loadGrid();
@@ -51,7 +52,7 @@ export class FormManagerIndexComponent implements OnInit {
     }
     localStorage.setItem('query', JSON.stringify(this.gridQuery));
     localStorage.setItem('searchInput', this.search);
-    this.formGrid.pageChanged(1);
+    this.formGrid.pageChanged({page: 1, itemPerPage: this.gridQuery.limit});
     this.refreshGrid.emit(this.gridQuery);
   }
 
@@ -61,8 +62,9 @@ export class FormManagerIndexComponent implements OnInit {
     localStorage.removeItem('searchInput');
     localStorage.removeItem('currentPage');
     this.search = '';
-    this.formGrid.pageChanged(1);
-    this.formGrid.refreshGrid(this.gridQuery);
+    this.formGrid.pageChanged({page: 1});
+    this.formGrid.query = {};
+    this.formGrid.refreshGrid({tags: this.config.tag, type: 'form'});
   }
 
   onAction(action: any) {

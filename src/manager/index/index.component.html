@@ -9,7 +9,7 @@
   *ngIf="service.ready"
   [formio]="service.formio"
   [gridType]="'form'"
-  [query]="{tags: config.tag, type: 'form'}"
+  [query]="gridQuery"
   [refresh]="refreshGrid"
   [isActionAllowed]="service.actionAllowed"
   (rowAction)="onAction($event)"
