@@ -75,7 +75,7 @@ export class FormManagerEditComponent implements AfterViewInit {
 
   onSave() {
     this.loading = true;
-    this.builderReady.then(() => {
+    return this.builderReady.then(() => {
       this.form.title = this.formTitle.nativeElement.value;
       this.form.display = this.formType.nativeElement.value;
       this.form.components = this.builder.formio.schema.components;
@@ -88,7 +88,7 @@ export class FormManagerEditComponent implements AfterViewInit {
         this.form.name = _.camelCase(this.form.title).toLowerCase();
         this.form.path = this.form.name;
       }
-      this.service.formio.saveForm(this.form).then(form => {
+      return this.service.formio.saveForm(this.form).then(form => {
         this.form = form;
         this.loading = false;
         if (this.editMode) {
@@ -96,6 +96,7 @@ export class FormManagerEditComponent implements AfterViewInit {
         } else {
           this.router.navigate(['../', form._id, 'view'], {relativeTo: this.route});
         }
+        return form;
       }).catch(err => {
         this.alerts.setAlert({type: 'danger', message: (err.message || err)});
         this.loading = false;

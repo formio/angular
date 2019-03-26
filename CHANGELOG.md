@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.11.6
+### Fixed
+ - Skip early attempts to set grid footer createText.
+ - Allow extended form manager edit components to extend the save form method.
+
 ### 3.11.5
 ### Fixed
  - Fix Clear Search, Fix Pagination on Refresh
