@@ -29,6 +29,7 @@ export class FormBuilderComponent implements AfterViewInit, OnChanges {
   public readyResolve: any;
   public formio: any;
   public builder: FormBuilder;
+  public componentAdding = false;
   @Input() form?: FormioForm;
   @Input() options?: FormioOptions;
   @Input() formbuilder?: any;
@@ -53,17 +54,43 @@ export class FormBuilderComponent implements AfterViewInit, OnChanges {
 
   setInstance(instance: any) {
     this.formio = instance;
-    instance.on('saveComponent', () => this.change.emit({
-      type: 'saveComponent',
-      form: instance.schema
-    }));
-    instance.on('updateComponent', () => this.change.emit({
+    instance.off('addComponent');
+    instance.off('saveComponent');
+    instance.off('updateComponent');
+    instance.off('deleteComponent');
+    instance.on('addComponent', (event) => {
+      if (event.isNew) {
+        this.componentAdding = true;
+      } else {
+        this.change.emit({
+          type: 'addComponent',
+          builder: instance,
+          form: instance.schema,
+          component: event
+        });
+        this.componentAdding = false;
+      }
+    });
+    instance.on('saveComponent', (event) => {
+      this.change.emit({
+        type: this.componentAdding ? 'addComponent' : 'saveComponent',
+        builder: instance,
+        form: instance.schema,
+        component: event
+      });
+      this.componentAdding = false;
+    });
+    instance.on('updateComponent', (event) => this.change.emit({
       type: 'updateComponent',
-      form: instance.schema
+      builder: instance,
+      form: instance.schema,
+      component: event
     }));
-    instance.on('deleteComponent', () => this.change.emit({
+    instance.on('deleteComponent', (event) => this.change.emit({
       type: 'deleteComponent',
-      form: instance.schema
+      builder: instance,
+      form: instance.schema,
+      component: event
     }));
     this.readyResolve(instance);
     return instance;

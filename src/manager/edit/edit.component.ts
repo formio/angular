@@ -73,7 +73,7 @@ export class FormManagerEditComponent implements AfterViewInit {
     });
   }
 
-  onSave() {
+  saveForm() {
     this.loading = true;
     return this.builderReady.then(() => {
       this.form.title = this.formTitle.nativeElement.value;
@@ -89,18 +89,27 @@ export class FormManagerEditComponent implements AfterViewInit {
         this.form.path = this.form.name;
       }
       return this.service.formio.saveForm(this.form).then(form => {
-        this.form = form;
+        this.form = this.service.setForm(form);
         this.loading = false;
-        if (this.editMode) {
-          this.router.navigate(['../', 'view'], {relativeTo: this.route});
-        } else {
-          this.router.navigate(['../', form._id, 'view'], {relativeTo: this.route});
-        }
-        return form;
+        return this.form;
       }).catch(err => {
-        this.alerts.setAlert({type: 'danger', message: (err.message || err)});
         this.loading = false;
+        // Catch if a form is returned as an error. This is a conflict.
+        if (err._id && err.type) {
+          throw err;
+        }
+        this.alerts.setAlert({type: 'danger', message: (err.message || err)});
       });
+    });
+  }
+
+  onSave() {
+    return this.saveForm().then((form) => {
+      if (this.editMode) {
+        this.router.navigate(['../', 'view'], {relativeTo: this.route});
+      } else {
+        this.router.navigate(['../', form._id, 'view'], {relativeTo: this.route});
+      }
     });
   }
 }
