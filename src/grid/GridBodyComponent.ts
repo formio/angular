@@ -1,5 +1,5 @@
 import { Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
-import { each } from 'lodash';
+import { each, clone } from 'lodash';
 import { Formio } from 'formiojs';
 import { GridHeaderComponent } from './GridHeaderComponent';
 
@@ -52,7 +52,7 @@ export class GridBodyComponent {
     this.skip = Math.floor(items.skip / query.limit) + 1;
     this.loading = false;
     each(items, (item: any) => {
-      this.rows.push(item);
+      this.rows.push(clone(item));
     });
     return this.rows;
   }

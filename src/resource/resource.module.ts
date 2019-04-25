@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormioModule } from '../formio.module';
+import { FormioAlerts } from '../components/alerts/formio.alerts';
 import { FormioGrid } from '../grid/grid.module';
 import { FormioResourceComponent } from './resource.component';
 import { FormioResourceViewComponent } from './view/view.component';
@@ -27,6 +28,9 @@ import { extendRouter } from '../formio.utils';
     FormioResourceViewComponent,
     FormioResourceEditComponent,
     FormioResourceDeleteComponent
+  ],
+  providers: [
+    FormioAlerts
   ]
 })
 export class FormioResource {
