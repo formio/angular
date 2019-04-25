@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.12.0
+### Added
+ - Exports of Formio and FormioUtils so that the same instances can be used.
+ - Added all grid exports so they can be extended.
+ - Alerts to the resource components.
+
 ### 3.11.6
 ### Fixed
  - Skip early attempts to set grid footer createText.
