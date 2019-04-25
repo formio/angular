@@ -28,6 +28,7 @@ import SubmissionComponents from './submission/index';
 })
 export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() src?: string;
+  @Input() items?: Array<any>;
   @Input() onForm?: Promise<any>;
   @Input() query?: any;
   @Input() refresh?: EventEmitter<object>;
@@ -118,14 +119,17 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   }
 
   ngOnChanges(changes: any) {
-    if (
-      this.initialized &&
-      (
+    if (this.initialized) {
+      if (
         (changes.src && changes.src.currentValue) ||
         (changes.formio && changes.formio.currentValue)
-      )
-    ) {
-      this.loadGrid(changes.src.currentValue);
+      ) {
+        this.loadGrid(changes.src.currentValue);
+      }
+
+      if (changes.items && changes.items.currentValue) {
+        this.refreshGrid();
+      }
     }
 
     if (this.footer &&
@@ -179,7 +183,14 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.loading = true;
     this.ref.detectChanges();
     Formio.cache = {};
-    this.body.load(this.formio, query).then(info => {
+    let loader = null;
+    if (this.items) {
+      loader = Promise.resolve(this.body.setRows(query, this.items));
+    } else {
+      loader = this.body.load(this.formio, query);
+    }
+
+    loader.then(info => {
       this.loading = false;
       this.initialized = true;
       this.ref.detectChanges();

@@ -2,6 +2,7 @@ import { EventEmitter, Injectable, Optional } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig } from './resource.config';
 import { FormioResources, FormioResourceMap } from './resources.service';
+import { FormioAlerts } from '../components/alerts/formio.alerts';
 import { FormioLoader } from '../components/loader/formio.loader';
 import { FormioAppConfig } from '../formio.config';
 import { FormioRefreshValue } from '../formio.common';
@@ -13,6 +14,7 @@ import _ from 'lodash';
 export class FormioResourceService {
   public initialized = false;
   public form: any;
+  public alerts: FormioAlerts;
   public resource: any;
   public resourceUrl?: string;
   public formUrl: string;
@@ -36,6 +38,7 @@ export class FormioResourceService {
     public loader: FormioLoader,
     @Optional() public resourcesService: FormioResources
   ) {
+    this.alerts = new FormioAlerts();
     this.refresh = new EventEmitter();
     this.formLoaded = new Promise((resolve: any, reject: any) => {
       this.formResolve = resolve;
@@ -75,6 +78,10 @@ export class FormioResourceService {
   }
 
   onError(error: any) {
+    this.alerts.setAlert({
+      type: 'danger',
+      message: error.message || error
+    });
     if (this.resourcesService) {
       this.resourcesService.error.emit(error);
     }
