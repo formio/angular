@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormManagerService } from '../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormioAlerts } from '../../components/alerts/formio.alerts';
@@ -6,13 +6,17 @@ import { FormioAlerts } from '../../components/alerts/formio.alerts';
 @Component({
   templateUrl: './delete.component.html'
 })
-export class FormManagerDeleteComponent {
+export class FormManagerDeleteComponent implements OnInit {
   constructor(
     public service: FormManagerService,
     public router: Router,
     public route: ActivatedRoute,
     public alerts: FormioAlerts
   ) {}
+
+  ngOnInit() {
+    this.service.reset(this.route);
+  }
 
   onDelete() {
     this.service.formio.deleteForm().then(() => {

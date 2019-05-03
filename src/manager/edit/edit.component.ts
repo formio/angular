@@ -14,9 +14,7 @@ export class FormManagerEditComponent implements AfterViewInit {
   @ViewChild('title') formTitle: ElementRef;
   @ViewChild('type') formType: ElementRef;
   public builderReady: Promise<any>;
-  public form: any;
   public loading: Boolean;
-  public formReady: Boolean;
   public editMode: Boolean;
 
   constructor(
@@ -27,8 +25,6 @@ export class FormManagerEditComponent implements AfterViewInit {
     public ref: ChangeDetectorRef,
     public alerts: FormioAlerts
   ) {
-    this.form = {components: []};
-    this.formReady = false;
     this.loading = false;
     this.editMode = false;
   }
@@ -41,57 +37,44 @@ export class FormManagerEditComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.loading = true;
     this.builderReady = new Promise((resolve) => this.checkBuilder(resolve));
-    this.route.url.subscribe( url => {
-      // See if we are editing a form or creating one.
-      if (url[0].path === 'edit') {
-        this.loading = true;
-        this.ref.detectChanges();
+    this.service.reset(this.route).then((form) => {
+      if (this.service.formio.formId) {
         this.editMode = true;
-        this.service.loadForm().then(form => {
-          this.form = form;
-          this.ref.detectChanges();
-          this.formTitle.nativeElement.value = form.title;
-          this.formType.nativeElement.value = form.display || 'form';
-          this.formReady = true;
-          this.builderReady.then(() => {
-            this.builder.buildForm(form);
-            this.loading = false;
-          });
-        }).catch(err => {
-          this.alerts.setAlert({type: 'danger', message: (err.message || err)});
+        this.formTitle.nativeElement.value = form.title;
+        this.formType.nativeElement.value = form.display || 'form';
+        this.builderReady.then(() => {
+          this.builder.buildForm(form);
           this.loading = false;
-          this.formReady = true;
+          this.ref.detectChanges();
         });
-      } else {
-        this.formReady = true;
       }
+    });
 
-      this.formType.nativeElement.addEventListener('change', () => {
-        this.builderReady.then(() => this.builder.setDisplay(this.formType.nativeElement.value));
-      });
+    this.formType.nativeElement.addEventListener('change', () => {
+      this.builderReady.then(() => this.builder.setDisplay(this.formType.nativeElement.value));
     });
   }
 
   saveForm() {
     this.loading = true;
     return this.builderReady.then(() => {
-      this.form.title = this.formTitle.nativeElement.value;
-      this.form.display = this.formType.nativeElement.value;
-      this.form.components = this.builder.formio.schema.components;
+      this.service.form.title = this.formTitle.nativeElement.value;
+      this.service.form.display = this.formType.nativeElement.value;
+      this.service.form.components = this.builder.formio.schema.components;
       if (this.config.tag) {
-        this.form.tags = this.form.tags || [];
-        this.form.tags.push(this.config.tag);
-        this.form.tags = _.uniq(this.form.tags);
+        this.service.form.tags = this.service.form.tags || [];
+        this.service.form.tags.push(this.config.tag);
+        this.service.form.tags = _.uniq(this.service.form.tags);
       }
-      if (!this.form._id) {
-        this.form.name = _.camelCase(this.form.title).toLowerCase();
-        this.form.path = this.form.name;
+      if (!this.service.form._id) {
+        this.service.form.name = _.camelCase(this.service.form.title).toLowerCase();
+        this.service.form.path = this.service.form.name;
       }
-      return this.service.formio.saveForm(this.form).then(form => {
-        this.form = this.service.setForm(form);
+      return this.service.saveForm().then(form => {
         this.loading = false;
-        return this.form;
+        return form;
       }).catch(err => {
         this.loading = false;
         // Catch if a form is returned as an error. This is a conflict.

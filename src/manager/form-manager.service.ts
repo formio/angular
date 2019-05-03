@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { FormioAppConfig } from '../formio.config';
 import { FormManagerConfig } from './form-manager.config';
 import { Formio } from 'formiojs';
@@ -17,6 +17,9 @@ export class FormManagerService {
   public ready: Promise<any>;
   public actionAllowed: any;
   public form = null;
+  public formReady = false;
+  public formLoad: EventEmitter<any>;
+  public formSave: EventEmitter<any>;
   public perms = {delete: false, edit: false};
 
   constructor(
@@ -40,6 +43,10 @@ export class FormManagerService {
       'delete_own': 'formDelete'
     };
     this.actionAllowed = (action) => this.isActionAllowed(action);
+    this.form = {components: []};
+    this.formReady = false;
+    this.formLoad = new EventEmitter();
+    this.formSave = new EventEmitter();
     this.reset();
   }
 
@@ -102,18 +109,25 @@ export class FormManagerService {
     }
   }
 
-  reset(route?: ActivatedRoute) {
+  reset(route?: ActivatedRoute): Promise<any> {
+    this.formReady = false;
     if (route) {
-      route.params.subscribe(params => {
-        if (params.id) {
-          this.formio = new Formio(`${this.formio.formsUrl}/${params.id}`);
-        } else {
-          this.reset();
-        }
+      return new Promise((resolve) => {
+        route.params.subscribe(params => {
+          if (params.id) {
+            this.formio = new Formio(`${this.formio.formsUrl}/${params.id}`);
+            resolve(this.loadForm());
+          } else {
+            resolve(this.reset());
+          }
+        });
       });
     } else {
       this.formio = new Formio(this.appConfig.appUrl);
+      this.form = {components: []};
+      this.formReady = true;
       this.setAccess();
+      return Promise.resolve(this.form);
     }
   }
 
@@ -145,11 +159,26 @@ export class FormManagerService {
         }
       });
     }
+    this.formReady = true;
     return form;
   }
 
   loadForm() {
-    return this.formio.loadForm().then(form => this.setForm(form));
+    return this.formio.loadForm()
+      .then(form => this.setForm(form))
+      .then(form => {
+        this.formLoad.emit(form);
+        return form;
+      });
+  }
+
+  saveForm() {
+    return this.formio.saveForm(this.form)
+      .then((form) => this.setForm(form))
+      .then((form) => {
+        this.formSave.emit(form);
+        return form;
+      });
   }
 
   setSubmission(route: ActivatedRoute) {
@@ -174,9 +203,5 @@ export class FormManagerService {
     return this.formio.loadForms({params: {
       tags: this.config.tag
     }});
-  }
-
-  createForm(form: any) {
-    return this.formio.createform(form);
   }
 }
