@@ -40,7 +40,7 @@ export class FormManagerFormComponent implements OnInit {
 
   public getShareUrl() {
     const src = this.appConfig.appUrl + '/' + this.pathName;
-    this.shareUrl = `${this.options.viewer}#/?src=${encodeURIComponent(src)}`;
+    this.shareUrl = `${this.options.viewer}/#/?src=${encodeURIComponent(src)}`;
     return this.shareUrl;
   }
 
