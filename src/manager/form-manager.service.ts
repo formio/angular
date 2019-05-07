@@ -4,7 +4,6 @@ import { FormManagerConfig } from './form-manager.config';
 import { Formio } from 'formiojs';
 import { ActivatedRoute } from '@angular/router';
 import { FormioAuthService } from '../auth/auth.service';
-import { submissionPermissions } from '../formio.utils';
 import _each from 'lodash/each';
 import _intersection from 'lodash/intersection';
 
@@ -163,7 +162,7 @@ export class FormManagerService {
 
   submissionLoaded(submission: any) {
     this.auth.ready.then(() => {
-      submissionPermissions(this.formio, this.form, submission, this.auth.user).then((perms) => {
+      this.formio.userPermissions(this.auth.user, this.form, submission).then((perms) => {
         this.perms.delete = perms.delete;
         this.perms.edit = perms.edit;
       });
