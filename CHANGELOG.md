@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.16.0
+### Fixed
+ - Major memory leak issues.
+ - Streamlined the form building process and form builder instanciation.
+
 ### 3.12.0
 ### Added
  - Exports of Formio and FormioUtils so that the same instances can be used.

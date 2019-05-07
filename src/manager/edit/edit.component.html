@@ -4,7 +4,7 @@
     <input type="text" class="form-control" id="formTitle" placeholder="Enter a Title" #title>
   </div>
   <div class="col-sm-2">
-    <select class="form-control" id="formSelect" #type>
+    <select class="form-control" id="formSelect" (change)="onDisplaySelect($event)" #type>
       <option value="form">Form</option>
       <option value="wizard">Wizard</option>
       <option value="pdf">PDF</option>

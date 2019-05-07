@@ -1,8 +1,8 @@
 import {
   Component,
   Input,
-  AfterViewInit,
   OnChanges,
+  OnDestroy,
   ViewEncapsulation,
   Optional,
   ElementRef,
@@ -24,7 +24,7 @@ import { assign } from 'lodash';
   encapsulation: ViewEncapsulation.None
 })
 /* tslint:enable */
-export class FormBuilderComponent implements AfterViewInit, OnChanges {
+export class FormBuilderComponent implements OnChanges, OnDestroy {
   public ready: Promise<object>;
   public readyResolve: any;
   public formio: any;
@@ -106,7 +106,10 @@ export class FormBuilderComponent implements AfterViewInit, OnChanges {
     }
 
     if (this.builder) {
-      return this.builder.instance.form = form;
+      return this.setDisplay(form.display).then(() => {
+        this.builder.instance.form = form;
+        return this.builder.instance;
+      });
     }
     const Builder = this.formbuilder || FormBuilder;
     this.builder = new Builder(
@@ -114,7 +117,7 @@ export class FormBuilderComponent implements AfterViewInit, OnChanges {
       form,
       assign({icons: 'fontawesome'}, this.options || {})
     );
-    this.builder.render().then(instance => this.setInstance(instance));
+    return this.builder.render().then(instance => this.setInstance(instance));
   }
 
   ngOnChanges(changes: any) {
@@ -123,7 +126,9 @@ export class FormBuilderComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  ngAfterViewInit() {
-    this.buildForm(this.form);
+  ngOnDestroy() {
+    if (this.formio) {
+      this.formio.destroy();
+    }
   }
 }

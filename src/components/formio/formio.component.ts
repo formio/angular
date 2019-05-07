@@ -5,6 +5,7 @@ import {
   EventEmitter,
   OnInit,
   OnChanges,
+  OnDestroy,
   ViewEncapsulation,
   Optional,
   ElementRef,
@@ -31,7 +32,7 @@ import { Formio, Form } from 'formiojs';
   encapsulation: ViewEncapsulation.None,
 })
 /* tslint:enable */
-export class FormioComponent implements OnInit, OnChanges {
+export class FormioComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form?: FormioForm;
   @Input() submission?: any = {};
   @Input() src?: string;
@@ -229,6 +230,12 @@ export class FormioComponent implements OnInit, OnChanges {
     }
     if (this.url && !this.service) {
       this.service = new FormioService(this.url);
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.formio) {
+      this.formio.destroy();
     }
   }
 
