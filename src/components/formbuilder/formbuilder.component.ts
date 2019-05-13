@@ -107,7 +107,7 @@ export class FormBuilderComponent implements OnChanges, OnDestroy {
 
     if (this.builder) {
       return this.setDisplay(form.display).then(() => {
-        this.builder.instance.form = form;
+        this.builder.setForm(form);
         return this.builder.instance;
       });
     }
