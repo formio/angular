@@ -172,22 +172,21 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
 
   refreshGrid(query?: any) {
     this.alerts.setAlerts([]);
-    query = query || {};
-    query = assign(query, this.query);
-    if (!query.hasOwnProperty('limit')) {
-      query.limit = 10;
+    this.query = query || this.query;
+    if (!this.query.hasOwnProperty('limit')) {
+      this.query.limit = 10;
     }
-    if (!query.hasOwnProperty('skip')) {
-      query.skip = 0;
+    if (!this.query.hasOwnProperty('skip')) {
+      this.query.skip = 0;
     }
     this.loading = true;
     this.ref.detectChanges();
     Formio.cache = {};
     let loader = null;
     if (this.items) {
-      loader = Promise.resolve(this.body.setRows(query, this.items));
+      loader = Promise.resolve(this.body.setRows(this.query, this.items));
     } else {
-      loader = this.body.load(this.formio, query);
+      loader = this.body.load(this.formio, this.query);
     }
 
     loader.then(info => {
