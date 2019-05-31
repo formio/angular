@@ -2,7 +2,7 @@
 var gulp = require('gulp'),
   path = require('path'),
   ngc = require('@angular/compiler-cli/src/main').main,
-  rollup = require('gulp-rollup'),
+  rollup = require('gulp-better-rollup'),
   sass = require('gulp-sass'),
   cleanCSS = require('gulp-clean-css'),
   replace = require('gulp-replace'),
@@ -177,11 +177,11 @@ const rollupFesm = function(name, path) {
     .pipe(gulp.dest(`${distFolder}${path}`));
 };
 
-gulp.task('rollup:fesm', done => {() => rollupFesm('angular-formio'); done();});
-gulp.task('rollup-auth:fesm', done => {() => rollupFesm('formio-auth', '/auth'); done();});
-gulp.task('rollup-manager:fesm', done => {() => rollupFesm('formio-manager', '/manager'); done();});
-gulp.task('rollup-grid:fesm', done => {() => rollupFesm('formio-grid', '/grid'); done();});
-gulp.task('rollup-resource:fesm', done => {() => rollupFesm('formio-resource', '/resource'); done();});
+gulp.task('rollup:fesm', () => rollupFesm('angular-formio'));
+gulp.task('rollup-auth:fesm', () => rollupFesm('formio-auth', '/auth'));
+gulp.task('rollup-manager:fesm', () => rollupFesm('formio-manager', '/manager'));
+gulp.task('rollup-grid:fesm', () => rollupFesm('formio-grid', '/grid'));
+gulp.task('rollup-resource:fesm', () => rollupFesm('formio-resource', '/resource'));
 
 /**
  * 6. Run rollup inside the /build folder to generate our UMD module and place the
@@ -237,11 +237,11 @@ const rollupUmd = function(name, path) {
     .pipe(rename(`${name}.umd.js`))
     .pipe(gulp.dest(`${distFolder}${path}`));
 };
-gulp.task('rollup:umd', done => {() => rollupUmd('angular-formio'); done();});
-gulp.task('rollup-auth:umd', done => {() => rollupUmd('formio-auth', '/auth'); done();});
-gulp.task('rollup-manager:umd', done => {() => rollupUmd('formio-manager', '/manager'); done();});
-gulp.task('rollup-grid:umd', done => {() => rollupUmd('formio-grid', '/grid'); done();});
-gulp.task('rollup-resource:umd', done => {() => rollupUmd('formio-resource', '/resource'); done();});
+gulp.task('rollup:umd', () => rollupUmd('angular-formio'));
+gulp.task('rollup-auth:umd', () => rollupUmd('formio-auth', '/auth'));
+gulp.task('rollup-manager:umd', () => rollupUmd('formio-manager', '/manager'));
+gulp.task('rollup-grid:umd', () => rollupUmd('formio-grid', '/grid'));
+gulp.task('rollup-resource:umd', () => rollupUmd('formio-resource', '/resource'));
 
 /**
  * 7. Copy all the files from /build to /dist, except .js files. We ignore all .js from /build
