@@ -2,7 +2,7 @@
 var gulp = require('gulp'),
   path = require('path'),
   ngc = require('@angular/compiler-cli/src/main').main,
-  rollup = require('gulp-rollup'),
+  rollup = require('gulp-better-rollup'),
   sass = require('gulp-sass'),
   cleanCSS = require('gulp-clean-css'),
   replace = require('gulp-replace'),
@@ -176,6 +176,7 @@ const rollupFesm = function(name, path) {
     }))
     .pipe(gulp.dest(`${distFolder}${path}`));
 };
+
 gulp.task('rollup:fesm', () => rollupFesm('angular-formio'));
 gulp.task('rollup-auth:fesm', () => rollupFesm('formio-auth', '/auth'));
 gulp.task('rollup-manager:fesm', () => rollupFesm('formio-manager', '/manager'));
