@@ -8,7 +8,7 @@ export class GridBodyComponent {
   @Input() actionAllowed: any;
   @Output() rowSelect: EventEmitter<any>;
   @Output() rowAction: EventEmitter<any>;
-  @ViewChild(TemplateRef) template: TemplateRef<any>;
+  @ViewChild(TemplateRef, {static: true}) template: TemplateRef<any>;
   public rows: Array<any>;
   public loading: Boolean;
   public firstItem = 0;

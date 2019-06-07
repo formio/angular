@@ -4,7 +4,7 @@ import { Formio } from 'formiojs';
 export class GridHeaderComponent {
   @Input() actionAllowed: any;
   @Output() sort: EventEmitter<any>;
-  @ViewChild(TemplateRef) template: TemplateRef<any>;
+  @ViewChild(TemplateRef, {static: true}) template: TemplateRef<any>;
   public headers: Array<any>;
   constructor() {
     this.headers = [];

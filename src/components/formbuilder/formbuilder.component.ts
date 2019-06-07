@@ -34,7 +34,7 @@ export class FormBuilderComponent implements OnChanges, OnDestroy {
   @Input() options?: FormioOptions;
   @Input() formbuilder?: any;
   @Output() change?: EventEmitter<object>;
-  @ViewChild('builder') builderElement?: ElementRef;
+  @ViewChild('builder', { static: true }) builderElement?: ElementRef<any>;
 
   constructor(
     @Optional() private config: FormioAppConfig

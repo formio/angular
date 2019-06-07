@@ -43,9 +43,9 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Output() rowAction: EventEmitter<object>;
   @Output() createItem: EventEmitter<any>;
   @Output() error: EventEmitter<any>;
-  @ViewChild('headerTemplate', {read: ViewContainerRef}) headerElement: ViewContainerRef;
-  @ViewChild('bodyTemplate', {read: ViewContainerRef}) bodyElement: ViewContainerRef;
-  @ViewChild('footerTemplate', {read: ViewContainerRef}) footerElement: ViewContainerRef;
+  @ViewChild('headerTemplate', {read: ViewContainerRef, static: true}) headerElement: ViewContainerRef;
+  @ViewChild('bodyTemplate', {read: ViewContainerRef, static: true}) bodyElement: ViewContainerRef;
+  @ViewChild('footerTemplate', {read: ViewContainerRef, static: true}) footerElement: ViewContainerRef;
 
   public page = 0;
   public isLoading = false;

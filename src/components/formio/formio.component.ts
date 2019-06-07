@@ -62,7 +62,7 @@ export class FormioComponent implements OnInit, OnChanges, OnDestroy {
   @Output() formLoad = new EventEmitter<any>();
   @Output() submissionLoad = new EventEmitter<any>();
   @Output() ready = new EventEmitter<FormioComponent>();
-  @ViewChild('formio') formioElement?: ElementRef;
+  @ViewChild('formio', {static: true}) formioElement?: ElementRef<any>;
 
   public formio: any;
   public initialized = false;
