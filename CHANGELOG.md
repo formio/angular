@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.17.0
+### Changed
+ - Upgraded support for Angular 8
+ - Upgraded dependencies including core renderer
+
+### Fixed
+ - Build routine to use a better rollup gulp method.
+
 ### 3.16.0
 ### Fixed
  - Major memory leak issues.
