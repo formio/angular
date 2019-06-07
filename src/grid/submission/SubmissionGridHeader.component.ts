@@ -19,7 +19,7 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
             component: Components.create(component, null, null, true)
           });
         }
-      });
+      }, true);
       return this.headers;
     });
   }
