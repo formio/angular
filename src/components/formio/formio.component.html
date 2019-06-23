@@ -2,6 +2,6 @@
   <div *ngIf="loader.loading" style="position:relative;height:200px">
     <formio-loader></formio-loader>
   </div>
-  <formio-alerts *ngIf="!this.options.disableAlerts" [alerts]="alerts"></formio-alerts>
+  <formio-alerts *ngIf="!this.options?.disableAlerts" [alerts]="alerts"></formio-alerts>
   <div #formio></div>
 </div>
