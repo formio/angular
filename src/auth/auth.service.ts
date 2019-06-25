@@ -44,12 +44,16 @@ export class FormioAuthService {
       console.error('You must provide an AppConfig within your application!');
     }
 
+    if (this.config.project) {
+      Formio.setAuthUrl(this.config.project);
+    }
+
     this.loginForm =
-      this.appConfig.appUrl +
+      (this.config.project || this.appConfig.appUrl) +
       '/' +
       get(this.config, 'login.form', 'user/login');
     this.registerForm =
-      this.appConfig.appUrl +
+      (this.config.project || this.appConfig.appUrl) +
       '/' +
       get(this.config, 'register.form', 'user/login');
     this.onLogin = new EventEmitter();
