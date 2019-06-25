@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.22.0
+### Added
+ - A way to separate the Auth url from the App url.
+
 ### 3.18.0
 ### Changed
  - Upgraded rollup@1.14.6, formiojs@3.22.0, ngx-bootstrap@4.3.0, typescript@3.5.1
