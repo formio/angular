@@ -39,8 +39,8 @@ export class FormioService {
   loadSubmission(): Observable<{}> {
     return this.requestWrapper(() => this.formio.loadSubmission());
   }
-  saveSubmission(submission: {}): Observable<{}> {
-    return this.requestWrapper(() => this.formio.saveSubmission(submission));
+  saveSubmission(submission: {}, opts?: {}): Observable<{}> {
+    return this.requestWrapper(() => this.formio.saveSubmission(submission, opts));
   }
   loadSubmissions(): Observable<{}> {
     return this.requestWrapper(() => this.formio.loadSubmissions());

@@ -41,6 +41,7 @@ export class FormioComponent implements OnInit, OnChanges, OnDestroy {
   @Input() options?: FormioOptions;
   @Input() formioOptions?: any;
   @Input() renderOptions?: any;
+  @Input() submitOptions?: any;
   @Input() readOnly ? = false;
   @Input() viewOnly ? = false;
   @Input() hideComponents?: string[];
@@ -358,7 +359,7 @@ export class FormioComponent implements OnInit, OnChanges, OnDestroy {
   submitExecute(submission: object) {
     if (this.service && !this.url) {
       this.service
-        .saveSubmission(submission)
+        .saveSubmission(submission, this.submitOptions)
         .subscribe(
           (sub: {}) => this.onSubmit(sub, true),
           err => this.onError(err)

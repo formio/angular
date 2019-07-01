@@ -1,1 +1,3 @@
-<formio [src]="service.loginForm" (submit)="service.onLoginSubmit($event)"></formio>
+<formio [src]="service.loginForm" (submit)="service.onLoginSubmit($event)" [submitOptions]="{
+  skipQueue: true
+}"></formio>
