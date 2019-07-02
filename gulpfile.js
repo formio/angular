@@ -283,7 +283,7 @@ gulp.task('copy-resource:manifest', function copyResourceManifest() {
  * 9. Copy README.md from / to /dist
  */
 gulp.task('copy:readme', function cleanReadme() {
-  return gulp.src([path.join(rootFolder, 'README.MD')])
+  return gulp.src([path.join(rootFolder, 'README.md')])
     .pipe(gulp.dest(distFolder));
 });
 
