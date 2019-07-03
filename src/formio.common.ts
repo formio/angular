@@ -1,31 +1,11 @@
-export interface ConditionalOptions {
-  show?: string;
-  when?: any;
-  eq?: any;
-}
+import { ExtendedComponentSchema, BuilderInfo, ValidateOptions } from "formiojs";
+import { EventEmitter } from '@angular/core';
+import { NgElement, WithProperties } from '@angular/elements';
+export { ConditionalOptions, ValidateOptions } from "formiojs";
 
-export interface ValidateOptions {
-  required?: boolean;
-  custom?: string;
-  customPrivate?: boolean;
-}
-
-export interface ComponentOptions<T, V> {
-  defaultValue?: T | T[];
-  type?: string;
-  key?: string;
-  label?: string;
-  input?: boolean;
-  required?: boolean;
-  multiple?: boolean;
-  protected?: boolean;
-  unique?: boolean;
-  persistent?: boolean;
-  tableView?: boolean;
-  lockKey?: boolean;
+// Legacy
+export interface ComponentOptions<T = any, V = ValidateOptions> extends ExtendedComponentSchema<T> {
   validate?: V;
-  conditional?: ConditionalOptions;
-  customConditional?: string;
 }
 
 export interface FormioRefreshValue {
@@ -48,7 +28,7 @@ export interface FormioForm {
   type?: string;
   project?: string;
   template?: string;
-  components?: Array<ComponentOptions<any, ValidateOptions>>;
+  components?: ExtendedComponentSchema[];
   tags?: string[];
   access?: AccessSetting[];
   submissionAccess?: AccessSetting[];
@@ -65,7 +45,7 @@ export interface ErrorsOptions {
 export class FormioError {
   constructor(
     public message: string,
-    public component: ComponentOptions<any, ValidateOptions>
+    public component: ExtendedComponentSchema
   ) {}
 }
 
@@ -89,4 +69,18 @@ export interface FormioOptions {
   i18n?: object;
   fileService?: object;
   hooks?: FormioHookOptions;
+}
+
+// Custom Angular Components
+export interface FormioCustomComponentInfo extends BuilderInfo {
+  type: string;
+  selector: string;
+  editForm?: ExtendedComponentSchema[];
+}
+
+export type FormioCustomElement = NgElement & WithProperties<{ value: any }>;
+
+export interface FormioCustomComponent<T> {
+  value: T;
+  valueChange: EventEmitter<T>;
 }
