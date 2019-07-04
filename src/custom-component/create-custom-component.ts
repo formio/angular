@@ -1,5 +1,5 @@
-import { Formio, Utils as FormioUtils, BuilderInfo } from "formiojs";
-import { FormioCustomComponentInfo, FormioCustomElement } from "../formio.common";
+import { BuilderInfo, ExtendedComponentSchema, Formio, Utils as FormioUtils } from 'formiojs';
+import { FormioCustomComponentInfo, FormioCustomElement } from '../formio.common';
 
 const BaseComponent = Formio.Components.components.base;
 
@@ -11,17 +11,6 @@ export function createCustomFormioComponent(customComponentOptions: FormioCustom
     public element: HTMLElement;
     _value: any;
     _customElement: FormioCustomElement;
-
-    constructor(component: any, options: any, data: any) {
-      super(component, options, data);
-    }
-
-    static schema() {
-      return BaseComponent.schema({
-        ...customComponentOptions.schema,
-        type: customComponentOptions.type,
-      });
-    }
 
     get defaultSchema() {
       return CustomComponent.schema();
@@ -40,6 +29,17 @@ export function createCustomFormioComponent(customComponentOptions: FormioCustom
         documentation: customComponentOptions.documentation,
         schema: CustomComponent.schema(),
       };
+    }
+
+    static schema() {
+      return BaseComponent.schema({
+        ...customComponentOptions.schema,
+        type: customComponentOptions.type,
+      });
+    }
+
+    constructor(public component: ExtendedComponentSchema, options: any, data: any) {
+      super(component, options, data);
     }
 
     elementInfo() {
@@ -61,6 +61,11 @@ export function createCustomFormioComponent(customComponentOptions: FormioCustom
         _self._value = event.detail;
       });
       this._customElement = customElement;
+      for (const key in this.component.customOptions) {
+        if (this.component.customOptions.hasOwnProperty(key)) {
+          customElement[key] = this.component.customOptions[key];
+        }
+      }
       this.element.appendChild(customElement);
       (this.element as any).component = this;
     }
@@ -73,6 +78,7 @@ export function createCustomFormioComponent(customComponentOptions: FormioCustom
       console.log('setValue', value); // TODO: Remove
       this._value = value;
       this._customElement.setAttribute('value', value);
+      return true;
     }
   };
 }
