@@ -18,6 +18,7 @@ export function createCustomFormioComponent(customComponentOptions: FormioCustom
 
     static schema() {
       return BaseComponent.schema({
+        ...customComponentOptions.schema,
         type: customComponentOptions.type,
       });
     }
@@ -50,13 +51,13 @@ export function createCustomFormioComponent(customComponentOptions: FormioCustom
     }
 
     build() {
-      this.element = super.ce('div', { class: 'form-group formio-component' });
+      this.element = super.ce('div', { class: 'form-group formio-component ' + customComponentOptions.extraClasses });
       this.element.id = this.id;
       super.createLabel(this.element);
       const customElement = super.ce(customComponentOptions.selector) as FormioCustomElement;
       const _self = this;
       customElement.addEventListener('valueChange', function(event: CustomEvent) {
-        console.log(event.detail); // TODO: Remove
+        console.log('valueChange', event.detail); // TODO: Remove
         _self._value = event.detail;
       });
       this._customElement = customElement;
