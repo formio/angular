@@ -75,7 +75,7 @@ export interface FormioOptions {
 export interface FormioCustomComponentInfo extends BuilderInfo {
   type: string;
   selector: string;
-  editForm?: ExtendedComponentSchema[];
+  editForm?: () => { components: ExtendedComponentSchema[] };
   extraClasses?: string;
 }
 
