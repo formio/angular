@@ -1,7 +1,7 @@
 /* eslint-disable */
+const { spawn } = require('child_process');
 var gulp = require('gulp'),
   path = require('path'),
-  ngc = require('@angular/compiler-cli/src/main').main,
   rollup = require('gulp-better-rollup'),
   sass = require('gulp-sass'),
   cleanCSS = require('gulp-clean-css'),
@@ -11,6 +11,11 @@ var gulp = require('gulp'),
   runSequence = require('run-sequence'),
   inlineResources = require('./tools/gulp/inline-resources');
 
+// Execute the ngc command from command line.
+const ngc = function(commands, cb) {
+  const child = spawn('ngc', commands);
+  child.on('close', cb);
+};
 const rootFolder = path.join(__dirname);
 const srcFolder = path.join(rootFolder, 'src');
 const tmpFolder = path.join(rootFolder, '.tmp');
@@ -84,61 +89,48 @@ gulp.task('inline-resources', function () {
   return inlineResources(tmpFolder);
 });
 
-
 /**
  * 4. Run the Angular compiler, ngc, on the /.tmp folder. This will output all
  *    compiled modules to the /build folder.
- *
- *    As of Angular 5, ngc accepts an array and no longer returns a promise.
  */
 gulp.task('ngc', function (done) {
-  ngc(['--project', `${tmpFolder}/tsconfig.es5.json`]);
-  return done()
+  ngc(['--project', `${tmpFolder}/tsconfig.es5.json`], done);
 });
 
 gulp.task('ngc-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/tsconfig.angular.json`]);
-  return done()
+  ngc(['--project', `${tmpFolder}/tsconfig.angular.json`], done);
 });
 
 gulp.task('ngc-auth', function (done) {
-  ngc(['--project', `${tmpFolder}/auth/tsconfig.es5.json`]);
-  return done()
+  ngc(['--project', `${tmpFolder}/auth/tsconfig.es5.json`], done);
 });
 
 gulp.task('ngc-auth-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/auth/tsconfig.angular.json`]);
-  return done()
+  ngc(['--project', `${tmpFolder}/auth/tsconfig.angular.json`], done);
 });
 
 gulp.task('ngc-manager', function (done) {
-  ngc(['--project', `${tmpFolder}/manager/tsconfig.es5.json`]);
-  return done()
+  ngc(['--project', `${tmpFolder}/manager/tsconfig.es5.json`], done);
 });
 
 gulp.task('ngc-manager-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/manager/tsconfig.angular.json`]);
-  return done()
+  ngc(['--project', `${tmpFolder}/manager/tsconfig.angular.json`], done);
 });
 
 gulp.task('ngc-grid', function (done) {
-  ngc(['--project', `${tmpFolder}/grid/tsconfig.es5.json`]);
-  return done()
+  ngc(['--project', `${tmpFolder}/grid/tsconfig.es5.json`], done);
 });
 
 gulp.task('ngc-grid-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/grid/tsconfig.angular.json`]);
-  return done()
+  ngc(['--project', `${tmpFolder}/grid/tsconfig.angular.json`], done);
 });
 
 gulp.task('ngc-resource', function (done) {
-  ngc(['--project', `${tmpFolder}/resource/tsconfig.es5.json`]);
-  return done()
+  ngc(['--project', `${tmpFolder}/resource/tsconfig.es5.json`], done);
 });
 
 gulp.task('ngc-resource-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/resource/tsconfig.angular.json`]);
-  return done()
+  ngc(['--project', `${tmpFolder}/resource/tsconfig.angular.json`], done);
 });
 
 /**
