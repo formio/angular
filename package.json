@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.0.0-beta.4",
+  "version": "4.0.0-beta.5",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -42,12 +42,12 @@
     "@angular/platform-browser-dynamic": "^8.1.2",
     "@angular/router": "^8.1.2",
     "@compodoc/compodoc": "^1.1.10",
-    "@types/jasmine": "^3.3.12",
+    "@types/jasmine": "^3.3.14",
     "@types/node": "^12.6.8",
     "angular-in-memory-web-api": "^0.8.0",
     "codelyzer": "^5.0.1",
     "concurrently": "^4.1.1",
-    "css-loader": "^3.0.0",
+    "css-loader": "^3.1.0",
     "fork-ts-checker-webpack-plugin": "^1.4.3",
     "fs-extra": "^8.1.0",
     "gulp": "^4.0.2",
@@ -63,7 +63,7 @@
     "karma": "^4.2.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-cli": "^2.0.0",
-    "karma-coverage-istanbul-reporter": "^2.0.5",
+    "karma-coverage-istanbul-reporter": "^2.0.6",
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "lite-server": "^2.4.0",
@@ -71,7 +71,7 @@
     "node-sass-tilde-importer": "^1.0.0",
     "node-watch": "^0.6.2",
     "path": "^0.12.7",
-    "prismjs": "^1.16.0",
+    "prismjs": "^1.17.1",
     "protractor": "^5.4.2",
     "rollup": "^1.17.0",
     "run-sequence": "^2.2.1",
@@ -85,7 +85,7 @@
     "tslint": "^5.18.0",
     "tslint-loader": "^3.6.0",
     "typescript": "~3.4.5",
-    "url-loader": "^2.0.1",
+    "url-loader": "^2.1.0",
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2",
@@ -104,8 +104,8 @@
   },
   "dependencies": {
     "core-js": "^3.1.4",
-    "formiojs": "^4.0.0-rc.12",
-    "lodash": "^4.17.14",
+    "formiojs": "^4.0.0-rc.13",
+    "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.1.0"
   }
 }
