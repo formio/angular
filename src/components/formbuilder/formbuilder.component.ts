@@ -118,7 +118,7 @@ export class FormBuilderComponent implements OnChanges, OnDestroy {
       form,
       assign({icons: 'fontawesome'}, this.options || {})
     );
-    return this.builder.render().then(instance => this.setInstance(instance));
+    return this.builder.ready.then(instance => this.setInstance(instance));
   }
 
   ngOnChanges(changes: any) {
