@@ -22,7 +22,7 @@ import {
   FormioRefreshValue
 } from '../../formio.common';
 import { isEmpty, get, assign } from 'lodash';
-import { Formio, Form } from 'formiojs';
+import { Formio, Form, Utils } from 'formiojs';
 
 /* tslint:disable */
 @Component({
@@ -44,6 +44,7 @@ export class FormioComponent implements OnInit, OnChanges, OnDestroy {
   @Input() submitOptions?: any;
   @Input() readOnly ? = false;
   @Input() viewOnly ? = false;
+  @Input() noeval ? = false;
   @Input() hideComponents?: string[];
   @Input() refresh?: EventEmitter<FormioRefreshValue>;
   @Input() error?: EventEmitter<any>;
@@ -171,6 +172,7 @@ export class FormioComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
+    Utils.Evaluator.noeval = this.noeval;
     this.initialize();
 
     if (this.language) {
