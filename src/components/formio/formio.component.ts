@@ -1,7 +1,7 @@
-import { Component, Optional, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Optional, ViewEncapsulation, Input } from '@angular/core';
 import { FormioLoader } from '../loader/formio.loader';
 import { FormioAppConfig } from '../../formio.config';
-import { Formio, Form } from 'formiojs';
+import { Formio, Form, Utils } from 'formiojs';
 import { FormioBaseComponent } from '../../FormioBaseComponent';
 
 /* tslint:disable */
@@ -12,7 +12,8 @@ import { FormioBaseComponent } from '../../FormioBaseComponent';
   encapsulation: ViewEncapsulation.None,
 })
 /* tslint:enable */
-export class FormioComponent extends FormioBaseComponent {
+export class FormioComponent extends FormioBaseComponent implements OnInit {
+  @Input() noeval ? = false;
   constructor(
     public loader: FormioLoader,
     @Optional() public config: FormioAppConfig,
@@ -24,6 +25,11 @@ export class FormioComponent extends FormioBaseComponent {
     } else {
       console.warn('You must provide an AppConfig within your application!');
     }
+  }
+
+  ngOnInit() {
+    Utils.Evaluator.noeval = this.noeval;
+    super.ngOnInit();
   }
 
   getRenderer() {

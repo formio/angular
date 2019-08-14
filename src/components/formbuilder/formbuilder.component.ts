@@ -1,6 +1,7 @@
 import {
   Component,
   Input,
+  OnInit,
   OnChanges,
   OnDestroy,
   ViewEncapsulation,
@@ -13,7 +14,7 @@ import {
   FormioForm,
   FormioOptions
 } from '../../formio.common';
-import { Formio, FormBuilder } from 'formiojs';
+import { Formio, FormBuilder, Utils } from 'formiojs';
 import { assign } from 'lodash';
 
 /* tslint:disable */
@@ -24,7 +25,7 @@ import { assign } from 'lodash';
   encapsulation: ViewEncapsulation.None
 })
 /* tslint:enable */
-export class FormBuilderComponent implements OnChanges, OnDestroy {
+export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   public ready: Promise<object>;
   public readyResolve: any;
   public formio: any;
@@ -33,6 +34,7 @@ export class FormBuilderComponent implements OnChanges, OnDestroy {
   @Input() form?: FormioForm;
   @Input() options?: FormioOptions;
   @Input() formbuilder?: any;
+  @Input() noeval ? = false;
   @Output() change?: EventEmitter<object>;
   @ViewChild('builder', { static: true }) builderElement?: ElementRef<any>;
 
@@ -50,6 +52,10 @@ export class FormBuilderComponent implements OnChanges, OnDestroy {
     this.ready = new Promise((resolve: any) => {
       this.readyResolve = resolve;
     });
+  }
+
+  ngOnInit() {
+    Utils.Evaluator.noeval = this.noeval;
   }
 
   setInstance(instance: any) {
