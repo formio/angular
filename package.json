@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "3.26.0",
+  "version": "3.26.1",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -32,7 +32,7 @@
     "url": "https://github.com/formio/angular-formio/issues"
   },
   "devDependencies": {
-    "@angular/cli": "^8.2.1",
+    "@angular/cli": "^8.2.2",
     "@angular/common": "^8.2.2",
     "@angular/compiler": "^8.2.2",
     "@angular/compiler-cli": "^8.2.2",
@@ -43,7 +43,7 @@
     "@angular/router": "^8.2.2",
     "@compodoc/compodoc": "^1.1.10",
     "@types/jasmine": "^3.4.0",
-    "@types/node": "^12.7.1",
+    "@types/node": "^12.7.2",
     "angular-in-memory-web-api": "^0.8.0",
     "codelyzer": "^5.0.1",
     "concurrently": "^4.1.1",
@@ -104,7 +104,7 @@
   },
   "dependencies": {
     "core-js": "^3.2.1",
-    "formiojs": "^3.25.1",
+    "formiojs": "^3.25.2",
     "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.1.1"
   }
