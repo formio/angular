@@ -65,7 +65,8 @@ export interface ErrorsOptions {
 export class FormioError {
   constructor(
     public message: string,
-    public component: ComponentOptions<any, ValidateOptions>
+    public component: ComponentOptions<any, ValidateOptions>,
+    public silent?: boolean,
   ) {}
 }
 
