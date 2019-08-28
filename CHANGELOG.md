@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.27.0
+### Fixed
+ - Long standing issue requiring (window as any).global = window;
+ - Issue where Promise collision would cause build errors.
+
 ### 3.22.0
 ### Added
  - A way to separate the Auth url from the App url.
