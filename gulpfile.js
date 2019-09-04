@@ -13,8 +13,9 @@ var gulp = require('gulp'),
 
 // Execute the ngc command from command line.
 const ngc = function(commands, cb) {
-  const child = spawn('ngc', commands);
-  child.on('close', cb);
+  const isWin = /^win/.test(process.platform);
+  const child = spawn(isWin ? 'ngc.cmd' : 'ngc', commands);
+  child.on('close', () => cb())
 };
 const rootFolder = path.join(__dirname);
 const srcFolder = path.join(rootFolder, 'src');
