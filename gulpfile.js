@@ -59,6 +59,7 @@ gulp.task('styles-formio', () => {
   return gulp.src([`${tmpFolder}/components/formio/formio.component.scss`])
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(replace(/content\:'\\/g, "content:'\\\\"))
     .pipe(gulp.dest(`${tmpFolder}/components/formio`));
 });
 
@@ -66,6 +67,7 @@ gulp.task('styles-builder', () => {
   return gulp.src([`${tmpFolder}/components/formbuilder/formbuilder.component.scss`])
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(replace(/content\:'\\/g, "content:'\\\\"))
     .pipe(gulp.dest(`${tmpFolder}/components/formbuilder`));
 });
 
@@ -153,6 +155,9 @@ const rollupFesm = function(name, path) {
       // when subdirectories are used in the `src` directory.
       allowRealFiles: true,
 
+      // Disable strict mode for compilation of SCSS.
+      useStrict: false,
+
       // A list of IDs of modules that should remain external to the bundle
       // See "external" in https://rollupjs.org/#core-functionality
       external: [
@@ -194,6 +199,9 @@ const rollupUmd = function(name, path) {
       // This prevents errors like: 'path/file' does not exist in the hypothetical file system
       // when subdirectories are used in the `src` directory.
       allowRealFiles: true,
+
+      // Disable strict mode for compilation of SCSS.
+      useStrict: false,
 
       // A list of IDs of modules that should remain external to the bundle
       // See "external" in https://rollupjs.org/#core-functionality
