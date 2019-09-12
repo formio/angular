@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 4.0.2
+### Changed
+ - Upgraded dependencies and formiojs@4.0.6
+
+### 4.0.0
+### Breaking Changes
+ - Only those described @ https://github.com/formio/formio.js/blob/master/Changelog.md#breaking-changes
+
+### Changed
+ - Upgraded core renderer to 4.x.
+
 ### 3.18.0
 ### Changed
  - Upgraded rollup@1.14.6, formiojs@3.22.0, ngx-bootstrap@4.3.0, typescript@3.5.1
