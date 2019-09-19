@@ -321,6 +321,8 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       return;
     }
 
+    this.formio.emit('submitError', errors);
+
     // Iterate through each one and set the alerts array.
     errors.forEach((error: any) => {
       const {

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 4.1.0
+### Changed
+ - Upgraded dependencies and formiojs@4.1.0
+ 
+### Added
+ - Added a submitError event when an error occurs.
+
 ### 4.0.2
 ### Changed
  - Upgraded dependencies and formiojs@4.0.6
