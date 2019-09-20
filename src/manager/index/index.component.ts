@@ -9,7 +9,7 @@ import {FormioGridComponent} from '../../grid/grid.component';
   styleUrls: ['./index.component.scss']
 })
 export class FormManagerIndexComponent implements OnInit {
-  @ViewChild(FormioGridComponent, {static: true}) formGrid: FormioGridComponent;
+  @ViewChild(FormioGridComponent, {static: false}) formGrid: FormioGridComponent;
   public gridQuery: any;
   public refreshGrid: EventEmitter<object>;
   public search = '';
