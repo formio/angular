@@ -4,6 +4,10 @@ This library serves as a Dynamic JSON Powered Form rendering library for [Angula
 providing a JSON schema to a ```<formio>``` Angular component, where that form is dynamically rendered within the front
 end application. This allows forms to be dynamically built using JSON schemas.
 
+Angular Material
+--------------------------
+If you are looking for [Angular Material](https://material.angular.io/) support, then this is within a separate library @ https://github.com/formio/angular-material-formio
+
 Running Demo
 --------------------------
 To run a demo of the Form.io Angular renderer, please follow these steps.
