@@ -63,40 +63,51 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
     instance.off('addComponent');
     instance.off('saveComponent');
     instance.off('updateComponent');
-    instance.off('deleteComponent');
-    instance.on('addComponent', (event) => {
-      if (event.isNew) {
+    instance.off('removeComponent');
+    instance.on('addComponent', (component, parent, path, index, isNew) => {
+      if (isNew) {
         this.componentAdding = true;
       } else {
         this.change.emit({
           type: 'addComponent',
           builder: instance,
           form: instance.schema,
-          component: event
+          component: component,
+          parent: parent,
+          path: path,
+          index: index
         });
         this.componentAdding = false;
       }
     });
-    instance.on('saveComponent', (event) => {
+    instance.on('saveComponent', (component, original, parent, path, index, isNew) => {
       this.change.emit({
         type: this.componentAdding ? 'addComponent' : 'saveComponent',
         builder: instance,
         form: instance.schema,
-        component: event
+        component: component,
+        originalComponent: original,
+        parent: parent,
+        path: path,
+        index: index,
+        isNew: isNew || false
       });
       this.componentAdding = false;
     });
-    instance.on('updateComponent', (event) => this.change.emit({
+    instance.on('updateComponent', (component) => this.change.emit({
       type: 'updateComponent',
       builder: instance,
       form: instance.schema,
-      component: event
+      component: component
     }));
-    instance.on('deleteComponent', (event) => this.change.emit({
+    instance.on('removeComponent', (component, parent, path, index) => this.change.emit({
       type: 'deleteComponent',
       builder: instance,
       form: instance.schema,
-      component: event
+      component: component,
+      parent: parent,
+      path: path,
+      index: index
     }));
     this.readyResolve(instance);
     return instance;
