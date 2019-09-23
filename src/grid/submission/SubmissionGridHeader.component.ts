@@ -11,7 +11,10 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
     return formio.loadForm({params: query}).then((form: any) => {
       this.headers = [];
       Utils.eachComponent(form.components, (component: any) => {
-        if (component.input && component.tableView) {
+        if (
+          component.input &&
+          (!component.hasOwnProperty('tableView') || component.tableView)
+        ) {
           this.headers.push({
             label: component.label,
             key: 'data.' + component.key,
