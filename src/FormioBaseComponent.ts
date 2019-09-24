@@ -128,7 +128,6 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       this.formLoad.emit(loadedForm)
     );
 
-    this.formio.form = this.form;
     return this.formio.ready.then(() => {
       this.loader.loading = false;
       this.ready.emit(this);
