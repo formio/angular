@@ -320,7 +320,9 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       return;
     }
 
-    this.formio.emit('submitError', errors);
+    if (this.formio) {
+      this.formio.emit('submitError', errors);
+    }
 
     // Iterate through each one and set the alerts array.
     errors.forEach((error: any) => {
@@ -347,12 +349,13 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
         message,
       });
 
-      paths.forEach((path) => {
-        const component = this.formio.getComponent(path);
-        const components = Array.isArray(component) ? component : [component];
-
-        components.forEach((comp) => comp.setCustomValidity(message, true));
-      });
+      if (this.formio) {
+        paths.forEach((path) => {
+          const component = this.formio.getComponent(path);
+          const components = Array.isArray(component) ? component : [component];
+          components.forEach((comp) => comp.setCustomValidity(message, true));
+        });
+      }
     });
   }
 
