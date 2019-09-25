@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 4.2.0
+### Changed
+ - Upgraded formiojs@4.2.0
+
+### Fixed
+ - Crashes in the FormioBaseComponent when errors are thrown.
+ - Crashes in the submission grid components.
+
 ### 4.1.0
 ### Changed
  - Upgraded dependencies and formiojs@4.1.0
