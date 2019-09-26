@@ -37,6 +37,7 @@
     "@angular/compiler": "^8.2.10",
     "@angular/compiler-cli": "^8.2.10",
     "@angular/core": "^8.2.10",
+    "@angular/elements": "^8.2.10",
     "@angular/forms": "^8.2.10",
     "@angular/platform-browser": "^8.2.10",
     "@angular/platform-browser-dynamic": "^8.2.10",
@@ -97,6 +98,7 @@
   "peerDependencies": {
     "@angular/core": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
     "@angular/common": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
+    "@angular/elements": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
     "@angular/forms": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
     "@angular/router": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
     "rxjs": "^5.0.0 || ^6.0.0",

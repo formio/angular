@@ -20,6 +20,7 @@ import {
   FormioRefreshValue
 } from './formio.common';
 import { isEmpty, get, assign } from 'lodash';
+import { CustomTagsService } from './custom-component/custom-tags.service';
 
 export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form?: FormioForm;
@@ -64,6 +65,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     public loader: FormioLoader,
     @Optional() public config: FormioAppConfig,
+    @Optional() public customTags?: CustomTagsService,
   ) {
     this.formioReady = new Promise((ready) => {
       this.formioReadyResolve = ready;
@@ -75,6 +77,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   getRendererOptions() {
+    const extraTags = this.customTags ? this.customTags.tags : [];
     return assign({}, {
       icons: get(this.config, 'icons', 'fontawesome'),
       noAlerts: get(this.options, 'noAlerts', true),
@@ -82,7 +85,10 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       viewAsHtml: this.viewOnly,
       i18n: get(this.options, 'i18n', null),
       fileService: get(this.options, 'fileService', null),
-      hooks: this.hooks
+      hooks: this.hooks,
+      sanitizeConfig: {
+        addTags: extraTags
+      }
     }, this.renderOptions || {});
   }
 
@@ -146,6 +152,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       return;
     }
 
+    const extraTags = this.customTags ? this.customTags.tags : [];
     this.options = Object.assign(
       {
         errors: {
@@ -157,6 +164,9 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
         disableAlerts: false,
         hooks: {
           beforeSubmit: null
+        },
+        sanitizeConfig: {
+          addTags: extraTags
         }
       },
       this.options
