@@ -60,7 +60,7 @@ gulp.task('styles-formio', () => {
   return gulp.src([`${tmpFolder}/components/formio/formio.component.scss`])
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(replace(/content\:'\\/g, "content:'\\\\"))
+    .pipe(replace(/\\/g, "\\\\"))
     .pipe(gulp.dest(`${tmpFolder}/components/formio`));
 });
 
@@ -68,7 +68,7 @@ gulp.task('styles-builder', () => {
   return gulp.src([`${tmpFolder}/components/formbuilder/formbuilder.component.scss`])
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(replace(/content\:'\\/g, "content:'\\\\"))
+    .pipe(replace(/\\/g, "\\\\"))
     .pipe(gulp.dest(`${tmpFolder}/components/formbuilder`));
 });
 
