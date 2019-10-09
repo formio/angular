@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 4.2.4
+### Changed
+ - Upgrade formiojs@4.3.1
+
+### Added
+ - A way to refresh the form externally with form builder.
+
 ### 4.2.1
 ### Changed
  - Upgraded formiojs@4.2.3
