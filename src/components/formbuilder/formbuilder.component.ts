@@ -16,6 +16,7 @@ import {
 } from '../../formio.common';
 import { Formio, FormBuilder, Utils } from 'formiojs';
 import { assign } from 'lodash';
+import { Observable, Subscription } from 'rxjs';
 
 /* tslint:disable */
 @Component({
@@ -31,10 +32,12 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   public formio: any;
   public builder: FormBuilder;
   public componentAdding = false;
+  private refreshSubscription: Subscription;
   @Input() form?: FormioForm;
   @Input() options?: FormioOptions;
   @Input() formbuilder?: any;
   @Input() noeval ? = false;
+  @Input() refresh?: Observable<void>;
   @Output() change?: EventEmitter<object>;
   @ViewChild('builder', { static: true }) builderElement?: ElementRef<any>;
 
@@ -56,6 +59,12 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     Utils.Evaluator.noeval = this.noeval;
+
+    if (this.refresh) {
+      this.refreshSubscription = this.refresh.subscribe(() => {
+        this.buildForm(this.form);
+      });
+    }
   }
 
   setInstance(instance: any) {
@@ -145,6 +154,10 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (this.refreshSubscription) {
+      this.refreshSubscription.unsubscribe();
+    }
+
     if (this.formio) {
       this.formio.destroy();
     }
