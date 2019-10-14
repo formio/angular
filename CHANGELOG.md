@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 4.3.0-beta.1
+### Changed
+ - Added Custom Angular Fields: https://github.com/formio/angular-formio/pull/374
+
 ### 4.2.6
 ### Changed
  - Upgrade formiojs@4.3.3, webpack@4.41.1
