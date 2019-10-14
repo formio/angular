@@ -17,6 +17,7 @@ import {
 import { Formio, FormBuilder, Utils } from 'formiojs';
 import { assign } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
+import { CustomTagsService } from '../../custom-component/custom-tags.service';
 
 /* tslint:disable */
 @Component({
@@ -42,7 +43,8 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('builder', { static: true }) builderElement?: ElementRef<any>;
 
   constructor(
-    @Optional() private config: FormioAppConfig
+    @Optional() private config: FormioAppConfig,
+    @Optional() private customTags?: CustomTagsService
   ) {
     if (this.config) {
       Formio.setBaseUrl(this.config.apiUrl);
@@ -139,10 +141,16 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
       });
     }
     const Builder = this.formbuilder || FormBuilder;
+    const extraTags = this.customTags ? this.customTags.tags : [];
     this.builder = new Builder(
       this.builderElement.nativeElement,
       form,
-      assign({icons: 'fontawesome'}, this.options || {})
+      assign({
+        icons: 'fontawesome',
+        sanitizeConfig: {
+          addTags: extraTags
+        }
+      }, this.options || {})
     );
     return this.builder.ready.then(instance => this.setInstance(instance));
   }

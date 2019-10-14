@@ -3,6 +3,7 @@ import { FormioLoader } from '../loader/formio.loader';
 import { FormioAppConfig } from '../../formio.config';
 import { Formio, Form, Utils } from 'formiojs';
 import { FormioBaseComponent } from '../../FormioBaseComponent';
+import { CustomTagsService } from '../../custom-component/custom-tags.service';
 
 /* tslint:disable */
 @Component({
@@ -17,8 +18,9 @@ export class FormioComponent extends FormioBaseComponent implements OnInit {
   constructor(
     public loader: FormioLoader,
     @Optional() public config: FormioAppConfig,
+    @Optional() public customTags?: CustomTagsService,
   ) {
-    super(loader, config);
+    super(loader, config, customTags);
     if (this.config) {
       Formio.setBaseUrl(this.config.apiUrl);
       Formio.setProjectUrl(this.config.appUrl);
