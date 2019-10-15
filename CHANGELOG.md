@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 4.2.7
+### Changed
+ - Upgrade formiojs@4.3.4
+ - Upgrade fork-ts-checker-webpack-plugin@1.5.1, systemjs@6.1.4, core-js@3.3.2, ngx-bootstrap@5.2.0
+
 ### 4.2.6
 ### Changed
  - Upgrade formiojs@4.3.3, webpack@4.41.1
