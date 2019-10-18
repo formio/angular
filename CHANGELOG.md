@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 4.2.9
+### Changed
+ - Upgrade formiojs@4.4.1
+ - Upgrade @angular/cli@8.3.12, karma@4.4.0
+
 ### 4.2.7
 ### Changed
  - Upgrade formiojs@4.3.4
