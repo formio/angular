@@ -1,5 +1,5 @@
 <div>
-  <div *ngIf="loader.loading" style="position:relative;height:200px">
+  <div *ngIf="loader.loading$ | async" style="position:relative;height:200px">
     <formio-loader></formio-loader>
   </div>
   <formio-alerts *ngIf="!this.options?.disableAlerts" [alerts]="alerts"></formio-alerts>

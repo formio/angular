@@ -7,7 +7,10 @@ import {
   ViewEncapsulation,
   Optional,
   ElementRef,
-  ViewChild, EventEmitter, Output
+  ViewChild,
+  EventEmitter,
+  Output,
+  NgZone
 } from '@angular/core';
 import { FormioAppConfig } from '../../formio.config';
 import {
@@ -43,6 +46,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('builder', { static: true }) builderElement?: ElementRef<any>;
 
   constructor(
+    private ngZone: NgZone,
     @Optional() private config: FormioAppConfig,
     @Optional() private customTags?: CustomTagsService
   ) {
@@ -64,7 +68,9 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
     if (this.refresh) {
       this.refreshSubscription = this.refresh.subscribe(() => {
-        this.buildForm(this.form);
+        this.ngZone.runOutsideAngular(() => {
+          this.buildForm(this.form);
+        });
       });
     }
   }
@@ -76,11 +82,53 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
     instance.off('updateComponent');
     instance.off('removeComponent');
     instance.on('addComponent', (component, parent, path, index, isNew) => {
-      if (isNew) {
-        this.componentAdding = true;
-      } else {
+      this.ngZone.run(() => {
+        if (isNew) {
+          this.componentAdding = true;
+        } else {
+          this.change.emit({
+            type: 'addComponent',
+            builder: instance,
+            form: instance.schema,
+            component: component,
+            parent: parent,
+            path: path,
+            index: index
+          });
+          this.componentAdding = false;
+        }
+      });
+    });
+    instance.on('saveComponent', (component, original, parent, path, index, isNew) => {
+      this.ngZone.run(() => {
         this.change.emit({
-          type: 'addComponent',
+          type: this.componentAdding ? 'addComponent' : 'saveComponent',
+          builder: instance,
+          form: instance.schema,
+          component: component,
+          originalComponent: original,
+          parent: parent,
+          path: path,
+          index: index,
+          isNew: isNew || false
+        });
+        this.componentAdding = false;
+      });
+    });
+    instance.on('updateComponent', (component) => {
+      this.ngZone.run(() => {
+        this.change.emit({
+          type: 'updateComponent',
+          builder: instance,
+          form: instance.schema,
+          component: component
+        });
+      });
+    });
+    instance.on('removeComponent', (component, parent, path, index) => {
+      this.ngZone.run(() => {
+        this.change.emit({
+          type: 'deleteComponent',
           builder: instance,
           form: instance.schema,
           component: component,
@@ -88,39 +136,11 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
           path: path,
           index: index
         });
-        this.componentAdding = false;
-      }
-    });
-    instance.on('saveComponent', (component, original, parent, path, index, isNew) => {
-      this.change.emit({
-        type: this.componentAdding ? 'addComponent' : 'saveComponent',
-        builder: instance,
-        form: instance.schema,
-        component: component,
-        originalComponent: original,
-        parent: parent,
-        path: path,
-        index: index,
-        isNew: isNew || false
       });
-      this.componentAdding = false;
     });
-    instance.on('updateComponent', (component) => this.change.emit({
-      type: 'updateComponent',
-      builder: instance,
-      form: instance.schema,
-      component: component
-    }));
-    instance.on('removeComponent', (component, parent, path, index) => this.change.emit({
-      type: 'deleteComponent',
-      builder: instance,
-      form: instance.schema,
-      component: component,
-      parent: parent,
-      path: path,
-      index: index
-    }));
-    this.readyResolve(instance);
+    this.ngZone.run(() => {
+      this.readyResolve(instance);
+    });
     return instance;
   }
 
@@ -128,7 +148,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
     return this.builder.setDisplay(display).then(instance => this.setInstance(instance));
   }
 
-  buildForm(form) {
+  buildForm(form: any) {
     if (!form || !this.builderElement || !this.builderElement.nativeElement) {
       return;
     }
@@ -157,7 +177,9 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: any) {
     if (changes.form && changes.form.currentValue) {
-      this.buildForm(changes.form.currentValue || {components: []});
+      this.ngZone.runOutsideAngular(() => {
+        this.buildForm(changes.form.currentValue || {components: []});
+      })
     }
   }
 
