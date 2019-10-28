@@ -109,14 +109,14 @@ export class FormioResourceService {
 
   loadForm() {
     this.formFormio = new Formio(this.formUrl);
-    this.loader.loading = true;
+    this.loader.setLoading(true);
     this.formLoading = this.formFormio
       .loadForm()
       .then(
         (form: any) => {
           this.form = form;
           this.formResolve(form);
-          this.loader.loading = false;
+          this.loader.setLoading(false);
           this.loadParents();
           return form;
         },
@@ -183,13 +183,13 @@ export class FormioResourceService {
 
   loadResource(route: ActivatedRoute) {
     this.setContext(route);
-    this.loader.loading = true;
+    this.loader.setLoading(true);
     this.resourceLoading = this.resourceLoaded = this.formio
       .loadSubmission(null, {ignoreCache: true})
       .then(
         (resource: any) => {
           this.resource = resource;
-          this.loader.loading = false;
+          this.loader.setLoading(false);
           this.refresh.emit({
             property: 'submission',
             value: this.resource

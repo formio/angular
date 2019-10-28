@@ -2,9 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### 4.3.0-beta.1
+### 4.3.0-beta.3
 ### Changed
+ - Run formio outside of ngZone: https://github.com/formio/angular-formio/pull/388
+ - `NgZone` service is required for main components.
+ - The `FormioLoader` service is updated. Added `setLoading` method. `loading$` flag is available as Observable.
+ - Upgraded dependencies and formiojs@4.6.0
+
+### 4.3.0-beta.2
+### Changed
+ - Upgraded dependencies and formiojs@4.5.0
+
+### 4.3.0-beta.1
+### Added
  - Added Custom Angular Fields: https://github.com/formio/angular-formio/pull/374
+ - `@angular/elements` added as peer dependency.
 
 ### 4.2.6
 ### Changed
