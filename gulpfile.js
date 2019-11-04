@@ -142,14 +142,9 @@ gulp.task('ngc-resource-angular', function (done) {
  */
 const rollupFesm = function(name, path) {
   path = path || '';
-  return gulp.src(`${buildFolder}${path}/**/*.js`)
+  return gulp.src(`${buildFolder}${path}/index.js`)
   // transform the files here.
     .pipe(rollup({
-
-      // Bundle's entry point
-      // See "input" in https://rollupjs.org/#core-functionality
-      input: `${buildFolder}${path}/index.js`,
-
       // Allow mixing of hypothetical and actual files. "Actual" files can be files
       // accessed by Rollup or produced by plugins further down the chain.
       // This prevents errors like: 'path/file' does not exist in the hypothetical file system
@@ -187,14 +182,9 @@ gulp.task('rollup-resource:fesm', () => rollupFesm('formio-resource', '/resource
  */
 const rollupUmd = function(name, path) {
   path = path || '';
-  return gulp.src(`${buildFolder}${path}/**/*.js`)
+  return gulp.src(`${buildFolder}${path}/index.js`)
   // transform the files here.
     .pipe(rollup({
-
-      // Bundle's entry point
-      // See "input" in https://rollupjs.org/#core-functionality
-      input: `${buildFolder}${path}/index.js`,
-
       // Allow mixing of hypothetical and actual files. "Actual" files can be files
       // accessed by Rollup or produced by plugins further down the chain.
       // This prevents errors like: 'path/file' does not exist in the hypothetical file system
