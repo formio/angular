@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.3.0-beta.4
+### Fixed
+ - Fix gulpfile rollup configuration
+ - Fixed updated loader
+ 
+### Changed
+ - Upgraded formiojs@4.7.2
+ - Upgraded core-js@3.3.6, @angular/cli@8.3.17, @angular/common@8.2.13, @angular/compiler@8.2.13, @angular/compiler-cli@8.2.13, @angular/core@8.2.13, @angular/elements@8.2.13, @angular/forms@8.2.13, @angular/platform-browser@8.2.13, @angular/platform-browser-dynamic@8.2.13, @angular/router@8.2.13, @types/jasmine@3.4.6, rollup@1.26.3, tslint@5.20.1, webpack-cli@3.3.10, formiojs@4.7.2, @types/node@12.12.6, fork-ts-checker-webpack-plugin@3.0.1
+
 ### 4.3.0-beta.3
 ### Changed
  - Run formio outside of ngZone: https://github.com/formio/angular-formio/pull/388
