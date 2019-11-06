@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 4.3.0-beta.4
+## 4.3.0-beta.5
 ### Fixed
  - Fix gulpfile rollup configuration
  - Fixed updated loader
