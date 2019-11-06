@@ -64,7 +64,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.rowAction = new EventEmitter();
     this.createItem = new EventEmitter();
     this.error = new EventEmitter();
-    this.loader.loading = true;
+    this.loader.setLoading(true);
   }
 
   createComponent(property, component) {
@@ -150,7 +150,8 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   }
 
   set loading(_loading: boolean) {
-    this.loader.loading = this.isLoading = _loading;
+    this.isLoading = _loading;
+    this.loader.setLoading(_loading);
   }
 
   actionAllowed(action) {
