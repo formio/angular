@@ -51,7 +51,7 @@ export class FormioAuthService {
     this.registerForm =
       this.appConfig.appUrl +
       '/' +
-      get(this.config, 'register.form', 'user/login');
+      get(this.config, 'register.form', 'user/register');
     this.onLogin = new EventEmitter();
     this.onLogout = new EventEmitter();
     this.onRegister = new EventEmitter();
