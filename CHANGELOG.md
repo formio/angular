@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.3.2
+### Fixed
+ - Register form within Form Manager.
+ 
+### Changed
+ - Upgraded formiojs@4.7.6
+
 ## 4.3.1
 ### Fixed
  - No longer require angular/elements as peer dependencies.

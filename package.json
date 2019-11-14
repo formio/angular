@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -32,15 +32,15 @@
     "url": "https://github.com/formio/angular-formio/issues"
   },
   "devDependencies": {
-    "@angular/cli": "^8.3.18",
-    "@angular/common": "^8.2.13",
-    "@angular/compiler": "^8.2.13",
-    "@angular/compiler-cli": "^8.2.13",
-    "@angular/core": "^8.2.13",
-    "@angular/forms": "^8.2.13",
-    "@angular/platform-browser": "^8.2.13",
-    "@angular/platform-browser-dynamic": "^8.2.13",
-    "@angular/router": "^8.2.13",
+    "@angular/cli": "^8.3.19",
+    "@angular/common": "^8.2.14",
+    "@angular/compiler": "^8.2.14",
+    "@angular/compiler-cli": "^8.2.14",
+    "@angular/core": "^8.2.14",
+    "@angular/forms": "^8.2.14",
+    "@angular/platform-browser": "^8.2.14",
+    "@angular/platform-browser-dynamic": "^8.2.14",
+    "@angular/router": "^8.2.14",
     "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "^3.4.6",
     "@types/node": "^12.12.7",
@@ -73,7 +73,7 @@
     "path": "^0.12.7",
     "prismjs": "^1.17.1",
     "protractor": "^5.4.2",
-    "rollup": "^1.26.5",
+    "rollup": "^1.27.0",
     "run-sequence": "^2.2.1",
     "rxjs": "^6.5.3",
     "sass-loader": "^8.0.0",
@@ -103,9 +103,9 @@
     "zone.js": "^0.8.0"
   },
   "dependencies": {
-    "@angular/elements": "^8.2.13",
-    "core-js": "^3.4.0",
-    "formiojs": "^4.7.4",
+    "@angular/elements": "^8.2.14",
+    "core-js": "^3.4.1",
+    "formiojs": "^4.7.6",
     "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.2.0"
   }
