@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.3.3
+### Changed
+ - Explicit field options for custom components
+ - Upgrade formio.js to 4.7.8
+
 ## 4.3.2
 ### Fixed
  - Register form within Form Manager.
