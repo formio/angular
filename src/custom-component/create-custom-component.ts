@@ -1,6 +1,6 @@
 import { BuilderInfo, Components, ExtendedComponentSchema, Utils as FormioUtils } from 'formiojs';
 import { FormioCustomComponentInfo, FormioCustomElement } from '../formio.common';
-import { clone, isNil } from 'lodash';
+import { clone, isNil, isArray } from 'lodash';
 
 const BaseInputComponent = Components.components.input;
 const TextfieldComponent = Components.components.textfield;
@@ -114,6 +114,13 @@ export function createCustomFormioComponent(customComponentOptions: FormioCustom
         for (const key in this.component.validate) {
           if (this.component.validate.hasOwnProperty(key)) {
             this._customAngularElement[key] = this.component.validate[key];
+          }
+        }
+        if (isArray(customComponentOptions.fieldOptions) && customComponentOptions.fieldOptions.length > 0) {
+          for (const key in customComponentOptions.fieldOptions) {
+            if (this.component.validate.hasOwnProperty(key)) {
+              this._customAngularElement[key] = this.component.validate[key];
+            }
           }
         }
 
