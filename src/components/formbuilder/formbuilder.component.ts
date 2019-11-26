@@ -176,6 +176,8 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: any) {
+    Utils.Evaluator.noeval = this.noeval;
+
     if (changes.form && changes.form.currentValue) {
       this.ngZone.runOutsideAngular(() => {
         this.buildForm(changes.form.currentValue || {components: []});

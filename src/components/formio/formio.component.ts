@@ -1,4 +1,4 @@
-import { Component, OnInit, Optional, ViewEncapsulation, Input, NgZone } from '@angular/core';
+import { Component, OnInit, Optional, ViewEncapsulation, Input, NgZone, OnChanges } from '@angular/core';
 import { FormioLoader } from '../loader/formio.loader';
 import { FormioAppConfig } from '../../formio.config';
 import { Formio, Form, Utils } from 'formiojs';
@@ -13,7 +13,7 @@ import { CustomTagsService } from '../../custom-component/custom-tags.service';
   encapsulation: ViewEncapsulation.None,
 })
 /* tslint:enable */
-export class FormioComponent extends FormioBaseComponent implements OnInit {
+export class FormioComponent extends FormioBaseComponent implements OnInit, OnChanges {
   @Input() noeval ? = false;
   constructor(
     public ngZone: NgZone,
@@ -33,6 +33,11 @@ export class FormioComponent extends FormioBaseComponent implements OnInit {
   ngOnInit() {
     Utils.Evaluator.noeval = this.noeval;
     super.ngOnInit();
+  }
+
+  ngOnChanges(changes: any) {
+    Utils.Evaluator.noeval = this.noeval;
+    super.ngOnChanges(changes);
   }
 
   getRenderer() {
