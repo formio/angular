@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.3.5
+### Changed
+ - Upgraded formiojs to 4.8.0-beta.5
+
 ## 4.3.4
 ### Changed
  - Upgrade formio.js to 4.8.0-beta.4
