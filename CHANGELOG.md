@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.3.4
+### Changed
+ - Upgrade formio.js to 4.8.0-beta.4
+ - Fixed the noeval paramter to turn off eval into the renderer.
+ - Upgraded core-js@3.4.7, @angular/cli@8.3.20, @types/node@12.12.14, css-loader@3.2.1, rollup@1.27.8, style-loader@1.0.1, systemjs@6.1.7, ts-node@8.5.4, url-loader@3.0.0
+
 ## 4.3.3
 ### Changed
  - Explicit field options for custom components
