@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioAuthService } from '../auth/auth.service';
 import { FormioResourceService } from './resource.service';
@@ -11,7 +11,8 @@ export class FormioResourceComponent implements OnInit {
   constructor(
     public service: FormioResourceService,
     public route: ActivatedRoute,
-    public auth: FormioAuthService
+    public auth: FormioAuthService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -22,6 +23,7 @@ export class FormioResourceComponent implements OnInit {
           this.service.formFormio.userPermissions(this.auth.user, form, resource).then((perms) => {
             this.perms.delete = perms.delete;
             this.perms.edit = perms.edit;
+            this.changeDetectorRef.detectChanges();
           });
         });
       });
