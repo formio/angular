@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.3.7
+### Changed
+ - Upgrade formiojs to 4.8.0-beta.8
+
 ## 4.3.6
 ### Fixed
  - UI not updating after getting user permissions in ```FormioResourceComponent```
