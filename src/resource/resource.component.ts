@@ -12,7 +12,7 @@ export class FormioResourceComponent implements OnInit {
     public service: FormioResourceService,
     public route: ActivatedRoute,
     public auth: FormioAuthService,
-    private changeDetectorRef: ChangeDetectorRef,
+    public changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
