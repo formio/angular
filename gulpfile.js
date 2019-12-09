@@ -19,8 +19,9 @@ const distFolder = path.join(rootFolder, 'dist');
 
 // Execute the ngc command from command line.
 const ngc = function(commands, cb) {
-  const child = spawn('ngc', commands);
-  child.on('close', cb);
+  const isWin = /^win/.test(process.platform);
+  const child = spawn(isWin ? 'ngc.cmd' : 'ngc', commands);
+  child.on('close', () => cb())
 };
 
 gulp.task('package-version', function packageVersion() {
