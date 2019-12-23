@@ -6,6 +6,7 @@ import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAlertsComponent } from './components/alerts/formio.alerts.component';
 import { FormioLoader } from './components/loader/formio.loader';
 import { FormioLoaderComponent } from './components/loader/formio.loader.component';
+import { CustomTagsService } from './custom-component/custom-tags.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormioLoaderComponent } from './components/loader/formio.loader.compone
   ],
   providers: [
     FormioLoader,
-    FormioAlerts
+    FormioAlerts,
+    CustomTagsService
   ],
   entryComponents: [
     FormioComponent,
