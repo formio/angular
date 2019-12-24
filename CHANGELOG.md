@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased]
+### Added
+ - Ability to use OAuth for authentication (Okta, SAML)
+
 ## 4.3.13
 ### Fixed
  - Issues where this module would not run in Angular 7 applications.
