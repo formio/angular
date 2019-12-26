@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## 4.4.0
 ### Added
- - SAML and Okta SSO support.
+ - Ability to use OAuth for authentication (Okta, SAML)
 
 ### Changed
  - Upgrade formio.js to 4.8.0-rc.9
