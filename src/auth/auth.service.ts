@@ -114,7 +114,20 @@ export class FormioAuthService {
       }
     );
 
-    this.userReady = Formio.currentUser().then((user: any) => {
+    let currentUserPromise: Promise<any>;
+    if (this.config.oauth) {
+      // Make a fix to the hash to remove starting "/" that angular might put there.
+      if (window.location.hash && window.location.hash.match(/^#\/access_token/)) {
+        history.pushState(null, null, window.location.hash.replace(/^#\/access_token/, '#access_token'));
+      }
+
+      // Initiate the SSO if they provide oauth settings.
+      currentUserPromise = Formio.ssoInit(this.config.oauth.type, this.config.oauth.options);
+    } else {
+      currentUserPromise = Formio.currentUser();
+    }
+
+    this.userReady = currentUserPromise.then((user: any) => {
       this.setUser(user);
       return user;
     });
