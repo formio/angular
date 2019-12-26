@@ -1,7 +1,7 @@
 import { Component, OnInit, Optional, ViewEncapsulation, Input, NgZone, OnChanges } from '@angular/core';
 import { FormioLoader } from '../loader/formio.loader';
 import { FormioAppConfig } from '../../formio.config';
-import { Formio, Form, Utils } from 'formiojs';
+import { Formio, Form } from 'formiojs';
 import { FormioBaseComponent } from '../../FormioBaseComponent';
 import { CustomTagsService } from '../../custom-component/custom-tags.service';
 
@@ -14,7 +14,6 @@ import { CustomTagsService } from '../../custom-component/custom-tags.service';
 })
 /* tslint:enable */
 export class FormioComponent extends FormioBaseComponent implements OnInit, OnChanges {
-  @Input() noeval ? = false;
   constructor(
     public ngZone: NgZone,
     public loader: FormioLoader,
@@ -28,16 +27,6 @@ export class FormioComponent extends FormioBaseComponent implements OnInit, OnCh
     } else {
       console.warn('You must provide an AppConfig within your application!');
     }
-  }
-
-  ngOnInit() {
-    Utils.Evaluator.noeval = this.noeval;
-    super.ngOnInit();
-  }
-
-  ngOnChanges(changes: any) {
-    Utils.Evaluator.noeval = this.noeval;
-    super.ngOnChanges(changes);
   }
 
   getRenderer() {
