@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.4.1
+### Changed
+ - Moved noeval code into the base class so Angular Material can use it.
+ - Upgrade formio.js to 4.8.0-rc.10
+
 ## 4.4.0
 ### Added
  - Ability to use OAuth for authentication (Okta, SAML)

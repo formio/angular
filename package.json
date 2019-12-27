@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.4.0",
+  "version": "4.4.1",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -44,7 +44,7 @@
     "@angular/router": "^8.2.14",
     "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "^3.5.0",
-    "@types/node": "^13.1.0",
+    "@types/node": "^13.1.1",
     "angular-in-memory-web-api": "^0.9.0",
     "codelyzer": "^5.2.1",
     "concurrently": "^5.0.2",
@@ -106,7 +106,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.1",
-    "formiojs": "^4.8.0-rc.9",
+    "formiojs": "^4.8.0-rc.10",
     "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.2.0"
   }
