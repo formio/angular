@@ -22,6 +22,7 @@ import {
 } from './formio.common';
 import { isEmpty, get, assign } from 'lodash';
 import { CustomTagsService } from './custom-component/custom-tags.service';
+import Evaluator from 'formiojs/utils/Evaluator';
 
 export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form?: FormioForm;
@@ -30,6 +31,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() url?: string;
   @Input() service?: FormioService;
   @Input() options?: FormioOptions;
+  @Input() noeval ? = false;
   @Input() formioOptions?: any;
   @Input() renderOptions?: any;
   @Input() readOnly ? = false;
@@ -179,6 +181,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
+    Evaluator.noeval = this.noeval;
     this.initialize();
 
     if (this.language) {
@@ -274,6 +277,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: any) {
+    Evaluator.noeval = this.noeval;
     this.initialize();
 
     if (changes.form && changes.form.currentValue) {
