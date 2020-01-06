@@ -116,10 +116,11 @@ export function createCustomFormioComponent(customComponentOptions: FormioCustom
             this._customAngularElement[key] = this.component.validate[key];
           }
         }
-        if (isArray(customComponentOptions.fieldOptions) && customComponentOptions.fieldOptions.length > 0) {
-          for (const key in customComponentOptions.fieldOptions) {
-            if (this.component.validate.hasOwnProperty(key)) {
-              this._customAngularElement[key] = this.component.validate[key];
+        const fieldOptions = customComponentOptions.fieldOptions;
+        if (isArray(fieldOptions) && fieldOptions.length > 0) {
+          for (const key in fieldOptions) {
+            if (fieldOptions.hasOwnProperty(key)) {
+              this._customAngularElement[fieldOptions[key]] = this.component[fieldOptions[key]];
             }
           }
         }
