@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## 4.4.3
+### Fixed
+ - Field options for custom components.
+
 ### Changed
  - Upgrade formio.js to 4.8.0-rc.12 to resolve builder issues.
 
