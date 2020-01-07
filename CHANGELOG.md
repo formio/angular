@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.4.3
+### Changed
+ - Upgrade formio.js to 4.8.0-rc.12 to resolve builder issues.
+
 ## 4.4.2
 ### Changed
  - Upgrade formio.js to 4.8.0-rc.11 to resolve promise issues with Angular.
