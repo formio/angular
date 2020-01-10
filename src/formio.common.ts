@@ -86,8 +86,16 @@ export interface FormioCustomComponentInfo extends BuilderInfo {
 
 export type FormioCustomElement = NgElement & WithProperties<{ value: any } & ExtendedComponentSchema>;
 
+export interface FormioEvent {
+  eventName: string;
+  data?: {
+    [key: string]: any;
+  };
+}
+
 export interface FormioCustomComponent<T> {
   value: T; // Should be an @Input
   valueChange: EventEmitter<T>; // Should be an @Output
   disabled: boolean;
+  formioEvent?: EventEmitter<FormioEvent>; // Should be an @Output
 }
