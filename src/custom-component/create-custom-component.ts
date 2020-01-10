@@ -1,5 +1,5 @@
 import { BuilderInfo, Components, ExtendedComponentSchema, Utils as FormioUtils } from 'formiojs';
-import { FormioCustomComponentInfo, FormioCustomElement } from '../formio.common';
+import { FormioCustomComponentInfo, FormioCustomElement, FormioEvent } from '../formio.common';
 import { clone, isNil, isArray } from 'lodash';
 
 const BaseInputComponent = Components.components.input;
@@ -106,16 +106,19 @@ export function createCustomFormioComponent(customComponentOptions: FormioCustom
           superAttach = super.attach(element);
         }
 
+        // Bind customOptions
         for (const key in this.component.customOptions) {
           if (this.component.customOptions.hasOwnProperty(key)) {
             this._customAngularElement[key] = this.component.customOptions[key];
           }
         }
+        // Bind validate options
         for (const key in this.component.validate) {
           if (this.component.validate.hasOwnProperty(key)) {
             this._customAngularElement[key] = this.component.validate[key];
           }
         }
+        // Bind options explicitly set
         const fieldOptions = customComponentOptions.fieldOptions;
         if (isArray(fieldOptions) && fieldOptions.length > 0) {
           for (const key in fieldOptions) {
@@ -124,6 +127,14 @@ export function createCustomFormioComponent(customComponentOptions: FormioCustom
             }
           }
         }
+
+        // Attach event listener for emit event
+        this._customAngularElement.addEventListener('formioEvent', (event: CustomEvent<FormioEvent>) => {
+          this.emit(event.detail.eventName, {
+            ...event.detail.data,
+            component: this.component
+          });
+        });
 
         // Ensure we bind the value (if it isn't a multiple-value component with no wrapper)
         if (!this._customAngularElement.value && !this.component.disableMultiValueWrapper) {
