@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.4.4
+### Changed
+ - Upgrade formio.js to 4.8.0-rc.13
+ 
+### Added
+ - Support emit event from Custom Component
+
 ## 4.4.3
 ### Fixed
  - Field options for custom components.
