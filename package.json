@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.4.4",
+  "version": "4.4.5",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -32,7 +32,7 @@
     "url": "https://github.com/formio/angular-formio/issues"
   },
   "devDependencies": {
-    "@angular/cli": "^8.3.22",
+    "@angular/cli": "^8.3.23",
     "@angular/common": "^8.2.14",
     "@angular/compiler": "^8.2.14",
     "@angular/compiler-cli": "^8.2.14",
@@ -44,7 +44,7 @@
     "@angular/router": "^8.2.14",
     "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "^3.5.0",
-    "@types/node": "^13.1.6",
+    "@types/node": "^13.1.7",
     "angular-in-memory-web-api": "^0.9.0",
     "codelyzer": "^5.2.1",
     "concurrently": "^5.0.2",
@@ -68,20 +68,20 @@
     "karma-jasmine": "^3.1.0",
     "karma-jasmine-html-reporter": "^1.5.1",
     "lite-server": "^2.5.4",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "node-sass-tilde-importer": "^1.0.0",
     "node-watch": "^0.6.3",
     "path": "^0.12.7",
-    "prismjs": "^1.18.0",
+    "prismjs": "^1.19.0",
     "protractor": "^5.4.2",
     "rollup": "^1.29.0",
     "run-sequence": "^2.2.1",
     "rxjs": "^6.5.4",
-    "sass-loader": "^8.0.1",
+    "sass-loader": "^8.0.2",
     "style-loader": "^1.1.2",
-    "systemjs": "^6.1.8",
+    "systemjs": "^6.1.9",
     "ts-loader": "^6.2.1",
-    "ts-node": "^8.6.0",
+    "ts-node": "^8.6.2",
     "tsickle": "^0.38.0",
     "tslint": "^5.20.1",
     "tslint-loader": "^3.6.0",
@@ -105,8 +105,8 @@
     "zone.js": "^0.8.0"
   },
   "dependencies": {
-    "core-js": "^3.6.2",
-    "formiojs": "^4.8.0-rc.13",
+    "core-js": "^3.6.4",
+    "formiojs": "^4.8.0-rc.14",
     "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.3.2"
   }
