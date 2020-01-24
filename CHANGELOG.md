@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.5.0
+### Changed
+ - Upgrade formio.js@4.8.0
+
 ## 4.4.6
 ### Added
  - The ability to import from 'angular-formio/core' to skip over the custom component classes that are only compatible with Angular 7 & 8.
