@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.5.1
+### Changed
+ - Upgrade formio.js@4.8.1
+
+### Fixed
+ - Issues with colliding promises.
+
 ## 4.5.0
 ### Changed
  - Upgrade formio.js@4.8.0
