@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.5.2",
+  "version": "4.5.3",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -65,7 +65,7 @@
     "karma-chrome-launcher": "^3.1.0",
     "karma-cli": "^2.0.0",
     "karma-coverage-istanbul-reporter": "^2.1.1",
-    "karma-jasmine": "^3.1.0",
+    "karma-jasmine": "^3.1.1",
     "karma-jasmine-html-reporter": "^1.5.2",
     "lite-server": "^2.5.4",
     "node-sass": "^4.13.1",
@@ -87,7 +87,7 @@
     "tslint-loader": "^3.6.0",
     "typescript": "~3.5.3",
     "url-loader": "^3.0.0",
-    "webpack": "^4.41.5",
+    "webpack": "^4.41.6",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.3",
     "zone.js": "^0.10.2"
@@ -106,7 +106,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "formiojs": "^4.9.0-beta.3",
+    "formiojs": "^4.9.0-beta.4",
     "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.3.2"
   }
