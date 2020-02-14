@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.5.3",
+  "version": "4.5.4",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -43,13 +43,13 @@
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
     "@compodoc/compodoc": "^1.1.11",
-    "@types/jasmine": "^3.5.3",
-    "@types/node": "^13.7.0",
+    "@types/jasmine": "^3.5.4",
+    "@types/node": "^13.7.1",
     "angular-in-memory-web-api": "^0.9.0",
     "codelyzer": "^5.2.1",
     "concurrently": "^5.1.0",
     "css-loader": "^3.4.2",
-    "fork-ts-checker-webpack-plugin": "^4.0.3",
+    "fork-ts-checker-webpack-plugin": "^4.0.4",
     "fs-extra": "^8.1.0",
     "gulp": "^4.0.2",
     "gulp-better-rollup": "^4.0.1",
@@ -74,12 +74,12 @@
     "path": "^0.12.7",
     "prismjs": "^1.19.0",
     "protractor": "^5.4.3",
-    "rollup": "^1.31.0",
+    "rollup": "^1.31.1",
     "run-sequence": "^2.2.1",
     "rxjs": "^6.5.4",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
-    "systemjs": "^6.2.2",
+    "systemjs": "^6.2.3",
     "ts-loader": "^6.2.1",
     "ts-node": "^8.6.2",
     "tsickle": "^0.38.0",
@@ -88,7 +88,7 @@
     "typescript": "~3.5.3",
     "url-loader": "^3.0.0",
     "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.10",
+    "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
     "zone.js": "^0.10.2"
   },
@@ -106,7 +106,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "formiojs": "^4.9.0-beta.4",
+    "formiojs": "^4.9.0-beta.5",
     "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.3.2"
   }
