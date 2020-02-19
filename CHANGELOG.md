@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.5.8
+### Fixed
+ - `<formio>` component's `setForm` method not taking into account current submission
+
 ## 4.5.7
 ### Changed
  - Upgrade formio.js@4.9.0-beta.8
