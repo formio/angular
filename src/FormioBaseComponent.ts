@@ -116,6 +116,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       this.formioElement.nativeElement.innerHTML = '';
     }
     this.formio = this.createRenderer();
+    this.formio.submission = this.submission;
     if (this.url) {
       this.formio.setUrl(this.url, this.formioOptions || {});
     }
