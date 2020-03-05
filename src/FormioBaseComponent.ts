@@ -370,6 +370,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       this.alerts.addAlert({
         type: 'danger',
         message,
+        component: error.component,
       });
 
       if (this.formio) {
@@ -380,6 +381,12 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
         });
       }
     });
+  }
+
+  focusOnComponet(key: any) {
+    if (this.formio) {
+      this.formio.focusOnComponent(key);
+    }
   }
 
   submitExecute(submission: object) {
