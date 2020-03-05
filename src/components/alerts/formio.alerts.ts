@@ -1,6 +1,7 @@
 export interface FormioAlert {
   type: string;
   message: string;
+  component?: any;
 }
 
 export class FormioAlerts {

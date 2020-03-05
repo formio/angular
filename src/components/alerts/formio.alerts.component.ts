@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { FormioAlerts } from './formio.alerts';
 
 @Component({
@@ -7,9 +7,13 @@ import { FormioAlerts } from './formio.alerts';
 })
 export class FormioAlertsComponent implements OnInit {
   @Input() alerts: FormioAlerts;
+  @Output() focusComponent = new EventEmitter<object>();
   ngOnInit() {
     if (!this.alerts) {
       this.alerts = new FormioAlerts();
     }
+  }
+  getComponent (event, alert) {
+    this.focusComponent.emit(alert.component.key);
   }
 }

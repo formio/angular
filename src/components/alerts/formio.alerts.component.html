@@ -1,1 +1,1 @@
-<div *ngFor="let alert of alerts.alerts" class="alert alert-{{ alert.type }}" role="alert">{{ alert.message }}</div>
+<div *ngFor="let alert of alerts.alerts" class="alert alert-{{ alert.type }}" role="alert" (click)="getComponent($event, alert)">{{ alert.message }}</div>
