@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased]
+## 4.6.2
+### Changed
+ - Upgrade formiojs@4.9.0-rc.5
+
+### Added
+ - Ability to click on errors to take you to them in the form.
+
 ### Fixed
  - `FormioResourceComponent` not refreshing when navigating from one submission to another
 

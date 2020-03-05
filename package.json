@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.6.1",
+  "version": "4.6.2",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -107,7 +107,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "formiojs": "^4.9.0-rc.4",
+    "formiojs": "^4.9.0-rc.5",
     "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.5.0"
   }
