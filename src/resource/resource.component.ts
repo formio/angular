@@ -16,7 +16,7 @@ export class FormioResourceComponent implements OnInit, OnDestroy {
     public route: ActivatedRoute,
     public auth: FormioAuthService,
     public changeDetectorRef: ChangeDetectorRef,
-    private router: Router,
+    public router: Router,
   ) {
     // subscribe to the router events, so that we could re-load the submission if navigation happens from one submission to another
     this.navigationSubscription = this.router.events.subscribe((event: any) => {
