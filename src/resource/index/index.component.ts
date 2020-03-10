@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
@@ -15,7 +15,8 @@ export class FormioResourceIndexComponent implements OnInit {
     public service: FormioResourceService,
     public route: ActivatedRoute,
     public router: Router,
-    public config: FormioResourceConfig
+    public config: FormioResourceConfig,
+    public cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -43,6 +44,8 @@ export class FormioResourceIndexComponent implements OnInit {
         this.gridSrc = this.service.formUrl;
         this.createText = `New ${this.service.form.title}`;
       }
+
+      this.cdr.detectChanges();
     });
   }
 
