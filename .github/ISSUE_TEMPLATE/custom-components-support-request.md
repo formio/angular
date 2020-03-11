@@ -3,7 +3,7 @@ name: Custom Components Support Request
 about: Questions about Custom Components
 title: "[Custom Components] "
 labels: 'question, scope: community, scope: custom components'
-assignees: merobal
+assignees: ''
 
 ---
 
