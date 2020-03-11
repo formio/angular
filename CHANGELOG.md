@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.6.5
+### Fixed
+ - Issues with index view for resources not always updating content.
+ 
+### Changed
+ - Upgrade formiojs@4.9.0-rc.7
+
 ## 4.6.4
 ### Changed
  - Upgrade formiojs@4.9.0-rc.6
