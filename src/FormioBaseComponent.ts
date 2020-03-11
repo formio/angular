@@ -35,6 +35,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() formioOptions?: any;
   @Input() renderOptions?: any;
   @Input() readOnly ? = false;
+  @Input() validateOnInit ?= false;
   @Input() viewOnly ? = false;
   @Input() hideComponents?: string[];
   @Input() refresh?: EventEmitter<FormioRefreshValue>;
@@ -249,6 +250,10 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     }
     if (this.url && !this.service) {
       this.service = new FormioService(this.url);
+    }
+
+    if (this.validateOnInit) {
+      this.formio.options.validateOnInit = true;
     }
   }
 
