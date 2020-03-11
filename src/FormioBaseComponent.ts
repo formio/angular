@@ -376,8 +376,10 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       if (this.formio) {
         paths.forEach((path) => {
           const component = this.formio.getComponent(path);
-          const components = Array.isArray(component) ? component : [component];
-          components.forEach((comp) => comp.setCustomValidity(message, true));
+          if (component) {
+            const components = Array.isArray(component) ? component : [component];
+            components.forEach((comp) => comp.setCustomValidity(message, true));
+          }
         });
       }
     });

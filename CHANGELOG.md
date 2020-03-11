@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.6.6
+### Fixed
+ - Problem where an error would get thrown if a non Form.io error is thrown.
+
 ## 4.6.5
 ### Fixed
  - Issues with index view for resources not always updating content.
