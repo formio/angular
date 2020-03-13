@@ -2,10 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 4.6.7
-### Fixed
- - Issues where the errors would show immediately instead of allow initializations.
-
 ## 4.6.6
 ### Fixed
  - Problem where an error would get thrown if a non Form.io error is thrown.

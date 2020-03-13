@@ -116,9 +116,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       this.formioElement.nativeElement.innerHTML = '';
     }
     this.formio = this.createRenderer();
-    this.formio.setSubmission(this.submission, {
-      noValidate: !this.formio.submissionSet
-    });
+    this.formio.submission = this.submission;
     if (this.url) {
       this.formio.setUrl(this.url, this.formioOptions || {});
     }
@@ -236,9 +234,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
                 if (this.readOnly) {
                   this.formio.options.readOnly = true;
                 }
-                this.formio.setSubmission(submission, {
-                  noValidate: !this.formio.submissionSet
-                }).then(sub => (this.submission = sub));
+                this.submission = this.formio.submission = submission;
               },
               err => this.onError(err)
             );
@@ -263,21 +259,15 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       if (refresh.form) {
         this.formio.setForm(refresh.form).then(() => {
           if (refresh.submission) {
-            this.formio.setSubmission(refresh.submission, {
-              noValidate: !this.formio.submissionSet
-            });
+            this.formio.setSubmission(refresh.submission);
           }
         });
       } else if (refresh.submission) {
-        this.formio.setSubmission(refresh.submission, {
-          noValidate: !this.formio.submissionSet
-        });
+        this.formio.setSubmission(refresh.submission);
       } else {
         switch (refresh.property) {
           case 'submission':
-            this.formio.setSubmission(refresh.value, {
-              noValidate: !this.formio.submissionSet
-            });
+            this.formio.submission = refresh.value;
             break;
           case 'form':
             this.formio.form = refresh.value;
@@ -299,9 +289,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
 
     this.formioReady.then(() => {
       if (changes.submission && changes.submission.currentValue) {
-        this.formio.setSubmission(changes.submission.currentValue, {
-          noValidate: !this.formio.submissionSet
-        });
+        this.formio.submission = changes.submission.currentValue;
       }
 
       if (changes.hideComponents && changes.hideComponents.currentValue) {

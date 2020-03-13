@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.6.7",
+  "version": "4.6.6",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
