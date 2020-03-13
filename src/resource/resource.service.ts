@@ -1,7 +1,7 @@
-import { EventEmitter, Injectable, Optional } from '@angular/core';
+import { ApplicationRef, EventEmitter, Injectable, Optional } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig } from './resource.config';
-import { FormioResources, FormioResourceMap } from './resources.service';
+import { FormioResources } from './resources.service';
 import { FormioAlerts } from '../components/alerts/formio.alerts';
 import { FormioLoader } from '../components/loader/formio.loader';
 import { FormioAppConfig } from '../formio.config';
@@ -36,7 +36,8 @@ export class FormioResourceService {
     public appConfig: FormioAppConfig,
     public config: FormioResourceConfig,
     public loader: FormioLoader,
-    @Optional() public resourcesService: FormioResources
+    @Optional() public resourcesService: FormioResources,
+    public appRef: ApplicationRef,
   ) {
     this.alerts = new FormioAlerts();
     this.refresh = new EventEmitter();
@@ -118,6 +119,7 @@ export class FormioResourceService {
           this.formResolve(form);
           this.loader.setLoading(false);
           this.loadParents();
+          this.appRef.tick();
           return form;
         },
         (err: any) => this.onFormError(err)
