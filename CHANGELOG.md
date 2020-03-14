@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 4.6.8
+## 4.6.9
+### Fixed
+ - Resource Service `loadForm` changes not being reflected on the view
+
+## 4.6.7, 4.6.8
 ### Fixed
  - Reverted changes to override the noValidate flag on setting submissions. Was able to do this with fixes to core renderer.
 
