@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.6.11
+### Changed
+ - Upgrade formiojs@4.9.0-rc.11
+ - Made formioReady public so it can be used from the outside.
+
 ## 4.6.9
 ### Fixed
  - Resource Service `loadForm` changes not being reflected on the view
