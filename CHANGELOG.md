@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.6.12
+### Changed
+ - Upgrade formiojs@4.9.0-rc.12
+ - Upgrade @angular/cli@9.0.7, @angular/common@9.0.7, @angular/compiler@9.0.7, @angular/compiler-cli@9.0.7, @angular/core@9.0.7, @angular/elements@9.0.7, @angular/forms@9.0.7, @angular/platform-browser@9.0.7, @angular/platform-browser-dynamic@9.0.7, @angular/router@9.0.7, @types/node@13.9.2, rollup@2.1.0, ts-node@8.7.0
+
 ## 4.6.11
 ### Changed
  - Upgrade formiojs@4.9.0-rc.11
