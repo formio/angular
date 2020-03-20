@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.6.12",
+  "version": "4.6.13",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -50,14 +50,14 @@
     "concurrently": "^5.1.0",
     "css-loader": "^3.4.2",
     "fork-ts-checker-webpack-plugin": "^4.1.0",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
     "gulp": "^4.0.2",
     "gulp-better-rollup": "^4.0.1",
     "gulp-clean-css": "^4.3.0",
     "gulp-rename": "^2.0.0",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
-    "html-loader": "^0.5.5",
+    "html-loader": "^1.0.0",
     "html-webpack-plugin": "^3.0.7",
     "jasmine-core": "^3.5.0",
     "jasmine-spec-reporter": "^4.2.1",
@@ -107,7 +107,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "formiojs": "^4.9.0-rc.12",
+    "formiojs": "^4.9.0",
     "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.5.0"
   }
