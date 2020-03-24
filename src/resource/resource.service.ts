@@ -120,7 +120,6 @@ export class FormioResourceService {
           this.formResolve(form);
           this.loader.setLoading(false);
           this.loadParents();
-          this.appRef.tick();
           return form;
         },
         (err: any) => this.onFormError(err)
