@@ -39,8 +39,14 @@ export class FormioService {
   loadForms(query: any): Observable<FormioForm> {
     return this.requestWrapper(() => this.formio.loadForms(query));
   }
-  loadSubmission(): Observable<{}> {
-    return this.requestWrapper(() => this.formio.loadSubmission());
+  loadSubmission(query?: any, opts?: any): Observable<{}> {
+    return this.requestWrapper(() => this.formio.loadSubmission(query, opts));
+  }
+  userPermissions(user: any, form: any, submission: any): Observable<{}> {
+    return this.requestWrapper(() => this.formio.userPermissions(user, form, submission));
+  }
+  deleteSubmission(opts?: any): Observable<{}> {
+    return this.requestWrapper(() => this.formio.deleteSubmission(opts));
   }
   saveSubmission(submission: {}): Observable<{}> {
     return this.requestWrapper(() => this.formio.saveSubmission(submission));

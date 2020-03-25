@@ -1,5 +1,4 @@
 import {FormioForm, FormioService} from './index';
-import { Injectable } from '@angular/core';
 
 export class FormioPromiseService {
   private formioService: FormioService;
@@ -14,8 +13,14 @@ export class FormioPromiseService {
   loadForm(options?: any): Promise<any> {
     return this.formioService.loadForm(options).toPromise();
   }
-  loadSubmission(): Promise<any> {
-    return this.formioService.loadSubmission().toPromise();
+  loadSubmission(query?: any, opts?: any): Promise<any> {
+    return this.formioService.loadSubmission(query, opts).toPromise();
+  }
+  userPermissions(user: any, form: any, submission: any): Promise<any> {
+    return this.formioService.userPermissions(user, form, submission).toPromise();
+  }
+  deleteSubmission(opts?: any): Promise<any> {
+    return this.formioService.deleteSubmission(opts).toPromise();
   }
   loadForms(query: any): Promise<any> {
     return this.formioService.loadForms(query).toPromise();

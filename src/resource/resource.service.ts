@@ -19,8 +19,8 @@ export class FormioResourceService {
   public resource: any;
   public resourceUrl?: string;
   public formUrl: string;
-  public formFormio: any;
-  public formio: any;
+  public formFormio: FormioPromiseService;
+  public formio: FormioPromiseService;
   public refresh: EventEmitter<FormioRefreshValue>;
 
   public resourceLoading?: Promise<any>;
