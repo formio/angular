@@ -1,5 +1,5 @@
 import { Output, EventEmitter, ViewChild, TemplateRef, Input } from '@angular/core';
-import { Formio } from 'formiojs';
+import {FormioPromiseService} from '../formio-promise.service';
 
 export class GridHeaderComponent {
   @Input() actionAllowed: any;
@@ -15,7 +15,7 @@ export class GridHeaderComponent {
     return this.headers.length;
   }
 
-  load(formio: Formio, query?: any): Promise<any> {
+  load(formio: FormioPromiseService, query?: any): Promise<any> {
     return Promise.resolve([]);
   }
 }

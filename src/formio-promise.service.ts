@@ -28,7 +28,7 @@ export class FormioPromiseService {
   saveSubmission(submission: {}): Promise<any> {
     return this.formioService.saveSubmission(submission).toPromise();
   }
-  loadSubmissions(): Promise<any> {
-    return this.formioService.loadSubmissions().toPromise();
+  loadSubmissions(query?: any, opts?: any): Promise<any> {
+    return this.formioService.loadSubmissions(query, opts).toPromise();
   }
 }

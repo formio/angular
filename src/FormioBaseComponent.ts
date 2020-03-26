@@ -61,7 +61,6 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   public initialized = false;
   public alerts = new FormioAlerts();
   public formioReady: Promise<any>;
-  
   private formioReadyResolve: any;
   private submitting = false;
 

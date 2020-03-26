@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { Formio, Utils, Components } from 'formiojs';
+import { Utils, Components } from 'formiojs';
 import { GridHeaderComponent } from '../GridHeaderComponent';
+import {FormioPromiseService} from '../../formio-promise.service';
 
 @Component({
   templateUrl: './SubmissionGridHeader.component.html'
 })
 export class SubmissionGridHeaderComponent extends GridHeaderComponent {
-  load(formio: Formio, query?: any) {
+  load(formio: FormioPromiseService, query?: any) {
     query = query || {};
     return formio.loadForm({params: query}).then((form: any) => {
       this.headers = [];
