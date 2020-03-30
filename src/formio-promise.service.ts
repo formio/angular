@@ -7,28 +7,28 @@ export class FormioPromiseService {
     this.formioService = new FormioService(url, options);
   }
 
-  saveForm(form: FormioForm): Promise<any> {
-    return this.formioService.saveForm(form).toPromise();
+  saveForm(form: FormioForm, options?: any): Promise<any> {
+    return this.formioService.saveForm(form, options).toPromise();
   }
-  loadForm(options?: any): Promise<any> {
-    return this.formioService.loadForm(options).toPromise();
+  loadForm(query?: any, options?: any): Promise<any> {
+    return this.formioService.loadForm(query, options).toPromise();
   }
-  loadSubmission(query?: any, opts?: any): Promise<any> {
-    return this.formioService.loadSubmission(query, opts).toPromise();
+  loadSubmission(query?: any, options?: any): Promise<any> {
+    return this.formioService.loadSubmission(query, options).toPromise();
   }
   userPermissions(user: any, form: any, submission: any): Promise<any> {
     return this.formioService.userPermissions(user, form, submission).toPromise();
   }
-  deleteSubmission(opts?: any): Promise<any> {
-    return this.formioService.deleteSubmission(opts).toPromise();
+  deleteSubmission(data?: any, options?: any): Promise<any> {
+    return this.formioService.deleteSubmission(data, options).toPromise();
   }
-  loadForms(query: any): Promise<any> {
-    return this.formioService.loadForms(query).toPromise();
+  loadForms(query: any, options?: any): Promise<any> {
+    return this.formioService.loadForms(query, options).toPromise();
   }
-  saveSubmission(submission: {}): Promise<any> {
-    return this.formioService.saveSubmission(submission).toPromise();
+  saveSubmission(submission: {}, options?: any): Promise<any> {
+    return this.formioService.saveSubmission(submission, options).toPromise();
   }
-  loadSubmissions(query?: any, opts?: any): Promise<any> {
-    return this.formioService.loadSubmissions(query, opts).toPromise();
+  loadSubmissions(query?: any, options?: any): Promise<any> {
+    return this.formioService.loadSubmissions(query, options).toPromise();
   }
 }

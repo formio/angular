@@ -30,28 +30,28 @@ export class FormioService {
       }
     });
   }
-  saveForm(form: FormioForm): Observable<FormioForm> {
-    return this.requestWrapper(() => this.formio.saveForm(form));
+  saveForm(form: FormioForm, options?: any): Observable<FormioForm> {
+    return this.requestWrapper(() => this.formio.saveForm(form, options));
   }
-  loadForm(options?: any): Observable<FormioForm> {
-    return this.requestWrapper(() => this.formio.loadForm(options));
+  loadForm(query?: any, options?: any): Observable<FormioForm> {
+    return this.requestWrapper(() => this.formio.loadForm(query, options));
   }
-  loadForms(query: any): Observable<FormioForm> {
-    return this.requestWrapper(() => this.formio.loadForms(query));
+  loadForms(query: any, options?: any): Observable<FormioForm> {
+    return this.requestWrapper(() => this.formio.loadForms(query, options));
   }
-  loadSubmission(query?: any, opts?: any): Observable<{}> {
-    return this.requestWrapper(() => this.formio.loadSubmission(query, opts));
+  loadSubmission(query?: any, options?: any): Observable<{}> {
+    return this.requestWrapper(() => this.formio.loadSubmission(query, options));
   }
   userPermissions(user: any, form: any, submission: any): Observable<{}> {
     return this.requestWrapper(() => this.formio.userPermissions(user, form, submission));
   }
-  deleteSubmission(opts?: any): Observable<{}> {
-    return this.requestWrapper(() => this.formio.deleteSubmission(opts));
+  deleteSubmission(data?: any, options?: any): Observable<{}> {
+    return this.requestWrapper(() => this.formio.deleteSubmission(data, options));
   }
-  saveSubmission(submission: {}): Observable<{}> {
-    return this.requestWrapper(() => this.formio.saveSubmission(submission));
+  saveSubmission(submission: {}, options?: any): Observable<{}> {
+    return this.requestWrapper(() => this.formio.saveSubmission(submission, options));
   }
-  loadSubmissions(query?: any, opts?: any): Observable<{}> {
-    return this.requestWrapper(() => this.formio.loadSubmissions(query, opts));
+  loadSubmissions(query?: any, options?: any): Observable<{}> {
+    return this.requestWrapper(() => this.formio.loadSubmissions(query, options));
   }
 }
