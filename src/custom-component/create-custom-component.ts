@@ -1,5 +1,5 @@
 import { BuilderInfo, Components, ExtendedComponentSchema, Utils as FormioUtils } from 'formiojs';
-import { FormioCustomComponentInfo, FormioCustomElement, FormioEvent } from '../formio.common';
+import { FormioCustomComponentInfo, FormioCustomElement, FormioEvent } from '../elements.common';
 import { clone, isNil, isArray } from 'lodash';
 
 const BaseInputComponent = Components.components.input;

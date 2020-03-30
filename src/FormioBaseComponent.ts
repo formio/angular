@@ -61,6 +61,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   public initialized = false;
   public alerts = new FormioAlerts();
   public formioReady: Promise<any>;
+
   private formioReadyResolve: any;
   private submitting = false;
 
@@ -292,7 +293,14 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       }
 
       if (changes.hideComponents && changes.hideComponents.currentValue) {
-        this.formio.hideComponents(changes.hideComponents.currentValue);
+        const hiddenComponents = changes.hideComponents.currentValue;
+        this.formio.options.hide = hiddenComponents;
+        this.formio.everyComponent((component) => {
+          component.options.hide = hiddenComponents;
+          if (hiddenComponents.includes(component.component.key)) {
+            component.visible = false;
+          }
+        });
       }
     });
   }
