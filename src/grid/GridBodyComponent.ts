@@ -1,7 +1,7 @@
 import { Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
 import { each, clone } from 'lodash';
-import { Formio } from 'formiojs';
 import { GridHeaderComponent } from './GridHeaderComponent';
+import {FormioPromiseService} from '../formio-promise.service';
 
 export class GridBodyComponent {
   @Input() header: GridHeaderComponent;
@@ -22,7 +22,7 @@ export class GridBodyComponent {
     this.loading = true;
   }
 
-  load(formio: Formio, query?: any): Promise<any> {
+  load(formio: FormioPromiseService, query?: any): Promise<any> {
     return Promise.resolve({});
   }
 

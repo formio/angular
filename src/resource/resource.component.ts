@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FormioAuthService } from '../auth/auth.service';
 import { FormioResourceService } from './resource.service';
@@ -15,7 +15,6 @@ export class FormioResourceComponent implements OnInit, OnDestroy {
     public service: FormioResourceService,
     public route: ActivatedRoute,
     public auth: FormioAuthService,
-    public changeDetectorRef: ChangeDetectorRef,
     public router: Router,
   ) {
     // subscribe to the router events, so that we could re-load the submission if navigation happens from one submission to another
@@ -38,7 +37,6 @@ export class FormioResourceComponent implements OnInit, OnDestroy {
           this.service.formFormio.userPermissions(this.auth.user, form, resource).then((perms) => {
             this.perms.delete = perms.delete;
             this.perms.edit = perms.edit;
-            this.changeDetectorRef.detectChanges();
           });
         });
       });

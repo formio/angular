@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { each } from 'lodash';
-import { Formio } from 'formiojs';
 import { GridBodyComponent } from '../GridBodyComponent';
+import { FormioPromiseService } from '../../formio-promise.service';
 
 @Component({
   selector: 'form-grid-body',
@@ -9,7 +8,7 @@ import { GridBodyComponent } from '../GridBodyComponent';
   templateUrl: './FormGridBody.component.html'
 })
 export class FormGridBodyComponent extends GridBodyComponent {
-  load(formio: Formio, query?: any) {
+  load(formio: FormioPromiseService, query?: any) {
     query = query || {};
     return formio.loadForms({ params: query }).then((forms: any) => this.setRows(query, forms));
   }

@@ -2,6 +2,7 @@ import { ApplicationRef, EventEmitter, Injectable, Optional } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig } from './resource.config';
 import { FormioResources } from './resources.service';
+import { FormioPromiseService } from '../formio-promise.service';
 import { FormioAlerts } from '../components/alerts/formio.alerts';
 import { FormioLoader } from '../components/loader/formio.loader';
 import { FormioAppConfig } from '../formio.config';
@@ -18,8 +19,8 @@ export class FormioResourceService {
   public resource: any;
   public resourceUrl?: string;
   public formUrl: string;
-  public formFormio: any;
-  public formio: any;
+  public formFormio: FormioPromiseService;
+  public formio: FormioPromiseService;
   public refresh: EventEmitter<FormioRefreshValue>;
 
   public resourceLoading?: Promise<any>;
@@ -101,7 +102,7 @@ export class FormioResourceService {
     if (this.resourceId) {
       this.resourceUrl += '/submission/' + this.resourceId;
     }
-    this.formio = new Formio(this.resourceUrl);
+    this.formio = new FormioPromiseService(this.resourceUrl);
     if (this.resourcesService) {
       this.resources[this.config.name] = this;
     }
@@ -109,7 +110,7 @@ export class FormioResourceService {
   }
 
   loadForm() {
-    this.formFormio = new Formio(this.formUrl);
+    this.formFormio = new FormioPromiseService(this.formUrl);
     this.loader.setLoading(true);
     this.formLoading = this.formFormio
       .loadForm()
@@ -119,7 +120,6 @@ export class FormioResourceService {
           this.formResolve(form);
           this.loader.setLoading(false);
           this.loadParents();
-          this.appRef.tick();
           return form;
         },
         (err: any) => this.onFormError(err)

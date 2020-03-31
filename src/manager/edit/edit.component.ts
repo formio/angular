@@ -35,7 +35,6 @@ export class FormManagerEditComponent implements AfterViewInit {
   initBuilder(editing) {
     if (editing) {
       this.loading = true;
-      this.ref.detectChanges();
       this.editMode = true;
       return this.service.loadForm().then(form => {
         this.form = form;

@@ -20,6 +20,7 @@ import { GridBodyComponent } from './GridBodyComponent';
 import { GridFooterComponent } from './GridFooterComponent';
 import FormComponents from './form/index';
 import SubmissionComponents from './submission/index';
+import {FormioPromiseService} from '../formio-promise.service';
 
 @Component({
   selector: 'formio-grid',
@@ -35,7 +36,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() gridType?: string;
   @Input() size?: number;
   @Input() components?: any;
-  @Input() formio?: Formio;
+  @Input() formio?: FormioPromiseService;
   @Input() createText: String;
   @Input() isActionAllowed: any;
   @Output() select: EventEmitter<object>;
@@ -85,7 +86,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
 
     if (src) {
       this.src = src;
-      this.formio = new Formio(this.src, { formOnly: true });
+      this.formio = new FormioPromiseService(this.src, { formOnly: true });
     }
 
     // Load the header.
