@@ -2,11 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased]
+## 4.7.2
+### Fixed
  - Fixed `FormioResourceComponent` re-initializing on any URL change even if it's not submission id change
 
 ### Removed
  - Excess `.js` files
+
+### Changed
+ - Upgrade formiojs@4.9.15
 
 ## 4.7.1
 ### Changed
