@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file. See [standa
 ## [Unreleased]
  - Fixed `FormioResourceComponent` re-initializing on any URL change even if it's not submission id change
 
+### Removed
+ - Excess `.js` files
+
 ## 4.7.1
 ### Changed
  - Upgrade formiojs@4.9.12
