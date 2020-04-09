@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.7.3
+### Changed
+ - Upgrade formiojs@4.9.16
+ - Upgrade @angular/cli@9.1.1, @angular/common@9.1.1, @angular/compiler@9.1.1, @angular/compiler-cli@9.1.1, @angular/core@9.1.1, @angular/elements@9.1.1, @angular/forms@9.1.1, @angular/platform-browser@9.1.1, @angular/platform-browser-dynamic@9.1.1, @angular/router@9.1.1, @types/node@13.11.1, fork-ts-checker-webpack-plugin@4.1.3, rollup@2.3.4, url-loader@4.1.0
+
 ## 4.7.2
 ### Fixed
  - Fixed `FormioResourceComponent` re-initializing on any URL change even if it's not submission id change
