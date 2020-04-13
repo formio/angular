@@ -15,7 +15,7 @@ export class GridHeaderComponent {
     return this.headers.length;
   }
 
-  load(formio: FormioPromiseService, query?: any): Promise<any> {
+  load(formio: FormioPromiseService, query?: any, columns?: Array<any>): Promise<any> {
     return Promise.resolve([]);
   }
 }
