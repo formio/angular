@@ -2,7 +2,7 @@ import {Component, EventEmitter} from '@angular/core';
 import {Utils, Components, ExtendedComponentSchema} from 'formiojs';
 import {GridHeaderComponent} from '../GridHeaderComponent';
 import {FormioPromiseService} from '../../formio-promise.service';
-import {FormioForm} from '../../formio.common';
+import {FormioForm, GridColumn} from '../../formio.common';
 
 @Component({
   templateUrl: './SubmissionGridHeader.component.html'
@@ -12,7 +12,7 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
   // Map structure where the key is the path and the value is the component
   formComponents: Map<string, ExtendedComponentSchema>;
 
-  load(formio: FormioPromiseService, query?: any, columns?: Array<any>) {
+  load(formio: FormioPromiseService, query?: any, columns?: Array<GridColumn>) {
     query = query || {};
     return formio.loadForm({params: query}).then((form: FormioForm) => {
       this.headers = [];
@@ -31,7 +31,7 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
   }
 
   // Set header for both component and column
-  setHeader(column?: any, component?: ExtendedComponentSchema, sort?: EventEmitter<any>) {
+  setHeader(column?: GridColumn, component?: ExtendedComponentSchema, sort?: EventEmitter<any>) {
     const key = column ? column.path : `data.${component.key}`;
     const label = column ? column.label : component.label;
 
@@ -40,7 +40,7 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
       key: key,
       sort: sort || '',
       component: component ? Components.create(component, null, null, true) : null,
-      format: column && column.format ? column.format : null
+      renderCell: column ? column.renderCell : null
     });
   }
 

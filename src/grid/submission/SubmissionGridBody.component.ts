@@ -5,6 +5,7 @@ import {FormioPromiseService} from '../../formio-promise.service';
 import { Utils } from 'formiojs';
 import momentDate = Utils.momentDate;
 import formatDate = Utils.formatDate;
+import {FormRow, GridHeader} from '../../formio.common';
 
 @Component({
   templateUrl: './SubmissionGridBody.component.html'
@@ -23,10 +24,10 @@ export class SubmissionGridBodyComponent extends GridBodyComponent {
    * @param header
    * @return any
    */
-  view(row: any, header: any) {
+  view(row: FormRow, header: GridHeader) {
     const cellValue: any = get(row, header.key);
-    if (header.getView) {
-      return header.getView(cellValue);
+    if (header.renderCell) {
+      return header.renderCell(cellValue, header.component);
     } else {
       if (header.component) {
         if (typeof header.component.getView === 'function') {
@@ -34,7 +35,7 @@ export class SubmissionGridBodyComponent extends GridBodyComponent {
         }
         return header.component.asString(cellValue);
       } else {
-        return header.format ? formatDate(cellValue, header.format, '') : cellValue.toString();
+        return cellValue.toString();
       }
     }
   }
