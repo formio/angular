@@ -33,6 +33,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() onForm?: Promise<any>;
   @Input() query?: any;
   @Input() refresh?: EventEmitter<object>;
+  @Input() columns?: Array<any>;
   @Input() gridType?: string;
   @Input() size?: number;
   @Input() components?: any;
@@ -90,7 +91,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     }
 
     // Load the header.
-    this.header.load(this.formio)
+    this.header.load(this.formio, {}, this.columns)
       .then(() => this.setPage(0))
       .catch(error => this.onError(error));
   }
