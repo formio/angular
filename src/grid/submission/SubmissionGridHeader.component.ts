@@ -32,7 +32,7 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
   }
 
   // Set header for both component and column
-  setHeader(column?: GridColumn, component?: ExtendedComponentSchema, sort?: EventEmitter<any>) {
+  setHeader(column?: GridColumn, component?: ExtendedComponentSchema, sort?: any) {
     const path = column ? column.path : `data.${component.key}`;
     const label = column ? column.label : component.label;
 
@@ -46,7 +46,7 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
   }
 
   // Set headers from components in case if columns are not provided
-  setComponentsHeaders(components: Map<string, ExtendedComponentSchema>, sort?: EventEmitter<any>) {
+  setComponentsHeaders(components: Map<string, ExtendedComponentSchema>, sort?: any) {
     components.forEach((component) => {
       if (
         component.input &&
