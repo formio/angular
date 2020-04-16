@@ -38,7 +38,7 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
 
     this.headers.push({
       label: label,
-      path: path,
+      key: path,
       sort: sort || '',
       component: component ? Components.create(component, null, null, true) as ComponentInstance : undefined,
       renderCell: column ? column.renderCell : undefined

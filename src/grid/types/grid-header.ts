@@ -2,8 +2,13 @@ import {ComponentInstance} from '../../formio.common';
 
 export interface GridHeader {
   component?: ComponentInstance;
-  path: string;
-  sort?: any;
+  key: string;
+  sort?: SortType;
   label: string;
   renderCell?(cellValue: any, component?: ComponentInstance): string;
+}
+
+export enum SortType {
+  ASC = 'asc',
+  DESC = 'desc'
 }

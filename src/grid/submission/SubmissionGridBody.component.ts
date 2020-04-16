@@ -23,7 +23,7 @@ export class SubmissionGridBodyComponent extends GridBodyComponent {
    * @return any
    */
   view(submission: FormioSubmission, header: GridHeader): string {
-    const cellValue: any = get(submission, header.path);
+    const cellValue: any = get(submission, header.key);
     if (header.renderCell) {
       return header.renderCell(cellValue, header.component);
     } else {
