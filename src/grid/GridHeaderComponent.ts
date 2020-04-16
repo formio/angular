@@ -6,7 +6,6 @@ export class GridHeaderComponent {
   @Input() actionAllowed: any;
   @Output() sort: EventEmitter<any>;
   @ViewChild(TemplateRef, {static: true}) template: TemplateRef<any>;
-  // fires an error in submission grid header if change any type here to GridHeader
   public headers: Array<GridHeader>;
   constructor() {
     this.headers = [];
