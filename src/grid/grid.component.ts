@@ -21,6 +21,7 @@ import { GridFooterComponent } from './GridFooterComponent';
 import FormComponents from './form/index';
 import SubmissionComponents from './submission/index';
 import {FormioPromiseService} from '../formio-promise.service';
+import { GridColumn } from './types/grid-column';
 
 @Component({
   selector: 'formio-grid',
@@ -33,7 +34,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() onForm?: Promise<any>;
   @Input() query?: any;
   @Input() refresh?: EventEmitter<object>;
-  @Input() columns?: Array<any>;
+  @Input() columns?: Array<GridColumn>;
   @Input() gridType?: string;
   @Input() size?: number;
   @Input() components?: any;

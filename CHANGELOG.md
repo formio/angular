@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased]
+### Changed
+ - Add strong typing to grids
+ - Add possibility to set columns via property
+
 ## 4.7.0
 ### Changed
  - Upgrade formiojs@4.9.10

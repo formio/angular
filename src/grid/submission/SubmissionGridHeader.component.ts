@@ -2,7 +2,8 @@ import {Component, EventEmitter} from '@angular/core';
 import {Utils, Components, ExtendedComponentSchema} from 'formiojs';
 import {GridHeaderComponent} from '../GridHeaderComponent';
 import {FormioPromiseService} from '../../formio-promise.service';
-import {FormioForm, GridColumn} from '../../formio.common';
+import {ComponentInstance, FormioForm} from '../../formio.common';
+import {GridColumn} from '../types/grid-column';
 
 @Component({
   templateUrl: './SubmissionGridHeader.component.html'
@@ -32,15 +33,15 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
 
   // Set header for both component and column
   setHeader(column?: GridColumn, component?: ExtendedComponentSchema, sort?: EventEmitter<any>) {
-    const key = column ? column.path : `data.${component.key}`;
+    const path = column ? column.path : `data.${component.key}`;
     const label = column ? column.label : component.label;
 
     this.headers.push({
       label: label,
-      key: key,
+      path: path,
       sort: sort || '',
-      component: component ? Components.create(component, null, null, true) : null,
-      renderCell: column ? column.renderCell : null
+      component: component ? Components.create(component, null, null, true) as ComponentInstance : undefined,
+      renderCell: column ? column.renderCell : undefined
     });
   }
 

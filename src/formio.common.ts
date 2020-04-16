@@ -31,34 +31,12 @@ export interface FormioForm {
   submissionAccess?: AccessSetting[];
 }
 
-export interface GridColumn {
-  label: string;
-  path: string;
-  renderCell?(cellValue: any, component?: any): string;
-}
-
 export interface ComponentInstance {
   component: ExtendedComponentSchema;
-  getView: any;
   id: string;
   type: string;
   asString?(value: any): string;
-}
-
-export interface GridHeader {
-  component: ComponentInstance | null;
-  key: string;
-  label: string;
-  renderCell?(cellValue: any, component?: any): string;
-}
-
-export interface FormRow {
-  form: string;
-  project: string;
-  created: string;
-  modified: string;
-  owner: string;
-  data: object;
+  getView(value: any): string;
 }
 
 export interface AlertsOptions {
