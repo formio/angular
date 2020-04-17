@@ -3,8 +3,7 @@ import { each, get } from 'lodash';
 import { GridBodyComponent } from '../GridBodyComponent';
 import {FormioPromiseService} from '../../formio-promise.service';
 import { GridHeader } from '../types/grid-header';
-import FormioSubmission from '../types/formio-submission';
-
+import FormioSubmission from '../../types/formio-submission';
 @Component({
   templateUrl: './SubmissionGridBody.component.html'
 })

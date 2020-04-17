@@ -1,4 +1,4 @@
-export default interface FormioSubmission<T = any, stateType= state> {
+export default interface FormioSubmission<T = any, stateType= FormioSubmissionState > {
   _id?: string;
   created?: string;
   data?: T;
@@ -11,7 +11,7 @@ export default interface FormioSubmission<T = any, stateType= state> {
   _vid?: number;
 }
 
-enum state {
+export enum FormioSubmissionState  {
   draft = 'draft',
   submitted = 'submitted'
 }
