@@ -21,7 +21,7 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
       this.formComponents = new Map<string, ExtendedComponentSchema>();
       this.setComponents(form.components);
       columns ? columns.forEach(column => {
-          this.getHeaderForColumn(column, this.formComponents.get(column.path));
+          this.setHeader(this.getHeaderForColumn(column, this.formComponents.get(column.path)));
         }) : this.setComponentsHeaders(this.formComponents);
 
       return this.headers;
