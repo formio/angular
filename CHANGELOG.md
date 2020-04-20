@@ -4,8 +4,15 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [Unreleased]
 ### Changed
- - Add strong typing to grids
- - Add possibility to set columns via property
+ - Add strong typing for grids components
+ 
+### Added
+ - Add possibility to set `columns` via property
+ - `ComponentInstance`, `GridHeader`, `GridColumn`, `FormioSubmission` interfaces
+ - `SortType`, `FormioSubmissionState` enums
+
+### Fixed 
+ - Bug with setting `data.key` instead of full path to the header
 
 ## 4.7.0
 ### Changed
