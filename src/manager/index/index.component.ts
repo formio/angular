@@ -46,7 +46,7 @@ export class FormManagerIndexComponent implements OnInit {
     const searchInput = this.search;
     if (searchInput.length > 0) {
       this.gridQuery.skip = 0;
-      this.gridQuery.title__regex = '/' + searchInput + '/i';
+      this.gridQuery.title__regex = '/' + searchInput.replace(/\(/g, '\\(').replace(/\)/g, '\\)') + '/i';
     } else {
       delete this.gridQuery.title__regex;
     }
