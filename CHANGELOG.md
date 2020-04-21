@@ -14,6 +14,52 @@ All notable changes to this project will be documented in this file. See [standa
 ### Fixed 
  - Bug with setting `data.key` instead of full path to the header
 
+## 4.7.6
+### Changed
+ - Upgrade formiojs@4.9.20
+
+## 4.7.5
+### Changed
+ - Upgrade formiojs@4.9.19
+
+## 4.7.5-rc.3
+### Changed
+ - Upgrade formiojs@4.9.19-rc.3
+
+## 4.7.5-rc.2
+### Changed
+ - Upgrade formiojs@4.9.19-rc.2
+
+### Added
+ - Add possibility to pass columns
+
+## 4.7.5-rc.1
+### Changed
+ - Upgrade formiojs@4.9.19-rc.1
+
+## 4.7.4
+### Changed
+ - Upgrade formiojs@4.9.17
+
+## 4.7.3
+### Changed
+ - Upgrade formiojs@4.9.16
+ - Upgrade @angular/cli@9.1.1, @angular/common@9.1.1, @angular/compiler@9.1.1, @angular/compiler-cli@9.1.1, @angular/core@9.1.1, @angular/elements@9.1.1, @angular/forms@9.1.1, @angular/platform-browser@9.1.1, @angular/platform-browser-dynamic@9.1.1, @angular/router@9.1.1, @types/node@13.11.1, fork-ts-checker-webpack-plugin@4.1.3, rollup@2.3.4, url-loader@4.1.0
+
+## 4.7.2
+### Fixed
+ - Fixed `FormioResourceComponent` re-initializing on any URL change even if it's not submission id change
+
+### Removed
+ - Excess `.js` files
+
+### Changed
+ - Upgrade formiojs@4.9.15
+
+## 4.7.1
+### Changed
+ - Upgrade formiojs@4.9.12
+
 ## 4.7.0
 ### Changed
  - Upgrade formiojs@4.9.10

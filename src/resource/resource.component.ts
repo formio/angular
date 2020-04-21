@@ -8,20 +8,17 @@ import { Subscription } from 'rxjs';
   templateUrl: './resource.component.html'
 })
 export class FormioResourceComponent implements OnInit, OnDestroy {
-  private navigationSubscription: Subscription;
+  private paramsSubscription: Subscription;
   public perms = {delete: false, edit: false};
 
   constructor(
     public service: FormioResourceService,
     public route: ActivatedRoute,
     public auth: FormioAuthService,
-    public router: Router,
   ) {
-    // subscribe to the router events, so that we could re-load the submission if navigation happens from one submission to another
-    this.navigationSubscription = this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationEnd) {
-        this.init();
-      }
+    // subscribe to the route param changes, so that we could re-load the submission if navigation happens from one submission to another
+    this.paramsSubscription = this.route.params.subscribe((params) => {
+      this.init();
     });
   }
 
@@ -44,8 +41,8 @@ export class FormioResourceComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
     }
   }
 }
