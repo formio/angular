@@ -31,6 +31,14 @@ export interface FormioForm {
   submissionAccess?: AccessSetting[];
 }
 
+export interface ComponentInstance {
+  component: ExtendedComponentSchema;
+  id: string;
+  type: string;
+  asString?(value: any): string;
+  getView(value: any): string;
+}
+
 export interface AlertsOptions {
   submitMessage: string;
 }

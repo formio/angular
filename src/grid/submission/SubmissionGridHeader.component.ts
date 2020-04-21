@@ -2,7 +2,9 @@ import {Component, EventEmitter} from '@angular/core';
 import {Utils, Components, ExtendedComponentSchema} from 'formiojs';
 import {GridHeaderComponent} from '../GridHeaderComponent';
 import {FormioPromiseService} from '../../formio-promise.service';
-import {FormioForm} from '../../formio.common';
+import {ComponentInstance, FormioForm} from '../../formio.common';
+import {GridColumn} from '../types/grid-column';
+import {GridHeader, SortType} from '../types/grid-header';
 
 @Component({
   templateUrl: './SubmissionGridHeader.component.html'
@@ -12,46 +14,50 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
   // Map structure where the key is the path and the value is the component
   formComponents: Map<string, ExtendedComponentSchema>;
 
-  load(formio: FormioPromiseService, query?: any, columns?: Array<any>) {
+  load(formio: FormioPromiseService, query?: any, columns?: Array<GridColumn>) {
     query = query || {};
     return formio.loadForm({params: query}).then((form: FormioForm) => {
       this.headers = [];
       this.formComponents = new Map<string, ExtendedComponentSchema>();
       this.setComponents(form.components);
       columns ? columns.forEach(column => {
-        if (this.formComponents.has(column.path)) {
-          this.setHeader(column, this.formComponents.get(column.path));
-        } else {
-          this.setHeader(column);
-        }
-      }) : this.setComponentsHeaders(this.formComponents);
+          this.setHeader(this.getHeaderForColumn(column, this.formComponents.get(column.path)));
+        }) : this.setComponentsHeaders(this.formComponents);
 
       return this.headers;
     });
   }
 
-  // Set header for both component and column
-  setHeader(column?: any, component?: ExtendedComponentSchema, sort?: EventEmitter<any>) {
-    const key = column ? column.path : `data.${component.key}`;
-    const label = column ? column.label : component.label;
-
-    this.headers.push({
-      label: label,
-      key: key,
-      sort: sort || '',
-      component: component ? Components.create(component, null, null, true) : null,
-      format: column && column.format ? column.format : null
-    });
+  setHeader(header: GridHeader) {
+    this.headers.push(header);
   }
 
+  getHeaderForColumn(column: GridColumn, component?: ExtendedComponentSchema, sort?: SortType) {
+    return {
+      label: column.label,
+      key: column.path,
+      sort: sort,
+      component: component ? Components.create(component, null, null, true) as ComponentInstance : undefined,
+      renderCell: column ? column.renderCell : undefined
+    };
+  }
+
+  getHeaderForComponent(component: ExtendedComponentSchema, path: string, sort?: SortType) {
+    return {
+      label: component.label,
+      key: path,
+      sort: sort,
+      component: component ? Components.create(component, null, null, true) as ComponentInstance : undefined,
+    };
+  }
   // Set headers from components in case if columns are not provided
-  setComponentsHeaders(components: Map<string, ExtendedComponentSchema>, sort?: EventEmitter<any>) {
-    components.forEach((component) => {
+  setComponentsHeaders(components: Map<string, ExtendedComponentSchema>, sort?: SortType) {
+    components.forEach((component, path) => {
       if (
         component.input &&
         (!component.hasOwnProperty('tableView') || component.tableView)
       ) {
-        this.setHeader(null, component, sort);
+        this.setHeader(this.getHeaderForComponent(component, path, sort));
       }
     });
   }

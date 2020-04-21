@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased]
+### Changed
+ - Add strong typing for grids components
+ 
+### Added
+ - Add possibility to set `columns` via property
+ - `ComponentInstance`, `GridHeader`, `GridColumn`, `FormioSubmission` interfaces
+ - `SortType`, `FormioSubmissionState` enums
+
+### Fixed 
+ - Bug with setting `data.key` instead of full path to the header
+
 ## 4.7.6
 ### Changed
  - Upgrade formiojs@4.9.20

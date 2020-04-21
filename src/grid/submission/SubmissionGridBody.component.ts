@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { each, get } from 'lodash';
 import { GridBodyComponent } from '../GridBodyComponent';
 import {FormioPromiseService} from '../../formio-promise.service';
-import { Utils } from 'formiojs';
-import momentDate = Utils.momentDate;
-import formatDate = Utils.formatDate;
-
+import { GridHeader } from '../types/grid-header';
+import FormioSubmission from '../../types/formio-submission';
 @Component({
   templateUrl: './SubmissionGridBody.component.html'
 })
@@ -19,22 +17,22 @@ export class SubmissionGridBodyComponent extends GridBodyComponent {
   /**
    * Render the cell data.
    *
-   * @param row
+   * @param submission
    * @param header
    * @return any
    */
-  view(row: any, header: any) {
-    const cellValue: any = get(row, header.key);
-    if (header.getView) {
-      return header.getView(cellValue);
+  view(submission: FormioSubmission, header: GridHeader): string {
+    const cellValue: any = get(submission, header.key);
+    if (header.renderCell) {
+      return header.renderCell(cellValue, header.component);
     } else {
       if (header.component) {
-        if (typeof header.component.getView === 'function') {
+        if (header.component.getView) {
           return header.component.getView(cellValue);
         }
         return header.component.asString(cellValue);
       } else {
-        return header.format ? formatDate(cellValue, header.format, '') : cellValue.toString();
+        return cellValue.toString();
       }
     }
   }

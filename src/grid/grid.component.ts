@@ -1,26 +1,28 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnInit,
   AfterViewInit,
-  OnChanges,
-  ViewChild,
-  ViewContainerRef,
+  ChangeDetectorRef,
+  Component,
   ComponentFactoryResolver,
-  ChangeDetectorRef
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewChild,
+  ViewContainerRef
 } from '@angular/core';
-import { FormioLoader } from '../components/loader/formio.loader';
-import { FormioAlerts } from '../components/alerts/formio.alerts';
-import { assign, each, get } from 'lodash';
-import { Formio } from 'formiojs';
-import { GridHeaderComponent } from './GridHeaderComponent';
-import { GridBodyComponent } from './GridBodyComponent';
-import { GridFooterComponent } from './GridFooterComponent';
+import {FormioLoader} from '../components/loader/formio.loader';
+import {FormioAlerts} from '../components/alerts/formio.alerts';
+import {each} from 'lodash';
+import {Formio} from 'formiojs';
+import {GridHeaderComponent} from './GridHeaderComponent';
+import {GridBodyComponent} from './GridBodyComponent';
+import {GridFooterComponent} from './GridFooterComponent';
 import FormComponents from './form/index';
 import SubmissionComponents from './submission/index';
 import {FormioPromiseService} from '../formio-promise.service';
+import {GridColumn} from './types/grid-column';
+import {GridHeader, SortType} from './types/grid-header';
 
 @Component({
   selector: 'formio-grid',
@@ -33,7 +35,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() onForm?: Promise<any>;
   @Input() query?: any;
   @Input() refresh?: EventEmitter<object>;
-  @Input() columns?: Array<any>;
+  @Input() columns?: Array<GridColumn>;
   @Input() gridType?: string;
   @Input() size?: number;
   @Input() components?: any;
@@ -214,7 +216,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.refreshGrid();
   }
 
-  sortColumn(header: any) {
+  sortColumn(header: GridHeader) {
     // Reset all other column sorts.
     each(this.header.headers, (col: any) => {
       if (col.key !== header.key) {
@@ -223,15 +225,15 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     });
     switch (header.sort) {
       case 'asc':
-        header.sort = 'desc';
+        header.sort = SortType.DESC;
         this.query.sort = '-' + header.key;
         break;
       case 'desc':
-        header.sort = '';
+        header.sort = undefined;
         delete this.query.sort;
         break;
-      case '':
-        header.sort = 'asc';
+      case undefined:
+        header.sort = SortType.ASC;
         this.query.sort = header.key;
         break;
     }
