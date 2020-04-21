@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased]
+### Added
+ - `options.alertsPosition` setting with `top`, `bottom`, `both` and `none` options that allows choosing where to render alerts. 
+    - `options.alertsPosition = AlertsPosition.none` is equal to `options.disableAlerts = true`
+
 ## 4.8.0-beta.1
 ### Changed
  - Add strong typing for grids components
