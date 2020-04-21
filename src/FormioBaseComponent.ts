@@ -1,28 +1,13 @@
-import {
-  Input,
-  Output,
-  EventEmitter,
-  OnInit,
-  OnChanges,
-  OnDestroy,
-  Optional,
-  ElementRef,
-  ViewChild,
-  NgZone
-} from '@angular/core';
+import { ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, OnInit, Optional, Output, ViewChild } from '@angular/core';
 import { FormioService } from './formio.service';
 import { FormioLoader } from './components/loader/formio.loader';
 import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAppConfig } from './formio.config';
-import {
-  FormioForm,
-  FormioOptions,
-  FormioError,
-  FormioRefreshValue
-} from './formio.common';
-import { isEmpty, get, assign } from 'lodash';
+import { FormioError, FormioForm, FormioOptions, FormioRefreshValue } from './formio.common';
+import { assign, get, isEmpty } from 'lodash';
 import { CustomTagsService } from './custom-component/custom-tags.service';
 import Evaluator from 'formiojs/utils/Evaluator';
+import { AlertsPosition } from './types/alerts-position';
 
 export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form?: FormioForm;
@@ -55,8 +40,9 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Output() formLoad = new EventEmitter<any>();
   @Output() submissionLoad = new EventEmitter<any>();
   @Output() ready = new EventEmitter<FormioBaseComponent>();
-  @ViewChild('formio', {static: true}) formioElement?: ElementRef<any>;
+  @ViewChild('formio', { static: true }) formioElement?: ElementRef<any>;
 
+  public AlertsPosition = AlertsPosition;
   public formio: any;
   public initialized = false;
   public alerts = new FormioAlerts();
@@ -160,24 +146,26 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     const extraTags = this.customTags ? this.customTags.tags : [];
-    this.options = Object.assign(
-      {
-        errors: {
-          message: 'Please fix the following errors before submitting.'
-        },
-        alerts: {
-          submitMessage: 'Submission Complete.'
-        },
-        disableAlerts: false,
-        hooks: {
-          beforeSubmit: null
-        },
-        sanitizeConfig: {
-          addTags: extraTags
-        }
+    const defaultOptions: FormioOptions = {
+      errors: {
+        message: 'Please fix the following errors before submitting.'
       },
-      this.options
-    );
+      alerts: {
+        submitMessage: 'Submission Complete.'
+      },
+      disableAlerts: false,
+      hooks: {
+        beforeSubmit: null
+      },
+      sanitizeConfig: {
+        addTags: extraTags
+      },
+      alertsPosition: AlertsPosition.top,
+    };
+    this.options = Object.assign(defaultOptions, this.options);
+    if (this.options.disableAlerts) {
+      this.options.alertsPosition = AlertsPosition.none;
+    }
     this.initialized = true;
   }
 

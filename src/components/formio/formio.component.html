@@ -2,6 +2,7 @@
   <div *ngIf="loader.loading$ | async" style="position:relative;height:200px">
     <formio-loader></formio-loader>
   </div>
-  <formio-alerts *ngIf="!this.options?.disableAlerts" (focusComponent)="focusOnComponet($event)" [alerts]="alerts"></formio-alerts>
+  <formio-alerts *ngIf="this.options.alertsPosition === AlertsPosition.top || this.options.alertsPosition === AlertsPosition.both" (focusComponent)="focusOnComponet($event)" [alerts]="alerts"></formio-alerts>
   <div #formio></div>
+  <formio-alerts *ngIf="this.options.alertsPosition === AlertsPosition.bottom || this.options.alertsPosition === AlertsPosition.both" (focusComponent)="focusOnComponet($event)" [alerts]="alerts"></formio-alerts>
 </div>

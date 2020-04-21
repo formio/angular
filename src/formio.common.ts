@@ -1,4 +1,5 @@
 import { ExtendedComponentSchema, ValidateOptions } from 'formiojs';
+import { AlertsPosition } from './types/alerts-position';
 export { ConditionalOptions, ValidateOptions } from 'formiojs';
 
 export interface ComponentOptions<T = any, V = ValidateOptions> extends ExtendedComponentSchema<T> {
@@ -71,6 +72,7 @@ export interface FormioHookOptions {
 export interface FormioOptions {
   errors?: ErrorsOptions;
   alerts?: AlertsOptions;
+  alertsPosition?: AlertsPosition;
   disableAlerts?: boolean;
   i18n?: object;
   fileService?: object;
