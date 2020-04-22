@@ -2,9 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased]
+### Fixed
+ - Build error: `File not found with singular glob: <path_to_repo>/build/index.js`
+
+### Changed
+ - Updated `typescript@3.8.2`
+
 ## 4.8.0-beta.2
 ### Changed
  - Upgrade formiojs@4.9.21
+
 ### Added
  - `options.alertsPosition` setting with `top`, `bottom`, `both` and `none` options that allows choosing where to render alerts. 
     - `options.alertsPosition = AlertsPosition.none` is equal to `options.disableAlerts = true`
