@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.8.0-beta.2",
+  "version": "4.8.0-beta.3",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -32,7 +32,7 @@
     "url": "https://github.com/formio/angular-formio/issues"
   },
   "devDependencies": {
-    "@angular/cli": "^9.1.1",
+    "@angular/cli": "^9.1.2",
     "@angular/common": "^9.1.2",
     "@angular/compiler": "^9.1.2",
     "@angular/compiler-cli": "^9.1.2",
@@ -44,7 +44,7 @@
     "@angular/router": "^9.1.2",
     "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "^3.5.10",
-    "@types/node": "^13.13.1",
+    "@types/node": "^13.13.2",
     "angular-in-memory-web-api": "^0.10.0",
     "codelyzer": "^5.2.2",
     "concurrently": "^5.1.0",
@@ -74,7 +74,7 @@
     "path": "^0.12.7",
     "prismjs": "^1.20.0",
     "protractor": "^5.4.4",
-    "rollup": "^2.6.1",
+    "rollup": "^2.7.1",
     "run-sequence": "^2.2.1",
     "rxjs": "^6.5.5",
     "sass-loader": "^8.0.2",
