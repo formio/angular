@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.8.0-beta.4
+### Changed
+ - Make stateless component of formio-loader instead of injectable service.
+ - Upgrade formiojs@4.9.23
+
 ## 4.8.0-beta.3
 ### Fixed
  - Build error: `File not found with singular glob: <path_to_repo>/build/index.js`
