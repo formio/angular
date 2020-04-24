@@ -5,7 +5,7 @@
   <formio-alerts [alerts]="alerts"></formio-alerts>
   <table class="table table-bordered table-striped table-hover">
     <ng-container *ngIf="initialized" [ngTemplateOutlet]="header.template"></ng-container>
-    <formio-loader></formio-loader>
+    <formio-loader [isLoading]="isLoading"></formio-loader>
     <ng-container *ngIf="initialized" [ngTemplateOutlet]="body.template"></ng-container>
     <ng-container *ngIf="initialized" [ngTemplateOutlet]="footer.template"></ng-container>
   </table>

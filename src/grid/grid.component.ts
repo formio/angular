@@ -11,7 +11,6 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {FormioLoader} from '../components/loader/formio.loader';
 import {FormioAlerts} from '../components/alerts/formio.alerts';
 import {each} from 'lodash';
 import {Formio} from 'formiojs';
@@ -59,7 +58,6 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   public footer: GridFooterComponent;
 
   constructor(
-    public loader: FormioLoader,
     public alerts: FormioAlerts,
     private resolver: ComponentFactoryResolver,
     private ref: ChangeDetectorRef
@@ -68,7 +66,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.rowAction = new EventEmitter();
     this.createItem = new EventEmitter();
     this.error = new EventEmitter();
-    this.loader.setLoading(true);
+    this.isLoading = true;
   }
 
   createComponent(property, component) {
@@ -155,7 +153,6 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
 
   set loading(_loading: boolean) {
     this.isLoading = _loading;
-    this.loader.setLoading(_loading);
   }
 
   actionAllowed(action) {
@@ -202,9 +199,6 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   }
 
   setPage(num = -1) {
-    if (this.isLoading) {
-      return;
-    }
     this.page = num !== -1 ? num : this.page;
     if (!this.query.hasOwnProperty('limit')) {
       this.query.limit = 10;

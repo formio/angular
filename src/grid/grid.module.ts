@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormioModule } from '../formio.module';
-import { FormioLoader } from '../components/loader/formio.loader';
 import { FormioAlerts } from '../components/alerts/formio.alerts';
 import { FormioGridComponent } from './grid.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -42,7 +41,6 @@ import { SubmissionGridFooterComponent } from './submission/SubmissionGridFooter
     SubmissionGridFooterComponent
   ],
   providers: [
-    FormioLoader,
     FormioAlerts
   ]
 })
