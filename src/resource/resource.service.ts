@@ -4,7 +4,6 @@ import { FormioResourceConfig } from './resource.config';
 import { FormioResources } from './resources.service';
 import { FormioPromiseService } from '../formio-promise.service';
 import { FormioAlerts } from '../components/alerts/formio.alerts';
-import { FormioLoader } from '../components/loader/formio.loader';
 import { FormioAppConfig } from '../formio.config';
 import { FormioRefreshValue } from '../formio.common';
 import Promise from 'native-promise-only';
@@ -32,14 +31,15 @@ export class FormioResourceService {
   public formLoaded: Promise<any>;
   public formResolve: any;
   public formReject: any;
+  public isLoading: boolean;
 
   constructor(
     public appConfig: FormioAppConfig,
     public config: FormioResourceConfig,
-    public loader: FormioLoader,
     @Optional() public resourcesService: FormioResources,
     public appRef: ApplicationRef,
   ) {
+    this.isLoading = true;
     this.alerts = new FormioAlerts();
     this.refresh = new EventEmitter();
     this.formLoaded = new Promise((resolve: any, reject: any) => {
@@ -111,14 +111,14 @@ export class FormioResourceService {
 
   loadForm() {
     this.formFormio = new FormioPromiseService(this.formUrl);
-    this.loader.setLoading(true);
+    this.isLoading = true;
     this.formLoading = this.formFormio
       .loadForm()
       .then(
         (form: any) => {
           this.form = form;
           this.formResolve(form);
-          this.loader.setLoading(false);
+          this.isLoading = false;
           this.loadParents();
           return form;
         },
@@ -185,13 +185,13 @@ export class FormioResourceService {
 
   loadResource(route: ActivatedRoute) {
     this.setContext(route);
-    this.loader.setLoading(true);
+    this.isLoading = true;
     this.resourceLoading = this.resourceLoaded = this.formio
       .loadSubmission(null, {ignoreCache: true})
       .then(
         (resource: any) => {
           this.resource = resource;
-          this.loader.setLoading(false);
+          this.isLoading = false;
           this.refresh.emit({
             property: 'submission',
             value: this.resource

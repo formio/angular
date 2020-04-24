@@ -1,6 +1,5 @@
 import { ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, OnInit, Optional, Output, ViewChild } from '@angular/core';
 import { FormioService } from './formio.service';
-import { FormioLoader } from './components/loader/formio.loader';
 import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAppConfig } from './formio.config';
 import { FormioError, FormioForm, FormioOptions, FormioRefreshValue } from './formio.common';
@@ -51,12 +50,14 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   private formioReadyResolve: any;
   private submitting = false;
 
+  public isLoading: boolean;
+
   constructor(
     public ngZone: NgZone,
-    public loader: FormioLoader,
     @Optional() public config: FormioAppConfig,
     @Optional() public customTags?: CustomTagsService,
   ) {
+    this.isLoading = true;
     this.formioReady = new Promise((ready) => {
       this.formioReadyResolve = ready;
     });
@@ -127,7 +128,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
 
     return this.formio.ready.then(() => {
       this.ngZone.run(() => {
-        this.loader.setLoading(false);
+        this.isLoading = false;
         this.ready.emit(this);
         this.formioReadyResolve(this.formio);
         if (this.formio.submissionReady) {
@@ -202,7 +203,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       if (!this.service) {
         this.service = new FormioService(this.src);
       }
-      this.loader.setLoading(true);
+      this.isLoading = true;
       this.service.loadForm({ params: { live: 1 } }).subscribe(
         (form: FormioForm) => {
           if (form && form.components) {
@@ -322,7 +323,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   onError(err: any) {
     this.alerts.setAlerts([]);
     this.submitting = false;
-    this.loader.setLoading(false);
+    this.isLoading = false;
 
     if (!err) {
       return;

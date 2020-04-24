@@ -23,7 +23,7 @@ export class GridBodyComponent {
   }
 
   load(formio: FormioPromiseService, query?: any): Promise<any> {
-    return Promise.resolve({});
+    return formio.loadForm(query);
   }
 
   onRowSelect(event, row) {

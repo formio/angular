@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { FormioLoader } from './formio.loader';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'formio-loader',
@@ -7,5 +6,5 @@ import { FormioLoader } from './formio.loader';
   templateUrl: './formio.loader.component.html'
 })
 export class FormioLoaderComponent {
-  constructor(public loader: FormioLoader) {}
+  @Input() isLoading: boolean;
 }
