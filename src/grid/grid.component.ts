@@ -151,10 +151,6 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.ref.detectChanges();
   }
 
-  set loading(_loading: boolean) {
-    this.isLoading = _loading;
-  }
-
   actionAllowed(action) {
     if (this.isActionAllowed) {
       return this.isActionAllowed(action);
@@ -164,7 +160,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   }
 
   onError(error: any) {
-    this.loading = false;
+    this.isLoading = false;
     this.error.emit(error);
     this.alerts.setAlert({
       type: 'danger',
@@ -181,7 +177,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     if (!this.query.hasOwnProperty('skip')) {
       this.query.skip = 0;
     }
-    this.loading = true;
+    this.isLoading = true;
     this.ref.detectChanges();
     Formio.cache = {};
     let loader = null;
@@ -192,7 +188,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     }
 
     loader.then(info => {
-      this.loading = false;
+      this.isLoading = false;
       this.initialized = true;
       this.ref.detectChanges();
     }).catch(error => this.onError(error));

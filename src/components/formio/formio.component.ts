@@ -13,7 +13,6 @@ import { CustomTagsService } from '../../custom-component/custom-tags.service';
 })
 /* tslint:enable */
 export class FormioComponent extends FormioBaseComponent implements OnInit, OnChanges {
-
   constructor(
     public ngZone: NgZone,
     @Optional() public config: FormioAppConfig,
