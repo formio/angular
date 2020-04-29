@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 3.27.3
+### Fixed
+ - Search issues with form manager.
+
 ### 3.27.0
 ### Fixed
  - Long standing issue requiring (window as any).global = window;
