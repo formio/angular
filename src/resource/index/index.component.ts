@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
@@ -11,13 +11,16 @@ export class FormioResourceIndexComponent implements OnInit {
   public gridSrc?: string;
   public gridQuery: any;
   public createText: String;
+
   constructor(
     public service: FormioResourceService,
     public route: ActivatedRoute,
     public router: Router,
     public config: FormioResourceConfig,
-    public cdr: ChangeDetectorRef
-  ) {}
+    public cdr: ChangeDetectorRef,
+    public ngZone: NgZone,
+  ) {
+  }
 
   ngOnInit() {
     this.gridQuery = {};
@@ -50,10 +53,14 @@ export class FormioResourceIndexComponent implements OnInit {
   }
 
   onSelect(row: any) {
-    this.router.navigate([row._id, 'view'], { relativeTo: this.route });
+    this.ngZone.run(() => {
+      this.router.navigate([row._id, 'view'], { relativeTo: this.route });
+    });
   }
 
   onCreateItem() {
-    this.router.navigate(['new'], {relativeTo: this.route});
+    this.ngZone.run(() => {
+      this.router.navigate(['new'], { relativeTo: this.route });
+    });
   }
 }

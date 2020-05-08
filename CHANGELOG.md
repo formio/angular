@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased]
+### Fixed
+ - `FormioResourceIndexComponent` navigating outside of `ngZone` on row click and on creating new submission
+
 ## 4.8.0-beta.4
 ### Changed
  - Make stateless component of formio-loader instead of injectable service.
