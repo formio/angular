@@ -2,9 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased]
+## 4.8.0-beta.5
 ### Fixed
  - `FormioResourceIndexComponent` navigating outside of `ngZone` on row click and on creating new submission
+
+### Changed
+ - Upgrade formiojs@4.10.0-beta.15
 
 ## 4.8.0-beta.4
 ### Changed
