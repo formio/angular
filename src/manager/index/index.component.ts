@@ -26,7 +26,7 @@ export class FormManagerIndexComponent implements OnInit {
   loadGrid() {
     this.search = localStorage.getItem('searchInput');
     this.gridQuery = JSON.parse(localStorage.getItem('query')) || this.gridQuery;
-    const currentPage = +localStorage.getItem('currentPage') || 1;
+    const currentPage = +localStorage.getItem('currentPage') || 0;
     this.formGrid.refreshGrid(this.gridQuery);
     this.formGrid.setPage(currentPage);
   }
