@@ -5,7 +5,7 @@ export default interface FormioSubmission<T = any, stateType= FormioSubmissionSt
   created?: string;
   data?: T;
   form?: string;
-  metadata: FormioMetadata;
+  metadata?: FormioMetadata;
   modified?: string;
   owner?: string;
   project?: string;
