@@ -1,9 +1,13 @@
 # Change Log
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-## [Unreleased]
+
+## 4.8.0-rc.2
 ### Added
  - ``FormioMetadata`` interface
+
+### Changed
+ - Upgrade formiojs@4.10.0-rc.3
 
 ## 4.8.0-rc.1
 ### Changed
