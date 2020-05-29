@@ -47,9 +47,9 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('builder', { static: true }) builderElement?: ElementRef<any>;
 
   constructor(
-      private ngZone: NgZone,
-      @Optional() private config: FormioAppConfig,
-      @Optional() private customTags?: CustomTagsService
+    private ngZone: NgZone,
+    @Optional() private config: FormioAppConfig,
+    @Optional() private customTags?: CustomTagsService
   ) {
     if (this.config) {
       Formio.setBaseUrl(this.config.apiUrl);
@@ -177,14 +177,14 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
     const Builder = this.formbuilder || FormBuilder;
     const extraTags = this.customTags ? this.customTags.tags : [];
     this.builder = new Builder(
-        this.builderElement.nativeElement,
-        form,
-        assign({
-          icons: 'fontawesome',
-          sanitizeConfig: {
-            addTags: extraTags
-          }
-        }, options || this.options || {})
+      this.builderElement.nativeElement,
+      form,
+      assign({
+        icons: 'fontawesome',
+        sanitizeConfig: {
+          addTags: extraTags
+        }
+      }, options || this.options || {})
     );
     return this.builder.ready.then(instance => this.setInstance(instance));
   }
