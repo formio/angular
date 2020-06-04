@@ -42,6 +42,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   @Input() formbuilder?: any;
   @Input() noeval ? = false;
   @Input() refresh?: Observable<void>;
+  @Input() rebuild?: Observable<object>;
   @Output() change?: EventEmitter<object>;
   @ViewChild('builder', { static: true }) builderElement?: ElementRef<any>;
 
@@ -70,6 +71,14 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
       this.refreshSubscription = this.refresh.subscribe(() => {
         this.ngZone.runOutsideAngular(() => {
           this.buildForm(this.form);
+        });
+      });
+    }
+
+    if (this.rebuild) {
+      this.rebuild.subscribe((options) => {
+        this.ngZone.runOutsideAngular(() => {
+          this.rebuildForm(this.form, options);
         });
       });
     }
@@ -160,6 +169,11 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
         return this.builder.instance;
       });
     }
+
+    return this.rebuildForm(form);
+  }
+
+  rebuildForm(form: any, options?: object) {
     const Builder = this.formbuilder || FormBuilder;
     const extraTags = this.customTags ? this.customTags.tags : [];
     this.builder = new Builder(
@@ -170,7 +184,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
         sanitizeConfig: {
           addTags: extraTags
         }
-      }, this.options || {})
+      }, options || this.options || {})
     );
     return this.builder.ready.then(instance => this.setInstance(instance));
   }
@@ -181,7 +195,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
     if (changes.form && changes.form.currentValue) {
       this.ngZone.runOutsideAngular(() => {
         this.buildForm(changes.form.currentValue || {components: []});
-      })
+      });
     }
   }
 
