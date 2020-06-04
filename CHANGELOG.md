@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.8.0-rc.6
+### Changed
+ - Upgrade formiojs@4.10.0-rc.9
+ - Upgrade @types/node@14.0.10, fs-extra@9.0.1, karma-coverage-istanbul-reporter@3.0.3, ts-node@8.10.2, karma-jasmine@3.3.1, rollup@2.13.1
+
+## 4.8.0-rc.5
+???
+
 ## 4.8.0-rc.4
 ### Changed
  - Upgrade formiojs@4.10.0-rc.5
