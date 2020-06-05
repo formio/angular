@@ -1,0 +1,30 @@
+{
+  "name": "angular-formio",
+  "version": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/formio/angular-formio"
+  },
+  "author": {
+    "name": "Travis Tidwell",
+    "email": "travis@form.io"
+  },
+  "keywords": [
+    "angular",
+    "forms",
+    "json forms",
+    "javascript forms",
+    "model driven forms",
+    "form.io"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/formio/angular-formio/issues"
+  },
+  "main": "angular-formio.umd.js",
+  "module": "index.js",
+  "jsnext:main": "index.js",
+  "typings": "index.d.ts",
+  "peerDependencies": {},
+  "dependencies": {}
+}

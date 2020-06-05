@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "es2015",
+    "target": "es5",
+    "baseUrl": ".",
+    "stripInternal": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "outDir": "../../build",
+    "rootDir": "../",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "types": []
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false,
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true,
+    "fullTemplateTypeCheck": true,
+    "flatModuleOutFile": "formio-grid.js",
+    "flatModuleId": "formio-grid"
+  },
+  "files": [
+    "./index.ts"
+  ]
+}

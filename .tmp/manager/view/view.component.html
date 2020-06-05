@@ -1,0 +1,10 @@
+<formio *ngIf="currentForm"
+  [renderer]="config.renderer"
+  [renderOptions]="renderOptions"
+  [url]="service.formio.formUrl"
+  [form]="currentForm"
+  [submission]="submission"
+  [success]="onSuccess"
+  [error]="onError"
+  (submit)="onSubmit($event)"
+></formio>

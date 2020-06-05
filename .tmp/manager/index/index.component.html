@@ -1,0 +1,18 @@
+<div class="input-group mb-3" *ngIf="config.includeSearch">
+  <input type="text" class="form-control" [(ngModel)]="search" (keydown.enter)="onSearch()" placeholder="Search Forms" aria-label="Search Forms" aria-describedby="button-search">
+  <span  *ngIf="search && search !== ''" class="form-clear input-group-addon" (click)="clearSearch()"><span class="fa fa-times"></span></span>
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" id="button-search" (click)="onSearch()"><i class="fa fa-search"></i> Search</button>
+  </div>
+</div>
+<formio-grid
+  *ngIf="service.ready"
+  [formio]="service.formio"
+  [gridType]="'form'"
+  [query]="gridQuery"
+  [refresh]="refreshGrid"
+  [isActionAllowed]="service.actionAllowed"
+  (rowAction)="onAction($event)"
+  (rowSelect)="onSelect($event)"
+  (createItem)="onCreateItem()"
+></formio-grid>

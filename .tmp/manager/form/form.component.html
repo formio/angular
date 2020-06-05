@@ -1,0 +1,32 @@
+<button *ngIf="options.viewer" class="pull-right btn btn-outline-primary" (click)="openEmbed(content)"><i class="fa fa-share-alt glyphicon glyphicon-share"></i> Share</button>
+<ul class="nav nav-tabs mb-2">
+  <li class="nav-item"><a class="nav-link" routerLink="../"><i class="fa fa-chevron-left glyphicon glyphicon-chevron-left"></i></a></li>
+  <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="view" routerLinkActive="active"><i class="fa fa-pencil glyphicon glyphicon-pencil"></i> Enter Data</a></li>
+  <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="submission" routerLinkActive="active"><i class="fa fa-list-alt glyphicon glyphicon-list-alt"></i> View Data</a></li>
+  <li *ngIf="service.actionAllowed('formEdit')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="edit" routerLinkActive="active"><i class="fa fa-edit glyphicon glyphicon-edit"></i> Edit Form</a></li>
+  <li *ngIf="service.actionAllowed('formDelete')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="delete" routerLinkActive="active"><span class="fa fa-trash glyphicon glyphicon-trash"></span></a></li>
+</ul>
+<router-outlet></router-outlet>
+<ng-template #content>
+  <div class="modal-header">
+    <h4 class="modal-title">Share or Embed this form</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul class="nav nav-tabs mr-auto mb-2">
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active': choice === 'isUrl'}" (click)="choices('isUrl')"><i class="fa fa-link"></i> URL</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active': choice === 'isEmbed'}" (click)="choices('isEmbed')"><i class="fa fa-code"></i> Embed</a>
+      </li>
+    </ul>
+    <pre  *ngIf="choice === 'isEmbed'"><textarea onclick="this.focus();this.select()" readonly="readonly" style="width:100%;" rows="8" [ngModel]="embedCode"></textarea></pre>
+    <input *ngIf="choice === 'isUrl'" type="text" onclick="this.focus();this.select()" readonly="readonly" class="form-control" [ngModel]="shareUrl" placeholder="https://examples.form.io/example">
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modalRef.hide()">Close</button>
+  </div>
+</ng-template>

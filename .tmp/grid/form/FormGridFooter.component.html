@@ -1,0 +1,12 @@
+<ng-template>
+  <tfoot class="formio-grid-footer">
+    <tr>
+      <td *ngIf="header" [colSpan]="header.numHeaders">
+        <button *ngIf="actionAllowed('formCreate')" class="btn btn-primary pull-left float-left" (click)="createItem.emit('form')"><i class="glyphicon glyphicon-plus fa fa-plus"></i> {{ createText }}</button>
+        <span class="pull-right float-right item-counter"><span class="page-num">{{ body.firstItem }} - {{ body.lastItem }}</span> / {{ body.total }} total</span>
+        <pagination [totalItems]="body.total" [itemsPerPage]="body.limit" [(ngModel)]="body.skip" (pageChanged)="pageChanged.emit($event)" [maxSize]="size" class="justify-content-center pagination-sm">
+        </pagination>
+      </td>
+    </tr>
+  </tfoot>
+</ng-template>

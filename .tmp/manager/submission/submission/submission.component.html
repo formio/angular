@@ -1,0 +1,8 @@
+<a *ngIf="downloadUrl" [href]="downloadUrl" target="_blank" class="pull-right"><img src="https://pro.formview.io/assets/pdf.png" style="height: 2em;" /></a>
+<ul class="nav nav-tabs" style="margin-bottom:10px">
+  <li class="nav-item"><a class="nav-link" routerLink="../"><i class="fa fa-chevron-left glyphicon glyphicon-chevron-left"></i></a></li>
+  <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="view" routerLinkActive="active"><i class="fa fa-eye glyphicon glyphicon-eye"></i> View</a></li>
+  <li class="nav-item" routerLinkActive="active" *ngIf="service.perms.edit"><a class="nav-link" routerLink="edit" routerLinkActive="active"><i class="fa fa-edit glyphicon glyphicon-edit"></i> Edit</a></li>
+  <li class="nav-item" routerLinkActive="active" *ngIf="service.perms.delete"><a class="nav-link" routerLink="delete" routerLinkActive="active"><span class="fa fa-trash glyphicon glyphicon-trash"></span></a></li>
+</ul>
+<router-outlet></router-outlet>

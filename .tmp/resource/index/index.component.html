@@ -1,0 +1,10 @@
+<formio-alerts [alerts]="service.alerts"></formio-alerts>
+<formio-grid
+  [src]="gridSrc"
+  [query]="gridQuery"
+  [onForm]="service.formLoaded"
+  (rowSelect)="onSelect($event)"
+  (error)="service.onError($event)"
+  (createItem)="onCreateItem()"
+  [createText]="createText"
+></formio-grid>

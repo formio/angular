@@ -1,0 +1,25 @@
+{
+  "name": "formio-auth",
+  "version": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/formio/angular-formio"
+  },
+  "author": {
+    "name": "Travis Tidwell",
+    "email": "travis@form.io"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/formio/angular-formio/issues"
+  },
+  "main": "formio-auth.umd.js",
+  "module": "index.js",
+  "jsnext:main": "index.js",
+  "typings": "index.d.ts",
+  "peerDependencies": {},
+  "dependencies": {}
+}

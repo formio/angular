@@ -1,0 +1,11 @@
+<ng-template>
+  <thead>
+    <tr>
+      <th *ngFor="let header of headers">
+        <a (click)="sort.emit(header)">
+          {{ header.label }}&nbsp;<span [ngClass]="{'glyphicon-triangle-top': (header.sort === 'asc'), 'glyphicon-triangle-bottom': (header.sort === 'desc')}" class="glyphicon" *ngIf="header.sort"></span>
+        </a>
+      </th>
+    </tr>
+  </thead>
+</ng-template>

@@ -1,0 +1,7 @@
+<ng-template>
+  <tbody>
+    <tr *ngFor="let row of rows" (click)="onRowSelect($event, row)">
+      <td *ngFor="let rowHeader of header.headers" [innerHTML]="view(row, rowHeader)"></td>
+    </tr>
+  </tbody>
+</ng-template>
