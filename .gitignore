@@ -30,6 +30,7 @@ Desktop.ini
 
 # Build files
 dist/*
+.tmp
 
 # demo tmp files
 .demo
