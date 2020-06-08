@@ -74,7 +74,7 @@
     "path": "^0.12.7",
     "prismjs": "^1.20.0",
     "protractor": "^7.0.0",
-    "rollup": "^2.10.9",
+    "rollup": "^2.15.0",
     "run-sequence": "^2.2.1",
     "rxjs": "^6.5.5",
     "sass-loader": "^8.0.2",
