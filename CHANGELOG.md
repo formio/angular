@@ -2,9 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## Unreleased
+## 4.8.3-rc.1
 ### Added
  - FormioBaseComponent: add validateOnInit logic
+ - Upgrade formiojs@4.10.3-rc.1
 
 ## 4.8.2
 ### Changed
