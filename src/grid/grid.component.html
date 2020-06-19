@@ -4,9 +4,15 @@
 <div class="formio-grid">
   <formio-alerts [alerts]="alerts"></formio-alerts>
   <table class="table table-bordered table-striped table-hover">
-    <ng-container *ngIf="initialized" [ngTemplateOutlet]="header.template"></ng-container>
+    <ng-container *ngIf="initialized && [footerPositions.top, footerPositions.both].indexOf(footerPosition) !== -1"
+      [ngTemplateOutlet]="footer.template" [ngTemplateOutletContext]="{ position: footerPositions.top }">
+    </ng-container>
+    <ng-container *ngIf="initialized"
+      [ngTemplateOutlet]="header.template"></ng-container>
     <formio-loader [isLoading]="isLoading"></formio-loader>
     <ng-container *ngIf="initialized" [ngTemplateOutlet]="body.template"></ng-container>
-    <ng-container *ngIf="initialized" [ngTemplateOutlet]="footer.template"></ng-container>
+    <ng-container *ngIf="initialized && [footerPositions.bottom, footerPositions.both].indexOf(footerPosition) !== -1"
+      [ngTemplateOutlet]="footer.template" [ngTemplateOutletContext]="{ position: footerPositions.bottom }">
+    </ng-container>
   </table>
 </div>
