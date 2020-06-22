@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Unreleased
+### Fixed
+ - FJS-1014: Fixed an issue where Required fields are validating when form is initialized when using a form in FormManager
+
+### Added
+ - Feat (Grid): added ability to specify footer positions: top, bottom, both
+
 ## 4.8.4
 ### Changed
  - Upgrade formiojs@4.10.4
