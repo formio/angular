@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## Unreleased
+## 4.9.0-rc.1
 ### Fixed
  - FJS-1014: Fixed an issue where Required fields are validating when form is initialized when using a form in FormManager
 
