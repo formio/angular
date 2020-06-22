@@ -1,3 +1,4 @@
+import { GridFooterPositions } from './types/grid-footer-positions';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -29,6 +30,7 @@ import {GridHeader, SortType} from './types/grid-header';
   templateUrl: './grid.component.html'
 })
 export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
+  @Input() footerPosition = GridFooterPositions.bottom;
   @Input() src?: string;
   @Input() items?: Array<any>;
   @Input() onForm?: Promise<any>;
@@ -56,6 +58,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   public header: GridHeaderComponent;
   public body: GridBodyComponent;
   public footer: GridFooterComponent;
+  public footerPositions = GridFooterPositions;
 
   constructor(
     public alerts: FormioAlerts,
