@@ -18,7 +18,7 @@ export class FormGridHeaderComponent extends GridHeaderComponent {
     return Promise.resolve(this.headers);
   }
 
-  get numHeaders() {
+  getNumHeaders() {
     return 2;
   }
 }

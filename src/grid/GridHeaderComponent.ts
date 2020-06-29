@@ -12,7 +12,7 @@ export class GridHeaderComponent {
     this.sort = new EventEmitter();
   }
 
-  get numHeaders() {
+  getNumHeaders() {
     return this.headers.length;
   }
 
