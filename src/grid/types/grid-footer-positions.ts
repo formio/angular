@@ -1,5 +1,5 @@
 export enum GridFooterPositions {
-  bottom, 
+  bottom,
   top,
   both
-};
+}

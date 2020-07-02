@@ -1,4 +1,3 @@
-import { GridFooterPositions } from './../types/grid-footer-positions';
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { GridFooterComponent } from '../GridFooterComponent';
 
@@ -8,8 +7,6 @@ import { GridFooterComponent } from '../GridFooterComponent';
   encapsulation: ViewEncapsulation.None
 })
 export class SubmissionGridFooterComponent extends GridFooterComponent implements OnInit {
-
-  public footerPositions = GridFooterPositions;
 
   constructor() {
     super();

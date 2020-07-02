@@ -7,6 +7,7 @@ import { GridFooterComponent } from '../GridFooterComponent';
   encapsulation: ViewEncapsulation.None
 })
 export class FormGridFooterComponent extends GridFooterComponent implements OnInit {
+
   constructor() {
     super();
   }

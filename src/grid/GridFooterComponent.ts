@@ -1,3 +1,4 @@
+import { GridFooterPositions } from './types/grid-footer-positions';
 import { Input, Output, ViewChild, TemplateRef, EventEmitter } from '@angular/core';
 import { GridHeaderComponent } from './GridHeaderComponent';
 import { GridBodyComponent } from './GridBodyComponent';
@@ -9,7 +10,10 @@ export class GridFooterComponent {
   @Input() actionAllowed: any;
   @Output() pageChanged: EventEmitter<any>;
   @Output() createItem: EventEmitter<any>;
-  @ViewChild('footer', {static: true}) template: TemplateRef<any>;
+  @ViewChild(TemplateRef, {static: true}) template: TemplateRef<any>;
+
+  public footerPositions = GridFooterPositions;
+
   constructor() {
     this.pageChanged = new EventEmitter();
     this.createItem = new EventEmitter();
