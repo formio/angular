@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.9.1-rc.1
+### Changed
+ - Upgrade formiojs@4.11.0-rc.2
+
+### Fixed
+ - Fix (Grid): footer is not visible using FormComponents
+
 ## 4.9.0
 ### Changed
  - Upgrade formiojs@4.10.5
