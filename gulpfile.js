@@ -292,52 +292,62 @@ gulp.task('clean:build', function cleanBuild() {
   return fs.remove(buildFolder);
 });
 
+gulp.task('formio:all', gulp.parallel(
+  'styles-formio',
+  'styles-builder',
+  'formio-css',
+  'builder-css'
+));
+
+gulp.task('ngc:all', gulp.parallel(
+  'ngc',
+  'ngc-angular',
+  'ngc-auth',
+  'ngc-auth-angular',
+  'ngc-manager',
+  'ngc-manager-angular',
+  'ngc-grid',
+  'ngc-grid-angular',
+  'ngc-resource',
+  'ngc-resource-angular'
+));
+
+gulp.task('rollup:all', gulp.parallel(
+  'rollup:fesm',
+  'rollup-auth:fesm',
+  'rollup-grid:fesm',
+  'rollup-resource:fesm',
+  'rollup:umd',
+  'rollup-auth:umd',
+  'rollup-manager:umd',
+  'rollup-grid:umd',
+  'rollup-resource:umd'
+));
+
+gulp.task('copy:all', gulp.series(
+  'copy:manifest',
+  'copy-auth:manifest',
+  'copy-manager:manifest',
+  'copy-grid:manifest',
+  'copy-resource:manifest',
+  'copy:readme'
+));
+
+gulp.task('cleanup', gulp.parallel(
+  'clean:build',
+  'clean:tmp'
+));
+
 gulp.task('compile', gulp.series(
   'clean:dist',
   'copy:source',
-  gulp.parallel(
-    'styles-formio',
-    'styles-builder',
-    'formio-css',
-    'builder-css'
-  ),
+  'formio:all',
   'inline-resources',
-  gulp.parallel(
-    'ngc',
-    'ngc-angular',
-    'ngc-auth',
-    'ngc-auth-angular',
-    'ngc-manager',
-    'ngc-manager-angular',
-    'ngc-grid',
-    'ngc-grid-angular',
-    'ngc-resource',
-    'ngc-resource-angular'
-  ),
-  gulp.parallel(
-    'rollup:fesm',
-    'rollup-auth:fesm',
-    'rollup-grid:fesm',
-    'rollup-resource:fesm',
-    'rollup:umd',
-    'rollup-auth:umd',
-    'rollup-manager:umd',
-    'rollup-grid:umd',
-    'rollup-resource:umd'
-  ),
+  'ngc:all',
+  'rollup:all',
   'copy:build',
-  gulp.series(
-    'copy:manifest',
-    'copy-auth:manifest',
-    'copy-manager:manifest',
-    'copy-grid:manifest',
-    'copy-resource:manifest',
-    'copy:readme'
-  ),
-  gulp.parallel(
-    'clean:build',
-    'clean:tmp'
-  )
+  'copy:all',
+  'cleanup'
 ));
 
 /**
