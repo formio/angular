@@ -59,6 +59,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   public body: GridBodyComponent;
   public footer: GridFooterComponent;
   public footerPositions = GridFooterPositions;
+  private loader: Promise<any[]>;
 
   constructor(
     public alerts: FormioAlerts,
@@ -70,6 +71,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.createItem = new EventEmitter();
     this.error = new EventEmitter();
     this.isLoading = true;
+    this.loader = null;
   }
 
   createComponent(property, component) {
@@ -183,18 +185,26 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.isLoading = true;
     this.ref.detectChanges();
     Formio.cache = {};
-    let loader = null;
-    if (this.items) {
-      loader = Promise.resolve(this.body.setRows(this.query, this.items));
-    } else {
-      loader = this.body.load(this.formio, this.query);
+
+    if (this.loader) {
+      return;
     }
 
-    loader.then(info => {
+    if (this.items) {
+      this.loader = Promise.resolve(this.body.setRows(this.query, this.items));
+    } else {
+      this.loader = this.body.load(this.formio, this.query);
+    }
+
+    this.loader.then(info => {
       this.isLoading = false;
       this.initialized = true;
       this.ref.detectChanges();
-    }).catch(error => this.onError(error));
+    })
+    .catch(error => this.onError(error))
+    .then(() => {
+      this.loader = null;
+    });
   }
 
   setPage(num = -1) {
