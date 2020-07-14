@@ -190,7 +190,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
       loader = this.body.load(this.formio, this.query);
     }
 
-    loader.then(info => {
+    return loader.then(info => {
       this.isLoading = false;
       this.initialized = true;
       this.ref.detectChanges();
