@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.9.3-rc.3
+### Changed
+ - Downgrade corejs@3.5.0 to resolve IE11 issues.
+
+### Fixed
+ - FMG-54 Restoring grid query
 
 ## 4.9.3-rc.2
 ### Changed

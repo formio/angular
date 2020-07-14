@@ -106,9 +106,9 @@
     "zone.js": "^0.8.0"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
+    "core-js": "3.5.0",
     "formiojs": "^4.11.1-rc.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "ngx-bootstrap": "^5.6.1"
   }
 }
