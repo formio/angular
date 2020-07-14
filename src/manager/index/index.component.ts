@@ -27,8 +27,9 @@ export class FormManagerIndexComponent implements OnInit {
     this.search = localStorage.getItem('searchInput');
     this.gridQuery = JSON.parse(localStorage.getItem('query')) || this.gridQuery;
     const currentPage = +localStorage.getItem('currentPage') || 0;
-    this.formGrid.refreshGrid(this.gridQuery);
-    this.formGrid.setPage(currentPage);
+    this.formGrid
+      .refreshGrid(this.gridQuery)
+      .then(() => this.formGrid.setPage(currentPage - 1));
   }
 
   ngOnInit() {
