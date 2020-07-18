@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.9.3-rc.4
+### Changed
+ - Upgrade formiojs@4.11.1-rc.5
+
+### Fixed
+ - FVP-008: Fixed an issue for ViewPro where the Server Validation message is not being removed when validation is honored.
+
 ## 4.9.3-rc.3
 ### Changed
  - Downgrade corejs@3.5.0 to resolve IE11 issues.
