@@ -27,6 +27,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() language?: EventEmitter<string>;
   @Input() hooks?: any = {};
   @Input() renderer?: any;
+  @Input() watchSubmissionErrors ? = false;
   @Output() render = new EventEmitter<object>();
   @Output() customEvent = new EventEmitter<object>();
   @Output() submit = new EventEmitter<object>();
@@ -49,7 +50,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
 
   private formioReadyResolve: any;
   private submitting = false;
-
+  private submissionSuccess = false;
   public isLoading: boolean;
 
   constructor(
@@ -116,14 +117,17 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     this.formio.nosubmit = true;
     this.formio.on('prevPage', (data: any) => this.ngZone.run(() => this.onPrevPage(data)));
     this.formio.on('nextPage', (data: any) => this.ngZone.run(() => this.onNextPage(data)));
-    this.formio.on('change', (value: any) => this.ngZone.run(() => this.change.emit(value)));
+    this.formio.on('change', (value: any) => this.ngZone.run(() => this.onChange(value)));
     this.formio.on('customEvent', (event: any) =>
       this.ngZone.run(() => this.customEvent.emit(event))
     );
     this.formio.on('submit', (submission: any) =>
       this.ngZone.run(() => this.submitForm(submission))
     );
-    this.formio.on('error', (err: any) => this.ngZone.run(() => this.onError(err)));
+    this.formio.on('error', (err: any) => this.ngZone.run(() => {
+      this.submissionSuccess = false;
+      return this.onError(err);
+    }));
     this.formio.on('render', () => this.ngZone.run(() => this.render.emit()));
     this.formio.on('formLoad', (loadedForm: any) =>
       this.ngZone.run(() => this.formLoad.emit(loadedForm))
@@ -311,6 +315,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
 
   onSubmit(submission: any, saved: boolean, noemit?: boolean) {
     this.submitting = false;
+    this.submissionSuccess = true;
     if (saved) {
       this.formio.emit('submitDone', submission);
     }
@@ -344,7 +349,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       return;
     }
 
-    if (this.formio) {
+    if (this.formio && errors.length) {
       this.formio.emit('submitError', errors);
     }
 
@@ -410,6 +415,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     if (this.submitting) {
       return;
     }
+    this.submissionSuccess = false;
     this.submitting = true;
     this.beforeSubmit.emit(submission);
 
@@ -427,5 +433,17 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     } else {
       this.submitExecute(submission);
     }
+  }
+
+  onChange(value: any) {
+    if (this.watchSubmissionErrors && !this.submissionSuccess) {
+      const errors = get(this, 'formio.errors', []);
+      const alerts = get(this, 'alerts.alerts', []);
+      const submitted = get(this, 'formio.submitted', false);
+      if (submitted && (errors.length || alerts.length)) {
+        this.onError(errors);
+      }
+    }
+    return this.change.emit(value);
   }
 }
