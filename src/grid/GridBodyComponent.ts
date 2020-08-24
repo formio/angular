@@ -45,6 +45,16 @@ export class GridBodyComponent {
    */
   setRows(query: any, items: any) {
     this.rows = [];
+
+    if (typeof items !== 'object') {
+      this.firstItem = 0;
+      this.lastItem = 0;
+      this.total = 0;
+      this.skip = 0;
+      this.loading = false;
+      return this.rows;
+    }
+
     this.firstItem = query.skip + 1;
     this.lastItem = this.firstItem + items.length - 1;
     this.total = items.serverCount;
