@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+
+## 4.9.6-rc.3
+### Changed
+ - Upgrade formiojs@4.11.3-rc.3
+
 ## 4.9.6-rc.2
 ### Changed
  - Upgrade formiojs@4.11.3-rc.2
