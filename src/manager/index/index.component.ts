@@ -2,7 +2,8 @@ import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormManagerService } from '../form-manager.service';
 import { FormManagerConfig } from '../form-manager.config';
-import {FormioGridComponent} from '../../grid/grid.component';
+import { FormioGridComponent } from '../../grid/grid.component';
+import { debounce } from 'lodash';
 
 @Component({
   templateUrl: './index.component.html',
@@ -21,6 +22,7 @@ export class FormManagerIndexComponent implements OnInit {
   ) {
     this.gridQuery = {tags: this.config.tag, type: 'form'};
     this.refreshGrid = new EventEmitter();
+    this.onSearch = debounce(this.onSearch, 300);
   }
 
   loadGrid() {
