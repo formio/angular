@@ -182,9 +182,13 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     this.initialize();
 
     if (this.language) {
-      this.language.subscribe((lang: string) => {
-        this.formio.language = lang;
-      });
+      if (typeof this.language === 'string') {
+        this.formio.language = this.language;
+      } else {
+        this.language.subscribe((lang: string) => {
+          this.formio.language = lang;
+        });
+      }
     }
 
     if (this.refresh) {
