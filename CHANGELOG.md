@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased]
+### Fixed
+ - Langauage change issue when a string is provided.
+
 ## 4.9.6
 ### Changed
  - Upgrade formiojs@4.11.3
