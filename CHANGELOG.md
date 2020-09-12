@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file. See [standa
 ### Changed
  - Upgrade formiojs@4.11.2-rc.1
 
+## 7.9.3-rc.5
+### Changed
+ - Upgrade formiojs@4.11.2-rc.1
+
 ## 4.10.0-rc.6
 ### Changed
  - Upgrade formiojs@4.12.0-rc.14
