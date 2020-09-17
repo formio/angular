@@ -117,7 +117,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     this.formio.nosubmit = true;
     this.formio.on('prevPage', (data: any) => this.ngZone.run(() => this.onPrevPage(data)));
     this.formio.on('nextPage', (data: any) => this.ngZone.run(() => this.onNextPage(data)));
-    this.formio.on('change', (value: any) => this.ngZone.run(() => this.onChange(value)));
+    this.formio.on('change', (value: any, flags: any, isModified: boolean) => this.ngZone.run(() => this.onChange(value, flags, isModified)));
     this.formio.on('customEvent', (event: any) =>
       this.ngZone.run(() => this.customEvent.emit(event))
     );
@@ -439,7 +439,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  onChange(value: any) {
+  onChange(value: any, flags: any, isModified: boolean) {
     if (this.watchSubmissionErrors && !this.submissionSuccess) {
       const errors = get(this, 'formio.errors', []);
       const alerts = get(this, 'alerts.alerts', []);
@@ -448,6 +448,6 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
         this.onError(errors);
       }
     }
-    return this.change.emit(value);
+    return this.change.emit({...value, flags, isModified});
   }
 }
