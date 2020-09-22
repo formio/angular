@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.5.10",
+  "version": "4.5.11",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -86,7 +86,7 @@
     "tslib": "^1.12.0",
     "tslint": "^6.1.2",
     "tslint-loader": "^3.6.0",
-    "typescript": "~3.5.3",
+    "typescript": "3.5.3",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
@@ -107,7 +107,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "formiojs": "^4.10.5-rc.5",
+    "formiojs": "^4.11.3",
     "lodash": "^4.17.15",
     "ngx-bootstrap": "^5.6.1"
   }
