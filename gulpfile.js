@@ -1,5 +1,4 @@
 /* eslint-disable */
-const { spawn } = require('child_process');
 var gulp = require('gulp'),
   path = require('path'),
   rollup = require('gulp-better-rollup'),
@@ -9,7 +8,6 @@ var gulp = require('gulp'),
   rename = require('gulp-rename'),
   ngc = require('@angular/compiler-cli/src/main').main,
   fs = require('fs-extra'),
-  runSequence = require('run-sequence'),
   inlineResources = require('./tools/gulp/inline-resources');
 
 
