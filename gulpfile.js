@@ -7,16 +7,19 @@ var gulp = require('gulp'),
   cleanCSS = require('gulp-clean-css'),
   replace = require('gulp-replace'),
   rename = require('gulp-rename'),
+  ngc = require('@angular/compiler-cli/src/main').main,
   fs = require('fs-extra'),
   runSequence = require('run-sequence'),
   inlineResources = require('./tools/gulp/inline-resources');
 
-// Execute the ngc command from command line.
-const ngc = function(commands, cb) {
-  const isWin = /^win/.test(process.platform);
-  const child = spawn(isWin ? 'ngc.cmd' : 'ngc', commands);
-  child.on('close', () => cb())
+
+const {NodeJSFileSystem, setFileSystem} = require('@angular/compiler-cli/src/ngtsc/file_system');
+setFileSystem(new NodeJSFileSystem());
+const ngcTask = (configPath) => {
+  ngc(['-p', configPath]);
+  return Promise.resolve();
 };
+
 const rootFolder = path.join(__dirname);
 const srcFolder = path.join(rootFolder, 'src');
 const tmpFolder = path.join(rootFolder, '.tmp');
@@ -96,45 +99,25 @@ gulp.task('inline-resources', function () {
  * 4. Run the Angular compiler, ngc, on the /.tmp folder. This will output all
  *    compiled modules to the /build folder.
  */
-gulp.task('ngc', function (done) {
-  ngc(['--project', `${tmpFolder}/tsconfig.es5.json`], done);
-});
+gulp.task('ngc', () => ngcTask(`${tmpFolder}/tsconfig.es5.json`));
 
-gulp.task('ngc-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/tsconfig.angular.json`], done);
-});
+gulp.task('ngc-angular', () => ngcTask(`${tmpFolder}/tsconfig.angular.json`));
 
-gulp.task('ngc-auth', function (done) {
-  ngc(['--project', `${tmpFolder}/auth/tsconfig.es5.json`], done);
-});
+gulp.task('ngc-auth', () => ngcTask(`${tmpFolder}/auth/tsconfig.es5.json`));
 
-gulp.task('ngc-auth-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/auth/tsconfig.angular.json`], done);
-});
+gulp.task('ngc-auth-angular', () => ngcTask(`${tmpFolder}/auth/tsconfig.angular.json`));
 
-gulp.task('ngc-manager', function (done) {
-  ngc(['--project', `${tmpFolder}/manager/tsconfig.es5.json`], done);
-});
+gulp.task('ngc-manager', () => ngcTask(`${tmpFolder}/manager/tsconfig.es5.json`));
 
-gulp.task('ngc-manager-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/manager/tsconfig.angular.json`], done);
-});
+gulp.task('ngc-manager-angular', () => ngcTask(`${tmpFolder}/manager/tsconfig.angular.json`));
 
-gulp.task('ngc-grid', function (done) {
-  ngc(['--project', `${tmpFolder}/grid/tsconfig.es5.json`], done);
-});
+gulp.task('ngc-grid', () => ngcTask(`${tmpFolder}/grid/tsconfig.es5.json`));
 
-gulp.task('ngc-grid-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/grid/tsconfig.angular.json`], done);
-});
+gulp.task('ngc-grid-angular', () => ngcTask(`${tmpFolder}/grid/tsconfig.angular.json`));
 
-gulp.task('ngc-resource', function (done) {
-  ngc(['--project', `${tmpFolder}/resource/tsconfig.es5.json`], done);
-});
+gulp.task('ngc-resource', () => ngcTask(`${tmpFolder}/resource/tsconfig.es5.json`));
 
-gulp.task('ngc-resource-angular', function (done) {
-  ngc(['--project', `${tmpFolder}/resource/tsconfig.angular.json`], done);
-});
+gulp.task('ngc-resource-angular', () => ngcTask(`${tmpFolder}/resource/tsconfig.angular.json`));
 
 /**
  * 5. Run rollup inside the /build folder to generate our Flat ES module and place the
