@@ -1,15 +1,28 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "es5",
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "rootDir": ".",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
     "lib": [
-      "es2015",
+      "es2018",
       "dom"
     ],
-    "skipLibCheck": true,
-    "types": ["node"]
+    "paths": {
+      "angular-formio": [
+        "dist/angular-formio/angular-formio",
+        "dist/angular-formio"
+      ],
+      "angular-formio/*": [
+        "dist/angular-formio/*"
+      ]
+    }
   }
 }

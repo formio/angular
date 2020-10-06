@@ -1,0 +1,15 @@
+{
+  "ngPackage": {
+    "lib": {
+      "umdModuleIds": {
+        "lodash": "_",
+        "ngx-bootstrap/modal": "ngx-bootstrap/modal",
+        "ngx-bootstrap/pagination": "ngx-bootstrap/pagination",
+        "lodash/each": "_each",
+        "lodash/intersection": "_intersection",
+        "formiojs": "formiojs",
+        "ngx-bootstrap": "ngx-bootstrap"
+      }
+    }
+  }
+}
