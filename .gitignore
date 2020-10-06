@@ -1,36 +1,46 @@
-# Node
-node_modules/*
-npm-debug.log
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# TypeScript
-src/*.js
-src/*.map
-src/*.d.ts
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
 
-# JetBrains
-.idea
+# dependencies
+/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# IDEs and editors
+/.idea
 .project
-.settings
-.idea/*
-*.iml
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# VS Code
+# IDE - VSCode
 .vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
-# Windows
-Thumbs.db
-Desktop.ini
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
 
-# Mac
+# System Files
 .DS_Store
-**/.DS_Store
-
-# Ngc generated files
-**/*.ngfactory.ts
-
-# Build files
-dist/*
-.tmp
-
-# demo tmp files
-.demo
+Thumbs.db
