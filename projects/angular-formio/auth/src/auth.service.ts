@@ -174,13 +174,15 @@ export class FormioAuthService {
 
   logoutError() {
     this.setUser(null);
-    localStorage.removeItem('formioToken');
+    const namespace = Formio.namespace || 'formio';
+    localStorage.removeItem(`${namespace}Token`);
     this.onError.emit();
   }
 
   logout() {
     this.setUser(null);
-    localStorage.removeItem('formioToken');
+    const namespace = Formio.namespace || 'formio';
+    localStorage.removeItem(`${namespace}Token`);
     Formio.logout()
       .then(() => this.onLogout.emit())
       .catch(() => this.logoutError());
