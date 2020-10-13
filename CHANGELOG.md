@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.11.1-rc.11
+### Changed
+ - Upgrade formiojs@4.12.1-rc.12
+
+### Fixed
+ - Issue where formioToken would get reset when not in namespace.
+
 ## 4.11.1-rc.10
 ### Changed
  - Upgrade formiojs@4.12.1-rc.10
