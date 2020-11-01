@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.12.0-rc.2
+### Changed
+ - Reverted VPAT-664
+
 ## 4.12.0-rc.1
 ### Changed
  - VPAT-664 Replaced angular alerts with renderer ones
