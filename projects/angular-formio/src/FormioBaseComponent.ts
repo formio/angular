@@ -33,6 +33,7 @@ export abstract class FormioBaseComponent implements OnInit, OnChanges, OnDestro
   @Input() watchSubmissionErrors ? = false;
   @Output() render = new EventEmitter<object>();
   @Output() customEvent = new EventEmitter<object>();
+  @Output() fileUploadingStatus = new EventEmitter<string>();
   @Output() submit = new EventEmitter<object>();
   @Output() prevPage = new EventEmitter<object>();
   @Output() nextPage = new EventEmitter<object>();
@@ -124,6 +125,12 @@ export abstract class FormioBaseComponent implements OnInit, OnChanges, OnDestro
     this.formio.on('customEvent', (event: any) =>
       this.ngZone.run(() => this.customEvent.emit(event))
     );
+    ['fileUploadingStart', 'fileUploadingEnd'].forEach((eventName, index) => {
+      const status = !!index ? 'end' : 'start';
+      this.formio.on(eventName, () =>
+        this.ngZone.run(() => this.fileUploadingStatus.emit(status))
+      );
+    });
     this.formio.on('submit', (submission: any, saved: boolean) =>
       this.ngZone.run(() => this.submitForm(submission, saved))
     );
