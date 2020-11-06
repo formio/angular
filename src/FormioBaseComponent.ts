@@ -72,7 +72,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     const extraTags = this.customTags ? this.customTags.tags : [];
     return assign({}, {
       icons: get(this.config, 'icons', 'fontawesome'),
-      noAlerts: get(this.options, 'noAlerts', true),
+      noAlerts: get(this.options, 'noAlerts', false),
       readOnly: this.readOnly,
       viewAsHtml: this.viewOnly,
       i18n: get(this.options, 'i18n', null),
@@ -161,7 +161,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       alerts: {
         submitMessage: 'Submission Complete.'
       },
-      disableAlerts: false,
+      disableAlerts: true,
       hooks: {
         beforeSubmit: null
       },
