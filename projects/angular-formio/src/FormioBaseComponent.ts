@@ -124,8 +124,8 @@ export abstract class FormioBaseComponent implements OnInit, OnChanges, OnDestro
     this.formio.on('customEvent', (event: any) =>
       this.ngZone.run(() => this.customEvent.emit(event))
     );
-    this.formio.on('submit', (submission: any) =>
-      this.ngZone.run(() => this.submitForm(submission))
+    this.formio.on('submit', (submission: any, saved: boolean) =>
+      this.ngZone.run(() => this.submitForm(submission, saved))
     );
     this.formio.on('error', (err: any) => this.ngZone.run(() => {
       this.submissionSuccess = false;
@@ -404,8 +404,8 @@ export abstract class FormioBaseComponent implements OnInit, OnChanges, OnDestro
     }
   }
 
-  submitExecute(submission: object) {
-    if (this.service && !this.url) {
+  submitExecute(submission: object, saved = false) {
+    if (this.service && !this.url && !saved) {
       this.service
         .saveSubmission(submission)
         .subscribe(
@@ -417,7 +417,7 @@ export abstract class FormioBaseComponent implements OnInit, OnChanges, OnDestro
     }
   }
 
-  submitForm(submission: any) {
+  submitForm(submission: any, saved = false) {
     // Keep double submits from occurring...
     if (this.submitting) {
       return;
@@ -435,10 +435,10 @@ export abstract class FormioBaseComponent implements OnInit, OnChanges, OnDestro
           this.onError(err);
           return;
         }
-        this.submitExecute(sub);
+        this.submitExecute(sub, saved);
       });
     } else {
-      this.submitExecute(submission);
+      this.submitExecute(submission, saved);
     }
   }
 
