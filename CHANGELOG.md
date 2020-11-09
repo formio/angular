@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.11.1-rc.20
+### Changed
+ - emit events for file upload start and end
+ - Handle cases where the submission was already saved.
+ - Upgrade formiojs@4.12.1-rc.26
+
 ## 4.11.1-rc.19
 ### Changed
  - Upgrade formiojs@4.12.1-rc.25
