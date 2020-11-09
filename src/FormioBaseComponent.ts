@@ -128,8 +128,8 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
         this.ngZone.run(() => this.fileUploadingStatus.emit(status))
       );
     });
-    this.formio.on('submit', (submission: any) =>
-      this.ngZone.run(() => this.submitForm(submission))
+    this.formio.on('submit', (submission: any, saved: boolean) =>
+      this.ngZone.run(() => this.submitForm(submission, saved))
     );
     this.formio.on('error', (err: any) => this.ngZone.run(() => {
       this.submissionSuccess = false;
@@ -408,8 +408,8 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  submitExecute(submission: object) {
-    if (this.service && !this.url) {
+  submitExecute(submission: object, saved = false) {
+    if (this.service && !this.url && !saved) {
       this.service
         .saveSubmission(submission)
         .subscribe(
@@ -421,7 +421,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  submitForm(submission: any) {
+  submitForm(submission: any, saved = false) {
     // Keep double submits from occurring...
     if (this.submitting) {
       return;
@@ -439,10 +439,10 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
           this.onError(err);
           return;
         }
-        this.submitExecute(sub);
+        this.submitExecute(sub, saved);
       });
     } else {
-      this.submitExecute(submission);
+      this.submitExecute(submission, saved);
     }
   }
 
