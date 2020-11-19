@@ -391,6 +391,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       });
 
       if (this.formio) {
+        this.formio.showErrors();
         paths.forEach((path) => {
           const component = this.formio.getComponent(path);
           if (component) {
