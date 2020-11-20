@@ -1,6 +1,6 @@
-<div class="input-group mb-3" *ngIf="config.includeSearch">
+<div role="search" class="input-group mb-3" *ngIf="config.includeSearch">
   <input type="text" (keyup)="onSearch()" class="form-control" [(ngModel)]="search" placeholder="Search Forms" aria-label="Search Forms" aria-describedby="button-search">
-  <span  *ngIf="search && search !== ''" class="form-clear input-group-addon" (click)="clearSearch()"><span class="fa fa-times"></span></span>
+  <span *ngIf="search && search !== ''" class="form-clear input-group-addon" (click)="clearSearch()"><span class="fa fa-times"></span></span>
 </div>
 <formio-grid
   *ngIf="service.ready"
