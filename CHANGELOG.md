@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-[Unreleased]
+## 4.11.2-rc.1
 ### Fixed
  - VPAT-639 Fixed issue where alert text was indicating submission success when server validation failed afterwards (with renderer alerts)
  - VPAT-716 VPAT-735 Changed handling of server validation errors for unique fields and login page
@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file. See [standa
  - Remove unnecessary event for the form manger grid
  - FMG-41: fix: initial request for forms page for the manager
  - FMG-50/FMG-85: add trimming for search string and changed style of grid control buttons
+### Changed
+ - Upgrade formiojs@4.12.2-rc.3
 
 ## 4.11.1
 ### Changed
