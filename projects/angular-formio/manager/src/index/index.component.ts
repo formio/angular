@@ -12,7 +12,6 @@ import { debounce } from 'lodash';
 export class FormManagerIndexComponent implements OnInit {
   @ViewChild(FormioGridComponent, {static: false}) formGrid: FormioGridComponent;
   public gridQuery: any;
-  public refreshGrid: EventEmitter<object>;
   public search = '';
   constructor(
     public service: FormManagerService,
@@ -21,7 +20,6 @@ export class FormManagerIndexComponent implements OnInit {
     public config: FormManagerConfig
   ) {
     this.gridQuery = {tags: this.config.tag, type: 'form'};
-    this.refreshGrid = new EventEmitter();
     this.onSearch = debounce(this.onSearch, 300);
   }
 
@@ -56,7 +54,7 @@ export class FormManagerIndexComponent implements OnInit {
     localStorage.setItem('query', JSON.stringify(this.gridQuery));
     localStorage.setItem('searchInput', this.search);
     this.formGrid.pageChanged({page: 1, itemPerPage: this.gridQuery.limit});
-    this.refreshGrid.emit(this.gridQuery);
+    this.formGrid.emit(this.gridQuery);
   }
 
   clearSearch() {
