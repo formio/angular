@@ -1,5 +1,4 @@
 .form-clear {
-  align-items: center;
   background: #cecece;
   border-radius: 50%;
   bottom: 8px;
@@ -7,6 +6,8 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding-bottom: 2px;
   height: 24px;
   position: absolute;
   right: 10px;
