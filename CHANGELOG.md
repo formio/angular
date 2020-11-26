@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 4.11.2-rc.2
+### Fixed
+ - VPAT-639: Moved showErrors call to a correct spot
+
+### Changed
+ - Upgrade formiojs@4.12.2-rc.5
+
 ## 4.11.2-rc.1
 ### Fixed
  - VPAT-639 Fixed issue where alert text was indicating submission success when server validation failed afterwards (with renderer alerts)
