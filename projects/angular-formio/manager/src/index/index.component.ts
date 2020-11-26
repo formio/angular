@@ -55,7 +55,7 @@ export class FormManagerIndexComponent implements OnInit {
     localStorage.setItem('query', JSON.stringify(this.gridQuery));
     localStorage.setItem('searchInput', this.search);
     this.formGrid.pageChanged({page: 1, itemPerPage: this.gridQuery.limit});
-    this.formGrid.emit(this.gridQuery);
+    this.formGrid.refresh.emit(this.gridQuery);
   }
 
   clearSearch() {

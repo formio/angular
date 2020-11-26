@@ -25,9 +25,9 @@
     "node": ">=6.0.0"
   },
   "peerDependencies": {
-    "@angular/core": "^9.0.0 || ^10.0.0",
-    "@angular/common": "^9.0.0 || ^10.0.0",
-    "@angular/elements": "^9.0.0 || ^10.0.0",
+    "@angular/core": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/common": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/elements": "^9.0.0 || ^10.0.0 || ^11.0.0",
     "zone.js": "^0.8.0",
     "formiojs": "^4.12.0",
     "lodash": "^4.17.20",
