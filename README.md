@@ -121,7 +121,7 @@ Usage
 To use this library within your project, you will first need to install it as a dependency.
 
 ```
-npm install --save angular-formio
+npm install --save angular-formio formiojs
 ```
 
 You can now include the module in your Angular application like so.

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.0.0
+### Changed
+ - formiojs is now a peerDependency. You need to install it seperately.
+ - Upgrade Angular to support v10 and v11.
+
 ## 4.11.1-rc.6
 ### Changed
  - Upgrade formiojs@4.12.1-rc.9

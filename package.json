@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "5.0.0-alpha.1",
+  "version": "5.0.0-alpha.2",
   "scripts": {
     "ng": "ng",
     "build": "ng build angular-formio",
@@ -34,30 +34,33 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "@angular/animations": "~10.1.4",
-    "@angular/common": "~10.1.4",
-    "@angular/compiler": "~10.1.4",
-    "@angular/core": "~10.1.4",
-    "@angular/elements": "^10.1.4",
-    "@angular/forms": "~10.1.4",
-    "@angular/platform-browser": "~10.1.4",
-    "@angular/platform-browser-dynamic": "~10.1.4",
-    "@angular/router": "~10.1.4",
-    "formiojs": "^4.12.1-rc.9",
-    "ngx-bootstrap": "^6.1.0",
-    "rxjs": "~6.6.0",
+    "ngx-bootstrap": "^6.2.0"
+  },
+  "peerDependencies": {
+    "@angular/animations": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/common": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/compiler": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/core": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/elements": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/forms": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/platform-browser": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/platform-browser-dynamic": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "@angular/router": "^9.0.0 || ^10.0.0 || ^11.0.0",
+    "formiojs": "^4.12.2-rc.5",
+    "rxjs": "^5.0.0 || ^6.0.0",
     "tslib": "^2.0.0",
-    "zone.js": "^0.11.1"
+    "zone.js": "^0.11.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.4",
     "@angular/cli": "~10.1.4",
     "@angular/compiler-cli": "~10.1.4",
     "@compodoc/compodoc": "^1.1.11",
-    "@types/jasmine": "~3.5.0",
+    "@types/jasmine": "^3.6.2",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^14.11.5",
+    "@types/node": "^14.14.10",
     "codelyzer": "^6.0.0",
+    "formiojs": "^4.12.2-rc.5",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "^6.0.0",
     "karma": "^5.2.3",
@@ -69,6 +72,6 @@
     "protractor": "~7.0.0",
     "ts-node": "^9.0.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "typescript": "^4.1.2"
   }
 }
