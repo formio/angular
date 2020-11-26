@@ -19,7 +19,7 @@ export class FormManagerIndexComponent implements OnInit {
     public router: Router,
     public config: FormManagerConfig
   ) {
-    this.gridQuery = {tags: this.config.tag, type: 'form'};
+    this.gridQuery = {tags: this.config.tag, type: 'form', sort: 'title'};
     this.onSearch = debounce(this.onSearch, 300);
   }
 
@@ -33,7 +33,7 @@ export class FormManagerIndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gridQuery = {tags: this.config.tag, type: 'form'};
+    this.gridQuery = {tags: this.config.tag, type: 'form', sort: 'title'};
     this.service.reset();
     this.service.ready.then(() => {
       this.loadGrid();
@@ -48,6 +48,7 @@ export class FormManagerIndexComponent implements OnInit {
     if (searchInput.length > 0) {
       this.gridQuery.skip = 0;
       this.gridQuery.title__regex = '/' + searchInput + '/i';
+      this.gridQuery.title__regex = '/' + searchInput.trim() + '/i';
     } else {
       delete this.gridQuery.title__regex;
     }
@@ -58,14 +59,14 @@ export class FormManagerIndexComponent implements OnInit {
   }
 
   clearSearch() {
-    this.gridQuery = {tags: this.config.tag, type: 'form'};
+    this.gridQuery = {tags: this.config.tag, type: 'form', sort: 'title'};
     localStorage.removeItem('query');
     localStorage.removeItem('searchInput');
     localStorage.removeItem('currentPage');
     this.search = '';
     this.formGrid.pageChanged({page: 1});
     this.formGrid.query = {};
-    this.formGrid.refreshGrid({tags: this.config.tag, type: 'form'});
+    this.formGrid.refreshGrid({tags: this.config.tag, type: 'form', sort: 'title'});
   }
 
   onAction(action: any) {
