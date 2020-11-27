@@ -6,7 +6,7 @@ import { GridBodyComponent } from './GridBodyComponent';
 @Component({
   template: ''
 })
-export abstract class GridFooterComponent {
+export class GridFooterComponent {
   @Input() header: GridHeaderComponent;
   @Input() body: GridBodyComponent;
   @Input() createText: String;

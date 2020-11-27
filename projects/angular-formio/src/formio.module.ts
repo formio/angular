@@ -7,10 +7,12 @@ import { ParseHtmlContentPipe } from './components/alerts/parse-html-content.pip
 import { FormioAlertsComponent } from './components/alerts/formio.alerts.component';
 import { FormioLoaderComponent } from './components/loader/formio.loader.component';
 import { CustomTagsService } from './custom-component/custom-tags.service';
+import { FormioBaseComponent } from './FormioBaseComponent';
 
 @NgModule({
   declarations: [
     FormioComponent,
+    FormioBaseComponent,
     FormBuilderComponent,
     FormioLoaderComponent,
     FormioAlertsComponent,
