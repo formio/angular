@@ -12,6 +12,9 @@ import { FormGridFooterComponent } from './form/FormGridFooter.component';
 import { SubmissionGridHeaderComponent } from './submission/SubmissionGridHeader.component';
 import { SubmissionGridBodyComponent } from './submission/SubmissionGridBody.component';
 import { SubmissionGridFooterComponent } from './submission/SubmissionGridFooter.component';
+import { GridHeaderComponent } from './GridHeaderComponent';
+import { GridBodyComponent } from './GridBodyComponent';
+import { GridFooterComponent } from './GridFooterComponent';
 @NgModule({
   imports: [
     CommonModule,
@@ -27,7 +30,10 @@ import { SubmissionGridFooterComponent } from './submission/SubmissionGridFooter
     FormGridFooterComponent,
     SubmissionGridHeaderComponent,
     SubmissionGridBodyComponent,
-    SubmissionGridFooterComponent
+    SubmissionGridFooterComponent,
+    GridHeaderComponent,
+    GridBodyComponent,
+    GridFooterComponent,
   ],
   exports: [
     FormioGridComponent

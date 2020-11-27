@@ -5,7 +5,7 @@ import {GridHeader} from './types/grid-header';
 @Component({
   template: ''
 })
-export abstract class GridHeaderComponent {
+export class GridHeaderComponent {
   @Input() actionAllowed: any;
   @Output() sort: EventEmitter<GridHeader>;
   @ViewChild(TemplateRef, {static: true}) template: TemplateRef<any>;

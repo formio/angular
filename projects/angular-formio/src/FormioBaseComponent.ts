@@ -11,7 +11,7 @@ import { AlertsPosition } from './types/alerts-position';
 @Component({
   template: ''
 })
-export abstract class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
+export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form?: FormioForm;
   @Input() submission?: any = {};
   @Input() src?: string;

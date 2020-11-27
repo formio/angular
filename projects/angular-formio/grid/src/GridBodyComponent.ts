@@ -6,7 +6,7 @@ import {FormioPromiseService} from 'angular-formio';
 @Component({
   template: ''
 })
-export abstract class GridBodyComponent {
+export class GridBodyComponent {
   @Input() header: GridHeaderComponent;
   @Input() actionAllowed: any;
   @Output() rowSelect: EventEmitter<any>;
