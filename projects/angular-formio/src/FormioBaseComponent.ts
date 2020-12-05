@@ -56,6 +56,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   private submitting = false;
   private submissionSuccess = false;
   public isLoading: boolean;
+  public noAlerts: boolean;
 
   constructor(
     public ngZone: NgZone,
@@ -377,7 +378,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       } = error
         ? error.details
           ? {
-            message: error.details.map((detail) => detail.message).join(' '),
+            message: error.details.map((detail) => detail.message),
             paths: error.details.map((detail) => detail.path),
           }
           : {
@@ -389,19 +390,44 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
           paths: [],
         };
 
-      this.alerts.addAlert({
-        type: 'danger',
-        message,
-        component: error.component,
-      });
+      let shouldErrorDisplay = true;
 
       if (this.formio) {
-        paths.forEach((path) => {
+        paths.forEach((path, index) => {
           const component = this.formio.getComponent(path);
           if (component) {
             const components = Array.isArray(component) ? component : [component];
-            components.forEach((comp) => comp.setCustomValidity(message, true));
+            const messageText = Array.isArray(message) ? message[index] : message;
+            components.forEach((comp) => comp.setCustomValidity(messageText, true));
+            this.alerts.addAlert({
+              type: 'danger',
+              message: message[index],
+              component,
+            });
+            shouldErrorDisplay = false;
           }
+        });
+
+        if ((window as any).VPAT_ENABLED) {
+          if (typeof error ==='string' && this.formio.components) {
+            this.formio.components.forEach((comp) => {
+              if (comp && comp.type !== 'button') {
+                comp.setCustomValidity(message, true);
+              }
+            });
+          }
+        }
+
+        if (!this.noAlerts) {
+          this.formio.showErrors();
+        }
+      }
+
+      if (shouldErrorDisplay) {
+        this.alerts.addAlert({
+          type: 'danger',
+          message,
+          component: error.component,
         });
       }
     });
