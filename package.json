@@ -10,7 +10,7 @@
     "docs:build": "compodoc -p tsconfig.json -n angular-formio -d docs --hideGenerator",
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
-    "publish": "npm run build:prod && npm publish dist/angular-formio",
+    "publish": "npm run build:prod && npm publish dist/angular-formio --tag=5x",
     "test": "ng test",
     "lint": "ng lint"
   },
