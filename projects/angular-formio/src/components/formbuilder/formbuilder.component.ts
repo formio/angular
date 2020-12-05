@@ -26,7 +26,7 @@ import { CustomTagsService } from '../../custom-component/custom-tags.service';
 @Component({
   selector: 'form-builder',
   templateUrl: './formbuilder.component.html',
-  styleUrls: ['./formbuilder.component.scss'],
+  styleUrls: ['../../../../../node_modules/formiojs/dist/formio.builder.min.css'],
   encapsulation: ViewEncapsulation.None
 })
 /* tslint:enable */

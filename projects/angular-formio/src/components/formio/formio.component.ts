@@ -8,7 +8,7 @@ import { CustomTagsService } from '../../custom-component/custom-tags.service';
 @Component({
   selector: 'formio',
   templateUrl: './formio.component.html',
-  styleUrls: ['./formio.component.scss'],
+  styleUrls: ['../../../../../node_modules/formiojs/dist/formio.form.min.css'],
   encapsulation: ViewEncapsulation.None,
 })
 /* tslint:enable */
