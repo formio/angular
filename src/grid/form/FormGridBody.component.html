@@ -10,6 +10,7 @@
             <button *ngIf="actionAllowed('formView')" class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'view')"><span class="fa fa-pencil"></span> Enter Data</button>&nbsp;
             <button *ngIf="actionAllowed('submissionIndex')" class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'submission')"><span class="fa fa-list-alt"></span> View Data</button>&nbsp;
             <button *ngIf="actionAllowed('formEdit')" class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'edit')"><span class="fa fa-edit"></span> Edit Form</button>&nbsp;
+            <button *ngIf="actionAllowed('formEdit')" class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'permissions')"><span class="fa fa-edit"></span> Permissions</button>&nbsp;
             <button *ngIf="actionAllowed('formDelete')" class="btn btn-danger btn-sm form-btn" (click)="onRowAction($event, form, 'delete')"><span class="fa fa-trash"></span></button>
           </div>
         </div>
