@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable, Inject } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
 import { FormioAppConfig } from '../formio.config';
 import { get, each } from 'lodash';
@@ -17,6 +17,9 @@ export class FormioAuthService {
   public onRegister: EventEmitter<object>;
   public onUser: EventEmitter<object>;
   public onError: EventEmitter<any>;
+
+  public resetPassForm: string;
+  public onResetPass: EventEmitter<object>;
 
   public ready: Promise<boolean>;
   public readyResolve: any;
@@ -52,9 +55,14 @@ export class FormioAuthService {
       this.appConfig.appUrl +
       '/' +
       get(this.config, 'register.form', 'user/register');
+    this.resetPassForm =
+      this.appConfig.appUrl +
+      '/' +
+      get(this.config, 'register.form', 'user/resetpass');
     this.onLogin = new EventEmitter();
     this.onLogout = new EventEmitter();
     this.onRegister = new EventEmitter();
+    this.onResetPass = new EventEmitter();
     this.onUser = new EventEmitter();
     this.onError = new EventEmitter();
 
@@ -79,6 +87,10 @@ export class FormioAuthService {
   onRegisterSubmit(submission: object) {
     this.setUser(submission);
     this.onRegister.emit(submission);
+  }
+
+  onResetPassSubmit(submission: object) {
+    this.onResetPass.emit(submission);
   }
 
   init() {
