@@ -10,6 +10,7 @@ export interface FormioAuthRouteConfig {
   auth?: any;
   login?: any;
   register?: any;
+  resetpass?: any;
 }
 
 @Injectable()
@@ -18,6 +19,7 @@ export class FormioAuthConfig {
   delayAuth?: any;
   login?: FormioAuthFormConfig;
   register?: FormioAuthFormConfig;
+  resetpass?: FormioAuthFormConfig;
   oauth?: FormioOAuthConfig;
 }
 
