@@ -41,6 +41,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() size?: number;
   @Input() components?: any;
   @Input() formio?: FormioPromiseService;
+  @Input() label?: string;
   @Input() createText: String;
   @Input() isActionAllowed: any;
   @Output() select: EventEmitter<object>;
