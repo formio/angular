@@ -53,6 +53,7 @@ export class FormManagerService {
       formCreate: true,
       formView: true,
       formEdit: true,
+      formPermissions: true,
       formDelete: true,
       submissionIndex: true
     };
@@ -61,6 +62,7 @@ export class FormManagerService {
         formCreate: false,
         formView: false,
         formEdit: false,
+        formPermissions: false,
         formDelete: false,
         submissionIndex: false
       };
@@ -77,6 +79,7 @@ export class FormManagerService {
               this.access.formCreate = true;
               this.access.formView = true;
               this.access.formEdit = true;
+              this.access.formPermissions = true;
               this.access.formDelete = true;
               this.access.submissionIndex = true;
             }
@@ -88,6 +91,9 @@ export class FormManagerService {
             }
             if (!this.access.formEdit) {
               this.access.formEdit = (this.auth.formAccess.update_all.indexOf(roleId) !== -1);
+            }
+            if (!this.access.formPermissions) {
+              this.access.formPermissions = (this.auth.formAccess.update_all.indexOf(roleId) !== -1);
             }
             if (!this.access.formDelete) {
               this.access.formDelete = (this.auth.formAccess.delete_all.indexOf(roleId) !== -1);
