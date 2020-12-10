@@ -10,7 +10,6 @@ import { Formio } from 'formiojs';
 })
 export class FormManagerViewComponent implements OnInit {
   public submission: any;
-  public currentForm: any;
   public renderOptions: any;
   public onSuccess: EventEmitter<object> = new EventEmitter();
   public onError: EventEmitter<object> = new EventEmitter();
@@ -24,16 +23,11 @@ export class FormManagerViewComponent implements OnInit {
     this.renderOptions = {
       saveDraft: this.config.saveDraft
     };
-    this.currentForm = null;
     this.submission = {data: {}};
   }
 
   ngOnInit() {
-    // Reset the formio service to this form only.
     this.service.formio = new Formio(this.service.formio.formUrl);
-    this.service.loadForm().then((form) => {
-      this.currentForm = form;
-    });
   }
 
   onSubmit(submission: any) {

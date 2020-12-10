@@ -70,6 +70,7 @@ export class FormManagerIndexComponent implements OnInit {
   }
 
   onAction(action: any) {
+    this.service.form = null; // Reset previous form data
     this.router.navigate([action.row._id, action.action], { relativeTo: this.route });
   }
 

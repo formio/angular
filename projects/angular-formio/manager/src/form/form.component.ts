@@ -27,14 +27,12 @@ export class FormManagerFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.formio = new Formio(`${this.appConfig.appUrl}/form/${params.id}`);
-      this.formio.loadForm().then(form => {
-        this.projectId = form.project;
-        this.pathName = form.path;
-        this.getShareUrl();
-      });
-      this.service.reset(this.route);
+    this.service.reset(this.route);
+    this.service.loadForm().then(form => {
+      this.service.formSrc = this.appConfig.appUrl + '/' + form.path;
+      this.projectId = form.project;
+      this.pathName = form.path;
+      this.getShareUrl();
     });
   }
 

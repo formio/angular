@@ -36,12 +36,12 @@ export class FormManagerEditComponent implements AfterViewInit {
     if (editing) {
       this.loading = true;
       this.editMode = true;
-      return this.service.loadForm().then(form => {
-        this.form = form;
-        this.formTitle.nativeElement.value = form.title;
-        this.formType.nativeElement.value = form.display || 'form';
-        this.loading = false;
+      return this.service.formReady.then(() => {
+        this.form = this.service.form;
+        this.formTitle.nativeElement.value = this.service.form.title;
+        this.formType.nativeElement.value = this.service.form.display || 'form';
         this.formReady = true;
+        this.loading = false;
         this.ref.detectChanges();
         return true;
       }).catch(err => {
