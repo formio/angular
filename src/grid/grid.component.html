@@ -5,14 +5,14 @@
   <formio-alerts [alerts]="alerts"></formio-alerts>
   <table class="table table-bordered table-striped table-hover">
     <ng-container *ngIf="initialized && [footerPositions.top, footerPositions.both].indexOf(footerPosition) !== -1"
-      [ngTemplateOutlet]="footer.template" [ngTemplateOutletContext]="{ position: footerPositions.top }">
+      [ngTemplateOutlet]="footer.template" [ngTemplateOutletContext]="{ position: footerPositions.top, label: label }">
     </ng-container>
     <ng-container *ngIf="initialized"
       [ngTemplateOutlet]="header.template"></ng-container>
     <formio-loader [isLoading]="isLoading"></formio-loader>
     <ng-container *ngIf="initialized" [ngTemplateOutlet]="body.template"></ng-container>
     <ng-container *ngIf="initialized && [footerPositions.bottom, footerPositions.both].indexOf(footerPosition) !== -1"
-      [ngTemplateOutlet]="footer.template" [ngTemplateOutletContext]="{ position: footerPositions.bottom }">
+      [ngTemplateOutlet]="footer.template" [ngTemplateOutletContext]="{ position: footerPositions.bottom, label: label }">
     </ng-container>
   </table>
 </div>
