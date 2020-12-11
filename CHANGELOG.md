@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased]
+## 4.11.3-rc.1
+### Changed
+ - Upgrade formiojs@4.12.4-rc.2
 ### Changed
  - FMG-51: Forms page | Operation action buttons do not have bottom margins which make them look as if there is no space between them after scaling a page
 

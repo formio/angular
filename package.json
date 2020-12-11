@@ -1,6 +1,6 @@
 {
   "name": "angular-formio",
-  "version": "4.11.2",
+  "version": "4.11.3-rc.1",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -74,7 +74,7 @@
     "path": "^0.12.7",
     "prismjs": "^1.21.0",
     "protractor": "^7.0.0",
-    "rollup": "^2.34.1",
+    "rollup": "^2.34.2",
     "run-sequence": "^2.2.1",
     "rxjs": "^6.6.3",
     "sass-loader": "^8.0.2",
@@ -106,8 +106,8 @@
     "zone.js": "^0.8.0"
   },
   "dependencies": {
-    "core-js": "^3.8.0",
-    "formiojs": "^4.12.2",
+    "core-js": "^3.8.1",
+    "formiojs": "^4.12.4-rc.2",
     "lodash": "^4.17.20",
     "ngx-bootstrap": "^5.6.1"
   }
