@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file. See [standa
 ## 5.0.0-rc.3
 ### Changed
  - Upgrade formiojs@4.12.4-rc.2
+ - FMG-29: Add password reset for users
+
+### Fixed
+ - FIO-923 | Form Loading inside FormManager app is causing 3 API requests to the server
+ - FMG-135 Regression 1.96.1-rc.2| PDF overlay not saving when I click save
 
 ## 5.0.0
 ### Changed
