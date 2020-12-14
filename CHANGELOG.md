@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.0.0-rc.3
+### Changed
+ - Upgrade formiojs@4.12.4-rc.2
+
 ## 5.0.0
 ### Changed
  - formiojs is now a peerDependency. You need to install it seperately.
