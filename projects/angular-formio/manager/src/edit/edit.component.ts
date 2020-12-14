@@ -47,6 +47,7 @@ export class FormManagerEditComponent implements AfterViewInit {
       }).catch(err => {
         this.alerts.setAlert({type: 'danger', message: (err.message || err)});
         this.loading = false;
+        this.ref.detectChanges();
         this.formReady = true;
       });
     } else {
@@ -57,7 +58,7 @@ export class FormManagerEditComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.route.url.subscribe( url => {
-      this.initBuilder((url[0].path === 'edit'));
+      setTimeout(() => this.initBuilder((url[0].path === 'edit')), 0);
     });
   }
 

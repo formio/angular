@@ -4,7 +4,6 @@ import { FormManagerConfig } from '../form-manager.config';
 import { ActivatedRoute } from '@angular/router';
 import { FormioAppConfig } from 'angular-formio';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { Formio } from 'formiojs';
 
 @Component({
   templateUrl: './form.component.html'
@@ -12,7 +11,6 @@ import { Formio } from 'formiojs';
 export class FormManagerFormComponent implements OnInit {
   choice: any = 'isUrl';
   embedCode: any;
-  formio: any;
   shareUrl: any;
   projectId: any;
   pathName: any;
@@ -54,7 +52,7 @@ export class FormManagerFormComponent implements OnInit {
     embedCode +=    's.type = "text/javascript";';
     embedCode +=    's.src = "' + this.options.viewer + '/assets/lib/seamless/seamless.parent.min.js";';
     embedCode +=    's.onload = function b() {';
-    embedCode +=       'var f = d.getElementById("formio-form-' + this.formio.formId + '");';
+    embedCode +=       'var f = d.getElementById("formio-form-' + this.service.formio.formId + '");';
     embedCode +=       'if (!f || (typeof w.seamless === u)) {';
     embedCode +=          'return setTimeout(b, 100);';
     embedCode +=       '}';
@@ -63,7 +61,7 @@ export class FormManagerFormComponent implements OnInit {
     embedCode +=    'h.appendChild(s);';
     embedCode += '})(document, window);';
     embedCode += '</script>';
-    embedCode += '<iframe id="formio-form-' + this.formio.formId + '" ';
+    embedCode += '<iframe id="formio-form-' + this.service.formio.formId + '" ';
     embedCode +=     'style="width:100%;border:none;" height="800px" src="' + this.shareUrl + '&iframe=1"></iframe>';
     this.embedCode = embedCode;
     this.modalRef = this.modalService.show(content, { class: 'modal-lg' });
