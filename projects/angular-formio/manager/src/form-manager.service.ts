@@ -14,8 +14,10 @@ export class FormManagerService {
   public allAccessMap: any;
   public ownAccessMap: any;
   public ready: Promise<any>;
+  public formReady: Promise<any>;
   public actionAllowed: any;
   public form = null;
+  public formSrc = '';
   public perms = {delete: false, edit: false};
 
   constructor(
@@ -125,6 +127,7 @@ export class FormManagerService {
 
   setForm(form: any) {
     this.form = form;
+    this.formSrc = this.appConfig.appUrl + '/' + form.path;
     if (form.access) {
       // Check if they have access here.
       form.access.forEach(access => {
@@ -148,7 +151,8 @@ export class FormManagerService {
   }
 
   loadForm() {
-    return this.formio.loadForm().then(form => this.setForm(form));
+    this.formReady = this.formio.loadForm().then(form => this.setForm(form));
+    return this.formReady;
   }
 
   setSubmission(route: ActivatedRoute) {
