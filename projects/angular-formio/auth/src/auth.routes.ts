@@ -3,6 +3,8 @@ import { FormioAuthRouteConfig } from './auth.config';
 import { FormioAuthComponent } from './auth.component';
 import { FormioAuthLoginComponent } from './login/login.component';
 import { FormioAuthRegisterComponent } from './register/register.component';
+import { FormioResetPassComponent } from './resetpass/resetpass.component';
+
 export function FormioAuthRoutes(config?: FormioAuthRouteConfig): Routes {
   return [
     {
@@ -21,6 +23,10 @@ export function FormioAuthRoutes(config?: FormioAuthRouteConfig): Routes {
         {
           path: 'register',
           component: config && config.register ? config.register : FormioAuthRegisterComponent
+        },
+        {
+          path: 'resetpass',
+          component: config && config.resetpass ? config.resetpass : FormioResetPassComponent
         }
       ]
     }

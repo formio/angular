@@ -5,6 +5,7 @@ import { FormioModule } from 'angular-formio';
 import { FormioAuthComponent } from './auth.component';
 import { FormioAuthLoginComponent } from './login/login.component';
 import { FormioAuthRegisterComponent } from './register/register.component';
+import { FormioResetPassComponent } from './resetpass/resetpass.component';
 import { FormioAuthRouteConfig } from './auth.config';
 import { FormioAuthRoutes } from './auth.routes';
 import { extendRouter } from 'angular-formio';
@@ -18,7 +19,8 @@ import { extendRouter } from 'angular-formio';
   declarations: [
     FormioAuthComponent,
     FormioAuthLoginComponent,
-    FormioAuthRegisterComponent
+    FormioAuthRegisterComponent,
+    FormioResetPassComponent
   ]
 })
 export class FormioAuth {

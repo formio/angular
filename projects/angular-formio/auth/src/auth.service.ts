@@ -18,6 +18,9 @@ export class FormioAuthService {
   public onUser: EventEmitter<object>;
   public onError: EventEmitter<any>;
 
+  public resetPassForm: string;
+  public onResetPass: EventEmitter<object>;
+
   public ready: Promise<boolean>;
   public readyResolve: any;
   public readyReject: any;
@@ -52,6 +55,10 @@ export class FormioAuthService {
       this.appConfig.appUrl +
       '/' +
       get(this.config, 'register.form', 'user/register');
+    this.resetPassForm =
+      this.appConfig.appUrl +
+      '/' +
+      get(this.config, 'register.form', 'user/resetpass');
     this.onLogin = new EventEmitter();
     this.onLogout = new EventEmitter();
     this.onRegister = new EventEmitter();
@@ -79,6 +86,10 @@ export class FormioAuthService {
   onRegisterSubmit(submission: object) {
     this.setUser(submission);
     this.onRegister.emit(submission);
+  }
+
+  onResetPassSubmit(submission: object) {
+    this.onResetPass.emit(submission);
   }
 
   init() {
