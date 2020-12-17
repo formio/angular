@@ -127,7 +127,7 @@ npm install --save @formio/angular formiojs
 You can now include the module in your Angular application like so.
 
 ```js
-import { FormioModule } from 'angular-formio';
+import { FormioModule } from '@formio/angular';
 @NgModule({
     imports: [ BrowserModule, CommonModule, FormioModule ],
     declarations: [ AppComponent ],
