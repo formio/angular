@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormManagerService } from '../form-manager.service';
 import { FormManagerConfig } from '../form-manager.config';
-import { FormioGridComponent } from 'angular-formio/grid';
+import { FormioGridComponent } from '@formio/angular/grid';
 import { debounce } from 'lodash';
 
 @Component({

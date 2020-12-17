@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormioModule } from '@formio/angular';
 import { FormioAlerts } from '@formio/angular';
-import { FormioGrid } from 'angular-formio/grid';
+import { FormioGrid } from '@formio/angular/grid';
 import { FormioResourceComponent } from './resource.component';
 import { FormioResourceViewComponent } from './view/view.component';
 import { FormioResourceEditComponent } from './edit/edit.component';

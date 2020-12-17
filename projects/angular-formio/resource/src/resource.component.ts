@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { FormioAuthService } from 'angular-formio/auth';
+import { FormioAuthService } from '@formio/angular/auth';
 import { FormioResourceService } from './resource.service';
 import { Subscription } from 'rxjs';
 

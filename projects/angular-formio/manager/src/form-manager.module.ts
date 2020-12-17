@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FormioModule } from '@formio/angular';
-import { FormioGrid } from 'angular-formio/grid';
+import { FormioGrid } from '@formio/angular/grid';
 import { FormManagerIndexComponent } from './index/index.component';
 import { FormManagerCreateComponent } from './create/create.component';
 import { FormManagerFormComponent } from './form/form.component';

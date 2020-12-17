@@ -3,7 +3,7 @@ import { FormioAppConfig } from '@formio/angular';
 import { FormManagerConfig } from './form-manager.config';
 import { Formio } from 'formiojs';
 import { ActivatedRoute } from '@angular/router';
-import { FormioAuthService } from 'angular-formio/auth';
+import { FormioAuthService } from '@formio/angular/auth';
 import _each from 'lodash/each';
 import _intersection from 'lodash/intersection';
 
