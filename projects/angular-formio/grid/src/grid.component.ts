@@ -12,7 +12,7 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {FormioAlerts} from 'angular-formio';
+import {FormioAlerts} from '@formio/angular';
 import {each} from 'lodash';
 import {Formio} from 'formiojs';
 import {GridHeaderComponent} from './GridHeaderComponent';
@@ -20,7 +20,7 @@ import {GridBodyComponent} from './GridBodyComponent';
 import {GridFooterComponent} from './GridFooterComponent';
 import FormComponents from './form/index';
 import SubmissionComponents from './submission/index';
-import {FormioPromiseService} from 'angular-formio';
+import {FormioPromiseService} from '@formio/angular';
 import {GridColumn} from './types/grid-column';
 import {GridHeader, SortType} from './types/grid-header';
 

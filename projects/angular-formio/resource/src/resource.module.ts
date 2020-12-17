@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormioModule } from 'angular-formio';
-import { FormioAlerts } from 'angular-formio';
+import { FormioModule } from '@formio/angular';
+import { FormioAlerts } from '@formio/angular';
 import { FormioGrid } from 'angular-formio/grid';
 import { FormioResourceComponent } from './resource.component';
 import { FormioResourceViewComponent } from './view/view.component';
@@ -12,7 +12,7 @@ import { FormioResourceCreateComponent } from './create/create.component';
 import { FormioResourceIndexComponent } from './index/index.component';
 import { FormioResourceRouteConfig } from './resource.config';
 import { FormioResourceRoutes } from './resource.routes';
-import { extendRouter } from 'angular-formio';
+import { extendRouter } from '@formio/angular';
 
 @NgModule({
   imports: [

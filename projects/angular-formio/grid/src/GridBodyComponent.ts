@@ -1,7 +1,7 @@
 import { Input, Output, EventEmitter, ViewChild, TemplateRef, Component } from '@angular/core';
 import { each, clone } from 'lodash';
 import { GridHeaderComponent } from './GridHeaderComponent';
-import {FormioPromiseService} from 'angular-formio';
+import {FormioPromiseService} from '@formio/angular';
 
 @Component({
   template: ''

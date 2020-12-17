@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { each, get } from 'lodash';
 import { GridBodyComponent } from '../GridBodyComponent';
-import {FormioPromiseService} from 'angular-formio';
+import {FormioPromiseService} from '@formio/angular';
 import { GridHeader } from '../types/grid-header';
-import {FormioSubmission} from 'angular-formio';
+import {FormioSubmission} from '@formio/angular';
 @Component({
   templateUrl: './SubmissionGridBody.component.html'
 })
