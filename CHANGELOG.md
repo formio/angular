@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.0.0
+### Changed
+ - Upgrade formiojs@4.12.4
+
+### Fixed
+ - FMG-61: When there are no forms on the ‘Forms’ page or no submissions on the ‘View Data’ page, 1-0/0 number of forms is displayed
+
 ## 5.0.0-rc.5
 ### Changed
  - NPM package to @formio/angular
