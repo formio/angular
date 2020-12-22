@@ -60,6 +60,9 @@ export class GridBodyComponent {
 
     this.firstItem = query.skip + 1;
     this.lastItem = this.firstItem + items.length - 1;
+    if (this.lastItem === 0) {
+      this.firstItem = 0;
+    }
     this.total = items.serverCount;
     this.limit = query.limit;
     this.skip = Math.floor(items.skip / query.limit) + 1;
