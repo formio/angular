@@ -8,7 +8,8 @@
         "lodash/each": "_each",
         "lodash/intersection": "_intersection",
         "formiojs": "formiojs",
-        "ngx-bootstrap": "ngx-bootstrap"
+        "ngx-bootstrap": "ngx-bootstrap",
+        "ngx-papaparse": "ngx-papaparse"
       }
     }
   }

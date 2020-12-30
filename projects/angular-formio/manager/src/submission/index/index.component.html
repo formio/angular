@@ -1,1 +1,3 @@
+<button (click)="downloadCSV()" class="btn btn-success">Export CSV</button> <span>{{progressText}}</span>
+<hr>
 <formio-grid [formio]="service.formio" (rowSelect)="onSelect($event)"></formio-grid>

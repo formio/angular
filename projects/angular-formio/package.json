@@ -31,7 +31,8 @@
     "zone.js": "^0.8.0",
     "formiojs": "^4.12.4",
     "lodash": "^4.17.20",
-    "ngx-bootstrap": "^5.6.1"
+    "ngx-bootstrap": "^5.6.1",
+    "ngx-papaparse": "^5.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
