@@ -57,6 +57,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   private submissionSuccess = false;
   public isLoading: boolean;
   public noAlerts: boolean;
+  public label: string;
 
   constructor(
     public ngZone: NgZone,
@@ -104,6 +105,13 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     if (this.formio) {
       this.formio.destroy();
     }
+
+    if (this.form.title) {
+      this.label = this.form.title;
+    } else if (this.form.components && this.form.components[0]) {
+      this.label = this.form.components[0].label;
+    }
+
     // Clear out the element to render the new form.
     if (this.formioElement && this.formioElement.nativeElement) {
       this.formioElement.nativeElement.innerHTML = '';
