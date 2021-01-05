@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased]
+### Changed
+ - Changes for 0.2.0 accessibility functionality release of form manager
+
 ## 5.0.0
 ### Changed
  - Upgrade formiojs@4.12.4
