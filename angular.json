@@ -42,6 +42,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-formio"
+    }
+  },
+  "defaultProject": "angular-formio",
+  "cli": {
+    "analytics": false
+  }
 }
