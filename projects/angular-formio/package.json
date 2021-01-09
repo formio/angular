@@ -1,6 +1,6 @@
 {
   "name": "@formio/angular",
-  "version": "5.0.1-rc.2",
+  "version": "5.0.1-rc.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/formio/angular-formio"
