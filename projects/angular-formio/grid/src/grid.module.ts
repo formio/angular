@@ -15,6 +15,7 @@ import { SubmissionGridFooterComponent } from './submission/SubmissionGridFooter
 import { GridHeaderComponent } from './GridHeaderComponent';
 import { GridBodyComponent } from './GridBodyComponent';
 import { GridFooterComponent } from './GridFooterComponent';
+import { GridService } from './grid.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -47,7 +48,8 @@ import { GridFooterComponent } from './GridFooterComponent';
     SubmissionGridFooterComponent
   ],
   providers: [
-    FormioAlerts
+    FormioAlerts,
+    GridService
   ]
 })
 export class FormioGrid {}

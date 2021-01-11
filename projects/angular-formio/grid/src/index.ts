@@ -9,3 +9,4 @@ export { SubmissionGridHeaderComponent } from './submission/SubmissionGridHeader
 export { SubmissionGridBodyComponent } from './submission/SubmissionGridBody.component';
 export { SubmissionGridFooterComponent } from './submission/SubmissionGridFooter.component';
 export { FormioGridComponent } from './grid.component';
+export { GridService } from './grid.service';
