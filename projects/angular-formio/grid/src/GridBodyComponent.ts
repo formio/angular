@@ -1,6 +1,7 @@
 import { Input, Output, EventEmitter, ViewChild, TemplateRef, Component } from '@angular/core';
 import { each, clone } from 'lodash';
 import { GridHeaderComponent } from './GridHeaderComponent';
+import { GridService } from './grid.service';
 import {FormioPromiseService} from '@formio/angular';
 
 @Component({
@@ -19,7 +20,7 @@ export class GridBodyComponent {
   public skip = 0;
   public limit = 0;
   public total = 0;
-  constructor() {
+  constructor(public service: GridService) {
     this.rowSelect = new EventEmitter();
     this.rowAction = new EventEmitter();
     this.loading = true;
@@ -55,6 +56,8 @@ export class GridBodyComponent {
       this.total = 0;
       this.skip = 0;
       this.loading = false;
+      this.service.setRows(this.rows);
+      
       return this.rows;
     }
 
@@ -70,6 +73,8 @@ export class GridBodyComponent {
     each(items, (item: any) => {
       this.rows.push(clone(item));
     });
+    this.service.setRows(this.rows);
+
     return this.rows;
   }
 }

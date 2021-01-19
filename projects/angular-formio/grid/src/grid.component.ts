@@ -166,10 +166,12 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   onError(error: any) {
     this.isLoading = false;
     this.error.emit(error);
-    this.alerts.setAlert({
-      type: 'danger',
-      message: error
-    });
+    if (typeof error === 'string' || error.message) {
+      this.alerts.setAlert({
+        type: 'danger',
+        message: error.message || error
+      });
+    }
   }
 
   refreshGrid(query?: any) {

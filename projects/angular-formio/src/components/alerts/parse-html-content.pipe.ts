@@ -10,6 +10,6 @@ export class ParseHtmlContentPipe implements PipeTransform {
   transform(content) {
     const parsedContent = new DOMParser().parseFromString(content, 'text/html').body.childNodes[0];
 
-    return parsedContent.textContent;
+    return parsedContent?.textContent;
   }
 }
