@@ -151,6 +151,7 @@ export class FormManagerService {
   }
 
   loadForm() {
+    this.form = null;
     this.formReady = this.formio.loadForm().then(form => this.setForm(form));
     return this.formReady;
   }
