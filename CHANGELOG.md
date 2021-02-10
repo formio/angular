@@ -2,97 +2,63 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 4.11.2-rc.2
+## 5.0.2
+ - Upgrade formiojs@4.12.7
+
+## 5.0.1
+ - Upgrade formiojs@4.12.7
+ 
+## 5.0.1-rc.5
 ### Fixed
- - VPAT-639: Moved showErrors call to a correct spot
+ - Reverse compatibility issue with the Form Manager Delete component.
 
-### Changed
- - Upgrade formiojs@4.12.2-rc.5
-
-## 4.11.2-rc.1
+## 5.0.1-rc.4
 ### Fixed
- - VPAT-639 Fixed issue where alert text was indicating submission success when server validation failed afterwards (with renderer alerts)
- - VPAT-716 VPAT-735 Changed handling of server validation errors for unique fields and login page
- - FMG-94 | Edit Form page | Leading and trailing spaces are not truncated for a value in the “Title” field
- - Remove unnecessary event for the form manger grid
- - FMG-41: fix: initial request for forms page for the manager
- - FMG-50/FMG-85: add trimming for search string and changed style of grid control buttons
-### Changed
- - Upgrade formiojs@4.12.2-rc.3
+ - FMG-131: fix removing a form from the list when it is the only one on the page.
 
-## 4.11.1
-### Changed
- - Upgrade formiojs@4.12.1
+## 5.0.1-rc.3
+### Fixed
+ - Published package.
 
-## 4.11.1-rc.23
+## 5.0.1-rc.2
 ### Changed
- - Upgrade formiojs@4.12.1-rc.28
+ - Upgrade formiojs@4.13.0-rc.6
 
-## 4.11.1-rc.22
+## 5.0.1-rc.1
 ### Changed
- - Upgrade formiojs@4.12.1-rc.28
+ - Upgrade formiojs@4.13.0-rc.5
+### Changed
+ - Changes for 0.2.0 accessibility functionality release of form manager
 
-## 4.11.1-rc.21
+## 5.0.0
 ### Changed
- - Upgrade formiojs@4.12.1-rc.27
-
-## 4.11.1-rc.20
-### Changed
- - emit events for file upload start and end
- - Handle cases where the submission was already saved.
- - Upgrade formiojs@4.12.1-rc.26
-
-## 4.11.1-rc.19
-### Changed
- - Upgrade formiojs@4.12.1-rc.25
-
-## 4.11.1-rc.18
-### Changed
- - Upgrade formiojs@4.12.1-rc.24
-
-## 4.12.0-rc.2
-### Changed
- - Reverted VPAT-664
-
-## 4.12.0-rc.1
-### Changed
- - VPAT-664 Replaced angular alerts with renderer ones
- - Upgrade formiojs@4.12.1-rc.23
-
-## 4.11.1-rc.15
-### Changed
- - Upgrade formiojs@4.12.1-rc.19
-
-## 4.11.1-rc.14
-### Changed
- - Upgrade formiojs@4.12.1-rc.18
-
-## 4.11.1-rc.13
-### Changed
- - Upgrade formiojs@4.12.1-rc.16
-
-## 4.11.1-rc.12
-### Changed
- - Upgrade formiojs@4.12.1-rc.14
-
-## 4.11.1-rc.11
-### Changed
- - Upgrade formiojs@4.12.1-rc.12
+ - Upgrade formiojs@4.12.4
 
 ### Fixed
- - Issue where formioToken would get reset when not in namespace.
+ - FMG-61: When there are no forms on the ‘Forms’ page or no submissions on the ‘View Data’ page, 1-0/0 number of forms is displayed
 
-## 4.11.1-rc.10
+## 5.0.0-rc.5
 ### Changed
- - Upgrade formiojs@4.12.1-rc.10
+ - NPM package to @formio/angular
 
-## 4.11.1-rc.9
-### Changed
- - Upgrade formiojs@4.12.1-rc.10
+## 5.0.0-rc.4
+### Fixed
+ - Issues where errors would throw on the form edit page.
+ - Problem where the Share link can not be clicked.
 
-## 4.11.1-rc.8
+## 5.0.0-rc.3
 ### Changed
- - Upgrade formiojs@4.12.1-rc.10
+ - Upgrade formiojs@4.12.4-rc.2
+ - FMG-29: Add password reset for users
+
+### Fixed
+ - FIO-923 | Form Loading inside FormManager app is causing 3 API requests to the server
+ - FMG-135 Regression 1.96.1-rc.2| PDF overlay not saving when I click save
+
+## 5.0.0
+### Changed
+ - formiojs is now a peerDependency. You need to install it seperately.
+ - Upgrade Angular to support v10 and v11.
 
 ## 4.11.1-rc.6
 ### Changed
