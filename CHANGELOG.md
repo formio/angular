@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased]
+### Fixed
+ - Fix search error during typing and fixing unexpected validation errors
+ 
+### Changed
+ - FIO-1178: add classes for customization
+
 ## 5.0.2
  - Upgrade formiojs@4.12.7
 
