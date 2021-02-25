@@ -10,7 +10,7 @@
 <ng-template let-label="label" #defaultFooterTemplate>
   <tr>
     <td *ngIf="header" [colSpan]="header.numHeaders">
-      <button *ngIf="actionAllowed('formCreate')" class="btn btn-primary pull-left float-left" (click)="createItem.emit('form')"><i class="glyphicon glyphicon-plus fa fa-plus"></i> {{ createText }}</button>
+      <button *ngIf="actionAllowed('formCreate')" class="btn btn-primary form-btn-use pull-left float-left" (click)="createItem.emit('form')"><i class="glyphicon glyphicon-plus fa fa-plus"></i> {{ createText }}</button>
       <span class="pull-right float-right item-counter"><span class="page-num">{{ body.firstItem }} - {{ body.lastItem }}</span> / {{ body.total }} total</span>
       <span [attr.aria-label]="label" role="navigation">
         <pagination [totalItems]="body.total" [itemsPerPage]="body.limit" [(ngModel)]="body.skip" (pageChanged)="pageChanged.emit($event)" [maxSize]="size" class="justify-content-center pagination-sm">
