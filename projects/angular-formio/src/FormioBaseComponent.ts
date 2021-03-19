@@ -6,6 +6,7 @@ import { FormioError, FormioForm, FormioOptions, FormioRefreshValue } from './fo
 import { assign, get, isEmpty } from 'lodash';
 import { CustomTagsService } from './custom-component/custom-tags.service';
 import Evaluator from 'formiojs/utils/Evaluator';
+import { fastCloneDeep } from 'formiojs/utils/utils';
 import { AlertsPosition } from './types/alerts-position';
 
 @Component({
@@ -341,6 +342,12 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   onSubmit(submission: any, saved: boolean, noemit?: boolean) {
     this.submitting = false;
     this.submissionSuccess = true;
+
+    this.formio.setValue(fastCloneDeep(submission), {
+      noValidate: true,
+      noCheck: true
+    });
+
     if (saved) {
       this.formio.emit('submitDone', submission);
     }
