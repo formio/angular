@@ -1,6 +1,6 @@
 {
   "name": "@formio/angular",
-  "version": "5.0.3-rc.2",
+  "version": "5.0.3-rc.3",
   "scripts": {
     "ng": "ng",
     "build": "ng build angular-formio",
@@ -51,7 +51,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^14.14.35",
     "codelyzer": "^6.0.0",
-    "formiojs": "^4.13.0-rc.20",
+    "formiojs": "^4.12.7-patch.4",
     "jasmine-core": "^3.7.1",
     "jasmine-spec-reporter": "^6.0.0",
     "karma": "^6.2.0",
