@@ -319,10 +319,11 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       if (changes.hideComponents && changes.hideComponents.currentValue) {
         const hiddenComponents = changes.hideComponents.currentValue;
         this.formio.options.hide = hiddenComponents;
-        this.formio.everyComponent((component) => {
-          component.options.hide = hiddenComponents;
-          if (hiddenComponents.includes(component.component.key)) {
-            component.visible = false;
+        this.formio.everyComponent((comp: any) => {
+          comp.options.hide = hiddenComponents;
+          if (hiddenComponents.includes(comp.component.key)) {
+            comp.visible = false;
+            comp.component.hidden = true;
           }
         });
       }
