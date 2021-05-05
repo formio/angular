@@ -43,7 +43,7 @@ export class FormManagerIndexComponent implements OnInit {
     });
   }
 
-  onSearch() {
+  onSearch(event?: KeyboardEvent) {
     const searchInput = this.search;
     if (searchInput.length > 0) {
       this.gridQuery.skip = 0;
