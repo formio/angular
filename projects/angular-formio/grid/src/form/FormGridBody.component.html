@@ -5,6 +5,9 @@
         <div class="row">
           <div class="col-sm-8">
             <a routerLink="{{form._id}}/view" (click)="onRowSelect($event, form)"><h5>{{ form.title }}</h5></a>
+            <div class="form-updated small text-muted">
+              Updated {{ form.modified | timeSince }} ago
+            </div>
           </div>
           <div class="col-sm-4">
             <button *ngIf="actionAllowed('formView')" class="btn btn-outline-secondary btn-sm form-btn form-btn-use" (click)="onRowAction($event, form, 'view')"><span class="fa fa-pencil"></span> Enter Data</button>&nbsp;
