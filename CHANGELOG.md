@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.1.1-rc.1
+### Added
+ - FIO-2841 Added event parameter to onSearch for event usage in FMG
+ - FIO-1178: add timeSince lines
+
+### Fixed
+ - FIO-2686: Date Time is not attaching timezone metadata to the submission
+
 ## 5.1.0
 ### Changed
  - Upgrade formiojs@4.13.0
