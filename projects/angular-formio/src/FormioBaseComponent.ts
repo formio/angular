@@ -472,6 +472,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     if (this.submitting) {
       return;
     }
+    this.formio.setMetadata(submission);
     this.submissionSuccess = false;
     this.submitting = true;
     this.beforeSubmit.emit(submission);
