@@ -16,6 +16,7 @@ import { GridHeaderComponent } from './GridHeaderComponent';
 import { GridBodyComponent } from './GridBodyComponent';
 import { GridFooterComponent } from './GridFooterComponent';
 import { GridService } from './grid.service';
+import { TimeSince } from './form/time-since.pipe'
 @NgModule({
   imports: [
     CommonModule,
@@ -35,6 +36,7 @@ import { GridService } from './grid.service';
     GridHeaderComponent,
     GridBodyComponent,
     GridFooterComponent,
+    TimeSince
   ],
   exports: [
     FormioGridComponent
