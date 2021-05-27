@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.1.1
+### Changed
+ - No changes. Released 5.1.1-rc.1 as official release.
+
 ## 5.1.1-rc.1
 ### Added
  - FIO-2841 Added event parameter to onSearch for event usage in FMG
