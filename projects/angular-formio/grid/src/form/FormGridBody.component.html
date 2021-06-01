@@ -14,7 +14,7 @@
             <button *ngIf="actionAllowed('formSubmission')" class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'submission')"><span class="fa fa-list-alt"></span> View Data</button>&nbsp;
             <button *ngIf="actionAllowed('formEdit')" class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'edit')"><span class="fa fa-edit"></span> Edit Form</button>&nbsp;
             <button *ngIf="actionAllowed('formPermission')" class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'permissions')"><span class="fa fa-lock"></span> Permissions</button>&nbsp;
-            <button *ngIf="actionAllowed('formDelete')" class="btn btn-danger btn-sm form-btn form-btn-delete" (click)="onRowAction($event, form, 'delete')"><span class="fa fa-trash"></span></button>
+            <button *ngIf="actionAllowed('formDelete')" class="btn btn-danger btn-sm form-btn form-btn-delete" (click)="onRowAction($event, form, 'delete')" title="Delete form"><span class="fa fa-trash"></span></button>
           </div>
         </div>
       </td>
