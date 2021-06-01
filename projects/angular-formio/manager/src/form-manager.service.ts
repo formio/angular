@@ -52,48 +52,57 @@ export class FormManagerService {
     this.access = {
       formCreate: true,
       formView: true,
+      formSubmission: true,
       formEdit: true,
+      formPermission: true,
       formDelete: true,
-      submissionIndex: true
+      projectSettings: true,
+      userManagement: true
     };
     if (this.auth) {
       this.access = {
         formCreate: false,
         formView: false,
+        formSubmission: false,
         formEdit: false,
+        formPermission: false,
         formDelete: false,
-        submissionIndex: false
+        projectSettings: false,
+        userManagement: false
       };
       this.ready = this.auth.ready.then(() => {
-        const adminRoles = [];
-        _each(this.auth.roles, (role, name) => {
-          if (role.admin) {
-            adminRoles.push(role._id);
-          }
-        });
+        let administrator = this.auth.roles["administrator"];
+        let formbuilder = this.auth.roles["formbuilder"];
+        let formadmin = this.auth.roles["formadmin"];
+
         if (this.auth.user && this.auth.user.roles) {
-          this.auth.user.roles.forEach(roleId => {
-            if (adminRoles.indexOf(roleId) !== -1) {
+          this.auth.user.roles.forEach((roleId: string) => {
+            if (administrator._id === roleId) {
               this.access.formCreate = true;
               this.access.formView = true;
+              this.access.formSubmission= true;
               this.access.formEdit = true;
+              this.access.formPermission = true;
               this.access.formDelete = true;
-              this.access.submissionIndex = true;
+              this.access.projectSettings = true;
+              this.access.userManagement = true;
             }
-            if (!this.access.formCreate) {
-              this.access.formCreate = (this.auth.formAccess.create_all.indexOf(roleId) !== -1);
-            }
-            if (!this.access.formView) {
-              this.access.formView = (this.auth.formAccess.read_all.indexOf(roleId) !== -1);
-            }
-            if (!this.access.formEdit) {
-              this.access.formEdit = (this.auth.formAccess.update_all.indexOf(roleId) !== -1);
-            }
-            if (!this.access.formDelete) {
-              this.access.formDelete = (this.auth.formAccess.delete_all.indexOf(roleId) !== -1);
-            }
-            if (!this.access.submissionIndex) {
-              this.access.submissionIndex = (this.auth.formAccess.read_all.indexOf(roleId) !== -1);
+            else {
+              if (formadmin._id === roleId) {
+                this.access.formCreate = this.auth.formAccess.create_all.includes(roleId);
+                this.access.formEdit = this.auth.formAccess.update_all.includes(roleId);
+                this.access.formPermission = this.auth.formAccess.update_all.includes(roleId);
+                this.access.formDelete =  this.auth.formAccess.delete_all.includes(roleId);
+                this.access.formView = this.auth.formAccess.read_all.includes(roleId);
+                this.access.formSubmission = this.auth.formAccess.read_all.includes(roleId);
+              }
+              if (formbuilder._id === roleId) {
+                this.access.formCreate = this.auth.formAccess.create_all.includes(roleId);
+                this.access.formEdit = this.auth.formAccess.update_all.includes(roleId);
+                this.access.formPermission = this.auth.formAccess.update_all.includes(roleId);
+                this.access.formDelete =  this.auth.formAccess.delete_all.includes(roleId);
+                this.access.formView = this.auth.formAccess.read_all.includes(roleId);
+              }
             }
           });
         }

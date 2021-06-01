@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.1.1
+### Changed
+ - No changes. Released 5.1.1-rc.1 as official release.
+
+## 5.1.1-rc.1
+### Added
+ - FIO-2841 Added event parameter to onSearch for event usage in FMG
+ - FIO-1178: add timeSince lines
+
+### Fixed
+ - FIO-2686: Date Time is not attaching timezone metadata to the submission
+
+## 5.1.0
+### Changed
+ - Upgrade formiojs@4.13.0
+
+## 5.0.3-rc.2
+### Changed
+ - Upgrade formiojs@4.13.0-rc.20
+
+### Fixed
+ - FIO-1482: fixed an issue where form submission object is not updated after submitting and new submission is created after each submission editing
+
 ## 5.0.3-rc.1
 ### Fixed
  - Fix search error during typing and fixing unexpected validation errors
