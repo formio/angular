@@ -153,17 +153,22 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
     return instance;
   }
 
-  setDisplay(display: String) {
-    return this.builder.setDisplay(display).then(instance => this.setInstance(instance));
+  setDisplay(display: String, prevDisplay?: string) {
+    if (display && display !== prevDisplay) {
+      return this.builder.setDisplay(display).then(instance => this.setInstance(instance));
+    }
+    else {
+      return Promise.resolve();
+    }
   }
 
-  buildForm(form: any) {
+  buildForm(form: any, prevForm?: any) {
     if (!form || !this.builderElement || !this.builderElement.nativeElement) {
       return;
     }
 
     if (this.builder) {
-      return this.setDisplay(form.display).then(() => {
+      return this.setDisplay(form.display, prevForm?.display).then(() => {
         this.builder.form = form;
         this.builder.instance.form = form;
         return this.builder.instance;
@@ -194,7 +199,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
     if (changes.form && changes.form.currentValue) {
       this.ngZone.runOutsideAngular(() => {
-        this.buildForm(changes.form.currentValue || {components: []});
+        this.buildForm(changes.form.currentValue || {components: []}, changes.form.previousValue);
       });
     }
   }
