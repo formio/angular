@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormManagerService } from '../form-manager.service';
 import { FormManagerConfig } from '../form-manager.config';
@@ -75,10 +75,10 @@ export class FormManagerIndexComponent implements OnInit {
   }
 
   onSelect(row: any) {
-    this.router.navigate([row._id, 'view'], { relativeTo: this.route });
+    this.router.navigate([row._id], { relativeTo: this.route });
   }
 
   onCreateItem() {
-    this.router.navigate(['create'], {relativeTo: this.route});
+    this.router.navigate(['create'], { relativeTo: this.route });
   }
 }
