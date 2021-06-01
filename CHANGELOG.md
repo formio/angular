@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.0-rc.1
+### Changed
+ - Adding Angular 12 support.
+ - Upgrade dependencies.
+
+### Fixed
+ - FMG-108: remove reloading of PDF form after editing
+ - Cherry-pick of VPAT-755 Added title to delete buttons in forms grid
+ - FMG-15: Routes for manager and permissions
+
 ## 5.1.1
 ### Changed
  - No changes. Released 5.1.1-rc.1 as official release.
