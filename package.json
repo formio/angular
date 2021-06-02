@@ -5,7 +5,7 @@
     "ng": "ng",
     "build": "ng build angular-formio",
     "build:watch": "ng build angular-formio --watch",
-    "build:prod": "ng build angular-formio --prod",
+    "build:prod": "ng build angular-formio --configuration production",
     "docs": "npm run docs:build",
     "docs:build": "compodoc -p tsconfig.json -n angular-formio -d docs --hideGenerator",
     "docs:serve": "npm run docs:build -- -s",
