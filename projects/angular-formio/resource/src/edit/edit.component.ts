@@ -1,13 +1,15 @@
-import { Component, EventEmitter } from '@angular/core';
+import {Component, EventEmitter, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
+import { Formio } from 'formiojs';
 
 @Component({
   templateUrl: './edit.component.html'
 })
-export class FormioResourceEditComponent {
+export class FormioResourceEditComponent implements OnDestroy {
   public triggerError: EventEmitter<any> = new EventEmitter();
+  public submission = {data: {}};
   constructor(
     public service: FormioResourceService,
     public route: ActivatedRoute,
@@ -23,5 +25,9 @@ export class FormioResourceEditComponent {
         this.router.navigate(['../', 'view'], { relativeTo: this.route });
       })
       .catch((err) => this.triggerError.emit(err));
+  }
+
+  ngOnDestroy() {
+    Formio.clearCache();
   }
 }
