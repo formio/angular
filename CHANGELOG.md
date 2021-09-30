@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.0-rc.2
+### Fixed
+ - FIO-3659: Previous Submission in New Submission
+
 ## 5.2.0-rc.1
 ### Changed
  - Adding Angular 12 support.
