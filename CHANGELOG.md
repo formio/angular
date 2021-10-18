@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.0
+### Changed
+ - Official Release
+ - Upgrade formiojs@4.13.8
+ - Upgrade @angular-devkit/build-angular@12.2.10 @angular/animations@12.2.10 @angular/cli@12.2.10 @angular/common@12.2.10 @angular/compiler@12.2.10 @angular/compiler-cli@12.2.10 @angular/core@12.2.10 @angular/elements@12.2.10 @angular/forms@12.2.10 @angular/platform-browser@12.2.10 @angular/platform-browser-dynamic@12.2.10 @angular/router@12.2.10 ng-packagr@12.2.3 @types/jasmine@3.10.0 jasmine-core@3.10.0 rxjs@7.4.0 ts-node@10.3.0
+
 ## 5.2.0-rc.2
 ### Fixed
  - FIO-3659: Previous Submission in New Submission
