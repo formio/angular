@@ -1,11 +1,6 @@
 {
   "ngPackage": {
     "lib": {
-      "umdModuleIds": {
-        "lodash": "_",
-        "formiojs": "formiojs",
-        "native-promise-only": "Promise"
-      }
     }
   }
 }
