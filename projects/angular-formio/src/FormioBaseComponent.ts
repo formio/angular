@@ -19,7 +19,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() url?: string;
   @Input() service?: FormioService;
   @Input() options?: FormioOptions;
-  @Input() noeval ? = false;
+  @Input() noeval ? = Evaluator.noeval;
   @Input() formioOptions?: any;
   @Input() renderOptions?: any;
   @Input() readOnly ? = false;
