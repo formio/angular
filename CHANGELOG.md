@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.1-rc.2
+### Changed
+ - No changes.
+
 ## 5.2.1-rc.1
 ### Fixed
  - FIO-3969: Initialize the noeval flag correctly.
