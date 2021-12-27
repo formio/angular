@@ -28,18 +28,6 @@
             "tsConfig": "projects/angular-formio/tsconfig.spec.json",
             "karmaConfig": "projects/angular-formio/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/angular-formio/tsconfig.lib.json",
-              "projects/angular-formio/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     }
