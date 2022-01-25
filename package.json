@@ -51,7 +51,7 @@
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "^15.6.1",
     "codelyzer": "^6.0.2",
-    "formiojs": "^4.13.11",
+    "formiojs": "^4.14.0",
     "jasmine-core": "^3.10.1",
     "jasmine-spec-reporter": "^7.0.0",
     "karma": "^6.3.9",
