@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased: 5.2.3-rc.1]
+### Fixed
+ - FIO-4925: Fixes not whole submission present for wizard
+
 ## 5.2.2
 ### Changed
  - Official Release
