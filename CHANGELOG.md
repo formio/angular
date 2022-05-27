@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.3-rc.2
+### Changed
+ - FIO-5128 added support for DT row-based events
+
 ## 5.2.3-rc.1
 ### Changed
  - FIO-4925: Fixes not whole submission present for wizard in pro.formview.io
