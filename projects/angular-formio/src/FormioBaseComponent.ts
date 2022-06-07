@@ -139,7 +139,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     this.formio.on('rowAdd', () =>  this.ngZone.run(() => this.rowAdd.emit()));
     this.formio.on('rowEdit', (data: any, rowIndex: number, index: number) =>  this.ngZone.run(() => this.rowEdit.emit({...data, rowIndex, index})));
     this.formio.on('rowDelete', (data: any, rowIndex: number, index: number) =>  this.ngZone.run(() => this.rowDelete.emit({...data, rowIndex, index})));
-    this.formio.on('rowClick', (row: any, rowIndex: number, index: number) =>  this.ngZone.run(() => this.rowDelete.emit({...row, rowIndex, index})));
+    this.formio.on('rowClick', (row: any, rowIndex: number, index: number) =>  this.ngZone.run(() => this.rowClick.emit({...row, rowIndex, index})));
     this.formio.on('customEvent', (event: any) =>
       this.ngZone.run(() => this.customEvent.emit(event))
     );
