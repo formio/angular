@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Fixed
  - FIO-4925: Fixes not whole submission present for wizard
  - FIO-5128: allow support for data table row based events for angular formio component
+ - FIO-5128 fixed rowClick event
 
 ## 5.2.2
 ### Changed
