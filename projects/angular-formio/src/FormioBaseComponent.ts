@@ -323,7 +323,9 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
 
     this.formioReady.then(() => {
       if (changes.submission && changes.submission.currentValue) {
-        this.formio.setSubmission(changes.submission.currentValue);
+        this.formio.setSubmission(changes.submission.currentValue, {
+          fromSubmission: !changes.submission.firstChange
+        });
       }
 
       if (changes.hideComponents && changes.hideComponents.currentValue) {
