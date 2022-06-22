@@ -32,6 +32,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() hooks?: any = {};
   @Input() renderer?: any;
   @Input() watchSubmissionErrors ? = false;
+  @Input() dataTableActions? : any = []
   @Output() render = new EventEmitter<object>();
   @Output() customEvent = new EventEmitter<object>();
   @Output() fileUploadingStatus = new EventEmitter<string>();
@@ -39,6 +40,13 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Output() prevPage = new EventEmitter<object>();
   @Output() nextPage = new EventEmitter<object>();
   @Output() beforeSubmit = new EventEmitter<object>();
+  @Output() rowAdd = new EventEmitter<any>();
+  @Output() rowAdded = new EventEmitter<any>();
+  @Output() rowEdit = new EventEmitter<any>();
+  @Output() rowEdited = new EventEmitter<any>();
+  @Output() rowDelete = new EventEmitter<any>();
+  @Output() rowClick = new EventEmitter<any>();
+  @Output() rowSelectChange = new EventEmitter<any>();
   @Output() change = new EventEmitter<object>();
   @Output() invalid = new EventEmitter<boolean>();
   @Output() errorChange = new EventEmitter<any>();
@@ -87,7 +95,8 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       hooks: this.hooks,
       sanitizeConfig: {
         addTags: extraTags
-      }
+      },
+      dataTableActions: this.dataTableActions
     }, this.renderOptions || {});
   }
 
@@ -132,6 +141,13 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     this.formio.on('prevPage', (data: any) => this.ngZone.run(() => this.onPrevPage(data)));
     this.formio.on('nextPage', (data: any) => this.ngZone.run(() => this.onNextPage(data)));
     this.formio.on('change', (value: any, flags: any, isModified: boolean) => this.ngZone.run(() => this.onChange(value, flags, isModified)));
+    this.formio.on('rowAdd', () =>  this.ngZone.run(() => this.rowAdd.emit()));
+    this.formio.on('rowAdded', (data: any) =>  this.ngZone.run(() => this.rowAdded.emit(data)));
+    this.formio.on('rowEdit', (data: any, rowIndex: number, index: number) =>  this.ngZone.run(() => this.rowEdit.emit({...data, rowIndex, index})));
+    this.formio.on('rowEdited', (data: any, rowIndex: number) =>  this.ngZone.run(() => this.rowEdited.emit({...data, rowIndex})));
+    this.formio.on('rowDelete', (data: any, rowIndex: number, index: number) =>  this.ngZone.run(() => this.rowDelete.emit({...data, rowIndex, index})));
+    this.formio.on('rowClick', (row: any, rowIndex: number, index: number) =>  this.ngZone.run(() => this.rowClick.emit({...row, rowIndex, index})));
+    this.formio.on('rowSelectChange', (selectedRows: any[]) =>  this.ngZone.run(() => this.rowSelectChange.emit(selectedRows)));
     this.formio.on('customEvent', (event: any) =>
       this.ngZone.run(() => this.customEvent.emit(event))
     );
