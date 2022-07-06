@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
  - FIO-5128: allow support for data table row based events for angular formio component
  - FIO-5128 fixed rowClick event
  - FIO-5147: added custom actions and select rows 
+ - FIO-5172: Fixes validation errors shown on form load in apps
 
 ## 5.2.2
 ### Changed
