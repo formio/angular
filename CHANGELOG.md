@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased: 5.2.3-rc.4]
+### Fixed
+ - FIO-5147: added custom actions and select rows
+
 ## 5.2.3-rc.3
 ### Changed
  - FIO-5128: fixed rowClick event
