@@ -155,7 +155,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
   setDisplay(display: String, prevDisplay?: string) {
     if (display && display !== prevDisplay) {
-      this.builder.display = display;
+      (this.builder as any).display = display;
     }
   }
 
