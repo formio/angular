@@ -155,10 +155,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
   setDisplay(display: String, prevDisplay?: string) {
     if (display && display !== prevDisplay) {
-      return this.builder.setDisplay(display).then(instance => this.setInstance(instance));
-    }
-    else {
-      return Promise.resolve();
+      this.builder.display = display;
     }
   }
 
@@ -168,11 +165,11 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     if (this.builder) {
-      return this.setDisplay(form.display, prevForm?.display).then(() => {
-        this.builder.form = form;
-        this.builder.instance.form = form;
-        return this.builder.instance;
-      });
+      this.setDisplay(form.display, prevForm?.display);
+      this.setInstance(this.builder.instance);
+      this.builder.form = form;
+      this.builder.instance.form = form;
+      return this.builder.instance;
     }
 
     return this.rebuildForm(form);
