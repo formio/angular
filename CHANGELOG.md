@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. See [standa
  - FIO-5128 fixed rowClick event
  - FIO-5147: added custom actions and select rows 
  - FIO-5172: Fixes validation errors shown on form load in apps
+ - FIO-5307: Fixes ckeditor recreated multiple times on form save
 
 ## 5.2.2
 ### Changed
