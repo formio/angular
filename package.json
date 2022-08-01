@@ -1,6 +1,6 @@
 {
   "name": "@formio/angular",
-  "version": "5.3.0-rc.2",
+  "version": "5.3.0-rc.3",
   "scripts": {
     "ng": "ng",
     "build": "ng build angular-formio && npm run version",
@@ -11,7 +11,7 @@
     "docs:build": "compodoc -p tsconfig.json -n angular-formio -d docs --hideGenerator",
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
-    "publish": "npm run build:prod && npm publish dist/angular-formio",
+    "publish": "npm run build:prod && npm publish ./dist/angular-formio --tag=rc",
     "test": "ng test",
     "lint": "ng lint",
     "postinstall": "node -e 'var fs=require(`fs`);var fname=`./projects/angular-formio/package.json`;var pjson=require(fname);pjson.version=require(`./package.json`).version;fs.writeFileSync(fname,JSON.stringify(pjson,null, 2))'"
