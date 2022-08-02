@@ -23,7 +23,7 @@ Here is the hosted demo application [https://formio.github.io/angular-demo/](htt
 
 Using within your application
 ---------------------------
-You can easily render a form within your Angular 4 application by referencing the URL of that form as follows.
+You can easily render a form within your Angular application by referencing the URL of that form as follows.
 
 ```html
 <formio src='https://examples.form.io/example'></formio>
