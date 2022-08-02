@@ -12,6 +12,7 @@
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
     "publish": "npm run build:prod && npm publish ./dist/angular-formio --tag=rc",
+    "publish:latest": "npm run build:prod && npm publish ./dist/angular-formio",
     "test": "ng test",
     "lint": "ng lint",
     "postinstall": "node -e 'var fs=require(`fs`);var fname=`./projects/angular-formio/package.json`;var pjson=require(fname);pjson.version=require(`./package.json`).version;fs.writeFileSync(fname,JSON.stringify(pjson,null, 2))'"
