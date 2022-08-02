@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.3.0
+### Changed
+ - Official Release off of 5.3.0-rc.3
+
 ## 5.3.0-rc.3
 ### Changed
  - Rebiuld.
