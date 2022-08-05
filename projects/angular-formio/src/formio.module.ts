@@ -10,30 +10,26 @@ import { CustomTagsService } from './custom-component/custom-tags.service';
 import { FormioBaseComponent } from './FormioBaseComponent';
 
 @NgModule({
-  declarations: [
-    FormioComponent,
-    FormioBaseComponent,
-    FormBuilderComponent,
-    FormioLoaderComponent,
-    FormioAlertsComponent,
-    ParseHtmlContentPipe
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    FormioComponent,
-    FormBuilderComponent,
-    FormioLoaderComponent,
-    FormioAlertsComponent
-  ],
-  providers: [
-    FormioAlerts,
-    CustomTagsService
-  ],
-  entryComponents: [
-    FormioComponent,
-    FormBuilderComponent
-  ]
+    declarations: [
+        FormioComponent,
+        FormioBaseComponent,
+        FormBuilderComponent,
+        FormioLoaderComponent,
+        FormioAlertsComponent,
+        ParseHtmlContentPipe
+    ],
+    imports: [
+        CommonModule
+    ],
+    exports: [
+        FormioComponent,
+        FormBuilderComponent,
+        FormioLoaderComponent,
+        FormioAlertsComponent
+    ],
+    providers: [
+        FormioAlerts,
+        CustomTagsService
+    ]
 })
 export class FormioModule {}

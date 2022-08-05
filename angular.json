@@ -32,7 +32,6 @@
       }
     }
   },
-  "defaultProject": "angular-formio",
   "cli": {
     "analytics": false
   }
