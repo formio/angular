@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file. See [standa
 ### Changed
  - Official Release
 
+## 5.2.4
+### Changed
+ - Official Release
+
 ## 5.2.4-rc.1
 ### Fixed
  - FIO-5307: Fixes ckeditor recreated multiple times on form save
