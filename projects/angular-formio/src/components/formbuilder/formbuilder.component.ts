@@ -43,7 +43,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   @Input() noeval ? = false;
   @Input() refresh?: Observable<void>;
   @Input() rebuild?: Observable<object>;
-  @Output() change?: EventEmitter<object>;
+  @Output() change: EventEmitter<object>;
   @ViewChild('builder', { static: true }) builderElement?: ElementRef<any>;
 
   constructor(
