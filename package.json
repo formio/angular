@@ -1,5 +1,5 @@
 {
-  "name": "@formio/angular",
+  "name": "@heybaton/formio-ng",
   "version": "5.3.0",
   "scripts": {
     "ng": "ng",
@@ -11,15 +11,14 @@
     "docs:build": "compodoc -p tsconfig.json -n angular-formio -d docs --hideGenerator",
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
-    "publish": "npm run build:prod && npm publish ./dist/angular-formio --tag=rc",
-    "publish:latest": "npm run build:prod && npm publish ./dist/angular-formio",
+    "publish": "npm run build:prod && npm publish ./dist/angular-formio",
     "test": "ng test",
     "lint": "ng lint",
     "postinstall": "node -e 'var fs=require(`fs`);var fname=`./projects/angular-formio/package.json`;var pjson=require(fname);pjson.version=require(`./package.json`).version;fs.writeFileSync(fname,JSON.stringify(pjson,null, 2))'"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/formio/angular-formio"
+    "url": "https://github.com/heybaton/formio-ng"
   },
   "author": {
     "name": "Travis Tidwell",
@@ -30,7 +29,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/formio/angular-formio/issues"
+    "url": "https://github.com/heybaton/formio-ng/issues"
   },
   "engines": {
     "node": ">=6.0.0"
