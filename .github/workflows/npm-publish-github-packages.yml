@@ -20,6 +20,7 @@ jobs:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
       - run: npm ci
-      - run: npm run publish
+      - run: npm run build:prod
+      - run: npm publish ./dist/angular-formio --registry=https://npm.pkg.github.com/heybaton
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
