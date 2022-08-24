@@ -20,6 +20,9 @@
     "type": "git",
     "url": "https://github.com/heybaton/formio-ng"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/heybaton"
+  },
   "author": {
     "name": "Travis Tidwell",
     "email": "travis@form.io"
