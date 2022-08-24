@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormManagerConfig } from '../form-manager.config';
 import { FormManagerService } from '../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormioAuthService } from '@formio/angular/auth';
+import { FormioAuthService } from '@heybaton/formio-ng/auth';
 import { Formio } from 'formiojs';
 
 @Component({

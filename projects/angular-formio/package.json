@@ -1,9 +1,9 @@
 {
-  "name": "@formio/angular",
+  "name": "@heybaton/formio-ng",
   "version": "5.3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/formio/angular-formio"
+    "url": "https://github.com/heybaton/formio-ng"
   },
   "author": {
     "name": "Travis Tidwell",
@@ -19,7 +19,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/formio/angular-formio/issues"
+    "url": "https://github.com/heybaton/formio-ng/issues"
   },
   "engines": {
     "node": ">=6.0.0"

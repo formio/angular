@@ -1,5 +1,5 @@
 /*
- * Public API Surface of @formio/angular
+ * Public API Surface of @heybaton/formio-ng
  */
 
 export * from './index';

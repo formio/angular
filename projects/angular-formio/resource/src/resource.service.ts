@@ -2,10 +2,10 @@ import { ApplicationRef, EventEmitter, Injectable, Optional } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig } from './resource.config';
 import { FormioResources } from './resources.service';
-import { FormioPromiseService } from '@formio/angular';
-import { FormioAlerts } from '@formio/angular';
-import { FormioAppConfig } from '@formio/angular';
-import { FormioRefreshValue } from '@formio/angular';
+import { FormioPromiseService } from '@heybaton/formio-ng';
+import { FormioAlerts } from '@heybaton/formio-ng';
+import { FormioAppConfig } from '@heybaton/formio-ng';
+import { FormioRefreshValue } from '@heybaton/formio-ng';
 import Promise from 'native-promise-only';
 import { Formio, Utils } from 'formiojs';
 import _ from 'lodash';

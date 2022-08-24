@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormioModule } from '@formio/angular';
+import { FormioModule } from '@heybaton/formio-ng';
 import { FormioAuthComponent } from './auth.component';
 import { FormioAuthLoginComponent } from './login/login.component';
 import { FormioAuthRegisterComponent } from './register/register.component';
 import { FormioResetPassComponent } from './resetpass/resetpass.component';
 import { FormioAuthRouteConfig } from './auth.config';
 import { FormioAuthRoutes } from './auth.routes';
-import { extendRouter } from '@formio/angular';
+import { extendRouter } from '@heybaton/formio-ng';
 
 @NgModule({
   imports: [

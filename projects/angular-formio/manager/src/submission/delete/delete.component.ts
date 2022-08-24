@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormManagerService } from '../../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormioAlerts } from '@formio/angular';
+import { FormioAlerts } from '@heybaton/formio-ng';
 
 @Component({
   templateUrl: './delete.component.html'

@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { FormioAuthService } from '@formio/angular/auth';
+import { FormioAuthService } from '@heybaton/formio-ng/auth';
 
 export interface FormioResourceMap {
   [name: string]: any;

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FormioModule } from '@formio/angular';
-import { FormioGrid } from '@formio/angular/grid';
+import { FormioModule } from '@heybaton/formio-ng';
+import { FormioGrid } from '@heybaton/formio-ng/grid';
 import { FormManagerIndexComponent } from './index/index.component';
 import { FormManagerCreateComponent } from './create/create.component';
 import { FormManagerFormComponent } from './form/form.component';
@@ -19,7 +19,7 @@ import { FormManagerRouteConfig } from './form-manager.config';
 import { FormManagerRoutes } from './form-manager.routes';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { extendRouter } from '@formio/angular';
+import { extendRouter } from '@heybaton/formio-ng';
 @NgModule({
   imports: [
     CommonModule,
