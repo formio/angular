@@ -18,40 +18,32 @@ import { GridFooterComponent } from './GridFooterComponent';
 import { GridService } from './grid.service';
 import { TimeSince } from './form/time-since.pipe'
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    FormioModule,
-    RouterModule,
-    PaginationModule.forRoot()
-  ],
-  declarations: [
-    FormioGridComponent,
-    FormGridHeaderComponent,
-    FormGridBodyComponent,
-    FormGridFooterComponent,
-    SubmissionGridHeaderComponent,
-    SubmissionGridBodyComponent,
-    SubmissionGridFooterComponent,
-    GridHeaderComponent,
-    GridBodyComponent,
-    GridFooterComponent,
-    TimeSince
-  ],
-  exports: [
-    FormioGridComponent
-  ],
-  entryComponents: [
-    FormGridHeaderComponent,
-    FormGridBodyComponent,
-    FormGridFooterComponent,
-    SubmissionGridHeaderComponent,
-    SubmissionGridBodyComponent,
-    SubmissionGridFooterComponent
-  ],
-  providers: [
-    FormioAlerts,
-    GridService
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        FormioModule,
+        RouterModule,
+        PaginationModule.forRoot()
+    ],
+    declarations: [
+        FormioGridComponent,
+        FormGridHeaderComponent,
+        FormGridBodyComponent,
+        FormGridFooterComponent,
+        SubmissionGridHeaderComponent,
+        SubmissionGridBodyComponent,
+        SubmissionGridFooterComponent,
+        GridHeaderComponent,
+        GridBodyComponent,
+        GridFooterComponent,
+        TimeSince
+    ],
+    exports: [
+        FormioGridComponent
+    ],
+    providers: [
+        FormioAlerts,
+        GridService
+    ]
 })
 export class FormioGrid {}

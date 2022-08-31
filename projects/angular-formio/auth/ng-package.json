@@ -1,0 +1,5 @@
+{
+  "lib": {
+    "entryFile": "../auth/src/index.ts"
+  }
+}
