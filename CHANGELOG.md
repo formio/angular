@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.4.0-rc.1
+### Changed
+ - Upgrade to Angular 14
+ - set renderMode to html when viewOnly flag is set to true
+ - FIO-5278: added component instance to Event object
+ - FIO-4655: update FJS to fix tippyjs tooltips in formmanager
+ - Exporting the custom-tag-service.ts service.
+ - Toggle to hide the loading spinner
+
 ## 5.3.0
 ### Changed
  - Official Release off of 5.3.0-rc.3
