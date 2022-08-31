@@ -90,6 +90,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       noAlerts: get(this.options, 'noAlerts', true),
       readOnly: this.readOnly,
       viewAsHtml: this.viewOnly,
+      ...(this.viewOnly && { renderMode: "html" }),
       i18n: get(this.options, 'i18n', null),
       fileService: get(this.options, 'fileService', null),
       hooks: this.hooks,
