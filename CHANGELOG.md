@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.5-rc.2
+### Changed
+ - FIO-5423: Reseting the Display after on change
+
 ## 5.2.5-rc.1
 ### Changed
  - FIO-5278 added component instance to Event object
