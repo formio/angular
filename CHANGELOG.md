@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased: 5.4.0-rc.2]
+### Fixed
+ - FIO-5423: Reseting the Display after on change
+
 ## 5.4.0-rc.1
 ### Changed
  - Upgrade to Angular 14
