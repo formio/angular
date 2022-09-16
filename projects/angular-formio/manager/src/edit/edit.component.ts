@@ -68,7 +68,7 @@ export class FormManagerEditComponent implements AfterViewInit {
 
   saveForm() {
     this.loading = true;
-    this.form = _.cloneDeep(this.builder.formio.schema);
+    this.form = _.cloneDeep(this.form || this.builder.formio.schema);
     this.form.title = this.formTitle.nativeElement.value.trim();
     this.form.display = this.formType.nativeElement.value;
 
