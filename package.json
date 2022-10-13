@@ -1,6 +1,6 @@
 {
   "name": "@formio/angular",
-  "version": "5.4.0-rc.1",
+  "version": "5.4.0-rc.2",
   "scripts": {
     "ng": "ng",
     "build": "ng build angular-formio && npm run version",
