@@ -23,7 +23,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Changed
  - Rebiuld.
 
-## [Unreleased: 5.2.3-rc.1]
 ### Fixed
  - FIO-4925: Fixes not whole submission present for wizard
  - FIO-5128: allow support for data table row based events for angular formio component
