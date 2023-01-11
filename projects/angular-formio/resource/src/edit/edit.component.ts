@@ -9,6 +9,7 @@ import { Formio } from 'formiojs';
 })
 export class FormioResourceEditComponent implements OnDestroy {
   public triggerError: EventEmitter<any> = new EventEmitter();
+  public onSubmitDone: EventEmitter<object> = new EventEmitter();
   public submission = {data: {}};
   constructor(
     public service: FormioResourceService,
@@ -22,6 +23,7 @@ export class FormioResourceEditComponent implements OnDestroy {
     edit.data = submission.data;
     this.service.save(edit)
       .then(() => {
+        this.onSubmitDone.emit(this.service.resource);
         this.router.navigate(['../', 'view'], { relativeTo: this.route });
       })
       .catch((err) => this.triggerError.emit(err));
