@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 5.4.0-rc.3
+## 5.5.0-rc.9
 ### Fixed
  - FIO-5042: Logout Oauth Feature
  - Fixing issue where the validation is triggering on pristine forms.
