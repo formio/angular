@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.6-rc.1
+### Changed
+ - FIO-6117: fixed an issue where submitDone event is not emitted after submission is saved (need for boxsign action)
+
 ## 5.2.5
 ### Changed
  - Official Release
