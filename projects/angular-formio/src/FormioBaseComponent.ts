@@ -29,6 +29,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() refresh?: EventEmitter<FormioRefreshValue>;
   @Input() error?: EventEmitter<any>;
   @Input() success?: EventEmitter<object>;
+  @Input() submitDone?: EventEmitter<object>;
   @Input() language?: EventEmitter<string>;
   @Input() hooks?: any = {};
   @Input() renderer?: any;
@@ -249,6 +250,12 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
           type: 'success',
           message: message || get(this.options, 'alerts.submitMessage')
         });
+      });
+    }
+
+    if (this.submitDone) {
+      this.submitDone.subscribe((submission: object) => {
+        this.formio.emit('submitDone', submission);
       });
     }
 

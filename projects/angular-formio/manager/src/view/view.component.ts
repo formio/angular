@@ -13,6 +13,7 @@ export class FormManagerViewComponent implements OnInit {
   public renderOptions: any;
   public onSuccess: EventEmitter<object> = new EventEmitter();
   public onError: EventEmitter<object> = new EventEmitter();
+  public onSubmitDone: EventEmitter<object> = new EventEmitter();
   constructor(
     public service: FormManagerService,
     public router: Router,
@@ -34,6 +35,7 @@ export class FormManagerViewComponent implements OnInit {
     this.submission.data = submission.data;
     this.submission.state = 'complete';
     this.service.formio.saveSubmission(this.submission).then(saved => {
+      this.onSubmitDone.emit(saved);
       this.onSuccess.emit();
       this.router.navigate(['../', 'submission', saved._id], {relativeTo: this.route});
     }).catch((err) => this.onError.emit(err));
