@@ -159,6 +159,7 @@ export class FormioAuthService {
       this.user = user;
       localStorage.setItem(`${namespace}AppUser`, JSON.stringify(user));
       this.setUserRoles();
+      Formio.setUser(user);
     } else {
       this.user = null;
       this.is = {};
