@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild, ViewChildren } from '@angular/core';
 import { GridBodyComponent } from '../GridBodyComponent';
 import { FormioPromiseService } from '@formio/angular';
 import { Tooltip } from 'bootstrap';
@@ -8,33 +8,36 @@ import { Tooltip } from 'bootstrap';
   templateUrl: './FormGridBody.component.html'
 })
 export class FormGridBodyComponent extends GridBodyComponent implements OnDestroy {
-  @ViewChild('create') createBtn: ElementRef;
-  @ViewChild('view') viewBtn: ElementRef;
-  @ViewChild('edit') editBtn: ElementRef;
-  @ViewChild('permissions') permissionsBtn: ElementRef;
-  @ViewChild('delete') deleteBtn: ElementRef;
+  @ViewChildren('create') createBtns: ElementRef[];
+  @ViewChildren('view') viewBtns: ElementRef[];
+  @ViewChildren('edit') editBtns: ElementRef[];
+  @ViewChildren('permissions') permissionsBtns: ElementRef[];
+  @ViewChildren('delete') deleteBtns: ElementRef[];
   public tooltips: Array<Tooltip> = [];
+
   load(formio: FormioPromiseService, query?: any) {
     query = query || {};
     return formio.loadForms({ params: query })
       .then((forms: any) => this.setRows(query, forms))
-      .then(() => {
-        this.tooltips.push(new Tooltip(this.createBtn.nativeElement, {
-          title: 'Enter Data'
-        }));
-        this.tooltips.push(new Tooltip(this.viewBtn.nativeElement, {
-          title: 'View Data'
-        }));
-        this.tooltips.push(new Tooltip(this.editBtn.nativeElement, {
-          title: 'Edit Form'
-        }));
-        this.tooltips.push(new Tooltip(this.permissionsBtn.nativeElement, {
-          title: 'Permissions'
-        }));
-        this.tooltips.push(new Tooltip(this.deleteBtn.nativeElement, {
-          title: 'Delete form'
-        }));
-      });
+      .then(() => this.attachTooltips());
+  }
+
+  attachTooltips() {
+    this.createBtns.forEach((el: ElementRef) => {
+      this.tooltips.push(new Tooltip(el.nativeElement, {title: 'Create'}));
+    });
+    this.editBtns.forEach((el: ElementRef) => {
+      this.tooltips.push(new Tooltip(el.nativeElement, {title: 'Edit'}));
+    });
+    this.viewBtns.forEach((el: ElementRef) => {
+      this.tooltips.push(new Tooltip(el.nativeElement, {title: 'View'}));
+    })
+    this.permissionsBtns.forEach((el: ElementRef) => {
+      this.tooltips.push(new Tooltip(el.nativeElement, {title: 'Permissions'}));
+    });
+    this.deleteBtns.forEach((el: ElementRef) => {
+      this.tooltips.push(new Tooltip(el.nativeElement, {title: 'Delete'}));
+    });
   }
 
   ngOnDestroy(): void {
