@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## [Unreleased: 5.5.0-rc.10]
+### Changed
+ - Upgrade dependencies.
+
 ### Fixed
+ - fix common ComponentOptions interface for angular 15
  - FIO-6117: fixed an issue where submitDone event is not emitted after submission is saved (need for boxsign action)
 
 ## 5.5.0-rc.9
