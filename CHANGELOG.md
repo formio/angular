@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Fixed
  - fix common ComponentOptions interface for angular 15
  - FIO-6117: fixed an issue where submitDone event is not emitted after submission is saved (need for boxsign action)
+ - Fixed change event undefined on template issue
 
 ## 5.5.0-rc.9
 ### Fixed
