@@ -18,6 +18,15 @@ export interface AccessSetting {
   roles: string[];
 }
 
+export interface FormioReport {
+  form: string,
+  roles: object,
+  access: object,
+  metadata: object,
+  data: object,
+  project: string,
+}
+
 export interface FormioForm {
   title?: string;
   display?: string;
@@ -30,6 +39,7 @@ export interface FormioForm {
   tags?: string[];
   access?: AccessSetting[];
   submissionAccess?: AccessSetting[];
+  report?: FormioReport
 }
 
 export interface ComponentInstance {

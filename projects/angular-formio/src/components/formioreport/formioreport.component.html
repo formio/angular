@@ -1,0 +1,8 @@
+<div role="form" [attr.aria-label]="label">
+  <div *ngIf="isLoading && !hideLoading" style="position:relative;height:200px">
+    <formio-loader [isLoading]="isLoading"></formio-loader>
+  </div>
+  <formio-alerts *ngIf="this.options.alertsPosition === AlertsPosition.top || this.options.alertsPosition === AlertsPosition.both" (focusComponent)="focusOnComponet($event)" [alerts]="alerts"></formio-alerts>
+  <div #report></div>
+  <formio-alerts *ngIf="this.options.alertsPosition === AlertsPosition.bottom || this.options.alertsPosition === AlertsPosition.both" (focusComponent)="focusOnComponet($event)" [alerts]="alerts"></formio-alerts>
+</div>
