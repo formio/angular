@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { BuilderInfo, Components, ExtendedComponentSchema, Utils as FormioUtils } from 'formiojs';
+import { BuilderInfo, Components, ExtendedComponentSchema, Utils as FormioUtils } from '@formio/js';
 import { FormioCustomComponentInfo, FormioCustomElement, FormioEvent } from '../elements.common';
 import { clone, isNil, isArray } from 'lodash';
 

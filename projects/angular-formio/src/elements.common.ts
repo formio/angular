@@ -1,4 +1,4 @@
-import { ExtendedComponentSchema, BuilderInfo, ValidateOptions } from 'formiojs';
+import { ExtendedComponentSchema, BuilderInfo, ValidateOptions } from '@formio/js';
 import { EventEmitter } from '@angular/core';
 import { NgElement, WithProperties } from '@angular/elements';
 

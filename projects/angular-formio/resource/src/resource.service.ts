@@ -7,7 +7,7 @@ import { FormioAlerts } from '@formio/angular';
 import { FormioAppConfig } from '@formio/angular';
 import { FormioRefreshValue } from '@formio/angular';
 import Promise from 'native-promise-only';
-import { Formio, Utils } from 'formiojs';
+import { Formio, Utils } from '@formio/js';
 import _ from 'lodash';
 
 @Injectable()

@@ -18,4 +18,4 @@ export {
   ComponentSchema,
   ExtendedComponentSchema,
   ElementInfo
-} from 'formiojs';
+} from '@formio/js';

@@ -2,7 +2,7 @@ import { EventEmitter, Injectable, Inject } from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
 import { FormioAppConfig } from '@formio/angular';
 import { get, each } from 'lodash';
-import { Formio } from 'formiojs';
+import { Formio } from '@formio/js';
 
 @Injectable()
 export class FormioAuthService {
@@ -135,12 +135,17 @@ export class FormioAuthService {
       // Initiate the SSO if they provide oauth settings.
       currentUserPromise = Formio.ssoInit(this.config.oauth.type, this.config.oauth.options);
     } else {
-      currentUserPromise = Formio.currentUser();
+      currentUserPromise = Formio.currentUser(null, {
+        ignoreCache: true
+      });
     }
 
     this.userReady = currentUserPromise.then((user: any) => {
       this.setUser(user);
       return user;
+    }).catch((err) => {
+      this.setUser(null);
+      throw err;
     });
 
     // Trigger we are redy when all promises have resolved.

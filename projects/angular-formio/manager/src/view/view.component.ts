@@ -3,7 +3,7 @@ import { FormManagerConfig } from '../form-manager.config';
 import { FormManagerService } from '../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormioAuthService } from '@formio/angular/auth';
-import { Formio } from 'formiojs';
+import { Formio } from '@formio/js';
 
 @Component({
   templateUrl: './view.component.html'
