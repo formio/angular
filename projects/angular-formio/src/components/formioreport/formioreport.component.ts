@@ -13,6 +13,7 @@ import { FormioReport } from '../../formio.common';
 /* tslint:enable */
 export class FormioReportComponent extends FormioComponent implements OnInit, OnChanges {
   @Input() report?: FormioReport;
+  @Input() projectEndpoint?: string;
   @Output() fetchDataError = new EventEmitter<any>();
   @ViewChild('report', { static: true }) formioElement?: ElementRef<any>;
 
@@ -45,13 +46,13 @@ export class FormioReportComponent extends FormioComponent implements OnInit, On
   }
 
   getRendererOptions() {
-    const apiUrl = this.url || this.config?.apiUrl || this.service?.formio?.projectUrl;
+    const projectEndpoint = this.projectEndpoint || this.config?.appUrl || this.service?.formio?.projectUrl;
 
-    if (!apiUrl && !this.src) {
-      console.warn('The url is required to render the Report using JSON schema.');
+    if (!projectEndpoint && !this.src) {
+      console.warn('The projectEndpoint url is required to render the Report using JSON schema.');
     }
     return {
-      apiUrl,
+      projectEndpoint,
       ...super.getRendererOptions(),
     }
   }
