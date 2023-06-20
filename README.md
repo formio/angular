@@ -117,7 +117,7 @@ Usage
 To use this library within your project, you will first need to install it as a dependency.
 
 ```
-npm install --save @formio/angular formiojs
+npm install --save @formio/angular@rc @formio/js
 ```
 
 You can now include the module in your Angular application like so.
@@ -130,6 +130,22 @@ import { FormioModule } from '@formio/angular';
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }
+```
+
+Bootstrap Versions
+-----------------
+By default, this library will use Bootstrap 5 as the template and rendering CSS framework. This, however, can be changed by adding different templates into your application and using them like the following.
+
+```
+npm install --save @formio/bootstrap
+```
+
+Then perform the following in your application.
+
+```
+import { Formio } from '@formio/angular';
+import bootstrap4 from '@formio/bootstrap/bootstrap4';
+(Formio as any).use(bootstrap4);
 ```
 
 Included Libraries
