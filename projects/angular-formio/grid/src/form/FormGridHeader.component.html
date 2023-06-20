@@ -3,12 +3,12 @@
     <tr>
       <th>
         <div class="row">
-          <div class="col-sm-8">
-            <a (click)="sort.emit(header)">
-              {{ header.label }}&nbsp;<span [ngClass]="{'glyphicon-triangle-top fa-caret-up': (header.sort === 'asc'), 'glyphicon-triangle-bottom fa-caret-down': (header.sort === 'desc')}" class="glyphicon fa" *ngIf="header.sort"></span>
+          <div class="col-sm-9">
+            <a (click)="sort.emit(header)" style="cursor: pointer">
+              {{ header.label }}&nbsp;<span [ngClass]="{'fa-caret-up bi-caret-up': (header.sort === 'asc'), 'fa-caret-down bi-caret-down': (header.sort === 'desc')}" class="fa bi" *ngIf="header.sort"></span>
             </a>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-3 d-flex justify-content-end">
             Operations
           </div>
         </div>

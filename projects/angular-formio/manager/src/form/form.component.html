@@ -1,10 +1,10 @@
-<button *ngIf="options.viewer" class="pull-right btn btn-outline-primary" (click)="openEmbed(content)"><em class="fa fa-share-alt glyphicon glyphicon-share bi bi-share"></em> Share</button>
+<button *ngIf="options.viewer" class="float-end btn btn-outline-primary" (click)="openEmbed(content)"><em class="fa fa-share-alt bi bi-share"></em> Share</button>
 <ul class="nav nav-tabs mb-2">
-  <li class="nav-item"><a class="nav-link" routerLink="../"><em class="fa fa-chevron-left glyphicon glyphicon-chevron-left bi bi-chevron-left"></em></a></li>
-  <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="view" routerLinkActive="active"><em class="fa fa-pencil glyphicon glyphicon-pencil bi bi-pencil"></em> Enter Data</a></li>
-  <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="submission" routerLinkActive="active"><em class="fa fa-list-alt glyphicon glyphicon-list-alt bi bi-table"></em> View Data</a></li>
-  <li *ngIf="service.actionAllowed('formEdit')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="edit" routerLinkActive="active"><em class="fa fa-edit glyphicon glyphicon-edit bi bi-pencil-square"></em> Edit Form</a></li>
-  <li *ngIf="service.actionAllowed('formDelete')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="delete" routerLinkActive="active"><span class="fa fa-trash glyphicon glyphicon-trash bi bi-trash"></span></a></li>
+  <li class="nav-item"><a class="nav-link" routerLink="../"><em class="fa fa-chevron-left bi bi-chevron-left"></em></a></li>
+  <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="view" routerLinkActive="active"><em class="fa fa-pencil bi bi-pencil"></em> Enter Data</a></li>
+  <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="submission" routerLinkActive="active"><em class="fa fa-list-alt bi bi-table"></em> View Data</a></li>
+  <li *ngIf="service.actionAllowed('formEdit')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="edit" routerLinkActive="active"><em class="fa fa-edit bi bi-pencil-square"></em> Edit Form</a></li>
+  <li *ngIf="service.actionAllowed('formDelete')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="delete" routerLinkActive="active"><span class="fa fa-trash bi bi-trash"></span></a></li>
 </ul>
 <router-outlet></router-outlet>
 <ng-template #content>
