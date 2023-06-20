@@ -1,3 +1,6 @@
+if (window && typeof (window as any).global === 'undefined') {
+  (window as any).global = window;
+}
 export * from './formio.config';
 export * from './formio.common';
 export * from './formio.service';
