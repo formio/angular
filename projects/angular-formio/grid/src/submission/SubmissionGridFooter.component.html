@@ -10,8 +10,8 @@
 <ng-template #defaultFooterTemplate>
   <tr>
     <td *ngIf="header" [colSpan]="header.numHeaders">
-      <button *ngIf="actionAllowed('submissionCreate') && createText" class="btn btn-primary pull-left float-left" (click)="createItem.emit('form')"><em class="glyphicon glyphicon-plus fa fa-plus bi bi-plus"></em> {{ createText }}</button>
-      <span class="pull-right float-right item-counter"><span class="page-num">{{ body.firstItem }} - {{ body.lastItem }}</span> / {{ body.total }} total</span>
+      <button *ngIf="actionAllowed('submissionCreate') && createText" class="btn btn-primary float-start" (click)="createItem.emit('form')"><em class="fa fa-plus bi bi-plus"></em> {{ createText }}</button>
+      <span class="float-end item-counter"><span class="page-num">{{ body.firstItem }} - {{ body.lastItem }}</span> / {{ body.total }} total</span>
       <pagination [totalItems]="body.total" [itemsPerPage]="body.limit" [(ngModel)]="body.skip" (pageChanged)="pageChanged.emit($event)" [maxSize]="size" class="justify-content-center pagination-sm"></pagination>
     </td>
   </tr>

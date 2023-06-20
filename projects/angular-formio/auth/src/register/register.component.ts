@@ -4,5 +4,8 @@ import { FormioAuthService } from '../auth.service';
   templateUrl: './register.component.html'
 })
 export class FormioAuthRegisterComponent {
+  public renderOptions: any = {
+    submitOnEnter: true
+  };
   constructor(public service: FormioAuthService) {}
 }

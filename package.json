@@ -71,5 +71,8 @@
     "tslint": "~6.1.0",
     "typescript": "^4.8.2",
     "zone.js": "^0.12.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.3"
   }
 }

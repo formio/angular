@@ -108,8 +108,8 @@ export class FormioAuthService {
     // Get the access for this project.
     this.accessReady = Formio.makeStaticRequest(
       this.appConfig.appUrl + '/access'
-    ).then(
-      (access: any) => {
+    )
+      .then((access: any) => {
         each(access.forms, (form: any) => {
           this.submissionAccess[form.name] = {};
           form.submissionAccess.forEach((subAccess: any) => {
@@ -118,12 +118,14 @@ export class FormioAuthService {
         });
         this.roles = access.roles;
         return access;
-      },
-      (): any => {
+      })
+      .catch((err): any => {
+        if (err === 'Token Expired' || err === 'Bad Token') {
+          this.setUser(null);
+        }
         this.roles = {};
         return null;
-      }
-    );
+      })
 
     let currentUserPromise: Promise<any>;
     if (this.config.oauth) {
@@ -138,10 +140,15 @@ export class FormioAuthService {
       currentUserPromise = Formio.currentUser();
     }
 
-    this.userReady = currentUserPromise.then((user: any) => {
-      this.setUser(user);
-      return user;
-    });
+    this.userReady = currentUserPromise
+      .then((user: any) => {
+        this.setUser(user);
+        return user;
+      })
+      .catch(() => {
+        this.setUser(null);
+        return null;
+      });
 
     // Trigger we are redy when all promises have resolved.
     if (this.accessReady) {
@@ -159,6 +166,7 @@ export class FormioAuthService {
       this.user = user;
       localStorage.setItem(`${namespace}AppUser`, JSON.stringify(user));
       this.setUserRoles();
+      Formio.setUser(user);
     } else {
       this.user = null;
       this.is = {};
@@ -192,12 +200,12 @@ export class FormioAuthService {
 
   logout() {
     this.setUser(null);
-      const namespace = Formio.namespace || 'formio';
-      if(localStorage.getItem(`${namespace}LogoutAuthUrl`)) {
-          window.open(localStorage.getItem(`${namespace}LogoutAuthUrl`), null, 'width=1020,height=618');
-          localStorage.removeItem(`${namespace}LogoutAuthUrl`)
-      }
-      this.handleLogout(namespace);
+    const namespace = Formio.namespace || 'formio';
+    if (localStorage.getItem(`${namespace}LogoutAuthUrl`)) {
+      window.open(localStorage.getItem(`${namespace}LogoutAuthUrl`), null, 'width=1020,height=618');
+      localStorage.removeItem(`${namespace}LogoutAuthUrl`)
+    }
+    this.handleLogout(namespace);
   }
 
   handleLogout(namespace) {

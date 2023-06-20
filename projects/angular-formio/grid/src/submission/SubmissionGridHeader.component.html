@@ -3,7 +3,7 @@
     <tr>
       <th *ngFor="let header of headers">
         <a (click)="sort.emit(header)">
-          {{ header.label }}&nbsp;<span [ngClass]="{'glyphicon-triangle-top': (header.sort === 'asc'), 'glyphicon-triangle-bottom': (header.sort === 'desc')}" class="glyphicon" *ngIf="header.sort"></span>
+          {{ header.label }}&nbsp;<span [ngClass]="{'fa-caret-up bi-caret-up': (header.sort === 'asc'), 'fa-caret-down bi-caret-down': (header.sort === 'desc')}" class="fa bi" *ngIf="header.sort"></span>
         </a>
       </th>
     </tr>
