@@ -137,7 +137,7 @@ Bootstrap Versions
 By default, this library will use Bootstrap 5 as the template and rendering CSS framework. This, however, can be changed by adding different templates into your application and using them like the following.
 
 ```
-npm install --save @formio/bootstrap
+npm install --save @formio/bootstrap@rc
 ```
 
 Then perform the following in your application.
