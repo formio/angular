@@ -17,7 +17,7 @@ import {
   FormioForm,
   FormioOptions
 } from '../../formio.common';
-import { Formio, FormBuilder, Utils } from 'formiojs';
+import { Formio, FormBuilder, Utils } from '@formio/js';
 import { assign } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { CustomTagsService } from '../../custom-component/custom-tags.service';
@@ -26,7 +26,7 @@ import { CustomTagsService } from '../../custom-component/custom-tags.service';
 @Component({
   selector: 'form-builder',
   templateUrl: './formbuilder.component.html',
-  styleUrls: ['../../../../../node_modules/formiojs/dist/formio.builder.min.css'],
+  styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.builder.min.css'],
   encapsulation: ViewEncapsulation.None
 })
 /* tslint:enable */

@@ -16,12 +16,20 @@
       "dom"
     ],
     "paths": {
-      "angular-formio": [
-        "dist/angular-formio/angular-formio",
-        "dist/angular-formio"
+      "@formio/angular": [
+        "./projects/angular-formio/src"
       ],
-      "angular-formio/*": [
-        "dist/angular-formio/*"
+      "@formio/angular/grid": [
+        "./projects/angular-formio/grid/src"
+      ],
+      "@formio/angular/auth": [
+        "./projects/angular-formio/auth/src"
+      ],
+      "@formio/angular/manager": [
+        "./projects/angular-formio/manager/src"
+      ],
+      "@formio/angular/resource": [
+        "./projects/angular-formio/resource/src"
       ]
     }
   }
