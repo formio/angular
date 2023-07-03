@@ -22,8 +22,11 @@ export class FormioResourceService {
   public formio: FormioPromiseService;
   public refresh: EventEmitter<FormioRefreshValue>;
 
-  public resourceLoading?: Promise<any>;
+  public resourceResolve: any;
+  public resourceReject: any;
   public resourceLoaded?: Promise<any>;
+
+  public resourceLoading?: Promise<any>;
   public resourceId?: string;
   public resources: any;
 
@@ -106,6 +109,10 @@ export class FormioResourceService {
     if (this.resourcesService) {
       this.resources[this.config.name] = this;
     }
+    this.resourceLoaded = new Promise((resolve: any, reject: any) => {
+      this.resourceResolve = resolve;
+      this.resourceReject = reject;
+    });
     this.loadParents();
   }
 
@@ -181,12 +188,13 @@ export class FormioResourceService {
 
   onSubmissionError(err: any) {
     this.onError(err);
+    this.resourceReject(err);
   }
 
   loadResource(route: ActivatedRoute) {
     this.setContext(route);
     this.isLoading = true;
-    this.resourceLoading = this.resourceLoaded = this.formio
+    this.resourceLoading = this.formio
       .loadSubmission(null, {ignoreCache: true})
       .then(
         (resource: any) => {
@@ -196,6 +204,7 @@ export class FormioResourceService {
             property: 'submission',
             value: this.resource
           });
+          this.resourceResolve(resource);
           return resource;
         },
         (err: any) => this.onSubmissionError(err)
