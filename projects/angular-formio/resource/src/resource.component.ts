@@ -1,14 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormioAuthService } from '@formio/angular/auth';
 import { FormioResourceService } from './resource.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './resource.component.html'
 })
-export class FormioResourceComponent implements OnInit, OnDestroy {
-  private paramsSubscription: Subscription;
+export class FormioResourceComponent implements OnInit {
   public perms = {delete: false, edit: false};
 
   constructor(
@@ -16,21 +14,16 @@ export class FormioResourceComponent implements OnInit, OnDestroy {
     public route: ActivatedRoute,
     public auth: FormioAuthService,
   ) {
-    // subscribe to the route param changes, so that we could re-load the submission if navigation happens from one submission to another
-    this.paramsSubscription = this.route.params.subscribe((params) => {
-      this.init();
-    });
   }
 
   ngOnInit() {
-    this.init();
+    this.service.init(this.route).then(() => this.init());
   }
 
   init() {
-    this.service.loadResource(this.route);
-    return this.service.formLoaded.then((form) => {
-      return this.auth.ready.then(() => {
-        return this.service.resourceLoaded.then((resource) => {
+    return this.service.loadForm().then((form) => {
+      return this.service.loadResource().then((resource) => {
+        return this.auth.ready.then(() => {
           return this.service.formFormio.userPermissions(this.auth.user, form, resource).then((perms) => {
             this.perms.delete = perms.delete;
             this.perms.edit = perms.edit;
@@ -39,11 +32,5 @@ export class FormioResourceComponent implements OnInit, OnDestroy {
         });
       });
     });
-  }
-
-  ngOnDestroy() {
-    if (this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
-    }
   }
 }
