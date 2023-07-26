@@ -43,12 +43,20 @@ export class FormioResourceService {
   constructor(
     public appConfig: FormioAppConfig,
     public config: FormioResourceConfig,
-    @Optional() public resourcesService: FormioResources,
-    public appRef: ApplicationRef
+    @Optional() public resourcesService: FormioResources
   ) {
     this.isLoading = true;
     this.alerts = new FormioAlerts();
     this.refresh = new EventEmitter();
+  }
+
+  initialize() {
+    console.warn('FormioResourceService.initialize() has been deprecated.');
+  }
+
+  setResource(resourceId: any) {
+    this.resourceLoading = null;
+    this.formLoading = null;
     this.ready = new Promise((resolve: any, reject: any) => {
       this.readyResolve = resolve;
       this.readyReject = reject;
@@ -57,22 +65,15 @@ export class FormioResourceService {
       this.formResolve = resolve;
       this.formReject = reject;
     });
-  }
-
-  initialize() {
-    console.warn('FormioResourceService.initialize() has been deprecated.');
-  }
-
-  init(route: ActivatedRoute) {
-    if (this.initialized) {
-      return this.ready;
-    }
-    this.resource = { data: {} };
     this.resourceLoaded = new Promise((resolve: any, reject: any) => {
       this.resourceResolve = resolve;
       this.resourceReject = reject;
     });
-    this.initialized = true;
+    this.resourceId = resourceId;
+    this.resourceUrl = this.appConfig.appUrl + '/' + this.config.form;
+    if (this.resourceId) {
+      this.resourceUrl += '/submission/' + this.resourceId;
+    }
     if (this.appConfig && this.appConfig.appUrl) {
       Formio.setBaseUrl(this.appConfig.apiUrl);
       Formio.setProjectUrl(this.appConfig.appUrl);
@@ -80,24 +81,22 @@ export class FormioResourceService {
     } else {
       console.error('You must provide an AppConfig within your application!');
     }
-
-    // Create the form url and load the resources.
-    this.formUrl = this.appConfig.appUrl + '/' + this.config.form;
+    this.formio = new FormioPromiseService(this.resourceUrl);
     this.resource = { data: {} };
+  }
+
+  init(route: ActivatedRoute) {
+    const resourceId = route.snapshot.params['id'];
+    if (resourceId && (resourceId === this.resourceId)) {
+      return this.ready;
+    }
+
+    // Set the resource.
+    this.setResource(resourceId);
 
     // Add this resource service to the list of all resources in context.
     if (this.resourcesService) {
       this.resources = this.resourcesService.resources;
-      this.resources[this.config.name] = this;
-    }
-
-    this.resourceId = route.snapshot.params['id'];
-    this.resourceUrl = this.appConfig.appUrl + '/' + this.config.form;
-    if (this.resourceId) {
-      this.resourceUrl += '/submission/' + this.resourceId;
-    }
-    this.formio = new FormioPromiseService(this.resourceUrl);
-    if (this.resourcesService) {
       this.resources[this.config.name] = this;
     }
 
@@ -133,6 +132,7 @@ export class FormioResourceService {
     if (this.formLoading) {
       return this.formLoading;
     }
+    this.formUrl = this.appConfig.appUrl + '/' + this.config.form;
     this.formFormio = new FormioPromiseService(this.formUrl);
     this.isLoading = true;
     this.formLoading = this.formFormio

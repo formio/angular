@@ -25,31 +25,28 @@ export class FormioResourceIndexComponent implements OnInit {
   ngOnInit() {
     this.service.init(this.route).then(() => {
       this.gridQuery = {};
-      this.service.formLoaded.then(() => {
-        if (
-          this.service &&
-          this.config.parents &&
-          this.config.parents.length
-        ) {
-          this.service.loadParents().then((parents: any) => {
-            each(parents, (parent: any) => {
-              if (parent && parent.filter) {
-                this.gridQuery['data.' + parent.name + '._id'] =
-                  parent.resource._id;
-              }
-            });
-  
-            // Set the source to load the grid.
-            this.gridSrc = this.service.formUrl;
-            this.createText = `New ${this.service.form.title}`;
+      if (
+        this.service &&
+        this.config.parents &&
+        this.config.parents.length
+      ) {
+        this.service.loadParents().then((parents: any) => {
+          each(parents, (parent: any) => {
+            if (parent && parent.filter) {
+              this.gridQuery['data.' + parent.name + '._id'] =
+                parent.resource._id;
+            }
           });
-        } else if (this.service.formUrl) {
+
+          // Set the source to load the grid.
           this.gridSrc = this.service.formUrl;
           this.createText = `New ${this.service.form.title}`;
-        }
-  
-        this.cdr.detectChanges();
-      });
+          this.cdr.detectChanges();
+        });
+      } else if (this.service.formUrl) {
+        this.gridSrc = this.service.formUrl;
+        this.createText = `New ${this.service.form.title}`;
+      }
     });
   }
 
