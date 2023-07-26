@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { FormioAuthService } from '@formio/angular/auth';
 import { FormioResourceService } from './resource.service';
@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 @Component({
   templateUrl: './resource.component.html'
 })
-export class FormioResourceComponent implements OnInit {
+export class FormioResourceComponent implements OnInit, OnDestroy {
   public perms = {delete: false, edit: false};
   public routerSubscription: Subscription;
 
