@@ -23,9 +23,8 @@ export class FormioResourceIndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gridQuery = {};
-    this.service.setContext(this.route);
-    this.service.formLoaded.then(() => {
+    this.service.init(this.route).then(() => {
+      this.gridQuery = {};
       if (
         this.service &&
         this.config.parents &&
@@ -42,13 +41,12 @@ export class FormioResourceIndexComponent implements OnInit {
           // Set the source to load the grid.
           this.gridSrc = this.service.formUrl;
           this.createText = `New ${this.service.form.title}`;
+          this.cdr.detectChanges();
         });
       } else if (this.service.formUrl) {
         this.gridSrc = this.service.formUrl;
         this.createText = `New ${this.service.form.title}`;
       }
-
-      this.cdr.detectChanges();
     });
   }
 

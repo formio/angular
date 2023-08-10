@@ -20,8 +20,8 @@ export class FormioResourceCreateComponent implements OnInit {
     this.onSuccess = new EventEmitter();
   }
 
-  ngOnInit() {
-    this.service.setContext(this.route);
+  ngOnInit(): void {
+    this.service.init(this.route);
   }
 
   onSubmit(submission: any) {
