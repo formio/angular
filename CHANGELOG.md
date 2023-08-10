@@ -2,7 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased: 5.5.0-rc.10]
+## [Unreleased: 6.0.0]
+### Changed
+ - Upgrade to Angular 16
+ - Upgrade to Bootstrap 5
+ - Fixed resource module to streamline loading and unloading resources.
+
+### Fixed
+ - FIO-6197: fixed issue with valid token after logging off
+
+## 5.5.0-rc.10
 ### Changed
  - Upgrade dependencies.
 
