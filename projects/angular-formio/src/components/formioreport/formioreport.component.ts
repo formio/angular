@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input, OnChanges, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
-import { Formio } from 'formiojs';
+import { Formio } from '@formio/js';
 import { FormioComponent } from '../formio/formio.component';
 import { FormioReport } from '../../formio.common';
 
@@ -7,7 +7,7 @@ import { FormioReport } from '../../formio.common';
 @Component({
   selector: 'formio-report',
   templateUrl: './formioreport.component.html',
-  styleUrls: ['../../../../../node_modules/formiojs/dist/formio.form.min.css'],
+  styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.form.min.css'],
   encapsulation: ViewEncapsulation.None,
 })
 /* tslint:enable */
@@ -15,7 +15,7 @@ export class FormioReportComponent extends FormioComponent implements OnInit, On
   @Input() report?: FormioReport;
   @Input() projectEndpoint?: string;
   @Output() fetchDataError = new EventEmitter<any>();
-  @ViewChild('report', { static: true }) formioElement?: ElementRef<any>;
+  @ViewChild('report', { static: true }) declare formioElement?: ElementRef<any>;
 
   setFormFromSrc() {
     this.service.loadSubmission({ params: { live: 1 } }).subscribe(

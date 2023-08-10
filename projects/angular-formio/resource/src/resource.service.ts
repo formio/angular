@@ -1,4 +1,4 @@
-import { ApplicationRef, EventEmitter, Injectable, Optional } from '@angular/core';
+import { EventEmitter, Injectable, Optional } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig } from './resource.config';
 import { FormioResources } from './resources.service';
@@ -6,7 +6,6 @@ import { FormioPromiseService } from '@formio/angular';
 import { FormioAlerts } from '@formio/angular';
 import { FormioAppConfig } from '@formio/angular';
 import { FormioRefreshValue } from '@formio/angular';
-import Promise from 'native-promise-only';
 import { Formio, Utils } from '@formio/js';
 import _ from 'lodash';
 
