@@ -49,6 +49,8 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Output() rowDelete = new EventEmitter<any>();
   @Output() rowClick = new EventEmitter<any>();
   @Output() rowSelectChange = new EventEmitter<any>();
+  @Output() page = new EventEmitter<any>();
+  @Output() changeItemsPerPage = new EventEmitter<any>();
   @Output() change = new EventEmitter<object>();
   @Output() invalid = new EventEmitter<boolean>();
   @Output() errorChange = new EventEmitter<any>();
@@ -113,6 +115,10 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     return form.instance;
   }
 
+  setFormUrl(url) {
+    this.formio.setUrl(url, this.formioOptions || {});
+  }
+
   setForm(form: FormioForm) {
     this.form = form;
     if (this.formio) {
@@ -130,6 +136,10 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       this.formioElement.nativeElement.innerHTML = '';
     }
     this.formio = this.createRenderer();
+
+    if(!this.formio) {
+      return;
+    }
     this.formio.setSubmission(this.submission, {
       fromSubmission: false
     });
@@ -137,12 +147,30 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
       this.formio.setValue(this.submission, {validateOnInit: true});
     }
     if (this.url) {
-      this.formio.setUrl(this.url, this.formioOptions || {});
+      this.setFormUrl(this.url);
     }
     if (this.src) {
-      this.formio.setUrl(this.src, this.formioOptions || {});
+      this.setFormUrl(this.src);
     }
     this.formio.nosubmit = true;
+    this.attachFormEvents();
+
+    return this.formio.ready.then(() => {
+      this.ngZone.run(() => {
+        this.isLoading = false;
+        this.ready.emit(this);
+        this.formioReadyResolve(this.formio);
+        if (this.formio.submissionReady) {
+          this.formio.submissionReady.then((submission) => {
+            this.submissionLoad.emit(submission);
+          });
+        }
+      });
+      return this.formio;
+    });
+  }
+
+  attachFormEvents() {
     this.formio.on('prevPage', (data: any) => this.ngZone.run(() => this.onPrevPage(data)));
     this.formio.on('nextPage', (data: any) => this.ngZone.run(() => this.onNextPage(data)));
     this.formio.on('change', (value: any, flags: any, isModified: boolean) => this.ngZone.run(() => this.onChange(value, flags, isModified)));
@@ -153,6 +181,8 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     this.formio.on('rowDelete', (data: any, rowIndex: number, index: number, component: any) =>  this.ngZone.run(() => this.rowDelete.emit({component, row: data, rowIndex, index})));
     this.formio.on('rowClick', (row: any, rowIndex: number, index: number,component: any) =>  this.ngZone.run(() => this.rowClick.emit({component, row, rowIndex, index})));
     this.formio.on('rowSelectChange', (selectedRows: any[], component: any) =>  this.ngZone.run(() => this.rowSelectChange.emit({selectedRows, component})));
+    this.formio.on('page', (currentPage: number, component: any) =>  this.ngZone.run(() => this.page.emit({currentPage, component})));
+    this.formio.on('changeItemsPerPage', (itemsPerPage:number) =>  this.ngZone.run(() => this.changeItemsPerPage.emit({itemsPerPage})));
     this.formio.on('customEvent', (event: any) =>
       this.ngZone.run(() => this.customEvent.emit(event))
     );
@@ -175,20 +205,6 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     this.formio.on('formLoad', (loadedForm: any) =>
       this.ngZone.run(() => this.formLoad.emit(loadedForm))
     );
-
-    return this.formio.ready.then(() => {
-      this.ngZone.run(() => {
-        this.isLoading = false;
-        this.ready.emit(this);
-        this.formioReadyResolve(this.formio);
-        if (this.formio.submissionReady) {
-          this.formio.submissionReady.then((submission) => {
-            this.submissionLoad.emit(submission);
-          });
-        }
-      });
-      return this.formio;
-    });
   }
 
   initialize() {
@@ -264,37 +280,41 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
         this.service = new FormioService(this.src);
       }
       this.isLoading = true;
-      this.service.loadForm({ params: { live: 1 } }).subscribe(
-        (form: FormioForm) => {
-          if (form && form.components) {
-            this.ngZone.runOutsideAngular(() => {
-              this.setForm(form);
-            });
-          }
-
-          // if a submission is also provided.
-          if (
-            isEmpty(this.submission) &&
-            this.service &&
-            this.service.formio.submissionId
-          ) {
-            this.service.loadSubmission().subscribe(
-              (submission: any) => {
-                if (this.readOnly) {
-                  this.formio.options.readOnly = true;
-                }
-                this.submission = this.formio.submission = submission;
-              },
-              err => this.onError(err)
-            );
-          }
-        },
-        err => this.onError(err)
-      );
+      this.setFormFromSrc();
     }
     if (this.url && !this.service) {
       this.service = new FormioService(this.url);
     }
+  }
+
+  setFormFromSrc() {
+    this.service.loadForm({ params: { live: 1 } }).subscribe(
+      (form: FormioForm) => {
+        if (form && form.components) {
+          this.ngZone.runOutsideAngular(() => {
+            this.setForm(form);
+          });
+        }
+
+        // if a submission is also provided.
+        if (
+          isEmpty(this.submission) &&
+          this.service &&
+          this.service.formio.submissionId
+        ) {
+          this.service.loadSubmission().subscribe(
+            (submission: any) => {
+              if (this.readOnly) {
+                this.formio.options.readOnly = true;
+              }
+              this.submission = this.formio.submission = submission;
+            },
+            err => this.onError(err)
+          );
+        }
+      },
+      err => this.onError(err)
+    );
   }
 
   ngOnDestroy() {
