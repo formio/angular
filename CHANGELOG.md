@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.7
+### Changed
+ - Official Release
+
 ## 5.2.7-rc.2
 ### Changed
  - Upgrade formiojs@4.16.0-rc.8
