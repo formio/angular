@@ -24,6 +24,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() renderOptions?: any;
   @Input() readOnly ? = false;
   @Input() viewOnly ? = false;
+  @Input() hideLoading ? = false;
   @Input() hideComponents?: string[];
   @Input() refresh?: EventEmitter<FormioRefreshValue>;
   @Input() error?: EventEmitter<any>;
