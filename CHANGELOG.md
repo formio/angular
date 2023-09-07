@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
  - Upgrade to Angular 16
  - Upgrade to Bootstrap 5
  - Fixed resource module to streamline loading and unloading resources.
+ - FIO-6493: added wrapper for the formio report
 
 ### Fixed
  - FIO-6197: fixed issue with valid token after logging off
