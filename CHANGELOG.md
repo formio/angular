@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.8
+### Changed
+ - Official Release
+
 ## 5.2.8-rc.1
 ### Changed
  - Increment minor version
