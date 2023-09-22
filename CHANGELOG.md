@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased: 6.0.0]
+## [Unreleased: 6.0.0-rc.1]
 ### Changed
  - Upgrade to Angular 16
  - Upgrade to Bootstrap 5
@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Fixed
  - FIO-6197: fixed issue with valid token after logging off
+ - FIO-7232 removed permissions button from FormGridBody
 
 ## 5.5.0-rc.10
 ### Changed
