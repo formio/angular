@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 ## 5.2.9-rc.1
 ### Changed
  - Increment minor version
+ - FIO-6197: fixed issue with valid token after logging off
 
 ## 5.2.8-rc.1
 ### Fixed
