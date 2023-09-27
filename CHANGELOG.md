@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 5.2.9-rc.2
+## [Unreleased: 5.2.10-rc.1]
+### Changed
+ - Branching 5.2.9-rc.1 to 5.2.9.x branch and incrementing patch version
 
 ## 5.2.9-rc.1
 ### Changed
