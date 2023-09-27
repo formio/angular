@@ -2,7 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased: 5.2.9-rc.3]
+## 5.2.9-rc.3
+### Changed
+ - FIO-6197: fixed issue with valid token after logging off
+ - FIO-7232 removed permissions button from FormGridBody
 
 ## 5.2.9-rc.1
 ### Changed
