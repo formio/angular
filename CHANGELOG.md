@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.9
+### Changed
+ - Official Release
+
 ## 5.2.9-rc.3
 ### Changed
  - FIO-6197: fixed issue with valid token after logging off
