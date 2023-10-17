@@ -32,8 +32,9 @@ export class FormManagerViewComponent implements OnInit {
   }
 
   onSubmit(submission: any) {
+    const isDraft = submission.state === 'draft';
     this.submission.data = submission.data;
-    this.submission.state = 'complete';
+    this.submission.state = isDraft ? submission.state : 'complete';
     this.service.formio.saveSubmission(this.submission).then(saved => {
       this.onSubmitDone.emit(saved);
       this.onSuccess.emit();
