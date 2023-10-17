@@ -30,6 +30,9 @@
       ],
       "@formio/angular/resource": [
         "./projects/angular-formio/resource/src"
+      ],
+      "@formio/angular/embed": [
+        "./projects/angular-formio/embed/src"
       ]
     }
   }
