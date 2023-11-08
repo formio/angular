@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormioComponent } from "./formio.component";
 import { FormioBuilder } from "./builder.component";
-import { FormioAppConfig } from "./formio.config";
+import { FormioAppService } from "./app.service";
 
 @NgModule({
     imports: [
@@ -17,7 +17,7 @@ import { FormioAppConfig } from "./formio.config";
         FormioBuilder
     ],
     providers: [
-        FormioAppConfig
+        FormioAppService
     ]
 })
 export class FormioEmbedModule {}

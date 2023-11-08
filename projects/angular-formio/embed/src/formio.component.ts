@@ -1,29 +1,27 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
-import { Formio } from '@formio/js/lib/cjs/Embed';
-import { FormioAppConfig } from './formio.config';
+import { Component, ViewChild, ElementRef, Input, Output, EventEmitter, OnChanges, AfterViewInit } from '@angular/core';
+import { Formio } from '@formio/js/sdk';
 
 @Component({
     selector: 'formio',
     template: '<div #formio></div>'
 })
-export class FormioComponent implements AfterViewInit{
+export class FormioComponent implements AfterViewInit {
     @Input() src?: string;
-    @Input() form?: Object;
-    @Input() submission?: Object;
+    @Input() form?: Object | null;
+    @Input() submission?: Object | null;
     @Input() options?: Object = {};
     @Output() ready = new EventEmitter<Formio>();
+    @Output() submit = new EventEmitter<object>();
     @Output() error = new EventEmitter<any>();
     @ViewChild('formio') element: ElementRef;
-    constructor(public appConfig: FormioAppConfig) {
-        Formio.setBaseUrl(this.appConfig.apiUrl);
-        Formio.setProjectUrl(this.appConfig.appUrl);
-    }
     ngAfterViewInit(): void {
         Formio.createForm(this.element.nativeElement, this.src || this.form, this.options).then((form) => {
             if (this.submission) {
                 form.submission = this.submission;
             }
             this.ready.emit(form);
+            form.on('submit', (submission) => this.submit.emit(submission));
+            form.on('error', (err) => this.error.emit(err));
         }).catch((err) => this.error.emit(err));
     }
 }
