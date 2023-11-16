@@ -199,15 +199,21 @@ export class FormioAuthService {
   }
 
   logout() {
+    const namespace = Formio.namespace || 'formio';
+    const tokenName = `${namespace}Token`;
+
+    localStorage.removeItem(tokenName);
+    if (Formio.tokens && Formio.tokens.hasOwnProperty(tokenName)) {
+      delete Formio.tokens[tokenName];
+    }
+
     Formio.logout()
       .then(() => {
         this.setUser(null);
-        const namespace = Formio.namespace || 'formio';
         if (localStorage.getItem(`${namespace}LogoutAuthUrl`)) {
           window.open(localStorage.getItem(`${namespace}LogoutAuthUrl`), null, 'width=1020,height=618');
           localStorage.removeItem(`${namespace}LogoutAuthUrl`);
         }
-        localStorage.removeItem(`${namespace}Token`);
         this.onLogout.emit();
       })
       .catch(() => this.logoutError());
