@@ -1,6 +1,6 @@
 {
   "name": "@formio/angular",
-  "version": "6.0.0-rc.7",
+  "version": "6.0.0-rc.8",
   "scripts": {
     "ng": "ng",
     "build": "ng build angular-formio",
@@ -47,7 +47,7 @@
     "@angular/platform-browser-dynamic": "^16.0.4",
     "@angular/router": "^16.0.4",
     "@compodoc/compodoc": "^1.1.21",
-    "@formio/js": "^5.0.0-rc.30",
+    "@formio/js": "^5.0.0-rc.34",
     "@types/jasmine": "^4.3.2",
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "^20.2.5",
