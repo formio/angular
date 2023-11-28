@@ -1,6 +1,3 @@
 export * from './core';
-export * from './elements.common';
-export * from './custom-component/custom-tags.service';
-export * from './custom-component/create-custom-component';
-export * from './custom-component/register-custom-component';
+export * from './custom-tags.service';
 export { default as FormioSubmission } from './types/formio-submission';

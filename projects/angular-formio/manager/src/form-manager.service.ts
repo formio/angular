@@ -188,8 +188,4 @@ export class FormManagerService {
       tags: this.config.tag
     }});
   }
-
-  createForm(form: any) {
-    return this.formio.createform(form);
-  }
 }

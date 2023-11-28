@@ -1,6 +1,6 @@
 import { Observable, Observer } from 'rxjs';
 import { FormioForm } from './formio.common';
-import { Formio } from '@formio/js';
+import { Formio } from '@formio/js/sdk';
 
 export class FormioService {
   public formio: any;

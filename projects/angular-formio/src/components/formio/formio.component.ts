@@ -2,7 +2,7 @@ import { Component, OnInit, Optional, ViewEncapsulation, Input, NgZone, OnChange
 import { FormioAppConfig } from '../../formio.config';
 import { Formio, Form } from '@formio/js';
 import { FormioBaseComponent } from '../../FormioBaseComponent';
-import { CustomTagsService } from '../../custom-component/custom-tags.service';
+import { CustomTagsService } from '../../custom-tags.service';
 
 /* tslint:disable */
 @Component({

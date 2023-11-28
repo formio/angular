@@ -20,7 +20,7 @@ import {
 import { Formio, FormBuilder, Utils } from '@formio/js';
 import { assign } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
-import { CustomTagsService } from '../../custom-component/custom-tags.service';
+import { CustomTagsService } from '../../custom-tags.service';
 
 /* tslint:disable */
 @Component({

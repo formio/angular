@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## [Unreleased: 6.0.0-rc.1]
+### Breaking Changes
+ - Version 6.0 will official deprecate the Custom Components using Angular Elements feature. https://github.com/formio/angular/wiki/Custom-Components-with-Angular-Elements.  If you wish to still use this feature, you will need to manually migrate the component code provided @ https://github.com/formio/angular/tree/5.5.x/projects/angular-formio/src/custom-component into your own application.
+
+ - The **FormioAppConfig** now uses InjectionTokens to properly instantiate the FormioAppConfig class with the proper setBaseUrl and setProjectUrl's.  This technically is not a "breaking" change since nothing should ever really change from your applications. The only thing that is different, however, is that as soon as you inject the FormioAppConfig into your application, it will have already configured the "Formio" class to point to the correct base and project url configurations. To read about InjectionToken's please read https://angular.io/api/core/InjectionToken for information on how this works.
+
+ As with before 6.x, you can provide configurations using the following method.
+
+**app.module.ts**
+```ts
+import { AppConfig } from './app.config';
+
+@NgModule({
+  ...
+  providers: [
+    {provide: FormioAppConfig, useValue: {
+      baseUrl: 'https://api.form.io',
+      projectUrl: 'https://myproject.form.io'
+    }},
+    ...
+  ]
+})
+export class AppModule { }
+```
+
+What changes is that this "useValue" becomes the InjectionToken to the FormioAppConfig class, which will now properly instantiate the class with the correct base and project urls.
+
+### New Features
+ - 6.x now introduces a new way to easily embed form's, form builders, and the reporting ui into your applications. This leverages the new lazy-loading rendering method described @ https://github.com/formio/formio.js. To use this method, you can do the following within your applications.
+
+ ```ts
+ import { FormioEmbedModule } from '@formio/angular/embed';
+ 
+ @NgModule({
+   imports: [
+    ...,
+    FormioEmbedModule
+   ]
+ })
+ ```
+
+ You can now easily embed a lasy-loaded form renderer into your application using the following.
+
+ ```html
+ <formio src="https://examples.form.io/example"></formio>
+ ```
+
+ The difference between this and the previous method of embedding is that this will only add approximatly 20kb to your application build size since the renderer is lazy-loaded at runtime.
+
 ### Changed
  - Upgrade to Angular 16
  - Upgrade to Bootstrap 5
