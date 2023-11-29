@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased: 5.2.10-rc.2]
+## 5.2.10-rc.2
 ### Changed
  - Update rc
    
