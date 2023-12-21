@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.11
+### Changed
+ - Official Release
+
 ## 5.2.11-rc.1
 ### Changed
  - FIO-7369: fixed issue with draft state submission
