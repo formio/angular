@@ -1,7 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
-import {Formio} from '@formio/js';
+import {Formio} from 'formiojs';
 
 @Component({
   templateUrl: './view.component.html'

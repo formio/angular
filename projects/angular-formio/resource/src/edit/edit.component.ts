@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
-import { Formio } from '@formio/js';
+import { Formio } from 'formiojs';
 
 @Component({
   templateUrl: './edit.component.html'

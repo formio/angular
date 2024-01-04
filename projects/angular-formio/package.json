@@ -1,6 +1,6 @@
 {
   "name": "@formio/angular",
-  "version": "6.0.0-rc.8",
+  "version": "7.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/formio/angular-formio"
@@ -25,15 +25,13 @@
     "node": ">=6.0.0"
   },
   "peerDependencies": {
-    "@angular/core": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0",
-    "@angular/common": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0",
-    "@angular/elements": "^9.0.0 || ^10.0.0 || ^11.0.0|| ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0",
-    "@formio/js": "^5.0.0-rc.34",
-    "zone.js": "~0.11.4 || ~0.12.0 || ~0.13.0",
+    "@angular/core": "^16.0.0 || ^17.0.0",
+    "@angular/common": "^16.0.0 || ^17.0.0",
+    "@angular/elements": "^16.0.0 || ^17.0.0",
+    "formiojs": "^4.18.0",
+    "zone.js": "~0.13.0 || ~0.14.0",
     "lodash": "^4.17.20",
-    "ngx-bootstrap": "^10.2.0"
-  },
-  "dependencies": {
+    "ngx-bootstrap": "^10.0.0 || ^11.0.0 || ^12.0.0",
     "tslib": "^2.0.0"
   }
 }

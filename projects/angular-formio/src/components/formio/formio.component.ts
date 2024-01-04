@@ -1,6 +1,6 @@
 import { Component, OnInit, Optional, ViewEncapsulation, Input, NgZone, OnChanges } from '@angular/core';
 import { FormioAppConfig } from '../../formio.config';
-import { Formio, Form } from '@formio/js';
+import { Formio, Form } from 'formiojs';
 import { FormioBaseComponent } from '../../FormioBaseComponent';
 import { CustomTagsService } from '../../custom-tags.service';
 
@@ -8,7 +8,7 @@ import { CustomTagsService } from '../../custom-tags.service';
 @Component({
   selector: 'formio',
   templateUrl: './formio.component.html',
-  styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.form.min.css'],
+  styleUrls: ['../../../../../node_modules/formiojs/dist/formio.form.min.css'],
   encapsulation: ViewEncapsulation.None,
 })
 /* tslint:enable */
