@@ -61,7 +61,7 @@
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
     "ng-packagr": "^16.0.1",
-    "ngx-bootstrap": "^10.2.0",
+    "ngx-bootstrap": "^11.0.2",
     "protractor": "~7.0.0",
     "replace-in-file": "^7.0.1",
     "rxjs": "^7.8.1",
