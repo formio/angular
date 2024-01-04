@@ -77,6 +77,9 @@ export class FormManagerEditComponent implements AfterViewInit {
       this.form.tags.push(this.config.tag);
       this.form.tags = _.uniq(this.form.tags);
     }
+    if (this.config.type) {
+      this.form.type = this.config.type;
+    }
     if (!this.form._id) {
       this.form.name = _.camelCase(this.form.title).toLowerCase();
       this.form.path = this.form.name;

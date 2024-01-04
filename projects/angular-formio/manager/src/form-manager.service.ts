@@ -4,7 +4,6 @@ import { FormManagerConfig } from './form-manager.config';
 import { Formio } from '@formio/js';
 import { ActivatedRoute } from '@angular/router';
 import { FormioAuthService } from '@formio/angular/auth';
-import _each from 'lodash/each';
 import _intersection from 'lodash/intersection';
 
 @Injectable()
@@ -88,7 +87,7 @@ export class FormManagerService {
               this.access.userManagement = true;
             }
             else {
-              if (formadmin._id === roleId) {
+              if (formadmin && formadmin._id === roleId) {
                 this.access.formCreate = this.auth.formAccess.create_all.includes(roleId);
                 this.access.formEdit = this.auth.formAccess.update_all.includes(roleId);
                 this.access.formPermission = this.auth.formAccess.update_all.includes(roleId);
@@ -96,7 +95,7 @@ export class FormManagerService {
                 this.access.formView = this.auth.formAccess.read_all.includes(roleId);
                 this.access.formSubmission = this.auth.formAccess.read_all.includes(roleId);
               }
-              if (formbuilder._id === roleId) {
+              if (formbuilder && formbuilder._id === roleId) {
                 this.access.formCreate = this.auth.formAccess.create_all.includes(roleId);
                 this.access.formEdit = this.auth.formAccess.update_all.includes(roleId);
                 this.access.formPermission = this.auth.formAccess.update_all.includes(roleId);

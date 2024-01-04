@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+type FormType = 'form' | 'resource';
+
 export interface FormManagerRouteConfig {
   formIndex?: any;
   formCreate?: any;
@@ -20,7 +22,7 @@ export class FormManagerConfig {
   public tag = '';
   public includeSearch = false;
   public saveDraft = false;
-  public type = 'form';
+  public type: FormType = 'form';
   public builder?: any;
   public viewer?: string;
   public renderer: any;
