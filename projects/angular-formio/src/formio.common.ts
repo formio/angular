@@ -1,6 +1,6 @@
-import { ExtendedComponentSchema, ValidateOptions } from '@formio/js';
+import { ExtendedComponentSchema, ValidateOptions } from 'formiojs';
 import { AlertsPosition } from './types/alerts-position';
-export { ConditionalOptions, ValidateOptions } from '@formio/js/sdk';
+export { ConditionalOptions, ValidateOptions } from 'formiojs';
 
 export interface ComponentOptions<T = any, V extends ValidateOptions = ValidateOptions> extends ExtendedComponentSchema<T> {
   validate?: V;

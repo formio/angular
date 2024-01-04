@@ -2,7 +2,7 @@ import { EventEmitter, Injectable, Inject } from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
 import { FormioAppConfig } from '@formio/angular';
 import { get, each } from 'lodash';
-import { Formio } from '@formio/js';
+import { Formio } from 'formiojs';
 
 @Injectable()
 export class FormioAuthService {
@@ -203,8 +203,8 @@ export class FormioAuthService {
     const tokenName = `${namespace}Token`;
 
     localStorage.removeItem(tokenName);
-    if (Formio.tokens && Formio.tokens.hasOwnProperty(tokenName)) {
-      delete Formio.tokens[tokenName];
+    if ((Formio as any).tokens && (Formio as any).tokens.hasOwnProperty(tokenName)) {
+      delete (Formio as any).tokens[tokenName];
     }
 
     Formio.logout()
