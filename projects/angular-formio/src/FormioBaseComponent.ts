@@ -5,12 +5,9 @@ import { FormioAppConfig } from './formio.config';
 import { FormioError, FormioForm, FormioOptions, FormioRefreshValue } from './formio.common';
 import { assign, get, isEmpty } from 'lodash';
 import { CustomTagsService } from './custom-tags.service';
-import { Utils } from 'formiojs';
+import { Utils } from '@formio/js';
 import { AlertsPosition } from './types/alerts-position';
-const fastCloneDeep = (obj) => {
-  return JSON.parse(JSON.stringify(obj));
-};
-const { Evaluator } = Utils;
+const { Evaluator, fastCloneDeep } = Utils;
 
 @Component({
   template: ''

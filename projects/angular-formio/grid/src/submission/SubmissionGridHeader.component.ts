@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Utils, Components, ExtendedComponentSchema} from 'formiojs';
+import {Utils, Components, ExtendedComponentSchema} from '@formio/js';
 import {GridHeaderComponent} from '../GridHeaderComponent';
 import {FormioPromiseService} from '@formio/angular';
 import {ComponentInstance, FormioForm} from '@formio/angular';

@@ -6,7 +6,7 @@ import { FormioPromiseService } from '@formio/angular';
 import { FormioAlerts } from '@formio/angular';
 import { FormioAppConfig } from '@formio/angular';
 import { FormioRefreshValue } from '@formio/angular';
-import { Formio, Utils } from 'formiojs';
+import { Formio, Utils } from '@formio/js';
 import _ from 'lodash';
 
 @Injectable()

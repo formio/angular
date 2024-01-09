@@ -1,6 +1,6 @@
 {
   "name": "@formio/angular",
-  "version": "7.0.0",
+  "version": "7.5.0-rc.1",
   "scripts": {
     "ng": "ng",
     "build": "ng build angular-formio",
@@ -47,12 +47,12 @@
     "@angular/platform-browser-dynamic": "^17.0.8",
     "@angular/router": "^17.0.8",
     "@compodoc/compodoc": "^1.1.23",
+    "@formio/js": "^5.0.0-rc.38",
     "@types/jasmine": "^5.1.4",
     "@types/jasminewd2": "^2.0.13",
-    "@types/node": "^20.10.6",
-    "bootstrap": "4",
+    "@types/node": "^20.10.8",
+    "bootstrap": "5.3.2",
     "codelyzer": "^6.0.2",
-    "formiojs": "^4.18.0",
     "jasmine-core": "^5.0.0",
     "jasmine-spec-reporter": "^7.0.0",
     "karma": "^6.4.0",
@@ -69,6 +69,6 @@
     "tslib": "^2.5.3",
     "tslint": "~6.1.0",
     "typescript": "~5.2.0",
-    "zone.js": "^0.14.2"
+    "zone.js": "^0.14.3"
   }
 }

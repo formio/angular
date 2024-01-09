@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input, OnChanges, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
-import { Formio } from 'formiojs';
+import { Formio } from '@formio/js';
 import { FormioComponent } from '../formio/formio.component';
 import { FormioReport } from '../../formio.common';
 
@@ -7,7 +7,7 @@ import { FormioReport } from '../../formio.common';
 @Component({
   selector: 'formio-report',
   templateUrl: './formioreport.component.html',
-  styleUrls: ['../../../../../node_modules/formiojs/dist/formio.form.min.css'],
+  styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.form.min.css'],
   encapsulation: ViewEncapsulation.None,
 })
 /* tslint:enable */
