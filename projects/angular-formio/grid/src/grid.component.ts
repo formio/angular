@@ -63,8 +63,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
 
   constructor(
     public alerts: FormioAlerts,
-    private resolver: ComponentFactoryResolver,
-    private ref: ChangeDetectorRef
+    private resolver: ComponentFactoryResolver
   ) {
     this.select = this.rowSelect = new EventEmitter();
     this.rowAction = new EventEmitter();
@@ -152,7 +151,6 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     }
     this.loadGrid(this.src);
     this.initialized = true;
-    this.ref.detectChanges();
   }
 
   actionAllowed(action) {
@@ -184,7 +182,6 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
       this.query.skip = 0;
     }
     this.isLoading = true;
-    this.ref.detectChanges();
     Formio.cache = {};
     let loader = null;
     if (this.items) {
@@ -196,7 +193,6 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     return loader.then(info => {
       this.isLoading = false;
       this.initialized = true;
-      this.ref.detectChanges();
     }).catch(error => this.onError(error));
   }
 
