@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased: 6.0.0-rc.9]
+## 6.0.0
 ### Breaking Changes
  - Version 6.0 will official deprecate the Custom Components using Angular Elements feature. https://github.com/formio/angular/wiki/Custom-Components-with-Angular-Elements.  If you wish to still use this feature, you will need to manually migrate the component code provided @ https://github.com/formio/angular/tree/5.5.x/projects/angular-formio/src/custom-component into your own application.
 
