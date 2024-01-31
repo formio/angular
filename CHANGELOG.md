@@ -2,7 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased: 6.0.0-rc.1]
+## 7.0.0
+### Breaking Changes
+ - This version supports Angular 17 with the 4.x Renderer. You would use this version along with this command to install the renderer.
+
+```
+npm install formiojs
+```
+
+## 6.5.0
+### Breaking Changes
+ - This version uses the 5.x version of the @formio/js renderer. To use Angular 16 with the 5.x renderer, you will need to install this version and then use the following in your application.
+
+```
+npm install @formio/js
+```
+
+## 6.0.0
 ### Breaking Changes
  - Version 6.0 will official deprecate the Custom Components using Angular Elements feature. https://github.com/formio/angular/wiki/Custom-Components-with-Angular-Elements.  If you wish to still use this feature, you will need to manually migrate the component code provided @ https://github.com/formio/angular/tree/5.5.x/projects/angular-formio/src/custom-component into your own application.
 
