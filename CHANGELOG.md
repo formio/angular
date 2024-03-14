@@ -2,7 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 7.5.0
+## [Unreleased: 7.5.0-rc.2]
+### Changed
+ - Bump follow-redirects from 1.15.4 to 1.15.6
+ - Bump es5-ext from 0.10.62 to 0.10.64
+ - Bump ip from 2.0.0 to 2.0.1
+ - Bump follow-redirects from 1.15.3 to 1.15.4
+
+### Fixed
+ - FIO-7443: Fixes authorization error recieved after logout, not allowшng to log in again
+ - FIO-7369: fixed issue with draft state submission
+ - Fixing General access to Manager using formadmin formbuilder roles
+ - FIO-7611: DataSource not Triggering on change events due to fromSubmission Flag
+ - fixed issue with providing form type   
+   
+## 7.5.0-rc.1
 ### Breaking Changes
  - This version supports Angular 17 with the 5.x Renderer. To use Angular 16 with the 5.x renderer, you will need to install this version and then use the following in your application.
 
