@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
  - Bump es5-ext from 0.10.62 to 0.10.64
  - Bump ip from 2.0.0 to 2.0.1
  - Bump follow-redirects from 1.15.3 to 1.15.4
+ - FIO-8004: Fixed loader incorrectly showing in embed reports
 
 ### Fixed
  - FIO-7443: Fixes authorization error recieved after logout, not allowшng to log in again
