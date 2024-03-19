@@ -17,6 +17,8 @@ export class FormioReportComponent extends FormioComponent implements OnInit, On
   @Output() fetchDataError = new EventEmitter<any>();
   @ViewChild('report', { static: true }) formioElement?: ElementRef<any>;
 
+  public isLoading: boolean;
+
   setFormFromSrc() {
     this.service.loadSubmission({ params: { live: 1 } }).subscribe(
       (report: FormioReport) => {
@@ -24,6 +26,7 @@ export class FormioReportComponent extends FormioComponent implements OnInit, On
         if (report && report.data) {
           this.ngZone.runOutsideAngular(() => {
             this.setForm({ components: [], report });
+            this.isLoading = false;
           });
         }
       },
@@ -41,6 +44,7 @@ export class FormioReportComponent extends FormioComponent implements OnInit, On
     if (changes.report && changes.report.currentValue) {
       this.ngZone.runOutsideAngular(() => {
         this.setForm({ report: changes.report.currentValue, components: [] });
+        this.isLoading = false;
       });
     }
   }
