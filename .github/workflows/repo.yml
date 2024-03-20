@@ -140,5 +140,6 @@ jobs:
 
       - name: Publish to npm
         run: |
-          npm version $NEW_VERSION
-          npm publish --tag dev
+          git status
+          # npm version $NEW_VERSION
+          # npm publish --tag dev
