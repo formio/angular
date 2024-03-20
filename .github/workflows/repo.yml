@@ -113,15 +113,6 @@ jobs:
       - name: Check out repository code ${{ github.repository }} on ${{ github.ref }}
         uses: actions/checkout@v3
 
-      - name: Configure Git user
-        run: |
-          git config --global user.email "pkgbot@form.io"
-          git config --global user.name "pkgbot"
-
-      - name: Add npm token to .npmrc
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-
       - name: Set up Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
@@ -163,9 +154,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-dist-
 
+      - name: Switch to build directory
+        run: cd ./dist/angular-formio
+
+      - name: Configure Git user
+        run: |
+          git config --global user.email "pkgbot@form.io"
+          git config --global user.name "pkgbot"
+
+      - name: Add npm token to .npmrc
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+
       - name: Publish to npm
         run: |
-          cd ./dist/angular-formio
           npm version $NEW_VERSION
           npm publish --tag=dev
           
