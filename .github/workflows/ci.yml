@@ -153,7 +153,9 @@ jobs:
             ${{ runner.os }}-dist-
 
       - name: Switch to dist directory
-        run: cd ./dist/angular-formio
+        run: |
+          cd ./dist/angular-formio
+          ls -R .
 
       - name: Configure Git user
         run: |
@@ -168,6 +170,6 @@ jobs:
         run: |
           pwd
           ls -R .
-          # npm version $NEW_VERSION --no-git-tag-version
-          # npm publish --tag=dev
+          npm version $NEW_VERSION --no-git-tag-version
+          npm publish ./dist/angular-formio --tag=dev
           
