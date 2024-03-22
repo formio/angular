@@ -119,6 +119,20 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org/'
+      
+      # Restore Build cache
+      - name: Restore dist cache
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: ${{ runner.os }}-dist-${{ hashFiles('dist.tgz') }}
+          restore-keys: |
+            ${{ runner.os }}-dist-
+
+      - name: Switch to dist directory
+        run: |
+          cd ./dist/angular-formio
+          ls -R .
 
       - name: Prepare version for publish
         id: prep
@@ -142,20 +156,6 @@ jobs:
       - name: Echo version to Publish
         run: |
           echo "Version to publish: $NEW_VERSION"
-      
-      # Restore Build cache
-      - name: Restore build cache
-        uses: actions/cache@v3
-        with:
-          path: dist
-          key: ${{ runner.os }}-dist-${{ hashFiles('dist.tgz') }}
-          restore-keys: |
-            ${{ runner.os }}-dist-
-
-      - name: Switch to dist directory
-        run: |
-          cd ./dist/angular-formio
-          ls -R .
 
       - name: Configure Git user
         run: |
