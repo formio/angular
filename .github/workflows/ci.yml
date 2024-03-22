@@ -129,13 +129,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-dist-
 
-      - name: Switch to dist directory
-        run: |
-          cd ./dist/angular-formio
-          ls -R .
+      # - name: Switch to dist directory
+      #   run: |
+      #     cd ./dist/angular-formio
+      #     ls -R .
 
       - name: Prepare version for publish
         id: prep
+        working-directory: ./dist/angular-formio
         run: |
           # Extract the pull request number and the short SHA of the commit
           PR_NUMBER=$(echo ${{ github.event.number }})
@@ -158,18 +159,21 @@ jobs:
           echo "Version to publish: $NEW_VERSION"
 
       - name: Configure Git user
+        working-directory: ./dist/angular-formio
         run: |
           git config --global user.email "pkgbot@form.io"
           git config --global user.name "pkgbot"
 
       - name: Add npm token to .npmrc
+        working-directory: ./dist/angular-formio
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
 
       - name: Publish to npm
+        working-directory: ./dist/angular-formio
         run: |
           pwd
           ls -R .
-          npm version $NEW_VERSION --no-git-tag-version
-          npm publish ./dist/angular-formio --tag=dev
+          npm version $NEW_VERSION
+          npm publish --tag=dev
           
