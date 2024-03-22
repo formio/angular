@@ -32,3 +32,5 @@ Desktop.ini
 # Library files
 src/*
 build/*
+
+.npmrc
