@@ -71,7 +71,7 @@ jobs:
         run: |
           ls -R ./dist/angular-formio
   
-      - name: Cache build directory
+      - name: Cache dist directory
         uses: actions/cache@v3
         with:
           path: dist
@@ -172,8 +172,6 @@ jobs:
       - name: Publish to npm
         working-directory: ./dist/angular-formio
         run: |
-          pwd
-          ls -R .
           npm version $NEW_VERSION
           npm publish --tag=dev
           
