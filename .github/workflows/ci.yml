@@ -166,6 +166,7 @@ jobs:
 
       - name: Publish to npm
         run: |
-          npm version $NEW_VERSION --no-git-tag-version
-          npm publish --tag=dev
+          pwd
+          # npm version $NEW_VERSION --no-git-tag-version
+          # npm publish --tag=dev
           
