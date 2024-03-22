@@ -70,6 +70,14 @@ jobs:
       - name: Show build directory contents
         run: |
           ls -R ./dist/angular-formio
+  
+      - name: Cache build directory
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: ${{ runner.os }}-dist-${{ hashFiles('dist.tgz') }}
+          restore-keys: |
+            ${{ runner.os }}-dist-
 
   #####################################################################
   ## Test (Trys to launch a chrome browser, will need additional work)
@@ -112,23 +120,6 @@ jobs:
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org/'
 
-      - name: Restore node modules from cache
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Build
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build:prod
-
-      - name: Show dist directory contents
-        run: |
-          ls -R ./dist/angular-formio
-
       - name: Prepare version for publish
         id: prep
         run: |
@@ -151,7 +142,18 @@ jobs:
       - name: Echo version to Publish
         run: |
           echo "Version to publish: $NEW_VERSION"
-          cd ./dist/angular-formio
+      
+      # Restore Build cache
+      - name: Restore build cache
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: ${{ runner.os }}-dist-${{ hashFiles('dist.tgz') }}
+          restore-keys: |
+            ${{ runner.os }}-dist-
+
+      - name: Switch to dist directory
+        run: cd ./dist/angular-formio
 
       - name: Configure Git user
         run: |
@@ -164,7 +166,6 @@ jobs:
 
       - name: Publish to npm
         run: |
-          # git status
-          npm version $NEW_VERSION --no-git-tag-version
+          npm version $NEW_VERSION
           npm publish --tag=dev
           
