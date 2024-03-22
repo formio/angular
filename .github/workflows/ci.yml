@@ -70,14 +70,6 @@ jobs:
       - name: Show build directory contents
         run: |
           ls -R ./dist/angular-formio
-  
-      - name: Cache build directory
-        uses: actions/cache@v3
-        with:
-          path: dist
-          key: ${{ runner.os }}-dist-${{ hashFiles('dist.tgz') }}
-          restore-keys: |
-            ${{ runner.os }}-dist-
 
   #####################################################################
   ## Test (Trys to launch a chrome browser, will need additional work)
@@ -113,15 +105,6 @@ jobs:
       - name: Check out repository code ${{ github.repository }} on ${{ github.ref }}
         uses: actions/checkout@v3
 
-      - name: Configure Git user
-        run: |
-          git config --global user.email "pkgbot@form.io"
-          git config --global user.name "pkgbot"
-
-      - name: Add npm token to .npmrc
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-
       - name: Set up Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
@@ -140,7 +123,11 @@ jobs:
       - name: Build
         uses: borales/actions-yarn@v4
         with:
-          cmd: build
+          cmd: build:prod
+
+      - name: Show dist directory contents
+        run: |
+          ls -R ./dist/angular-formio
 
       - name: Prepare version for publish
         id: prep
@@ -164,8 +151,16 @@ jobs:
       - name: Echo version to Publish
         run: |
           echo "Version to publish: $NEW_VERSION"
-          git status
           cd ./dist/angular-formio
+
+      - name: Configure Git user
+        run: |
+          git config --global user.email "pkgbot@form.io"
+          git config --global user.name "pkgbot"
+
+      - name: Add npm token to .npmrc
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
 
       - name: Publish to npm
         run: |
