@@ -165,9 +165,10 @@ jobs:
         run: |
           echo "Version to publish: $NEW_VERSION"
           git status
+          cd ./dist/angular-formio
 
-      # - name: Publish to npm
-      #   run: |
-      #     npm version $NEW_VERSION
-      #     npm publish --tag=dev
+      - name: Publish to npm
+        run: |
+          npm version $NEW_VERSION
+          npm publish --tag=dev
           
