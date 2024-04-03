@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. See [standa
  - Bump ip from 2.0.0 to 2.0.1
  - Bump follow-redirects from 1.15.3 to 1.15.4
  - FIO-8004: Fixed loader incorrectly showing in embed reports
+ - Bump webpack-dev-middleware from 5.3.3 to 5.3.4
 
 ### Fixed
  - FIO-7443: Fixes authorization error recieved after logout, not allowшng to log in again
