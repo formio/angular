@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 5.2.13-rc.1
+### Changed
+ - FIO-8004 Fixed loader incorrectly showing in embed reports
+
 ## 5.2.12
 ### Changed
  - Official Release
