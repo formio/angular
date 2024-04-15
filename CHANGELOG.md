@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased: 5.2.13-rc.2]
+### Changed
+ - FIO-8009: Update 5.2.x formiojs@4.19.2-rc.1
+
 ## 5.2.13-rc.1
 ### Changed
  - FIO-8004 Fixed loader incorrectly showing in embed reports
