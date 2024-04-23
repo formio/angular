@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import {FormioAlerts} from '@formio/angular';
 import {each} from 'lodash';
-import {Formio} from '@formio/js/sdk';
+import {FormioCore as Formio} from '@formio/js';
 import {GridHeaderComponent} from './GridHeaderComponent';
 import {GridBodyComponent} from './GridBodyComponent';
 import {GridFooterComponent} from './GridFooterComponent';

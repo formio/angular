@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, Input, Output, EventEmitter, OnChanges, AfterViewInit } from '@angular/core';
-import { Formio } from '@formio/js/sdk';
+import { FormioCore as Formio } from '@formio/js';
 
 @Component({
     selector: 'formio',

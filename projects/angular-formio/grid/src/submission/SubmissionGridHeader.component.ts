@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {Utils, Components, ExtendedComponentSchema} from '@formio/js';
+import {Utils, Components} from '@formio/js';
+import {ExtendedComponentSchema} from '@formio/deprecated-types';
 import {GridHeaderComponent} from '../GridHeaderComponent';
 import {FormioPromiseService} from '@formio/angular';
 import {ComponentInstance, FormioForm} from '@formio/angular';
@@ -37,7 +38,7 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
       label: column.label,
       key: column.path,
       sort: sort,
-      component: component ? Components.create(component, null, null, true) as ComponentInstance : undefined,
+      component: component ? Components.create(component, null, null) as ComponentInstance : undefined,
       renderCell: column ? column.renderCell : undefined
     };
   }
@@ -47,7 +48,7 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
       label: component.label,
       key: path,
       sort: sort,
-      component: component ? Components.create(component, null, null, true) as ComponentInstance : undefined,
+      component: component ? Components.create(component, null, null) as ComponentInstance : undefined,
     };
   }
   // Set headers from components in case if columns are not provided
