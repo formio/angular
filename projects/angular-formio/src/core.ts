@@ -16,4 +16,4 @@ export * from './components/alerts/formio.alerts.component';
 export { FormioModule } from './formio.module';
 export { ComponentSchema, ExtendedComponentSchema, ElementInfo } from '@formio/deprecated-types';
 export { Utils as FormioUtils } from '@formio/js';
-export * from '@formio/js';
+export { Formio } from '@formio/js';

@@ -4,6 +4,7 @@ import { Formio } from '@formio/js';
 
 @Injectable()
 export class FormioAppConfig {
+  [x: string]: any;
   appUrl = '';
   apiUrl = '';
   icons?: string;
