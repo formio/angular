@@ -17,8 +17,6 @@ export class FormioReportComponent extends FormioComponent implements OnInit, On
   @Output() fetchDataError = new EventEmitter<any>();
   @ViewChild('report', { static: true }) declare formioElement?: ElementRef<any>;
 
-  public isLoading: boolean;
-
   setFormFromSrc() {
     this.service.loadSubmission({ params: { live: 1 } }).subscribe(
       (report: FormioReport) => {
