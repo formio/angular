@@ -1,0 +1,231 @@
+name: Build, Publish
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+env:
+  NODE_VERSION: 20.x
+
+jobs:
+  #####################################################################
+  ## Setup
+  #####################################################################
+  setup:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    steps:
+      - run: echo "Triggered by ${{ github.event_name }} event."
+
+      - name: Check out repository code ${{ github.repository }} on ${{ github.ref }}
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Installing dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install --frozen-lockfile
+
+      # - name: Lint
+      #   uses: borales/actions-yarn@v4
+      #   with:
+      #     cmd: lint
+
+  #####################################################################
+  ## Build
+  #####################################################################
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    steps:
+      - name: Check out repository code ${{ github.repository }} on ${{ github.ref }}
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Restore node modules from cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build:prod
+
+      - name: Show build directory contents
+        run: |
+          ls -R ./dist/angular-formio
+  
+      - name: Cache dist directory
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: ${{ runner.os }}-dist-${{ hashFiles('dist.tgz') }}
+          restore-keys: |
+            ${{ runner.os }}-dist-
+
+  #####################################################################
+  ## Test (Trys to launch a chrome browser, will need additional work)
+  #####################################################################
+  # test-current:
+  #   needs: setup
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out repository code ${{ github.repository }} on ${{ github.ref }}
+  #       uses: actions/checkout@v3
+
+  #     - name: Restore node modules from cache
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: node_modules
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
+
+  #     - name: Test
+  #       uses: borales/actions-yarn@v4
+  #       with:
+  #         cmd: test
+
+  # test-target:
+  #   needs: setup
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out repository code ${{ github.repository }} on ${{ github.ref }}
+  #       uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+
+  #    - name: Merge target branch into current branch
+  #      run: |
+  #        git config --global user.email "pkgbot@form.io"
+  #        git config --global user.name "pkgbot"
+  #        git fetch origin ${{ github.event.pull_request.base.ref }}:${{ github.event.pull_request.base.ref }}
+  #        git merge ${{ github.event.pull_request.base.ref }} --no-commit --no-ff
+  #        if ! git merge --no-commit --no-ff ${{ github.event.pull_request.base.ref }}; then
+  #          echo "Merge conflicts detected."
+  #          git merge --abort
+  #          exit 1
+  #        else
+  #          echo "Merge successful."
+  #        fi
+
+  #      - name: Set up Node.js ${{ env.NODE_VERSION }}
+  #        uses: actions/setup-node@v3
+  #        with:
+  #          node-version: ${{ env.NODE_VERSION }}
+  #          cache: 'npm'
+
+  #     - name: Restore node modules from cache
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: node_modules
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
+
+  #     - name: Test
+  #       uses: borales/actions-yarn@v4
+  #       with:
+  #         cmd: test
+
+  #####################################################################
+  ## Publish
+  #####################################################################
+  publish:
+    needs: [setup, build]
+    if: ${{ github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'synchronize') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code ${{ github.repository }} on ${{ github.ref }}
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org/'
+      
+      # Restore Build cache
+      - name: Restore dist cache
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: ${{ runner.os }}-dist-${{ hashFiles('dist.tgz') }}
+          restore-keys: |
+            ${{ runner.os }}-dist-
+
+      # - name: Switch to dist directory
+      #   run: |
+      #     cd ./dist/angular-formio
+      #     ls -R .
+
+      - name: Prepare version for publish
+        id: prep
+        working-directory: ./dist/angular-formio
+        run: |
+          # Extract the pull request number and the short SHA of the commit
+          PR_NUMBER=$(echo ${{ github.event.number }})
+          COMMIT_SHORT_SHA=$(echo "${{ github.event.pull_request.head.sha }}" | cut -c1-7)
+          
+          # Extract the current version from package.json
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          
+          # Get base SemVer to us for new dev version
+          BASE_VERSION=$(echo "$CURRENT_VERSION" | cut -d'-' -f1)
+          
+          # Construct the new version string
+          NEW_VERSION="${BASE_VERSION}-dev.${PR_NUMBER}.${COMMIT_SHORT_SHA}"
+          
+          # Output the new version for use in subsequent GitHub Actions steps
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Echo version to Publish
+        run: |
+          echo "Version to publish: $NEW_VERSION"
+
+      - name: Configure Git user
+        working-directory: ./dist/angular-formio
+        run: |
+          git config --global user.email "pkgbot@form.io"
+          git config --global user.name "pkgbot"
+
+      - name: Add npm token to .npmrc
+        working-directory: ./dist/angular-formio
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+
+      - name: Publish to npm
+        working-directory: ./dist/angular-formio
+        run: |
+          npm version $NEW_VERSION
+          yarn publish --tag=dev
+          
