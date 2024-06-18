@@ -1,6 +1,6 @@
 import { Inject, Injectable, InjectionToken, EventEmitter } from '@angular/core';
 export const FormioAppConfig = new InjectionToken('formio-config');
-import { Formio } from '@formio/js/sdk';
+import { FormioCore as Formio } from '@formio/js';
 @Injectable()
 export class FormioAppService {
     baseUrl;
