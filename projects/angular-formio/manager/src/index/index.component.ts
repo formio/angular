@@ -21,7 +21,7 @@ export class FormManagerIndexComponent implements OnInit {
     public config: FormManagerConfig
   ) {
     this.config = {...DefaultConfiguration, ...this.config};
-    this.gridQuery = {type: this.config.type, sort: 'title'};
+    this.gridQuery = {type: this.config.type || 'form', sort: 'title'};
     if (this.config.tag) {
       this.gridQuery.tags = this.config.tag;
     }
@@ -37,7 +37,7 @@ export class FormManagerIndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gridQuery = {type: this.config.type, sort: 'title'};
+    this.gridQuery = {type: this.config.type || 'form', sort: 'title'};
     if (this.config.tag) {
       this.gridQuery.tags = this.config.tag;
     }
@@ -70,7 +70,7 @@ export class FormManagerIndexComponent implements OnInit {
   }
 
   clearSearch() {
-    this.gridQuery = {type: this.config.type, sort: 'title'};
+    this.gridQuery = {type: this.config.type || 'form', sort: 'title'};
     if (this.config.tag) {
       this.gridQuery.tags = this.config.tag;
     }
