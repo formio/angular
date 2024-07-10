@@ -71,6 +71,7 @@ export class FormManagerEditComponent implements AfterViewInit {
     this.form = _.cloneDeep(this.builder.formio.schema);
     this.form.title = this.formTitle.nativeElement.value.trim();
     this.form.display = this.formType.nativeElement.value;
+    this.form.components = _.cloneDeep(this.builder.form.components);
 
     if (this.config.tag) {
       this.form.tags = this.form.tags || [];
