@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 8.0.0-rc.5
+### Changed
+ - FIO-8638 fixed saving components after changing form display
+ - FIO-8667 fixed location of download PDF button
+
 ## 8.0.0-rc.4
 
 ## 8.0.0-rc.2
