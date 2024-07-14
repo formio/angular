@@ -87,7 +87,7 @@ export class FormioResourceService {
   init(route: ActivatedRoute, router: Router = null) {
     const snapshot = route.snapshot;
     let reset = false;
-    if (snapshot.queryParams.hasOwnProperty('reset')) {
+    if (snapshot.queryParams?.hasOwnProperty('reset')) {
       reset = snapshot.queryParams.reset;
     }
     else if (router) {
