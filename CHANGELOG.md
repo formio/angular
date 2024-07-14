@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased: 8.0.0-rc.3]
+## 8.0.0-rc.5
+### Fixed
+ - Adding a way to reset the resource provider cache.
+
+## 8.0.0-rc.3
 ### Changed
  - FIO-8667 fixed location of download PDF button
  - FIO-8638 fixed saving components after changing form display
