@@ -2,8 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased: 8.0.0-rc.7]
+## 8.0.0-rc.7
 ### Changed
+ - Upgrade ngx-bootstrap and other dependencies.
  - FIO-8779 updated class name for page number
 
 ## 8.0.0-rc.5
