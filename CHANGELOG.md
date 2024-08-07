@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 8.0.0-rc.6
+### Changed
+ - FIO-8779 updated class name for page number
+
 ## 8.0.0-rc.5
 ### Changed
  - FIO-8638 fixed saving components after changing form display
