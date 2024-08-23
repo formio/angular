@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file. See [standa
  - FIO-8667: fixed location of download PDF button
  - FIO-8638: fixed saving components after changing form display
  - FIO-8779: updated class name for page number
+ - Changed resetPassForm to use resetpass key instead of register key
+ - Upgrade ngx-bootstrap and other dependencies
+ - FIO-8779 updated class name for page number
 
 ## 8.0.0-rc.2
 ### Changed
