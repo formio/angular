@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 8.0.0-rc.8
+### Changed
+ - FIO-8915: fixed an issue where errors list does not display in formmanager and formview pro
+
 ## 8.0.0-rc.7
 ### Changed
  - Upgrade ngx-bootstrap and other dependencies.
