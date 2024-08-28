@@ -445,7 +445,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
           }
           : {
             message: error.message || error.toString(),
-            paths: error.path ? [error.path] : [],
+            paths: (error.path || error.formattedKeyOrPath) ? [error.path || error.formattedKeyOrPath] : [],
           }
         : {
           message: '',
@@ -479,10 +479,6 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
             });
           }
         }
-
-        if (!this.noAlerts) {
-          this.formio.showErrors();
-        }
       }
 
       if (shouldErrorDisplay) {
@@ -493,6 +489,10 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
         });
       }
     });
+
+    if (this.formio && !this.noAlerts) {
+      this.formio.showErrors(errors);
+    }
   }
 
   focusOnComponet(key: any) {
