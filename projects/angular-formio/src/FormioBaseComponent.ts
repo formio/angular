@@ -463,7 +463,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
             components.forEach((comp) => comp.setCustomValidity(messageText, true));
             this.alerts.addAlert({
               type: 'danger',
-              message: message[index],
+              message: Array.isArray(message) ? message[index] : message,
               component,
             });
             shouldErrorDisplay = false;
