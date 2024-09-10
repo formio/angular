@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 8.0.0-rc.11
+### Changed
+ - FIO-8993: Fixed component validation message
+
 ## 8.0.0-rc.10
 ### Changed
  - FIO-8819: Removed duplicate request on form manager search
