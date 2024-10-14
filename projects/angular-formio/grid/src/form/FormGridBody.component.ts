@@ -17,7 +17,10 @@ export class FormGridBodyComponent extends GridBodyComponent implements OnDestro
 
   load(formio: FormioPromiseService, query?: any) {
     query = query || {};
-    return formio.loadForms({ params: query })
+    return formio.loadForms(
+      { params: query },
+      { headers: { 'cache-control': 'no-cache' } },
+      )
       .then((forms: any) => this.setRows(query, forms))
       .then(() => this.attachTooltips());
   }
