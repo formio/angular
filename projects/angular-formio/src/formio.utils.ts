@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { find, trim, each, intersection } from 'lodash';
+import { each } from 'lodash';
 
 export function extendRouter(Class: any, config: any, ClassRoutes: any) {
   each(Class.decorators, decorator => {
@@ -11,7 +11,9 @@ export function extendRouter(Class: any, config: any, ClassRoutes: any) {
         each(arg.imports, (_import, index) => {
           if (
             (_import.ngModule && (_import.ngModule.name === 'RouterModule')) ||
-            (_import.name === 'RouterModule')
+            (_import.ngModule && (_import.ngModule.name === '_RouterModule')) ||
+            (_import.name === 'RouterModule') ||
+            (_import.name === '_RouterModule')
           ) {
             arg.imports[index] = RouterModule.forChild(ClassRoutes(config));
           }

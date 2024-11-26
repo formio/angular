@@ -14,7 +14,7 @@ export class FormioAppConfig {
     apiUrl?: string,
     baseUrl?: string, 
     appUrl?: string,
-    projectUrl?: string 
+    projectUrl?: string
   } = {}) {
     this.apiUrl = config.apiUrl || config.baseUrl;
     this.appUrl = config.appUrl || config.projectUrl;
