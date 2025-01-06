@@ -4,7 +4,8 @@ import WebformBuilder from '@formio/js/lib/cjs/WebformBuilder';
 
 @Component({
     selector: 'formio-builder',
-    template: '<div #formio></div>'
+    template: '<div #formio></div>',
+    standalone: false
 })
 export class FormioBuilder implements AfterViewInit {
     @ViewChild('formio') element: ElementRef;

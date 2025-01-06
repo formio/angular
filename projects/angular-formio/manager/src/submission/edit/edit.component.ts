@@ -3,7 +3,8 @@ import { FormManagerService } from '../../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  templateUrl: './edit.component.html'
+  templateUrl: './edit.component.html',
+  standalone: false
 })
 export class SubmissionEditComponent {
   constructor(

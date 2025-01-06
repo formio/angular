@@ -6,7 +6,8 @@ import { FormioAuthService } from '@formio/angular/auth';
 import { Formio } from '@formio/js';
 
 @Component({
-  templateUrl: './view.component.html'
+  templateUrl: './view.component.html',
+  standalone: false
 })
 export class FormManagerViewComponent implements OnInit {
   public submission: any;

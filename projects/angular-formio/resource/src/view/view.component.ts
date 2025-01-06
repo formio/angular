@@ -4,7 +4,8 @@ import { FormioResourceConfig } from '../resource.config';
 import {Formio} from '@formio/js';
 
 @Component({
-  templateUrl: './view.component.html'
+  templateUrl: './view.component.html',
+  standalone: false
 })
 export class FormioResourceViewComponent implements OnDestroy{
   constructor(

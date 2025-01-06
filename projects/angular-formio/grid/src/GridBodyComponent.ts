@@ -5,7 +5,8 @@ import { GridService } from './grid.service';
 import {FormioPromiseService} from '@formio/angular';
 
 @Component({
-  template: ''
+  template: '',
+  standalone: false
 })
 export class GridBodyComponent {
   @Input() header: GridHeaderComponent;

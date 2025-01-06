@@ -10,7 +10,8 @@ import { AlertsPosition } from './types/alerts-position';
 const { Evaluator, fastCloneDeep } = Utils;
 
 @Component({
-  template: ''
+  template: '',
+  standalone: false
 })
 export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form?: FormioForm;

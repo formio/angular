@@ -5,7 +5,8 @@ import { FormioResourceService } from './resource.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  templateUrl: './resource.component.html'
+  templateUrl: './resource.component.html',
+  standalone: false
 })
 export class FormioResourceComponent implements OnInit, OnDestroy {
   public perms = {delete: false, edit: false};

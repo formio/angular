@@ -4,7 +4,8 @@ import { GridFooterComponent } from '../GridFooterComponent';
 @Component({
   templateUrl: './FormGridFooter.component.html',
   styleUrls: ['../grid.footer.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class FormGridFooterComponent extends GridFooterComponent implements OnInit {
 

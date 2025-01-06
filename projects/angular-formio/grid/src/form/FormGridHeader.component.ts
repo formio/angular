@@ -4,7 +4,8 @@ import {GridHeader, SortType} from '../types/grid-header';
 
 @Component({
   selector: 'form-grid-header',
-  templateUrl: './FormGridHeader.component.html'
+  templateUrl: './FormGridHeader.component.html',
+  standalone: false
 })
 export class FormGridHeaderComponent extends GridHeaderComponent {
   public header: GridHeader;

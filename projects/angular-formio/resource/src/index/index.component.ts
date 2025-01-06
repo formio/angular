@@ -5,7 +5,8 @@ import { FormioResourceConfig } from '../resource.config';
 import { each } from 'lodash';
 
 @Component({
-  templateUrl: './index.component.html'
+  templateUrl: './index.component.html',
+  standalone: false
 })
 export class FormioResourceIndexComponent implements OnInit {
   public gridSrc?: string;

@@ -8,7 +8,8 @@ import {GridColumn} from '../types/grid-column';
 import {GridHeader, SortType} from '../types/grid-header';
 
 @Component({
-  templateUrl: './SubmissionGridHeader.component.html'
+  templateUrl: './SubmissionGridHeader.component.html',
+  standalone: false
 })
 export class SubmissionGridHeaderComponent extends GridHeaderComponent {
 

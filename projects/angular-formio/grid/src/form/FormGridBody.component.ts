@@ -5,7 +5,8 @@ import { Tooltip } from 'bootstrap';
 @Component({
   selector: 'form-grid-body',
   styleUrls: ['./FormGridBody.component.scss'],
-  templateUrl: './FormGridBody.component.html'
+  templateUrl: './FormGridBody.component.html',
+  standalone: false
 })
 export class FormGridBodyComponent extends GridBodyComponent implements OnDestroy {
   @ViewChildren('create') createBtns: ElementRef[];
