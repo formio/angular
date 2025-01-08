@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [Unreleased: 8.1.0-rc.1]
+## 8.1.0-rc.1
  - Expanding the components to allow for more functionality
  
 ## 8.0.0
