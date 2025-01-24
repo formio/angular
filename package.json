@@ -46,7 +46,7 @@
     "@angular/platform-browser": "^19.0.5",
     "@angular/platform-browser-dynamic": "^19.0.5",
     "@angular/router": "^19.0.5",
-    "@compodoc/compodoc": "^1.1.26",
+    "@compodoc/compodoc": "1.1.25",
     "@formio/deprecated-types": "^0.1.0",
     "@formio/js": "^5.0.0",
     "@types/jasmine": "^5.1.5",
