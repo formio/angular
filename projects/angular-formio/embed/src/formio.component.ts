@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, Input, Output, EventEmitter, OnChanges, AfterViewInit } from '@angular/core';
-import { FormioCore as Formio, Webform } from '@formio/js';
-import { Form, Submission } from '@formio/core/types';
+import { FormioCore as Formio, Webform, Form } from '@formio/js';
+import { Form as formType, Submission } from '@formio/core/types';
 
 @Component({
     selector: 'formio',
@@ -8,10 +8,10 @@ import { Form, Submission } from '@formio/core/types';
 })
 export class FormioComponent implements AfterViewInit {
     @Input() src?: string;
-    @Input() form?: Form | null;
+    @Input() form?: formType | null;
     @Input() submission?: Submission | null;
     @Input() url?: string;
-    @Input() options?: Webform['options'] = {};
+    @Input() options?: Form['options'] = {};
     @Output() ready = new EventEmitter<Webform>();
     @Output() submit = new EventEmitter<object>();
     @Output() error = new EventEmitter<any>();

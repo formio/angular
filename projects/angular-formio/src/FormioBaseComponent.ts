@@ -5,7 +5,7 @@ import { FormioAppConfig } from './formio.config';
 import {AngularFormioOptions, FormioError, FormioForm, FormioRefreshValue} from './formio.common';
 import { assign, get, isEmpty } from 'lodash';
 import { CustomTagsService } from './custom-tags.service';
-import {Utils, Webform} from '@formio/js';
+import {Form, Utils, Webform} from '@formio/js';
 import { AlertsPosition } from './types/alerts-position';
 const { Evaluator, fastCloneDeep } = Utils;
 
@@ -18,7 +18,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() src?: string;
   @Input() url?: string;
   @Input() service?: FormioService;
-  @Input() options?: Webform['options'] & AngularFormioOptions;
+  @Input() options?: Form['options'] & AngularFormioOptions;
   @Input() noeval ? = Evaluator.noeval;
   @Input() formioOptions?: any;
   @Input() renderOptions?: any;
@@ -213,7 +213,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     const extraTags = this.customTags ? this.customTags.tags : [];
-    const defaultOptions: Webform['options'] & AngularFormioOptions = {
+    const defaultOptions: Form['options'] & AngularFormioOptions = {
       errors: {
         message: 'Please fix the following errors before submitting.'
       },

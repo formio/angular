@@ -38,7 +38,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   public componentAdding = false;
   private refreshSubscription: Subscription;
   @Input() form?: FormioForm;
-  @Input() options?: object & AngularFormioOptions;
+  @Input() options?: FormBuilder['options'] & AngularFormioOptions;
   @Input() formbuilder?: any;
   @Input() noeval ? = false;
   @Input() refresh?: Observable<void>;
