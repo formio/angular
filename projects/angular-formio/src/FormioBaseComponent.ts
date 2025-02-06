@@ -2,10 +2,10 @@ import { Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestro
 import { FormioService } from './formio.service';
 import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAppConfig } from './formio.config';
-import { FormioError, FormioForm, FormioOptions, FormioRefreshValue } from './formio.common';
+import {AngularFormioOptions, FormioError, FormioForm, FormioRefreshValue} from './formio.common';
 import { assign, get, isEmpty } from 'lodash';
 import { CustomTagsService } from './custom-tags.service';
-import { Utils } from '@formio/js';
+import {Form, Utils, Webform} from '@formio/js';
 import { AlertsPosition } from './types/alerts-position';
 const { Evaluator, fastCloneDeep } = Utils;
 
@@ -18,7 +18,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() src?: string;
   @Input() url?: string;
   @Input() service?: FormioService;
-  @Input() options?: FormioOptions;
+  @Input() options?: Form['options'] & AngularFormioOptions;
   @Input() noeval ? = Evaluator.noeval;
   @Input() formioOptions?: any;
   @Input() renderOptions?: any;
@@ -34,7 +34,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() hooks?: any = {};
   @Input() renderer?: any;
   @Input() watchSubmissionErrors ? = false;
-  @Input() dataTableActions? : any = []
+  @Input() dataTableActions?: any = [];
   @Output() render = new EventEmitter<object>();
   @Output() customEvent = new EventEmitter<object>();
   @Output() fileUploadingStatus = new EventEmitter<string>();
@@ -213,7 +213,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     const extraTags = this.customTags ? this.customTags.tags : [];
-    const defaultOptions: FormioOptions = {
+    const defaultOptions: Form['options'] & AngularFormioOptions = {
       errors: {
         message: 'Please fix the following errors before submitting.'
       },

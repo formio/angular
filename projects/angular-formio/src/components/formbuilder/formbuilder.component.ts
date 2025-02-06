@@ -14,8 +14,8 @@ import {
 } from '@angular/core';
 import { FormioAppConfig } from '../../formio.config';
 import {
+  AngularFormioOptions,
   FormioForm,
-  FormioOptions
 } from '../../formio.common';
 import { Formio, FormBuilder, Utils } from '@formio/js';
 import { assign } from 'lodash';
@@ -38,7 +38,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   public componentAdding = false;
   private refreshSubscription: Subscription;
   @Input() form?: FormioForm;
-  @Input() options?: FormioOptions;
+  @Input() options?: FormBuilder['options'] & AngularFormioOptions;
   @Input() formbuilder?: any;
   @Input() noeval ? = false;
   @Input() refresh?: Observable<void>;

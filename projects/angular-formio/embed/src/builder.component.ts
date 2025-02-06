@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { FormBuilder } from '@formio/js';
+import {Form, FormBuilder, Webform} from '@formio/js';
 import WebformBuilder from '@formio/js/lib/cjs/WebformBuilder';
 
 @Component({
@@ -8,8 +8,8 @@ import WebformBuilder from '@formio/js/lib/cjs/WebformBuilder';
 })
 export class FormioBuilder implements AfterViewInit {
     @ViewChild('formio') element: ElementRef;
-    @Input() form?: Object | null;
-    @Input() options?: Object = {};
+    @Input() form?: Form['options'] | null;
+    @Input() options?: FormBuilder['options'] = {};
     @Output() change = new EventEmitter<any>();
     @Output() ready = new EventEmitter<any>();
     @Output() error = new EventEmitter<any>();
