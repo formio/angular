@@ -3,7 +3,8 @@ import { FormManagerService } from '../../form-manager.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: './submission.component.html'
+  templateUrl: './submission.component.html',
+  standalone: false
 })
 export class SubmissionComponent implements OnInit {
   public downloadUrl: string;

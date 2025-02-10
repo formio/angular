@@ -3,7 +3,8 @@ import {FormioPromiseService} from '@formio/angular';
 import {GridHeader} from './types/grid-header';
 
 @Component({
-  template: ''
+  template: '',
+  standalone: false
 })
 export class GridHeaderComponent {
   @Input() actionAllowed: any;

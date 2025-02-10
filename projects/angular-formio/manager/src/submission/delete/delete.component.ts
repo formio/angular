@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormioAlerts } from '@formio/angular';
 
 @Component({
-  templateUrl: './delete.component.html'
+  templateUrl: './delete.component.html',
+  standalone: false
 })
 export class SubmissionDeleteComponent {
   constructor(

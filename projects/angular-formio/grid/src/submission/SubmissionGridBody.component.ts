@@ -5,7 +5,8 @@ import {FormioPromiseService} from '@formio/angular';
 import { GridHeader } from '../types/grid-header';
 import {FormioSubmission} from '@formio/angular';
 @Component({
-  templateUrl: './SubmissionGridBody.component.html'
+  templateUrl: './SubmissionGridBody.component.html',
+  standalone: false
 })
 export class SubmissionGridBodyComponent extends GridBodyComponent {
   load(formio: FormioPromiseService, query?: any) {

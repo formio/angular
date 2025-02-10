@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormManagerService } from '../../form-manager.service';
 
 @Component({
-  templateUrl: './index.component.html'
+  templateUrl: './index.component.html',
+  standalone: false
 })
 export class SubmissionIndexComponent {
   constructor(

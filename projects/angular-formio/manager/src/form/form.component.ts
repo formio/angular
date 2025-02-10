@@ -6,7 +6,8 @@ import { FormioAppConfig } from '@formio/angular';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
-  templateUrl: './form.component.html'
+  templateUrl: './form.component.html',
+  standalone: false
 })
 export class FormManagerFormComponent implements OnInit {
   choice: any = 'isUrl';

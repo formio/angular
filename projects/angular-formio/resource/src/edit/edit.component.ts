@@ -5,7 +5,8 @@ import { FormioResourceConfig } from '../resource.config';
 import { Formio } from '@formio/js';
 
 @Component({
-  templateUrl: './edit.component.html'
+  templateUrl: './edit.component.html',
+  standalone: false
 })
 export class FormioResourceEditComponent implements OnDestroy {
   public triggerError: EventEmitter<any> = new EventEmitter();

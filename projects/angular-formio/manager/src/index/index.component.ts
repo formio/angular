@@ -7,7 +7,8 @@ import { debounce } from 'lodash';
 
 @Component({
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
+  standalone: false
 })
 export class FormManagerIndexComponent implements OnInit, AfterViewInit {
   @ViewChild('search') searchElement: ElementRef;

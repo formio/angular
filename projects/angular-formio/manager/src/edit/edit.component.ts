@@ -7,7 +7,8 @@ import { FormBuilderComponent } from '@formio/angular';
 import _ from 'lodash';
 
 @Component({
-  templateUrl: './edit.component.html'
+  templateUrl: './edit.component.html',
+  standalone: false
 })
 export class FormManagerEditComponent implements AfterViewInit {
   @ViewChild(FormBuilderComponent, {static: false}) builder: FormBuilderComponent;

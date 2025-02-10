@@ -4,7 +4,8 @@ import { GridHeaderComponent } from './GridHeaderComponent';
 import { GridBodyComponent } from './GridBodyComponent';
 
 @Component({
-  template: ''
+  template: '',
+  standalone: false
 })
 export class GridFooterComponent {
   @Input() header: GridHeaderComponent;

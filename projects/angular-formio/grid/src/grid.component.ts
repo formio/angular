@@ -27,7 +27,8 @@ import {GridHeader, SortType} from './types/grid-header';
 @Component({
   selector: 'formio-grid',
   styleUrls: ['./grid.component.scss'],
-  templateUrl: './grid.component.html'
+  templateUrl: './grid.component.html',
+  standalone: false
 })
 export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() footerPosition = GridFooterPositions.bottom;
