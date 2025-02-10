@@ -1,6 +1,6 @@
 {
   "name": "@formio/angular",
-  "version": "8.1.0-rc.1",
+  "version": "7.5.0-rc.2",
   "scripts": {
     "ng": "ng",
     "build": "ng build angular-formio",
@@ -35,17 +35,17 @@
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.1.2",
-    "@angular/animations": "^18.1.2",
-    "@angular/cli": "^18.1.2",
-    "@angular/common": "^18.1.2",
-    "@angular/compiler": "^18.1.2",
-    "@angular/compiler-cli": "^18.1.2",
-    "@angular/core": "^18.1.2",
-    "@angular/forms": "^18.1.2",
-    "@angular/platform-browser": "^18.1.2",
-    "@angular/platform-browser-dynamic": "^18.1.2",
-    "@angular/router": "^18.1.2",
+    "@angular-devkit/build-angular": "^17.3.10",
+    "@angular/animations": "^17.3.10",
+    "@angular/cli": "^17.3.10",
+    "@angular/common": "^17.3.10",
+    "@angular/compiler": "^17.3.10",
+    "@angular/compiler-cli": "^17.3.10",
+    "@angular/core": "^17.3.10",
+    "@angular/forms": "^17.3.10",
+    "@angular/platform-browser": "^17.3.10",
+    "@angular/platform-browser-dynamic": "^17.3.10",
+    "@angular/router": "^17.3.10",
     "@compodoc/compodoc": "^1.1.25",
     "@formio/deprecated-types": "^0.1.0",
     "@formio/js": "^5.0.0",
@@ -69,7 +69,7 @@
     "ts-node": "^10.9.2",
     "tslib": "^2.6.3",
     "tslint": "~6.1.0",
-    "typescript": "~5.5.4",
+    "typescript": "~5.4",
     "zone.js": "^0.14.8"
   }
 }
