@@ -2,44 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 8.1.0-rc.1
- - Expanding the components to allow for more functionality
- 
-## 8.0.0
+## 7.5.0
 ### Changed
  - Official Release
-
-## 8.0.0-rc.11
-### Changed
+ - Expanding the components to allow for more functionality
  - FIO-8993: Fixed component validation message
-
-## 8.0.0-rc.10
-### Changed
  - FIO-8819: Removed duplicate request on form manager search
-
-## 8.0.0-rc.9
-### Fixed
  - Changed resetPassForm to use resetpass key instead of register key
-
-## 8.0.0-rc.8
-### Changed
  - FIO-8915: fixed an issue where errors list does not display in formmanager and formview pro
-
-## 8.0.0-rc.7
-### Changed
  - Upgrade ngx-bootstrap and other dependencies.
  - FIO-8779 updated class name for page number
-
-## 8.0.0-rc.5
-### Changed
  - FIO-8638 fixed saving components after changing form display
  - FIO-8667 fixed location of download PDF button
-
-## 8.0.0-rc.4
-
-## 8.0.0-rc.2
-### Changed
- - Angular 18 upgrade
  - Update renderer to 5.x
     
 ## 7.5.0-rc.2
