@@ -27,6 +27,7 @@ export interface FormioReport {
 }
 
 export interface FormioForm {
+  _id?: string;
   title?: string;
   display?: string;
   name?: string;
