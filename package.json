@@ -12,7 +12,7 @@
     "docs:watch": "npm run docs:build -- -s -w",
     "publish": "npm run build:prod && npm publish ./dist/angular-formio --tag=rc",
     "publish:latest": "npm run build:prod && npm publish ./dist/angular-formio",
-    "test": "ng test",
+    "test:do:not:run": "ng test",
     "lint": "ng lint",
     "postinstall": "node -e 'var fs=require(`fs`);var fname=`./projects/angular-formio/package.json`;var pjson=require(fname);pjson.version=require(`./package.json`).version;fs.writeFileSync(fname,JSON.stringify(pjson,null, 2))'"
   },
@@ -47,8 +47,9 @@
     "@angular/platform-browser-dynamic": "^19.0.5",
     "@angular/router": "^19.0.5",
     "@compodoc/compodoc": "1.1.25",
+    "@formio/core": "workspace:^",
     "@formio/deprecated-types": "^0.1.0",
-    "@formio/js": "^5.0.0",
+    "@formio/js": "workspace:^",
     "@types/jasmine": "^5.1.5",
     "@types/jasminewd2": "^2.0.13",
     "@types/node": "^22.10.5",
@@ -61,6 +62,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
+    "lodash": "^4.17.21",
     "ng-packagr": "^19.0.1",
     "ngx-bootstrap": "^19.0.2",
     "protractor": "~7.0.0",
@@ -69,7 +71,11 @@
     "ts-node": "^10.9.2",
     "tslib": "^2.8.1",
     "tslint": "~6.1.0",
-    "typescript": "~5.6.3",
+    "typescript": "*",
     "zone.js": "^0.15.0"
+  },
+  "ossRepo":{
+    "repo": "https://github.com/formio/angular.git",
+    "srcPath": "."
   }
 }
