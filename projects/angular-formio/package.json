@@ -31,7 +31,7 @@
     "formiojs": "^4.18.0",
     "zone.js": "~0.11.4 || ~0.12.0 || ~0.13.0",
     "lodash": "^4.17.20",
-    "ngx-bootstrap": "^10.2.0"
+    "ngx-bootstrap": "^11.0.2"
   },
   "dependencies": {
     "tslib": "^2.0.0"
