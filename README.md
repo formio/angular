@@ -17,6 +17,7 @@ This library supports many different Angular Versions. If you wish to use this l
 | 7.0.0               | 17                  | 4.x          |
 | 7.5.0               | 17                  | 5.x          |
 | 8.0.0               | 18                  | 5.x          |
+| 9.0.0               | 19                  | 5.x          |
 
 ## Angular 17
 Angular 17 versions are currently released as "latest" so you can install with Angular 17 with the following commands.
