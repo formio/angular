@@ -10,13 +10,15 @@ This library supports many different Angular Versions. If you wish to use this l
 
 
 *Angular Compatibility*
-| **@formio/angular** | **Angular Version** | **formiojs** |
+| **@formio/angular** | **Angular Version** | **formiojs*** |
 |---------------------|---------------------|--------------|
 | 6.0.0               | 16                  | 4.x          |
 | 6.5.0               | 16                  | 5.x          |
 | 7.0.0               | 17                  | 4.x          |
 | 7.5.0               | 17                  | 5.x          |
 | 8.0.0               | 18                  | 5.x          |
+
+_*Note: The formiojs namespace changes from formiojs (4.x) to @formio/js (5.x)_
 
 ## Angular 17
 Angular 17 versions are currently released as "latest" so you can install with Angular 17 with the following commands.
