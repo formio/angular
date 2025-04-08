@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 8.1.0
+### Changed
+ - Official Release
+
 ## 8.1.0-rc.1
  - Expanding the components to allow for more functionality
  
