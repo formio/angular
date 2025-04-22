@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 9.0.0-rc.3
+### Changed
+ - update @formio/js to 5.2.0-rc.1 and fix type errors
+
 ## 9.0.0-rc.2
 ### Changed
  - FIO-8638: fixed saving components after changing form display
