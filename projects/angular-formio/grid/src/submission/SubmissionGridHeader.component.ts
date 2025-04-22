@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Utils, Components} from '@formio/js';
+import {Component as ComponentType} from '@formio/core';
 import {ExtendedComponentSchema} from '@formio/deprecated-types';
 import {GridHeaderComponent} from '../GridHeaderComponent';
 import {FormioPromiseService} from '@formio/angular';
@@ -66,9 +67,8 @@ export class SubmissionGridHeaderComponent extends GridHeaderComponent {
 
   // Map components
   setComponents(components) {
-    Utils.eachComponent(components, (component: ExtendedComponentSchema, newPath: string) => {
-      this.formComponents.set(`data.${newPath}`, component);
+    Utils.eachComponent(components, (component: ComponentType, newPath: string) => {
+      this.formComponents.set(`data.${newPath}`, component as ExtendedComponentSchema);
     });
   }
 }
-
