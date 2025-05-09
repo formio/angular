@@ -31,7 +31,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() error?: EventEmitter<any>;
   @Input() success?: EventEmitter<object>;
   @Input() submitDone?: EventEmitter<object>;
-  @Input() language?: EventEmitter<string>;
+  @Input() language?: EventEmitter<string> | string;
   @Input() hooks?: any = {};
   @Input() renderer?: any;
   @Input() watchSubmissionErrors ? = false;
