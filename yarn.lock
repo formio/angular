@@ -1909,10 +1909,10 @@
   resolved "https://registry.yarnpkg.com/@formio/bootstrap/-/bootstrap-3.2.0-rc.1.tgz#e9ec4728a064745e0bf271203b402f60e8a67367"
   integrity sha512-F4eQsaIVq4R9eIF13A6hwdqHINQrAlATfHla1Z2cXFN47bX63jH/dpgqmXMKiIyVpCOPSA0m90M+eQDjPWVniw==
 
-"@formio/core@v2.5.0-rc.1":
-  version "2.5.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@formio/core/-/core-2.5.0-rc.1.tgz#5645ea33f093c0039f1b3640cfd7126aea582287"
-  integrity sha512-5eiCZoaxtrSgnwCWiiuIfGvBSj+IpxaMkq54Ko6eFt99PDJ17zanQyOT36FhC2nIXj3h2zgKUOIO0WiXts2Jrw==
+"@formio/core@v2.5.0-rc.2":
+  version "2.5.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@formio/core/-/core-2.5.0-rc.2.tgz#a85d80bcdf5a81cd78bf2ddcd6a56ce3091022d1"
+  integrity sha512-x93m/oMtGIzDGtnxxlD9oagabcgOEfhdYTTcYMmX9Ixw8NrSXrIqnWOXbosHpdHiLUdRBFcdYhVQGW87F4f2qw==
   dependencies:
     browser-cookies "^1.2.0"
     core-js "^3.40.0"
@@ -1931,13 +1931,13 @@
   resolved "https://registry.npmjs.org/@formio/deprecated-types/-/deprecated-types-0.1.0.tgz#e8db67b93a2eded12efd640a10c7ddf0cffa2441"
   integrity sha512-jNc3Nw55nc75KESg+KPxxdG9ktnERTYodScAx3eh/J2dlA06N2Korafhu9zmwcDis8lOqtEz3X89cVxpJM9MzQ==
 
-"@formio/js@^5.2.0":
-  version "5.2.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@formio/js/-/js-5.2.0-rc.1.tgz#fcdbf04a4199cf33efe9dcd89ea0baf50e3da8dd"
-  integrity sha512-BtLRmd7J3Pv3hLypsFIkHJocdL0fI0FU1dQfWNgq+egHXFeok6+Zx37T/xx6vybRsp63RfC756oOliEnGlpPsg==
+"@formio/js@^5.2.0-rc.1":
+  version "5.2.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@formio/js/-/js-5.2.0-rc.2.tgz#e40d00f91fd26908b4a086521e834c3bb5789a53"
+  integrity sha512-2qBsvUK1ArQD0K8ivbsFWrXgZTbxBu9+pGImraMPdPKHx5MRuUrX76LI5ZRFzFITIiS0G4tmDlzXFsxZ5NXBlw==
   dependencies:
     "@formio/bootstrap" v3.2.0-rc.1
-    "@formio/core" v2.5.0-rc.1
+    "@formio/core" v2.5.0-rc.2
     "@formio/text-mask-addons" "3.8.0-formio.4"
     "@formio/vanilla-text-mask" "^5.1.1-formio.1"
     abortcontroller-polyfill "^1.7.5"
@@ -10065,9 +10065,9 @@ undici-types@~6.20.0:
   integrity sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==
 
 undici@^6.19.5:
-  version "6.21.1"
-  resolved "https://registry.npmjs.org/undici/-/undici-6.21.1.tgz#336025a14162e6837e44ad7b819b35b6c6af0e05"
-  integrity sha512-q/1rj5D0/zayJB2FraXdaWxbhWiNKDvu8naDT2dl1yTlvJp4BLtOcp2a5BvgGNQpYYJzau7tf1WgKv3b+7mqpQ==
+  version "6.21.3"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-6.21.3.tgz#185752ad92c3d0efe7a7d1f6854a50f83b552d7a"
+  integrity sha512-gBLkYIlEnSp8pFbT64yFgGE6UIB9tAkhukC23PmMDCe5Nd+cRqKxSjw5y54MK2AZMgZfJWMaNE4nYUHgi1XEOw==
 
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"
