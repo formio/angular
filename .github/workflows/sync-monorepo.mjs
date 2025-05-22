@@ -9,3 +9,4 @@ syncFromGithubAction()
 		console.error('Error during sync:', error);
 		process.exit(1);
 	});
+	
