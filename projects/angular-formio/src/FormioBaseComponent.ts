@@ -508,7 +508,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
         .saveSubmission(submission)
         .subscribe(
           (sub: {}) => this.onSubmit(sub, true),
-          err => this.onError(err)
+          err => this.onError((err?.error || err))
         );
     } else {
       this.onSubmit(submission, false);
