@@ -12,6 +12,7 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
+      NODE_VERSION: '20.x'
       GH_TOKEN: ${{ secrets.MONOREPO_SYNC_TOKEN }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
       PR_TITLE: ${{ github.event.pull_request.title }}
@@ -29,16 +30,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: ${{env.NODE_VERSION}}
       
-      - name: Install dependencies
-        # Install project dependencies (including dev dependencies)
-        run: npm install
+      - name: Installing dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install --frozen-lockfile
+          
       - name: Install zx
-        run: npm install zx
+        run: yarn add zx
         
       - name: Install monorepo-sync package
-        run: npm install git+https://github.com/formio/monorepo-sync.git
+        run: yarn add git+https://github.com/formio/monorepo-sync.git
+        
+      - name: Clone Monorepo 
+        run: |
+            gh repo clone formio/formio-monorepo monorepo -- --depth=1
       - name: Clone Monorepo 
         run: |
             gh repo clone formio/formio-monorepo monorepo -- --depth=1
