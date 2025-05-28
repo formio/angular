@@ -47,9 +47,6 @@ jobs:
       - name: Clone Monorepo 
         run: |
             gh repo clone formio/formio-monorepo monorepo -- --depth=1
-      - name: Clone Monorepo 
-        run: |
-            gh repo clone formio/formio-monorepo monorepo -- --depth=1
       
       - name: Sync to Monorepo
         run: |
