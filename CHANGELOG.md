@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [Unreleased: 9.0.0-rc.5]
+### Changed
+ - update zone.js@0.15.0
+
 ## 9.0.0-rc.4
  - update @formio/js to 5.2.0-rc.6
 
