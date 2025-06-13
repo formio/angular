@@ -1925,10 +1925,10 @@
     fuse.js "^6.6.2"
     redux "^4.2.0"
 
-"@formio/core@2.5.0-rc.3":
-  version "2.5.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@formio/core/-/core-2.5.0-rc.3.tgz#dbc5b36200703e847fe03bf58e321b8039c185a6"
-  integrity sha512-5cNYUxPiADypv+JRh51wKqVz+7aGVd+ZFwLBj/kexXBNcQ2WKi3IPMr+2rqJ04IEnnCUvmIPYafC95iQRgAvIA==
+"@formio/core@2.5.0-rc.5":
+  version "2.5.0-rc.5"
+  resolved "https://registry.yarnpkg.com/@formio/core/-/core-2.5.0-rc.5.tgz#83095b6deb9620cb26128a7ae0e6010d27bd61ab"
+  integrity sha512-lEmrErmSTg8I8D7sw6O3JG2mEugpBLIk8q0KNyw+GaSdrP5V78py14tmY8U5a/t49jMra1CS9hIn13uLNQJJzg==
   dependencies:
     browser-cookies "^1.2.0"
     core-js "^3.39.0"
@@ -1947,14 +1947,14 @@
   resolved "https://registry.npmjs.org/@formio/deprecated-types/-/deprecated-types-0.1.0.tgz#e8db67b93a2eded12efd640a10c7ddf0cffa2441"
   integrity sha512-jNc3Nw55nc75KESg+KPxxdG9ktnERTYodScAx3eh/J2dlA06N2Korafhu9zmwcDis8lOqtEz3X89cVxpJM9MzQ==
 
-"@formio/js@^5.2.0-rc.6":
-  version "5.2.0-rc.6"
-  resolved "https://registry.yarnpkg.com/@formio/js/-/js-5.2.0-rc.6.tgz#a2f26ec09c82dd4f02bcda5c5eaa0110561b6058"
-  integrity sha512-B4ahKQrOzvpjLpd/SpXATtYJBVnbffG2CL9jO3PepwTWWgE8z36j+i4y/pqVwk4r1FSuKc+hpOLh3S1AZ7gdGQ==
+"@formio/js@^5.2.0-rc.8":
+  version "5.2.0-rc.9"
+  resolved "https://registry.yarnpkg.com/@formio/js/-/js-5.2.0-rc.9.tgz#092eca23cdff2198beb1d7d34d1d915ebfd9a2d0"
+  integrity sha512-Rz/IQ1VOdkUOchAt2Cr85sp+pokvj6CYiwC9jVrXLlobfd10oUXlTVCEaWTGfUCkFUFUaGQiQB9rVN1jU9LsrA==
   dependencies:
     "@formio/bootstrap" "3.1.1"
     "@formio/choices.js" "^10.2.1"
-    "@formio/core" "2.5.0-rc.3"
+    "@formio/core" "2.5.0-rc.5"
     "@formio/text-mask-addons" "^3.8.0-formio.4"
     "@formio/vanilla-text-mask" "^5.1.1-formio.1"
     abortcontroller-polyfill "^1.7.5"
