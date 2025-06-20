@@ -1,6 +1,6 @@
 {
   "name": "@formio/angular",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "scripts": {
     "ng": "ng",
     "build": "ng build angular-formio",
@@ -48,7 +48,7 @@
     "@angular/router": "^19.0.5",
     "@compodoc/compodoc": "1.1.25",
     "@formio/deprecated-types": "^0.1.0",
-    "@formio/js": "^5.2.0-rc.8",
+    "@formio/js": "^5.0.0",
     "@types/jasmine": "^5.1.5",
     "@types/jasminewd2": "^2.0.13",
     "@types/node": "^22.10.5",
