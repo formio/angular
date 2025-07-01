@@ -4,11 +4,12 @@ import { FormManagerService } from '../form-manager.service';
 import { DefaultConfiguration, FormManagerConfig } from '../form-manager.config';
 import { FormioGridComponent } from '@formio/angular/grid';
 import { debounce } from 'lodash';
+import { NgIf } from '@angular/common';
 
 @Component({
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss'],
-  standalone: false
+    templateUrl: './index.component.html',
+    styleUrls: ['./index.component.scss'],
+    imports: [NgIf, FormioGridComponent]
 })
 export class FormManagerIndexComponent implements OnInit, AfterViewInit {
   @ViewChild('search') searchElement: ElementRef;

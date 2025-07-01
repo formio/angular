@@ -1,13 +1,15 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormManagerService } from '../form-manager.service';
 import { FormManagerConfig } from '../form-manager.config';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FormioAppConfig } from '@formio/angular';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { NgIf, NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  templateUrl: './form.component.html',
-  standalone: false
+    templateUrl: './form.component.html',
+    imports: [NgIf, RouterLink, RouterLinkActive, RouterOutlet, NgClass, FormsModule]
 })
 export class FormManagerFormComponent implements OnInit {
   choice: any = 'isUrl';
