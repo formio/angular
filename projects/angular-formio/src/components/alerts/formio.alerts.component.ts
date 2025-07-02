@@ -3,7 +3,8 @@ import { FormioAlerts } from './formio.alerts';
 
 @Component({
   selector: 'formio-alerts',
-  templateUrl: './formio.alerts.component.html'
+  templateUrl: './formio.alerts.component.html',
+  standalone: false
 })
 export class FormioAlertsComponent implements OnInit {
   @Input() alerts: FormioAlerts;

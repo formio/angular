@@ -18,15 +18,16 @@ export interface AccessSetting {
 }
 
 export interface FormioReport {
-  form: string,
-  roles: object,
-  access: object,
-  metadata: object,
-  data: object,
-  project: string,
+  form: string;
+  roles: object;
+  access: object;
+  metadata: object;
+  data: object;
+  project: string;
 }
 
 export interface FormioForm {
+  _id?: string;
   title?: string;
   display?: string;
   name?: string;
@@ -38,7 +39,7 @@ export interface FormioForm {
   tags?: string[];
   access?: AccessSetting[];
   submissionAccess?: AccessSetting[];
-  report?: FormioReport
+  report?: FormioReport;
 }
 
 export interface ComponentInstance {
@@ -78,13 +79,9 @@ export interface FormioHookOptions {
   beforeSubmit: FormioBeforeSubmit;
 }
 
-export interface FormioOptions {
+export interface AngularFormioOptions {
   errors?: ErrorsOptions;
   alerts?: AlertsOptions;
   alertsPosition?: AlertsPosition;
   disableAlerts?: boolean;
-  i18n?: object;
-  fileService?: object;
-  hooks?: FormioHookOptions;
-  sanitizeConfig?: any;
 }

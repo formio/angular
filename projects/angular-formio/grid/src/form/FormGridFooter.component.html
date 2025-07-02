@@ -11,7 +11,7 @@
   <tr>
     <td *ngIf="header" [colSpan]="header.numHeaders">
       <button *ngIf="actionAllowed('formCreate')" class="btn btn-primary form-btn-use float-start" (click)="createItem.emit('form')"><em class="fa fa-plus bi bi-plus-lg"></em> {{ createText }}</button>
-      <span class="float-end item-counter"><span class="page-num">{{ body.firstItem }} - {{ body.lastItem }}</span> / {{ body.total }} total</span>
+      <span class="pull-right float-end item-counter"><span class="page-num">{{ body.firstItem }} - {{ body.lastItem }}</span> / {{ body.total }} total</span>
       <span [attr.aria-label]="label" role="navigation">
         <pagination [totalItems]="body.total" [itemsPerPage]="body.limit" [(ngModel)]="body.skip" (pageChanged)="pageChanged.emit($event)" [maxSize]="size" class="justify-content-center pagination-sm">
         </pagination>

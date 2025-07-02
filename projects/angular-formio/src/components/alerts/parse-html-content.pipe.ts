@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'parseHtmlContent', pure: false })
+@Pipe({ name: 'parseHtmlContent', pure: false, standalone: false })
 export class ParseHtmlContentPipe implements PipeTransform {
 
   /*

@@ -5,9 +5,13 @@ import { FormManagerConfig } from '../form-manager.config';
 import { FormioAlerts } from '@formio/angular';
 import { FormBuilderComponent } from '@formio/angular';
 import _ from 'lodash';
+import { NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { FormioAlertsComponent } from '@formio/angular';
 
 @Component({
-  templateUrl: './edit.component.html'
+    templateUrl: './edit.component.html',
+    imports: [NgIf, FormsModule, FormioAlertsComponent, FormBuilderComponent]
 })
 export class FormManagerEditComponent implements AfterViewInit {
   @ViewChild(FormBuilderComponent, {static: false}) builder: FormBuilderComponent;

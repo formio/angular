@@ -10,6 +10,7 @@ import { CustomTagsService } from '../../custom-tags.service';
   templateUrl: './formio.component.html',
   styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.form.min.css'],
   encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 /* tslint:enable */
 export class FormioComponent extends FormioBaseComponent implements OnInit, OnChanges {

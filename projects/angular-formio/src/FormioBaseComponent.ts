@@ -2,15 +2,16 @@ import { Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestro
 import { FormioService } from './formio.service';
 import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAppConfig } from './formio.config';
-import { FormioError, FormioForm, FormioOptions, FormioRefreshValue } from './formio.common';
+import {AngularFormioOptions, FormioError, FormioForm, FormioRefreshValue} from './formio.common';
 import { assign, get, isEmpty } from 'lodash';
 import { CustomTagsService } from './custom-tags.service';
-import { Utils } from '@formio/js';
+import {Form, Utils, Webform} from '@formio/js';
 import { AlertsPosition } from './types/alerts-position';
 const { Evaluator, fastCloneDeep } = Utils;
 
 @Component({
-  template: ''
+  template: '',
+  standalone: false
 })
 export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form?: FormioForm;
@@ -18,7 +19,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() src?: string;
   @Input() url?: string;
   @Input() service?: FormioService;
-  @Input() options?: FormioOptions;
+  @Input() options?: Form['options'] & AngularFormioOptions;
   @Input() noeval ? = Evaluator.noeval;
   @Input() formioOptions?: any;
   @Input() renderOptions?: any;
@@ -30,11 +31,11 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() error?: EventEmitter<any>;
   @Input() success?: EventEmitter<object>;
   @Input() submitDone?: EventEmitter<object>;
-  @Input() language?: EventEmitter<string>;
+  @Input() language?: EventEmitter<string> | string;
   @Input() hooks?: any = {};
   @Input() renderer?: any;
   @Input() watchSubmissionErrors ? = false;
-  @Input() dataTableActions? : any = []
+  @Input() dataTableActions?: any = [];
   @Output() render = new EventEmitter<object>();
   @Output() customEvent = new EventEmitter<object>();
   @Output() fileUploadingStatus = new EventEmitter<string>();
@@ -213,7 +214,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     const extraTags = this.customTags ? this.customTags.tags : [];
-    const defaultOptions: FormioOptions = {
+    const defaultOptions: Form['options'] & AngularFormioOptions = {
       errors: {
         message: 'Please fix the following errors before submitting.'
       },
@@ -445,7 +446,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
           }
           : {
             message: error.message || error.toString(),
-            paths: error.path ? [error.path] : [],
+            paths: (error.path || error.formattedKeyOrPath) ? [error.path || error.formattedKeyOrPath] : [],
           }
         : {
           message: '',
@@ -463,7 +464,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
             components.forEach((comp) => comp.setCustomValidity(messageText, true));
             this.alerts.addAlert({
               type: 'danger',
-              message: message[index],
+              message: Array.isArray(message) ? message[index] : message,
               component,
             });
             shouldErrorDisplay = false;
@@ -479,10 +480,6 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
             });
           }
         }
-
-        if (!this.noAlerts) {
-          this.formio.showErrors();
-        }
       }
 
       if (shouldErrorDisplay) {
@@ -493,6 +490,10 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
         });
       }
     });
+
+    if (this.formio && !this.noAlerts) {
+      this.formio.showErrors(errors);
+    }
   }
 
   focusOnComponet(key: any) {
@@ -507,7 +508,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
         .saveSubmission(submission)
         .subscribe(
           (sub: {}) => this.onSubmit(sub, true),
-          err => this.onError(err)
+          err => this.onError((err?.error || err))
         );
     } else {
       this.onSubmit(submission, false);

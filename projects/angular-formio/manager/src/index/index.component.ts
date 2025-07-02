@@ -4,10 +4,12 @@ import { FormManagerService } from '../form-manager.service';
 import { DefaultConfiguration, FormManagerConfig } from '../form-manager.config';
 import { FormioGridComponent } from '@formio/angular/grid';
 import { debounce } from 'lodash';
+import { NgIf } from '@angular/common';
 
 @Component({
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+    templateUrl: './index.component.html',
+    styleUrls: ['./index.component.scss'],
+    imports: [NgIf, FormioGridComponent]
 })
 export class FormManagerIndexComponent implements OnInit, AfterViewInit {
   @ViewChild('search') searchElement: ElementRef;
@@ -66,7 +68,6 @@ export class FormManagerIndexComponent implements OnInit, AfterViewInit {
     localStorage.setItem('query', JSON.stringify(this.gridQuery));
     localStorage.setItem('searchInput', search);
     this.formGrid.pageChanged({page: 1, itemPerPage: this.gridQuery.limit});
-    this.formGrid.refreshGrid(this.gridQuery);
   }
 
   clearSearch() {
@@ -80,9 +81,8 @@ export class FormManagerIndexComponent implements OnInit, AfterViewInit {
     if (this.searchElement?.nativeElement) {
       this.searchElement.nativeElement.value = '';
     }
+    this.formGrid.query = this.gridQuery;
     this.formGrid.pageChanged({page: 1});
-    this.formGrid.query = {};
-    this.formGrid.refreshGrid(this.gridQuery);
   }
 
   onAction(action: any) {

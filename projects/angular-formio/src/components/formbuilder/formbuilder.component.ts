@@ -14,8 +14,8 @@ import {
 } from '@angular/core';
 import { FormioAppConfig } from '../../formio.config';
 import {
+  AngularFormioOptions,
   FormioForm,
-  FormioOptions
 } from '../../formio.common';
 import { Formio, FormBuilder, Utils } from '@formio/js';
 import { assign } from 'lodash';
@@ -27,7 +27,8 @@ import { CustomTagsService } from '../../custom-tags.service';
   selector: 'form-builder',
   templateUrl: './formbuilder.component.html',
   styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.builder.min.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 /* tslint:enable */
 export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
@@ -38,7 +39,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   public componentAdding = false;
   private refreshSubscription: Subscription;
   @Input() form?: FormioForm;
-  @Input() options?: FormioOptions;
+  @Input() options?: FormBuilder['options'] & AngularFormioOptions;
   @Input() formbuilder?: any;
   @Input() noeval ? = false;
   @Input() refresh?: Observable<void>;

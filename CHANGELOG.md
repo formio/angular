@@ -2,17 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 8.0.0-rc.5
-### Fixed
- - Adding a way to reset the resource provider cache.
-
-## 8.0.0-rc.3
+## [Unreleased: 9.0.0-rc.1]
 ### Changed
- - FIO-8667 fixed location of download PDF button
+ - FIO-8638: fixed saving components after changing form display
+ - FIO-8779: updated class name for page number
+ - FIO-9258: separated webform options from angular webform options, fix some eslint errors, fix form options type
+ - FIO-9547: Upgrade to Angular 19
+
+## 8.1.0
+### Changed
+ - Official Release
+ - Expanding the components to allow for more functionality
+ 
+## 8.0.0
+### Changed
+ - Official Release
+ - FIO-8993: Fixed component validation message
+ - FIO-8819: Removed duplicate request on form manager search
+ - Changed resetPassForm to use resetpass key instead of register key
+ - FIO-8915: fixed an issue where errors list does not display in formmanager and formview pro
+ - Upgrade ngx-bootstrap and other dependencies.
+ - FIO-8779 updated class name for page number
  - FIO-8638 fixed saving components after changing form display
-
-## 8.0.0-rc.2
-### Changed
+ - FIO-8667 fixed location of download PDF button
  - Angular 18 upgrade
  - Update renderer to 5.x
     

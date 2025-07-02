@@ -3,9 +3,7 @@ import { Input, Output, ViewChild, TemplateRef, EventEmitter, Component } from '
 import { GridHeaderComponent } from './GridHeaderComponent';
 import { GridBodyComponent } from './GridBodyComponent';
 
-@Component({
-  template: ''
-})
+@Component({ template: '' })
 export class GridFooterComponent {
   @Input() header: GridHeaderComponent;
   @Input() body: GridBodyComponent;

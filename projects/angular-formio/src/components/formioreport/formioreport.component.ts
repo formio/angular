@@ -9,6 +9,7 @@ import { FormioReport } from '../../formio.common';
   templateUrl: './formioreport.component.html',
   styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.form.min.css'],
   encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 /* tslint:enable */
 export class FormioReportComponent extends FormioComponent implements OnInit, OnChanges {

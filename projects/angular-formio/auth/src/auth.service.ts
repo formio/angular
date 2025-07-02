@@ -58,7 +58,7 @@ export class FormioAuthService {
     this.resetPassForm =
       this.appConfig.appUrl +
       '/' +
-      get(this.config, 'register.form', 'resetpass');
+      get(this.config, 'resetpass.form', 'resetpass');
     this.onLogin = new EventEmitter();
     this.onLogout = new EventEmitter();
     this.onRegister = new EventEmitter();

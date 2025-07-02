@@ -5,7 +5,8 @@ import { FormioResourceConfig } from '../resource.config';
 
 @Component({
   styleUrls: ['./create.component.scss'],
-  templateUrl: './create.component.html'
+  templateUrl: './create.component.html',
+  standalone: false
 })
 export class FormioResourceCreateComponent implements OnInit {
   public onError: EventEmitter<any>;
