@@ -33,7 +33,7 @@ export class FormioResourceComponent implements OnInit, OnDestroy {
   }
 
   init() {
-    return this.service.init(this.route).then(() => 
+    return this.service.init(this.route, this.router).then(() => 
       this.auth.ready.then(() => 
         this.service.formFormio.userPermissions(
           this.auth.user, 
