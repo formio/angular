@@ -21,9 +21,6 @@ import { FormioBaseComponent } from './FormioBaseComponent';
         FormioAlertsComponent,
         ParseHtmlContentPipe
     ],
-    imports: [
-        CommonModule
-    ],
     exports: [
         FormioComponent,
         FormioReportComponent,
