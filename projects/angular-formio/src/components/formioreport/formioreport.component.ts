@@ -2,6 +2,9 @@ import { Component, OnInit, ViewEncapsulation, Input, OnChanges, ViewChild, Elem
 import { Formio } from '@formio/js';
 import { FormioComponent } from '../formio/formio.component';
 import { FormioReport } from '../../formio.common';
+import { NgIf } from '@angular/common';
+import { FormioLoaderComponent } from '../loader/formio.loader.component';
+import { FormioAlertsComponent } from '../alerts/formio.alerts.component';
 
 /* tslint:disable */
 @Component({
@@ -9,7 +12,7 @@ import { FormioReport } from '../../formio.common';
   templateUrl: './formioreport.component.html',
   styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.form.min.css'],
   encapsulation: ViewEncapsulation.None,
-  standalone: false
+    imports: [NgIf, FormioLoaderComponent, FormioAlertsComponent]
 })
 /* tslint:enable */
 export class FormioReportComponent extends FormioComponent implements OnInit, OnChanges {

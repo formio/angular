@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormManagerService } from '../../form-manager.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
   templateUrl: './submission.component.html',
-  standalone: false
+  imports: [NgIf, RouterLink, RouterLinkActive, RouterOutlet]
 })
 export class SubmissionComponent implements OnInit {
   public downloadUrl: string;

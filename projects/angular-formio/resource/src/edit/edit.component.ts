@@ -3,10 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
 import { Formio } from '@formio/js';
+import { FormioComponent } from '@formio/angular';
 
 @Component({
   templateUrl: './edit.component.html',
-  standalone: false
+    imports: [FormioComponent]
 })
 export class FormioResourceEditComponent implements OnDestroy {
   public triggerError: EventEmitter<any> = new EventEmitter();

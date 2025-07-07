@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterEvent, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FormioAuthService } from '@formio/angular/auth';
 import { FormioResourceService } from './resource.service';
 import { Subscription } from 'rxjs';
+import { NgIf } from '@angular/common';
 
 @Component({
   templateUrl: './resource.component.html',
-  standalone: false
+    imports: [RouterLink, RouterLinkActive, NgIf, RouterOutlet]
 })
 export class FormioResourceComponent implements OnInit, OnDestroy {
   public perms = {delete: false, edit: false};
