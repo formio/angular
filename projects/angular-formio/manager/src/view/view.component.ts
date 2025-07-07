@@ -4,10 +4,12 @@ import { FormManagerService } from '../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormioAuthService } from '@formio/angular/auth';
 import { Formio } from '@formio/js';
+import { NgIf } from '@angular/common';
+import { FormioComponent } from '@formio/angular';
 
 @Component({
   templateUrl: './view.component.html',
-  standalone: false
+  imports: [NgIf, FormioComponent]
 })
 export class FormManagerViewComponent implements OnInit {
   public submission: any;

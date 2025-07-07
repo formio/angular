@@ -3,10 +3,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
 import { each } from 'lodash';
+import { FormioAlertsComponent } from '@formio/angular';
+import { FormioGridComponent } from '@formio/angular/grid';
 
 @Component({
   templateUrl: './index.component.html',
-  standalone: false
+    imports: [FormioAlertsComponent, FormioGridComponent]
 })
 export class FormioResourceIndexComponent implements OnInit {
   public gridSrc?: string;
