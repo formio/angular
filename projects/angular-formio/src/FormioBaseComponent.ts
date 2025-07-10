@@ -120,7 +120,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   setForm(form: FormioForm) {
     this.form = form;
     if (this.formio) {
-      this.formio.destroy();
+      this.formio.destroy(true);
     }
 
     if (this.form.title) {
@@ -285,24 +285,24 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  setFormFromSrc() {
+   setFormFromSrc() {
      // if a submission is provided, load it first to set required form revision.
-        if (
-          isEmpty(this.submission) &&
-          this.service &&
-          this.service.formio.submissionId
-        ) {
-          this.service.loadSubmission().subscribe(
-            (submission: any) => {
+     if (
+       isEmpty(this.submission) &&
+       this.service &&
+       this.service.formio.submissionId
+     ) {
+       this.service.loadSubmission().subscribe(
+         (submission: any) => {
            this.loadForm(() => {
-              if (this.readOnly) {
-                this.formio.options.readOnly = true;
-              }
-              this.submission = this.formio.submission = submission;
+             if (this.readOnly) {
+               this.formio.options.readOnly = true;
+             }
+             this.submission = this.formio.submission = submission;
            });
-            },
-            err => this.onError(err)
-          );
+         },
+         err => this.onError(err)
+       );
      } else {
        this.loadForm();
      }
@@ -326,7 +326,7 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     if (this.formio) {
-      this.formio.destroy();
+      this.formio.destroy(true);
     }
   }
 
