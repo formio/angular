@@ -24,9 +24,9 @@ import { CustomTagsService } from '../../custom-tags.service';
 
 /* tslint:disable */
 @Component({
-  selector: 'form-builder',
-  templateUrl: './formbuilder.component.html',
-  styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.builder.min.css'],
+    selector: 'form-builder',
+    templateUrl: './formbuilder.component.html',
+    styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.builder.min.css'],
     encapsulation: ViewEncapsulation.None
 })
 /* tslint:enable */
@@ -207,7 +207,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     if (this.formio) {
-      this.formio.destroy();
+      this.formio.destroy(true);
     }
   }
 }
