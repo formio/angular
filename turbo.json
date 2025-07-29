@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "//"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "projects/**",
+        "angular.json",
+        "package.json",
+        "turbo.json"
+      ],
+      "outputs": [
+        ".angular/cache/**",
+        "dist/**"
+      ]
+    }
+  }
+}
