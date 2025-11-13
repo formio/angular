@@ -7,7 +7,7 @@ import { NgIf } from '@angular/common';
 
 @Component({
   templateUrl: './resource.component.html',
-    imports: [RouterLink, RouterLinkActive, NgIf, RouterOutlet]
+  imports: [RouterLink, RouterLinkActive, NgIf, RouterOutlet]
 })
 export class FormioResourceComponent implements OnInit, OnDestroy {
   public perms = {delete: false, edit: false};
