@@ -1,6 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'timeSince' })
+@Pipe({
+  name: 'timeSince',
+  standalone: false
+})
 export class TimeSince implements PipeTransform {
   transform(date: Date): string {
     const elapsed = (new Date().getTime() - new Date(date).getTime()) / 1000;

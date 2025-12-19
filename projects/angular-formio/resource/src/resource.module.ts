@@ -19,7 +19,9 @@ import { extendRouter } from '@formio/angular';
     CommonModule,
     FormioModule,
     FormioGrid,
-        RouterModule,
+    RouterModule
+  ],
+  declarations: [
     FormioResourceComponent,
     FormioResourceCreateComponent,
     FormioResourceIndexComponent,

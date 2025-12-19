@@ -1,14 +1,12 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 import { FormioResourceConfig } from '../resource.config';
-import { NgIf } from '@angular/common';
-import { FormioComponent } from '@formio/angular';
 
 @Component({
   styleUrls: ['./create.component.scss'],
   templateUrl: './create.component.html',
-    imports: [NgIf, RouterLink, FormioComponent]
+  standalone: false
 })
 export class FormioResourceCreateComponent implements OnInit {
   public onError: EventEmitter<any>;
