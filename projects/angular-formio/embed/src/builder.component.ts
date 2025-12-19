@@ -1,12 +1,13 @@
-import {Component, ElementRef, Input, ViewChild, Output, EventEmitter, AfterViewInit, OnDestroy} from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import {Form, FormBuilder, Webform} from '@formio/js';
 import WebformBuilder from '@formio/js/lib/cjs/WebformBuilder';
 
 @Component({
     selector: 'formio-builder',
-    template: '<div #formio></div>'
+    template: '<div #formio></div>',
+    standalone: false
 })
-export class FormioBuilder implements AfterViewInit, OnDestroy {
+export class FormioBuilder implements AfterViewInit {
     @ViewChild('formio') element: ElementRef;
     @Input() form?: Form['options'] | null;
     @Input() options?: FormBuilder['options'] = {};
@@ -65,8 +66,4 @@ export class FormioBuilder implements AfterViewInit, OnDestroy {
             this.ready.emit(this.instance);
         }).catch((err) => this.error.emit(err));
     }
-
-  ngOnDestroy(): void {
-      this.instance.destroy(true);
-  }
 }

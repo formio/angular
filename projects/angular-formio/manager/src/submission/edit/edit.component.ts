@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { FormManagerService } from '../../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormioComponent } from '@formio/angular';
 
 @Component({
-    templateUrl: './edit.component.html',
-    imports: [FormioComponent]
+  templateUrl: './edit.component.html',
+  standalone: false
 })
 export class SubmissionEditComponent {
   constructor(

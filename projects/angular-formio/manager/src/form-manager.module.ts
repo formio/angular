@@ -21,26 +21,28 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { extendRouter } from '@formio/angular';
 @NgModule({
-    imports: [
-        CommonModule,
-        FormioModule,
-        RouterModule,
-        FormsModule,
-        FormioGrid,
-        ModalModule.forRoot(),
-        PaginationModule.forRoot(),
-        FormManagerIndexComponent,
-        FormManagerCreateComponent,
-        FormManagerFormComponent,
-        FormManagerViewComponent,
-        FormManagerEditComponent,
-        FormManagerDeleteComponent,
-        SubmissionComponent,
-        SubmissionEditComponent,
-        SubmissionDeleteComponent,
-        SubmissionViewComponent,
-        SubmissionIndexComponent
-    ]
+  imports: [
+    CommonModule,
+    FormioModule,
+    RouterModule,
+    FormsModule,
+    FormioGrid,
+    ModalModule.forRoot(),
+    PaginationModule.forRoot()
+  ],
+  declarations: [
+    FormManagerIndexComponent,
+    FormManagerCreateComponent,
+    FormManagerFormComponent,
+    FormManagerViewComponent,
+    FormManagerEditComponent,
+    FormManagerDeleteComponent,
+    SubmissionComponent,
+    SubmissionEditComponent,
+    SubmissionDeleteComponent,
+    SubmissionViewComponent,
+    SubmissionIndexComponent
+  ]
 })
 export class FormManagerModule {
   static forChild(config?: FormManagerRouteConfig): any {

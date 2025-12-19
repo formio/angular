@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, Optional } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormioResourceConfig } from './resource.config';
 import { FormioResources } from './resources.service';
 import { FormioPromiseService } from '@formio/angular';
@@ -84,18 +84,9 @@ export class FormioResourceService {
     this.resource = { data: {} };
   }
 
-  init(route: ActivatedRoute, router: Router = null) {
+  init(route: ActivatedRoute) {
     const snapshot = route.snapshot;
-    let reset = false;
-    if (snapshot.queryParams?.hasOwnProperty('reset')) {
-      reset = snapshot.queryParams.reset;
-    }
-    else if (router) {
-      const navigation = router.getCurrentNavigation();
-      if (navigation?.extras.state && navigation.extras.state.hasOwnProperty('reset')) {
-        reset = navigation.extras.state['reset'];
-      }
-    }
+    const reset = snapshot.queryParams?.hasOwnProperty('reset') ? snapshot.queryParams.reset : false;
     const resourceId = snapshot.params['id'];
     if (resourceId && (resourceId === this.resourceId) && !reset) {
       return this.ready;

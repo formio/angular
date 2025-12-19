@@ -1,12 +1,14 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FormioComponent } from "./formio.component";
-import { FormioBuilder } from "./builder.component";
-import { FormioAppService } from "./app.service";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormioComponent } from './formio.component';
+import { FormioBuilder } from './builder.component';
+import { FormioAppService } from './app.service';
 
 @NgModule({
     imports: [
-        CommonModule,
+        CommonModule
+    ],
+    declarations: [
         FormioComponent,
         FormioBuilder
     ],
