@@ -6,9 +6,7 @@ import { FormioAppService } from "./app.service";
 
 @NgModule({
     imports: [
-        CommonModule
-    ],
-    declarations: [
+        CommonModule,
         FormioComponent,
         FormioBuilder
     ],

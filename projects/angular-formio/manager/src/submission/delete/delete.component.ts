@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { FormManagerService } from '../../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormioAlerts } from '@formio/angular';
+import { FormioAlertsComponent } from '@formio/angular';
 
 @Component({
-  templateUrl: './delete.component.html',
-  standalone: false
+    templateUrl: './delete.component.html',
+    imports: [FormioAlertsComponent]
 })
 export class SubmissionDeleteComponent {
   constructor(

@@ -2,10 +2,7 @@ import { Output, EventEmitter, ViewChild, TemplateRef, Input, Component } from '
 import {FormioPromiseService} from '@formio/angular';
 import {GridHeader} from './types/grid-header';
 
-@Component({
-  template: '',
-  standalone: false
-})
+@Component({ template: '' })
 export class GridHeaderComponent {
   @Input() actionAllowed: any;
   @Output() sort: EventEmitter<GridHeader>;
