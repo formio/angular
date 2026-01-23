@@ -1,11 +1,16 @@
 <ng-template>
   <thead>
     <tr>
-      <th *ngFor="let header of headers">
-        <a (click)="sort.emit(header)">
-          {{ header.label }}&nbsp;<span [ngClass]="{'fa-caret-up bi-caret-up': (header.sort === 'asc'), 'fa-caret-down bi-caret-down': (header.sort === 'desc')}" class="fa bi" *ngIf="header.sort"></span>
-        </a>
-      </th>
+      @for (header of headers; track $index) {
+        <th>
+          <a (click)="sort.emit(header)">
+            {{ header.label }}&nbsp;
+            @if (header.sort) {
+              <span [ngClass]="{'fa-caret-up bi-caret-up': (header.sort === 'asc'), 'fa-caret-down bi-caret-down': (header.sort === 'desc')}" class="fa bi"></span>
+            }
+          </a>
+        </th>
+      }
     </tr>
   </thead>
 </ng-template>

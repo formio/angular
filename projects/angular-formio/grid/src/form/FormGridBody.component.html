@@ -1,22 +1,34 @@
 <ng-template>
-  <tbody *ngIf="rows">
-    <tr *ngFor="let form of rows">
-      <td>
-        <div class="row">
-          <div class="col-sm-9">
-            <a routerLink="{{form._id}}/view" (click)="onRowSelect($event, form)" class="text-decoration-none"><h5>{{ form.title }}</h5></a>
-            <div class="form-updated small text-muted">
-              Updated {{ form.modified | timeSince }} ago
+  @if (rows) {
+    <tbody>
+      @for (form of rows; track form._id) {
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-sm-9">
+                <a routerLink="{{form._id}}/view" (click)="onRowSelect($event, form)" class="text-decoration-none"><h5>{{ form.title }}</h5></a>
+                <div class="form-updated small text-muted">
+                  Updated {{ form.modified | timeSince }} ago
+                </div>
+              </div>
+              <div class="col-sm-3 d-flex justify-content-end align-items-center">
+                @if (actionAllowed('formView')) {
+                  <button #create class="btn btn-outline-secondary btn-sm form-btn form-btn-use" (click)="onRowAction($event, form, 'view')"><span class="fa fa-pencil bi bi-pencil"></span></button>&nbsp;
+                }
+                @if (actionAllowed('formSubmission')) {
+                  <button #view class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'submission')"><span class="fa fa-list-alt bi bi-table"></span></button>&nbsp;
+                }
+                @if (actionAllowed('formEdit')) {
+                  <button #edit class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'edit')"><span class="fa fa-edit bi bi-pencil-square"></span></button>&nbsp;
+                }
+                @if (actionAllowed('formDelete')) {
+                  <button #delete class="btn btn-secondary btn-sm form-btn form-btn-delete" (click)="onRowAction($event, form, 'delete')" title="Delete form"><span class="fa fa-trash bi bi-trash"></span></button>
+                }
+              </div>
             </div>
-          </div>
-          <div class="col-sm-3 d-flex justify-content-end align-items-center">
-            <button #create *ngIf="actionAllowed('formView')" class="btn btn-outline-secondary btn-sm form-btn form-btn-use" (click)="onRowAction($event, form, 'view')"><span class="fa fa-pencil bi bi-pencil"></span></button>&nbsp;
-            <button #view *ngIf="actionAllowed('formSubmission')" class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'submission')"><span class="fa fa-list-alt bi bi-table"></span></button>&nbsp;
-            <button #edit *ngIf="actionAllowed('formEdit')" class="btn btn-outline-secondary btn-sm form-btn" (click)="onRowAction($event, form, 'edit')"><span class="fa fa-edit bi bi-pencil-square"></span></button>&nbsp;
-            <button #delete *ngIf="actionAllowed('formDelete')" class="btn btn-secondary btn-sm form-btn form-btn-delete" (click)="onRowAction($event, form, 'delete')" title="Delete form"><span class="fa fa-trash bi bi-trash"></span></button>
-          </div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
+          </td>
+        </tr>
+      }
+    </tbody>
+  }
 </ng-template>

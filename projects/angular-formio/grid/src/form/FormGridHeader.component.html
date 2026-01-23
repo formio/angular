@@ -5,7 +5,10 @@
         <div class="row">
           <div class="col-sm-9">
             <a (click)="sort.emit(header)" style="cursor: pointer">
-              {{ header.label }}&nbsp;<span [ngClass]="{'fa-caret-up bi-caret-up': (header.sort === 'asc'), 'fa-caret-down bi-caret-down': (header.sort === 'desc')}" class="fa bi" *ngIf="header.sort"></span>
+              {{ header.label }}&nbsp;
+              @if (header.sort) {
+                <span [ngClass]="{'fa-caret-up bi-caret-up': (header.sort === 'asc'), 'fa-caret-down bi-caret-down': (header.sort === 'desc')}" class="fa bi"></span>
+              }
             </a>
           </div>
           <div class="col-sm-3 d-flex justify-content-end">

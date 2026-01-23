@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 import {GridHeaderComponent} from '../GridHeaderComponent';
 import {GridHeader, SortType} from '../types/grid-header';
-import { NgIf, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'form-grid-header',
-    templateUrl: './FormGridHeader.component.html',
-    imports: [NgIf, NgClass]
+  selector: 'form-grid-header',
+  templateUrl: './FormGridHeader.component.html',
+  imports: [NgClass]
 })
 export class FormGridHeaderComponent extends GridHeaderComponent {
   public header: GridHeader;

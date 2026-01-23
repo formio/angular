@@ -1,21 +1,29 @@
 <ng-template #footer let-position="position" let-label="label">
-  <thead class="formio-grid-footer" *ngIf="position === footerPositions.top">
-    <ng-container [ngTemplateOutlet]="defaultFooterTemplate" [ngTemplateOutletContext]="{ label: label }"></ng-container>
-  </thead>
-  <tfoot class="formio-grid-footer" *ngIf="position === footerPositions.bottom">
-    <ng-container [ngTemplateOutlet]="defaultFooterTemplate" [ngTemplateOutletContext]="{ label: label }"></ng-container>
-  </tfoot>
+  @if (position === footerPositions.top) {
+    <thead class="formio-grid-footer">
+      <ng-container [ngTemplateOutlet]="defaultFooterTemplate" [ngTemplateOutletContext]="{ label: label }"></ng-container>
+    </thead>
+  }
+  @if (position === footerPositions.bottom) {
+    <tfoot class="formio-grid-footer">
+      <ng-container [ngTemplateOutlet]="defaultFooterTemplate" [ngTemplateOutletContext]="{ label: label }"></ng-container>
+    </tfoot>
+  }
 </ng-template>
 
 <ng-template let-label="label" #defaultFooterTemplate>
   <tr>
-    <td *ngIf="header" [colSpan]="header.numHeaders">
-      <button *ngIf="actionAllowed('formCreate')" class="btn btn-primary form-btn-use float-start" (click)="createItem.emit('form')"><em class="fa fa-plus bi bi-plus-lg"></em> {{ createText }}</button>
-      <span class="pull-right float-end item-counter"><span class="page-num">{{ body.firstItem }} - {{ body.lastItem }}</span> / {{ body.total }} total</span>
-      <span [attr.aria-label]="label" role="navigation">
-        <pagination [totalItems]="body.total" [itemsPerPage]="body.limit" [(ngModel)]="body.skip" (pageChanged)="pageChanged.emit($event)" [maxSize]="size" class="justify-content-center pagination-sm">
-        </pagination>
-      </span>
-    </td>
+    @if (header) {
+      <td [colSpan]="header.numHeaders">
+        @if (actionAllowed('formCreate')) {
+          <button class="btn btn-primary form-btn-use float-start" (click)="createItem.emit('form')"><em class="fa fa-plus bi bi-plus-lg"></em> {{ createText }}</button>
+        }
+        <span class="pull-right float-end item-counter"><span class="page-num">{{ body.firstItem }} - {{ body.lastItem }}</span> / {{ body.total }} total</span>
+        <span [attr.aria-label]="label" role="navigation">
+          <pagination [totalItems]="body.total" [itemsPerPage]="body.limit" [(ngModel)]="body.skip" (pageChanged)="pageChanged.emit($event)" [maxSize]="size" class="justify-content-center pagination-sm">
+          </pagination>
+        </span>
+      </td>
+    }
   </tr>
 </ng-template>

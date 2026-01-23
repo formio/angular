@@ -4,10 +4,8 @@ import { GridBodyComponent } from '../GridBodyComponent';
 import {FormioPromiseService} from '@formio/angular';
 import { GridHeader } from '../types/grid-header';
 import {FormioSubmission} from '@formio/angular';
-import { NgFor } from '@angular/common';
 @Component({
-    templateUrl: './SubmissionGridBody.component.html',
-    imports: [NgFor]
+  templateUrl: './SubmissionGridBody.component.html',
 })
 export class SubmissionGridBodyComponent extends GridBodyComponent {
   load(formio: FormioPromiseService, query?: any) {

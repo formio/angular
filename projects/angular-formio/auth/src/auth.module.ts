@@ -11,15 +11,15 @@ import { FormioAuthRoutes } from './auth.routes';
 import { extendRouter } from '@formio/angular';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormioModule,
-        RouterModule,
-        FormioAuthComponent,
-        FormioAuthLoginComponent,
-        FormioAuthRegisterComponent,
-        FormioResetPassComponent
-    ]
+  imports: [
+      CommonModule,
+      FormioModule,
+      RouterModule,
+      FormioAuthComponent,
+      FormioAuthLoginComponent,
+      FormioAuthRegisterComponent,
+      FormioResetPassComponent
+  ]
 })
 export class FormioAuth {
   static forRoot(config?: FormioAuthRouteConfig): any {

@@ -6,8 +6,8 @@ import { GridService } from '@formio/angular/grid';
 import { FormioAlertsComponent } from '@formio/angular';
 
 @Component({
-    templateUrl: './delete.component.html',
-    imports: [FormioAlertsComponent]
+  templateUrl: './delete.component.html',
+  imports: [FormioAlertsComponent]
 })
 export class FormManagerDeleteComponent {
   constructor(
