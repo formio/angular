@@ -18,11 +18,12 @@ This library supports many different Angular Versions. If you wish to use this l
 | 7.5.0               | 17                  | 5.x          |
 | 8.0.0               | 18                  | 5.x          |
 | 9.0.0               | 19                  | 5.x          |
+| 10.0.0              | 20                  | 5.x          |
 
 _*Note: The formiojs namespace changes from formiojs (4.x) to @formio/js (5.x)_
 
-## Angular 17
-Angular 17 versions are currently released as "latest" so you can install with Angular 17 with the following commands.
+## Angular 19
+Angular 19 versions are currently released as "latest" so you can install with Angular 19 with the following commands.
 
 ### NPM
     npm install --save @formio/angular
@@ -30,12 +31,12 @@ Angular 17 versions are currently released as "latest" so you can install with A
 ### Yarn
     yarn add --save @formio/angular
 
-## Angular 16
+## Angular 18
 ### NPM
-    npm install --save @formio/angular@a16
+    npm install --save @formio/angular@a18
 
 ### Yarn
-    yarn add --save @formio/angular@a16
+    yarn add --save @formio/angular@a18
 
 Running Demo
 --------------------------
