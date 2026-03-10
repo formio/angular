@@ -24,14 +24,14 @@ import {FormioPromiseService} from '@formio/angular';
 import {GridColumn} from './types/grid-column';
 import {GridHeader, SortType} from './types/grid-header';
 import { FormioAlertsComponent } from '@formio/angular';
-import { NgTemplateOutlet } from '@angular/common';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { FormioLoaderComponent } from '@formio/angular';
 
 @Component({
   selector: 'formio-grid',
   styleUrls: ['./grid.component.scss'],
   templateUrl: './grid.component.html',
-  imports: [FormioAlertsComponent, NgTemplateOutlet, FormioLoaderComponent]
+  imports: [FormioAlertsComponent, NgTemplateOutlet, FormioLoaderComponent, CommonModule]
 })
 export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() footerPosition = GridFooterPositions.bottom;
