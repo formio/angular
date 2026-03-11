@@ -9,10 +9,7 @@ import {Form, Utils, Webform} from '@formio/js';
 import { AlertsPosition } from './types/alerts-position';
 const { Evaluator, fastCloneDeep } = Utils;
 
-@Component({
-  template: '',
-  standalone: false
-})
+@Component({ template: '' })
 export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form?: FormioForm;
   @Input() submission?: any = {};
@@ -288,7 +285,30 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  setFormFromSrc() {
+   setFormFromSrc() {
+     // if a submission is provided, load it first to set required form revision.
+     if (
+       isEmpty(this.submission) &&
+       this.service &&
+       this.service.formio.submissionId
+     ) {
+       this.service.loadSubmission().subscribe(
+         (submission: any) => {
+           this.loadForm(() => {
+             if (this.readOnly) {
+               this.formio.options.readOnly = true;
+             }
+             this.submission = this.formio.submission = submission;
+           });
+         },
+         err => this.onError(err)
+       );
+     } else {
+       this.loadForm();
+     }
+  }
+
+  loadForm(done?: () => void) {
     this.service.loadForm({ params: { live: 1 } }).subscribe(
       (form: FormioForm) => {
         if (form && form.components) {
@@ -296,22 +316,8 @@ export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
             this.setForm(form);
           });
         }
-
-        // if a submission is also provided.
-        if (
-          isEmpty(this.submission) &&
-          this.service &&
-          this.service.formio.submissionId
-        ) {
-          this.service.loadSubmission().subscribe(
-            (submission: any) => {
-              if (this.readOnly) {
-                this.formio.options.readOnly = true;
-              }
-              this.submission = this.formio.submission = submission;
-            },
-            err => this.onError(err)
-          );
+        if (done) {
+          done();
         }
       },
       err => this.onError(err)
