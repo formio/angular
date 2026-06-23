@@ -8,7 +8,7 @@ end application. This allows forms to be dynamically built using JSON schemas.
 
 Angular Versions
 -------------------------
-This library supports many different Angular Versions. To use this library with the correct version of Angular, please refer to the Compatibility matrix here: https://help.form.io/dev/javascript-frameworks#angular-versions
+This library supports many different Angular Versions. To use this library with the correct version of Angular, please refer to the Compatibility matrix here: https://help.form.io/dev/javascript-development/frameworks#angular-versions
 
 ## For the latest version, install via the following commands:
 
