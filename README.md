@@ -6,6 +6,12 @@ end application. This allows forms to be dynamically built using JSON schemas.
 
 ## Please note that Form.io Open Source Repositories are maintained and all latest versions are available via NPM. 
 
+Official Documentation
+--------------------------
+For the latest documentation, release information, and guides, always refer to the official Form.io Help Documentation available here:
+
+**[https://help.form.io](https://help.form.io/dev/javascript-development/frameworks#angular)**
+
 Angular Versions
 -------------------------
 This library supports many different Angular Versions. To use this library with the correct version of Angular, please refer to the Compatibility matrix here: https://help.form.io/dev/javascript-development/frameworks#angular-versions
