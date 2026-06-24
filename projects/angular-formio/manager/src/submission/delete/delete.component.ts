@@ -5,8 +5,8 @@ import { FormioAlerts } from '@formio/angular';
 import { FormioAlertsComponent } from '@formio/angular';
 
 @Component({
-    templateUrl: './delete.component.html',
-    imports: [FormioAlertsComponent]
+  templateUrl: './delete.component.html',
+   imports: [FormioAlertsComponent]
 })
 export class SubmissionDeleteComponent {
   constructor(

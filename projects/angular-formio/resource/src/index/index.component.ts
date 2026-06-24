@@ -8,7 +8,7 @@ import { FormioGridComponent } from '@formio/angular/grid';
 
 @Component({
   templateUrl: './index.component.html',
-    imports: [FormioAlertsComponent, FormioGridComponent]
+  imports: [FormioAlertsComponent, FormioGridComponent]
 })
 export class FormioResourceIndexComponent implements OnInit {
   public gridSrc?: string;

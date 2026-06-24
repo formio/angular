@@ -9,10 +9,7 @@ import {Form, Utils, Webform} from '@formio/js';
 import { AlertsPosition } from './types/alerts-position';
 const { Evaluator, fastCloneDeep } = Utils;
 
-@Component({
-  template: '',
-  standalone: false
-})
+@Component({ template: '' })
 export class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form?: FormioForm;
   @Input() submission?: any = {};

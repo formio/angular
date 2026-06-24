@@ -6,7 +6,7 @@ import { FormioComponent } from '@formio/angular';
 
 @Component({
   templateUrl: './view.component.html',
-    imports: [FormioComponent]
+  imports: [FormioComponent]
 })
 export class FormioResourceViewComponent implements OnDestroy{
   constructor(

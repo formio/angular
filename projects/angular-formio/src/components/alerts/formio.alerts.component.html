@@ -1,3 +1,5 @@
-<div *ngFor="let alert of alerts.alerts" class="alert alert-{{ alert.type }}" role="alert" (click)="getComponent($event, alert)">
-  {{alert.message | parseHtmlContent}}
-</div>
+@for (alert of alerts.alerts; track $index) {
+  <div class="alert alert-{{ alert.type }}" role="alert" (click)="getComponent($event, alert)">
+    {{alert.message | parseHtmlContent}}
+  </div>
+}
