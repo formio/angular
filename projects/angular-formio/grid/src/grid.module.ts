@@ -23,7 +23,7 @@ import { TimeSince } from './form/time-since.pipe'
         FormsModule,
         FormioModule,
         RouterModule,
-        PaginationModule.forRoot(),
+        PaginationModule,
         FormioGridComponent,
         FormGridHeaderComponent,
         FormGridBodyComponent,

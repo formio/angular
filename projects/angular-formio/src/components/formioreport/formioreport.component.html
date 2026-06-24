@@ -1,8 +1,14 @@
 <div role="form" [attr.aria-label]="label">
-  <div *ngIf="isReportLoading && !hideLoading" style="position:relative;height:200px">
-    <formio-loader [isLoading]="isReportLoading"></formio-loader>
-  </div>
-  <formio-alerts *ngIf="this.options.alertsPosition === AlertsPosition.top || this.options.alertsPosition === AlertsPosition.both" (focusComponent)="focusOnComponet($event)" [alerts]="alerts"></formio-alerts>
+  @if (isReportLoading && !hideLoading) {
+    <div style="position:relative;height:200px">
+      <formio-loader [isLoading]="isReportLoading"></formio-loader>
+    </div>
+  }
+  @if (this.options.alertsPosition === AlertsPosition.top || this.options.alertsPosition === AlertsPosition.both) {
+    <formio-alerts (focusComponent)="focusOnComponet($event)" [alerts]="alerts"></formio-alerts>
+  }
   <div #report></div>
-  <formio-alerts *ngIf="this.options.alertsPosition === AlertsPosition.bottom || this.options.alertsPosition === AlertsPosition.both" (focusComponent)="focusOnComponet($event)" [alerts]="alerts"></formio-alerts>
+  @if (this.options.alertsPosition === AlertsPosition.bottom || this.options.alertsPosition === AlertsPosition.both) {
+    <formio-alerts (focusComponent)="focusOnComponet($event)" [alerts]="alerts"></formio-alerts>
+  }
 </div>

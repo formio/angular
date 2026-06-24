@@ -4,19 +4,25 @@ This library serves as a Dynamic JSON Powered Form rendering library for [Angula
 providing a JSON schema to a ```<formio>``` Angular component, where that form is dynamically rendered within the front
 end application. This allows forms to be dynamically built using JSON schemas.
 
-## Please note that Form.io Open Source Repositories are maintained and all latest versions are available via NPM. 
-
-Official Documentation
---------------------------
-For the latest documentation, release information, and guides, always refer to the official Form.io Help Documentation available here:
-
-**[https://help.form.io](https://help.form.io/dev/javascript-development/frameworks#angular)**
-
 Angular Versions
 -------------------------
-This library supports many different Angular Versions. To use this library with the correct version of Angular, please refer to the Compatibility matrix here: https://help.form.io/dev/javascript-development/frameworks#angular-versions
+This library supports many different Angular Versions. If you wish to use this library with your specific version of Angular, then you will need to install the following versions.
 
-## For the latest version, install via the following commands:
+
+*Angular Compatibility*
+| **@formio/angular** | **Angular Version** | **formiojs*** |
+|---------------------|---------------------|--------------|
+| 6.0.0               | 16                  | 4.x          |
+| 6.5.0               | 16                  | 5.x          |
+| 7.0.0               | 17                  | 4.x          |
+| 7.5.0               | 17                  | 5.x          |
+| 8.0.0               | 18                  | 5.x          |
+| 9.0.0               | 19                  | 5.x          |
+
+_*Note: The formiojs namespace changes from formiojs (4.x) to @formio/js (5.x)_
+
+## Angular 17
+Angular 17 versions are currently released as "latest" so you can install with Angular 17 with the following commands.
 
 ### NPM
     npm install --save @formio/angular
@@ -24,12 +30,12 @@ This library supports many different Angular Versions. To use this library with 
 ### Yarn
     yarn add --save @formio/angular
 
-## For previous Angular versions, the following commands with the relevant Angular version can be referenced:
+## Angular 16
 ### NPM
-    npm install --save @formio/angular@a18
+    npm install --save @formio/angular@a16
 
 ### Yarn
-    yarn add --save @formio/angular@a18
+    yarn add --save @formio/angular@a16
 
 Running Demo
 --------------------------
@@ -43,6 +49,8 @@ To run a demo of the Form.io Angular renderer, please follow these steps.
 This will startup an example application where you can see all the features provided by this module.
 
 Here is the hosted demo application [https://formio.github.io/angular-demo/](https://formio.github.io/angular-demo)
+
+### Note: If you wish to see the Angular Demo for Angular 16, then use the 6.0.x branch of this repo.
 
 Using within your application
 ---------------------------

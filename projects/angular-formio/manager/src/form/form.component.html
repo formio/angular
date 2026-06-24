@@ -1,10 +1,16 @@
-<button *ngIf="options.viewer" class="float-end btn btn-outline-primary" (click)="openEmbed(content)"><em class="fa fa-share-alt bi bi-share"></em> Share</button>
+@if (options.viewer) {
+  <button class="float-end btn btn-outline-primary" (click)="openEmbed(content)"><em class="fa fa-share-alt bi bi-share"></em> Share</button>
+}
 <ul class="nav nav-tabs mb-2">
   <li class="nav-item"><a class="nav-link" routerLink="../"><em class="fa fa-chevron-left bi bi-chevron-left"></em></a></li>
   <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="view" routerLinkActive="active"><em class="fa fa-pencil bi bi-pencil"></em> Enter Data</a></li>
   <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="submission" routerLinkActive="active"><em class="fa fa-list-alt bi bi-table"></em> View Data</a></li>
-  <li *ngIf="service.actionAllowed('formEdit')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="edit" routerLinkActive="active"><em class="fa fa-edit bi bi-pencil-square"></em> Edit Form</a></li>
-  <li *ngIf="service.actionAllowed('formDelete')" class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="delete" routerLinkActive="active"><span class="fa fa-trash bi bi-trash"></span></a></li>
+  @if (service.actionAllowed('formEdit')) {
+    <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="edit" routerLinkActive="active"><em class="fa fa-edit bi bi-pencil-square"></em> Edit Form</a></li>
+  }
+  @if (service.actionAllowed('formDelete')) {
+    <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="delete" routerLinkActive="active"><span class="fa fa-trash bi bi-trash"></span></a></li>
+  }
 </ul>
 <router-outlet></router-outlet>
 <ng-template #content>
@@ -23,8 +29,12 @@
         <a class="nav-link" [ngClass]="{'active': choice === 'isEmbed'}" (click)="choices('isEmbed')"><em class="fa fa-code bi bi-code-slash"></em> Embed</a>
       </li>
     </ul>
-    <pre  *ngIf="choice === 'isEmbed'"><textarea onclick="this.focus();this.select()" readonly="readonly" style="width:100%;" rows="8" [ngModel]="embedCode"></textarea></pre>
-    <input *ngIf="choice === 'isUrl'" type="text" onclick="this.focus();this.select()" readonly="readonly" class="form-control" [ngModel]="shareUrl" placeholder="https://examples.form.io/example">
+    @if (choice === 'isEmbed') {
+      <pre><textarea onclick="this.focus();this.select()" readonly="readonly" style="width:100%;" rows="8" [ngModel]="embedCode"></textarea></pre>
+    }
+    @if (choice === 'isUrl') {
+      <input type="text" onclick="this.focus();this.select()" readonly="readonly" class="form-control" [ngModel]="shareUrl" placeholder="https://examples.form.io/example">
+    }
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="modalRef.hide()">Close</button>

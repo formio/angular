@@ -1,12 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { FormioAlerts } from './formio.alerts';
-import { NgFor } from '@angular/common';
 import { ParseHtmlContentPipe } from './parse-html-content.pipe';
 
 @Component({
   selector: 'formio-alerts',
   templateUrl: './formio.alerts.component.html',
-    imports: [NgFor, ParseHtmlContentPipe]
+  imports: [ParseHtmlContentPipe]
 })
 export class FormioAlertsComponent implements OnInit {
   @Input() alerts: FormioAlerts;
