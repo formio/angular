@@ -141,7 +141,6 @@ export class FormioResourceService {
       .then(
         (form: any) => {
           this.form = form;
-          this.appConfig.currentForm = form;
           this.formResolve(form);
           this.isLoading = false;
           this.loadParents();

@@ -12,13 +12,15 @@ import { extendRouter } from '@formio/angular';
 
 @NgModule({
   imports: [
-      CommonModule,
-      FormioModule,
-      RouterModule,
-      FormioAuthComponent,
-      FormioAuthLoginComponent,
-      FormioAuthRegisterComponent,
-      FormioResetPassComponent
+    CommonModule,
+    FormioModule,
+    RouterModule
+  ],
+  declarations: [
+    FormioAuthComponent,
+    FormioAuthLoginComponent,
+    FormioAuthRegisterComponent,
+    FormioResetPassComponent
   ]
 })
 export class FormioAuth {

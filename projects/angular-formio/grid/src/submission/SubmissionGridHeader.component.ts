@@ -7,11 +7,10 @@ import {FormioPromiseService} from '@formio/angular';
 import {ComponentInstance, FormioForm} from '@formio/angular';
 import {GridColumn} from '../types/grid-column';
 import {GridHeader, SortType} from '../types/grid-header';
-import { NgClass } from '@angular/common';
 
 @Component({
   templateUrl: './SubmissionGridHeader.component.html',
-  imports: [NgClass]
+  standalone: false
 })
 export class SubmissionGridHeaderComponent extends GridHeaderComponent {
   // Map structure where the key is the path and the value is the component

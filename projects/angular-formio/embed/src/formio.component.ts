@@ -4,7 +4,8 @@ import { Form as formType, Submission } from '@formio/core/types';
 
 @Component({
     selector: 'formio',
-    template: '<div #formio></div>'
+    template: '<div #formio></div>',
+    standalone: false
 })
 export class FormioComponent implements AfterViewInit {
     @Input() src?: string;

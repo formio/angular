@@ -4,7 +4,10 @@ import { GridHeaderComponent } from './GridHeaderComponent';
 import { GridService } from './grid.service';
 import {FormioPromiseService} from '@formio/angular';
 
-@Component({ template: '' })
+@Component({
+  template: '',
+  standalone: false
+})
 export class GridBodyComponent {
   @Input() header: GridHeaderComponent;
   @Input() actionAllowed: any;
@@ -55,7 +58,7 @@ export class GridBodyComponent {
       this.skip = 0;
       this.loading = false;
       this.service.setRows(this.rows);
-
+      
       return this.rows;
     }
 

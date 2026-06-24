@@ -2,13 +2,11 @@ import { Component, ElementRef, OnDestroy, ViewChild, ViewChildren } from '@angu
 import { GridBodyComponent } from '../GridBodyComponent';
 import { FormioPromiseService } from '@formio/angular';
 import { Tooltip } from 'bootstrap';
-import { RouterLink } from '@angular/router';
-import { TimeSince } from './time-since.pipe';
 @Component({
   selector: 'form-grid-body',
   styleUrls: ['./FormGridBody.component.scss'],
   templateUrl: './FormGridBody.component.html',
-  imports: [RouterLink, TimeSince]
+  standalone: false
 })
 export class FormGridBodyComponent extends GridBodyComponent implements OnDestroy {
   @ViewChildren('create') createBtns: ElementRef[];

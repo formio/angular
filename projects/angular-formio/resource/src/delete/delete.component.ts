@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormioResourceService } from '../resource.service';
 
-@Component({ templateUrl: './delete.component.html' })
+@Component({
+  templateUrl: './delete.component.html',
+  standalone: false
+})
 export class FormioResourceDeleteComponent {
   constructor(
     public service: FormioResourceService,

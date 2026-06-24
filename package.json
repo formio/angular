@@ -1,20 +1,20 @@
 {
   "name": "@formio/angular",
-  "version": "9.0.0-rc.1",
+  "version": "9.0.2",
   "scripts": {
     "ng": "ng",
-    "build": "ng build angular-formio",
+    "sync": "node scripts/sync.js",
+    "check-sync": "node scripts/check-sync.js",
+    "build:dev": "ng build angular-formio",
     "build:watch": "ng build angular-formio --watch",
-    "build:prod": "ng build angular-formio --configuration production",
+    "build": "ng build angular-formio --configuration production",
     "docs": "npm run docs:build",
     "docs:build": "compodoc -p tsconfig.json -n angular-formio -d docs --hideGenerator",
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
-    "publish": "npm run build:prod && npm publish ./dist/angular-formio --tag=rc",
-    "publish:latest": "npm run build:prod && npm publish ./dist/angular-formio",
-    "test": "ng test",
-    "lint": "ng lint",
-    "postinstall": "node -e 'var fs=require(`fs`);var fname=`./projects/angular-formio/package.json`;var pjson=require(fname);pjson.version=require(`./package.json`).version;fs.writeFileSync(fname,JSON.stringify(pjson,null, 2))'"
+    "x:test": "ng test",
+    "postversion": "npm run sync",
+    "lint": "ng lint"
   },
   "repository": {
     "type": "git",
@@ -35,21 +35,22 @@
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.0.6",
-    "@angular/animations": "^19.0.5",
-    "@angular/cli": "^19.0.6",
-    "@angular/common": "^19.0.5",
-    "@angular/compiler": "^19.0.5",
-    "@angular/compiler-cli": "^19.0.5",
-    "@angular/core": "^19.0.5",
-    "@angular/forms": "^19.0.5",
-    "@angular/platform-browser": "^19.0.5",
-    "@angular/platform-browser-dynamic": "^19.0.5",
-    "@angular/router": "^19.0.5",
+    "@angular-devkit/build-angular": "catalog:angular19",
+    "@angular/animations": "catalog:angular19",
+    "@angular/cli": "catalog:angular19",
+    "@angular/common": "catalog:angular19",
+    "@angular/compiler": "catalog:angular19",
+    "@angular/compiler-cli": "catalog:angular19",
+    "@angular/core": "catalog:angular19",
+    "@angular/forms": "catalog:angular19",
+    "@angular/platform-browser": "catalog:angular19",
+    "@angular/platform-browser-dynamic": "catalog:angular19",
+    "@angular/router": "catalog:angular19",
     "@compodoc/compodoc": "1.1.25",
+    "@formio/core": "^2.6.0",
     "@formio/deprecated-types": "^0.1.0",
-    "@formio/js": "^5.2.0-rc.1",
-    "@types/jasmine": "^5.1.5",
+    "@formio/js": "^5.3.0",
+    "@types/jasmine": "^5.1.4",
     "@types/jasminewd2": "^2.0.13",
     "@types/node": "^22.10.5",
     "bootstrap": "5.3.3",
@@ -71,5 +72,11 @@
     "tslint": "~6.1.0",
     "typescript": "~5.6.3",
     "zone.js": "^0.15.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "publishConfig": {
+    "directory": "dist/angular-formio"
   }
 }

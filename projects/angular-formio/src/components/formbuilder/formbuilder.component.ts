@@ -27,7 +27,8 @@ import { CustomTagsService } from '../../custom-tags.service';
   selector: 'form-builder',
   templateUrl: './formbuilder.component.html',
   styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.builder.min.css'],
-    encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 /* tslint:enable */
 export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {

@@ -11,8 +11,7 @@ import { CustomTagsService } from './custom-tags.service';
 import { FormioBaseComponent } from './FormioBaseComponent';
 
 @NgModule({
-    imports: [
-        CommonModule,
+    declarations: [
         FormioComponent,
         FormioReportComponent,
         FormioBaseComponent,
@@ -20,6 +19,9 @@ import { FormioBaseComponent } from './FormioBaseComponent';
         FormioLoaderComponent,
         FormioAlertsComponent,
         ParseHtmlContentPipe
+    ],
+    imports: [
+        CommonModule
     ],
     exports: [
         FormioComponent,

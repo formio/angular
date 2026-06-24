@@ -3,9 +3,6 @@ import { FormioAppConfig } from '../../formio.config';
 import { Formio, Form } from '@formio/js';
 import { FormioBaseComponent } from '../../FormioBaseComponent';
 import { CustomTagsService } from '../../custom-tags.service';
-import { NgIf } from '@angular/common';
-import { FormioLoaderComponent } from '../loader/formio.loader.component';
-import { FormioAlertsComponent } from '../alerts/formio.alerts.component';
 
 /* tslint:disable */
 @Component({
@@ -13,7 +10,7 @@ import { FormioAlertsComponent } from '../alerts/formio.alerts.component';
   templateUrl: './formio.component.html',
   styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.form.min.css'],
   encapsulation: ViewEncapsulation.None,
-    imports: [NgIf, FormioLoaderComponent, FormioAlertsComponent]
+  standalone: false
 })
 /* tslint:enable */
 export class FormioComponent extends FormioBaseComponent implements OnInit, OnChanges {
@@ -23,7 +20,6 @@ export class FormioComponent extends FormioBaseComponent implements OnInit, OnCh
     @Optional() public customTags?: CustomTagsService,
   ) {
     super(ngZone, config, customTags);
-    alert('Hello FormioComponent');
     if (this.config) {
       Formio.setBaseUrl(this.config.apiUrl);
       Formio.setProjectUrl(this.config.appUrl);
