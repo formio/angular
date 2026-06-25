@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormManagerService } from '../form-manager.service';
 import { DefaultConfiguration, FormManagerConfig } from '../form-manager.config';
@@ -11,7 +11,7 @@ import { NgIf } from '@angular/common';
     styleUrls: ['./index.component.scss'],
     imports: [NgIf, FormioGridComponent]
 })
-export class FormManagerIndexComponent implements OnInit, AfterViewInit {
+export class FormManagerIndexComponent implements OnInit {
   @ViewChild('search') searchElement: ElementRef;
   @ViewChild(FormioGridComponent, {static: false}) formGrid: FormioGridComponent;
   public gridQuery: any;
@@ -23,7 +23,7 @@ export class FormManagerIndexComponent implements OnInit, AfterViewInit {
     public config: FormManagerConfig
   ) {
     this.config = {...DefaultConfiguration, ...this.config};
-    this.gridQuery = {type: this.config.type, sort: 'title'};
+    this.gridQuery = {type: this.config.type || 'form', sort: 'title'};
     if (this.config.tag) {
       this.gridQuery.tags = this.config.tag;
     }
@@ -39,7 +39,7 @@ export class FormManagerIndexComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.gridQuery = {type: this.config.type, sort: 'title'};
+    this.gridQuery = {type: this.config.type || 'form', sort: 'title'};
     if (this.config.tag) {
       this.gridQuery.tags = this.config.tag;
     }
@@ -52,13 +52,13 @@ export class FormManagerIndexComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    this.searchElement.nativeElement.value = localStorage.getItem('searchInput') || '';
+  getInitialSearch() {
+    return localStorage.getItem('searchInput') || '';
   }
 
   _onSearch() {
-    const search = this.searchElement.nativeElement.value;
-    if (search.length > 0) {
+    const search = this.searchElement?.nativeElement?.value;
+    if (search && search.length > 0) {
       this.gridQuery.skip = 0;
       this.gridQuery.title__regex = '/' + search + '/i';
       this.gridQuery.title__regex = '/' + search.trim() + '/i';
@@ -71,7 +71,7 @@ export class FormManagerIndexComponent implements OnInit, AfterViewInit {
   }
 
   clearSearch() {
-    this.gridQuery = {type: this.config.type, sort: 'title'};
+    this.gridQuery = {type: this.config.type || 'form', sort: 'title'};
     if (this.config.tag) {
       this.gridQuery.tags = this.config.tag;
     }
