@@ -1,4 +1,4 @@
-import {ComponentInstance} from '@formio/angular';
+import { ComponentInstance } from '@formio/angular';
 
 export interface GridHeader {
   component?: ComponentInstance;
@@ -10,5 +10,5 @@ export interface GridHeader {
 
 export enum SortType {
   ASC = 'asc',
-  DESC = 'desc'
+  DESC = 'desc',
 }

@@ -4,5 +4,5 @@ import { SubmissionGridFooterComponent } from './SubmissionGridFooter.component'
 export default {
   header: SubmissionGridHeaderComponent,
   body: SubmissionGridBodyComponent,
-  footer: SubmissionGridFooterComponent
+  footer: SubmissionGridFooterComponent,
 };

@@ -1,61 +1,67 @@
-Form.io Angular JSON Form Renderer
-==========================
+# Form.io Angular JSON Form Renderer
+
 This library serves as a Dynamic JSON Powered Form rendering library for [Angular](https://angular.io). This works by
-providing a JSON schema to a ```<formio>``` Angular component, where that form is dynamically rendered within the front
+providing a JSON schema to a `<formio>` Angular component, where that form is dynamically rendered within the front
 end application. This allows forms to be dynamically built using JSON schemas.
 
-## Please note that Form.io Open Source Repositories are maintained and all latest versions are available via NPM. 
+## Please note that Form.io Open Source Repositories are maintained and all latest versions are available via NPM.
 
-Official Documentation
---------------------------
+## Official Documentation
+
 For the latest documentation, release information, and guides, always refer to the official Form.io Help Documentation available here:
 
 **[https://help.form.io](https://help.form.io/dev/javascript-development/frameworks#angular)**
 
-Angular Versions
--------------------------
+## Angular Versions
+
 This library supports many different Angular Versions. To use this library with the correct version of Angular, please refer to the Compatibility matrix here: https://help.form.io/dev/javascript-development/frameworks#angular-versions
 
 ## For the latest version, install via the following commands:
 
 ### NPM
+
     npm install --save @formio/angular
 
 ### Yarn
+
     yarn add --save @formio/angular
 
 ## For previous Angular versions, the following commands with the relevant Angular version can be referenced:
+
 ### NPM
+
     npm install --save @formio/angular@a18
 
 ### Yarn
+
     yarn add --save @formio/angular@a18
 
-Running Demo
---------------------------
+## Running Demo
+
 To run a demo of the Form.io Angular renderer, please follow these steps.
- 
- 1. Make sure you have the [Angular CLI](https://angular.io) installed on your machine.
- 2. Download the [Angular Demo Application](https://github.com/formio/angular-demo) to your computer.
- 3. With your terminal, type ```npm install```
- 4. Now type ```ng serve```
- 
+
+1.  Make sure you have the [Angular CLI](https://angular.io) installed on your machine.
+2.  Download the [Angular Demo Application](https://github.com/formio/angular-demo) to your computer.
+3.  With your terminal, type `npm install`
+4.  Now type `ng serve`
+
 This will startup an example application where you can see all the features provided by this module.
 
 Here is the hosted demo application [https://formio.github.io/angular-demo/](https://formio.github.io/angular-demo)
 
-Using within your application
----------------------------
+## Using within your application
+
 You can easily render a form within your Angular application by referencing the URL of that form as follows.
 
 ```html
-<formio src='https://examples.form.io/example'></formio>
+<formio src="https://examples.form.io/example"></formio>
 ```
 
 You can also pass the JSON form directly to the renderer as follows.
 
 ```html
-<formio [form]='{
+<formio
+  [form]='{
     "title": "My Test Form",
     "components": [
         {
@@ -133,14 +139,15 @@ You can also pass the JSON form directly to the renderer as follows.
             "type": "button"
         }
     ]
-}'></formio>
+}'
+></formio>
 ```
 
 This is a very simple example. This library is capable of building very complex forms which include e-signatures, columns,
 panels, field conditionals, validation requirements, and the list goes on and on.
 
-Usage
-----------------
+## Usage
+
 To use this library within your project, you will first need to install it as a dependency.
 
 ```
@@ -152,15 +159,15 @@ You can now include the module in your Angular application like so.
 ```js
 import { FormioModule } from '@formio/angular';
 @NgModule({
-    imports: [ BrowserModule, CommonModule, FormioModule ],
-    declarations: [ AppComponent ],
-    bootstrap: [ AppComponent ]
+  imports: [BrowserModule, CommonModule, FormioModule],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
 ```
 
-Bootstrap Versions
------------------
+## Bootstrap Versions
+
 By default, this library will use Bootstrap 5 as the template and rendering CSS framework. This, however, can be changed by adding different templates into your application and using them like the following.
 
 ```
@@ -175,8 +182,8 @@ import bootstrap4 from '@formio/bootstrap/bootstrap4';
 (Formio as any).use(bootstrap4);
 ```
 
-Included Libraries
------------------
+## Included Libraries
+
 This library is a combination of multiple libraries that enable rapid Serverless application development using Form.io. These libraries are as follows.
 
 1. [Form Renderer](https://github.com/formio/angular-formio/wiki/Form-Renderer) - The form renderer in Angular
@@ -188,12 +195,12 @@ This library is a combination of multiple libraries that enable rapid Serverless
 
 Click on each of those links to read more about how they work and how to utilize them to their fullest potential.
 
-Demo Application
-----------
+## Demo Application
+
 If you would like to run a demonstration of all the features of this module, then you can check out the [Angular Demo Application](https://github.com/formio/angular-demo), which is the code behind the following hosted application @ [https://formio.github.io/angular-demo](https://formio.github.io/angular-demo)
 
-Application Starter Kit
-----------
+## Application Starter Kit
+
 For help in getting started using this library, we created the [angular-app-starterkit](https://github.com/formio/angular-app-starterkit) repository to help you get started with best practices with using Form.io within an Angular application. You can try this applicatoin by downloading that application and then doing the following.
 
 ```
@@ -201,20 +208,20 @@ npm install
 npm start
 ```
 
-Full Documentation
-------------------
+## Full Documentation
+
 To read up on the full documentation of this library, please check out the [Wiki Page](https://github.com/formio/angular-formio/wiki)
 
-About Form.io
------------------
-<a href="https://form.io" target="_blank">Form.io</a> is a combined form and data management API platform created for developers who are building "Serverless" form-based applications.  Form.io provides an easy drag-and-drop form builder workflow allowing you to build complex forms for enterprise applications quickly and easily. These forms are then embedded directly into your application with a single line of code that dynamically renders the form (using Angular or React) in your app while at the very same time generating the RESTful API to support those forms. The Form.io platform also offers numerous 3rd-party services that are fully integrated into the form building process allowing you to extend the power and capability of your apps while saving time and effort.
+## About Form.io
 
-You can use this renderer with Form.io by simply pointing the ```src``` parameter to the URL of the form. For example, the following URL points to the JSON schema of a form built on Form.io.
+<a href="https://form.io" target="_blank">Form.io</a> is a combined form and data management API platform created for developers who are building "Serverless" form-based applications. Form.io provides an easy drag-and-drop form builder workflow allowing you to build complex forms for enterprise applications quickly and easily. These forms are then embedded directly into your application with a single line of code that dynamically renders the form (using Angular or React) in your app while at the very same time generating the RESTful API to support those forms. The Form.io platform also offers numerous 3rd-party services that are fully integrated into the form building process allowing you to extend the power and capability of your apps while saving time and effort.
 
-  https://pjmfogrfqptslvi.form.io/test
-  
-To render this form, you simply provide that URL to the ```<formio>``` directive like so.
+You can use this renderer with Form.io by simply pointing the `src` parameter to the URL of the form. For example, the following URL points to the JSON schema of a form built on Form.io.
 
-```<formio src="https://pjmfogrfqptslvi.form.io/test"></formio>```
+https://pjmfogrfqptslvi.form.io/test
+
+To render this form, you simply provide that URL to the `<formio>` directive like so.
+
+`<formio src="https://pjmfogrfqptslvi.form.io/test"></formio>`
 
 Not only will this render the form, but it will also submit that form to the provided API endpoint.

@@ -35,7 +35,7 @@ export class FormioAuthService {
 
   constructor(
     public appConfig: FormioAppConfig,
-    public config: FormioAuthConfig
+    public config: FormioAuthConfig,
   ) {
     this.user = null;
 
@@ -47,18 +47,11 @@ export class FormioAuthService {
       console.error('You must provide an AppConfig within your application!');
     }
 
-    this.loginForm =
-      this.appConfig.appUrl +
-      '/' +
-      get(this.config, 'login.form', 'user/login');
+    this.loginForm = this.appConfig.appUrl + '/' + get(this.config, 'login.form', 'user/login');
     this.registerForm =
-      this.appConfig.appUrl +
-      '/' +
-      get(this.config, 'register.form', 'user/register');
+      this.appConfig.appUrl + '/' + get(this.config, 'register.form', 'user/register');
     this.resetPassForm =
-      this.appConfig.appUrl +
-      '/' +
-      get(this.config, 'resetpass.form', 'resetpass');
+      this.appConfig.appUrl + '/' + get(this.config, 'resetpass.form', 'resetpass');
     this.onLogin = new EventEmitter();
     this.onLogout = new EventEmitter();
     this.onRegister = new EventEmitter();
@@ -102,13 +95,11 @@ export class FormioAuthService {
       (): any => {
         this.formAccess = {};
         return null;
-      }
+      },
     );
 
     // Get the access for this project.
-    this.accessReady = Formio.makeStaticRequest(
-      this.appConfig.appUrl + '/access'
-    )
+    this.accessReady = Formio.makeStaticRequest(this.appConfig.appUrl + '/access')
       .then((access: any) => {
         each(access.forms, (form: any) => {
           this.submissionAccess[form.name] = {};
@@ -125,30 +116,36 @@ export class FormioAuthService {
         }
         this.roles = {};
         return null;
-      })
+      });
 
     let currentUserPromise: Promise<any>;
     if (this.config.oauth) {
       // Make a fix to the hash to remove starting "/" that angular might put there.
       if (window.location.hash && window.location.hash.match(/^#\/access_token/)) {
-        history.pushState(null, null, window.location.hash.replace(/^#\/access_token/, '#access_token'));
+        history.pushState(
+          null,
+          null,
+          window.location.hash.replace(/^#\/access_token/, '#access_token'),
+        );
       }
 
       // Initiate the SSO if they provide oauth settings.
       currentUserPromise = Formio.ssoInit(this.config.oauth.type, this.config.oauth.options);
     } else {
       currentUserPromise = Formio.currentUser(null, {
-        ignoreCache: true
+        ignoreCache: true,
       });
     }
 
-    this.userReady = currentUserPromise.then((user: any) => {
-      this.setUser(user);
-      return user;
-    }).catch((err) => {
-      this.setUser(null);
-      throw err;
-    });
+    this.userReady = currentUserPromise
+      .then((user: any) => {
+        this.setUser(user);
+        return user;
+      })
+      .catch((err) => {
+        this.setUser(null);
+        throw err;
+      });
 
     // Trigger we are redy when all promises have resolved.
     if (this.accessReady) {
@@ -211,7 +208,11 @@ export class FormioAuthService {
       .then(() => {
         this.setUser(null);
         if (localStorage.getItem(`${namespace}LogoutAuthUrl`)) {
-          window.open(localStorage.getItem(`${namespace}LogoutAuthUrl`), null, 'width=1020,height=618');
+          window.open(
+            localStorage.getItem(`${namespace}LogoutAuthUrl`),
+            null,
+            'width=1020,height=618',
+          );
           localStorage.removeItem(`${namespace}LogoutAuthUrl`);
         }
         this.onLogout.emit();

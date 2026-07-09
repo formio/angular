@@ -1,23 +1,31 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterEvent, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterEvent,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 import { FormioAuthService } from '@formio/angular/auth';
 import { FormioResourceService } from './resource.service';
 import { Subscription } from 'rxjs';
-import { NgIf } from '@angular/common';
 
 @Component({
   templateUrl: './resource.component.html',
-    imports: [RouterLink, RouterLinkActive, NgIf, RouterOutlet]
+  imports: [RouterLink, RouterLinkActive, RouterOutlet],
 })
 export class FormioResourceComponent implements OnInit, OnDestroy {
-  public perms = {delete: false, edit: false};
+  public perms = { delete: false, edit: false };
   public routerSubscription: Subscription;
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   constructor(
     public service: FormioResourceService,
     public route: ActivatedRoute,
     public auth: FormioAuthService,
-    public router: Router
+    public router: Router,
   ) {}
 
   ngOnInit() {
@@ -34,17 +42,17 @@ export class FormioResourceComponent implements OnInit, OnDestroy {
   }
 
   init() {
-    return this.service.init(this.route, this.router).then(() => 
-      this.auth.ready.then(() => 
-        this.service.formFormio.userPermissions(
-          this.auth.user, 
-          this.service.form, 
-          this.service.resource
-        ).then((perms) => {
-          this.perms.delete = perms.delete;
-          this.perms.edit = perms.edit;
-          return this.service.resource;
-        })
-    ));
+    return this.service.init(this.route).then(() =>
+      this.auth.ready.then(() =>
+        this.service.formFormio
+          .userPermissions(this.auth.user, this.service.form, this.service.resource)
+          .then((perms) => {
+            this.perms.delete = perms.delete;
+            this.perms.edit = perms.edit;
+            this.changeDetectorRef.markForCheck();
+            return this.service.resource;
+          }),
+      ),
+    );
   }
 }

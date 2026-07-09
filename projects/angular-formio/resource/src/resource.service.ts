@@ -10,6 +10,7 @@ import { Formio, Utils } from '@formio/js';
 import _ from 'lodash';
 
 @Injectable()
+// GOTCHA(G-NG03)
 export class FormioResourceService {
   public initialized = false;
   public form: any;
@@ -42,7 +43,7 @@ export class FormioResourceService {
   constructor(
     public appConfig: FormioAppConfig,
     public config: FormioResourceConfig,
-    @Optional() public resourcesService: FormioResources
+    @Optional() public resourcesService: FormioResources,
   ) {
     this.isLoading = true;
     this.alerts = new FormioAlerts();
@@ -86,9 +87,11 @@ export class FormioResourceService {
 
   init(route: ActivatedRoute) {
     const snapshot = route.snapshot;
-    const reset = snapshot.queryParams?.hasOwnProperty('reset') ? snapshot.queryParams.reset : false;
+    const reset = snapshot.queryParams?.hasOwnProperty('reset')
+      ? snapshot.queryParams.reset
+      : false;
     const resourceId = snapshot.params['id'];
-    if (resourceId && (resourceId === this.resourceId) && !reset) {
+    if (resourceId && resourceId === this.resourceId && !reset) {
       return this.ready;
     }
 
@@ -116,7 +119,7 @@ export class FormioResourceService {
   onError(error: any) {
     this.alerts.setAlert({
       type: 'danger',
-      message: error.message || error
+      message: error.message || error,
     });
     if (this.resourcesService) {
       this.resourcesService.error.emit(error);
@@ -141,13 +144,14 @@ export class FormioResourceService {
       .then(
         (form: any) => {
           this.form = form;
+          // GOTCHA(G-NG02)
           this.appConfig.currentForm = form;
           this.formResolve(form);
           this.isLoading = false;
           this.loadParents();
           return form;
         },
-        (err: any) => this.onFormError(err)
+        (err: any) => this.onFormError(err),
       )
       .catch((err: any) => this.onFormError(err));
     return this.formLoading;
@@ -159,7 +163,7 @@ export class FormioResourceService {
     }
     if (!this.resourcesService) {
       console.warn(
-        'You must provide the FormioResources within your application to use nested resources.'
+        'You must provide the FormioResources within your application to use nested resources.',
       );
       return Promise.resolve([]);
     }
@@ -170,7 +174,10 @@ export class FormioResourceService {
         const resourceName = parent.resource || parent;
         const resourceField = parent.field || parent;
         const filterResource = parent.hasOwnProperty('filter') ? parent.filter : true;
-        if (this.resources.hasOwnProperty(resourceName) && this.resources[resourceName].resourceLoaded) {
+        if (
+          this.resources.hasOwnProperty(resourceName) &&
+          this.resources[resourceName].resourceLoaded
+        ) {
           _parentsLoaded.push(
             this.resources[resourceName].resourceLoaded.then((resource: any) => {
               let parentPath = '';
@@ -186,9 +193,9 @@ export class FormioResourceService {
               return {
                 name: parentPath,
                 filter: filterResource,
-                resource
+                resource,
               };
-            })
+            }),
           );
         }
       });
@@ -197,7 +204,7 @@ export class FormioResourceService {
       return Promise.all(_parentsLoaded).then((parents: any) => {
         this.refresh.emit({
           form: form,
-          submission: this.resource
+          submission: this.resource,
         });
         return parents;
       });
@@ -215,19 +222,19 @@ export class FormioResourceService {
     }
     this.isLoading = true;
     this.resourceLoading = this.formio
-      .loadSubmission(null, {ignoreCache: true})
+      .loadSubmission(null, { ignoreCache: true })
       .then(
         (resource: any) => {
           this.resource = resource;
           this.isLoading = false;
           this.refresh.emit({
             property: 'submission',
-            value: this.resource
+            value: this.resource,
           });
           this.resourceResolve(resource);
           return resource;
         },
-        (err: any) => this.onSubmissionError(err)
+        (err: any) => this.onSubmissionError(err),
       )
       .catch((err: any) => this.onSubmissionError(err));
     return this.resourceLoading;
@@ -242,7 +249,7 @@ export class FormioResourceService {
           this.resource = saved;
           return saved;
         },
-        (err: any) => this.onError(err)
+        (err: any) => this.onError(err),
       )
       .catch((err: any) => this.onError(err));
   }
@@ -254,7 +261,7 @@ export class FormioResourceService {
         () => {
           this.resource = null;
         },
-        (err: any) => this.onError(err)
+        (err: any) => this.onError(err),
       )
       .catch((err: any) => this.onError(err));
   }

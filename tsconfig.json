@@ -7,34 +7,19 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
     "skipLibCheck": true,
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@formio/angular": [
-        "./projects/angular-formio/src"
-      ],
-      "@formio/angular/grid": [
-        "./projects/angular-formio/grid/src"
-      ],
-      "@formio/angular/auth": [
-        "./projects/angular-formio/auth/src"
-      ],
-      "@formio/angular/manager": [
-        "./projects/angular-formio/manager/src"
-      ],
-      "@formio/angular/resource": [
-        "./projects/angular-formio/resource/src"
-      ],
-      "@formio/angular/embed": [
-        "./projects/angular-formio/embed/src"
-      ]
+      "@formio/angular": ["./projects/angular-formio/src"],
+      "@formio/angular/grid": ["./projects/angular-formio/grid/src"],
+      "@formio/angular/auth": ["./projects/angular-formio/auth/src"],
+      "@formio/angular/manager": ["./projects/angular-formio/manager/src"],
+      "@formio/angular/resource": ["./projects/angular-formio/resource/src"],
+      "@formio/angular/embed": ["./projects/angular-formio/embed/src"]
     }
   }
 }

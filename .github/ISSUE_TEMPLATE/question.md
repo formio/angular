@@ -1,8 +1,7 @@
 ---
 name: Question
 about: General Questions
-title: "[Question] "
+title: '[Question] '
 labels: 'question'
 assignees: ''
-
 ---

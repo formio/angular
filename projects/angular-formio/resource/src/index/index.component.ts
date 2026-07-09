@@ -8,7 +8,7 @@ import { FormioGridComponent } from '@formio/angular/grid';
 
 @Component({
   templateUrl: './index.component.html',
-    imports: [FormioAlertsComponent, FormioGridComponent]
+  imports: [FormioAlertsComponent, FormioGridComponent],
 })
 export class FormioResourceIndexComponent implements OnInit {
   public gridSrc?: string;
@@ -22,22 +22,16 @@ export class FormioResourceIndexComponent implements OnInit {
     public config: FormioResourceConfig,
     public cdr: ChangeDetectorRef,
     public ngZone: NgZone,
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.service.init(this.route).then(() => {
       this.gridQuery = {};
-      if (
-        this.service &&
-        this.config.parents &&
-        this.config.parents.length
-      ) {
+      if (this.service && this.config.parents && this.config.parents.length) {
         this.service.loadParents().then((parents: any) => {
           each(parents, (parent: any) => {
             if (parent && parent.filter) {
-              this.gridQuery['data.' + parent.name + '._id'] =
-                parent.resource._id;
+              this.gridQuery['data.' + parent.name + '._id'] = parent.resource._id;
             }
           });
 
@@ -49,6 +43,7 @@ export class FormioResourceIndexComponent implements OnInit {
       } else if (this.service.formUrl) {
         this.gridSrc = this.service.formUrl;
         this.createText = `New ${this.service.form.title}`;
+        this.cdr.detectChanges();
       }
     });
   }

@@ -5,18 +5,17 @@ import { FormManagerConfig } from '../form-manager.config';
 import { FormioAlerts } from '@formio/angular';
 import { FormBuilderComponent } from '@formio/angular';
 import _ from 'lodash';
-import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FormioAlertsComponent } from '@formio/angular';
 
 @Component({
-    templateUrl: './edit.component.html',
-    imports: [NgIf, FormsModule, FormioAlertsComponent, FormBuilderComponent]
+  templateUrl: './edit.component.html',
+  imports: [FormsModule, FormioAlertsComponent, FormBuilderComponent],
 })
 export class FormManagerEditComponent implements AfterViewInit {
-  @ViewChild(FormBuilderComponent, {static: false}) builder: FormBuilderComponent;
-  @ViewChild('title', {static: false}) formTitle: ElementRef;
-  @ViewChild('type', {static: false}) formType: ElementRef;
+  @ViewChild(FormBuilderComponent, { static: false }) builder: FormBuilderComponent;
+  @ViewChild('title', { static: false }) formTitle: ElementRef;
+  @ViewChild('type', { static: false }) formType: ElementRef;
   public form: any;
   public loading: Boolean;
   public formReady: Boolean;
@@ -28,9 +27,9 @@ export class FormManagerEditComponent implements AfterViewInit {
     public route: ActivatedRoute,
     public config: FormManagerConfig,
     public ref: ChangeDetectorRef,
-    public alerts: FormioAlerts
+    public alerts: FormioAlerts,
   ) {
-    this.form = {components: []};
+    this.form = { components: [] };
     this.formReady = false;
     this.loading = false;
     this.editMode = false;
@@ -40,20 +39,22 @@ export class FormManagerEditComponent implements AfterViewInit {
     if (editing) {
       this.loading = true;
       this.editMode = true;
-      return this.service.formReady.then(() => {
-        this.form = this.service.form;
-        this.formTitle.nativeElement.value = this.service.form.title;
-        this.formType.nativeElement.value = this.service.form.display || 'form';
-        this.formReady = true;
-        this.loading = false;
-        this.ref.detectChanges();
-        return true;
-      }).catch(err => {
-        this.alerts.setAlert({type: 'danger', message: (err.message || err)});
-        this.loading = false;
-        this.ref.detectChanges();
-        this.formReady = true;
-      });
+      return this.service.formReady
+        .then(() => {
+          this.form = this.service.form;
+          this.formTitle.nativeElement.value = this.service.form.title;
+          this.formType.nativeElement.value = this.service.form.display || 'form';
+          this.formReady = true;
+          this.loading = false;
+          this.ref.detectChanges();
+          return true;
+        })
+        .catch((err) => {
+          this.alerts.setAlert({ type: 'danger', message: err.message || err });
+          this.loading = false;
+          this.ref.detectChanges();
+          this.formReady = true;
+        });
     } else {
       this.formReady = true;
       return Promise.resolve(true);
@@ -61,8 +62,8 @@ export class FormManagerEditComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.route.url.subscribe( url => {
-      setTimeout(() => this.initBuilder((url[0].path === 'edit')), 0);
+    this.route.url.subscribe((url) => {
+      setTimeout(() => this.initBuilder(url[0].path === 'edit'), 0);
     });
   }
 
@@ -89,26 +90,29 @@ export class FormManagerEditComponent implements AfterViewInit {
       this.form.name = _.camelCase(this.form.title).toLowerCase();
       this.form.path = this.form.name;
     }
-    return this.service.formio.saveForm(this.form).then(form => {
-      this.form = this.service.setForm(form);
-      this.loading = false;
-      return this.form;
-    }).catch(err => {
-      this.loading = false;
-      // Catch if a form is returned as an error. This is a conflict.
-      if (err._id && err.type) {
-        throw err;
-      }
-      this.alerts.setAlert({type: 'danger', message: (err.message || err)});
-    });
+    return this.service.formio
+      .saveForm(this.form)
+      .then((form) => {
+        this.form = this.service.setForm(form);
+        this.loading = false;
+        return this.form;
+      })
+      .catch((err) => {
+        this.loading = false;
+        // Catch if a form is returned as an error. This is a conflict.
+        if (err._id && err.type) {
+          throw err;
+        }
+        this.alerts.setAlert({ type: 'danger', message: err.message || err });
+      });
   }
 
   onSave() {
     return this.saveForm().then((form) => {
       if (this.editMode) {
-        this.router.navigate(['../', 'view'], {relativeTo: this.route});
+        this.router.navigate(['../', 'view'], { relativeTo: this.route });
       } else {
-        this.router.navigate(['../', form._id, 'view'], {relativeTo: this.route});
+        this.router.navigate(['../', form._id, 'view'], { relativeTo: this.route });
       }
     });
   }

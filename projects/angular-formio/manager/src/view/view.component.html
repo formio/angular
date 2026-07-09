@@ -1,11 +1,13 @@
-<formio *ngIf="service.form"
-  [renderer]="config.renderer"
-  [renderOptions]="renderOptions"
-  [url]="service.formio.formUrl"
-  [form]="service.form"
-  [submission]="submission"
-  [success]="onSuccess"
-  [submitDone]="onSubmitDone"
-  [error]="onError"
-  (submit)="onSubmit($event)"
-></formio>
+@if (service.form) {
+  <formio
+    [renderer]="config.renderer"
+    [renderOptions]="renderOptions"
+    [url]="service.formio.formUrl"
+    [form]="service.form"
+    [submission]="submission"
+    [success]="onSuccess"
+    [submitDone]="onSubmitDone"
+    [error]="onError"
+    (submit)="onSubmit($event)"
+  ></formio>
+}

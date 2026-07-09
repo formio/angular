@@ -6,7 +6,7 @@ import { FormBuilderComponent } from '@formio/angular';
 
 @Component({
   templateUrl: '../edit/edit.component.html',
-  imports: [FormsModule, FormioAlertsComponent, FormBuilderComponent]
+  imports: [FormsModule, FormioAlertsComponent, FormBuilderComponent],
 })
 export class FormManagerCreateComponent extends FormManagerEditComponent implements OnInit {
   ngOnInit() {

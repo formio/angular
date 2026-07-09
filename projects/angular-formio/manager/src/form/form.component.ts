@@ -4,12 +4,12 @@ import { FormManagerConfig } from '../form-manager.config';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FormioAppConfig } from '@formio/angular';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { NgIf, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    templateUrl: './form.component.html',
-    imports: [NgIf, RouterLink, RouterLinkActive, RouterOutlet, NgClass, FormsModule]
+  templateUrl: './form.component.html',
+  imports: [RouterLink, RouterLinkActive, RouterOutlet, NgClass, FormsModule],
 })
 export class FormManagerFormComponent implements OnInit {
   choice: any = 'isUrl';
@@ -24,12 +24,12 @@ export class FormManagerFormComponent implements OnInit {
     public route: ActivatedRoute,
     public appConfig: FormioAppConfig,
     public options: FormManagerConfig,
-    private modalService: BsModalService
-  ) { }
+    private modalService: BsModalService,
+  ) {}
 
   ngOnInit() {
     this.service.reset(this.route);
-    this.service.loadForm().then(form => {
+    this.service.loadForm().then((form) => {
       this.service.formSrc = this.appConfig.appUrl + '/' + form.path;
       this.projectId = form.project;
       this.pathName = form.path;
@@ -50,22 +50,26 @@ export class FormManagerFormComponent implements OnInit {
     }
     let embedCode = '<script type="text/javascript">';
     embedCode += '(function a(d, w, u) {';
-    embedCode +=    'var h = d.getElementsByTagName("head")[0];';
-    embedCode +=    'var s = d.createElement("script");';
-    embedCode +=    's.type = "text/javascript";';
-    embedCode +=    's.src = "' + this.options.viewer + '/assets/lib/seamless/seamless.parent.min.js";';
-    embedCode +=    's.onload = function b() {';
-    embedCode +=       'var f = d.getElementById("formio-form-' + this.service.formio.formId + '");';
-    embedCode +=       'if (!f || (typeof w.seamless === u)) {';
-    embedCode +=          'return setTimeout(b, 100);';
-    embedCode +=       '}';
-    embedCode +=       'w.seamless(f, {fallback:false}).receive(function(d, e) {' + goto + '});';
-    embedCode +=    '};';
-    embedCode +=    'h.appendChild(s);';
+    embedCode += 'var h = d.getElementsByTagName("head")[0];';
+    embedCode += 'var s = d.createElement("script");';
+    embedCode += 's.type = "text/javascript";';
+    embedCode +=
+      's.src = "' + this.options.viewer + '/assets/lib/seamless/seamless.parent.min.js";';
+    embedCode += 's.onload = function b() {';
+    embedCode += 'var f = d.getElementById("formio-form-' + this.service.formio.formId + '");';
+    embedCode += 'if (!f || (typeof w.seamless === u)) {';
+    embedCode += 'return setTimeout(b, 100);';
+    embedCode += '}';
+    embedCode += 'w.seamless(f, {fallback:false}).receive(function(d, e) {' + goto + '});';
+    embedCode += '};';
+    embedCode += 'h.appendChild(s);';
     embedCode += '})(document, window);';
     embedCode += '</script>';
     embedCode += '<iframe id="formio-form-' + this.service.formio.formId + '" ';
-    embedCode +=     'style="width:100%;border:none;" height="800px" src="' + this.shareUrl + '&iframe=1"></iframe>';
+    embedCode +=
+      'style="width:100%;border:none;" height="800px" src="' +
+      this.shareUrl +
+      '&iframe=1"></iframe>';
     this.embedCode = embedCode;
     this.modalRef = this.modalService.show(content, { class: 'modal-lg' });
   }

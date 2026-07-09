@@ -1,15 +1,14 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, EventEmitter } from '@angular/core';
 import { FormManagerConfig } from '../form-manager.config';
 import { FormManagerService } from '../form-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormioAuthService } from '@formio/angular/auth';
 import { Formio } from '@formio/js';
-import { NgIf } from '@angular/common';
 import { FormioComponent } from '@formio/angular';
 
 @Component({
   templateUrl: './view.component.html',
-  imports: [NgIf, FormioComponent]
+  imports: [FormioComponent],
 })
 export class FormManagerViewComponent implements OnInit {
   public submission: any;
@@ -17,31 +16,37 @@ export class FormManagerViewComponent implements OnInit {
   public onSuccess: EventEmitter<object> = new EventEmitter();
   public onError: EventEmitter<object> = new EventEmitter();
   public onSubmitDone: EventEmitter<object> = new EventEmitter();
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+
   constructor(
     public service: FormManagerService,
     public router: Router,
     public route: ActivatedRoute,
     public config: FormManagerConfig,
-    public auth: FormioAuthService
+    public auth: FormioAuthService,
   ) {
     this.renderOptions = {
-      saveDraft: this.config.saveDraft
+      saveDraft: this.config.saveDraft,
     };
-    this.submission = {data: {}};
+    this.submission = { data: {} };
   }
 
   ngOnInit() {
     this.service.formio = new Formio(this.service.formio.formUrl);
+    this.service.formReady?.then(() => this.changeDetectorRef.markForCheck());
   }
 
   onSubmit(submission: any) {
     const isDraft = submission.state === 'draft';
     this.submission.data = submission.data;
     this.submission.state = isDraft ? submission.state : 'complete';
-    this.service.formio.saveSubmission(this.submission).then(saved => {
-      this.onSubmitDone.emit(saved);
-      this.onSuccess.emit();
-      this.router.navigate(['../', 'submission', saved._id], {relativeTo: this.route});
-    }).catch((err) => this.onError.emit(err));
+    this.service.formio
+      .saveSubmission(this.submission)
+      .then((saved) => {
+        this.onSubmitDone.emit(saved);
+        this.onSuccess.emit();
+        this.router.navigate(['../', 'submission', saved._id], { relativeTo: this.route });
+      })
+      .catch((err) => this.onError.emit(err));
   }
 }

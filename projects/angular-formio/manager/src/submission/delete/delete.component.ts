@@ -5,21 +5,24 @@ import { FormioAlerts } from '@formio/angular';
 import { FormioAlertsComponent } from '@formio/angular';
 
 @Component({
-    templateUrl: './delete.component.html',
-    imports: [FormioAlertsComponent]
+  templateUrl: './delete.component.html',
+  imports: [FormioAlertsComponent],
 })
 export class SubmissionDeleteComponent {
   constructor(
     public service: FormManagerService,
     public router: Router,
     public route: ActivatedRoute,
-    public alerts: FormioAlerts
+    public alerts: FormioAlerts,
   ) {}
 
   onDelete() {
-    this.service.formio.deleteSubmission().then(() => {
-      this.router.navigate(['../../'], { relativeTo: this.route });
-    }).catch(err => this.alerts.setAlert({type: 'danger', message: (err.message || err)}));
+    this.service.formio
+      .deleteSubmission()
+      .then(() => {
+        this.router.navigate(['../../'], { relativeTo: this.route });
+      })
+      .catch((err) => this.alerts.setAlert({ type: 'danger', message: err.message || err }));
   }
 
   onCancel() {

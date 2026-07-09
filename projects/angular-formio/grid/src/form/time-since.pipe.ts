@@ -9,7 +9,7 @@ export class TimeSince implements PipeTransform {
       return interval + ' year' + (interval > 1 ? 's' : '');
     }
     interval = Math.floor(elapsed / 2592000);
-    if (interval >= 1){
+    if (interval >= 1) {
       return interval + ' month' + (interval > 1 ? 's' : '');
     }
     interval = Math.floor(elapsed / 86400);

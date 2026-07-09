@@ -1,5 +1,5 @@
 .formio-loader-wrapper {
-  position:absolute;
+  position: absolute;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -7,8 +7,12 @@
   z-index: 1000;
 }
 
-.formio-loader {
-  position:absolute;
+// Renamed from `.formio-loader` to avoid colliding with @formio/js's
+// formio.form.css rule `.formio-loader { position: relative; min-height: 100px }`,
+// which is injected globally by FormioComponent (ViewEncapsulation.None) and
+// otherwise stretched this 60x60 spinner to 60x100 (the "elongated" spinner).
+.formio-loader-spinner {
+  position: absolute;
   left: 50%;
   top: 50%;
   margin-left: -30px;
@@ -23,4 +27,11 @@
   animation: spin 2s linear infinite;
 }
 
-@keyframes spin {0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

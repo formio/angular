@@ -4,18 +4,22 @@ import { Formio } from '@formio/js';
 
 @Injectable()
 export class FormioAppConfig {
+  // GOTCHA(G-NG01)
   [x: string]: any;
   appUrl = '';
   apiUrl = '';
   icons?: string;
   formOnly?: boolean;
   formio?: Formio;
-  constructor(@Inject(FORMIO_CONFIG) config: {
-    apiUrl?: string,
-    baseUrl?: string, 
-    appUrl?: string,
-    projectUrl?: string
-  } = {}) {
+  constructor(
+    @Inject(FORMIO_CONFIG)
+    config: {
+      apiUrl?: string;
+      baseUrl?: string;
+      appUrl?: string;
+      projectUrl?: string;
+    } = {},
+  ) {
     this.apiUrl = config.apiUrl || config.baseUrl;
     this.appUrl = config.appUrl || config.projectUrl;
     if (this.apiUrl) {

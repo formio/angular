@@ -1,8 +1,17 @@
-import { Component, OnInit, ViewEncapsulation, Input, OnChanges, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  Input,
+  OnChanges,
+  ViewChild,
+  ElementRef,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { Formio } from '@formio/js';
 import { FormioComponent } from '../formio/formio.component';
 import { FormioReport } from '../../formio.common';
-import { NgIf } from '@angular/common';
 import { FormioLoaderComponent } from '../loader/formio.loader.component';
 import { FormioAlertsComponent } from '../alerts/formio.alerts.component';
 
@@ -12,7 +21,7 @@ import { FormioAlertsComponent } from '../alerts/formio.alerts.component';
   templateUrl: './formioreport.component.html',
   styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.form.min.css'],
   encapsulation: ViewEncapsulation.None,
-    imports: [NgIf, FormioLoaderComponent, FormioAlertsComponent]
+  imports: [FormioLoaderComponent, FormioAlertsComponent],
 })
 /* tslint:enable */
 export class FormioReportComponent extends FormioComponent implements OnInit, OnChanges {
@@ -31,10 +40,11 @@ export class FormioReportComponent extends FormioComponent implements OnInit, On
           this.ngZone.runOutsideAngular(() => {
             this.setForm({ components: [], report });
             this.isReportLoading = false;
+            this.changeDetectorRef.markForCheck();
           });
         }
       },
-      err => this.onError(err)
+      (err) => this.onError(err),
     );
   }
 
@@ -43,18 +53,20 @@ export class FormioReportComponent extends FormioComponent implements OnInit, On
   }
 
   ngOnChanges(changes: any) {
-    super.ngOnChanges(changes)
+    super.ngOnChanges(changes);
 
     if (changes.report && changes.report.currentValue) {
       this.ngZone.runOutsideAngular(() => {
         this.setForm({ report: changes.report.currentValue, components: [] });
         this.isReportLoading = false;
+        this.changeDetectorRef.markForCheck();
       });
     }
   }
 
   getRendererOptions() {
-    const projectEndpoint = this.projectEndpoint || this.config?.appUrl || this.service?.formio?.projectUrl;
+    const projectEndpoint =
+      this.projectEndpoint || this.config?.appUrl || this.service?.formio?.projectUrl;
 
     if (!projectEndpoint && !this.src) {
       console.warn('The projectEndpoint url is required to render the Report using JSON schema.');
@@ -62,7 +74,7 @@ export class FormioReportComponent extends FormioComponent implements OnInit, On
     return {
       projectEndpoint,
       ...super.getRendererOptions(),
-    }
+    };
   }
   createRenderer() {
     const Renderer = this.getRenderer();
@@ -70,28 +82,33 @@ export class FormioReportComponent extends FormioComponent implements OnInit, On
       return null;
     }
 
-    const form = (new Renderer(
+    const form = new Renderer(
       this.formioElement ? this.formioElement.nativeElement : null,
       this.report,
-      this.getRendererOptions()
-    ));
+      this.getRendererOptions(),
+    );
     return form.instance;
   }
- 
+
   attachFormEvents() {
-    this.formio.on('fetchDataError', (error: any, component: any) =>  this.ngZone.run(() => {
-      this.alerts.addAlert({
-        type: 'danger',
-        message:  error ? JSON.stringify(error) : error,
-      });
-      this.fetchDataError.emit({error, component});
-    }));
+    this.formio.on('fetchDataError', (error: any, component: any) =>
+      this.ngZone.run(() => {
+        this.alerts.addAlert({
+          type: 'danger',
+          message: error ? JSON.stringify(error) : error,
+        });
+        this.changeDetectorRef.markForCheck();
+        this.fetchDataError.emit({ error, component });
+      }),
+    );
   }
 
   getRenderer() {
     const reportRenderer = (Formio as any).Report;
     if (!reportRenderer) {
-      console.error('Report is not found in Formio. Please make sure that you are using the Formio Reporting module and it is correctly included in your application.');
+      console.error(
+        'Report is not found in Formio. Please make sure that you are using the Formio Reporting module and it is correctly included in your application.',
+      );
     }
 
     return reportRenderer;

@@ -10,11 +10,11 @@ export function FormioResourceRoutes(config?: FormioResourceRouteConfig): Routes
   return [
     {
       path: '',
-      component: config && config.index ? config.index : FormioResourceIndexComponent
+      component: config && config.index ? config.index : FormioResourceIndexComponent,
     },
     {
       path: 'new',
-      component: config && config.create ? config.create : FormioResourceCreateComponent
+      component: config && config.create ? config.create : FormioResourceCreateComponent,
     },
     {
       path: ':id',
@@ -23,21 +23,21 @@ export function FormioResourceRoutes(config?: FormioResourceRouteConfig): Routes
         {
           path: '',
           redirectTo: 'view',
-          pathMatch: 'full'
+          pathMatch: 'full',
         },
         {
           path: 'view',
-          component: config && config.view ? config.view : FormioResourceViewComponent
+          component: config && config.view ? config.view : FormioResourceViewComponent,
         },
         {
           path: 'edit',
-          component: config && config.edit ? config.edit : FormioResourceEditComponent
+          component: config && config.edit ? config.edit : FormioResourceEditComponent,
         },
         {
           path: 'delete',
-          component: config && config.delete ? config.delete : FormioResourceDeleteComponent
-        }
-      ]
-    }
+          component: config && config.delete ? config.delete : FormioResourceDeleteComponent,
+        },
+      ],
+    },
   ];
 }

@@ -1,23 +1,10 @@
 {
-  "extends": [
-    "//"
-  ],
+  "extends": ["//"],
   "tasks": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "projects/**",
-        "angular.json",
-        "package.json",
-        "tsconfig.json",
-        "turbo.json"
-      ],
-      "outputs": [
-        ".angular/cache/**",
-        "dist/**"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["projects/**", "angular.json", "package.json", "tsconfig.json", "turbo.json"],
+      "outputs": [".angular/cache/**", "dist/**"]
     },
     "postversion": {
       "cache": false

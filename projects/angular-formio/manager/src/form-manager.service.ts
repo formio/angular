@@ -17,12 +17,12 @@ export class FormManagerService {
   public actionAllowed: any;
   public form = null;
   public formSrc = '';
-  public perms = {delete: false, edit: false};
+  public perms = { delete: false, edit: false };
 
   constructor(
     public appConfig: FormioAppConfig,
     public config: FormManagerConfig,
-    public auth: FormioAuthService
+    public auth: FormioAuthService,
   ) {
     if (this.appConfig && this.appConfig.appUrl) {
       Formio.setBaseUrl(this.appConfig.apiUrl);
@@ -32,12 +32,12 @@ export class FormManagerService {
     }
 
     this.allAccessMap = {
-      'update_all': 'formEdit',
-      'delete_all': 'formDelete'
+      update_all: 'formEdit',
+      delete_all: 'formDelete',
     };
     this.ownAccessMap = {
-      'update_own': 'formEdit',
-      'delete_own': 'formDelete'
+      update_own: 'formEdit',
+      delete_own: 'formDelete',
     };
     this.actionAllowed = (action) => this.isActionAllowed(action);
     this.reset();
@@ -56,7 +56,7 @@ export class FormManagerService {
       formPermission: true,
       formDelete: true,
       projectSettings: true,
-      userManagement: true
+      userManagement: true,
     };
     if (this.auth) {
       this.access = {
@@ -67,31 +67,30 @@ export class FormManagerService {
         formPermission: false,
         formDelete: false,
         projectSettings: false,
-        userManagement: false
+        userManagement: false,
       };
       this.ready = this.auth.ready.then(() => {
-        let administrator = this.auth.roles["administrator"];
-        let formbuilder = this.auth.roles["formbuilder"];
-        let formadmin = this.auth.roles["formadmin"];
+        let administrator = this.auth.roles['administrator'];
+        let formbuilder = this.auth.roles['formbuilder'];
+        let formadmin = this.auth.roles['formadmin'];
 
         if (this.auth.user && this.auth.user.roles) {
           this.auth.user.roles.forEach((roleId: string) => {
             if (administrator._id === roleId) {
               this.access.formCreate = true;
               this.access.formView = true;
-              this.access.formSubmission= true;
+              this.access.formSubmission = true;
               this.access.formEdit = true;
               this.access.formPermission = true;
               this.access.formDelete = true;
               this.access.projectSettings = true;
               this.access.userManagement = true;
-            }
-            else {
+            } else {
               if (formadmin && formadmin._id === roleId) {
                 this.access.formCreate = this.auth.formAccess.create_all.includes(roleId);
                 this.access.formEdit = this.auth.formAccess.update_all.includes(roleId);
                 this.access.formPermission = this.auth.formAccess.update_all.includes(roleId);
-                this.access.formDelete =  this.auth.formAccess.delete_all.includes(roleId);
+                this.access.formDelete = this.auth.formAccess.delete_all.includes(roleId);
                 this.access.formView = this.auth.formAccess.read_all.includes(roleId);
                 this.access.formSubmission = this.auth.formAccess.read_all.includes(roleId);
               }
@@ -99,7 +98,7 @@ export class FormManagerService {
                 this.access.formCreate = this.auth.formAccess.create_all.includes(roleId);
                 this.access.formEdit = this.auth.formAccess.update_all.includes(roleId);
                 this.access.formPermission = this.auth.formAccess.update_all.includes(roleId);
-                this.access.formDelete =  this.auth.formAccess.delete_all.includes(roleId);
+                this.access.formDelete = this.auth.formAccess.delete_all.includes(roleId);
                 this.access.formView = this.auth.formAccess.read_all.includes(roleId);
               }
             }
@@ -113,7 +112,7 @@ export class FormManagerService {
 
   reset(route?: ActivatedRoute) {
     if (route) {
-      route.params.subscribe(params => {
+      route.params.subscribe((params) => {
         if (params.id) {
           this.formio = new Formio(`${this.formio.formsUrl}/${params.id}`);
         } else {
@@ -138,7 +137,7 @@ export class FormManagerService {
     this.formSrc = this.appConfig.appUrl + '/' + form.path;
     if (form.access) {
       // Check if they have access here.
-      form.access.forEach(access => {
+      form.access.forEach((access) => {
         // Check for all access.
         if (this.allAccessMap[access.type] && !this.access[this.allAccessMap[access.type]]) {
           this.access[this.allAccessMap[access.type]] = this.hasAccess(access.roles);
@@ -146,8 +145,9 @@ export class FormManagerService {
 
         // Check for own access.
         if (
-          this.auth && this.auth.user &&
-          (form._id === this.auth.user._id) &&
+          this.auth &&
+          this.auth.user &&
+          form._id === this.auth.user._id &&
           this.ownAccessMap[access.type] &&
           !this.access[this.ownAccessMap[access.type]]
         ) {
@@ -160,13 +160,13 @@ export class FormManagerService {
 
   loadForm() {
     this.form = null;
-    this.formReady = this.formio.loadForm().then(form => this.setForm(form));
+    this.formReady = this.formio.loadForm().then((form) => this.setForm(form));
     return this.formReady;
   }
 
   setSubmission(route: ActivatedRoute) {
     return new Promise((resolve) => {
-      route.params.subscribe(params => {
+      route.params.subscribe((params) => {
         this.formio = new Formio(`${this.formio.submissionsUrl}/${params.id}`);
         resolve(this.formio);
       });
@@ -183,8 +183,10 @@ export class FormManagerService {
   }
 
   loadForms() {
-    return this.formio.loadForms({params: {
-      tags: this.config.tag
-    }});
+    return this.formio.loadForms({
+      params: {
+        tags: this.config.tag,
+      },
+    });
   }
 }

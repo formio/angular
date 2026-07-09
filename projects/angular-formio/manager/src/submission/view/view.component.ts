@@ -4,8 +4,8 @@ import { FormioComponent } from '@formio/angular';
 
 @Component({
   templateUrl: './view.component.html',
-  imports: [FormioComponent]
+  imports: [FormioComponent],
 })
 export class SubmissionViewComponent {
-  constructor(public service: FormManagerService) { }
+  constructor(public service: FormManagerService) {}
 }

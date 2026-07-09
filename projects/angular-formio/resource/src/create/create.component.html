@@ -1,8 +1,11 @@
-<h3 *ngIf="service.form" style="margin-top:0;">
-  <a routerLink="../" class="back-button">
-    <em class="fa fa-chevron-left bi bi-chevron-left"></em>
-  </a> | New {{ service.form.title }}
-</h3>
+@if (service.form) {
+  <h3 style="margin-top: 0">
+    <a routerLink="../" class="back-button">
+      <em class="fa fa-chevron-left bi bi-chevron-left"></em>
+    </a>
+    | New {{ service.form.title }}
+  </h3>
+}
 <formio
   [form]="service.form"
   [submission]="service.resource"
