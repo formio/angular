@@ -5,7 +5,10 @@ import { FormioForm } from './formio.common';
 export class FormioPromiseService {
   private formioService: FormioService;
 
-  constructor(public url: string, public options?: object) {
+  constructor(
+    public url: string,
+    public options?: object,
+  ) {
     this.formioService = new FormioService(url, options);
   }
 

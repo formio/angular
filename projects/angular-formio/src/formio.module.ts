@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Formio } from '@formio/js';
 import { FormioComponent } from './components/formio/formio.component';
 import { FormioReportComponent } from './components/formioreport/formioreport.component';
 import { FormBuilderComponent } from './components/formbuilder/formbuilder.component';
@@ -9,28 +10,37 @@ import { FormioAlertsComponent } from './components/alerts/formio.alerts.compone
 import { FormioLoaderComponent } from './components/loader/formio.loader.component';
 import { CustomTagsService } from './custom-tags.service';
 import { FormioBaseComponent } from './FormioBaseComponent';
+import { FormioAppConfig } from './formio.config';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormioComponent,
-        FormioReportComponent,
-        FormioBaseComponent,
-        FormBuilderComponent,
-        FormioLoaderComponent,
-        FormioAlertsComponent,
-        ParseHtmlContentPipe
-    ],
-    exports: [
-        FormioComponent,
-        FormioReportComponent,
-        FormBuilderComponent,
-        FormioLoaderComponent,
-        FormioAlertsComponent
-    ],
-    providers: [
-        FormioAlerts,
-        CustomTagsService
-    ]
+  imports: [
+    CommonModule,
+    FormioComponent,
+    FormioReportComponent,
+    FormioBaseComponent,
+    FormBuilderComponent,
+    FormioLoaderComponent,
+    FormioAlertsComponent,
+    ParseHtmlContentPipe,
+  ],
+  exports: [
+    FormioComponent,
+    FormioReportComponent,
+    FormBuilderComponent,
+    FormioLoaderComponent,
+    FormioAlertsComponent,
+  ],
+  providers: [FormioAlerts, CustomTagsService],
 })
-export class FormioModule {}
+export class FormioModule {
+  constructor(@Optional() config?: FormioAppConfig) {
+    const apiUrl = config?.apiUrl || config?.baseUrl;
+    const appUrl = config?.appUrl || config?.projectUrl;
+    if (apiUrl) {
+      Formio.setBaseUrl(apiUrl);
+    }
+    if (appUrl) {
+      Formio.setProjectUrl(appUrl);
+    }
+  }
+}

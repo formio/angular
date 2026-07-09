@@ -10,19 +10,19 @@ import {
   OnInit,
   Output,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
-import {FormioAlerts} from '@formio/angular';
-import {each} from 'lodash';
-import {FormioCore as Formio} from '@formio/js';
-import {GridHeaderComponent} from './GridHeaderComponent';
-import {GridBodyComponent} from './GridBodyComponent';
-import {GridFooterComponent} from './GridFooterComponent';
+import { FormioAlerts } from '@formio/angular';
+import { each } from 'lodash';
+import { FormioCore as Formio } from '@formio/js';
+import { GridHeaderComponent } from './GridHeaderComponent';
+import { GridBodyComponent } from './GridBodyComponent';
+import { GridFooterComponent } from './GridFooterComponent';
 import FormComponents from './form/index';
 import SubmissionComponents from './submission/index';
-import {FormioPromiseService} from '@formio/angular';
-import {GridColumn} from './types/grid-column';
-import {GridHeader, SortType} from './types/grid-header';
+import { FormioPromiseService } from '@formio/angular';
+import { GridColumn } from './types/grid-column';
+import { GridHeader, SortType } from './types/grid-header';
 import { FormioAlertsComponent } from '@formio/angular';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { FormioLoaderComponent } from '@formio/angular';
@@ -31,7 +31,7 @@ import { FormioLoaderComponent } from '@formio/angular';
   selector: 'formio-grid',
   styleUrls: ['./grid.component.scss'],
   templateUrl: './grid.component.html',
-  imports: [FormioAlertsComponent, NgTemplateOutlet, FormioLoaderComponent, CommonModule]
+  imports: [FormioAlertsComponent, NgTemplateOutlet, FormioLoaderComponent, CommonModule],
 })
 export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Input() footerPosition = GridFooterPositions.bottom;
@@ -53,9 +53,12 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   @Output() rowAction: EventEmitter<object>;
   @Output() createItem: EventEmitter<any>;
   @Output() error: EventEmitter<any>;
-  @ViewChild('headerTemplate', {read: ViewContainerRef, static: true}) headerElement: ViewContainerRef;
-  @ViewChild('bodyTemplate', {read: ViewContainerRef, static: true}) bodyElement: ViewContainerRef;
-  @ViewChild('footerTemplate', {read: ViewContainerRef, static: true}) footerElement: ViewContainerRef;
+  @ViewChild('headerTemplate', { read: ViewContainerRef, static: true })
+  headerElement: ViewContainerRef;
+  @ViewChild('bodyTemplate', { read: ViewContainerRef, static: true })
+  bodyElement: ViewContainerRef;
+  @ViewChild('footerTemplate', { read: ViewContainerRef, static: true })
+  footerElement: ViewContainerRef;
 
   public page = 0;
   public isLoading = false;
@@ -68,7 +71,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
   constructor(
     public alerts: FormioAlerts,
     private resolver: ComponentFactoryResolver,
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
   ) {
     this.select = this.rowSelect = new EventEmitter();
     this.rowAction = new EventEmitter();
@@ -89,7 +92,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
       return;
     }
     // Do not double load.
-    if (this.formio && this.src && (src === this.src)) {
+    if (this.formio && this.src && src === this.src) {
       return;
     }
 
@@ -99,24 +102,26 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     }
 
     // Load the header.
-    this.header.load(this.formio, {}, this.columns)
+    this.header
+      .load(this.formio, {}, this.columns)
       .then(() => this.setPage(0))
-      .catch(error => this.onError(error));
+      .catch((error) => this.onError(error));
   }
 
   ngOnInit() {
     // Create our components.
-    const comps = this.components || ((this.gridType === 'form') ? FormComponents : SubmissionComponents);
+    const comps =
+      this.components || (this.gridType === 'form' ? FormComponents : SubmissionComponents);
 
     this.header = this.createComponent(this.headerElement, comps.header);
     this.header.actionAllowed = this.actionAllowed.bind(this);
-    this.header.sort.subscribe(header => this.sortColumn(header));
+    this.header.sort.subscribe((header) => this.sortColumn(header));
 
     this.body = this.createComponent(this.bodyElement, comps.body);
     this.body.header = this.header;
     this.body.actionAllowed = this.actionAllowed.bind(this);
-    this.body.rowSelect.subscribe(row => this.rowSelect.emit(row));
-    this.body.rowAction.subscribe(action => this.rowAction.emit(action));
+    this.body.rowSelect.subscribe((row) => this.rowSelect.emit(row));
+    this.body.rowAction.subscribe((action) => this.rowAction.emit(action));
 
     this.footer = this.createComponent(this.footerElement, comps.footer);
     this.footer.header = this.header;
@@ -124,8 +129,8 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
     this.footer.actionAllowed = this.actionAllowed.bind(this);
     this.footer.createText = this.createText;
     this.footer.size = this.size;
-    this.footer.pageChanged.subscribe(page => this.pageChanged(page));
-    this.footer.createItem.subscribe(item => this.createItem.emit(item));
+    this.footer.pageChanged.subscribe((page) => this.pageChanged(page));
+    this.footer.createItem.subscribe((item) => this.createItem.emit(item));
   }
 
   ngOnChanges(changes: any) {
@@ -142,8 +147,7 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
       }
     }
 
-    if (this.footer &&
-        (changes.createText && changes.createText.currentValue)) {
+    if (this.footer && changes.createText && changes.createText.currentValue) {
       this.footer.createText = changes.createText.currentValue;
     }
   }
@@ -169,11 +173,12 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
 
   onError(error: any) {
     this.isLoading = false;
+    this.ref.detectChanges();
     this.error.emit(error);
     if (typeof error === 'string' || error.message) {
       this.alerts.setAlert({
         type: 'danger',
-        message: error.message || error
+        message: error.message || error,
       });
     }
   }
@@ -197,11 +202,13 @@ export class FormioGridComponent implements OnChanges, OnInit, AfterViewInit {
       loader = this.body.load(this.formio, this.query);
     }
 
-    return loader.then(info => {
-      this.isLoading = false;
-      this.initialized = true;
-      this.ref.detectChanges();
-    }).catch(error => this.onError(error));
+    return loader
+      .then((info) => {
+        this.isLoading = false;
+        this.initialized = true;
+        this.ref.detectChanges();
+      })
+      .catch((error) => this.onError(error));
   }
 
   setPage(num = -1) {

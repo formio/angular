@@ -7,7 +7,7 @@ export class FormioResourceDeleteComponent {
   constructor(
     public service: FormioResourceService,
     public route: ActivatedRoute,
-    public router: Router
+    public router: Router,
   ) {}
 
   onDelete() {

@@ -23,7 +23,6 @@ export class FormioAuthConfig {
   oauth?: FormioOAuthConfig;
 }
 
-
 export interface FormioOAuthConfig {
   type: FormioOauthType;
   options: FormioOktaConfig | FormioSamlConfig;
@@ -61,10 +60,12 @@ export interface OktaConfig {
 }
 
 export interface OktaTokenManagerConfig {
-  storage?: string | {
-    getItem?: Function;
-    setItem?: Function;
-  };
+  storage?:
+    | string
+    | {
+        getItem?: Function;
+        setItem?: Function;
+      };
   secure?: boolean;
   autoRenew?: boolean;
   expireEarlySeconds?: number;

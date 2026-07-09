@@ -4,5 +4,5 @@ import { FormGridFooterComponent } from './FormGridFooter.component';
 export default {
   header: FormGridHeaderComponent,
   body: FormGridBodyComponent,
-  footer: FormGridFooterComponent
+  footer: FormGridFooterComponent,
 };

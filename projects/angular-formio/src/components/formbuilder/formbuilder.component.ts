@@ -10,13 +10,10 @@ import {
   ViewChild,
   EventEmitter,
   Output,
-  NgZone
+  NgZone,
 } from '@angular/core';
 import { FormioAppConfig } from '../../formio.config';
-import {
-  AngularFormioOptions,
-  FormioForm,
-} from '../../formio.common';
+import { AngularFormioOptions, FormioForm } from '../../formio.common';
 import { Formio, FormBuilder, Utils } from '@formio/js';
 import { assign } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
@@ -27,7 +24,7 @@ import { CustomTagsService } from '../../custom-tags.service';
   selector: 'form-builder',
   templateUrl: './formbuilder.component.html',
   styleUrls: ['../../../../../node_modules/@formio/js/dist/formio.builder.min.css'],
-    encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 /* tslint:enable */
 export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
@@ -40,7 +37,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form?: FormioForm;
   @Input() options?: FormBuilder['options'] & AngularFormioOptions;
   @Input() formbuilder?: any;
-  @Input() noeval ? = false;
+  @Input() noeval? = false;
   @Input() refresh?: Observable<void>;
   @Input() rebuild?: Observable<object>;
   @Output() change: EventEmitter<object>;
@@ -49,7 +46,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     private ngZone: NgZone,
     @Optional() private config: FormioAppConfig,
-    @Optional() private customTags?: CustomTagsService
+    @Optional() private customTags?: CustomTagsService,
   ) {
     if (this.config) {
       Formio.setBaseUrl(this.config.apiUrl);
@@ -102,7 +99,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
             component: component,
             parent: parent,
             path: path,
-            index: index
+            index: index,
           });
           this.componentAdding = false;
         }
@@ -119,7 +116,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
           parent: parent,
           path: path,
           index: index,
-          isNew: isNew || false
+          isNew: isNew || false,
         });
         this.componentAdding = false;
       });
@@ -130,7 +127,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
           type: 'updateComponent',
           builder: instance,
           form: instance.schema,
-          component: component
+          component: component,
         });
       });
     });
@@ -143,7 +140,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
           component: component,
           parent: parent,
           path: path,
-          index: index
+          index: index,
         });
       });
     });
@@ -181,14 +178,17 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
     this.builder = new Builder(
       this.builderElement.nativeElement,
       form,
-      assign({
-        icons: 'fontawesome',
-        sanitizeConfig: {
-          addTags: extraTags
-        }
-      }, options || this.options || {})
+      assign(
+        {
+          icons: 'fontawesome',
+          sanitizeConfig: {
+            addTags: extraTags,
+          },
+        },
+        options || this.options || {},
+      ),
     );
-    return this.builder.ready.then(instance => this.setInstance(instance));
+    return this.builder.ready.then((instance) => this.setInstance(instance));
   }
 
   ngOnChanges(changes: any) {
@@ -196,7 +196,7 @@ export class FormBuilderComponent implements OnInit, OnChanges, OnDestroy {
 
     if (changes.form && changes.form.currentValue) {
       this.ngZone.runOutsideAngular(() => {
-        this.buildForm(changes.form.currentValue || {components: []}, changes.form.previousValue);
+        this.buildForm(changes.form.currentValue || { components: [] }, changes.form.previousValue);
       });
     }
   }

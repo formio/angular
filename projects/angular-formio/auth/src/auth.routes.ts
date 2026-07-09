@@ -14,21 +14,21 @@ export function FormioAuthRoutes(config?: FormioAuthRouteConfig): Routes {
         {
           path: '',
           redirectTo: 'login',
-          pathMatch: 'full'
+          pathMatch: 'full',
         },
         {
           path: 'login',
-          component: config && config.login ? config.login : FormioAuthLoginComponent
+          component: config && config.login ? config.login : FormioAuthLoginComponent,
         },
         {
           path: 'register',
-          component: config && config.register ? config.register : FormioAuthRegisterComponent
+          component: config && config.register ? config.register : FormioAuthRegisterComponent,
         },
         {
           path: 'resetpass',
-          component: config && config.resetpass ? config.resetpass : FormioResetPassComponent
-        }
-      ]
-    }
+          component: config && config.resetpass ? config.resetpass : FormioResetPassComponent,
+        },
+      ],
+    },
   ];
 }

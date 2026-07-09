@@ -1,7 +1,10 @@
 import { ExtendedComponentSchema, ValidateOptions } from '@formio/deprecated-types';
 import { AlertsPosition } from './types/alerts-position';
 
-export interface ComponentOptions<T = any, V extends ValidateOptions = ValidateOptions> extends ExtendedComponentSchema<T> {
+export interface ComponentOptions<
+  T = any,
+  V extends ValidateOptions = ValidateOptions,
+> extends ExtendedComponentSchema<T> {
   validate?: V;
 }
 
@@ -27,7 +30,6 @@ export interface FormioReport {
 }
 
 export interface FormioForm {
-  _id?: string;
   title?: string;
   display?: string;
   name?: string;
@@ -66,14 +68,8 @@ export class FormioError {
   ) {}
 }
 
-export type FormioSubmissionCallback = (
-  error: FormioError,
-  submission: object
-) => void;
-export type FormioBeforeSubmit = (
-  submission: object,
-  callback: FormioSubmissionCallback
-) => void;
+export type FormioSubmissionCallback = (error: FormioError, submission: object) => void;
+export type FormioBeforeSubmit = (submission: object, callback: FormioSubmissionCallback) => void;
 
 export interface FormioHookOptions {
   beforeSubmit: FormioBeforeSubmit;

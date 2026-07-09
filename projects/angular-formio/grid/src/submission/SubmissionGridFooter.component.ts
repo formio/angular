@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridFooterComponent } from '../GridFooterComponent';
 import { NgTemplateOutlet } from '@angular/common';
 import { PaginationComponent } from 'ngx-bootstrap/pagination';
@@ -8,10 +8,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './SubmissionGridFooter.component.html',
   styleUrls: ['../grid.footer.scss'],
   encapsulation: ViewEncapsulation.None,
-  imports: [NgTemplateOutlet, PaginationComponent, FormsModule]
+  imports: [NgTemplateOutlet, PaginationComponent, FormsModule],
 })
 export class SubmissionGridFooterComponent extends GridFooterComponent implements OnInit {
-
   constructor() {
     super();
   }

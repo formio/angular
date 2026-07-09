@@ -1,6 +1,6 @@
 import FormioMetadata from './formio-metadata';
 
-export default interface FormioSubmission<T = any, stateType= FormioSubmissionState > {
+export default interface FormioSubmission<T = any, stateType = FormioSubmissionState> {
   _id?: string;
   created?: string;
   data?: T;
@@ -14,7 +14,7 @@ export default interface FormioSubmission<T = any, stateType= FormioSubmissionSt
   _vid?: number;
 }
 
-export enum FormioSubmissionState  {
+export enum FormioSubmissionState {
   draft = 'draft',
-  submitted = 'submitted'
+  submitted = 'submitted',
 }

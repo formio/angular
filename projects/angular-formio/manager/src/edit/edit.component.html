@@ -3,7 +3,7 @@
 }
 <div class="form-group row mb-2">
   <div class="col-sm-8">
-    <input type="text" class="form-control" id="formTitle" placeholder="Enter a Title" #title>
+    <input type="text" class="form-control" id="formTitle" placeholder="Enter a Title" #title />
   </div>
   <div class="col-sm-2">
     <select class="form-control" id="formSelect" (change)="onDisplaySelect($event)" #type>
@@ -13,11 +13,13 @@
     </select>
   </div>
   <div class="col-sm-2">
-    <button class="btn btn-primary btn-block" (click)="onSave()"><i class="bi bi-save me-2"></i>Save Form</button>
+    <button class="btn btn-primary btn-block" (click)="onSave()">
+      <i class="bi bi-save me-2"></i>Save Form
+    </button>
   </div>
 </div>
 <formio-alerts [alerts]="alerts"></formio-alerts>
 @if (formReady) {
   <form-builder [formbuilder]="config.builder" [form]="form" #builder></form-builder>
 }
-<button class="btn btn-primary" style="margin-top: 10px;" (click)="onSave()">Save Form</button>
+<button class="btn btn-primary" style="margin-top: 10px" (click)="onSave()">Save Form</button>

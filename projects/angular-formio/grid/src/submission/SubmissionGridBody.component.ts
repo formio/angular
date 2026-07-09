@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { each, get } from 'lodash';
 import { GridBodyComponent } from '../GridBodyComponent';
-import {FormioPromiseService} from '@formio/angular';
+import { FormioPromiseService } from '@formio/angular';
 import { GridHeader } from '../types/grid-header';
-import {FormioSubmission} from '@formio/angular';
+import { FormioSubmission } from '@formio/angular';
 @Component({
   templateUrl: './SubmissionGridBody.component.html',
 })
 export class SubmissionGridBodyComponent extends GridBodyComponent {
   load(formio: FormioPromiseService, query?: any) {
     query = query || {};
-    return formio.loadSubmissions({ params: query })
+    return formio
+      .loadSubmissions({ params: query })
       .then((submissions: any) => this.setRows(query, submissions));
   }
 
