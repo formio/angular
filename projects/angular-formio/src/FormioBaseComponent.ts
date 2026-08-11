@@ -11,7 +11,7 @@ import {
   Optional,
   Output,
   ViewChild,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormioService } from './formio.service';
 import { FormioAlerts } from './components/alerts/formio.alerts';
