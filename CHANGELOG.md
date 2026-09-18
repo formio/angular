@@ -1,5 +1,17 @@
 # @formio/angular
 
+## 11.0.6
+
+### Patch Changes
+
+- 56a7b52: FIO-11987 added an update to the state when submitting the form via FVP
+
+## 11.0.6-api910.0
+
+### Patch Changes
+
+- 56a7b52: FIO-11987 added an update to the state when submitting the form via FVP
+
 ## 11.0.5
 
 ### Patch Changes
