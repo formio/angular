@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
   Input,
   NgZone,
-  OnChanges
+  OnChanges,
 } from '@angular/core';
 import { FormioAppConfig } from '../../formio.config';
 import { Formio, Form } from '@formio/js';

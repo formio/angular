@@ -23,6 +23,7 @@ export class FormioResourceEditComponent implements OnDestroy {
   onSubmit(submission: any) {
     const edit = this.service.resource;
     edit.data = submission.data;
+    edit.state = submission.state || edit.state;
     this.service
       .save(edit)
       .then(() => {
